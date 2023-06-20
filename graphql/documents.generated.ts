@@ -27,6 +27,7 @@ export type PostBySlugQuery = {
       date?: any | null;
       slug?: string | null;
       category?: string | null;
+      sys: { __typename?: "Sys"; id: string };
       body?: {
         __typename?: "PostBody";
         json: any;
@@ -142,6 +143,19 @@ export const PostBySlugDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "sys" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       {
                         kind: "Field",

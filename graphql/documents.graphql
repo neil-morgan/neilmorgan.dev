@@ -8,6 +8,9 @@ query Students {
 query postBySlug($slug: String!) {
   postCollection(where: { slug: $slug }, limit: 1) {
     items {
+      sys {
+        id
+      }
       title
       body {
         json

@@ -13,14 +13,23 @@ export default async function PostPage({ params }: PostPageProps) {
     variables: { slug: params.post },
   });
   const content = data.postCollection?.items[0];
-
   if (!content) {
     return;
   }
 
-  const { title } = content;
+  const {
+    title,
+    sys: { id },
+  } = content;
 
-  return <div>{title}</div>;
+  // get page from db using id - if undefined, create it
+
+  return (
+    <div>
+      <div>{id}</div>
+      <div>{title}</div>
+    </div>
+  );
 }
 
 export async function generateStaticParams() {
