@@ -1,0 +1,40 @@
+query Students {
+  students {
+    id
+    firstName
+  }
+}
+
+query postBySlug($slug: String!) {
+  postCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      title
+      body {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              description
+            }
+          }
+        }
+      }
+      description
+      date
+      slug
+      category
+    }
+  }
+}
+
+query allPostsSlugs {
+  postCollection(where: { slug_exists: true }) {
+    items {
+      slug
+    }
+  }
+}
