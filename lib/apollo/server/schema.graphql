@@ -1,19 +1,15 @@
-type Student {
-  id: ID
-  firstName: String
-  lastName: String
-  age: Int
+type Post {
+  _id: ID
+  likes: Int
 }
 
 type Query {
-  greetings: String
-  welcome(name: String): String
-  students: [Student]
-  student(id: ID): Student
+  posts: [Post]
+  post(_id: ID): Post
 }
 
 type Mutation {
-  create(firstName: String, lastName: String, age: Int): Student
-  update(id: ID, firstName: String, lastName: String, age: Int): Student
-  delete(id: ID): Student
+  createPost(_id: ID, likes: Int): Post
+  updatePost(_id: ID, likes: Int): Post
+  deletePost(_id: ID): Post
 }

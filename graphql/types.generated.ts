@@ -406,37 +406,36 @@ export type ImageTransformOptions = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  create?: Maybe<Student>;
-  delete?: Maybe<Student>;
-  update?: Maybe<Student>;
+  createPost?: Maybe<Post>;
+  deletePost?: Maybe<Post>;
+  updatePost?: Maybe<Post>;
 };
 
-export type MutationCreateArgs = {
-  age?: InputMaybe<Scalars["Int"]["input"]>;
-  firstName?: InputMaybe<Scalars["String"]["input"]>;
-  lastName?: InputMaybe<Scalars["String"]["input"]>;
+export type MutationCreatePostArgs = {
+  _id?: InputMaybe<Scalars["ID"]["input"]>;
+  likes?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
-export type MutationDeleteArgs = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
+export type MutationDeletePostArgs = {
+  _id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
-export type MutationUpdateArgs = {
-  age?: InputMaybe<Scalars["Int"]["input"]>;
-  firstName?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  lastName?: InputMaybe<Scalars["String"]["input"]>;
+export type MutationUpdatePostArgs = {
+  _id?: InputMaybe<Scalars["ID"]["input"]>;
+  likes?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/post) */
 export type Post = Entry & {
   __typename?: "Post";
+  _id?: Maybe<Scalars["ID"]["output"]>;
   body?: Maybe<PostBody>;
   category?: Maybe<Scalars["String"]["output"]>;
   contentfulMetadata: ContentfulMetadata;
   date?: Maybe<Scalars["DateTime"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
   image?: Maybe<Asset>;
+  likes?: Maybe<Scalars["Int"]["output"]>;
   linkedFrom?: Maybe<PostLinkingCollections>;
   slug?: Maybe<Scalars["String"]["output"]>;
   sys: Sys;
@@ -605,12 +604,9 @@ export type Query = {
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   entryCollection?: Maybe<EntryCollection>;
-  greetings?: Maybe<Scalars["String"]["output"]>;
   post?: Maybe<Post>;
   postCollection?: Maybe<PostCollection>;
-  student?: Maybe<Student>;
-  students?: Maybe<Array<Maybe<Student>>>;
-  welcome?: Maybe<Scalars["String"]["output"]>;
+  posts?: Maybe<Array<Maybe<Post>>>;
 };
 
 export type QueryAssetArgs = {
@@ -638,6 +634,7 @@ export type QueryEntryCollectionArgs = {
 };
 
 export type QueryPostArgs = {
+  _id?: InputMaybe<Scalars["ID"]["input"]>;
   id: Scalars["String"]["input"];
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -650,22 +647,6 @@ export type QueryPostCollectionArgs = {
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where?: InputMaybe<PostFilter>;
-};
-
-export type QueryStudentArgs = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
-export type QueryWelcomeArgs = {
-  name?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type Student = {
-  __typename?: "Student";
-  age?: Maybe<Scalars["Int"]["output"]>;
-  firstName?: Maybe<Scalars["String"]["output"]>;
-  id?: Maybe<Scalars["ID"]["output"]>;
-  lastName?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Sys = {

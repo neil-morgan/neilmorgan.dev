@@ -1,44 +1,33 @@
-import { Student } from "@/lib/mongodb";
+import { Post } from "@/lib/mongodb";
 
 type unused = unknown;
 
-type Args = {
-  id?: string;
-  firstName?: string;
-  lastName?: string;
-  age?: number;
-};
-
 export const resolvers = {
   Query: {
-    greetings: () => "GraphQL is Awesome",
-    welcome: (_: unused, { name }: { name: string }) => `Hello ${name}`,
-    students: async () => await Student.find({}),
-    student: async (_: unused, { id }: Args) => await Student.findById(id),
+    posts: async () => await Post.find({}),
+    post: async (_: unused, { _id }: { _id?: string }) =>
+      await Post.findById(_id),
   },
   Mutation: {
-    create: async (_: unused, args: Args) => {
-      const { firstName, lastName, age } = args;
-      const newStudent = new Student({
-        firstName,
-        lastName,
-        age,
-      });
-      await newStudent.save();
-      return newStudent;
+    createPost: async (_: unused, args: { _id?: string; likes?: number }) => {
+      const { _id } = args;
+
+      const newPost = new Post({ _id, likes: 0 });
+      await newPost.save();
+      return newPost;
     },
-    update: async (_: unused, args: Args) => {
-      const { id } = args;
-      const result = await Student.findByIdAndUpdate(id, args);
+    updatePost: async (_: unused, args: { _id?: string; likes?: number }) => {
+      const { _id } = args;
+      const result = await Post.findByIdAndUpdate(_id, args);
       return result;
     },
-    delete: async (_: unused, args: Args) => {
-      const { id } = args;
-      const deletedStudent = await Student.findByIdAndDelete(id);
-      if (!deletedStudent) {
-        throw new Error(`Student with ID ${id} not found`);
+    deletePost: async (_: unused, args: { _id?: string }) => {
+      const { _id } = args;
+      const deletedPost = await Post.findByIdAndDelete(_id);
+      if (!deletedPost) {
+        throw new Error(`Post with ID ${_id} not found`);
       }
-      return deletedStudent;
+      return deletedPost;
     },
   },
 };

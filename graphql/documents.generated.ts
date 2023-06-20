@@ -1,17 +1,6 @@
 import * as Types from "./types.generated";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
-export type StudentsQueryVariables = Types.Exact<{ [key: string]: never }>;
-
-export type StudentsQuery = {
-  __typename?: "Query";
-  students?: Array<{
-    __typename?: "Student";
-    id?: string | null;
-    firstName?: string | null;
-  } | null> | null;
-};
-
 export type PostBySlugQueryVariables = Types.Exact<{
   slug: Types.Scalars["String"]["input"];
 }>;
@@ -58,32 +47,6 @@ export type AllPostsSlugsQuery = {
   } | null;
 };
 
-export const StudentsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "Students" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "students" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<StudentsQuery, StudentsQueryVariables>;
 export const PostBySlugDocument = {
   kind: "Document",
   definitions: [
