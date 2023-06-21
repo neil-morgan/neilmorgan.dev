@@ -25,20 +25,10 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean };
   Int: { input: number; output: number };
   Float: { input: number; output: number };
-  /**
-   * A date-time string at UTC, such as 2007-12-03T10:15:30Z,
-   *     compliant with the 'date-time' format outlined in section 5.6 of
-   *     the RFC 3339 profile of the ISO 8601 standard for representation
-   *     of dates and times using the Gregorian calendar.
-   */
   DateTime: { input: any; output: any };
-  /** The 'Dimension' type represents dimensions as whole numeric values between `1` and `4000`. */
   Dimension: { input: any; output: any };
-  /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: { input: any; output: any };
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any };
-  /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: { input: any; output: any };
 };
 
@@ -404,38 +394,15 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars["Dimension"]["input"]>;
 };
 
-export type Mutation = {
-  __typename?: "Mutation";
-  createPost?: Maybe<Post>;
-  deletePost?: Maybe<Post>;
-  updatePost?: Maybe<Post>;
-};
-
-export type MutationCreatePostArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
-  likes?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
-export type MutationDeletePostArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
-export type MutationUpdatePostArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
-  likes?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/post) */
 export type Post = Entry & {
   __typename?: "Post";
-  _id?: Maybe<Scalars["ID"]["output"]>;
   body?: Maybe<PostBody>;
   category?: Maybe<Scalars["String"]["output"]>;
   contentfulMetadata: ContentfulMetadata;
   date?: Maybe<Scalars["DateTime"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
   image?: Maybe<Asset>;
-  likes?: Maybe<Scalars["Int"]["output"]>;
   linkedFrom?: Maybe<PostLinkingCollections>;
   slug?: Maybe<Scalars["String"]["output"]>;
   sys: Sys;
@@ -606,7 +573,6 @@ export type Query = {
   entryCollection?: Maybe<EntryCollection>;
   post?: Maybe<Post>;
   postCollection?: Maybe<PostCollection>;
-  posts?: Maybe<Array<Maybe<Post>>>;
 };
 
 export type QueryAssetArgs = {
@@ -634,7 +600,6 @@ export type QueryEntryCollectionArgs = {
 };
 
 export type QueryPostArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
   id: Scalars["String"]["input"];
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;

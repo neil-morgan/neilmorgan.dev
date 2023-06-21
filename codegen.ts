@@ -1,26 +1,50 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
+import { loadEnvConfig } from "@next/env";
+import { CONTENTFUL_BASE_URL } from "./constants";
+
+loadEnvConfig(process.cwd());
+
+const cmsDocument = "graphql/cms/**/*.graphql";
+const cmsSchema = {
+  [`${CONTENTFUL_BASE_URL}${process.env.CONTENTFUL_SPACE_ID}`]: {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
+    },
+  },
+};
+
+const dbDocument = "graphql/db/**/*.graphql";
+const dbSchema = { [`http://localhost:3000/api`]: {} };
 
 const config: CodegenConfig = {
   overwrite: true,
-
-  schema: [
-    {
-      "http://localhost:3000/api": {},
-    },
-    {
-      "https://graphql.contentful.com/content/v1/spaces/96c2x2gvt3wj": {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer afQzP5h4u_FQ6U2_HN4dNZMmv0GwZKrNSzJgFBntUps`,
-        },
-      },
-    },
-  ],
-  documents: ["graphql/**/*.graphql"],
   hooks: { afterAllFileWrite: ["prettier --write"] },
+
   generates: {
-    "graphql/types.generated.ts": { plugins: ["typescript"] },
-    "graphql/": {
+    "graphql/cms/types.generated.ts": {
+      schema: cmsSchema,
+      documents: cmsDocument,
+      plugins: ["typescript"],
+    },
+    "graphql/cms/": {
+      schema: cmsSchema,
+      documents: cmsDocument,
+      preset: "near-operation-file",
+      presetConfig: {
+        extension: ".generated.ts",
+        baseTypesPath: "types.generated.ts",
+      },
+      plugins: ["typescript-operations", "typed-document-node"],
+    },
+    "graphql/db/types.generated.ts": {
+      schema: dbSchema,
+      documents: dbDocument,
+      plugins: ["typescript"],
+    },
+    "graphql/db/": {
+      schema: dbSchema,
+      documents: dbDocument,
       preset: "near-operation-file",
       presetConfig: {
         extension: ".generated.ts",

@@ -1,5 +1,5 @@
 import { getClient } from "@/lib/apollo/client";
-import { AllPostsSlugsDocument, PostBySlugDocument } from "@/graphql";
+import { AllPostsSlugsDocument, PostBySlugDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 
 type PostPageProps = {
@@ -23,12 +23,13 @@ export default async function PostPage({ params }: PostPageProps) {
   } = content;
 
   // get page from db using id - if undefined, create it
+  console.log(id);
 
   return (
-    <div>
+    <main>
       <div>{id}</div>
       <div>{title}</div>
-    </div>
+    </main>
   );
 }
 

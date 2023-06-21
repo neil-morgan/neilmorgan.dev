@@ -11,7 +11,6 @@ export const resolvers = {
   Mutation: {
     createPost: async (_: unused, args: { _id?: string; likes?: number }) => {
       const { _id } = args;
-
       const newPost = new Post({ _id, likes: 0 });
       await newPost.save();
       return newPost;

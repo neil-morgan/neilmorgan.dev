@@ -1,0 +1,6 @@
+query getDbPostById($id: ID) {
+  post(_id: $id) {
+    _id
+    likes
+  }
+}
