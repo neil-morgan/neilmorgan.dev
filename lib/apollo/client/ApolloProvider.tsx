@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
 
 const makeClient = () => {
   const httpLink = new HttpLink({
-    uri: process.env.APOLLO_SERVER_URL as string,
+    uri: process.env.APOLLO_SERVER_URL,
   });
 
   return new ApolloClient({

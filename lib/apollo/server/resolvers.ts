@@ -5,8 +5,10 @@ type unused = unknown;
 export const resolvers = {
   Query: {
     posts: async () => await Post.find({}),
-    post: async (_: unused, { _id }: { _id?: string }) =>
-      await Post.findById(_id),
+    post: async (_: unused, { _id }: { _id?: string }) => {
+      console.log(_id);
+      return await Post.findById(_id);
+    },
   },
   Mutation: {
     createPost: async (_: unused, args: { _id?: string; likes?: number }) => {

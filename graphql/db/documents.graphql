@@ -4,3 +4,10 @@ query getDbPostById($id: ID) {
     likes
   }
 }
+
+mutation createDbPostById($likes: Int, $id: ID) {
+  createPost(likes: $likes, _id: $id) {
+    likes
+    _id
+  }
+}

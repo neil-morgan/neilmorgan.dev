@@ -11,7 +11,7 @@ const { CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN, APOLLO_SERVER_URL } =
   process.env;
 
 const db = new HttpLink({
-  uri: APOLLO_SERVER_URL,
+  uri: "http://localhost:3000/api",
 });
 
 const cms = new HttpLink({
