@@ -1,40 +1,54 @@
 import * as Types from "./types.generated";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
-export type GetDbPostByIdQueryVariables = Types.Exact<{
+export type GetPostDataByIdQueryVariables = Types.Exact<{
   id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
 }>;
 
-export type GetDbPostByIdQuery = {
+export type GetPostDataByIdQuery = {
   __typename?: "Query";
-  post?: {
-    __typename?: "Post";
+  postData?: {
+    __typename?: "PostData";
     _id?: string | null;
     likes?: number | null;
   } | null;
 };
 
-export type CreateDbPostByIdMutationVariables = Types.Exact<{
+export type CreatePostDataByIdMutationVariables = Types.Exact<{
   likes?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
   id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
 }>;
 
-export type CreateDbPostByIdMutation = {
+export type CreatePostDataByIdMutation = {
   __typename?: "Mutation";
-  createPost?: {
-    __typename?: "Post";
+  createPostData?: {
+    __typename?: "PostData";
     likes?: number | null;
     _id?: string | null;
   } | null;
 };
 
-export const GetDbPostByIdDocument = {
+export type UpdatePostLikesByIdMutationVariables = Types.Exact<{
+  id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
+  likes?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
+}>;
+
+export type UpdatePostLikesByIdMutation = {
+  __typename?: "Mutation";
+  updatePostData?: {
+    __typename?: "PostData";
+    likes?: number | null;
+    _id?: string | null;
+  } | null;
+};
+
+export const GetPostDataByIdDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "getDbPostById" },
+      name: { kind: "Name", value: "getPostDataById" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -47,7 +61,7 @@ export const GetDbPostByIdDocument = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "post" },
+            name: { kind: "Name", value: "postData" },
             arguments: [
               {
                 kind: "Argument",
@@ -70,14 +84,17 @@ export const GetDbPostByIdDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetDbPostByIdQuery, GetDbPostByIdQueryVariables>;
-export const CreateDbPostByIdDocument = {
+} as unknown as DocumentNode<
+  GetPostDataByIdQuery,
+  GetPostDataByIdQueryVariables
+>;
+export const CreatePostDataByIdDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "mutation",
-      name: { kind: "Name", value: "createDbPostById" },
+      name: { kind: "Name", value: "createPostDataById" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -98,7 +115,7 @@ export const CreateDbPostByIdDocument = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "createPost" },
+            name: { kind: "Name", value: "createPostData" },
             arguments: [
               {
                 kind: "Argument",
@@ -130,6 +147,68 @@ export const CreateDbPostByIdDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  CreateDbPostByIdMutation,
-  CreateDbPostByIdMutationVariables
+  CreatePostDataByIdMutation,
+  CreatePostDataByIdMutationVariables
+>;
+export const UpdatePostLikesByIdDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updatePostLikesById" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "likes" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updatePostData" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "_id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "likes" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "likes" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "likes" } },
+                { kind: "Field", name: { kind: "Name", value: "_id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdatePostLikesByIdMutation,
+  UpdatePostLikesByIdMutationVariables
 >;

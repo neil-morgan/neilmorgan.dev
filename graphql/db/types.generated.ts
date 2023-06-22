@@ -29,37 +29,37 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  createPost?: Maybe<Post>;
-  deletePost?: Maybe<Post>;
-  updatePost?: Maybe<Post>;
+  createPostData?: Maybe<PostData>;
+  deletePostData?: Maybe<PostData>;
+  updatePostData?: Maybe<PostData>;
 };
 
-export type MutationCreatePostArgs = {
+export type MutationCreatePostDataArgs = {
   _id?: InputMaybe<Scalars["ID"]["input"]>;
   likes?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
-export type MutationDeletePostArgs = {
+export type MutationDeletePostDataArgs = {
   _id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
-export type MutationUpdatePostArgs = {
+export type MutationUpdatePostDataArgs = {
   _id?: InputMaybe<Scalars["ID"]["input"]>;
   likes?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
-export type Post = {
-  __typename?: "Post";
+export type PostData = {
+  __typename?: "PostData";
   _id?: Maybe<Scalars["ID"]["output"]>;
   likes?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Query = {
   __typename?: "Query";
-  post?: Maybe<Post>;
-  posts?: Maybe<Array<Maybe<Post>>>;
+  postData?: Maybe<PostData>;
+  postsData?: Maybe<Array<Maybe<PostData>>>;
 };
 
-export type QueryPostArgs = {
+export type QueryPostDataArgs = {
   _id?: InputMaybe<Scalars["ID"]["input"]>;
 };

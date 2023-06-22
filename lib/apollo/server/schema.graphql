@@ -1,15 +1,15 @@
-type Post {
+type PostData {
   _id: ID
   likes: Int
 }
 
 type Query {
-  posts: [Post]
-  post(_id: ID): Post
+  postsData: [PostData]
+  postData(_id: ID): PostData
 }
 
 type Mutation {
-  createPost(_id: ID, likes: Int): Post
-  updatePost(_id: ID, likes: Int): Post
-  deletePost(_id: ID): Post
+  createPostData(_id: ID, likes: Int): PostData
+  updatePostData(_id: ID, likes: Int): PostData
+  deletePostData(_id: ID): PostData
 }

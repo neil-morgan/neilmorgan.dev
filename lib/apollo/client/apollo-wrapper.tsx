@@ -14,15 +14,17 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
 
-if (process.env.NODE_ENV === "development") {
+const { APOLLO_SERVER_URL, NODE_ENV } = process.env;
+
+if (NODE_ENV === "development") {
   setVerbosity("debug");
   loadDevMessages();
   loadErrorMessages();
 }
 
-const makeClient = () => {
+function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.APOLLO_SERVER_URL,
+    uri: "http://localhost:3000/api",
   });
 
   return new ApolloClient({
@@ -37,14 +39,18 @@ const makeClient = () => {
           ])
         : httpLink,
   });
-};
+}
 
-const makeSuspenseCache = () => new SuspenseCache();
+function makeSuspenseCache() {
+  return new SuspenseCache();
+}
 
-export const ApolloProvider = ({ children }: React.PropsWithChildren) => (
-  <ApolloNextAppProvider
-    makeClient={makeClient}
-    makeSuspenseCache={makeSuspenseCache}>
-    {children}
-  </ApolloNextAppProvider>
-);
+export function ApolloWrapper({ children }: React.PropsWithChildren) {
+  return (
+    <ApolloNextAppProvider
+      makeClient={makeClient}
+      makeSuspenseCache={makeSuspenseCache}>
+      {children}
+    </ApolloNextAppProvider>
+  );
+}
