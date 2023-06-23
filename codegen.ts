@@ -26,6 +26,9 @@ const config: CodegenConfig = {
       schema: cmsSchema,
       documents: cmsDocument,
       plugins: ["typescript"],
+      config: {
+        avoidOptionals: true,
+      },
     },
     "graphql/cms/": {
       schema: cmsSchema,
@@ -36,11 +39,17 @@ const config: CodegenConfig = {
         baseTypesPath: "types.generated.ts",
       },
       plugins: ["typescript-operations", "typed-document-node"],
+      config: {
+        avoidOptionals: true,
+      },
     },
     "graphql/db/types.generated.ts": {
       schema: dbSchema,
       documents: dbDocument,
       plugins: ["typescript"],
+      config: {
+        avoidOptionals: true,
+      },
     },
     "graphql/db/": {
       schema: dbSchema,
@@ -49,6 +58,9 @@ const config: CodegenConfig = {
       presetConfig: {
         extension: ".generated.ts",
         baseTypesPath: "types.generated.ts",
+      },
+      config: {
+        avoidOptionals: true,
       },
       plugins: ["typescript-operations", "typed-document-node"],
     },

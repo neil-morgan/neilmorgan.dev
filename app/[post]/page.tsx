@@ -6,7 +6,7 @@ import { getPostContent } from "./helpers";
 import { PostTemplate } from "@/templates";
 
 const { CMS } = APOLLO_CLIENTS;
-export const revalidate = 60;
+export const dynamic = "force-dynamic"; //does not use cache
 
 export async function generateStaticParams() {
   const { data } = await getClient().query({

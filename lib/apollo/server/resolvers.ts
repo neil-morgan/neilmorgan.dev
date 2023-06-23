@@ -13,8 +13,8 @@ export const resolvers = {
       _: unused,
       args: { _id?: string; likes?: number },
     ) => {
-      const { _id } = args;
-      const newPost = new Post({ _id, likes: 0 });
+      const { _id, likes } = args;
+      const newPost = new Post({ _id, likes });
       await newPost.save();
       return newPost;
     },
@@ -22,7 +22,7 @@ export const resolvers = {
       _: unused,
       args: { _id?: string; likes?: number },
     ) => {
-      console.log("hit");
+      console.log(args);
       const { _id } = args;
       const result = await Post.findByIdAndUpdate(_id, args);
       return result;

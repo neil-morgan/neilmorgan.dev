@@ -2,44 +2,32 @@ import * as Types from "./types.generated";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type GetPostDataByIdQueryVariables = Types.Exact<{
-  id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
+  id: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
 }>;
 
 export type GetPostDataByIdQuery = {
   __typename?: "Query";
-  postData?: {
-    __typename?: "PostData";
-    _id?: string | null;
-    likes?: number | null;
-  } | null;
+  postData: { __typename?: "PostData"; _id: string; likes: number };
 };
 
 export type CreatePostDataByIdMutationVariables = Types.Exact<{
-  likes?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
-  id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
+  likes: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
+  id: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
 }>;
 
 export type CreatePostDataByIdMutation = {
   __typename?: "Mutation";
-  createPostData?: {
-    __typename?: "PostData";
-    likes?: number | null;
-    _id?: string | null;
-  } | null;
+  createPostData: { __typename?: "PostData"; likes: number; _id: string };
 };
 
 export type UpdatePostLikesByIdMutationVariables = Types.Exact<{
-  id?: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
-  likes?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
+  id: Types.InputMaybe<Types.Scalars["ID"]["input"]>;
+  likes: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
 }>;
 
 export type UpdatePostLikesByIdMutation = {
   __typename?: "Mutation";
-  updatePostData?: {
-    __typename?: "PostData";
-    likes?: number | null;
-    _id?: string | null;
-  } | null;
+  updatePostData: { __typename?: "PostData"; likes: number; _id: string };
 };
 
 export const GetPostDataByIdDocument = {

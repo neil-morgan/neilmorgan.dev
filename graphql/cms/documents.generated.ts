@@ -7,17 +7,17 @@ export type PostBySlugQueryVariables = Types.Exact<{
 
 export type PostBySlugQuery = {
   __typename?: "Query";
-  postCollection?: {
+  postCollection: {
     __typename?: "PostCollection";
     items: Array<{
       __typename?: "Post";
-      title?: string | null;
-      description?: string | null;
-      date?: any | null;
-      slug?: string | null;
-      category?: string | null;
+      title: string | null;
+      description: string | null;
+      date: any | null;
+      slug: string | null;
+      category: string | null;
       sys: { __typename?: "Sys"; id: string };
-      body?: {
+      body: {
         __typename?: "PostBody";
         json: any;
         links: {
@@ -26,8 +26,8 @@ export type PostBySlugQuery = {
             __typename?: "PostBodyAssets";
             block: Array<{
               __typename?: "Asset";
-              url?: string | null;
-              description?: string | null;
+              url: string | null;
+              description: string | null;
               sys: { __typename?: "Sys"; id: string };
             } | null>;
           };
@@ -41,9 +41,9 @@ export type AllPostsSlugsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type AllPostsSlugsQuery = {
   __typename?: "Query";
-  postCollection?: {
+  postCollection: {
     __typename?: "PostCollection";
-    items: Array<{ __typename?: "Post"; slug?: string | null } | null>;
+    items: Array<{ __typename?: "Post"; slug: string | null } | null>;
   } | null;
 };
 

@@ -3,7 +3,6 @@ import { PostBySlugDocument, type Post } from "@/graphql/cms";
 import {
   GetPostDataByIdDocument,
   CreatePostDataByIdDocument,
-  type PostData,
 } from "@/graphql/db";
 import { APOLLO_CLIENTS } from "@/constants";
 
@@ -40,7 +39,7 @@ export const getPostContent = async (slug: string) => {
     const { data } = await mutate({
       context: { clientName: DB },
       mutation: CreatePostDataByIdDocument,
-      variables: { id: postId },
+      variables: { id: postId, likes: 0 },
     });
     postData = data?.createPostData;
   } else {

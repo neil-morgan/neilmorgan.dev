@@ -29,37 +29,37 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  createPostData?: Maybe<PostData>;
-  deletePostData?: Maybe<PostData>;
-  updatePostData?: Maybe<PostData>;
+  createPostData: PostData;
+  deletePostData: PostData;
+  updatePostData: PostData;
 };
 
 export type MutationCreatePostDataArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
-  likes?: InputMaybe<Scalars["Int"]["input"]>;
+  _id: InputMaybe<Scalars["ID"]["input"]>;
+  likes: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type MutationDeletePostDataArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
+  _id: InputMaybe<Scalars["ID"]["input"]>;
 };
 
 export type MutationUpdatePostDataArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
-  likes?: InputMaybe<Scalars["Int"]["input"]>;
+  _id: InputMaybe<Scalars["ID"]["input"]>;
+  likes: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type PostData = {
   __typename?: "PostData";
-  _id?: Maybe<Scalars["ID"]["output"]>;
-  likes?: Maybe<Scalars["Int"]["output"]>;
+  _id: Scalars["ID"]["output"];
+  likes: Scalars["Int"]["output"];
 };
 
 export type Query = {
   __typename?: "Query";
-  postData?: Maybe<PostData>;
-  postsData?: Maybe<Array<Maybe<PostData>>>;
+  postData: PostData;
+  postsData: Array<PostData>;
 };
 
 export type QueryPostDataArgs = {
-  _id?: InputMaybe<Scalars["ID"]["input"]>;
+  _id: InputMaybe<Scalars["ID"]["input"]>;
 };
