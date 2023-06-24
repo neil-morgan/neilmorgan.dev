@@ -29,9 +29,9 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  createPostData: PostData;
-  deletePostData: PostData;
-  updatePostData: PostData;
+  createPostData: Maybe<PostData>;
+  deletePostData: Maybe<PostData>;
+  updatePostData: Maybe<PostData>;
 };
 
 export type MutationCreatePostDataArgs = {
@@ -50,14 +50,14 @@ export type MutationUpdatePostDataArgs = {
 
 export type PostData = {
   __typename?: "PostData";
-  _id: Scalars["ID"]["output"];
-  likes: Scalars["Int"]["output"];
+  _id: Maybe<Scalars["ID"]["output"]>;
+  likes: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Query = {
   __typename?: "Query";
-  postData: PostData;
-  postsData: Array<PostData>;
+  postData: Maybe<PostData>;
+  postsData: Maybe<Array<Maybe<PostData>>>;
 };
 
 export type QueryPostDataArgs = {

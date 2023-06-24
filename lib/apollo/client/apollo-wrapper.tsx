@@ -14,6 +14,7 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
 
+// TODO: Why is env var not working?
 const { APOLLO_SERVER_URL, NODE_ENV } = process.env;
 
 if (NODE_ENV === "development") {

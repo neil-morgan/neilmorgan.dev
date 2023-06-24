@@ -2,9 +2,14 @@ import { Post } from "@/lib/mongodb";
 
 type unused = unknown;
 
+// TODO: Tidy up the resolvers
+
 export const resolvers = {
   Query: {
-    postsData: async () => await Post.find({}),
+    postsData: async () => {
+      console.log(true);
+      return await Post.find({});
+    },
     postData: async (_: unused, { _id }: { _id?: string }) =>
       await Post.findById(_id),
   },
@@ -22,7 +27,6 @@ export const resolvers = {
       _: unused,
       args: { _id?: string; likes?: number },
     ) => {
-      console.log(args);
       const { _id } = args;
       const result = await Post.findByIdAndUpdate(_id, args);
       return result;

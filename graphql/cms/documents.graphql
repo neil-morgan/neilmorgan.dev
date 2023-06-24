@@ -1,28 +1,40 @@
+fragment postContent on Post {
+  sys {
+    id
+  }
+  title
+  body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          url
+          description
+        }
+      }
+    }
+  }
+  description
+  date
+  slug
+  category
+}
+
 query postBySlug($slug: String!) {
   postCollection(where: { slug: $slug }, limit: 1) {
     items {
-      sys {
-        id
-      }
-      title
-      body {
-        json
-        links {
-          assets {
-            block {
-              sys {
-                id
-              }
-              url
-              description
-            }
-          }
-        }
-      }
-      description
-      date
-      slug
-      category
+      ...postContent
+    }
+  }
+}
+
+query allPosts {
+  postCollection(order: date_DESC, limit: 10) {
+    items {
+      ...postContent
     }
   }
 }

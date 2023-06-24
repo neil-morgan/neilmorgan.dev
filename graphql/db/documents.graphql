@@ -5,6 +5,13 @@ query getPostDataById($id: ID) {
   }
 }
 
+query getAllPostsData {
+  postsData {
+    _id
+    likes
+  }
+}
+
 mutation createPostDataById($likes: Int, $id: ID) {
   createPostData(likes: $likes, _id: $id) {
     likes

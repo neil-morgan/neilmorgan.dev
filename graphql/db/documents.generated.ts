@@ -7,7 +7,24 @@ export type GetPostDataByIdQueryVariables = Types.Exact<{
 
 export type GetPostDataByIdQuery = {
   __typename?: "Query";
-  postData: { __typename?: "PostData"; _id: string; likes: number };
+  postData: {
+    __typename?: "PostData";
+    _id: string | null;
+    likes: number | null;
+  } | null;
+};
+
+export type GetAllPostsDataQueryVariables = Types.Exact<{
+  [key: string]: never;
+}>;
+
+export type GetAllPostsDataQuery = {
+  __typename?: "Query";
+  postsData: Array<{
+    __typename?: "PostData";
+    _id: string | null;
+    likes: number | null;
+  } | null> | null;
 };
 
 export type CreatePostDataByIdMutationVariables = Types.Exact<{
@@ -17,7 +34,11 @@ export type CreatePostDataByIdMutationVariables = Types.Exact<{
 
 export type CreatePostDataByIdMutation = {
   __typename?: "Mutation";
-  createPostData: { __typename?: "PostData"; likes: number; _id: string };
+  createPostData: {
+    __typename?: "PostData";
+    likes: number | null;
+    _id: string | null;
+  } | null;
 };
 
 export type UpdatePostLikesByIdMutationVariables = Types.Exact<{
@@ -27,7 +48,11 @@ export type UpdatePostLikesByIdMutationVariables = Types.Exact<{
 
 export type UpdatePostLikesByIdMutation = {
   __typename?: "Mutation";
-  updatePostData: { __typename?: "PostData"; likes: number; _id: string };
+  updatePostData: {
+    __typename?: "PostData";
+    likes: number | null;
+    _id: string | null;
+  } | null;
 };
 
 export const GetPostDataByIdDocument = {
@@ -75,6 +100,35 @@ export const GetPostDataByIdDocument = {
 } as unknown as DocumentNode<
   GetPostDataByIdQuery,
   GetPostDataByIdQueryVariables
+>;
+export const GetAllPostsDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAllPostsData" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "postsData" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "_id" } },
+                { kind: "Field", name: { kind: "Name", value: "likes" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAllPostsDataQuery,
+  GetAllPostsDataQueryVariables
 >;
 export const CreatePostDataByIdDocument = {
   kind: "Document",
