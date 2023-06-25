@@ -1,14 +1,14 @@
 import { getClient } from "@/lib/apollo/client";
 import { AllPostsDocument } from "@/graphql/cms";
 import { GetAllPostsDataDocument } from "@/graphql/db";
-
 import { APOLLO_CLIENTS } from "@/constants";
+
 const { CMS, DB } = APOLLO_CLIENTS;
 
 export default async function PostsPage() {
   const { query } = getClient();
 
-  const { data } = await query({
+  const { data: postsContent } = await query({
     context: { clientName: CMS },
     query: AllPostsDocument,
   });
@@ -18,8 +18,8 @@ export default async function PostsPage() {
     query: GetAllPostsDataDocument,
   });
 
-  console.log(data);
+  console.log(postsContent);
   console.log(postsData);
 
-  return <section>Posts page</section>;
+  return <div>Posts page</div>;
 }

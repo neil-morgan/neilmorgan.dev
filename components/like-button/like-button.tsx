@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useMemo } from "react";
 import { debounce } from "lodash";
 import { useMutation } from "@apollo/client";
