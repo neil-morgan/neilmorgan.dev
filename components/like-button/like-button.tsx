@@ -21,7 +21,7 @@ export const LikeButton = ({ likes, id }: LikeButtonProps) => {
           variables: { id, likes: newLikes },
         });
       }, 1000),
-    [],
+    [id, mutate],
   );
 
   useEffect(() => {
