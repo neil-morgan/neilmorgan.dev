@@ -2,7 +2,8 @@ import { Post } from "@/lib/mongodb";
 
 type unused = unknown;
 
-// TODO: Tidy up the resolvers
+// TODO: Tidy up the resolvers and types
+// ? How would someone tests a graphql resolver?
 
 export const resolvers = {
   Query: {

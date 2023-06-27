@@ -1,5 +1,12 @@
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
+import {
+  Wrapper,
+  Main,
+  ThemeToggleProvider,
+  StitchesRegistry,
+} from "@/lib/stitches";
+import { ThemeToggleButton } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +19,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>header</header>
-        <main>{children}</main>
-        <footer>footer</footer>
+        <StitchesRegistry>
+          <ThemeToggleProvider>
+            <Wrapper>
+              <header>
+                header <ThemeToggleButton />
+              </header>
+              <Main>{children}</Main>
+              <footer>footer</footer>
+            </Wrapper>
+          </ThemeToggleProvider>
+        </StitchesRegistry>
       </body>
     </html>
   );

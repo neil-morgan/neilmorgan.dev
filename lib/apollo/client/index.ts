@@ -1,2 +1,2 @@
-export { ApolloWrapper } from "./apollo-wrapper";
+export { ApolloWrapper } from "./ApolloWrapper";
 export { getClient } from "./client";

@@ -1,0 +1,1 @@
+export { StitchesRegistry } from "./StitchesRegistry";
