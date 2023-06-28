@@ -46,7 +46,6 @@ export const AnimatedSunIcon = ({ isLight }: { isLight: boolean }) => (
       cy="50%"
       fill="currentColor"
       mask="url(#mask)"
-      transform-origin="center"
       variants={sunDiscVariants}
     />
 

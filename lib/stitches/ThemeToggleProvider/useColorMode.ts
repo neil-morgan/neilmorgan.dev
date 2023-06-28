@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import { lightTheme, darkTheme } from "../config";
 import { getSavedColorMode, saveColorMode, getMediaTheme } from "./helpers";

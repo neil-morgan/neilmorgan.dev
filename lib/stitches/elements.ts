@@ -1,8 +1,6 @@
 "use client";
 
-import { createStitches } from "@stitches/react";
-
-const { styled } = createStitches();
+import { styled } from "./config";
 
 export const Wrapper = styled("div", {
   display: "flex",
@@ -18,10 +16,4 @@ export const Main = styled("main", {
   display: "flex",
   flex: 1,
   flexDirection: "column",
-});
-
-export const Container = styled("div", {
-  display: "flex",
-  maxWidth: "1200px",
-  width: "100%",
 });

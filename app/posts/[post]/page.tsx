@@ -2,7 +2,7 @@ import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import { type PostPageProps } from "./types";
-import { LikeButton } from "@/components";
+import { LikeButton } from "@/components/atoms";
 import { PostBySlugDocument } from "@/graphql/cms";
 import {
   GetPostDataByIdDocument,

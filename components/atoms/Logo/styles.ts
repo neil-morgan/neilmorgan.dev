@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@/lib/stitches";
 
 export const Svg = styled("svg", {
   color: "$navItem",

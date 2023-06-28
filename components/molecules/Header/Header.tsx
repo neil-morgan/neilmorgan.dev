@@ -1,7 +1,6 @@
 "use client";
 
-import { ThemeToggleButton } from "../ThemeToggleButton";
-import { Logo } from "../Logo";
+import { ThemeToggleButton, Logo } from "../../atoms";
 import { HeaderWrapper } from "./styles";
 
 export const Header = () => {

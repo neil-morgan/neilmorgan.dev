@@ -6,7 +6,8 @@ import {
   ThemeToggleProvider,
   StitchesRegistry,
 } from "@/lib/stitches";
-import { Header } from "@/components";
+import { IconDefs } from "@/components/atoms";
+import { Header } from "@/components/molecules/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={inter.className}>
         <StitchesRegistry>
           <ThemeToggleProvider>
+            <IconDefs />
             <Wrapper>
               <Header />
               <Main>{children}</Main>

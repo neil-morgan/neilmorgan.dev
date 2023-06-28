@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { createStitches } from "@stitches/react";
-import { globalStyles } from "@/lib/stitches/globals";
+import { globalStyles } from "../config";
 
 export const StitchesRegistry = ({ children }: { children: ReactNode }) => {
   const [isRendered, setIsRendered] = useState(false);

@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@/lib/stitches";
 
 export const ToggleButton = styled("button", {
   height: "20px",
