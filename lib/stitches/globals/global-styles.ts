@@ -3,8 +3,9 @@ import { globalCss } from "@stitches/react";
 export const globalStyles = globalCss({
   html: {
     boxSizing: "border-box",
-    backgroundColor: "$loContrast",
-    color: "$hiContrast",
+    backgroundColor: "$base",
+    color: "$text",
+    transition: "ease-in-out 250ms",
   },
 
   "*, *::before, *::after": { boxSizing: "inherit" },

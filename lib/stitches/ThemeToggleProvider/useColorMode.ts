@@ -16,7 +16,6 @@ export const useColorMode = (): [string, () => void] => {
   const applyColorMode = (newMode: string) => {
     html.classList.remove(availableThemes[colorMode]);
     html.classList.add(availableThemes[newMode]);
-
     setColorMode(newMode);
   };
 
@@ -26,10 +25,6 @@ export const useColorMode = (): [string, () => void] => {
   }
 
   html.classList.add(availableThemes[savedColorMode as string]);
-
-  useEffect(() => {
-    setColorMode(savedColorMode as string);
-  }, [savedColorMode]);
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
@@ -42,6 +37,10 @@ export const useColorMode = (): [string, () => void] => {
     .addEventListener("change", e => {
       applyColorMode(e.matches ? "light" : "dark");
     });
+
+  useEffect(() => {
+    setColorMode(savedColorMode as string);
+  }, [savedColorMode]);
 
   const cycleToggleMode = (): void => {
     const keys = Object.keys(availableThemes);

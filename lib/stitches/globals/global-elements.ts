@@ -1,6 +1,8 @@
 "use client";
 
-import { styled } from "@stitches/react";
+import { createStitches } from "@stitches/react";
+
+const { styled } = createStitches();
 
 export const Wrapper = styled("div", {
   display: "flex",

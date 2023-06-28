@@ -1,3 +1,3 @@
 export * from "./globals";
-export { ThemeToggleProvider } from "./ThemeToggleProvider";
+export { ThemeToggleProvider, ThemeToggleContext } from "./ThemeToggleProvider";
 export { StitchesRegistry } from "./StitchesRegistry";
