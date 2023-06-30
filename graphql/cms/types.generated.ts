@@ -469,6 +469,12 @@ export type PostBodyLinks = {
   __typename?: "PostBodyLinks";
   assets: PostBodyAssets;
   entries: PostBodyEntries;
+  resources: PostBodyResources;
+};
+
+export type PostBodyResources = {
+  __typename?: "PostBodyResources";
+  block: Array<ResourceLink>;
 };
 
 export type PostCollection = {
@@ -606,6 +612,18 @@ export type QueryPostCollectionArgs = {
   preview: InputMaybe<Scalars["Boolean"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<PostFilter>;
+};
+
+export type ResourceLink = {
+  __typename?: "ResourceLink";
+  sys: ResourceSys;
+};
+
+export type ResourceSys = {
+  __typename?: "ResourceSys";
+  linkType: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
+  urn: Scalars["String"]["output"];
 };
 
 export type Sys = {

@@ -1,28 +1,25 @@
-import { styled } from "@/lib/stitches";
+import { styled } from "@stitches/react";
 
 export const heading = {
   position: "relative",
-  fontFamily: "$sans",
   lineHeight: "$heading",
   fontWeight: "$light",
-  mb: "$4",
-  mt: "$6",
   color: "$text",
+  margin: 0,
   "&:hover": { "& a": { opacity: 1 } },
 };
 
 export const HeadingElement = styled("h2", {
   variants: {
-    variant: {
+    size: {
       h1: {
         ...heading,
         fontSize: "$11",
-        mt: "$9",
+        marginTop: "$9",
       },
       h2: {
         ...heading,
         fontSize: "$9",
-        mt: "$9",
       },
       h3: {
         ...heading,
@@ -43,7 +40,7 @@ export const HeadingElement = styled("h2", {
     },
   },
   defaultVariants: {
-    variant: "h2",
+    size: "h2",
   },
 });
 

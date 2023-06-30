@@ -54,20 +54,30 @@ export const { styled } = createStitches({
       12: "16rem", // 256px
       13: "32rem", // 512px
     },
+    sizes: {
+      1: "5px",
+      2: "10px",
+      3: "15px",
+      4: "20px",
+      5: "25px",
+      6: "35px",
+      7: "45px",
+      8: "65px",
+      9: "80px",
+    },
     fontSizes: {
-      body: "1rem",
       0: "0.625rem", // 10px
       1: "0.75rem", // 12px
       2: "0.875rem", // 14px
-      3: "1rem", // 16px - body, h5, h4
+      3: "1rem", // 16px
       4: "1.125rem", // 18px
       5: "1.25rem", // 20px
       6: "1.375rem", // 22px
-      7: "1.5625rem", // 25px - h3
+      7: "1.5625rem", // 25px
       8: "1.75rem", // 28px
       9: "2rem", // 32px - h2
       10: "2.25rem", // 36px
-      11: "2.625rem", // 42px - h1
+      11: "2.625rem", // 42px
       12: "2.875rem", // 46px
       13: "3.1875rem", // 51px
     },
@@ -100,6 +110,24 @@ export const { styled } = createStitches({
       body: "1.625",
       heading: 1.15,
     },
+    radii: {
+      none: "0",
+      sm: "0.125rem",
+      default: "0.25rem",
+      m: "0.4rem",
+      lg: "0.625rem",
+      xl: "1rem",
+      full: "9999px",
+      round: "50%",
+      pill: "9999px",
+    },
+    zIndices: {
+      1: "100",
+      2: "200",
+      3: "300",
+      4: "400",
+      max: "999",
+    },
   },
   media: {
     sm: "(min-width: 30em)",
@@ -107,60 +135,6 @@ export const { styled } = createStitches({
     lg: "(min-width: 62em)",
     xl: "(min-width: 80em)",
     "2xl": "(min-width: 96em)",
-  },
-  utils: {
-    m: () => (value: MarginProperty) => ({
-      marginLeft: value,
-      marginRight: value,
-      marginTop: value,
-      marginBottom: value,
-    }),
-    mx: () => (value: MarginProperty) => ({
-      marginLeft: value,
-      marginRight: value,
-    }),
-    ml: () => (value: MarginProperty) => ({
-      marginLeft: value,
-    }),
-    mr: () => (value: MarginProperty) => ({
-      marginRight: value,
-    }),
-    my: () => (value: MarginProperty) => ({
-      marginTop: value,
-      marginBottom: value,
-    }),
-    mt: () => (value: MarginProperty) => ({
-      marginTop: value,
-    }),
-    mb: () => (value: MarginProperty) => ({
-      marginBottom: value,
-    }),
-    p: () => (value: PaddingProperty) => ({
-      paddingLeft: value,
-      paddingRight: value,
-      paddingTop: value,
-      paddingBottom: value,
-    }),
-    px: () => (value: PaddingProperty) => ({
-      paddingLeft: value,
-      paddingRight: value,
-    }),
-    pl: () => (value: PaddingProperty) => ({
-      paddingLeft: value,
-    }),
-    pr: () => (value: PaddingProperty) => ({
-      paddingRight: value,
-    }),
-    py: () => (value: PaddingProperty) => ({
-      paddingTop: value,
-      paddingBottom: value,
-    }),
-    pt: () => (value: PaddingProperty) => ({
-      paddingTop: value,
-    }),
-    pb: () => (value: PaddingProperty) => ({
-      paddingBottom: value,
-    }),
   },
 });
 

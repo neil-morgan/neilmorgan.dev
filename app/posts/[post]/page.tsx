@@ -2,8 +2,9 @@ import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import { type PostPageProps } from "./types";
-import { LikeButton } from "@/components/atoms";
-import { PostBySlugDocument } from "@/graphql/cms";
+import { LikeButton, Heading, Paragraph } from "@/components/atoms";
+import { Richtext } from "@/components/molecules";
+import { PostBySlugDocument, type PostBody } from "@/graphql/cms";
 import {
   GetPostDataByIdDocument,
   CreatePostDataByIdDocument,
@@ -68,6 +69,12 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <ApolloWrapper>
       <LikeButton likes={content?.likes} id={content?.sys.id} />
+      <Heading as="h1" id="asd">
+        Normal heading
+      </Heading>
+      <Paragraph>body text</Paragraph>
+
+      <Richtext content={content?.body as PostBody} />
     </ApolloWrapper>
   );
 }
