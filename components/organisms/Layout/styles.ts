@@ -1,15 +1,13 @@
 "use client";
 
-import { styled } from "./config";
+import { styled } from "@/lib/stitches";
 
 export const Wrapper = styled("div", {
+  position: "relative",
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
-  maxWidth: "1100px",
-  width: "100%",
   margin: "0 auto",
-  padding: "0 20px",
 });
 
 export const Main = styled("main", {

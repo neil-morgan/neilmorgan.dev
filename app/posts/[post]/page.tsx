@@ -1,17 +1,17 @@
 import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
-import { type PostPageProps } from "./types";
-import { LikeButton, Heading, Paragraph } from "@/components/atoms";
-import { Richtext } from "@/components/molecules";
-import { PostBySlugDocument, type PostBody } from "@/graphql/cms";
+import { type PostPageProps, type PostProps } from "./types";
+import { PostTemplate } from "@/components/templates";
+import { PostBySlugDocument, type Post } from "@/graphql/cms";
 import {
   GetPostDataByIdDocument,
   CreatePostDataByIdDocument,
 } from "@/graphql/db";
 
 const { CMS, DB } = APOLLO_CLIENTS;
-export const dynamic = "force-dynamic"; // * page does not use cache
+export const dynamic = "force-static";
+export const revalidate = 1; // * revalidate every 1 second
 
 export async function generateStaticParams() {
   const { data } = await getClient().query({
@@ -33,7 +33,7 @@ export default async function PostPage({ params }: PostPageProps) {
     variables: { slug: params.post },
   });
 
-  const postContent = cmsData.postCollection?.items[0];
+  const postContent = cmsData.postCollection?.items[0] as Post;
   if (!postContent) {
     return;
   }
@@ -64,17 +64,11 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const { likes } = postData || {};
 
-  const content = { ...postContent, likes };
+  const content = { ...postContent, likes } as PostProps;
 
   return (
     <ApolloWrapper>
-      <LikeButton likes={content?.likes} id={content?.sys.id} />
-      <Heading as="h1" id="asd">
-        Normal heading
-      </Heading>
-      <Paragraph>body text</Paragraph>
-
-      <Richtext content={content?.body as PostBody} />
+      <PostTemplate content={content} />
     </ApolloWrapper>
   );
 }

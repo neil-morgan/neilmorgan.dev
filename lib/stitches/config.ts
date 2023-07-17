@@ -1,11 +1,12 @@
 import { createTheme, createStitches, globalCss } from "@stitches/react";
-import { gray, blueDark, grayDark } from "@radix-ui/colors";
+import { gray, slateDark, grayDark } from "@radix-ui/colors";
 import { MarginProperty, PaddingProperty } from "./types";
 
 export const lightTheme = createTheme({
   colors: {
     baseText: gray.gray12,
-    baseBackground: gray.gray6,
+    baseBackground: gray.gray1,
+    closeBackground: gray.gray3,
     navItem: grayDark.gray8,
     navItemHovered: grayDark.gray1,
   },
@@ -14,7 +15,8 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
   colors: {
     baseText: gray.gray1,
-    baseBackground: blueDark.blue1,
+    baseBackground: slateDark.slate1,
+    closeBackground: slateDark.slate2,
     navItem: gray.gray7,
     navItemHovered: gray.gray1,
   },
@@ -25,7 +27,7 @@ export const globalStyles = globalCss({
     boxSizing: "border-box",
     backgroundColor: "$baseBackground",
     color: "$baseText",
-    transition: "ease-in-out 250ms",
+    transition: "$theme",
   },
 
   "*, *::before, *::after": { boxSizing: "inherit" },
@@ -109,6 +111,9 @@ export const { styled } = createStitches({
       loose: "2",
       body: "1.625",
       heading: 1.15,
+    },
+    transitions: {
+      theme: "ease-in-out 250ms",
     },
     radii: {
       none: "0",

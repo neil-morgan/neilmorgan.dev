@@ -6,6 +6,29 @@ fragment postContent on Post {
   body {
     json
     links {
+      entries {
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on Post {
+            title
+            slug
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on Snippet {
+            description
+            language
+            code
+          }
+        }
+      }
       assets {
         block {
           sys {

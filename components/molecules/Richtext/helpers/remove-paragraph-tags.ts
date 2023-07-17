@@ -8,7 +8,6 @@ export const removeParagraphTags = (
   node: Document,
   renderMark: {
     bold: (text: ReactNode) => JSX.Element;
-    code: (text: ReactNode) => JSX.Element;
   },
   element: string,
 ) => {

@@ -61,7 +61,7 @@ export const AnimatedSunIcon = ({ isLight }: { isLight: boolean }) => (
           cy={y}
           fill="currentColor"
           key={key}
-          r="7%"
+          r="8%"
           variants={rayVariant}
         />
       ))}

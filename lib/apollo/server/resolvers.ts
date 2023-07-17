@@ -1,9 +1,5 @@
 import { Post } from "@/lib/mongodb";
-
-type unused = unknown;
-
-// TODO: Tidy up the resolvers and types
-// ? How would someone tests a graphql resolver?
+import { type PostResolverType } from "./types";
 
 export const resolvers = {
   Query: {
@@ -11,28 +7,26 @@ export const resolvers = {
       console.log(true);
       return await Post.find({});
     },
-    postData: async (_: unused, { _id }: { _id?: string }) =>
+
+    postData: async (_: unknown, { _id }: PostResolverType) =>
       await Post.findById(_id),
   },
+
   Mutation: {
-    createPostData: async (
-      _: unused,
-      args: { _id?: string; likes?: number },
-    ) => {
+    createPostData: async (_: unknown, args: PostResolverType) => {
       const { _id, likes } = args;
       const newPost = new Post({ _id, likes });
       await newPost.save();
       return newPost;
     },
-    updatePostData: async (
-      _: unused,
-      args: { _id?: string; likes?: number },
-    ) => {
+
+    updatePostData: async (_: unknown, args: PostResolverType) => {
       const { _id } = args;
       const result = await Post.findByIdAndUpdate(_id, args);
       return result;
     },
-    deletePostData: async (_: unused, args: { _id?: string }) => {
+
+    deletePostData: async (_: unknown, args: PostResolverType) => {
       const { _id } = args;
       const deletedPost = await Post.findByIdAndDelete(_id);
       if (!deletedPost) {

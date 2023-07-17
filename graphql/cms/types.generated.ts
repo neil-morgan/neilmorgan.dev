@@ -573,6 +573,8 @@ export type Query = {
   entryCollection: Maybe<EntryCollection>;
   post: Maybe<Post>;
   postCollection: Maybe<PostCollection>;
+  snippet: Maybe<Snippet>;
+  snippetCollection: Maybe<SnippetCollection>;
 };
 
 export type QueryAssetArgs = {
@@ -614,6 +616,21 @@ export type QueryPostCollectionArgs = {
   where: InputMaybe<PostFilter>;
 };
 
+export type QuerySnippetArgs = {
+  id: Scalars["String"]["input"];
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QuerySnippetCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  order: InputMaybe<Array<InputMaybe<SnippetOrder>>>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<SnippetFilter>;
+};
+
 export type ResourceLink = {
   __typename?: "ResourceLink";
   sys: ResourceSys;
@@ -625,6 +642,100 @@ export type ResourceSys = {
   type: Scalars["String"]["output"];
   urn: Scalars["String"]["output"];
 };
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
+export type Snippet = Entry & {
+  __typename?: "Snippet";
+  code: Maybe<Scalars["String"]["output"]>;
+  contentfulMetadata: ContentfulMetadata;
+  description: Maybe<Scalars["String"]["output"]>;
+  language: Maybe<Scalars["String"]["output"]>;
+  linkedFrom: Maybe<SnippetLinkingCollections>;
+  sys: Sys;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
+export type SnippetCodeArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
+export type SnippetDescriptionArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
+export type SnippetLanguageArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
+export type SnippetLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type SnippetCollection = {
+  __typename?: "SnippetCollection";
+  items: Array<Maybe<Snippet>>;
+  limit: Scalars["Int"]["output"];
+  skip: Scalars["Int"]["output"];
+  total: Scalars["Int"]["output"];
+};
+
+export type SnippetFilter = {
+  AND: InputMaybe<Array<InputMaybe<SnippetFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<SnippetFilter>>>;
+  code: InputMaybe<Scalars["String"]["input"]>;
+  code_contains: InputMaybe<Scalars["String"]["input"]>;
+  code_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  code_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  code_not: InputMaybe<Scalars["String"]["input"]>;
+  code_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  code_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars["String"]["input"]>;
+  description_contains: InputMaybe<Scalars["String"]["input"]>;
+  description_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  description_not: InputMaybe<Scalars["String"]["input"]>;
+  description_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  language: InputMaybe<Scalars["String"]["input"]>;
+  language_contains: InputMaybe<Scalars["String"]["input"]>;
+  language_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  language_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  language_not: InputMaybe<Scalars["String"]["input"]>;
+  language_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  language_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sys: InputMaybe<SysFilter>;
+};
+
+export type SnippetLinkingCollections = {
+  __typename?: "SnippetLinkingCollections";
+  entryCollection: Maybe<EntryCollection>;
+};
+
+export type SnippetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export enum SnippetOrder {
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  LanguageAsc = "language_ASC",
+  LanguageDesc = "language_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
 
 export type Sys = {
   __typename?: "Sys";

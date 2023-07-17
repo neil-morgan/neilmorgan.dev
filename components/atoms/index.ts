@@ -1,8 +1,10 @@
 export { ConditionalWrapper } from "./ConditionalWrapper";
+export { Container } from "./Container";
 export { Heading } from "./Heading";
 export { Icon, IconDefs } from "./Icon";
 export { LikeButton } from "./LikeButton";
 export { Logo } from "./Logo";
 export { Paragraph } from "./Paragraph";
+export { Snippet } from "./Snippet";
 export { Table } from "./Table";
 export { ThemeToggleButton } from "./ThemeToggleButton";

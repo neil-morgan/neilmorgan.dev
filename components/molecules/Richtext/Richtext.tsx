@@ -8,27 +8,25 @@ import {
   type Document,
 } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
-import { Table, Heading } from "@/components/atoms";
+import { Table, Heading, Snippet } from "@/components/atoms";
 import type { RichtextProps } from "./types";
-import { removeParagraphTags } from "./helpers";
+import { removeParagraphTags, getBlockMaps } from "./helpers";
 
 export const Richtext = ({ content }: RichtextProps) => {
+  const { entryBlockMap, assetBlockMap } = getBlockMaps(content.links);
+
   const renderMark = {
     [MARKS.BOLD]: (text: ReactNode) => <strong>{text}</strong>,
-    [MARKS.CODE]: (text: ReactNode) => {
-      console.log(text);
-      return (
-        <pre>
-          <code>{text}</code>
-        </pre>
-      );
-    },
   };
+
+  const renderText = (text: string) =>
+    text.split("\n").flatMap((text, i) => [i > 0 && <br key={i} />, text]);
 
   return (
     <article>
       {documentToReactComponents(content.json, {
         renderMark,
+        renderText,
         renderNode: {
           [BLOCKS.HEADING_1]: (node, children) => {
             if (!("value" in node.content[0])) {
@@ -53,14 +51,7 @@ export const Richtext = ({ content }: RichtextProps) => {
             );
           },
 
-          [BLOCKS.PARAGRAPH]: (node, children) => {
-            if (
-              node.content.length === 1 &&
-              "marks" in node.content[0] &&
-              node.content[0].marks.find(x => x.type === "code")
-            ) {
-              return <>{children}</>;
-            }
+          [BLOCKS.PARAGRAPH]: (_, children) => {
             return <p>{children}</p>;
           },
 
@@ -113,12 +104,17 @@ export const Richtext = ({ content }: RichtextProps) => {
           //     assets={content.links.assets.block}
           //   />
           // ),
-        },
 
-        renderText: (text: string) =>
-          text
-            .split("\n")
-            .flatMap((text, i) => [i > 0 && <br key={i} />, text]),
+          [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+            const { code, language, __typename } = entryBlockMap.get(
+              node.data.target.sys.id,
+            );
+
+            if (__typename === "Snippet") {
+              return <Snippet code={code} language={language} />;
+            }
+          },
+        },
       })}
     </article>
   );
