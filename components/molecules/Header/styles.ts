@@ -1,14 +1,20 @@
 import { styled } from "@/lib/stitches";
 
 export const HeaderWrapper = styled("header", {
-  position: "fixed",
-  zIndex: 100,
   display: "flex",
-  height: "50px",
-  width: "100%",
   alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "20px",
+  position: "sticky",
+  top: 0,
+  zIndex: 100,
+  height: "$7",
+  width: "100%",
+  marginBottom: "$10",
   backgroundColor: "$baseBackground",
   transition: "$theme",
+});
+
+export const HeaderContent = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 });

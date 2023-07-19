@@ -1,11 +1,10 @@
 import { styled } from "@stitches/react";
 
-export const heading = {
+export const defaultStyles = {
   position: "relative",
   lineHeight: "$heading",
   fontWeight: "$light",
   color: "$text",
-  margin: 0,
   "&:hover": { "& a": { opacity: 1 } },
 };
 
@@ -13,28 +12,30 @@ export const HeadingElement = styled("h2", {
   variants: {
     size: {
       h1: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$11",
-        marginTop: "$9",
+        marginTop: "$11",
       },
       h2: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$9",
+        marginTop: "$10",
       },
       h3: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$7",
+        marginTop: "$6",
       },
       h4: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$5",
       },
       h5: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$3",
       },
       h6: {
-        ...heading,
+        ...defaultStyles,
         fontSize: "$2",
       },
     },
@@ -55,8 +56,20 @@ export const HeadingAnchor = styled("a", {
   $my: "auto",
   opacity: "0",
   position: "absolute",
-  scrollMarginTop: "40",
   top: "0",
   transform: "translateX(-130%)",
   transition: "ease 250ms",
+  variants: {
+    size: {
+      h2: {
+        scrollMarginTop: "$11",
+      },
+      h3: {
+        scrollMarginTop: "$11",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "h2",
+  },
 });

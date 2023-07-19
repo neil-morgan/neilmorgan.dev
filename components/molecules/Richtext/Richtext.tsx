@@ -8,9 +8,18 @@ import {
   type Document,
 } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
-import { Table, Heading, Snippet } from "@/components/atoms";
+import {
+  Table,
+  Heading,
+  Paragraph,
+  Snippet,
+  OrderedList,
+  Link,
+  UnorderedList,
+} from "@/components/atoms";
 import type { RichtextProps } from "./types";
 import { removeParagraphTags, getBlockMaps } from "./helpers";
+import { Article } from "./styles";
 
 export const Richtext = ({ content }: RichtextProps) => {
   const { entryBlockMap, assetBlockMap } = getBlockMaps(content.links);
@@ -23,7 +32,7 @@ export const Richtext = ({ content }: RichtextProps) => {
     text.split("\n").flatMap((text, i) => [i > 0 && <br key={i} />, text]);
 
   return (
-    <article>
+    <Article>
       {documentToReactComponents(content.json, {
         renderMark,
         renderText,
@@ -34,7 +43,10 @@ export const Richtext = ({ content }: RichtextProps) => {
             }
 
             return (
-              <Heading as="h2" id={node.content[0].value}>
+              <Heading
+                as="h2"
+                id={node.content[0].value}
+                css={{ color: "$primary" }}>
                 {children}
               </Heading>
             );
@@ -52,12 +64,18 @@ export const Richtext = ({ content }: RichtextProps) => {
           },
 
           [BLOCKS.PARAGRAPH]: (_, children) => {
-            return <p>{children}</p>;
+            return (
+              <Paragraph css={{ marginBottom: "$4" }}>{children}</Paragraph>
+            );
           },
 
-          [BLOCKS.UL_LIST]: (_, children) => <ul>{children}</ul>,
+          [BLOCKS.UL_LIST]: (_, children) => (
+            <UnorderedList>{children}</UnorderedList>
+          ),
 
-          [BLOCKS.OL_LIST]: (_, children) => <ol>{children}</ol>,
+          [BLOCKS.OL_LIST]: (_, children) => (
+            <OrderedList>{children}</OrderedList>
+          ),
 
           [BLOCKS.LIST_ITEM]: node => {
             const children = removeParagraphTags(
@@ -94,9 +112,9 @@ export const Richtext = ({ content }: RichtextProps) => {
             return <td>{children}</td>;
           },
 
-          [INLINES.HYPERLINK]: ({ data }, children) => (
-            <a href={data.uri}>{children}</a>
-          ),
+          [INLINES.HYPERLINK]: ({ data }, children) => {
+            return <a href={data.uri}>{children}</a>;
+          },
 
           // [BLOCKS.EMBEDDED_ASSET]: ({ data }) => (
           //   <RichtextImage
@@ -116,6 +134,6 @@ export const Richtext = ({ content }: RichtextProps) => {
           },
         },
       })}
-    </article>
+    </Article>
   );
 };

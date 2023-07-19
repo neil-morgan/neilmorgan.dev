@@ -6,9 +6,11 @@ export const lightTheme = createTheme({
   colors: {
     baseText: gray.gray12,
     baseBackground: gray.gray1,
+    link: "red",
     closeBackground: gray.gray3,
     navItem: grayDark.gray8,
     navItemHovered: grayDark.gray1,
+    divider: gray.gray7,
   },
 });
 
@@ -17,8 +19,10 @@ export const darkTheme = createTheme({
     baseText: gray.gray1,
     baseBackground: slateDark.slate1,
     closeBackground: slateDark.slate2,
+    link: "blue",
     navItem: gray.gray7,
     navItemHovered: gray.gray1,
+    divider: slateDark.slate6,
   },
 });
 
@@ -28,18 +32,17 @@ export const globalStyles = globalCss({
     backgroundColor: "$baseBackground",
     color: "$baseText",
     transition: "$theme",
+    scrollBehavior: "smooth",
   },
 
-  "*, *::before, *::after": { boxSizing: "inherit" },
-
-  body: {
-    margin: 0,
-    padding: 0,
-  },
+  "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },
 });
 
 export const { styled } = createStitches({
   theme: {
+    colors: {
+      primary: "red",
+    },
     space: {
       0: "0rem", // 0px
       1: "0.25rem", // 4px
@@ -66,6 +69,7 @@ export const { styled } = createStitches({
       7: "45px",
       8: "65px",
       9: "80px",
+      10: "100px",
     },
     fontSizes: {
       0: "0.625rem", // 10px

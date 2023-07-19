@@ -8,6 +8,7 @@ import {
   GetPostDataByIdDocument,
   CreatePostDataByIdDocument,
 } from "@/graphql/db";
+import { getRichtextHeadings } from "./helpers";
 
 const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
@@ -65,10 +66,11 @@ export default async function PostPage({ params }: PostPageProps) {
   const { likes } = postData || {};
 
   const content = { ...postContent, likes } as PostProps;
+  const headings = getRichtextHeadings(content.body?.json.content);
 
   return (
     <ApolloWrapper>
-      <PostTemplate content={content} />
+      <PostTemplate content={content} headings={headings} />
     </ApolloWrapper>
   );
 }

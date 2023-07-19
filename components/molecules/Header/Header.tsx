@@ -1,13 +1,15 @@
 "use client";
 
 import { ThemeToggleButton, Container } from "../../atoms";
-import { HeaderWrapper } from "./styles";
+import { HeaderWrapper, HeaderContent } from "./styles";
 
 export const Header = () => {
   return (
     <HeaderWrapper>
       <Container>
-        <ThemeToggleButton />
+        <HeaderContent>
+          <ThemeToggleButton />
+        </HeaderContent>
       </Container>
     </HeaderWrapper>
   );
