@@ -1,5 +1,6 @@
+type RichtextHeadingType = { label: string; href: string };
+
 export type RichtextHeadingsType = {
-  heading: string;
-  key: number;
-  subHeadings: { heading: string; key: number }[];
+  heading: RichtextHeadingType;
+  subHeadings: { heading: RichtextHeadingType }[];
 }[];

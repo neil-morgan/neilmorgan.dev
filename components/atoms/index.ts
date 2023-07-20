@@ -6,8 +6,9 @@ export { Icon, IconDefs } from "./Icon";
 export { LikeButton } from "./LikeButton";
 export { Link } from "./Link";
 export { Logo } from "./Logo";
-export { OrderedList, UnorderedList } from "./List";
+export { OrderedList, UnorderedList, ListItem } from "./List";
 export { Paragraph } from "./Paragraph";
 export { Snippet } from "./Snippet";
-export { Table } from "./Table";
+export { Table, Td, Tr, Th } from "./Table";
+
 export { ThemeToggleButton } from "./ThemeToggleButton";

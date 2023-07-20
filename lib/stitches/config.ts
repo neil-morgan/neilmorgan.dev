@@ -1,12 +1,12 @@
 import { createTheme, createStitches, globalCss } from "@stitches/react";
-import { gray, slateDark, grayDark } from "@radix-ui/colors";
-import { MarginProperty, PaddingProperty } from "./types";
+import { gray, slateDark, grayDark, violet, blue } from "@radix-ui/colors";
 
 export const lightTheme = createTheme({
   colors: {
-    baseText: gray.gray12,
+    primary: violet.violet11,
+    baseText: slateDark.slate3,
     baseBackground: gray.gray1,
-    link: "red",
+    link: blue.blue10,
     closeBackground: gray.gray3,
     navItem: grayDark.gray8,
     navItemHovered: grayDark.gray1,
@@ -16,10 +16,11 @@ export const lightTheme = createTheme({
 
 export const darkTheme = createTheme({
   colors: {
-    baseText: gray.gray1,
+    primary: violet.violet8,
+    baseText: gray.gray6,
     baseBackground: slateDark.slate1,
     closeBackground: slateDark.slate2,
-    link: "blue",
+    link: blue.blue8,
     navItem: gray.gray7,
     navItemHovered: gray.gray1,
     divider: slateDark.slate6,
@@ -40,9 +41,6 @@ export const globalStyles = globalCss({
 
 export const { styled } = createStitches({
   theme: {
-    colors: {
-      primary: "red",
-    },
     space: {
       0: "0rem", // 0px
       1: "0.25rem", // 4px
@@ -55,9 +53,11 @@ export const { styled } = createStitches({
       8: "3rem", // 48px
       9: "3.5rem", // 56px
       10: "4rem", // 64px
-      11: "8rem", // 128px
-      12: "16rem", // 256px
-      13: "32rem", // 512px
+      11: "6rem", // 96px
+      12: "8rem", // 128px
+      13: "16rem", // 256px
+      14: "24rem", // 384px
+      15: "32rem", // 512px
     },
     sizes: {
       1: "5px",

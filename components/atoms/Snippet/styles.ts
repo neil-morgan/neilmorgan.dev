@@ -4,7 +4,7 @@ import { styled } from "@/lib/stitches";
 
 export const SnippetWrapper = styled("div", {
   position: "relative",
-  margin: "$9 0",
+  margin: "$10 0 $9",
 });
 
 export const CodeWrapper = styled("div", {

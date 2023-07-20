@@ -18,7 +18,7 @@ export const Heading = ({
   return (
     <HeadingElement as={as} size={size ?? as} css={css}>
       {id && (
-        <HeadingAnchor href={`#${_id}`} size={size ?? as} id={_id}>
+        <HeadingAnchor href={`#${_id}`} id={_id}>
           <Icon name="link" size={anchorSize} />
         </HeadingAnchor>
       )}

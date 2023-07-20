@@ -14,7 +14,12 @@ import {
   Paragraph,
   Snippet,
   OrderedList,
+  Divider,
   Link,
+  Td,
+  Tr,
+  Th,
+  ListItem,
   UnorderedList,
 } from "@/components/atoms";
 import type { RichtextProps } from "./types";
@@ -43,10 +48,7 @@ export const Richtext = ({ content }: RichtextProps) => {
             }
 
             return (
-              <Heading
-                as="h2"
-                id={node.content[0].value}
-                css={{ color: "$primary" }}>
+              <Heading as="h1" id={node.content[0].value}>
                 {children}
               </Heading>
             );
@@ -63,12 +65,9 @@ export const Richtext = ({ content }: RichtextProps) => {
             );
           },
 
-          [BLOCKS.PARAGRAPH]: (_, children) => {
-            return (
-              <Paragraph css={{ marginBottom: "$4" }}>{children}</Paragraph>
-            );
-          },
-
+          [BLOCKS.PARAGRAPH]: (_, children) => (
+            <Paragraph>{children}</Paragraph>
+          ),
           [BLOCKS.UL_LIST]: (_, children) => (
             <UnorderedList>{children}</UnorderedList>
           ),
@@ -83,16 +82,16 @@ export const Richtext = ({ content }: RichtextProps) => {
               renderMark,
               "li",
             );
-            return <li>{children}</li>;
+            return <ListItem>{children}</ListItem>;
           },
 
-          [BLOCKS.HR]: () => <hr />,
+          [BLOCKS.HR]: () => <Divider size="lg" />,
 
           [BLOCKS.QUOTE]: (_, children) => <blockquote>{children}</blockquote>,
 
           [BLOCKS.TABLE]: (_, children) => <Table>{children}</Table>,
 
-          [BLOCKS.TABLE_ROW]: (_, children) => <tr>{children}</tr>,
+          [BLOCKS.TABLE_ROW]: (_, children) => <Tr>{children}</Tr>,
 
           [BLOCKS.TABLE_HEADER_CELL]: node => {
             const children = removeParagraphTags(
@@ -100,7 +99,7 @@ export const Richtext = ({ content }: RichtextProps) => {
               renderMark,
               "th",
             );
-            return <th>{children}</th>;
+            return <Th>{children}</Th>;
           },
 
           [BLOCKS.TABLE_CELL]: node => {
@@ -109,11 +108,11 @@ export const Richtext = ({ content }: RichtextProps) => {
               renderMark,
               "td",
             );
-            return <td>{children}</td>;
+            return <Td>{children}</Td>;
           },
 
           [INLINES.HYPERLINK]: ({ data }, children) => {
-            return <a href={data.uri}>{children}</a>;
+            return <Link href={data.uri}>{children}</Link>;
           },
 
           // [BLOCKS.EMBEDDED_ASSET]: ({ data }) => (
