@@ -10,5 +10,3 @@ export { OrderedList, UnorderedList, ListItem } from "./List";
 export { Paragraph } from "./Paragraph";
 export { Snippet } from "./Snippet";
 export { Table, Td, Tr, Th } from "./Table";
-
-export { ThemeToggleButton } from "./ThemeToggleButton";

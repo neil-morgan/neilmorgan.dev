@@ -11,7 +11,7 @@ import {
   sunRayPositions,
 } from "./config";
 
-export const ThemeToggleButton = () => (
+export const ThemeToggle = () => (
   <ThemeToggleContext.Consumer>
     {({ cycleToggleMode, colorMode }) => {
       const isLight = colorMode === "light";

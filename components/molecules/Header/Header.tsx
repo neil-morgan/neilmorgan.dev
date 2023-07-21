@@ -1,16 +1,16 @@
 "use client";
 
-import { ThemeToggleButton, Container } from "../../atoms";
-import { HeaderWrapper, HeaderContent } from "./styles";
+import { Container, Logo } from "@/components/atoms";
+import { ThemeToggle } from "../ThemeToggle";
+import { Wrapper, Content } from "./styles";
 
-export const Header = () => {
-  return (
-    <HeaderWrapper>
-      <Container>
-        <HeaderContent>
-          <ThemeToggleButton />
-        </HeaderContent>
-      </Container>
-    </HeaderWrapper>
-  );
-};
+export const Header = () => (
+  <Wrapper>
+    <Container>
+      <Content>
+        <Logo isLink />
+        <ThemeToggle />
+      </Content>
+    </Container>
+  </Wrapper>
+);

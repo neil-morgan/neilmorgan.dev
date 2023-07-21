@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
 import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
-import { Layout } from "@/components/organisms";
+import { Header } from "@/components/molecules";
+import { IconDefs } from "@/components/atoms";
+import { Wrapper, Main } from "./styles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={inter.className}>
         <StitchesRegistry>
           <ThemeToggleProvider>
-            <Layout>{children}</Layout>
+            <IconDefs />
+            <Wrapper>
+              <Header />
+              <Main>{children}</Main>
+            </Wrapper>
           </ThemeToggleProvider>
         </StitchesRegistry>
       </body>

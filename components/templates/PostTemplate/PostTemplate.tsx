@@ -11,58 +11,56 @@ import {
 import { Richtext } from "@/components/molecules";
 import { type PostBody } from "@/graphql/cms";
 import {
-  HeadingLink,
-  HeadingsWrapper,
-  PostAside,
-  PostAsideFooter,
-  PostAsideHeader,
-  PostHeader,
-  PostWrapper,
+  Aside,
+  AsideFooter,
+  AsideHeader,
+  Body,
+  Header,
+  NavList,
+  NavListItem,
 } from "./styles";
 import { Fragment } from "react";
 
-export const PostTemplate = ({ content, headings }: PostTemplateProps) => {
-  return (
-    <Container>
-      <PostHeader>
-        <Heading as="h1" css={{ marginTop: 0 }}>
-          {content.title}
-        </Heading>
-        <Paragraph>{content.description}</Paragraph>
-      </PostHeader>
+export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
+  <Container>
+    <Header>
+      <Heading size="primary" css={{ marginTop: 0 }}>
+        {content.title}
+      </Heading>
+      <Paragraph>{content.description}</Paragraph>
+    </Header>
 
-      <Divider size="xl" />
+    <Divider size="xl" />
 
-      <PostWrapper>
-        <Richtext content={content?.body as PostBody} />
-        <PostAside>
-          <PostAsideHeader>
-            <Heading as="h5">CONTENTS</Heading>
-          </PostAsideHeader>
-          <HeadingsWrapper>
-            {headings.map(({ heading, subHeadings }, i1) => (
-              <Fragment key={`${heading.label}-${i1}`}>
-                <HeadingLink href={heading.href}>{heading.label}</HeadingLink>
-                {subHeadings.length > 0 && (
-                  <HeadingsWrapper>
-                    {subHeadings.map(({ heading }, i2) => (
-                      <HeadingLink
-                        key={`${heading.label}-${i2}`}
-                        href={heading.href}
-                        size="subHeading">
-                        {heading.label}
-                      </HeadingLink>
-                    ))}
-                  </HeadingsWrapper>
-                )}
-              </Fragment>
-            ))}
-          </HeadingsWrapper>
-          <PostAsideFooter>
-            <LikeButton likes={content?.likes} id={content?.sys.id} />
-          </PostAsideFooter>
-        </PostAside>
-      </PostWrapper>
-    </Container>
-  );
-};
+    <Body>
+      <Richtext content={content?.body as PostBody} />
+      <Aside>
+        <AsideHeader>
+          <Heading size="tertiary">POST CONTENTS</Heading>
+        </AsideHeader>
+        <NavList>
+          {headings.map(({ heading, subHeadings }, i1) => (
+            <Fragment key={`${heading.label}-${i1}`}>
+              <NavListItem href={heading.href}>{heading.label}</NavListItem>
+              {subHeadings.length > 0 && (
+                <NavList>
+                  {subHeadings.map(({ heading }, i2) => (
+                    <NavListItem
+                      key={`${heading.label}-${i2}`}
+                      href={heading.href}
+                      size="subHeading">
+                      {heading.label}
+                    </NavListItem>
+                  ))}
+                </NavList>
+              )}
+            </Fragment>
+          ))}
+        </NavList>
+        <AsideFooter>
+          <LikeButton likes={content?.likes} id={content?.sys.id} />
+        </AsideFooter>
+      </Aside>
+    </Body>
+  </Container>
+);

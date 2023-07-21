@@ -7,39 +7,30 @@ export const HeadingElement = styled("h2", {
   lineHeight: "$heading",
   color: "$text",
   "&:hover": { "& a": { opacity: 1 } },
+
   variants: {
     size: {
-      h1: {
-        fontWeight: "$bold",
+      primary: {
+        fontWeight: "$semibold",
         fontSize: "$11",
         marginTop: "$11",
       },
-      h2: {
-        fontWeight: "$bold",
-        fontSize: "$10",
-        marginTop: "$10",
-      },
-      h3: {
-        fontWeight: "$semibold",
+      secondary: {
+        fontWeight: "$medium",
         fontSize: "$7",
         marginTop: "$6",
       },
-      h4: {
-        fontWeight: "$semibold",
-        fontSize: "$5",
-      },
-      h5: {
+      tertiary: {
         fontWeight: "$medium",
         fontSize: "$3",
-      },
-      h6: {
-        fontWeight: "$medium",
-        fontSize: "$2",
+        letterSpacing: "$widest",
+        textTransform: "uppercase",
       },
     },
   },
+
   defaultVariants: {
-    size: "h2",
+    size: "primary",
   },
 });
 

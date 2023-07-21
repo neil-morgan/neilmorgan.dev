@@ -1,6 +1,6 @@
 import { styled } from "@/lib/stitches";
 
-export const HeaderWrapper = styled("header", {
+export const Wrapper = styled("header", {
   display: "flex",
   alignItems: "center",
   position: "sticky",
@@ -13,7 +13,7 @@ export const HeaderWrapper = styled("header", {
   transition: "$theme",
 });
 
-export const HeaderContent = styled("div", {
+export const Content = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",

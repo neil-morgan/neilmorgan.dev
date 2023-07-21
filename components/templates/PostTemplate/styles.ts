@@ -1,21 +1,21 @@
 import { styled } from "@/lib/stitches";
 
-export const PostHeader = styled("header", {
+export const Header = styled("header", {
   display: "flex",
   flexDirection: "column",
 });
 
-export const PostWrapper = styled("div", {
+export const Body = styled("div", {
   display: "flex",
   justifyContent: "center",
 });
 
-export const PostAside = styled("aside", {
+export const Aside = styled("aside", {
   position: "sticky",
-  top: "$11",
+  top: "$12",
   height: "100%",
   display: "none",
-  '@lg': {
+  "@lg": {
     display: "flex",
   },
   flexDirection: "column",
@@ -24,17 +24,17 @@ export const PostAside = styled("aside", {
   marginLeft: "$11",
 });
 
-export const PostAsideHeader = styled("header", {
+export const AsideHeader = styled("header", {
   display: "flex",
   marginBottom: "$5",
 });
 
-export const PostAsideFooter = styled("footer", {
+export const AsideFooter = styled("footer", {
   display: "flex",
   marginTop: "$5",
 });
 
-export const HeadingsWrapper = styled("div", {
+export const NavList = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "$4",
@@ -44,7 +44,7 @@ export const HeadingsWrapper = styled("div", {
   },
 });
 
-export const HeadingLink = styled("a", {
+export const NavListItem = styled("a", {
   textDecoration: "none",
   color: "$baseText",
   transition: "$theme",
