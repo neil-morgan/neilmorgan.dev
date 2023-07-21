@@ -15,6 +15,7 @@ export const removeParagraphTags = (
     li: BLOCKS.LIST_ITEM,
     th: BLOCKS.TABLE_HEADER_CELL,
     td: BLOCKS.TABLE_CELL,
+    quote: BLOCKS.QUOTE,
   };
 
   return documentToReactComponents(node, {

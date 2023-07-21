@@ -106,6 +106,11 @@ export const { styled } = createStitches({
       wider: "0.05em",
       widest: "0.1em",
     },
+    borderWidths: {
+      sm: "0.25rem", // 4px
+      md: "0.5rem", // 8px
+      lg: "0.75rem", // 12px
+    },
     lineHeights: {
       none: "1",
       tight: "1.25",
@@ -123,7 +128,7 @@ export const { styled } = createStitches({
       none: "0",
       sm: "0.125rem",
       default: "0.25rem",
-      m: "0.4rem",
+      md: "0.4rem",
       lg: "0.625rem",
       xl: "1rem",
       full: "9999px",

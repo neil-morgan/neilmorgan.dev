@@ -25,7 +25,7 @@ export const Tr = styled("tr", {
 export const Th = styled("th", {
   borderBottomWidth: "2px",
   borderBottomStyle: "solid",
-  borderBottomColor: "#ffffff",
+  borderBottomColor: "$divider",
   ...defaultCellStyle,
 });
 
@@ -38,5 +38,5 @@ export const Td = styled("td", {
   },
   borderBottomWidth: "2px",
   borderBottomStyle: "solid",
-  borderBottomColor: "#ffffff",
+  borderBottomColor: "$divider",
 });

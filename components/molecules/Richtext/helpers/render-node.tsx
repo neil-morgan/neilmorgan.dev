@@ -3,23 +3,30 @@
 import { BLOCKS, INLINES, type Document } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
 import {
-  Table,
+  AspectRatio,
+  Blockquote,
+  Divider,
   Heading,
+  Link,
+  ListItem,
+  OrderedList,
   Paragraph,
   Snippet,
-  OrderedList,
-  Divider,
-  Link,
+  Table,
   Td,
-  Tr,
   Th,
-  ListItem,
+  Tr,
   UnorderedList,
 } from "@/components/atoms";
-import type { RichtextNodeType } from "../types";
+import Image from "next/image";
+import type { RichtextNodeType, RichtextBlockMapType } from "../types";
 import { removeParagraphTags, renderMark } from ".";
 
-export const renderNode = (entryBlockMap: Map<any, any>) => ({
+export const renderNode = (
+  entryBlockMap: RichtextBlockMapType,
+  inlineBlockMap: RichtextBlockMapType,
+  assetBlockMap: RichtextBlockMapType,
+) => ({
   [BLOCKS.HEADING_1]: (node: RichtextNodeType, children: ReactNode) => {
     if (!("value" in node.content[0])) {
       return null;
@@ -61,9 +68,10 @@ export const renderNode = (entryBlockMap: Map<any, any>) => ({
 
   [BLOCKS.HR]: () => <Divider size="lg" />,
 
-  [BLOCKS.QUOTE]: (_: RichtextNodeType, children: ReactNode) => (
-    <blockquote>{children}</blockquote>
-  ),
+  [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
+    const children = removeParagraphTags(node as Document, renderMark, "quote");
+    return <Blockquote>{children}</Blockquote>;
+  },
 
   [BLOCKS.TABLE]: (_: RichtextNodeType, children: ReactNode) => (
     <Table>{children}</Table>
@@ -83,23 +91,44 @@ export const renderNode = (entryBlockMap: Map<any, any>) => ({
     return <Td>{children}</Td>;
   },
 
-  [INLINES.HYPERLINK]: ({ data }: RichtextNodeType, children: ReactNode) => (
-    <Link href={data.uri}>{children}</Link>
-  ),
-  // [BLOCKS.EMBEDDED_ASSET]: ({ data }) => (
-  //   <RichtextImage
-  //     id={data.target.sys.id}
-  //     assets={content.links.assets.block}
-  //   />
-  // ),
+  [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
+    const { url, description } = assetBlockMap.get(data.target.sys.id);
+    return (
+      <AspectRatio
+        css={{
+          "&:not(:first-child)": {
+            marginTop: "$6",
+          },
+          "&:not(:last-child)": {
+            marginBottom: "$6",
+          },
+          borderRadius: "$md",
+          overflow: "hidden",
+        }}>
+        <Image src={url} alt={description} fill />
+      </AspectRatio>
+    );
+  },
 
   [BLOCKS.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
     const { code, language, __typename } = entryBlockMap.get(
       node.data.target.sys.id,
     );
-
     if (__typename === "Snippet") {
       return <Snippet code={code} language={language} />;
     }
   },
+
+  [INLINES.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
+    const { __typename, slug, title } = inlineBlockMap.get(
+      node.data.target.sys.id,
+    );
+    if (__typename === "Post") {
+      return <Link href={slug}>{title}</Link>;
+    }
+  },
+
+  [INLINES.HYPERLINK]: ({ data }: RichtextNodeType, children: ReactNode) => (
+    <Link href={data.uri}>{children}</Link>
+  ),
 });

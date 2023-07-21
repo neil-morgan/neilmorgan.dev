@@ -13,6 +13,7 @@ export const Body = styled("div", {
 export const Aside = styled("aside", {
   position: "sticky",
   top: "$12",
+  width: "100%",
   height: "100%",
   display: "none",
   "@lg": {
@@ -26,7 +27,7 @@ export const Aside = styled("aside", {
 
 export const AsideHeader = styled("header", {
   display: "flex",
-  marginBottom: "$5",
+  width: "100%",
 });
 
 export const AsideFooter = styled("footer", {

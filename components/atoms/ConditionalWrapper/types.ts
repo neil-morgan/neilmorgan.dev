@@ -1,7 +1,5 @@
-import type { ReactNode } from "react";
-
 export type ConditionalWrapperProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   if?: boolean;
   wrapWith: (children: React.ReactNode) => JSX.Element;
 };

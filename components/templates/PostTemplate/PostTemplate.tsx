@@ -35,9 +35,8 @@ export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
     <Body>
       <Richtext content={content?.body as PostBody} />
       <Aside>
-        <AsideHeader>
-          <Heading size="tertiary">POST CONTENTS</Heading>
-        </AsideHeader>
+        <Heading size="tertiary">POST CONTENTS</Heading>
+        <Divider />
         <NavList>
           {headings.map(({ heading, subHeadings }, i1) => (
             <Fragment key={`${heading.label}-${i1}`}>

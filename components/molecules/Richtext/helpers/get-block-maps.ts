@@ -3,6 +3,7 @@ import { type PostBodyLinks } from "@/graphql/cms";
 export const getBlockMaps = (links: PostBodyLinks) => {
   const entryBlockMap = new Map();
   const assetBlockMap = new Map();
+  const inlineBlockMap = new Map();
 
   for (const asset of links.assets.block) {
     assetBlockMap.set(asset?.sys.id, asset);
@@ -12,5 +13,9 @@ export const getBlockMaps = (links: PostBodyLinks) => {
     entryBlockMap.set(entry?.sys.id, entry);
   }
 
-  return { entryBlockMap, assetBlockMap };
+  for (const entry of links.entries.inline) {
+    inlineBlockMap.set(entry?.sys.id, entry);
+  }
+
+  return { entryBlockMap, inlineBlockMap, assetBlockMap };
 };

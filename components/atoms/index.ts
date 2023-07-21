@@ -1,3 +1,5 @@
+export { AspectRatio } from "./AspectRatio";
+export { Blockquote } from "./Blockquote";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
 export { Divider } from "./Divider";
