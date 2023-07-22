@@ -3,6 +3,13 @@ fragment postContent on Post {
     id
   }
   title
+  description
+  date
+  slug
+  category {
+    title
+    slug
+  }
   body {
     json
     links {
@@ -40,10 +47,6 @@ fragment postContent on Post {
       }
     }
   }
-  description
-  date
-  slug
-  category
 }
 
 query postBySlug($slug: String!) {
@@ -57,7 +60,17 @@ query postBySlug($slug: String!) {
 query allPosts {
   postCollection(order: date_DESC, limit: 10) {
     items {
-      ...postContent
+      sys {
+        id
+      }
+      title
+      description
+      date
+      slug
+      category {
+        title
+        slug
+      }
     }
   }
 }

@@ -2,11 +2,16 @@
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import type { RichtextProps } from "./types";
-import { Article } from "./styles";
-import { getRenderOptions } from "./helpers/get-render-options";
+import { getBlockMaps, renderMark, renderNode, renderText } from "./helpers";
 
-export const Richtext = ({ content }: RichtextProps) => (
-  <Article>
-    {documentToReactComponents(content.json, getRenderOptions(content.links))}
-  </Article>
-);
+export const Richtext = ({ content }: RichtextProps) => {
+  const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
+    content.links,
+  );
+
+  return documentToReactComponents(content.json, {
+    renderMark,
+    renderText,
+    renderNode: renderNode(entryBlockMap, inlineBlockMap, assetBlockMap),
+  });
+};

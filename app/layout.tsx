@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
 import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
-import { Header } from "@/components/molecules";
+import { Header, Footer } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import { Wrapper, Main } from "./styles";
 
@@ -22,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Wrapper>
               <Header />
               <Main>{children}</Main>
+              <Footer />
             </Wrapper>
           </ThemeToggleProvider>
         </StitchesRegistry>

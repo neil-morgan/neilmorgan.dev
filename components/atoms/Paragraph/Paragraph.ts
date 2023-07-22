@@ -3,7 +3,6 @@
 import { styled } from "@/lib/stitches";
 
 export const Paragraph = styled("p", {
-  "&:not(:first-of-type)": { marginTop: "$4" },
   variants: {
     size: {
       sm: { fontSize: "$2" },

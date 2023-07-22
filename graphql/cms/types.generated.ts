@@ -195,8 +195,6 @@ export type AssetLinkingCollectionsPostCollectionArgs = {
 };
 
 export enum AssetLinkingCollectionsPostCollectionOrder {
-  CategoryAsc = "category_ASC",
-  CategoryDesc = "category_DESC",
   DateAsc = "date_ASC",
   DateDesc = "date_DESC",
   DescriptionAsc = "description_ASC",
@@ -394,7 +392,7 @@ export type ImageTransformOptions = {
 export type Post = Entry & {
   __typename?: "Post";
   body: Maybe<PostBody>;
-  category: Maybe<Scalars["String"]["output"]>;
+  category: Maybe<PostCategory>;
   contentfulMetadata: ContentfulMetadata;
   date: Maybe<Scalars["DateTime"]["output"]>;
   description: Maybe<Scalars["String"]["output"]>;
@@ -413,6 +411,8 @@ export type PostBodyArgs = {
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/post) */
 export type PostCategoryArgs = {
   locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  where: InputMaybe<PostCategoryFilter>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/post) */
@@ -477,6 +477,117 @@ export type PostBodyResources = {
   block: Array<ResourceLink>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */
+export type PostCategory = Entry & {
+  __typename?: "PostCategory";
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom: Maybe<PostCategoryLinkingCollections>;
+  slug: Maybe<Scalars["String"]["output"]>;
+  sys: Sys;
+  title: Maybe<Scalars["String"]["output"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */
+export type PostCategoryLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */
+export type PostCategorySlugArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */
+export type PostCategoryTitleArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PostCategoryCollection = {
+  __typename?: "PostCategoryCollection";
+  items: Array<Maybe<PostCategory>>;
+  limit: Scalars["Int"]["output"];
+  skip: Scalars["Int"]["output"];
+  total: Scalars["Int"]["output"];
+};
+
+export type PostCategoryFilter = {
+  AND: InputMaybe<Array<InputMaybe<PostCategoryFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<PostCategoryFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  slug: InputMaybe<Scalars["String"]["input"]>;
+  slug_contains: InputMaybe<Scalars["String"]["input"]>;
+  slug_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  slug_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  slug_not: InputMaybe<Scalars["String"]["input"]>;
+  slug_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  slug_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars["String"]["input"]>;
+  title_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  title_not: InputMaybe<Scalars["String"]["input"]>;
+  title_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type PostCategoryLinkingCollections = {
+  __typename?: "PostCategoryLinkingCollections";
+  entryCollection: Maybe<EntryCollection>;
+  postCollection: Maybe<PostCollection>;
+};
+
+export type PostCategoryLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type PostCategoryLinkingCollectionsPostCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  order: InputMaybe<
+    Array<InputMaybe<PostCategoryLinkingCollectionsPostCollectionOrder>>
+  >;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export enum PostCategoryLinkingCollectionsPostCollectionOrder {
+  DateAsc = "date_ASC",
+  DateDesc = "date_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  SlugAsc = "slug_ASC",
+  SlugDesc = "slug_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+export enum PostCategoryOrder {
+  SlugAsc = "slug_ASC",
+  SlugDesc = "slug_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
 export type PostCollection = {
   __typename?: "PostCollection";
   items: Array<Maybe<Post>>;
@@ -491,13 +602,8 @@ export type PostFilter = {
   body_contains: InputMaybe<Scalars["String"]["input"]>;
   body_exists: InputMaybe<Scalars["Boolean"]["input"]>;
   body_not_contains: InputMaybe<Scalars["String"]["input"]>;
-  category: InputMaybe<Scalars["String"]["input"]>;
-  category_contains: InputMaybe<Scalars["String"]["input"]>;
+  category: InputMaybe<CfPostCategoryNestedFilter>;
   category_exists: InputMaybe<Scalars["Boolean"]["input"]>;
-  category_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  category_not: InputMaybe<Scalars["String"]["input"]>;
-  category_not_contains: InputMaybe<Scalars["String"]["input"]>;
-  category_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
   date: InputMaybe<Scalars["DateTime"]["input"]>;
   date_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -546,8 +652,6 @@ export type PostLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum PostOrder {
-  CategoryAsc = "category_ASC",
-  CategoryDesc = "category_DESC",
   DateAsc = "date_ASC",
   DateDesc = "date_DESC",
   DescriptionAsc = "description_ASC",
@@ -572,6 +676,8 @@ export type Query = {
   assetCollection: Maybe<AssetCollection>;
   entryCollection: Maybe<EntryCollection>;
   post: Maybe<Post>;
+  postCategory: Maybe<PostCategory>;
+  postCategoryCollection: Maybe<PostCategoryCollection>;
   postCollection: Maybe<PostCollection>;
   snippet: Maybe<Snippet>;
   snippetCollection: Maybe<SnippetCollection>;
@@ -605,6 +711,21 @@ export type QueryPostArgs = {
   id: Scalars["String"]["input"];
   locale: InputMaybe<Scalars["String"]["input"]>;
   preview: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QueryPostCategoryArgs = {
+  id: Scalars["String"]["input"];
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QueryPostCategoryCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  order: InputMaybe<Array<InputMaybe<PostCategoryOrder>>>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PostCategoryFilter>;
 };
 
 export type QueryPostCollectionArgs = {
@@ -790,4 +911,25 @@ export type SysFilter = {
   publishedVersion_not_in: InputMaybe<
     Array<InputMaybe<Scalars["Float"]["input"]>>
   >;
+};
+
+export type CfPostCategoryNestedFilter = {
+  AND: InputMaybe<Array<InputMaybe<CfPostCategoryNestedFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<CfPostCategoryNestedFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  slug: InputMaybe<Scalars["String"]["input"]>;
+  slug_contains: InputMaybe<Scalars["String"]["input"]>;
+  slug_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  slug_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  slug_not: InputMaybe<Scalars["String"]["input"]>;
+  slug_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  slug_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars["String"]["input"]>;
+  title_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  title_not: InputMaybe<Scalars["String"]["input"]>;
+  title_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };

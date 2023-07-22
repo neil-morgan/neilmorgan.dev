@@ -10,6 +10,13 @@ export const Body = styled("div", {
   justifyContent: "center",
 });
 
+export const Content = styled("article", {
+  maxWidth: "min(686px, 100%)",
+  "& > *:first-child": {
+    marginTop: 0,
+  },
+});
+
 export const Aside = styled("aside", {
   position: "sticky",
   top: "$12",

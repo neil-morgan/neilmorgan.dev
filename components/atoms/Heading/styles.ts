@@ -10,19 +10,34 @@ export const HeadingElement = styled("h2", {
 
   variants: {
     size: {
-      primary: {
+      h1: {
         fontWeight: "$semibold",
         fontSize: "$11",
-        marginTop: "$11",
       },
-      secondary: {
+      h2: {
+        fontWeight: "$semibold",
+        fontSize: "$9",
+      },
+      h3: {
         fontWeight: "$medium",
         fontSize: "$7",
-        marginTop: "$6",
       },
-      tertiary: {
+      h4: {
         fontWeight: "$medium",
-        fontSize: "$3",
+        fontSize: "$6",
+      },
+      h5: {
+        fontWeight: "$medium",
+        fontSize: "$5",
+      },
+      h6: {
+        fontWeight: "$medium",
+        fontSize: "$4",
+      },
+    },
+
+    style: {
+      print: {
         letterSpacing: "$widest",
         textTransform: "uppercase",
       },
@@ -30,7 +45,7 @@ export const HeadingElement = styled("h2", {
   },
 
   defaultVariants: {
-    size: "primary",
+    size: "h2",
   },
 });
 

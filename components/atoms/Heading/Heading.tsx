@@ -6,18 +6,16 @@ import { HeadingElement, HeadingAnchor } from "./styles";
 import { Icon } from "../Icon";
 
 export const Heading = ({
+  as = "h2",
   children,
-  id,
-  as,
   css,
-  size = "primary",
+  id,
+  size = "h2",
+  style,
 }: HeadingProps) => {
   const _id = kebabCase(id);
-  const headingElement =
-    size === "primary" ? "h2" : size === "secondary" ? "h3" : "h4";
-
   return (
-    <HeadingElement as={as || headingElement} size={size} css={css}>
+    <HeadingElement as={as} size={size ?? as} style={style} css={css}>
       {id && (
         <HeadingAnchor href={`#${_id}`} id={_id}>
           <Icon name="link" />

@@ -8,7 +8,7 @@ import {
   GetPostDataByIdDocument,
   CreatePostDataByIdDocument,
 } from "@/graphql/db";
-import { getRichtextHeadings } from "./helpers";
+import { getRichtextHeadings } from "@/helpers";
 
 const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";

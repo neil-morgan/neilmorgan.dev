@@ -32,7 +32,7 @@ export const renderNode = (
       return null;
     }
     return (
-      <Heading size="primary" id={node.content[0].value}>
+      <Heading size="h1" css={{ marginTop: "$11" }} id={node.content[0].value}>
         {children}
       </Heading>
     );
@@ -43,14 +43,16 @@ export const renderNode = (
       return null;
     }
     return (
-      <Heading size="secondary" id={node.content[0].value}>
+      <Heading size="h3" css={{ marginTop: "$6" }} id={node.content[0].value}>
         {children}
       </Heading>
     );
   },
 
   [BLOCKS.PARAGRAPH]: (_: RichtextNodeType, children: ReactNode) => (
-    <Paragraph>{children}</Paragraph>
+    <Paragraph css={{ "&:not(:first-child)": { marginTop: "$4" } }}>
+      {children}
+    </Paragraph>
   ),
 
   [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
@@ -70,7 +72,19 @@ export const renderNode = (
 
   [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
     const children = removeParagraphTags(node as Document, renderMark, "quote");
-    return <Blockquote>{children}</Blockquote>;
+    return (
+      <Blockquote
+        css={{
+          "&:not(:first-child)": {
+            marginTop: "$6",
+          },
+          "&:not(:last-child)": {
+            marginBottom: "$6",
+          },
+        }}>
+        {children}
+      </Blockquote>
+    );
   },
 
   [BLOCKS.TABLE]: (_: RichtextNodeType, children: ReactNode) => (

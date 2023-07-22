@@ -13,7 +13,7 @@ import { type PostBody } from "@/graphql/cms";
 import {
   Aside,
   AsideFooter,
-  AsideHeader,
+  Content,
   Body,
   Header,
   NavList,
@@ -24,18 +24,20 @@ import { Fragment } from "react";
 export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
   <Container>
     <Header>
-      <Heading size="primary" css={{ marginTop: 0 }}>
+      <Heading size="h1" css={{ marginTop: 0 }}>
         {content.title}
       </Heading>
-      <Paragraph>{content.description}</Paragraph>
     </Header>
 
     <Divider size="xl" />
 
     <Body>
-      <Richtext content={content?.body as PostBody} />
+      <Content>
+        <Paragraph>{content.description}</Paragraph>
+        <Richtext content={content?.body as PostBody} />
+      </Content>
       <Aside>
-        <Heading size="tertiary">POST CONTENTS</Heading>
+        <Heading size="h6" style="print">POST CONTENTS</Heading>
         <Divider />
         <NavList>
           {headings.map(({ heading, subHeadings }, i1) => (

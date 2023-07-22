@@ -23,7 +23,7 @@ if (NODE_ENV === "development") {
   loadErrorMessages();
 }
 
-function makeClient() {
+const makeClient = () => {
   const httpLink = new HttpLink({
     uri: "http://localhost:3000/api",
   });
@@ -40,18 +40,14 @@ function makeClient() {
           ])
         : httpLink,
   });
-}
+};
 
-function makeSuspenseCache() {
-  return new SuspenseCache();
-}
+const makeSuspenseCache = () => new SuspenseCache();
 
-export function ApolloWrapper({ children }: React.PropsWithChildren) {
-  return (
-    <ApolloNextAppProvider
-      makeClient={makeClient}
-      makeSuspenseCache={makeSuspenseCache}>
-      {children}
-    </ApolloNextAppProvider>
-  );
-}
+export const ApolloWrapper = ({ children }: React.PropsWithChildren) => (
+  <ApolloNextAppProvider
+    makeClient={makeClient}
+    makeSuspenseCache={makeSuspenseCache}>
+    {children}
+  </ApolloNextAppProvider>
+);
