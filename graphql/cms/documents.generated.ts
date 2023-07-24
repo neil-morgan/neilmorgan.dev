@@ -138,6 +138,29 @@ export type PostBySlugQuery = {
   } | null;
 };
 
+export type PostsByCategoryQueryVariables = Types.Exact<{
+  slug: Types.Scalars["String"]["input"];
+}>;
+
+export type PostsByCategoryQuery = {
+  __typename?: "Query";
+  postCollection: {
+    __typename?: "PostCollection";
+    items: Array<{
+      __typename?: "Post";
+      title: string | null;
+      description: string | null;
+      date: any | null;
+      slug: string | null;
+      category: {
+        __typename?: "PostCategory";
+        title: string | null;
+        slug: string | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
 export type AllPostsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type AllPostsQuery = {
@@ -166,7 +189,15 @@ export type AllPostsSlugsQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
-    items: Array<{ __typename?: "Post"; slug: string | null } | null>;
+    items: Array<{
+      __typename?: "Post";
+      slug: string | null;
+      category: {
+        __typename?: "PostCategory";
+        title: string | null;
+        slug: string | null;
+      } | null;
+    } | null>;
   } | null;
 };
 
@@ -175,7 +206,7 @@ export const PostContentFragmentDoc = {
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "postContent" },
+      name: { kind: "Name", value: "PostContent" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Post" },
@@ -394,7 +425,7 @@ export const PostBySlugDocument = {
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "postBySlug" },
+      name: { kind: "Name", value: "PostBySlug" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -449,7 +480,7 @@ export const PostBySlugDocument = {
                     selections: [
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "postContent" },
+                        name: { kind: "Name", value: "PostContent" },
                       },
                     ],
                   },
@@ -462,7 +493,7 @@ export const PostBySlugDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "postContent" },
+      name: { kind: "Name", value: "PostContent" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Post" },
@@ -675,13 +706,114 @@ export const PostBySlugDocument = {
     },
   ],
 } as unknown as DocumentNode<PostBySlugQuery, PostBySlugQueryVariables>;
+export const PostsByCategoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "PostsByCategory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "postCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "category" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "slug_contains" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "date" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "category" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "title" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  PostsByCategoryQuery,
+  PostsByCategoryQueryVariables
+>;
 export const AllPostsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "allPosts" },
+      name: { kind: "Name", value: "AllPosts" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -763,7 +895,7 @@ export const AllPostsSlugsDocument = {
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "allPostsSlugs" },
+      name: { kind: "Name", value: "AllPostsSlugs" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -796,6 +928,23 @@ export const AllPostsSlugsDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "category" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "title" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },

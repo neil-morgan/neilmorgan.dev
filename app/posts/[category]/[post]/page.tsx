@@ -14,14 +14,23 @@ const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
 export const revalidate = 1; // * revalidate every 1 second
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { post: string };
+}) {
+  return { title: "abc" };
+}
+
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     context: { clientName: CMS },
     query: AllPostsSlugsDocument,
   });
 
-  return data.postCollection?.items.map(post => ({
-    slug: post?.slug,
+  return data?.postCollection?.items.map(post => ({
+    category: post?.category?.slug,
+    post: post?.slug,
   }));
 }
 

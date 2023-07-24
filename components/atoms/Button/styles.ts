@@ -24,6 +24,7 @@ export const ButtonElement = styled("button", {
     size: {
       sm: {
         fontSize: "$1",
+        fontWeight: "$semibold",
       },
       md: {
         fontSize: "$3",

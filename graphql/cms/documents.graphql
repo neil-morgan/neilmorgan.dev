@@ -1,4 +1,4 @@
-fragment postContent on Post {
+fragment PostContent on Post {
   sys {
     id
   }
@@ -49,15 +49,30 @@ fragment postContent on Post {
   }
 }
 
-query postBySlug($slug: String!) {
+query PostBySlug($slug: String!) {
   postCollection(where: { slug: $slug }, limit: 1) {
     items {
-      ...postContent
+      ...PostContent
     }
   }
 }
 
-query allPosts {
+query PostsByCategory($slug: String!) {
+  postCollection(where: { category: { slug_contains: $slug } }) {
+    items {
+      title
+      description
+      date
+      slug
+      category {
+        title
+        slug
+      }
+    }
+  }
+}
+
+query AllPosts {
   postCollection(order: date_DESC, limit: 10) {
     items {
       sys {
@@ -75,10 +90,14 @@ query allPosts {
   }
 }
 
-query allPostsSlugs {
+query AllPostsSlugs {
   postCollection(where: { slug_exists: true }) {
     items {
       slug
+      category {
+        title
+        slug
+      }
     }
   }
 }

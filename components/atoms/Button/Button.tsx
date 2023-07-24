@@ -11,6 +11,7 @@ export const Button = ({
   isExternal,
   rightIcon,
   leftIcon,
+  size,
 }: ButtonProps) => {
   const rightIconComponent = rightIcon ? (
     <RightIcon>{rightIcon}</RightIcon>
@@ -26,7 +27,7 @@ export const Button = ({
           {children}
         </NextLink>
       )}>
-      <ButtonElement as="a" css={css} onClick={onClick}>
+      <ButtonElement as="a" css={css} onClick={onClick} size={size}>
         {leftIconComponent} {children} {rightIconComponent}
       </ButtonElement>
     </ConditionalWrapper>

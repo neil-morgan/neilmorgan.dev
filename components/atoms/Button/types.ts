@@ -8,4 +8,5 @@ export type ButtonProps = {
   onClick?: () => void;
   rightIcon?: React.ReactNode;
   leftIcon?: React.ReactNode;
+  size?: "sm" | "md" | "lg";
 };

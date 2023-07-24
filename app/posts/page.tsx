@@ -2,7 +2,7 @@ import { getClient } from "@/lib/apollo/client";
 import { AllPostsDocument, type Post } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import { groupPostsByCategory } from "@/helpers";
-import { PostsTemplate } from "@/components/templates/PostsTemplate/PostsTemplate";
+import { Posts } from "@/components/organisms";
 
 const { CMS } = APOLLO_CLIENTS;
 
@@ -20,5 +20,5 @@ export default async function PostsPage() {
   const posts = postsContent?.postCollection?.items as Post[];
   const groupedPosts = groupPostsByCategory(posts);
 
-  return <PostsTemplate posts={groupedPosts} />;
+  return <Posts posts={groupedPosts} />;
 }
