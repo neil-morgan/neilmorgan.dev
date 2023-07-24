@@ -9,6 +9,10 @@ const { CMS } = APOLLO_CLIENTS;
 export const revalidate = 1;
 export const fetchCache = "force-no-store";
 
+export const metadata = {
+  title: "All articles",
+};
+
 export default async function PostsPage() {
   const { query } = getClient();
 
@@ -17,8 +21,9 @@ export default async function PostsPage() {
     query: AllPostsDocument,
   });
 
-  const posts = postsContent?.postCollection?.items as Post[];
-  const groupedPosts = groupPostsByCategory(posts);
+  const groupedPosts = groupPostsByCategory(
+    postsContent?.postCollection?.items as Post[],
+  );
 
   return <Posts posts={groupedPosts} />;
 }

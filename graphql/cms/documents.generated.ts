@@ -161,6 +161,22 @@ export type PostsByCategoryQuery = {
   } | null;
 };
 
+export type CategoryBySlugQueryVariables = Types.Exact<{
+  slug: Types.Scalars["String"]["input"];
+}>;
+
+export type CategoryBySlugQuery = {
+  __typename?: "Query";
+  postCategoryCollection: {
+    __typename?: "PostCategoryCollection";
+    items: Array<{
+      __typename?: "PostCategory";
+      title: string | null;
+      slug: string | null;
+    } | null>;
+  } | null;
+};
+
 export type AllPostsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type AllPostsQuery = {
@@ -807,6 +823,78 @@ export const PostsByCategoryDocument = {
   PostsByCategoryQuery,
   PostsByCategoryQueryVariables
 >;
+export const CategoryBySlugDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "CategoryBySlug" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "postCategoryCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "slug" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "1" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CategoryBySlugQuery, CategoryBySlugQueryVariables>;
 export const AllPostsDocument = {
   kind: "Document",
   definitions: [

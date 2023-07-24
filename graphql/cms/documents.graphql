@@ -72,6 +72,15 @@ query PostsByCategory($slug: String!) {
   }
 }
 
+query CategoryBySlug($slug: String!) {
+  postCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      title
+      slug
+    }
+  }
+}
+
 query AllPosts {
   postCollection(order: date_DESC, limit: 10) {
     items {

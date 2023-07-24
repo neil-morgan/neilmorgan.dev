@@ -1,7 +1,7 @@
 import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
-import { type PostPageProps, type PostProps } from "./types";
+import { type SlugProps, type PostProps, type MetaProps } from "./types";
 import { PostTemplate } from "@/components/templates";
 import { PostBySlugDocument, type Post } from "@/graphql/cms";
 import {
@@ -12,14 +12,17 @@ import { getRichtextHeadings } from "@/helpers";
 
 const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
-export const revalidate = 1; // * revalidate every 1 second
+export const revalidate = 1;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { post: string };
-}) {
-  return { title: "abc" };
+export async function generateMetadata({ params }: MetaProps) {
+  const { data } = await getClient().query({
+    context: { clientName: CMS },
+    query: PostBySlugDocument,
+    variables: {
+      slug: params.slug,
+    },
+  });
+  return { title: data?.postCollection?.items[0]?.title };
 }
 
 export async function generateStaticParams() {
@@ -27,20 +30,19 @@ export async function generateStaticParams() {
     context: { clientName: CMS },
     query: AllPostsSlugsDocument,
   });
-
   return data?.postCollection?.items.map(post => ({
     category: post?.category?.slug,
-    post: post?.slug,
+    slug: post?.slug,
   }));
 }
 
-export default async function PostPage({ params }: PostPageProps) {
+export default async function Slug({ params }: SlugProps) {
   const { query, mutate } = getClient();
 
   const { data: cmsData } = await query({
     context: { clientName: CMS },
     query: PostBySlugDocument,
-    variables: { slug: params.post },
+    variables: { slug: params.slug },
   });
 
   const postContent = cmsData.postCollection?.items[0] as Post;
