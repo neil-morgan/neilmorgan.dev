@@ -12,7 +12,7 @@ export const Posts = ({
   <Container>
     {Array.isArray(posts) ? (
       posts.map(({ category, items }) => (
-        <PostGrid key={category} category={category} items={items} />
+        <PostGrid key={category.title} category={category} items={items} />
       ))
     ) : (
       <PostGrid category={posts.category} items={posts.items} />

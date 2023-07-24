@@ -7,7 +7,12 @@ export type RichtextHeadingsType = {
   subHeadings: { heading: RichtextHeadingType }[];
 }[];
 
+export type CategoryType = {
+  title: string;
+  slug: string;
+};
+
 export type GroupedPostType = {
-  category: string;
+  category: CategoryType;
   items: Post[];
 };

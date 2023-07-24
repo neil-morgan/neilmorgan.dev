@@ -7,11 +7,13 @@ import {
 import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
 import { MetaProps } from "./types";
+import type { CategoryType } from "@/types";
 
 const { CMS } = APOLLO_CLIENTS;
+const { query } = getClient();
 
 export async function generateMetadata({ params }: MetaProps) {
-  const { data } = await getClient().query({
+  const { data } = await query({
     context: { clientName: CMS },
     query: CategoryBySlugDocument,
     variables: {
@@ -26,7 +28,7 @@ export default async function CategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { data } = await getClient().query({
+  const { data: pageData } = await query({
     context: { clientName: CMS },
     query: PostsByCategoryDocument,
     variables: {
@@ -34,9 +36,17 @@ export default async function CategoryPage({
     },
   });
 
+  const { data: categoryData } = await query({
+    context: { clientName: CMS },
+    query: CategoryBySlugDocument,
+    variables: {
+      slug: params.category,
+    },
+  });
+
   const groupedPosts = {
-    category: params.category,
-    items: data?.postCollection?.items as Post[],
+    category: categoryData?.postCategoryCollection?.items[0] as CategoryType,
+    items: pageData?.postCollection?.items as Post[],
   };
 
   return <Posts posts={groupedPosts} />;

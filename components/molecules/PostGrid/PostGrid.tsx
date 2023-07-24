@@ -8,7 +8,7 @@ export const PostGrid = ({ category, items }: GroupedPostType) => (
   <Category>
     <Header>
       <Heading size="h6" as="h2" style="print">
-        {category}
+        {category.title}
       </Heading>
       <Text>
         {items.length} Article{items.length !== 1 && "s"}
@@ -21,7 +21,7 @@ export const PostGrid = ({ category, items }: GroupedPostType) => (
           <Heading size="h4">{title}</Heading>
           <Text as="p">{description}</Text>
           <Button
-            href={`/posts/${slug}`}
+            href={`/posts/${category.slug}/${slug}`}
             css={{ marginTop: "$6" }}
             size="md"
             rightIcon={<Icon name="arrowRight" />}>

@@ -14,8 +14,10 @@ const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
 export const revalidate = 1;
 
+const { query, mutate } = getClient();
+
 export async function generateMetadata({ params }: MetaProps) {
-  const { data } = await getClient().query({
+  const { data } = await query({
     context: { clientName: CMS },
     query: PostBySlugDocument,
     variables: {
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: MetaProps) {
 }
 
 export async function generateStaticParams() {
-  const { data } = await getClient().query({
+  const { data } = await query({
     context: { clientName: CMS },
     query: AllPostsSlugsDocument,
   });
@@ -37,8 +39,6 @@ export async function generateStaticParams() {
 }
 
 export default async function Slug({ params }: SlugProps) {
-  const { query, mutate } = getClient();
-
   const { data: cmsData } = await query({
     context: { clientName: CMS },
     query: PostBySlugDocument,
