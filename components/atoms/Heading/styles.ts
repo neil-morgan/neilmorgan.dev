@@ -1,6 +1,4 @@
-import { styled } from "@stitches/react";
-
-export const defaultStyles = {};
+import { styled } from "@/lib/stitches";
 
 export const HeadingElement = styled("h2", {
   position: "relative",

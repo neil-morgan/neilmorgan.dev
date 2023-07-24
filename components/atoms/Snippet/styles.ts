@@ -10,7 +10,7 @@ export const SnippetWrapper = styled("div", {
 export const CodeWrapper = styled("div", {
   padding: "$4",
   margin: "0 -$6",
-  background: "$closeBackground",
+  background: "$backgroundClose",
   borderRadius: "$xl",
   transition: "200ms ease-in-out",
   "& code, pre ": {
@@ -26,7 +26,7 @@ export const LanguageTab = styled("div", {
   padding: "$1 $3",
   borderTopLeftRadius: "$lg",
   borderTopRightRadius: "$lg",
-  background: "$closeBackground",
+  background: "$backgroundClose",
   transform: "translateY(-100%)",
   transition: "background 200ms ease-in-out",
   textTransform: "uppercase",

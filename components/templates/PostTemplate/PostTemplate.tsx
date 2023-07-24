@@ -4,7 +4,7 @@ import type { PostTemplateProps } from "./types";
 import {
   LikeButton,
   Heading,
-  Paragraph,
+  Text,
   Container,
   Divider,
 } from "@/components/atoms";
@@ -33,11 +33,13 @@ export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
 
     <Body>
       <Content>
-        <Paragraph>{content.description}</Paragraph>
+        <Text as="p">{content.description}</Text>
         <Richtext content={content?.body as PostBody} />
       </Content>
       <Aside>
-        <Heading size="h6" style="print">POST CONTENTS</Heading>
+        <Heading size="h6" style="print">
+          POST CONTENTS
+        </Heading>
         <Divider />
         <NavList>
           {headings.map(({ heading, subHeadings }, i1) => (

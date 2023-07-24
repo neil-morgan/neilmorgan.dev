@@ -1,6 +1,6 @@
 import { styled } from "@/lib/stitches";
 
-export const Wrapper = styled("header", {
+export const HeaderElement = styled("header", {
   display: "flex",
   alignItems: "center",
   position: "sticky",
@@ -9,7 +9,7 @@ export const Wrapper = styled("header", {
   height: "$7",
   width: "100%",
   marginBottom: "$10",
-  backgroundColor: "$baseBackground",
+  backgroundColor: "$backgroundFar",
   transition: "$theme",
 });
 

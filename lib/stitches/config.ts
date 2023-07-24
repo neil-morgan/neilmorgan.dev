@@ -1,28 +1,52 @@
 import { createTheme, createStitches, globalCss } from "@stitches/react";
-import { gray, slateDark, grayDark, violet, blue } from "@radix-ui/colors";
+import { slate, slateDark, violet, blue } from "@radix-ui/colors";
+
+const primaryColorLight = violet.violet10;
+const primaryColorLightHover = violet.violet11;
+const primaryColorDark = violet.violet8;
+const primaryColorDarkHover = slate.slate1;
 
 export const lightTheme = createTheme({
   colors: {
-    primary: violet.violet11,
+    primary: primaryColorLight,
+    primaryHover: primaryColorLightHover,
+
+    buttonBackground: primaryColorLight,
+    buttonBackgroundHover: primaryColorLightHover,
+    buttonColor: slate.slate1,
+
     baseText: slateDark.slate3,
-    baseBackground: gray.gray1,
-    closeBackground: gray.gray3,
-    link: blue.blue10,
-    navItem: grayDark.gray8,
-    navItemHovered: grayDark.gray1,
-    divider: gray.gray7,
+    backgroundFar: slate.slate1,
+    backgroundClose: slate.slate4,
+
+    link: primaryColorLight,
+
+    navItem: slateDark.slate8,
+    navItemHovered: slateDark.slate1,
+
+    divider: slate.slate7,
   },
 });
 
 export const darkTheme = createTheme({
   colors: {
-    primary: violet.violet8,
-    baseText: gray.gray6,
-    baseBackground: slateDark.slate1,
-    closeBackground: slateDark.slate2,
-    link: blue.blue8,
-    navItem: gray.gray7,
-    navItemHovered: gray.gray1,
+    primary: primaryColorDark,
+    primaryHover: primaryColorDarkHover,
+
+    buttonBackground: primaryColorDark,
+    buttonBackgroundHover: primaryColorDarkHover,
+    buttonColor: slateDark.slate1,
+
+    baseText: slate.slate4,
+
+    backgroundFar: slateDark.slate1,
+    backgroundClose: slateDark.slate3,
+
+    link: primaryColorDark,
+
+    navItem: slate.slate7,
+    navItemHovered: slate.slate1,
+
     divider: slateDark.slate6,
   },
 });
@@ -30,12 +54,12 @@ export const darkTheme = createTheme({
 export const globalStyles = globalCss({
   html: {
     boxSizing: "border-box",
-    backgroundColor: "$baseBackground",
+    backgroundColor: "$backgroundFar",
     color: "$baseText",
     transition: "$theme",
     scrollBehavior: "smooth",
   },
-
+  a: { textDecoration: "none" },
   "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },
 });
 
@@ -59,6 +83,7 @@ export const { styled } = createStitches({
       14: "24rem", // 384px
       15: "32rem", // 512px
     },
+
     sizes: {
       1: "5px",
       2: "10px",
@@ -71,6 +96,7 @@ export const { styled } = createStitches({
       9: "80px",
       10: "100px",
     },
+
     fontSizes: {
       0: "0.625rem", // 10px
       1: "0.75rem", // 12px
@@ -87,6 +113,7 @@ export const { styled } = createStitches({
       12: "2.875rem", // 46px
       13: "3.1875rem", // 51px
     },
+
     fontWeights: {
       thin: "100",
       extralight: "200",
@@ -98,6 +125,7 @@ export const { styled } = createStitches({
       extrabold: "800",
       black: "900",
     },
+
     letterSpacings: {
       tighter: "-0.05em",
       tight: "-0.025em",
@@ -106,11 +134,13 @@ export const { styled } = createStitches({
       wider: "0.05em",
       widest: "0.1em",
     },
+
     borderWidths: {
       sm: "0.25rem", // 4px
       md: "0.5rem", // 8px
       lg: "0.75rem", // 12px
     },
+
     lineHeights: {
       none: "1",
       tight: "1.25",
@@ -121,9 +151,11 @@ export const { styled } = createStitches({
       body: "1.625",
       heading: 1.15,
     },
+
     transitions: {
       theme: "ease-in-out 250ms",
     },
+
     radii: {
       none: "0",
       sm: "0.125rem",
@@ -135,6 +167,7 @@ export const { styled } = createStitches({
       round: "50%",
       pill: "9999px",
     },
+
     zIndices: {
       1: "100",
       2: "200",

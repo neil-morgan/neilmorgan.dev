@@ -6,19 +6,19 @@ export const Svg = styled("svg", {
   variants: {
     size: {
       sm: {
-        width: "16px",
-        height: "16px",
-        lineHeight: "16px",
+        width: "1em",
+        height: "1em",
+        lineHeight: "1em",
       },
       md: {
-        width: "24px",
-        height: "24px",
-        lineHeight: "24px",
+        width: "1.2em",
+        height: "1.2em",
+        lineHeight: "1.2em",
       },
       lg: {
-        width: "32px",
-        height: "32px",
-        lineHeight: "32px",
+        width: "1.4em",
+        height: "1.4em",
+        lineHeight: "1.4em",
       },
     },
   },

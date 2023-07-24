@@ -10,12 +10,12 @@ import {
   Link,
   ListItem,
   OrderedList,
-  Paragraph,
   Snippet,
   Table,
   Td,
   Th,
   Tr,
+  Text,
   UnorderedList,
 } from "@/components/atoms";
 import Image from "next/image";
@@ -50,9 +50,7 @@ export const renderNode = (
   },
 
   [BLOCKS.PARAGRAPH]: (_: RichtextNodeType, children: ReactNode) => (
-    <Paragraph css={{ "&:not(:first-child)": { marginTop: "$4" } }}>
-      {children}
-    </Paragraph>
+    <Text as="p">{children}</Text>
   ),
 
   [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
