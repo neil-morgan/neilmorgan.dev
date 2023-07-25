@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
+import { draftMode } from "next/headers";
 import { type ReactNode } from "react";
 import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
-import { Header, Footer } from "@/components/molecules";
+import { Header, Footer, DraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import { Wrapper, Main } from "./styles";
 
@@ -13,17 +14,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const { isEnabled } = draftMode();
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <StitchesRegistry>
           <ThemeToggleProvider>
             <IconDefs />
-            <Wrapper>
-              <Header />
-              <Main>{children}</Main>
-              <Footer />
-            </Wrapper>
+            <DraftMode isEnabled={isEnabled}>
+              <Wrapper>
+                <Header />
+                <Main>{children}</Main>
+                <Footer />
+              </Wrapper>
+            </DraftMode>
           </ThemeToggleProvider>
         </StitchesRegistry>
       </body>
