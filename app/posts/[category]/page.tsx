@@ -1,7 +1,7 @@
 import { getClient } from "@/lib/apollo/client";
 import {
-  PostsByCategoryDocument,
   CategoryBySlugDocument,
+  CategoryPageDocument,
   type Post,
 } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
@@ -28,25 +28,18 @@ export default async function CategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { data: pageData } = await query({
+  const { data } = await query({
     context: { clientName: CMS },
-    query: PostsByCategoryDocument,
-    variables: {
-      slug: params.category,
-    },
-  });
-
-  const { data: categoryData } = await query({
-    context: { clientName: CMS },
-    query: CategoryBySlugDocument,
+    query: CategoryPageDocument,
+    fetchPolicy: "cache-first",
     variables: {
       slug: params.category,
     },
   });
 
   const groupedPosts = {
-    category: categoryData?.postCategoryCollection?.items[0] as CategoryType,
-    items: pageData?.postCollection?.items as Post[],
+    category: data?.postCategoryCollection?.items[0] as CategoryType,
+    items: data?.postCollection?.items as Post[],
   };
 
   return <Posts posts={groupedPosts} />;

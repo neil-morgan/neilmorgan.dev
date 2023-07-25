@@ -1,0 +1,54 @@
+fragment PostContent on Post {
+  sys {
+    id
+  }
+  title
+  description
+  date
+  slug
+  category {
+    ...PostCategoryContent
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on Post {
+            title
+            slug
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on Snippet {
+            description
+            language
+            code
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          url
+          description
+        }
+      }
+    }
+  }
+}
+
+fragment PostCategoryContent on PostCategory {
+  title
+  slug
+}

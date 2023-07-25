@@ -1,56 +1,5 @@
-fragment PostContent on Post {
-  sys {
-    id
-  }
-  title
-  description
-  date
-  slug
-  category {
-    title
-    slug
-  }
-  body {
-    json
-    links {
-      entries {
-        inline {
-          sys {
-            id
-          }
-          __typename
-          ... on Post {
-            title
-            slug
-          }
-        }
-        block {
-          sys {
-            id
-          }
-          __typename
-          ... on Snippet {
-            description
-            language
-            code
-          }
-        }
-      }
-      assets {
-        block {
-          sys {
-            id
-          }
-          url
-          description
-        }
-      }
-    }
-  }
-}
-
-query PostBySlug($slug: String!) {
-  postCollection(where: { slug: $slug }, limit: 1) {
+query PostBySlug($slug: String!, $preview: Boolean = false) {
+  postCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
     items {
       ...PostContent
     }
@@ -65,8 +14,7 @@ query PostsByCategory($slug: String!) {
       date
       slug
       category {
-        title
-        slug
+        ...PostCategoryContent
       }
     }
   }
@@ -75,8 +23,7 @@ query PostsByCategory($slug: String!) {
 query CategoryBySlug($slug: String!) {
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
-      title
-      slug
+      ...PostCategoryContent
     }
   }
 }
@@ -92,8 +39,7 @@ query AllPosts {
       date
       slug
       category {
-        title
-        slug
+        ...PostCategoryContent
       }
     }
   }
@@ -104,9 +50,27 @@ query AllPostsSlugs {
     items {
       slug
       category {
-        title
-        slug
+        ...PostCategoryContent
       }
+    }
+  }
+}
+
+query CategoryPage($slug: String!) {
+  postCollection(where: { category: { slug_contains: $slug } }) {
+    items {
+      title
+      description
+      date
+      slug
+      category {
+        ...PostCategoryContent
+      }
+    }
+  }
+  postCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...PostCategoryContent
     }
   }
 }

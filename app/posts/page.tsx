@@ -7,7 +7,6 @@ import { Posts } from "@/components/organisms";
 const { CMS } = APOLLO_CLIENTS;
 const { query } = getClient();
 export const revalidate = 1;
-export const fetchCache = "force-no-store";
 
 export const metadata = {
   title: "All articles",
@@ -17,6 +16,7 @@ export default async function PostsPage() {
   const { data: postsContent } = await query({
     context: { clientName: CMS },
     query: AllPostsDocument,
+    fetchPolicy: "cache-first",
   });
 
   const groupedPosts = groupPostsByCategory(

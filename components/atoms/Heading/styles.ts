@@ -51,7 +51,7 @@ export const HeadingAnchor = styled("a", {
   "&:hover": { opacity: 1 },
   bottom: "0",
   color: "inherit",
-  fontSize: "inherit",
+  fontSize: "$6",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

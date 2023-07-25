@@ -1,4 +1,5 @@
 import { getClient, ApolloWrapper } from "@/lib/apollo/client";
+import { draftMode } from "next/headers";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import { type SlugProps, type PostProps, type MetaProps } from "./types";
@@ -14,9 +15,8 @@ const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
 export const revalidate = 1;
 
-const { query, mutate } = getClient();
-
 export async function generateMetadata({ params }: MetaProps) {
+  const { query } = getClient();
   const { data } = await query({
     context: { clientName: CMS },
     query: PostBySlugDocument,
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: MetaProps) {
 }
 
 export async function generateStaticParams() {
+  const { query } = getClient();
   const { data } = await query({
     context: { clientName: CMS },
     query: AllPostsSlugsDocument,
@@ -38,11 +39,14 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Slug({ params }: SlugProps) {
+export default async function Slug(context: SlugProps) {
+  const { isEnabled } = draftMode();
+  const { query, mutate } = getClient();
+
   const { data: cmsData } = await query({
-    context: { clientName: CMS },
+    context: { clientName: CMS, isPreviewMode: isEnabled },
     query: PostBySlugDocument,
-    variables: { slug: params.slug },
+    variables: { slug: context.params.slug, preview: isEnabled },
   });
 
   const postContent = cmsData.postCollection?.items[0] as Post;
