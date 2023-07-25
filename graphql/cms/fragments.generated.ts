@@ -13,6 +13,12 @@ export type PostContentFragment = {
     title: string | null;
     slug: string | null;
   } | null;
+  image: {
+    __typename?: "Asset";
+    title: string | null;
+    description: string | null;
+    url: string | null;
+  } | null;
   body: {
     __typename?: "PostBody";
     json: any;
@@ -39,6 +45,12 @@ export type PostContentFragment = {
               __typename: "Post";
               title: string | null;
               slug: string | null;
+              description: string | null;
+              category: {
+                __typename?: "PostCategory";
+                title: string | null;
+                slug: string | null;
+              } | null;
               sys: { __typename?: "Sys"; id: string };
             }
           | {
@@ -131,6 +143,18 @@ export const PostContentFragmentDoc = {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "PostCategoryContent" },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
               ],
             },
           },
@@ -274,6 +298,32 @@ export const PostContentFragmentDoc = {
                                         {
                                           kind: "Field",
                                           name: { kind: "Name", value: "slug" },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "description",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "category",
+                                          },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "FragmentSpread",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "PostCategoryContent",
+                                                },
+                                              },
+                                            ],
+                                          },
                                         },
                                       ],
                                     },

@@ -9,6 +9,11 @@ fragment PostContent on Post {
   category {
     ...PostCategoryContent
   }
+  image {
+    title
+    description
+    url
+  }
   body {
     json
     links {
@@ -36,6 +41,10 @@ fragment PostContent on Post {
           ... on Post {
             title
             slug
+            description
+            category {
+              ...PostCategoryContent
+            }
           }
         }
       }

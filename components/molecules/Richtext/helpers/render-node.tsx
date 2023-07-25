@@ -18,6 +18,7 @@ import {
   Text,
   UnorderedList,
 } from "@/components/atoms";
+import { ContentCard } from "../../ContentCard";
 import Image from "next/image";
 import type { RichtextNodeType, RichtextBlockMapType } from "../types";
 import { removeParagraphTags, renderMark } from ".";
@@ -108,11 +109,13 @@ export const renderNode = (
     return (
       <AspectRatio
         css={{
+          width: "calc(100% + $8)",
+          marginLeft: "-$6",
           "&:not(:first-child)": {
-            marginTop: "$6",
+            marginTop: "$8",
           },
           "&:not(:last-child)": {
-            marginBottom: "$6",
+            marginBottom: "$8",
           },
           borderRadius: "$md",
           overflow: "hidden",
@@ -130,7 +133,16 @@ export const renderNode = (
     }
 
     if (entry.__typename === "Post") {
-      return <div>A POST GOES HERE</div>;
+      console.log(entry);
+      return (
+        <ContentCard
+          title={entry.title}
+          description={entry.description}
+          slug={entry.slug}
+          category={entry.category}
+          css={{ marginTop: "$6" }}
+        />
+      );
     }
   },
 

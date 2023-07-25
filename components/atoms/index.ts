@@ -14,4 +14,5 @@ export { OrderedList, UnorderedList, ListItem } from "./List";
 export { Pod } from "./Pod";
 export { Snippet } from "./Snippet";
 export { Table, Td, Tr, Th } from "./Table";
+export { Tag } from "./Tag";
 export { Text } from "./Text";

@@ -22,6 +22,12 @@ export type PostBySlugQuery = {
         title: string | null;
         slug: string | null;
       } | null;
+      image: {
+        __typename?: "Asset";
+        title: string | null;
+        description: string | null;
+        url: string | null;
+      } | null;
       body: {
         __typename?: "PostBody";
         json: any;
@@ -51,6 +57,12 @@ export type PostBySlugQuery = {
                   __typename: "Post";
                   title: string | null;
                   slug: string | null;
+                  description: string | null;
+                  category: {
+                    __typename?: "PostCategory";
+                    title: string | null;
+                    slug: string | null;
+                  } | null;
                   sys: { __typename?: "Sys"; id: string };
                 }
               | {
@@ -335,6 +347,18 @@ export const PostBySlugDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "body" },
             selectionSet: {
               kind: "SelectionSet",
@@ -473,6 +497,32 @@ export const PostBySlugDocument = {
                                         {
                                           kind: "Field",
                                           name: { kind: "Name", value: "slug" },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "description",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "category",
+                                          },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "FragmentSpread",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "PostCategoryContent",
+                                                },
+                                              },
+                                            ],
+                                          },
                                         },
                                       ],
                                     },
