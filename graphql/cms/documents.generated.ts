@@ -47,7 +47,12 @@ export type PostBySlugQuery = {
               | null
             >;
             block: Array<
-              | { __typename: "Post"; sys: { __typename?: "Sys"; id: string } }
+              | {
+                  __typename: "Post";
+                  title: string | null;
+                  slug: string | null;
+                  sys: { __typename?: "Sys"; id: string };
+                }
               | {
                   __typename: "PostCategory";
                   sys: { __typename?: "Sys"; id: string };
@@ -445,6 +450,29 @@ export const PostBySlugDocument = {
                                         {
                                           kind: "Field",
                                           name: { kind: "Name", value: "code" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "InlineFragment",
+                                    typeCondition: {
+                                      kind: "NamedType",
+                                      name: { kind: "Name", value: "Post" },
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "title",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "slug" },
                                         },
                                       ],
                                     },

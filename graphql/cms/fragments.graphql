@@ -33,6 +33,10 @@ fragment PostContent on Post {
             language
             code
           }
+          ... on Post {
+            title
+            slug
+          }
         }
       }
       assets {

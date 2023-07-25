@@ -123,11 +123,14 @@ export const renderNode = (
   },
 
   [BLOCKS.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
-    const { code, language, __typename } = entryBlockMap.get(
-      node.data.target.sys.id,
-    );
-    if (__typename === "Snippet") {
-      return <Snippet code={code} language={language} />;
+    const entry = entryBlockMap.get(node.data.target.sys.id);
+
+    if (entry.__typename === "Snippet") {
+      return <Snippet code={entry.code} language={entry.language} />;
+    }
+
+    if (entry.__typename === "Post") {
+      return <div>A POST GOES HERE</div>;
     }
   },
 

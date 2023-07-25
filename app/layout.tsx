@@ -22,7 +22,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <StitchesRegistry>
           <ThemeToggleProvider>
             <IconDefs />
-
             <ConditionalWrapper
               if={isEnabled}
               wrapWith={children => <DraftMode>{children}</DraftMode>}>
