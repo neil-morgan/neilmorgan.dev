@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   DraftModeWrapper,
   DraftModeToggle,
@@ -8,15 +9,15 @@ import {
 import { Icon } from "@/components/atoms";
 import type { DraftModeProps } from "./types";
 
-export const DraftMode = ({ isEnabled, children }: DraftModeProps) => {
-  if (!isEnabled) {
-    return <>{children}</>;
-  }
+export const DraftMode = ({ children }: DraftModeProps) => {
+  const pathname = usePathname();
+  const href = `/api/disable-draft?slug=${pathname}`;
+
   return (
     <DraftModeWrapper>
       <DraftModeToggle>
         DRAFT MODE
-        <DraftModeToggleButton href="/api/disable-draft" prefetch={false}>
+        <DraftModeToggleButton href={href} prefetch={false}>
           <Icon name="cross" />
         </DraftModeToggleButton>
       </DraftModeToggle>

@@ -3,7 +3,7 @@ import { draftMode } from "next/headers";
 import { type ReactNode } from "react";
 import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
 import { Header, Footer, DraftMode } from "@/components/molecules";
-import { IconDefs } from "@/components/atoms";
+import { IconDefs, ConditionalWrapper } from "@/components/atoms";
 import { Wrapper, Main } from "./styles";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,13 +22,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <StitchesRegistry>
           <ThemeToggleProvider>
             <IconDefs />
-            <DraftMode isEnabled={isEnabled}>
+
+            <ConditionalWrapper
+              if={isEnabled}
+              wrapWith={children => <DraftMode>{children}</DraftMode>}>
               <Wrapper>
                 <Header />
                 <Main>{children}</Main>
                 <Footer />
               </Wrapper>
-            </DraftMode>
+            </ConditionalWrapper>
           </ThemeToggleProvider>
         </StitchesRegistry>
       </body>
