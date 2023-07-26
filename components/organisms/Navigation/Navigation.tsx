@@ -17,6 +17,7 @@ import {
   ListItemText,
   NavigationMenuContent,
   NavigationMenuIndicator,
+  NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuRoot,
@@ -28,9 +29,10 @@ import {
 export const Navigation = ({ posts }: NavigationProps) => (
   <NavigationMenuRoot>
     <NavigationMenuList>
-      <NavigationMenu.Item>
+      <NavigationMenuItem>
+        <a href="i am link">Skills</a>
         <NavigationMenuTrigger>
-          Skills <CaretDown aria-hidden />
+          <CaretDown aria-hidden />
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <List>
@@ -43,11 +45,12 @@ export const Navigation = ({ posts }: NavigationProps) => (
             <ListItem href="https://icons.radix-ui.com/" title="Icons" />
           </List>
         </NavigationMenuContent>
-      </NavigationMenu.Item>
+      </NavigationMenuItem>
 
-      <NavigationMenu.Item>
+      <NavigationMenuItem>
+        <a href="i am link">Posts</a>
         <NavigationMenuTrigger>
-          Posts <CaretDown aria-hidden />
+          <CaretDown aria-hidden />
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <List layout="two">
@@ -56,13 +59,13 @@ export const Navigation = ({ posts }: NavigationProps) => (
             ))}
           </List>
         </NavigationMenuContent>
-      </NavigationMenu.Item>
+      </NavigationMenuItem>
 
-      <NavigationMenu.Item>
+      <NavigationMenuItem>
         <NavigationMenuLink href="https://github.com/radix-ui">
           Github
         </NavigationMenuLink>
-      </NavigationMenu.Item>
+      </NavigationMenuItem>
 
       <NavigationMenuIndicator>
         <Arrow />

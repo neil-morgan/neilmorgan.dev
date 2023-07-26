@@ -63,19 +63,21 @@ export const NavigationMenuRoot = styled(NavigationMenu.Root, {
   position: "relative",
   display: "flex",
   justifyContent: "center",
-  width: "100vw",
+  width: '100vw',
   zIndex: 1,
 });
 
 export const NavigationMenuList = styled(NavigationMenu.List, {
   display: "flex",
   justifyContent: "center",
-  backgroundColor: "white",
   padding: 4,
   borderRadius: 6,
   listStyle: "none",
-  boxShadow: `0 2px 10px ${blackA.blackA7}`,
   margin: 0,
+});
+
+export const NavigationMenuItem = styled(NavigationMenu.Item, {
+  display: "flex",
 });
 
 export const NavigationMenuTrigger = styled(NavigationMenu.Trigger, {
