@@ -4,7 +4,6 @@ export { Button } from "./Button";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
 export { Divider } from "./Divider";
-export { Grid } from "./Grid";
 export { Heading } from "./Heading";
 export { Icon, IconDefs } from "./Icon";
 export { LikeButton } from "./LikeButton";

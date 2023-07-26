@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, Grid, Heading, Icon, Pod, Text } from "@/components/atoms";
+import { Button, Heading, Icon, Pod, Text } from "@/components/atoms";
 import type { GroupedPostType } from "@/types";
-import { Category, Header } from "./styles";
+import { Category, Header, Grid } from "./styles";
 
 export const PostGrid = ({ category, items }: GroupedPostType) => (
   <Category>
@@ -15,7 +15,7 @@ export const PostGrid = ({ category, items }: GroupedPostType) => (
       </Text>
     </Header>
 
-    <Grid columns={2} gap={6} css={{ marginTop: "$5" }}>
+    <Grid>
       {items.map(({ title, description, slug }, i) => (
         <Pod key={i}>
           <Heading size="h4">{title}</Heading>

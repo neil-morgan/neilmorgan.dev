@@ -8,7 +8,15 @@ export const Wrapper = styled("div", {
   flexDirection: "column",
   minHeight: "100vh",
   margin: "0 auto",
-  padding: "0 $7",
+  padding: "0 $2",
+
+  "@sm": {
+    padding: "0 $4",
+  },
+
+  "@md": {
+    padding: "0 $7",
+  },
 });
 
 export const Main = styled("main", {
