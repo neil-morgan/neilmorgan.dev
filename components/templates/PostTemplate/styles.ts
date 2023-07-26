@@ -54,10 +54,10 @@ export const NavList = styled("div", {
 
 export const NavListItem = styled("a", {
   textDecoration: "none",
-  color: "$baseText",
+  color: "$navItem",
   transition: "$theme",
   "&:hover": {
-    color: "#ffffff",
+    color: "$navItemHover",
   },
   variants: {
     size: {

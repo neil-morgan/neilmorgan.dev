@@ -1,53 +1,74 @@
 import { createTheme, createStitches, globalCss } from "@stitches/react";
-import { slate, slateDark, violet, blue } from "@radix-ui/colors";
+import {
+  slate,
+  slateDark,
+  violet,
+  violetA,
+  yellow,
+  yellowA,
+} from "@radix-ui/colors";
 
-const primaryColorLight = violet.violet10;
-const primaryColorLightHover = violet.violet11;
-const primaryColorDark = violet.violet8;
-const primaryColorDarkHover = slate.slate1;
+import { getColorValues } from "./helpers";
+
+const themeBase = getColorValues(slate, "base");
+const themeBaseD = getColorValues(slateDark, "baseD");
+const themePrimary = getColorValues(violet, "primary");
+const themePrimaryA = getColorValues(violetA, "primaryA");
+const themeSecondary = getColorValues(yellow, "secondary");
+const themeSecondaryA = getColorValues(yellowA, "secondaryA");
+
+const base = Object.values(themeBase);
+const baseD = Object.values(themeBaseD);
+const primary = Object.values(themePrimary);
+const primaryA = Object.values(themePrimaryA);
+const secondary = Object.values(themeSecondary);
+const secondaryA = Object.values(themeSecondaryA);
+
+console.log(base);
 
 export const lightTheme = createTheme({
   colors: {
-    primary: primaryColorLight,
-    primaryHover: primaryColorLightHover,
+    buttonPrimaryColor: base[1],
+    buttonPrimaryBackground: primary[9],
+    buttonPrimaryBackgroundHover: primary[10],
 
-    buttonBackground: primaryColorLight,
-    buttonBackgroundHover: primaryColorLightHover,
-    buttonColor: slate.slate1,
+    buttonSecondaryColor: secondary[10],
+    buttonSecondaryBackground: secondaryA[4],
+    buttonSecondaryBackgroundHover: secondaryA[5],
 
-    baseText: slateDark.slate3,
-    backgroundFar: slate.slate1,
-    backgroundClose: slate.slate4,
+    backgroundFar: base[0],
+    backgroundClose: base[2],
 
-    link: primaryColorLight,
+    textBase: baseD[3],
+    textLink: primary[10],
 
-    navItem: slateDark.slate8,
-    navItemHovered: slateDark.slate1,
+    navItem: baseD[8],
+    navItemHover: baseD[1],
 
-    divider: slate.slate7,
+    divider: base[7],
   },
 });
 
 export const darkTheme = createTheme({
   colors: {
-    primary: primaryColorDark,
-    primaryHover: primaryColorDarkHover,
+    buttonPrimaryColor: primary[11],
+    buttonPrimaryBackground: primary[7],
+    buttonPrimaryBackgroundHover: primary[1],
 
-    buttonBackground: primaryColorDark,
-    buttonBackgroundHover: primaryColorDarkHover,
-    buttonColor: slateDark.slate1,
-
-    baseText: slate.slate4,
+    buttonSecondaryColor: secondary[5],
+    buttonSecondaryBackground: secondaryA[3],
+    buttonSecondaryBackgroundHover: secondaryA[4],
 
     backgroundFar: slateDark.slate1,
     backgroundClose: slateDark.slate3,
 
-    link: primaryColorDark,
+    textBase: base[4],
+    textLink: primary[8],
 
-    navItem: slate.slate7,
-    navItemHovered: slate.slate1,
+    navItem: base[7],
+    navItemHover: base[1],
 
-    divider: slateDark.slate6,
+    divider: baseD[6],
   },
 });
 
@@ -55,7 +76,7 @@ export const globalStyles = globalCss({
   html: {
     boxSizing: "border-box",
     backgroundColor: "$backgroundFar",
-    color: "$baseText",
+    color: "$textBase",
     transition: "$theme",
     scrollBehavior: "smooth",
   },
@@ -65,6 +86,7 @@ export const globalStyles = globalCss({
 
 export const { styled } = createStitches({
   theme: {
+    colors: { ...themeBase, ...themeBaseD, ...themePrimary, ...themePrimaryA },
     space: {
       0: "0rem", // 0px
       1: "0.25rem", // 4px

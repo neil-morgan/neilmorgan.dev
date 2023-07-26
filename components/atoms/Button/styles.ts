@@ -4,7 +4,6 @@ export const ButtonElement = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background: "$buttonBackground",
   border: 0,
   padding: "$2 $4",
   borderRadius: "$default",
@@ -13,12 +12,7 @@ export const ButtonElement = styled("button", {
   transition: "$theme",
   letterSpacing: "0.05rem",
   textTransform: "uppercase",
-  color: "$buttonColor",
   textAlign: "center",
-
-  "&:hover": {
-    background: "$buttonBackgroundHover",
-  },
 
   variants: {
     size: {
@@ -33,10 +27,27 @@ export const ButtonElement = styled("button", {
         fontSize: "$5",
       },
     },
+    priority: {
+      primary: {
+        background: "$buttonPrimaryBackground",
+        color: "$buttonPrimaryColor",
+        "&:hover": {
+          background: "$buttonPrimaryBackgroundHover",
+        },
+      },
+      secondary: {
+        background: "$buttonSecondaryBackground",
+        color: "$buttonSecondaryColor",
+        "&:hover": {
+          background: "$buttonSecondaryBackgroundHover",
+        },
+      },
+    },
   },
 
   defaultVariants: {
     size: "md",
+    priority: "primary",
   },
 });
 
