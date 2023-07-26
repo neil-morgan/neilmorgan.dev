@@ -85,6 +85,7 @@ export const globalStyles = globalCss({
 export const { styled } = createStitches({
   theme: {
     colors: { ...themeBase, ...themeBaseD, ...themePrimary, ...themePrimaryA },
+
     space: {
       0: "0rem", // 0px
       1: "0.25rem", // 4px
@@ -196,6 +197,7 @@ export const { styled } = createStitches({
       max: "999",
     },
   },
+
   media: {
     sm: "(min-width: 30em)",
     md: "(min-width: 48em)",
@@ -204,14 +206,3 @@ export const { styled } = createStitches({
     "2xl": "(min-width: 96em)",
   },
 });
-
-// fontWeights: {},
-// lineHeights: {},
-// letterSpacings: {},
-// sizes: {},
-// borderWidths: {},
-// borderStyles: {},
-// radii: {},
-// shadows: {},
-// zIndices: {},
-// transitions: {},
