@@ -117,6 +117,22 @@ export type PostsByCategoryQuery = {
   } | null;
 };
 
+export type PostCategoriesQueryVariables = Types.Exact<{
+  [key: string]: never;
+}>;
+
+export type PostCategoriesQuery = {
+  __typename?: "Query";
+  postCategoryCollection: {
+    __typename?: "PostCategoryCollection";
+    items: Array<{
+      __typename?: "PostCategory";
+      title: string | null;
+      slug: string | null;
+    } | null>;
+  } | null;
+};
+
 export type CategoryBySlugQueryVariables = Types.Exact<{
   slug: Types.Scalars["String"]["input"];
 }>;
@@ -701,6 +717,58 @@ export const PostsByCategoryDocument = {
   PostsByCategoryQuery,
   PostsByCategoryQueryVariables
 >;
+export const PostCategoriesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "PostCategories" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "postCategoryCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PostCategoryContent" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PostCategoryContent" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PostCategory" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PostCategoriesQuery, PostCategoriesQueryVariables>;
 export const CategoryBySlugDocument = {
   kind: "Document",
   definitions: [

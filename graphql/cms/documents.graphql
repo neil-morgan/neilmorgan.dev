@@ -20,6 +20,14 @@ query PostsByCategory($slug: String!) {
   }
 }
 
+query PostCategories {
+  postCategoryCollection {
+    items {
+      ...PostCategoryContent
+    }
+  }
+}
+
 query CategoryBySlug($slug: String!) {
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
@@ -68,6 +76,7 @@ query CategoryPage($slug: String!) {
       }
     }
   }
+  # ! TAKE A CLOSER LOOK AT THIS
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
       ...PostCategoryContent
