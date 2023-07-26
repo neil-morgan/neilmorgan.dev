@@ -109,8 +109,8 @@ export const renderNode = (
     return (
       <AspectRatio
         css={{
-          width: "calc(100% + $8)",
-          marginLeft: "-$6",
+          width: "calc(100% + $9)",
+          marginLeft: "-$7",
           "&:not(:first-child)": {
             marginTop: "$8",
           },
@@ -129,18 +129,28 @@ export const renderNode = (
     const entry = entryBlockMap.get(node.data.target.sys.id);
 
     if (entry.__typename === "Snippet") {
-      return <Snippet code={entry.code} language={entry.language} />;
+      return (
+        <Snippet
+          code={entry.code}
+          language={entry.language}
+          css={{
+            margin: "$10 -$7 $9",
+          }}
+        />
+      );
     }
 
     if (entry.__typename === "Post") {
-      console.log(entry);
       return (
         <ContentCard
           title={entry.title}
           description={entry.description}
           slug={entry.slug}
           category={entry.category}
-          css={{ marginTop: "$6" }}
+          context="posts"
+          css={{
+            margin: "$6 -$7 0",
+          }}
         />
       );
     }

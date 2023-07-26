@@ -1,6 +1,6 @@
 import type { ContentCardProps } from "./types";
-import { Wrapper, Header } from "./styles";
-import { Heading, Text, Button, Tag, Icon } from "@/components/atoms";
+import { Header } from "./styles";
+import { Heading, Text, Button, Tag, Icon, Pod } from "@/components/atoms";
 
 export const ContentCard = ({
   title,
@@ -8,20 +8,21 @@ export const ContentCard = ({
   slug,
   category,
   css,
-}: ContentCardProps) => {
-  return (
-    <Wrapper css={css}>
-      <Header>
-        <Heading size="h3">{title}</Heading>
-        <Tag>{category.title}</Tag>
-      </Header>
-      <Text as="p">{description}</Text>
-      <Button
-        href={slug}
-        css={{ marginTop: "$4" }}
-        rightIcon={<Icon name="arrowRight" />}>
-        READ MORE
-      </Button>
-    </Wrapper>
-  );
-};
+  context,
+}: ContentCardProps) => (
+  <Pod css={css}>
+    <Header>
+      <Heading size="h3">{title}</Heading>
+      <Tag slug={context ? `/${context}/${category.slug}` : `${category.slug}`}>
+        {category.title}
+      </Tag>
+    </Header>
+    <Text as="p">{description}</Text>
+    <Button
+      href={slug}
+      css={{ marginTop: "$4" }}
+      rightIcon={<Icon name="arrowRight" />}>
+      READ MORE
+    </Button>
+  </Pod>
+);

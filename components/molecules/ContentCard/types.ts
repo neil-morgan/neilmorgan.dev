@@ -5,6 +5,7 @@ export type ContentCardProps = {
   title: string;
   description: string;
   slug: string;
+  context: string;
   category: {
     title: string;
     slug: string;

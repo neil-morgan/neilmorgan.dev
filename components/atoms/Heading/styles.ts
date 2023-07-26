@@ -52,7 +52,7 @@ export const HeadingAnchor = styled("a", {
   bottom: "0",
   color: "inherit",
   fontSize: "$6",
-  display: "flex",
+  display: "none",
   flexDirection: "column",
   justifyContent: "center",
   left: "0",
@@ -63,4 +63,7 @@ export const HeadingAnchor = styled("a", {
   transform: "translateX(-150%)",
   transition: "ease 250ms",
   scrollMarginTop: "$10",
+  "@md": {
+    display: "flex",
+  },
 });

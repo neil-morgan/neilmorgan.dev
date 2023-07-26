@@ -6,7 +6,8 @@ import { Posts } from "@/components/organisms";
 
 const { CMS } = APOLLO_CLIENTS;
 const { query } = getClient();
-export const revalidate = 1;
+
+export const revalidate = 0;
 
 export const metadata = {
   title: "All articles",

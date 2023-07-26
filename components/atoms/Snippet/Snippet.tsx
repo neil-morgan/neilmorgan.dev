@@ -10,10 +10,10 @@ import { ThemeToggleContext } from "@/lib/stitches";
 import type { SnippetProps } from "./types";
 import { SnippetWrapper, CodeWrapper, LanguageTab } from "./styles";
 
-export const Snippet = ({ code, language }: SnippetProps) => (
+export const Snippet = ({ code, language, css }: SnippetProps) => (
   <ThemeToggleContext.Consumer>
     {({ colorMode }) => (
-      <SnippetWrapper>
+      <SnippetWrapper css={css}>
         <LanguageTab>{language}</LanguageTab>
         <CodeWrapper>
           <SyntaxHighlighter

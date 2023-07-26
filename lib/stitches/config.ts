@@ -24,8 +24,6 @@ const primaryA = Object.values(themePrimaryA);
 const secondary = Object.values(themeSecondary);
 const secondaryA = Object.values(themeSecondaryA);
 
-console.log(base);
-
 export const lightTheme = createTheme({
   colors: {
     buttonPrimaryColor: base[1],
@@ -62,8 +60,8 @@ export const darkTheme = createTheme({
     backgroundFar: slateDark.slate1,
     backgroundClose: slateDark.slate3,
 
-    textBase: base[4],
-    textLink: primary[8],
+    textBase: base[3],
+    textLink: primary[7],
 
     navItem: base[7],
     navItemHover: base[1],

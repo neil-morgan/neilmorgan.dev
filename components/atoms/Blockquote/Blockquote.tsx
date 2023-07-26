@@ -9,5 +9,6 @@ export const Blockquote = styled("blockquote", {
   borderRadius: "$md",
   borderLeftWidth: "$sm",
   borderLeftStyle: "solid",
-  borderLeftColor: "$primary",
+  borderLeftColor: "$primary8",
+  transition: "background-color $theme",
 });
