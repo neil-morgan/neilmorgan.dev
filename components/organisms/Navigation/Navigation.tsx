@@ -1,97 +1,93 @@
 "use client";
 
-import { forwardRef } from "react";
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import { useState } from "react";
 import type {
   NavigationProps,
   NavigationItemProps,
-  NavigationItemRef,
+  PopoverProps,
 } from "./types";
-
+import { Icon } from "@/components/atoms";
+import { Root, Anchor, Portal } from "@radix-ui/react-popover";
 import {
-  Arrow,
-  CaretDown,
   List,
   ListItemHeading,
   ListItemLink,
   ListItemText,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuRoot,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-  ViewportPosition,
+  PopoverButton,
+  PopoverContent,
+  PopoverArrow,
 } from "./styles";
 
-export const Navigation = ({ posts }: NavigationProps) => (
-  <NavigationMenuRoot>
+export const Navigation = ({ items }: NavigationProps) => {
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
+  return (
     <NavigationMenuList>
-      <NavigationMenuItem>
-        <a href="i am link">Skills</a>
-        <NavigationMenuTrigger>
-          <CaretDown aria-hidden />
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <List>
-            <ListItem
-              href="https://stitches.dev/"
-              title="Stitches"
-              description="Hello world"
-            />
-            <ListItem href="/colors" title="Colors" />
-            <ListItem href="https://icons.radix-ui.com/" title="Icons" />
-          </List>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-
-      <NavigationMenuItem>
-        <a href="i am link">Posts</a>
-        <NavigationMenuTrigger>
-          <CaretDown aria-hidden />
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <List layout="two">
-            {posts.map((post, i) => (
-              <ListItem key={i} href={post.slug} title={post.title} />
-            ))}
-          </List>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-
-      <NavigationMenuItem>
-        <NavigationMenuLink href="https://github.com/radix-ui">
-          Github
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-
-      <NavigationMenuIndicator>
-        <Arrow />
-      </NavigationMenuIndicator>
+      {items.map(({ title, slug, list }, i) => (
+        <NavigationMenuItem key={i}>
+          <NavigationMenuLink href={slug}>{title}</NavigationMenuLink>
+          {list && (
+            <Popover
+              open={openItem === i}
+              setOpen={setOpenItem}
+              anchor={
+                <PopoverButton onClick={() => setOpenItem(i)}>
+                  <Icon name="chevronDown" />
+                </PopoverButton>
+              }>
+              <List>
+                {list.map(({ title, slug }, i) => (
+                  <ListItem
+                    key={i}
+                    href={slug}
+                    title={title}
+                    onClick={() => setOpenItem(null)}
+                  />
+                ))}
+              </List>
+            </Popover>
+          )}
+        </NavigationMenuItem>
+      ))}
     </NavigationMenuList>
+  );
+};
 
-    <ViewportPosition>
-      <NavigationMenuViewport />
-    </ViewportPosition>
-  </NavigationMenuRoot>
+const ListItem = ({
+  description,
+  title,
+  href,
+  onClick,
+}: NavigationItemProps) => (
+  <li>
+    <ListItemLink href={href} onClick={onClick}>
+      <ListItemHeading>{title}</ListItemHeading>
+      {description && <ListItemText>{description}</ListItemText>}
+    </ListItemLink>
+  </li>
 );
 
-const ListItem = forwardRef(
-  (
-    { description, title }: NavigationItemProps,
-    forwardedRef: NavigationItemRef,
-  ) => (
-    <li>
-      <NavigationMenu.Link asChild>
-        <ListItemLink ref={forwardedRef}>
-          <ListItemHeading>{title}</ListItemHeading>
-          {description && <ListItemText>{description}</ListItemText>}
-        </ListItemLink>
-      </NavigationMenu.Link>
-    </li>
-  ),
-);
+export const Popover = ({ children, anchor, open, setOpen }: PopoverProps) => {
+  const handleClose = () => setOpen && setOpen(null);
 
-ListItem.displayName = "ListItem";
+  return (
+    <Root open={open}>
+      <Anchor asChild>{anchor}</Anchor>
+      <Portal>
+        <PopoverContent
+          hideWhenDetached
+          sideOffset={5}
+          onPointerDownOutside={handleClose}
+          onInteractOutside={handleClose}
+          onFocusOutside={handleClose}
+          onEscapeKeyDown={handleClose}>
+          {children}
+          <PopoverArrow />
+        </PopoverContent>
+      </Portal>
+    </Root>
+  );
+};

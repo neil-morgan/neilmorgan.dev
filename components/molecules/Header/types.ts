@@ -1,5 +1,5 @@
-import type { CategoryType } from "@/types";
+import type { NavigationType } from "@/types";
 
 export type HeaderProps = {
-  posts: CategoryType[];
+  navigation: NavigationType;
 };

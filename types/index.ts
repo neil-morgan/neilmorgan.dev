@@ -16,3 +16,16 @@ export type GroupedPostType = {
   category: CategoryType;
   items: Post[];
 };
+
+export type NavigationType = (
+  | {
+      title: string;
+      slug: string;
+      list?: undefined;
+    }
+  | {
+      title: string;
+      slug: string;
+      list: CategoryType[];
+    }
+)[];

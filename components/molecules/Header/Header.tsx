@@ -6,14 +6,16 @@ import { ThemeToggle } from "../ThemeToggle";
 import { HeaderElement, Content } from "./styles";
 import type { HeaderProps } from "./types";
 
-export const Header = ({ posts }: HeaderProps) => (
-  <HeaderElement>
-    <Container>
-      <Content>
-        <Logo isLink />
-        <Navigation posts={posts} />
-        <ThemeToggle />
-      </Content>
-    </Container>
-  </HeaderElement>
-);
+export const Header = ({ navigation }: HeaderProps) => {
+  return (
+    <HeaderElement>
+      <Container>
+        <Content>
+          <Logo isLink />
+          <Navigation items={navigation} />
+          <ThemeToggle />
+        </Content>
+      </Container>
+    </HeaderElement>
+  );
+};

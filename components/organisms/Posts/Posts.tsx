@@ -9,7 +9,7 @@ export const Posts = ({
 }: {
   posts: GroupedPostType | GroupedPostType[];
 }) => (
-  <Container>
+  <Container css={{ marginTop: "$11" }}>
     {Array.isArray(posts) ? (
       posts.map(({ category, items }) => (
         <PostGrid key={category.title} category={category} items={items} />
