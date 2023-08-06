@@ -8,13 +8,12 @@ export const buildNavigation = (posts: CategoryType[]) => [
   },
   {
     title: "Skills",
-    slug: "/posts",
+    slug: "/skills",
     list: posts.map(({ title, slug }) => ({ title, slug: `/posts/${slug}` })),
   },
   {
     title: "Projects",
-    slug: "/posts",
-    list: posts.map(({ title, slug }) => ({ title, slug: `/posts/${slug}` })),
+    slug: "/projects",
   },
   { title: "Feedback", slug: "/feedback" },
 ];
