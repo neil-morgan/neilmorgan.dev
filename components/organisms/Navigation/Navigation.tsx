@@ -69,7 +69,7 @@ export const Navigation = ({ items }: NavigationProps) => {
           setOpen={setOpenItem}
           anchor={
             <PopoverButton onClick={() => setOpenItem(1)}>
-              <Icon name="hamburger" />
+              <Icon name="hamburger-thick" />
             </PopoverButton>
           }>
           <List>asd</List>
