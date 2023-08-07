@@ -7,7 +7,7 @@ import {
   yellow,
   yellowA,
 } from "@radix-ui/colors";
-
+import { BREAKPOINTS } from "@/constants";
 import { getColorValues } from "./helpers";
 
 const themeBase = getColorValues(slate, "base");
@@ -199,10 +199,10 @@ export const { styled } = createStitches({
   },
 
   media: {
-    sm: "(min-width: 30em)",
-    md: "(min-width: 48em)",
-    lg: "(min-width: 62em)",
-    xl: "(min-width: 80em)",
-    "2xl": "(min-width: 96em)",
+    sm: `(min-width: ${BREAKPOINTS.sm})`,
+    md: `(min-width: ${BREAKPOINTS.md})`,
+    lg: `(min-width:${BREAKPOINTS.lg})`,
+    xl: `(min-width:${BREAKPOINTS.xl})`,
+    "2xl": `(min-width: ${BREAKPOINTS["2xl"]})`,
   },
 });

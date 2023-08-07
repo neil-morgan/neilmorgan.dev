@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type {
   NavigationProps,
   NavigationItemProps,
@@ -19,40 +19,63 @@ import {
   PopoverButton,
   PopoverContent,
   PopoverArrow,
+  PopoverBody,
 } from "./styles";
+import { BREAKPOINTS } from "@/constants";
+import { useMediaQuery } from "@/hooks";
 
 export const Navigation = ({ items }: NavigationProps) => {
   const [openItem, setOpenItem] = useState<number | null>(null);
+  const isNotMobile = useMediaQuery(`(min-width: ${BREAKPOINTS.md})`);
+
+  useEffect(() => {
+    setOpenItem(null);
+  }, [isNotMobile]);
 
   return (
-    <NavigationMenuList>
-      {items.map(({ title, slug, list }, i) => (
-        <NavigationMenuItem key={i}>
-          <NavigationMenuLink href={slug}>{title}</NavigationMenuLink>
-          {list && (
-            <Popover
-              open={openItem === i}
-              setOpen={setOpenItem}
-              anchor={
-                <PopoverButton onClick={() => setOpenItem(i)}>
-                  <Icon name="chevronDown" />
-                </PopoverButton>
-              }>
-              <List>
-                {list.map(({ title, slug }, i) => (
-                  <ListItem
-                    key={i}
-                    href={slug}
-                    title={title}
-                    onClick={() => setOpenItem(null)}
-                  />
-                ))}
-              </List>
-            </Popover>
-          )}
-        </NavigationMenuItem>
-      ))}
-    </NavigationMenuList>
+    <>
+      {isNotMobile ? (
+        <NavigationMenuList>
+          {items.map(({ title, slug, list }, i) => (
+            <NavigationMenuItem key={i}>
+              <NavigationMenuLink href={slug}>{title}</NavigationMenuLink>
+              {list && (
+                <Popover
+                  open={openItem === i}
+                  setOpen={setOpenItem}
+                  anchor={
+                    <PopoverButton onClick={() => setOpenItem(i)}>
+                      <Icon name="chevronDown" />
+                    </PopoverButton>
+                  }>
+                  <List>
+                    {list.map(({ title, slug }, i) => (
+                      <ListItem
+                        key={i}
+                        href={slug}
+                        title={title}
+                        onClick={() => setOpenItem(null)}
+                      />
+                    ))}
+                  </List>
+                </Popover>
+              )}
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      ) : (
+        <Popover
+          open={openItem === 1}
+          setOpen={setOpenItem}
+          anchor={
+            <PopoverButton onClick={() => setOpenItem(1)}>
+              <Icon name="hamburger" />
+            </PopoverButton>
+          }>
+          <List>asd</List>
+        </Popover>
+      )}
+    </>
   );
 };
 
@@ -84,7 +107,7 @@ export const Popover = ({ children, anchor, open, setOpen }: PopoverProps) => {
           onInteractOutside={handleClose}
           onFocusOutside={handleClose}
           onEscapeKeyDown={handleClose}>
-          {children}
+          <PopoverBody>{children}</PopoverBody>
           <PopoverArrow />
         </PopoverContent>
       </Portal>

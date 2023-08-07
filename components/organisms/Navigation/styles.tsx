@@ -112,9 +112,8 @@ export const PopoverArrow = styled(Arrow, {
 });
 
 export const PopoverContent = styled(Content, {
-  borderRadius: "$default",
   width: "100%",
-  backgroundColor: "$backgroundClose",
+  padding: "0 $2",
   animationDuration: "400ms",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   willChange: "transform, opacity",
@@ -124,4 +123,10 @@ export const PopoverContent = styled(Content, {
     '&[data-side="bottom"]': { animationName: slideUpAndFade },
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
+});
+
+export const PopoverBody = styled("div", {
+  borderRadius: "$default",
+  width: "100%",
+  backgroundColor: "$backgroundClose",
 });

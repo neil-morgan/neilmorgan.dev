@@ -13,7 +13,7 @@ import { getRichtextHeadings } from "@/helpers";
 
 const { CMS, DB } = APOLLO_CLIENTS;
 export const dynamic = "force-static";
-export const revalidate = 1;
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: MetaProps) {
   const { query } = getClient();
