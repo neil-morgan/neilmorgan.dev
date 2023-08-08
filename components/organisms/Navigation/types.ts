@@ -2,6 +2,7 @@ import type { NavigationType } from "@/types";
 
 export type NavigationProps = {
   items: NavigationType;
+  isNotMobile?: boolean;
 };
 
 export type NavigationItemProps = {

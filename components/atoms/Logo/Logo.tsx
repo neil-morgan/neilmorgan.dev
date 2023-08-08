@@ -1,14 +1,13 @@
 "use client";
 
 import { ConditionalWrapper } from "../ConditionalWrapper";
-import Link from "next/link";
 import type { LogoProps } from "./types";
-import { Svg } from "./styles";
+import { Svg, WrapperLink } from "./styles";
 
 export const Logo = ({ size = 20, isLink = false }: LogoProps) => (
   <ConditionalWrapper
     if={isLink}
-    wrapWith={children => <Link href="/">{children}</Link>}>
+    wrapWith={children => <WrapperLink href="/">{children}</WrapperLink>}>
     <Svg
       fill="currentColor"
       height={`${size}px`}

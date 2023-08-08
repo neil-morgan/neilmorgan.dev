@@ -25,6 +25,31 @@ const slideLeftAndFade = keyframes({
   "100%": { opacity: 1, transform: "translateX(0)" },
 });
 
+const linkProps = {
+  outline: "none",
+  userSelect: "none",
+  color: "$navItem",
+  transition: "$theme",
+  "&:hover": { color: "$navItemHover" },
+  "&:focus": { color: "$navItemHover" },
+};
+
+export const DesktopLink = styled(NextLink, {
+  ...linkProps,
+  display: "flex",
+  alignItems: "center",
+  textDecoration: "none",
+  fontSize: "$3",
+  lineHeight: 1,
+  height: "100%",
+});
+
+export const MobileLink = styled(NextLink, {
+  ...linkProps,
+  display: "flex",
+  fontSize: "$4",
+});
+
 export const NavigationMenuList = styled("ul", {
   display: "flex",
   justifyContent: "center",
@@ -38,22 +63,7 @@ export const NavigationMenuList = styled("ul", {
 export const NavigationMenuItem = styled("li", {
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
-});
-
-export const NavigationMenuLink = styled(NextLink, {
-  outline: "none",
-  userSelect: "none",
-  color: "$navItem",
-  transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
-  display: "flex",
-  alignItems: "center",
-  textDecoration: "none",
-  fontSize: 15,
-  lineHeight: 1,
-  height: "100%",
+  justifyContent: "flex-start",
 });
 
 export const List = styled("ul", {
@@ -111,7 +121,7 @@ export const PopoverArrow = styled(Arrow, {
   fill: "$backgroundClose",
 });
 
-export const PopoverContent = styled(Content, {
+export const PopoverWrapper = styled(Content, {
   width: "100%",
   padding: "0 $2",
   animationDuration: "400ms",
@@ -125,8 +135,60 @@ export const PopoverContent = styled(Content, {
   },
 });
 
-export const PopoverBody = styled("div", {
+export const PopoverContent = styled("div", {
+  display: "flex",
+  flexDirection: "column",
   borderRadius: "$default",
   width: "100%",
+
+  boxShadow: "$default",
+  minWidth: "200px",
   backgroundColor: "$backgroundClose",
+});
+
+export const PopoverBody = styled("ul", {
+  display: "grid",
+  margin: 0,
+  padding: "$5",
+  listStyle: "none",
+
+  variants: {
+    columns: {
+      "1": {
+        gridTemplateColumns: "1fr",
+        gap: "$3",
+      },
+      2: {
+        gridTemplateColumns: "1fr 1fr",
+        gap: "$6",
+      },
+    },
+  },
+
+  defaultVariants: {
+    columns: "1",
+  },
+});
+
+export const PopoverHeader = styled("header", {
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "$4",
+  borderBottom: "1px solid $divider",
+});
+
+export const PopoverFooter = styled("footer", {
+  display: "flex",
+  justifyContent: "flex-end",
+  padding: "$4",
+  borderTop: "1px solid $divider",
+  color: "$base1",
+});
+
+export const MobileList = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$2",
+  marginLeft: "$4",
+  "&:not(:last-child)": { marginBottom: "$2" },
 });

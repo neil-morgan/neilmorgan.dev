@@ -36,6 +36,7 @@ export const lightTheme = createTheme({
 
     backgroundFar: base[0],
     backgroundClose: base[2],
+    backgroundClosest: base[4],
 
     textBase: baseD[3],
     textLink: primary[10],
@@ -57,8 +58,9 @@ export const darkTheme = createTheme({
     buttonSecondaryBackground: secondaryA[3],
     buttonSecondaryBackgroundHover: secondaryA[4],
 
-    backgroundFar: slateDark.slate1,
-    backgroundClose: slateDark.slate3,
+    backgroundFar: baseD[1],
+    backgroundClose: baseD[3],
+    backgroundClosest: baseD[5],
 
     textBase: base[3],
     textLink: primary[7],
@@ -171,6 +173,11 @@ export const { styled } = createStitches({
       loose: "2",
       body: "1.625",
       heading: 1.15,
+    },
+
+    shadows: {
+      default:
+        "0 1px 1px rgba(0,0,0,0.10), 0 2px 2px rgba(0,0,0,0.10), 0 4px 4px rgba(0,0,0,0.10), 0 8px 8px rgba(0,0,0,0.10)",
     },
 
     transitions: {
