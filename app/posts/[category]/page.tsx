@@ -1,3 +1,4 @@
+import { MetaProps } from "./types";
 import { getClient } from "@/lib/apollo/client";
 import {
   CategoryBySlugDocument,
@@ -6,7 +7,6 @@ import {
 } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
-import { MetaProps } from "./types";
 import type { CategoryType } from "@/types";
 
 const { CMS } = APOLLO_CLIENTS;

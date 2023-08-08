@@ -1,15 +1,7 @@
 "use client";
 
+import { Fragment } from "react";
 import type { PostTemplateProps } from "./types";
-import {
-  LikeButton,
-  Heading,
-  Text,
-  Container,
-  Divider,
-} from "@/components/atoms";
-import { Richtext } from "@/components/molecules";
-import { type PostBody } from "@/graphql/cms";
 import {
   Aside,
   AsideFooter,
@@ -19,7 +11,15 @@ import {
   NavList,
   NavListItem,
 } from "./styles";
-import { Fragment } from "react";
+import {
+  LikeButton,
+  Heading,
+  Text,
+  Container,
+  Divider,
+} from "@/components/atoms";
+import { Richtext } from "@/components/molecules";
+import { type PostBody } from "@/graphql/cms";
 
 export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
   <Container>

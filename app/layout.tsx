@@ -1,11 +1,12 @@
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
-import { getClient } from "@/lib/apollo/client";
 import { type ReactNode } from "react";
-import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
-import { Header, Footer, DraftMode } from "@/components/molecules";
-import { IconDefs, ConditionalWrapper } from "@/components/atoms";
 import { Wrapper, Main } from "./styles";
+import { getClient } from "@/lib/apollo/client";
+import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
+import { DraftMode } from "@/components/molecules";
+import { Footer, Header } from "@/components/organisms";
+import { IconDefs, ConditionalWrapper } from "@/components/atoms";
 import { PostCategoriesDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
 import type { CategoryType } from "@/types";
@@ -47,7 +48,7 @@ export default async function RootLayout({
               if={isEnabled}
               wrapWith={children => <DraftMode>{children}</DraftMode>}>
               <Wrapper>
-                <Header navigation={navigation} />
+                <Header items={navigation} />
                 <Main>{children}</Main>
                 <Footer />
               </Wrapper>

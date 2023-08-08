@@ -1,1 +1,1 @@
-export { ThemeToggleProvider, ThemeToggleContext } from "./ThemeToggleProvider";
+export { ThemeToggleProvider, Consumer } from "./ThemeToggleProvider";

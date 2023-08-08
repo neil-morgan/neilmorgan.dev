@@ -15,3 +15,4 @@ export { Snippet } from "./Snippet";
 export { Table, Td, Tr, Th } from "./Table";
 export { Tag } from "./Tag";
 export { Text } from "./Text";
+export { VerticalSeparator, HorizontalSeparator } from "./Separator";

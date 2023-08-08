@@ -1,9 +1,9 @@
 "use client";
 
 import { kebabCase } from "lodash";
+import { Icon } from "../Icon";
 import type { HeadingProps } from "./types";
 import { HeadingElement, HeadingAnchor } from "./styles";
-import { Icon } from "../Icon";
 
 export const Heading = ({
   as = "h2",

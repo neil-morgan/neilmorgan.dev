@@ -17,6 +17,11 @@ export type GroupedPostType = {
   items: Post[];
 };
 
+type NavigationOptionType = {
+  icon?: string;
+  description?: string;
+} & CategoryType;
+
 export type NavigationType = (
   | {
       title: string;
@@ -26,6 +31,9 @@ export type NavigationType = (
   | {
       title: string;
       slug: string;
-      list: CategoryType[];
+      list: {
+        columns: "1" | "2";
+        options: NavigationOptionType[];
+      };
     }
 )[];

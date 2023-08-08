@@ -1,9 +1,9 @@
 "use client";
 
-import { TagElement } from "./styles";
-import type { TagProps } from "./types";
 import Link from "next/link";
 import { ConditionalWrapper } from "../ConditionalWrapper";
+import { TagElement } from "./styles";
+import type { TagProps } from "./types";
 
 export const Tag = ({ children, slug, css }: TagProps) => {
   return (

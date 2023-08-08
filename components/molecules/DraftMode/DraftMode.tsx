@@ -6,8 +6,8 @@ import {
   DraftModeToggle,
   DraftModeToggleButton,
 } from "./styles";
-import { Icon } from "@/components/atoms";
 import type { DraftModeProps } from "./types";
+import { Icon } from "@/components/atoms";
 
 export const DraftMode = ({ children }: DraftModeProps) => {
   const pathname = usePathname();

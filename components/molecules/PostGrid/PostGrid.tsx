@@ -1,8 +1,8 @@
 "use client";
 
+import { Category, Header, Grid } from "./styles";
 import { Button, Heading, Icon, Pod, Text } from "@/components/atoms";
 import type { GroupedPostType } from "@/types";
-import { Category, Header, Grid } from "./styles";
 
 export const PostGrid = ({ category, items }: GroupedPostType) => (
   <Category>

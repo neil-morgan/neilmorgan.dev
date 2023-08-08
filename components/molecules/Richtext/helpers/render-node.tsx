@@ -2,6 +2,10 @@
 
 import { BLOCKS, INLINES, type Document } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
+import Image from "next/image";
+import { ContentCard } from "../../ContentCard";
+import type { RichtextNodeType, RichtextBlockMapType } from "../types";
+import { removeParagraphTags, renderMark } from ".";
 import {
   AspectRatio,
   Blockquote,
@@ -18,10 +22,6 @@ import {
   Text,
   UnorderedList,
 } from "@/components/atoms";
-import { ContentCard } from "../../ContentCard";
-import Image from "next/image";
-import type { RichtextNodeType, RichtextBlockMapType } from "../types";
-import { removeParagraphTags, renderMark } from ".";
 
 export const renderNode = (
   entryBlockMap: RichtextBlockMapType,

@@ -1,9 +1,9 @@
 "use client";
 
-import { styled } from "@/lib/stitches";
 import { keyframes } from "@stitches/react";
 import NextLink from "next/link";
 import { Content, Arrow } from "@radix-ui/react-popover";
+import { styled } from "@/lib/stitches";
 
 const slideUpAndFade = keyframes({
   "0%": { opacity: 0, transform: "translateY(2px)" },
@@ -25,81 +25,24 @@ const slideLeftAndFade = keyframes({
   "100%": { opacity: 1, transform: "translateX(0)" },
 });
 
-const linkProps = {
-  outline: "none",
-  userSelect: "none",
-  color: "$navItem",
-  transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
-};
-
-export const DesktopLink = styled(NextLink, {
-  ...linkProps,
+export const HeaderElement = styled("header", {
   display: "flex",
   alignItems: "center",
-  textDecoration: "none",
-  fontSize: "$3",
-  lineHeight: 1,
-  height: "100%",
+  position: "sticky",
+  top: 0,
+  zIndex: 100,
+  width: "100%",
+  padding: "$2 0",
+  marginBottom: "$10",
+  backgroundColor: "$backgroundFar",
+  transition: "$theme",
 });
 
-export const MobileLink = styled(NextLink, {
-  ...linkProps,
-  display: "flex",
-  fontSize: "$4",
-});
-
-export const NavigationMenuList = styled("ul", {
-  display: "flex",
-  justifyContent: "center",
-  padding: 4,
-  borderRadius: 6,
-  listStyle: "none",
-  margin: 0,
-  gap: "$6",
-});
-
-export const NavigationMenuItem = styled("li", {
+export const HeaderContent = styled("div", {
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-start",
-});
-
-export const List = styled("ul", {
-  display: "grid",
-  margin: 0,
-  padding: "$5",
-  gap: "$6",
-  listStyle: "none",
-  gridTemplateColumns: "1fr 1fr",
-});
-
-export const ListItemLink = styled(NextLink, {
-  display: "block",
-  outline: "none",
-  textDecoration: "none",
-  userSelect: "none",
-  color: "$navItem",
-  lineHeight: 1,
-  cursor: "pointer",
-  transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
-});
-
-export const ListItemHeading = styled("div", {
-  fontWeight: 500,
-  lineHeight: 1.2,
-  color: "inherit",
-});
-
-export const ListItemText = styled("p", {
-  all: "unset",
-  color: "inherit",
-  lineHeight: 1.4,
-  marginTop: "$4",
-  fontWeight: "initial",
+  justifyContent: "space-between",
+  height: "$5",
 });
 
 export const PopoverButton = styled("button", {
@@ -107,7 +50,7 @@ export const PopoverButton = styled("button", {
   color: "$navItem",
   fontFamily: "inherit",
   borderRadius: "100%",
-  height: "$6",
+  height: "$4",
   cursor: "pointer",
   width: "$6",
   display: "inline-flex",
@@ -140,27 +83,30 @@ export const PopoverContent = styled("div", {
   flexDirection: "column",
   borderRadius: "$default",
   width: "100%",
-
   boxShadow: "$default",
-  minWidth: "200px",
+  minWidth: "180px",
   backgroundColor: "$backgroundClose",
 });
 
-export const PopoverBody = styled("ul", {
+export const PopoverSection = styled("div", {
   display: "grid",
   margin: 0,
-  padding: "$5",
+  padding: "$4 $5",
   listStyle: "none",
 
   variants: {
     columns: {
       "1": {
         gridTemplateColumns: "1fr",
-        gap: "$3",
       },
       2: {
         gridTemplateColumns: "1fr 1fr",
         gap: "$6",
+      },
+    },
+    gap: {
+      mobile: {
+        gap: "$5",
       },
     },
   },
@@ -170,25 +116,87 @@ export const PopoverBody = styled("ul", {
   },
 });
 
-export const PopoverHeader = styled("header", {
+const linkProps = {
+  outline: "none",
+  userSelect: "none",
+  color: "$navItem",
+  transition: "$theme",
+  "&:hover": { color: "$navItemHover" },
+  "&:focus": { color: "$navItemHover" },
+};
+
+export const DesktopLink = styled(NextLink, {
+  ...linkProps,
   display: "flex",
-  justifyContent: "space-between",
-  padding: "$4",
-  borderBottom: "1px solid $divider",
+  alignItems: "center",
+  textDecoration: "none",
+  fontSize: "$3",
+  lineHeight: 1,
+  height: "100%",
 });
 
-export const PopoverFooter = styled("footer", {
+export const DesktopList = styled("ul", {
   display: "flex",
-  justifyContent: "flex-end",
-  padding: "$4",
-  borderTop: "1px solid $divider",
-  color: "$base1",
+  justifyContent: "center",
+  listStyle: "none",
+  marginRight: "auto",
+  marginLeft: "$8",
+  gap: "$6",
+});
+
+export const DesktopItem = styled("li", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+});
+
+export const DesktopItemLink = styled(NextLink, {
+  display: "flex",
+  flexDirection: "column",
+  outline: "none",
+  textDecoration: "none",
+  userSelect: "none",
+  color: "$navItem",
+  lineHeight: 1,
+  cursor: "pointer",
+  transition: "$theme",
+  "&:hover": { color: "$navItemHover" },
+  "&:focus": { color: "$navItemHover" },
+});
+
+export const DesktopItemHeading = styled("div", {
+  display: "flex",
+  fontWeight: 500,
+  lineHeight: 1.2,
+  color: "inherit",
+});
+
+export const DesktopItemText = styled("p", {
+  all: "unset",
+  color: "inherit",
+  lineHeight: 1.4,
+  marginTop: "$2",
+  fontSize: "$2",
+  fontWeight: "initial",
+  maxWidth: "300px",
+});
+
+export const MobileLink = styled(NextLink, {
+  ...linkProps,
+  display: "flex",
+  fontSize: "$4",
 });
 
 export const MobileList = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$2",
+  gap: "$4",
+  fontSize: "$3",
   marginLeft: "$4",
-  "&:not(:last-child)": { marginBottom: "$2" },
+  marginTop: "$4",
+});
+
+export const MobileListItem = styled(NextLink, {
+  ...linkProps,
+  display: "flex",
 });

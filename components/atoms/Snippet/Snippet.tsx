@@ -5,13 +5,13 @@ import {
   oneDark,
   oneLight,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { ThemeToggleContext } from "@/lib/stitches";
 
 import type { SnippetProps } from "./types";
 import { SnippetWrapper, CodeWrapper, LanguageTab } from "./styles";
+import { Consumer } from "@/lib/stitches";
 
 export const Snippet = ({ code, language, css }: SnippetProps) => (
-  <ThemeToggleContext.Consumer>
+  <Consumer>
     {({ colorMode }) => (
       <SnippetWrapper css={css}>
         <LanguageTab>{language}</LanguageTab>
@@ -27,5 +27,5 @@ export const Snippet = ({ code, language, css }: SnippetProps) => (
         </CodeWrapper>
       </SnippetWrapper>
     )}
-  </ThemeToggleContext.Consumer>
+  </Consumer>
 );

@@ -7,8 +7,8 @@ import {
   yellow,
   yellowA,
 } from "@radix-ui/colors";
-import { BREAKPOINTS } from "@/constants";
 import { getColorValues } from "./helpers";
+import { BREAKPOINTS } from "@/constants";
 
 const themeBase = getColorValues(slate, "base");
 const themeBaseD = getColorValues(slateDark, "baseD");
@@ -41,10 +41,10 @@ export const lightTheme = createTheme({
     textBase: baseD[3],
     textLink: primary[10],
 
-    navItem: baseD[8],
+    navItem: baseD[7],
     navItemHover: baseD[1],
 
-    divider: base[7],
+    divider: base[8],
   },
 });
 
@@ -68,7 +68,7 @@ export const darkTheme = createTheme({
     navItem: base[7],
     navItemHover: base[1],
 
-    divider: baseD[6],
+    divider: baseD[7],
   },
 });
 

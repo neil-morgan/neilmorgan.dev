@@ -8,9 +8,9 @@ export const Icon = ({
   name,
   size = "md",
   color = "currentColor",
-  ...rest
+  css,
 }: IconProps) => (
-  <Svg size={size} {...rest}>
+  <Svg size={size} color={color} css={css}>
     <use
       href={`#${paths.find(path => path.name === name.trim())?.name}-icon`}
     />

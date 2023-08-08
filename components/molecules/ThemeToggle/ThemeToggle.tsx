@@ -1,8 +1,7 @@
 "use client";
 
-import { ThemeToggleContext } from "@/lib/stitches";
-import { ToggleButton, Svg } from "./styles";
 import { motion } from "framer-motion";
+import { ToggleButton, Svg } from "./styles";
 import {
   raysGroupVariant,
   rayVariant,
@@ -10,19 +9,21 @@ import {
   sunMaskVariants,
   sunRayPositions,
 } from "./config";
+import type { ThemeToggleProps } from "./types";
+import { Consumer } from "@/lib/stitches";
 
-export const ThemeToggle = () => (
-  <ThemeToggleContext.Consumer>
+export const ThemeToggle = ({ css }: ThemeToggleProps) => (
+  <Consumer>
     {({ cycleToggleMode, colorMode }) => {
       const isLight = colorMode === "light";
 
       return (
-        <ToggleButton onClick={cycleToggleMode}>
+        <ToggleButton onClick={cycleToggleMode} css={css}>
           <AnimatedSunIcon isLight={isLight} />
         </ToggleButton>
       );
     }}
-  </ThemeToggleContext.Consumer>
+  </Consumer>
 );
 
 export const AnimatedSunIcon = ({ isLight }: { isLight: boolean }) => (

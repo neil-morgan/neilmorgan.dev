@@ -1,5 +1,5 @@
-import { Post } from "@/lib/mongodb";
 import { type PostResolverType } from "./types";
+import { Post } from "@/lib/mongodb";
 
 export const resolvers = {
   Query: {

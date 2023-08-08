@@ -1,7 +1,7 @@
-import type { ButtonProps } from "./types";
-import { ButtonElement, LeftIcon, RightIcon } from "./styles";
 import NextLink from "next/link";
 import { ConditionalWrapper } from "../";
+import type { ButtonProps } from "./types";
+import { ButtonElement, LeftIcon, RightIcon } from "./styles";
 
 export const Button = ({
   children,

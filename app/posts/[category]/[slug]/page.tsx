@@ -1,8 +1,8 @@
-import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { draftMode } from "next/headers";
+import { type SlugProps, type PostProps, type MetaProps } from "./types";
+import { getClient, ApolloWrapper } from "@/lib/apollo/client";
 import { AllPostsSlugsDocument } from "@/graphql/cms";
 import { APOLLO_CLIENTS } from "@/constants";
-import { type SlugProps, type PostProps, type MetaProps } from "./types";
 import { PostTemplate } from "@/components/templates";
 import { PostBySlugDocument, type Post } from "@/graphql/cms";
 import {

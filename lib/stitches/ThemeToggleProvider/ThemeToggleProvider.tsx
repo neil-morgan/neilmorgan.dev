@@ -8,25 +8,17 @@ export const ThemeToggleContext = createContext({
   cycleToggleMode: () => {},
 });
 
-export const ThemeToggleHandler = ({ children }: { children: ReactNode }) => {
+export const { Consumer, Provider } = ThemeToggleContext;
+
+export const ThemeToggleProvider = ({ children }: { children: ReactNode }) => {
   const [colorMode, cycleToggleMode] = useColorMode();
   return (
-    <ThemeToggleContext.Provider
+    <Provider
       value={{
         colorMode,
         cycleToggleMode,
       }}>
       {children}
-    </ThemeToggleContext.Provider>
+    </Provider>
   );
-};
-
-export const ThemeToggleProvider = ({ children }: { children: ReactNode }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  return isMounted ? <ThemeToggleHandler>{children}</ThemeToggleHandler> : null;
 };

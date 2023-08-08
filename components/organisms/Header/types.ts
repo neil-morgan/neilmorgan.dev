@@ -1,18 +1,18 @@
 import type { NavigationType } from "@/types";
 
-export type NavigationProps = {
+export type HeaderProps = {
   items: NavigationType;
-  isNotMobile?: boolean;
 };
 
 export type NavigationItemProps = {
   title: string;
   href: string;
+  icon?: string;
   description?: string;
   onClick?: () => void;
 };
 
-export type NavigationItemRef =
+export type HeaderItemRef =
   | ((instance: HTMLAnchorElement | null) => void)
   | React.RefObject<HTMLAnchorElement>
   | null
