@@ -64,13 +64,22 @@ export const Header = ({ items }: HeaderProps) => {
                           {list.options.map(
                             ({ title, slug, description, icon }, i) => (
                               <Fragment key={i}>
-                                <DesktopListItem
-                                  icon={icon}
-                                  href={slug}
-                                  title={title}
-                                  description={description}
-                                  onClick={() => setOpenItem(null)}
-                                />
+                                <DesktopItemLink href={slug}>
+                                  <DesktopItemHeading>
+                                    {icon && (
+                                      <Icon
+                                        name={icon}
+                                        css={{ marginRight: "$3" }}
+                                      />
+                                    )}
+                                    {title}
+                                  </DesktopItemHeading>
+                                  {description && (
+                                    <DesktopItemText>
+                                      {description}
+                                    </DesktopItemText>
+                                  )}
+                                </DesktopItemLink>
                                 {list.columns === "1" &&
                                   i !== list.options.length - 1 && (
                                     <HorizontalSeparator size="sm" />
@@ -128,22 +137,6 @@ export const Header = ({ items }: HeaderProps) => {
     </HeaderElement>
   );
 };
-
-const DesktopListItem = ({
-  description,
-  title,
-  href,
-  icon,
-  onClick,
-}: NavigationItemProps) => (
-  <DesktopItemLink href={href} onClick={onClick}>
-    <DesktopItemHeading>
-      {icon && <Icon name={icon} css={{ marginRight: "$3" }} />}
-      {title}
-    </DesktopItemHeading>
-    {description && <DesktopItemText>{description}</DesktopItemText>}
-  </DesktopItemLink>
-);
 
 export const Popover = ({ children, anchor, open, setOpen }: PopoverProps) => {
   const handleClose = () => setOpen && setOpen(null);

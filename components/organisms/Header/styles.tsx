@@ -28,9 +28,6 @@ const slideLeftAndFade = keyframes({
 export const HeaderElement = styled("header", {
   display: "flex",
   alignItems: "center",
-  position: "sticky",
-  top: 0,
-  zIndex: 100,
   width: "100%",
   padding: "$2 0",
   marginBottom: "$10",

@@ -26,7 +26,12 @@ export const IconDefs = () => (
           viewBox="0 0 15 15"
           fill="currentColor"
           key={name}>
-          <path d={path} />
+          <path
+            d={path}
+            fill="currentColor"
+            fillRule="evenodd"
+            clipRule="evenodd"
+          />
         </svg>
       ))}
     </defs>
