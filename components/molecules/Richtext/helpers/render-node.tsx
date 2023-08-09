@@ -9,17 +9,17 @@ import { removeParagraphTags, renderMark } from ".";
 import {
   AspectRatio,
   Blockquote,
-  Divider,
   Heading,
+  HorizontalSeparator,
   Link,
   ListItem,
   OrderedList,
   Snippet,
   Table,
   Td,
+  Text,
   Th,
   Tr,
-  Text,
   UnorderedList,
 } from "@/components/atoms";
 
@@ -67,7 +67,7 @@ export const renderNode = (
     return <ListItem>{children}</ListItem>;
   },
 
-  [BLOCKS.HR]: () => <Divider size="lg" />,
+  [BLOCKS.HR]: () => <HorizontalSeparator size="lg" />,
 
   [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
     const children = removeParagraphTags(node as Document, renderMark, "quote");

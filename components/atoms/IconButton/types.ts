@@ -9,3 +9,9 @@ export type IconButtonProps = {
   priority?: "primary" | "secondary" | "nav";
   size?: "sm" | "md" | "lg";
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
+
+export type IconButtonRef =
+  | ((instance: HTMLButtonElement | null) => void)
+  | React.RefObject<HTMLButtonElement>
+  | null
+  | undefined;

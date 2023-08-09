@@ -98,7 +98,7 @@ export const PopoverContent = styled("div", {
 export const PopoverSection = styled("div", {
   display: "grid",
   margin: 0,
-  padding: "$4 $5",
+  padding: "$5",
   listStyle: "none",
 
   variants: {

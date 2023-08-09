@@ -23,9 +23,9 @@ import {
 } from "./styles";
 import {
   Icon,
-  Text,
   Container,
   Logo,
+  IconButton,
   HorizontalSeparator,
 } from "@/components/atoms";
 import { SocialLinks } from "@/components/molecules";
@@ -73,7 +73,7 @@ export const Header = ({ items }: HeaderProps) => {
                                 />
                                 {list.columns === "1" &&
                                   i !== list.options.length - 1 && (
-                                    <HorizontalSeparator spacing="4" />
+                                    <HorizontalSeparator size="sm" />
                                   )}
                               </Fragment>
                             ),
@@ -91,14 +91,13 @@ export const Header = ({ items }: HeaderProps) => {
               open={openItem === 1}
               setOpen={setOpenItem}
               anchor={
-                <PopoverButton onClick={() => setOpenItem(1)}>
-                  <Icon name="hamburger-thick" />
-                </PopoverButton>
+                <IconButton
+                  size="lg"
+                  priority="nav"
+                  onClick={() => setOpenItem(1)}
+                  icon={<Icon name="hamburger-thick" />}
+                />
               }>
-              <PopoverSection as="header">
-                <Text>Menu</Text>
-              </PopoverSection>
-              <HorizontalSeparator />
               <PopoverSection columns="1" gap="mobile">
                 {items.map(({ title, slug, list }, i) => (
                   <div key={i}>

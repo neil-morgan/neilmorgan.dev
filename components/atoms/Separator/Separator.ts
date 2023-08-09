@@ -8,23 +8,23 @@ export const VerticalSeparator = styled(Root, {
   height: "100%",
   width: "1px",
   variants: {
-    spacing: {
-      1: {
+    size: {
+      xs: {
         margin: "0 $2",
       },
-      2: {
+      sm: {
         margin: "0 $4",
       },
-      3: {
+      md: {
         margin: "0 $6",
       },
-      4: {
+      lg: {
         margin: "0 $8",
       },
+      xl: {
+        margin: "$0 10",
+      },
     },
-  },
-  defaultVariants: {
-    spacing: 1,
   },
 });
 
@@ -33,18 +33,21 @@ export const HorizontalSeparator = styled(Root, {
   height: "1px",
   width: "100%",
   variants: {
-    spacing: {
-      1: {
+    size: {
+      xs: {
         margin: "$2 0",
       },
-      2: {
-        margin: "$3 0",
-      },
-      3: {
+      sm: {
         margin: "$4 0",
       },
-      4: {
-        margin: "$5 0",
+      md: {
+        margin: "$6 0",
+      },
+      lg: {
+        margin: "$8 0",
+      },
+      xl: {
+        margin: "$10 0",
       },
     },
   },

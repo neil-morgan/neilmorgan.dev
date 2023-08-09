@@ -1,1 +1,1 @@
-export type LogoProps = { size?: number; isLink?: boolean };
+export type LogoProps = { size?: "sm" | "md" | "lg"; isLink?: boolean };

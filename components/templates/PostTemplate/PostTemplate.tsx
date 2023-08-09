@@ -16,7 +16,7 @@ import {
   Heading,
   Text,
   Container,
-  Divider,
+  HorizontalSeparator,
 } from "@/components/atoms";
 import { Richtext } from "@/components/molecules";
 import { type PostBody } from "@/graphql/cms";
@@ -29,7 +29,7 @@ export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
       </Heading>
     </Header>
 
-    <Divider size="xl" />
+    <HorizontalSeparator size="xl" />
 
     <Body>
       <Content>
@@ -40,7 +40,7 @@ export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
         <Heading size="h6" style="print">
           POST CONTENTS
         </Heading>
-        <Divider />
+        <HorizontalSeparator size="sm" />
         <NavList>
           {headings.map(({ heading, subHeadings }, i1) => (
             <Fragment key={`${heading.label}-${i1}`}>
