@@ -6,6 +6,7 @@ export { Container } from "./Container";
 export { Divider } from "./Divider";
 export { Heading } from "./Heading";
 export { Icon, IconDefs } from "./Icon";
+export { IconButton } from "./IconButton";
 export { LikeButton } from "./LikeButton";
 export { Link } from "./Link";
 export { Logo } from "./Logo";

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ToggleButton, Svg } from "./styles";
+import { Svg } from "./styles";
 import {
   raysGroupVariant,
   rayVariant,
@@ -11,6 +11,7 @@ import {
 } from "./config";
 import type { ThemeToggleProps } from "./types";
 import { Consumer } from "@/lib/stitches";
+import { IconButton } from "@/components/atoms";
 
 export const ThemeToggle = ({ css }: ThemeToggleProps) => (
   <Consumer>
@@ -18,9 +19,12 @@ export const ThemeToggle = ({ css }: ThemeToggleProps) => (
       const isLight = colorMode === "light";
 
       return (
-        <ToggleButton onClick={cycleToggleMode} css={css}>
-          <AnimatedSunIcon isLight={isLight} />
-        </ToggleButton>
+        <IconButton
+          priority="nav"
+          onClick={cycleToggleMode}
+          css={css}
+          icon={<AnimatedSunIcon isLight={isLight} />}
+        />
       );
     }}
   </Consumer>

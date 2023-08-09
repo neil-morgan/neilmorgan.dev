@@ -16,9 +16,9 @@ import {
   MobileList,
   MobileListItem,
   PopoverArrow,
-  PopoverSection,
   PopoverButton,
   PopoverContent,
+  PopoverSection,
   PopoverWrapper,
 } from "./styles";
 import {
@@ -34,18 +34,18 @@ import { BREAKPOINTS } from "@/constants";
 
 export const Header = ({ items }: HeaderProps) => {
   const [openItem, setOpenItem] = useState<number | null>(null);
-  const isNotMobile = useMediaQuery(`(min-width: ${BREAKPOINTS.md})`);
+  const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.md})`);
 
   useEffect(() => {
     setOpenItem(null);
-  }, [isNotMobile]);
+  }, [isDesktop]);
 
   return (
     <HeaderElement>
       <Container>
         <HeaderContent>
           <Logo isLink />
-          {isNotMobile ? (
+          {isDesktop ? (
             <>
               <DesktopList>
                 {items.map(({ title, slug, list }, i) => (

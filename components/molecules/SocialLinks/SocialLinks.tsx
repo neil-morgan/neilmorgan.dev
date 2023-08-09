@@ -1,15 +1,11 @@
 import { ThemeToggle } from "../ThemeToggle";
 import { SocialLinksWrapper, SocialLink } from "./styles";
-import { Icon } from "@/components/atoms";
+import { Icon, IconButton } from "@/components/atoms";
 
 export const SocialLinks = () => (
   <SocialLinksWrapper>
-    <SocialLink href="/">
-      <Icon name="github" />
-    </SocialLink>
-    <SocialLink href="/">
-      <Icon name="linkedIn" />
-    </SocialLink>
+    <IconButton href="/" icon={<Icon name="github" />} priority="nav" />
+    <IconButton href="/" icon={<Icon name="linkedIn" />} priority="nav" />
     <ThemeToggle />
   </SocialLinksWrapper>
 );

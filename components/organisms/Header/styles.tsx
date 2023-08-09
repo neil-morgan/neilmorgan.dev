@@ -36,13 +36,18 @@ export const HeaderElement = styled("header", {
   marginBottom: "$10",
   backgroundColor: "$backgroundFar",
   transition: "$theme",
+  "@sm": {
+    padding: "$4 0",
+  },
+  "@md": {
+    padding: "$6 0",
+  },
 });
 
-export const HeaderContent = styled("div", {
+export const HeaderContent = styled("nav", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  height: "$5",
 });
 
 export const PopoverButton = styled("button", {
@@ -56,6 +61,7 @@ export const PopoverButton = styled("button", {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
+  transition: "$theme",
   "&:hover": { color: "$navItemHover" },
   "&:focus": { color: "$navItemHover" },
 });
@@ -66,6 +72,7 @@ export const PopoverArrow = styled(Arrow, {
 
 export const PopoverWrapper = styled(Content, {
   width: "100%",
+  zIndex: "200",
   padding: "0 $2",
   animationDuration: "400ms",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",

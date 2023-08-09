@@ -27,7 +27,11 @@ export const Button = ({
           {children}
         </NextLink>
       )}>
-      <ButtonElement as="a" css={css} onClick={onClick} size={size}>
+      <ButtonElement
+        as={href ? "a" : "button"}
+        css={css}
+        onClick={onClick}
+        size={size}>
         {leftIconComponent} {children} {rightIconComponent}
       </ButtonElement>
     </ConditionalWrapper>
