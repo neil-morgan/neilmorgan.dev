@@ -15,7 +15,11 @@ import {
 import type { DesktopNavProps } from "./types";
 import { Icon, HorizontalSeparator } from "@/components/atoms";
 
-export const DesktopNav = ({ items, openItem, setOpenItem }: DesktopNavProps) => (
+export const DesktopNav = ({
+  items,
+  openItem,
+  setOpenItem,
+}: DesktopNavProps) => (
   <>
     <DesktopList>
       {items.map(({ title, slug, list }, i) => (
@@ -33,7 +37,9 @@ export const DesktopNav = ({ items, openItem, setOpenItem }: DesktopNavProps) =>
               <PopoverSection columns={list.columns}>
                 {list.options.map(({ title, slug, description, icon }, i) => (
                   <Fragment key={i}>
-                    <DesktopItemLink href={slug}>
+                    <DesktopItemLink
+                      href={slug}
+                      onClick={() => setOpenItem(null)}>
                       <DesktopItemHeading>
                         {icon && (
                           <Icon name={icon} css={{ marginRight: "$3" }} />
