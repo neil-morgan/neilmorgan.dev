@@ -1,11 +1,13 @@
-import { ThemeToggle } from "../ThemeToggle";
-import { SocialLinksWrapper, SocialLink } from "./styles";
-import { Icon, IconButton } from "@/components/atoms";
+"use client";
 
-export const SocialLinks = () => (
-  <SocialLinksWrapper>
+import { SecondaryItemsWrapper } from "./styles";
+import { Icon, IconButton } from "@/components/atoms";
+import { ThemeToggle } from "@/components/molecules";
+
+export const SecondaryItems = () => (
+  <SecondaryItemsWrapper>
     <IconButton href="/" icon={<Icon name="github" />} priority="nav" />
     <IconButton href="/" icon={<Icon name="linkedIn" />} priority="nav" />
     <ThemeToggle />
-  </SocialLinksWrapper>
+  </SecondaryItemsWrapper>
 );
