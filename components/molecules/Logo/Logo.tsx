@@ -1,7 +1,7 @@
 "use client";
 
-import { IconButton } from "../IconButton";
-import { ConditionalWrapper } from "../ConditionalWrapper";
+import { IconButton } from "../../atoms/IconButton";
+import { ConditionalWrapper } from "../../atoms/ConditionalWrapper";
 import type { LogoProps } from "./types";
 import { Svg } from "./styles";
 

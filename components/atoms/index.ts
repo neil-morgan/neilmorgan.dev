@@ -8,7 +8,6 @@ export { Icon, IconDefs } from "./Icon";
 export { IconButton } from "./IconButton";
 export { LikeButton } from "./LikeButton";
 export { Link } from "./Link";
-export { Logo } from "./Logo";
 export { OrderedList, UnorderedList, ListItem } from "./List";
 export { Pod } from "./Pod";
 export { Snippet } from "./Snippet";
