@@ -1,0 +1,10 @@
+query AllPostsSlugs {
+  postCollection(where: { slug_exists: true }) {
+    items {
+      slug
+      category {
+        ...PostCategoryContent
+      }
+    }
+  }
+}

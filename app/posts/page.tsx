@@ -1,5 +1,5 @@
 import { getClient } from "@/lib/apollo/client";
-import { AllPostsDocument, type Post } from "@/graphql/cms";
+import { AllPostsDocument, type Post } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { groupPostsByCategory } from "@/helpers";
 import { Posts } from "@/components/organisms";

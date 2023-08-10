@@ -1,0 +1,7 @@
+query PostBySlug($slug: String!, $preview: Boolean = false) {
+  postCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
+    items {
+      ...PostContent
+    }
+  }
+}

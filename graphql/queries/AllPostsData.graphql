@@ -1,0 +1,6 @@
+query AllPostsData {
+  postsData {
+    _id
+    likes
+  }
+}

@@ -7,7 +7,7 @@ import { ThemeToggleProvider, StitchesRegistry } from "@/lib/stitches";
 import { DraftMode } from "@/components/molecules";
 import { Footer, Header } from "@/components/organisms";
 import { IconDefs, ConditionalWrapper } from "@/components/atoms";
-import { PostCategoriesDocument } from "@/graphql/cms";
+import { PostCategoriesDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import type { CategoryType } from "@/types";
 import { buildNavigation } from "@/helpers";

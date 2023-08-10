@@ -1,0 +1,19 @@
+query CategoryPage($slug: String!) {
+  postCollection(where: { category: { slug_contains: $slug } }) {
+    items {
+      title
+      description
+      date
+      slug
+      category {
+        ...PostCategoryContent
+      }
+    }
+  }
+  # ! TAKE A CLOSER LOOK AT THIS
+  postCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...PostCategoryContent
+    }
+  }
+}

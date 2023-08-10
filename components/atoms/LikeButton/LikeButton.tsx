@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { debounce } from "lodash";
 import { useMutation } from "@apollo/client";
 import { type LikeButtonProps } from "./types";
-import { UpdatePostLikesByIdDocument } from "@/graphql/db";
+import { UpdatePostLikesByIdDocument } from "@/graphql";
 
 export const LikeButton = ({ likes, id }: LikeButtonProps) => {
   const [likeCount, setLikeCount] = useState(likes as number);

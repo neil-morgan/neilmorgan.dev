@@ -1,0 +1,16 @@
+query AllPosts {
+  postCollection(order: date_DESC, limit: 10) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+      date
+      slug
+      category {
+        ...PostCategoryContent
+      }
+    }
+  }
+}

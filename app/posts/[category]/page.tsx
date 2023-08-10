@@ -4,7 +4,7 @@ import {
   CategoryBySlugDocument,
   CategoryPageDocument,
   type Post,
-} from "@/graphql/cms";
+} from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
 import type { CategoryType } from "@/types";

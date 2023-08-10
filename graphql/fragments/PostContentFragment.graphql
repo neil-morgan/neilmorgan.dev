@@ -60,8 +60,3 @@ fragment PostContent on Post {
     }
   }
 }
-
-fragment PostCategoryContent on PostCategory {
-  title
-  slug
-}
