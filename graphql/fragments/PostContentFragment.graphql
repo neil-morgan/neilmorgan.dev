@@ -7,7 +7,7 @@ fragment PostContent on Post {
   date
   slug
   category {
-    ...PostCategoryContent
+    ...PostCategoryContentFragment
   }
   image {
     title
@@ -43,7 +43,7 @@ fragment PostContent on Post {
             slug
             description
             category {
-              ...PostCategoryContent
+              ...PostCategoryContentFragment
             }
           }
         }

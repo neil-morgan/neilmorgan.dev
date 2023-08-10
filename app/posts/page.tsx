@@ -7,6 +7,7 @@ import { Posts } from "@/components/organisms";
 const { CMS } = APOLLO_CLIENTS;
 const { query } = getClient();
 
+export const dynamic = "force-static";
 export const revalidate = 0;
 
 export const metadata = {

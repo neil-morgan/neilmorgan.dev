@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { type SlugProps, type PostProps, type MetaProps } from "./types";
-import { getClient, ApolloWrapper } from "@/lib/apollo/client";
+import { getClient } from "@/lib/apollo/client";
 import {
   AllPostsSlugsDocument,
   CreatePostDataByIdDocument,
@@ -10,12 +10,12 @@ import {
 } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { PostTemplate } from "@/components/templates";
-
 import { getRichtextHeadings } from "@/helpers";
 
 const { CMS, DB } = APOLLO_CLIENTS;
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+
+export const dynamic = "force-static";
+export const revalidate = 5;
 
 export async function generateMetadata({ params }: MetaProps) {
   const { query } = getClient();
@@ -85,9 +85,5 @@ export default async function Slug(context: SlugProps) {
   const content = { ...postContent, likes } as PostProps;
   const headings = getRichtextHeadings(content.body?.json.content);
 
-  return (
-    <ApolloWrapper>
-      <PostTemplate content={content} headings={headings} />
-    </ApolloWrapper>
-  );
+  return <PostTemplate content={content} headings={headings} />;
 }

@@ -1,7 +1,9 @@
 import type { NavigationType } from "@/types";
+import type { SocialItem } from "@/graphql";
 
 export type HeaderProps = {
-  items: NavigationType;
+  navigation: NavigationType;
+  social: SocialItem[];
 };
 
 export type NavigationItemProps = {

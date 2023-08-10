@@ -3,7 +3,7 @@ query AllPostsSlugs {
     items {
       slug
       category {
-        ...PostCategoryContent
+        ...PostCategoryContentFragment
       }
     }
   }

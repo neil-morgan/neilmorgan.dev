@@ -1,4 +1,4 @@
-import type { Post } from "@/graphql/cms";
+import type { Post } from "@/graphql";
 
 type RichtextHeadingType = { label: string; href: string };
 

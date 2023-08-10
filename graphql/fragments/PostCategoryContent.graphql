@@ -1,4 +1,4 @@
-fragment PostCategoryContent on PostCategory {
+fragment PostCategoryContentFragment on PostCategory {
   title
   slug
 }

@@ -17,6 +17,7 @@ import { Icon, HorizontalSeparator } from "@/components/atoms";
 
 export const DesktopNav = ({
   items,
+  social,
   openItem,
   setOpenItem,
 }: DesktopNavProps) => (
@@ -61,6 +62,6 @@ export const DesktopNav = ({
         </DesktopItem>
       ))}
     </DesktopList>
-    <SecondaryItems />
+    <SecondaryItems items={social} />
   </>
 );

@@ -13,6 +13,7 @@ export const IconButton = forwardRef(
       isExternal,
       icon,
       children,
+      target,
       size,
       priority,
     }: IconButtonProps,
@@ -21,7 +22,7 @@ export const IconButton = forwardRef(
     <ConditionalWrapper
       if={Boolean(href) && !isExternal}
       wrapWith={children => (
-        <NextLink href={href as string} passHref legacyBehavior>
+        <NextLink target={target} href={href as string} passHref legacyBehavior>
           {children}
         </NextLink>
       )}>
@@ -29,6 +30,7 @@ export const IconButton = forwardRef(
         ref={ref}
         as={href ? "a" : "button"}
         css={css}
+        target={target}
         onClick={onClick}
         size={size}
         priority={priority}>

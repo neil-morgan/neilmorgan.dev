@@ -12,6 +12,7 @@ import type { CategoryType } from "@/types";
 const { CMS } = APOLLO_CLIENTS;
 const { query } = getClient();
 
+export const dynamic = "force-static";
 export const revalidate = 0;
 
 export async function generateMetadata({ params }: MetaProps) {

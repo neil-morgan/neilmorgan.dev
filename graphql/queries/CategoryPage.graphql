@@ -6,14 +6,14 @@ query CategoryPage($slug: String!) {
       date
       slug
       category {
-        ...PostCategoryContent
+        ...PostCategoryContentFragment
       }
     }
   }
   # ! TAKE A CLOSER LOOK AT THIS
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
-      ...PostCategoryContent
+      ...PostCategoryContentFragment
     }
   }
 }

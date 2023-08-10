@@ -844,6 +844,8 @@ export type Query = {
   skillCollection: Maybe<SkillCollection>;
   snippet: Maybe<Snippet>;
   snippetCollection: Maybe<SnippetCollection>;
+  socialItem: Maybe<SocialItem>;
+  socialItemCollection: Maybe<SocialItemCollection>;
 };
 
 export type QueryAssetArgs = {
@@ -962,6 +964,21 @@ export type QuerySnippetCollectionArgs = {
   preview: InputMaybe<Scalars["Boolean"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<SnippetFilter>;
+};
+
+export type QuerySocialItemArgs = {
+  id: Scalars["String"]["input"];
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QuerySocialItemCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  order: InputMaybe<Array<InputMaybe<SocialItemOrder>>>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<SocialItemFilter>;
 };
 
 export type ResourceLink = {
@@ -1294,6 +1311,87 @@ export enum SnippetOrder {
   SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/socialItem) */
+export type SocialItem = Entry & {
+  __typename?: "SocialItem";
+  contentfulMetadata: ContentfulMetadata;
+  href: Maybe<Scalars["String"]["output"]>;
+  linkedFrom: Maybe<SocialItemLinkingCollections>;
+  sys: Sys;
+  title: Maybe<Scalars["String"]["output"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/socialItem) */
+export type SocialItemHrefArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/socialItem) */
+export type SocialItemLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/socialItem) */
+export type SocialItemTitleArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SocialItemCollection = {
+  __typename?: "SocialItemCollection";
+  items: Array<Maybe<SocialItem>>;
+  limit: Scalars["Int"]["output"];
+  skip: Scalars["Int"]["output"];
+  total: Scalars["Int"]["output"];
+};
+
+export type SocialItemFilter = {
+  AND: InputMaybe<Array<InputMaybe<SocialItemFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<SocialItemFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  href: InputMaybe<Scalars["String"]["input"]>;
+  href_contains: InputMaybe<Scalars["String"]["input"]>;
+  href_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  href_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  href_not: InputMaybe<Scalars["String"]["input"]>;
+  href_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  href_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars["String"]["input"]>;
+  title_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  title_not: InputMaybe<Scalars["String"]["input"]>;
+  title_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type SocialItemLinkingCollections = {
+  __typename?: "SocialItemLinkingCollections";
+  entryCollection: Maybe<EntryCollection>;
+};
+
+export type SocialItemLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export enum SocialItemOrder {
+  HrefAsc = "href_ASC",
+  HrefDesc = "href_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
 export type Sys = {
   __typename?: "Sys";
   environmentId: Scalars["String"]["output"];
@@ -1413,7 +1511,7 @@ export type CfSkillNestedFilter = {
   title_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
-export type PostCategoryContentFragment = {
+export type PostCategoryContentFragmentFragment = {
   __typename?: "PostCategory";
   title: string | null;
   slug: string | null;
@@ -1462,6 +1560,10 @@ export type PostContentFragment = {
               sys: { __typename?: "Sys"; id: string };
             }
           | { __typename: "Snippet"; sys: { __typename?: "Sys"; id: string } }
+          | {
+              __typename: "SocialItem";
+              sys: { __typename?: "Sys"; id: string };
+            }
           | null
         >;
         block: Array<
@@ -1492,6 +1594,10 @@ export type PostContentFragment = {
               description: string | null;
               language: string | null;
               code: string | null;
+              sys: { __typename?: "Sys"; id: string };
+            }
+          | {
+              __typename: "SocialItem";
               sys: { __typename?: "Sys"; id: string };
             }
           | null
@@ -1636,6 +1742,28 @@ export type CategoryPageQuery = {
   } | null;
 };
 
+export type GetLayoutQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetLayoutQuery = {
+  __typename?: "Query";
+  postCategoryCollection: {
+    __typename?: "PostCategoryCollection";
+    items: Array<{
+      __typename?: "PostCategory";
+      title: string | null;
+      slug: string | null;
+    } | null>;
+  } | null;
+  socialItemCollection: {
+    __typename?: "SocialItemCollection";
+    items: Array<{
+      __typename?: "SocialItem";
+      title: string | null;
+      href: string | null;
+    } | null>;
+  } | null;
+};
+
 export type PostBySlugQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -1694,6 +1822,10 @@ export type PostBySlugQuery = {
                   __typename: "Snippet";
                   sys: { __typename?: "Sys"; id: string };
                 }
+              | {
+                  __typename: "SocialItem";
+                  sys: { __typename?: "Sys"; id: string };
+                }
               | null
             >;
             block: Array<
@@ -1727,6 +1859,10 @@ export type PostBySlugQuery = {
                   description: string | null;
                   language: string | null;
                   code: string | null;
+                  sys: { __typename?: "Sys"; id: string };
+                }
+              | {
+                  __typename: "SocialItem";
                   sys: { __typename?: "Sys"; id: string };
                 }
               | null
@@ -1797,12 +1933,12 @@ export type PostsByCategoryQuery = {
   } | null;
 };
 
-export const PostCategoryContentFragmentDoc = {
+export const PostCategoryContentFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -1816,7 +1952,7 @@ export const PostCategoryContentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<PostCategoryContentFragment, unknown>;
+} as unknown as DocumentNode<PostCategoryContentFragmentFragment, unknown>;
 export const PostContentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -1852,7 +1988,7 @@ export const PostContentFragmentDoc = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "PostCategoryContent" },
+                  name: { kind: "Name", value: "PostCategoryContentFragment" },
                 },
               ],
             },
@@ -2030,7 +2166,8 @@ export const PostContentFragmentDoc = {
                                                 kind: "FragmentSpread",
                                                 name: {
                                                   kind: "Name",
-                                                  value: "PostCategoryContent",
+                                                  value:
+                                                    "PostCategoryContentFragment",
                                                 },
                                               },
                                             ],
@@ -2098,7 +2235,7 @@ export const PostContentFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2301,7 +2438,7 @@ export const AllPostsDocument = {
                               kind: "FragmentSpread",
                               name: {
                                 kind: "Name",
-                                value: "PostCategoryContent",
+                                value: "PostCategoryContentFragment",
                               },
                             },
                           ],
@@ -2318,7 +2455,7 @@ export const AllPostsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2408,7 +2545,7 @@ export const AllPostsSlugsDocument = {
                               kind: "FragmentSpread",
                               name: {
                                 kind: "Name",
-                                value: "PostCategoryContent",
+                                value: "PostCategoryContentFragment",
                               },
                             },
                           ],
@@ -2425,7 +2562,7 @@ export const AllPostsSlugsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2501,7 +2638,10 @@ export const CategoryBySlugDocument = {
                     selections: [
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "PostCategoryContent" },
+                        name: {
+                          kind: "Name",
+                          value: "PostCategoryContentFragment",
+                        },
                       },
                     ],
                   },
@@ -2514,7 +2654,7 @@ export const CategoryBySlugDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2609,7 +2749,7 @@ export const CategoryPageDocument = {
                               kind: "FragmentSpread",
                               name: {
                                 kind: "Name",
-                                value: "PostCategoryContent",
+                                value: "PostCategoryContentFragment",
                               },
                             },
                           ],
@@ -2659,7 +2799,10 @@ export const CategoryPageDocument = {
                     selections: [
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "PostCategoryContent" },
+                        name: {
+                          kind: "Name",
+                          value: "PostCategoryContentFragment",
+                        },
                       },
                     ],
                   },
@@ -2672,7 +2815,7 @@ export const CategoryPageDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2687,6 +2830,81 @@ export const CategoryPageDocument = {
     },
   ],
 } as unknown as DocumentNode<CategoryPageQuery, CategoryPageQueryVariables>;
+export const GetLayoutDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetLayout" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "postCategoryCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: {
+                          kind: "Name",
+                          value: "PostCategoryContentFragment",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "socialItemCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "href" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PostCategory" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetLayoutQuery, GetLayoutQueryVariables>;
 export const PostBySlugDocument = {
   kind: "Document",
   definitions: [
@@ -2778,7 +2996,7 @@ export const PostBySlugDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -2823,7 +3041,7 @@ export const PostBySlugDocument = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "PostCategoryContent" },
+                  name: { kind: "Name", value: "PostCategoryContentFragment" },
                 },
               ],
             },
@@ -3001,7 +3219,8 @@ export const PostBySlugDocument = {
                                                 kind: "FragmentSpread",
                                                 name: {
                                                   kind: "Name",
-                                                  value: "PostCategoryContent",
+                                                  value:
+                                                    "PostCategoryContentFragment",
                                                 },
                                               },
                                             ],
@@ -3093,7 +3312,10 @@ export const PostCategoriesDocument = {
                     selections: [
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "PostCategoryContent" },
+                        name: {
+                          kind: "Name",
+                          value: "PostCategoryContentFragment",
+                        },
                       },
                     ],
                   },
@@ -3106,7 +3328,7 @@ export const PostCategoriesDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },
@@ -3244,7 +3466,7 @@ export const PostsByCategoryDocument = {
                               kind: "FragmentSpread",
                               name: {
                                 kind: "Name",
-                                value: "PostCategoryContent",
+                                value: "PostCategoryContentFragment",
                               },
                             },
                           ],
@@ -3261,7 +3483,7 @@ export const PostsByCategoryDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PostCategoryContent" },
+      name: { kind: "Name", value: "PostCategoryContentFragment" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PostCategory" },

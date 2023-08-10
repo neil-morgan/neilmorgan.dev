@@ -1,0 +1,14 @@
+query GetLayout {
+  postCategoryCollection {
+    items {
+      ...PostCategoryContentFragment
+    }
+  }
+
+  socialItemCollection {
+    items {
+      title
+      href
+    }
+  }
+}

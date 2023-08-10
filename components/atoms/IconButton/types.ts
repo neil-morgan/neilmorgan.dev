@@ -2,6 +2,7 @@ import type { CSS } from "@stitches/react";
 
 export type IconButtonProps = {
   css?: CSS;
+  target?: string;
   href?: string | null;
   isExternal?: boolean;
   onClick?: () => void;

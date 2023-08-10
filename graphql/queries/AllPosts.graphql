@@ -9,7 +9,7 @@ query AllPosts {
       date
       slug
       category {
-        ...PostCategoryContent
+        ...PostCategoryContentFragment
       }
     }
   }

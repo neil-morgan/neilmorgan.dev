@@ -28,7 +28,8 @@ export const buildNavigation = (posts: CategoryType[]): NavigationType => [
           icon: "heart",
           title: "Soft skills",
           slug: "/skills/hard-skills",
-          description: "Non sunt officia officia ipsum cupidatat exercitation eu fugiat.",
+          description:
+            "Non sunt officia officia ipsum cupidatat exercitation eu fugiat.",
         },
       ],
     },
@@ -39,5 +40,3 @@ export const buildNavigation = (posts: CategoryType[]): NavigationType => [
   },
   { title: "Feedback", slug: "/feedback" },
 ];
-
-// lattice
