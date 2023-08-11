@@ -1,13 +1,13 @@
 import type { TopLevelBlock } from "@contentful/rich-text-types";
-import type { RichtextHeadingsType } from "@/types";
 import { kebabCase } from "lodash";
+import type { RichtextHeadingsType } from "@/types";
 
 const buildHeading = (value: string) => ({
   label: value,
   href: `#${kebabCase(value)}`,
 });
 
-export const getRichtextHeadings = (content: TopLevelBlock[]) => {
+export const buildRichtextHeadings = (content: TopLevelBlock[]) => {
   const headings: RichtextHeadingsType = [];
 
   content.forEach(({ nodeType, content }) => {

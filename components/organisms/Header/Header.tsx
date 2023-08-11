@@ -9,7 +9,7 @@ import { Logo } from "@/components/molecules";
 import { useMediaQuery } from "@/hooks";
 import { BREAKPOINTS } from "@/constants";
 
-export const Header = ({ navigation, social }: HeaderProps) => {
+export const Header = ({ content }: HeaderProps) => {
   const [openItem, setOpenItem] = useState<number | null>(null);
   const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.md})`);
 
@@ -25,14 +25,14 @@ export const Header = ({ navigation, social }: HeaderProps) => {
 
           {isDesktop ? (
             <DesktopNav
-              items={navigation}
-              social={social}
+              items={content.navigation}
+              social={content.social}
               openItem={openItem}
               setOpenItem={setOpenItem}
             />
           ) : (
             <MobileNav
-              items={navigation}
+              items={content.navigation}
               openItem={openItem}
               setOpenItem={setOpenItem}
             />

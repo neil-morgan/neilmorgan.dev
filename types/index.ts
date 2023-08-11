@@ -12,10 +12,17 @@ export type CategoryType = {
   slug: string;
 };
 
-export type GroupedPostType = {
-  category: CategoryType;
-  items: Post[];
+export type ItemType<T extends CategoryType> = {
+  category: T;
+  [key: string]: any;
 };
+
+export type GroupedItemType<T extends ItemType<any>> = {
+  category: T["category"];
+  items: T[];
+};
+
+export type GroupedPostType = GroupedItemType<Post>;
 
 type NavigationOptionType = {
   icon?: string;

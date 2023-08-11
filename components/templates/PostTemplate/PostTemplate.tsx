@@ -19,7 +19,7 @@ import {
   HorizontalSeparator,
 } from "@/components/atoms";
 import { Richtext } from "@/components/molecules";
-import { type PostBody } from "@/graphql/cms";
+import { type PostBody } from "@/graphql";
 
 export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
   <Container>

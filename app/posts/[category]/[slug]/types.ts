@@ -1,5 +1,4 @@
-import { type Post } from "@/graphql/cms";
-import { type PostData } from "@/graphql/db";
+import { type Post, type PostData } from "@/graphql";
 
 export type SlugProps = {
   params: { slug: string };

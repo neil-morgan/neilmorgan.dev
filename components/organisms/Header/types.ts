@@ -2,8 +2,10 @@ import type { NavigationType } from "@/types";
 import type { SocialItem } from "@/graphql";
 
 export type HeaderProps = {
-  navigation: NavigationType;
-  social: SocialItem[];
+  content: {
+    navigation: NavigationType;
+    social: SocialItem[];
+  };
 };
 
 export type NavigationItemProps = {
