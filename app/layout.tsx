@@ -31,7 +31,7 @@ export default async function RootLayout({
 
   const social = data.socialItemCollection?.items as SocialItem[];
   const navigation = buildNavigation(
-    data.postCategoryCollection?.items as CategoryType[], // TODO: Should use type from graphql
+    data.postCategoryCollection?.items as CategoryType[],
   );
 
   return (

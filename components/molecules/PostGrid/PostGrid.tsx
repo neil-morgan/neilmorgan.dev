@@ -25,7 +25,7 @@ export const PostGrid = ({ category, items }: GroupedPostType) => (
             css={{ marginTop: "$6" }}
             size="md"
             rightIcon={<Icon name="arrowRight" />}>
-            READ MORE
+            READ
           </Button>
         </Pod>
       ))}
