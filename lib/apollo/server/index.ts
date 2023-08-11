@@ -1,1 +1,0 @@
-export { serverHandler } from "./server";

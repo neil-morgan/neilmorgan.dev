@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { type SlugProps, type PostProps, type MetaProps } from "./types";
-import { getClient } from "@/lib/apollo/client";
+import { getClient } from "@/lib/apollo";
 import {
   AllPostsSlugsDocument,
   CreatePostDataByIdDocument,
@@ -12,14 +12,12 @@ import { APOLLO_CLIENTS } from "@/constants";
 import { PostTemplate } from "@/components/templates";
 import { getRichtextHeadings } from "@/helpers";
 
+export const revalidate = 1;
+
 const { CMS, DB } = APOLLO_CLIENTS;
 
-export const dynamic = "force-static";
-export const revalidate = 5;
-
 export async function generateMetadata({ params }: MetaProps) {
-  const { query } = getClient();
-  const { data } = await query({
+  const { data } = await getClient().query({
     context: { clientName: CMS },
     query: PostBySlugDocument,
     variables: {
@@ -30,8 +28,7 @@ export async function generateMetadata({ params }: MetaProps) {
 }
 
 export async function generateStaticParams() {
-  const { query } = getClient();
-  const { data } = await query({
+  const { data } = await getClient().query({
     context: { clientName: CMS },
     query: AllPostsSlugsDocument,
   });
@@ -43,9 +40,7 @@ export async function generateStaticParams() {
 
 export default async function Slug(context: SlugProps) {
   const { isEnabled } = draftMode();
-  const { query, mutate } = getClient();
-
-  const { data: cmsData } = await query({
+  const { data: cmsData } = await getClient().query({
     context: { clientName: CMS, isPreviewMode: isEnabled },
     query: PostBySlugDocument,
     variables: { slug: context.params.slug, preview: isEnabled },
@@ -60,17 +55,16 @@ export default async function Slug(context: SlugProps) {
 
   const {
     data: { postData: fetchedPostData },
-  } = await query({
+  } = await getClient().query({
     context: { clientName: DB },
     query: PostDataByIdDocument,
-    fetchPolicy: "no-cache",
     variables: { id: postId },
   });
 
   let postData;
 
   if (!fetchedPostData) {
-    const { data } = await mutate({
+    const { data } = await getClient().mutate({
       context: { clientName: DB },
       mutation: CreatePostDataByIdDocument,
       variables: { id: postId, likes: 0 },

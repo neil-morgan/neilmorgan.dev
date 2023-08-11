@@ -1,12 +1,8 @@
 "use client";
 
+import { ApolloLink, HttpLink } from "@apollo/client";
 import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  SuspenseCache,
-} from "@apollo/client";
-import {
+  NextSSRApolloClient,
   ApolloNextAppProvider,
   NextSSRInMemoryCache,
   SSRMultipartLink,
@@ -14,21 +10,19 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
 
-// TODO: Why is env var not working?
-const { APOLLO_SERVER_URL, NODE_ENV } = process.env;
-
-if (NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   setVerbosity("debug");
   loadDevMessages();
   loadErrorMessages();
 }
 
-const makeClient = () => {
+function makeClient() {
   const httpLink = new HttpLink({
-    uri: "http://localhost:3000/api",
+    uri: "http://localhost:3000/api/server",
+    fetchOptions: { cache: "no-store" },
   });
 
-  return new ApolloClient({
+  return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
     link:
       typeof window === "undefined"
@@ -40,14 +34,10 @@ const makeClient = () => {
           ])
         : httpLink,
   });
-};
-
-const makeSuspenseCache = () => new SuspenseCache();
+}
 
 export const ApolloWrapper = ({ children }: React.PropsWithChildren) => (
-  <ApolloNextAppProvider
-    makeClient={makeClient}
-    makeSuspenseCache={makeSuspenseCache}>
+  <ApolloNextAppProvider makeClient={makeClient}>
     {children}
   </ApolloNextAppProvider>
 );

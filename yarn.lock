@@ -15,10 +15,10 @@
   resolved "https://registry.npmjs.org/@apollo/cache-control-types/-/cache-control-types-1.0.2.tgz"
   integrity sha512-Por80co1eUm4ATsvjCOoS/tIR8PHxqVjsA6z76I6Vw0rFn4cgyVElQcmQDIZiYsy41k8e5xkrMRECkM2WR8pNw==
 
-"@apollo/client@^3.8.0-beta.3":
-  version "3.8.0-beta.3"
-  resolved "https://registry.npmjs.org/@apollo/client/-/client-3.8.0-beta.3.tgz"
-  integrity sha512-Ic0JPmqnN1E0lHJmyAxoBgFBpfpfQGTld/+YrSCgXvUiVU0wLVxao621LdTQBdjVD5T0V7tc15o+OoQMsGNwSQ==
+"@apollo/client@^3.8.0-rc.2":
+  version "3.8.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.8.0-rc.2.tgz#3ba6f1fb6fff23a08800c4733d09b89428111b09"
+  integrity sha512-OQhMbYhNscVwqfxb9diOZpra4m4Vr+CbzkHZGdg51+BADzUeQCEaQyeKhClJqh1HAH3kIqRf+pD9otzuMDhcSg==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/context" "^0.7.3"
@@ -26,7 +26,7 @@
     "@wry/trie" "^0.4.3"
     graphql-tag "^2.12.6"
     hoist-non-react-statics "^3.3.2"
-    optimism "^0.17.4"
+    optimism "^0.17.5"
     prop-types "^15.7.2"
     response-iterator "^0.2.6"
     symbol-observable "^4.0.0"
@@ -34,10 +34,10 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/experimental-nextjs-app-support@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.2.1.tgz"
-  integrity sha512-Dykrn/AWuaO4zt+DlZsPx7pQr86Z/F/3n3Hi1kQFhdLFksWu/TCuM90JLr7NZBF4DNn5vSodama6nhWf7DlyVg==
+"@apollo/experimental-nextjs-app-support@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.4.1.tgz#03662bb284ba2e677cb979c741d7783a55586e74"
+  integrity sha512-xW+RVxaeOboJvol4HUhgP6YZvwamIz8Gqba3II5Uviy1++kqsE0I/q2WT03laIEwTB8YBO25tY9EmQ1mImRWyw==
   dependencies:
     superjson "^1.12.2"
     ts-invariant "^0.10.3"
@@ -4857,9 +4857,9 @@ open@^9.1.0:
     is-inside-container "^1.0.0"
     is-wsl "^2.2.0"
 
-optimism@^0.17.4:
+optimism@^0.17.5:
   version "0.17.5"
-  resolved "https://registry.npmjs.org/optimism/-/optimism-0.17.5.tgz"
+  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.17.5.tgz#a4c78b3ad12c58623abedbebb4f2f2c19b8e8816"
   integrity sha512-TEcp8ZwK1RczmvMnvktxHSF2tKgMWjJ71xEFGX5ApLh67VsMSTy1ZUlipJw8W+KaqgOmQ+4pqwkeivY89j+4Vw==
   dependencies:
     "@wry/context" "^0.7.0"

@@ -41,6 +41,11 @@ const { getClient } = registerApolloClient(
         cmsLink,
         dbLink,
       ),
+      defaultOptions:{
+        watchQuery: {
+          fetchPolicy: 'cache-and-network',
+        }
+      }
     }),
 );
 

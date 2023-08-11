@@ -1,5 +1,5 @@
 import { MetaProps } from "./types";
-import { getClient } from "@/lib/apollo/client";
+import { getClient } from "@/lib/apollo";
 import {
   CategoryBySlugDocument,
   CategoryPageDocument,
@@ -9,14 +9,12 @@ import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
 import type { CategoryType } from "@/types";
 
-const { CMS } = APOLLO_CLIENTS;
-const { query } = getClient();
+export const revalidate = 1;
 
-export const dynamic = "force-static";
-export const revalidate = 0;
+const { CMS } = APOLLO_CLIENTS;
 
 export async function generateMetadata({ params }: MetaProps) {
-  const { data } = await query({
+  const { data } = await getClient().query({
     context: { clientName: CMS },
     query: CategoryBySlugDocument,
     variables: {
@@ -31,7 +29,7 @@ export default async function CategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { data } = await query({
+  const { data } = await getClient().query({
     context: { clientName: CMS },
     query: CategoryPageDocument,
     fetchPolicy: "cache-first",

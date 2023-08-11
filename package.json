@@ -10,8 +10,8 @@
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.0-beta.3",
-    "@apollo/experimental-nextjs-app-support": "^0.2.1",
+    "@apollo/client": "^3.8.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.4.1",
     "@apollo/server": "^4.7.4",
     "@as-integrations/next": "^2.0.0",
     "@contentful/rich-text-react-renderer": "^15.17.0",

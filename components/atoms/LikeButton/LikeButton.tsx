@@ -6,6 +6,8 @@ import { useMutation } from "@apollo/client";
 import { type LikeButtonProps } from "./types";
 import { UpdatePostLikesByIdDocument } from "@/graphql";
 
+// TODO: if a user refreshes/leaves the page within the revalidation window the likes will be lost
+
 export const LikeButton = ({ likes, id }: LikeButtonProps) => {
   const [likeCount, setLikeCount] = useState(likes as number);
   const [mutate] = useMutation(UpdatePostLikesByIdDocument);
