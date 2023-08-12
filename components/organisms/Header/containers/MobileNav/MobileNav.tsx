@@ -4,7 +4,12 @@ import type { MobileNavProps } from "./types";
 import { MobileLink, MobileListItem, MobileList } from "./styles";
 import { Icon, IconButton, HorizontalSeparator } from "@/components/atoms";
 
-export const MobileNav = ({ items, openItem, setOpenItem }: MobileNavProps) => (
+export const MobileNav = ({
+  items,
+  social,
+  openItem,
+  setOpenItem,
+}: MobileNavProps) => (
   <Popover
     open={openItem === 1}
     setOpen={setOpenItem}
@@ -37,7 +42,7 @@ export const MobileNav = ({ items, openItem, setOpenItem }: MobileNavProps) => (
     </PopoverSection>
     <HorizontalSeparator />
     <PopoverSection as="footer">
-      <SecondaryItems />
+      <SecondaryItems items={social} />
     </PopoverSection>
   </Popover>
 );

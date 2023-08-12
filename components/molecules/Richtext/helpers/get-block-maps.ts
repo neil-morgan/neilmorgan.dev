@@ -1,4 +1,4 @@
-import { type PostBodyLinks } from "@/graphql/cms";
+import { type PostBodyLinks } from "@/graphql";
 
 export const getBlockMaps = (links: PostBodyLinks) => {
   const entryBlockMap = new Map();

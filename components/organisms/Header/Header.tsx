@@ -33,6 +33,7 @@ export const Header = ({ content }: HeaderProps) => {
           ) : (
             <MobileNav
               items={content.navigation}
+              social={content.social}
               openItem={openItem}
               setOpenItem={setOpenItem}
             />

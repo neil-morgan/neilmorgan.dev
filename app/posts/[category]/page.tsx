@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: MetaProps) {
   return { title: `${data?.postCategoryCollection?.items[0]?.title} articles` };
 }
 
-export const PostCategoryPage = async ({
+const PostCategoryPage = async ({
   params,
 }: {
   params: { category: string };

@@ -1,5 +1,5 @@
 import type { Block, Inline } from "@contentful/rich-text-types";
-import type { PostBody } from "@/graphql/cms";
+import type { PostBody } from "@/graphql";
 
 export type RichtextProps = { content: PostBody };
 export type RichtextNodeType = Block | Inline;

@@ -27,17 +27,22 @@ export async function generateStaticParams() {
     context: { clientName: CMS },
     query: GetAllPostsSlugsDocument,
   });
-  return data?.postCollection?.items.map(post => ({
+
+  if (!data || !data.postCollection || !data.postCollection.items) {
+    return [];
+  }
+
+  return data.postCollection.items.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
   }));
 }
 
-const PostPage = async (context: SlugProps) => {
+const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
 
   const content = (await getPostPageContent(
-    context.params.slug,
+    params.slug,
     isEnabled,
   )) as PostProps;
 

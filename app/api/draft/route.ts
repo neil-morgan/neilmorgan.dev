@@ -2,7 +2,7 @@ import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { getClient } from "@/lib/apollo/client";
 import { APOLLO_CLIENTS } from "@/constants";
-import { PostBySlugDocument, type Post } from "@/graphql/cms";
+import { GetPostBySlugDocument, type Post } from "@/graphql";
 
 const { query } = getClient();
 const { CMS } = APOLLO_CLIENTS;
@@ -18,7 +18,7 @@ export const GET = async (request: Request) => {
 
   const { data } = await query({
     context: { clientName: CMS },
-    query: PostBySlugDocument,
+    query: GetPostBySlugDocument,
     variables: { slug },
   });
 
