@@ -1695,6 +1695,16 @@ export type GetAllPostsSlugsQuery = {
   } | null;
 };
 
+export type GetAllSkillsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllSkillsQuery = {
+  __typename?: "Query";
+  skillCollection: {
+    __typename?: "SkillCollection";
+    items: Array<{ __typename?: "Skill"; title: string | null } | null>;
+  } | null;
+};
+
 export type GetCategoryBySlugQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
 }>;
@@ -2583,6 +2593,40 @@ export const GetAllPostsSlugsDocument = {
   GetAllPostsSlugsQuery,
   GetAllPostsSlugsQueryVariables
 >;
+export const GetAllSkillsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAllSkills" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "skillCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAllSkillsQuery, GetAllSkillsQueryVariables>;
 export const GetCategoryBySlugDocument = {
   kind: "Document",
   definitions: [
