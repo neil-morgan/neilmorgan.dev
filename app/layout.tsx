@@ -4,7 +4,7 @@ import { Wrapper, Main } from "./styles";
 import { DraftMode } from "@/components/molecules";
 import { Footer, Header, Provider } from "@/components/organisms";
 import { IconDefs, ConditionalWrapper } from "@/components/atoms";
-import { getHeaderContent } from "@/helpers";
+import { getHeaderContent } from "@/services";
 
 export const revalidate = 1;
 

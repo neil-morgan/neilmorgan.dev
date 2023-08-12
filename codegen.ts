@@ -4,7 +4,7 @@ import { CONTENTFUL_BASE_URL } from "./constants";
 
 loadEnvConfig(process.cwd());
 
-const dbSchema = { [`http://localhost:3000/api`]: {} };
+const dbSchema = { [`http://localhost:3000/api/server`]: {} };
 const cmsSchema = {
   [`${CONTENTFUL_BASE_URL}${process.env.CONTENTFUL_SPACE_ID}`]: {
     headers: {

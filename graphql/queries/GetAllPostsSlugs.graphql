@@ -1,4 +1,4 @@
-query AllPostsSlugs {
+query GetAllPostsSlugs {
   postCollection(where: { slug_exists: true }) {
     items {
       slug

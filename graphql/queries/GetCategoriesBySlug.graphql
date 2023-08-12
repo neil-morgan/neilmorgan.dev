@@ -1,4 +1,4 @@
-query CategoryBySlug($slug: String!) {
+query GetCategoryBySlug($slug: String!) {
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
       ...PostCategoryContentFragment

@@ -1,8 +1,8 @@
 import { getClient } from "@/lib/apollo";
 import {
   CreatePostDataByIdDocument,
-  PostBySlugDocument,
-  PostDataByIdDocument,
+  GetPostBySlugDocument,
+  GetPostDataByIdDocument,
   type Post,
 } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
@@ -15,7 +15,7 @@ export const getPostPageContent = async (
 ) => {
   const { data: cmsData } = await getClient().query({
     context: { clientName: CMS, isPreviewMode },
-    query: PostBySlugDocument,
+    query: GetPostBySlugDocument,
     variables: { slug, preview: isPreviewMode },
   });
 
@@ -30,7 +30,7 @@ export const getPostPageContent = async (
     data: { postData: fetchedPostData },
   } = await getClient().query({
     context: { clientName: DB },
-    query: PostDataByIdDocument,
+    query: GetPostDataByIdDocument,
     variables: { id: postId },
   });
 

@@ -1,5 +1,5 @@
 import { getClient } from "@/lib/apollo";
-import { CategoryPageDocument, type PostCategory, type Post } from "@/graphql";
+import { GetCategoryPageDocument, type PostCategory, type Post } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import type { GroupedPostType } from "@/types";
 
@@ -8,7 +8,7 @@ const { CMS } = APOLLO_CLIENTS;
 export const getPostsCategoryPageContent = async (slug: string) => {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: CategoryPageDocument,
+    query: GetCategoryPageDocument,
     fetchPolicy: "cache-first",
     variables: {
       slug,

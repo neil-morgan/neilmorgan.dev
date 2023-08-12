@@ -1644,9 +1644,9 @@ export type UpdatePostLikesByIdMutation = {
   } | null;
 };
 
-export type AllPostsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAllPostsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllPostsQuery = {
+export type GetAllPostsQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
@@ -1666,9 +1666,9 @@ export type AllPostsQuery = {
   } | null;
 };
 
-export type AllPostsDataQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAllPostsDataQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllPostsDataQuery = {
+export type GetAllPostsDataQuery = {
   __typename?: "Query";
   postsData: Array<{
     __typename?: "PostData";
@@ -1677,9 +1677,9 @@ export type AllPostsDataQuery = {
   } | null> | null;
 };
 
-export type AllPostsSlugsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAllPostsSlugsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllPostsSlugsQuery = {
+export type GetAllPostsSlugsQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
@@ -1695,11 +1695,11 @@ export type AllPostsSlugsQuery = {
   } | null;
 };
 
-export type CategoryBySlugQueryVariables = Exact<{
+export type GetCategoryBySlugQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
 }>;
 
-export type CategoryBySlugQuery = {
+export type GetCategoryBySlugQuery = {
   __typename?: "Query";
   postCategoryCollection: {
     __typename?: "PostCategoryCollection";
@@ -1711,11 +1711,11 @@ export type CategoryBySlugQuery = {
   } | null;
 };
 
-export type CategoryPageQueryVariables = Exact<{
+export type GetCategoryPageQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
 }>;
 
-export type CategoryPageQuery = {
+export type GetCategoryPageQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
@@ -1742,9 +1742,9 @@ export type CategoryPageQuery = {
   } | null;
 };
 
-export type GetLayoutQueryVariables = Exact<{ [key: string]: never }>;
+export type GetHeaderQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetLayoutQuery = {
+export type GetHeaderQuery = {
   __typename?: "Query";
   postCategoryCollection: {
     __typename?: "PostCategoryCollection";
@@ -1764,12 +1764,12 @@ export type GetLayoutQuery = {
   } | null;
 };
 
-export type PostBySlugQueryVariables = Exact<{
+export type GetPostBySlugQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
 }>;
 
-export type PostBySlugQuery = {
+export type GetPostBySlugQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
@@ -1883,9 +1883,9 @@ export type PostBySlugQuery = {
   } | null;
 };
 
-export type PostCategoriesQueryVariables = Exact<{ [key: string]: never }>;
+export type GetPostCategoriesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type PostCategoriesQuery = {
+export type GetPostCategoriesQuery = {
   __typename?: "Query";
   postCategoryCollection: {
     __typename?: "PostCategoryCollection";
@@ -1897,11 +1897,11 @@ export type PostCategoriesQuery = {
   } | null;
 };
 
-export type PostDataByIdQueryVariables = Exact<{
+export type GetPostDataByIdQueryVariables = Exact<{
   id: InputMaybe<Scalars["ID"]["input"]>;
 }>;
 
-export type PostDataByIdQuery = {
+export type GetPostDataByIdQuery = {
   __typename?: "Query";
   postData: {
     __typename?: "PostData";
@@ -1910,11 +1910,11 @@ export type PostDataByIdQuery = {
   } | null;
 };
 
-export type PostsByCategoryQueryVariables = Exact<{
+export type GetPostsByCategoryQueryVariables = Exact<{
   slug: Scalars["String"]["input"];
 }>;
 
-export type PostsByCategoryQuery = {
+export type GetPostsByCategoryQuery = {
   __typename?: "Query";
   postCollection: {
     __typename?: "PostCollection";
@@ -2374,13 +2374,13 @@ export const UpdatePostLikesByIdDocument = {
   UpdatePostLikesByIdMutation,
   UpdatePostLikesByIdMutationVariables
 >;
-export const AllPostsDocument = {
+export const GetAllPostsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "AllPosts" },
+      name: { kind: "Name", value: "GetAllPosts" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -2469,14 +2469,14 @@ export const AllPostsDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>;
-export const AllPostsDataDocument = {
+} as unknown as DocumentNode<GetAllPostsQuery, GetAllPostsQueryVariables>;
+export const GetAllPostsDataDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "AllPostsData" },
+      name: { kind: "Name", value: "GetAllPostsData" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -2495,14 +2495,17 @@ export const AllPostsDataDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<AllPostsDataQuery, AllPostsDataQueryVariables>;
-export const AllPostsSlugsDocument = {
+} as unknown as DocumentNode<
+  GetAllPostsDataQuery,
+  GetAllPostsDataQueryVariables
+>;
+export const GetAllPostsSlugsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "AllPostsSlugs" },
+      name: { kind: "Name", value: "GetAllPostsSlugs" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -2576,14 +2579,17 @@ export const AllPostsSlugsDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<AllPostsSlugsQuery, AllPostsSlugsQueryVariables>;
-export const CategoryBySlugDocument = {
+} as unknown as DocumentNode<
+  GetAllPostsSlugsQuery,
+  GetAllPostsSlugsQueryVariables
+>;
+export const GetCategoryBySlugDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "CategoryBySlug" },
+      name: { kind: "Name", value: "GetCategoryBySlug" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -2668,14 +2674,17 @@ export const CategoryBySlugDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<CategoryBySlugQuery, CategoryBySlugQueryVariables>;
-export const CategoryPageDocument = {
+} as unknown as DocumentNode<
+  GetCategoryBySlugQuery,
+  GetCategoryBySlugQueryVariables
+>;
+export const GetCategoryPageDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "CategoryPage" },
+      name: { kind: "Name", value: "GetCategoryPage" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -2829,14 +2838,17 @@ export const CategoryPageDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<CategoryPageQuery, CategoryPageQueryVariables>;
-export const GetLayoutDocument = {
+} as unknown as DocumentNode<
+  GetCategoryPageQuery,
+  GetCategoryPageQueryVariables
+>;
+export const GetHeaderDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "GetLayout" },
+      name: { kind: "Name", value: "GetHeader" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -2904,14 +2916,14 @@ export const GetLayoutDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetLayoutQuery, GetLayoutQueryVariables>;
-export const PostBySlugDocument = {
+} as unknown as DocumentNode<GetHeaderQuery, GetHeaderQueryVariables>;
+export const GetPostBySlugDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "PostBySlug" },
+      name: { kind: "Name", value: "GetPostBySlug" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -3287,14 +3299,14 @@ export const PostBySlugDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<PostBySlugQuery, PostBySlugQueryVariables>;
-export const PostCategoriesDocument = {
+} as unknown as DocumentNode<GetPostBySlugQuery, GetPostBySlugQueryVariables>;
+export const GetPostCategoriesDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "PostCategories" },
+      name: { kind: "Name", value: "GetPostCategories" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -3342,14 +3354,17 @@ export const PostCategoriesDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<PostCategoriesQuery, PostCategoriesQueryVariables>;
-export const PostDataByIdDocument = {
+} as unknown as DocumentNode<
+  GetPostCategoriesQuery,
+  GetPostCategoriesQueryVariables
+>;
+export const GetPostDataByIdDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "PostDataById" },
+      name: { kind: "Name", value: "GetPostDataById" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -3385,14 +3400,17 @@ export const PostDataByIdDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<PostDataByIdQuery, PostDataByIdQueryVariables>;
-export const PostsByCategoryDocument = {
+} as unknown as DocumentNode<
+  GetPostDataByIdQuery,
+  GetPostDataByIdQueryVariables
+>;
+export const GetPostsByCategoryDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "PostsByCategory" },
+      name: { kind: "Name", value: "GetPostsByCategory" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -3498,6 +3516,6 @@ export const PostsByCategoryDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  PostsByCategoryQuery,
-  PostsByCategoryQueryVariables
+  GetPostsByCategoryQuery,
+  GetPostsByCategoryQueryVariables
 >;

@@ -1,4 +1,4 @@
-import { getPostsPageContent } from "@/helpers";
+import { getPostsPageContent } from "@/services";
 import { Posts } from "@/components/organisms";
 
 export const revalidate = 1;

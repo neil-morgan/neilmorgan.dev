@@ -1,6 +1,9 @@
-query PostsByCategory($slug: String!) {
-  postCollection(where: { category: { slug_contains: $slug } }) {
+query GetAllPosts {
+  postCollection(order: date_DESC, limit: 10) {
     items {
+      sys {
+        id
+      }
       title
       description
       date

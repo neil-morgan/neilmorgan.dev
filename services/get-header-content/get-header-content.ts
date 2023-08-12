@@ -1,6 +1,6 @@
 import type { GetHeaderContentReturnType } from "./types";
 import { getClient } from "@/lib/apollo";
-import { GetLayoutDocument, type SocialItem } from "@/graphql";
+import { GetHeaderDocument, type SocialItem } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import type { CategoryType } from "@/types";
 
@@ -10,7 +10,7 @@ export const getHeaderContent =
   async (): Promise<GetHeaderContentReturnType> => {
     const { data } = await getClient().query({
       context: { clientName: CMS },
-      query: GetLayoutDocument,
+      query: GetHeaderDocument,
       fetchPolicy: "no-cache",
     });
 

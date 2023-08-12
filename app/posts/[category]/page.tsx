@@ -1,9 +1,9 @@
 import { MetaProps } from "./types";
 import { getClient } from "@/lib/apollo";
-import { CategoryBySlugDocument } from "@/graphql";
+import { GetCategoryBySlugDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
-import { getPostsCategoryPageContent } from "@/helpers";
+import { getPostsCategoryPageContent } from "@/services";
 
 export const revalidate = 1;
 
@@ -12,7 +12,7 @@ const { CMS } = APOLLO_CLIENTS;
 export async function generateMetadata({ params }: MetaProps) {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: CategoryBySlugDocument,
+    query: GetCategoryBySlugDocument,
     variables: {
       slug: params.category,
     },

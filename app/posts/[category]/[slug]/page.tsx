@@ -1,10 +1,11 @@
 import { draftMode } from "next/headers";
 import type { SlugProps, MetaProps, PostProps } from "./types";
 import { getClient } from "@/lib/apollo";
-import { AllPostsSlugsDocument, PostBySlugDocument } from "@/graphql";
+import { GetAllPostsSlugsDocument, GetPostBySlugDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { PostTemplate } from "@/components/templates";
-import { getPostPageContent, buildRichtextHeadings } from "@/helpers";
+import { buildRichtextHeadings } from "@/helpers";
+import { getPostPageContent } from "@/services";
 
 export const revalidate = 1;
 
@@ -13,7 +14,7 @@ const { CMS } = APOLLO_CLIENTS;
 export async function generateMetadata({ params }: MetaProps) {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: PostBySlugDocument,
+    query: GetPostBySlugDocument,
     variables: {
       slug: params.slug,
     },
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: MetaProps) {
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: AllPostsSlugsDocument,
+    query: GetAllPostsSlugsDocument,
   });
   return data?.postCollection?.items.map(post => ({
     category: post?.category?.slug,

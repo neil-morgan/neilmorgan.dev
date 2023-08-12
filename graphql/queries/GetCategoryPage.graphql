@@ -1,4 +1,4 @@
-query CategoryPage($slug: String!) {
+query GetCategoryPage($slug: String!) {
   postCollection(where: { category: { slug_contains: $slug } }) {
     items {
       title
@@ -10,7 +10,7 @@ query CategoryPage($slug: String!) {
       }
     }
   }
-  # ! TAKE A CLOSER LOOK AT THIS
+  #
   postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
       ...PostCategoryContentFragment

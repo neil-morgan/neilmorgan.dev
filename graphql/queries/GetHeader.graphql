@@ -1,4 +1,4 @@
-query GetLayout {
+query GetHeader {
   postCategoryCollection {
     items {
       ...PostCategoryContentFragment
