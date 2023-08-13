@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
 
 const { APOLLO_SERVER_URL } = process.env;
 
-function makeClient() {
+const makeClient = () => {
   const httpLink = new HttpLink({
     uri: APOLLO_SERVER_URL,
     fetchOptions: { cache: "no-store" },
@@ -36,7 +36,7 @@ function makeClient() {
           ])
         : httpLink,
   });
-}
+};
 
 export const ApolloWrapper = ({ children }: React.PropsWithChildren) => (
   <ApolloNextAppProvider makeClient={makeClient}>

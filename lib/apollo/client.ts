@@ -16,6 +16,9 @@ const {
 
 const dbLink = createHttpLink({
   uri: APOLLO_SERVER_URL,
+  fetchOptions: {
+    method: "POST",
+  },
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
@@ -23,6 +26,9 @@ const cmsLink = new ApolloLink((operation, forward) => {
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
+    fetchOptions: {
+      method: "POST",
+    },
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${
@@ -41,11 +47,11 @@ const { getClient } = registerApolloClient(
         cmsLink,
         dbLink,
       ),
-      defaultOptions:{
+      defaultOptions: {
         watchQuery: {
-          fetchPolicy: 'cache-and-network',
-        }
-      }
+          fetchPolicy: "cache-and-network",
+        },
+      },
     }),
 );
 
