@@ -13,17 +13,24 @@ const {
   CONTENTFUL_PREVIEW_TOKEN,
 } = process.env;
 
-// ! NEED RELATIVE URI
+// ! DB NEEDS RELATIVE URI?
 // http://localhost:3000/api/server
 // /api/server
 
-//! figure out how to pass a relative uri here
+// absolute uri needed for ssr.
+// ! perhaps CORS issue?
+
+// https://stackoverflow.com/questions/48818582/apollo-client-does-not-work-with-cors
+// https://www.apollographql.com/docs/apollo-server/security/cors/
 
 const dbLink = createHttpLink({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/api/server"
       : "https://neilmorgan.vercel.app/api/server",
+  fetchOptions: {
+    mode: "no-cors",
+  },
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
