@@ -16,11 +16,9 @@ if (process.env.NODE_ENV === "development") {
   loadErrorMessages();
 }
 
-const { APOLLO_SERVER_URL } = process.env;
-
 const makeClient = () => {
   const httpLink = new HttpLink({
-    uri: APOLLO_SERVER_URL,
+    uri: "/api/server",
     fetchOptions: { cache: "no-store" },
   });
 

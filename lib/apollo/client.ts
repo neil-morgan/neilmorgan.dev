@@ -11,14 +11,19 @@ const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_DELIVERY_TOKEN,
   CONTENTFUL_PREVIEW_TOKEN,
-  APOLLO_SERVER_URL,
 } = process.env;
 
+// ! NEED RELATIVE URI
+// http://localhost:3000/api/server
+// /api/server
+
+//! figure out how to pass a relative uri here
+
 const dbLink = createHttpLink({
-  uri: APOLLO_SERVER_URL,
-  fetchOptions: {
-    method: "POST",
-  },
+  uri:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/api/server"
+      : "https://neilmorgan.vercel.app/api/server",
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
@@ -41,6 +46,7 @@ const cmsLink = new ApolloLink((operation, forward) => {
 const { getClient } = registerApolloClient(
   () =>
     new ApolloClient({
+      ssrMode: true,
       cache: new InMemoryCache(),
       link: ApolloLink.split(
         operation => operation.getContext().clientName === APOLLO_CLIENTS.CMS,
