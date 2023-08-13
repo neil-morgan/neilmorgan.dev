@@ -25,9 +25,9 @@ const {
 
 const dbLink = createHttpLink({
   uri:
-    process.env.NODE_ENV === "development"
+   process.env.NODE_ENV === "development"
       ? "http://localhost:3000/api/server"
-      : "https://neilmorgan.vercel.app/api/server",
+      : "https://neilmorgan.dev/api/server",
   fetchOptions: {
     mode: "no-cors",
   },
