@@ -6,7 +6,7 @@ import { initializeMongoDB } from "@/lib/mongodb";
 
 initializeMongoDB();
 
-const typeDefs = readFileSync("app/api/server/schema.graphql", {
+const typeDefs = readFileSync("app/api/graphql/schema.graphql", {
   encoding: "utf-8",
 });
 

@@ -24,13 +24,7 @@ const {
 // https://www.apollographql.com/docs/apollo-server/security/cors/
 
 const dbLink = createHttpLink({
-  uri:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/api/server"
-      : "https://neilmorgan.vercel.app/api/server",
-  fetchOptions: {
-    mode: "no-cors",
-  },
+  uri: "http://localhost:3000/api/graphql",
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
