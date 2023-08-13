@@ -9,8 +9,6 @@ export const metadata = {
 const SkillsPage = async () => {
   const data = await getSkillsPageContent();
 
-  console.log(data);
-
   return <>Skills</>;
 };
 

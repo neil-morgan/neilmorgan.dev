@@ -4,7 +4,6 @@ import { Post } from "@/lib/mongodb";
 export const resolvers = {
   Query: {
     postsData: async () => {
-      console.log(true);
       return await Post.find({});
     },
 
