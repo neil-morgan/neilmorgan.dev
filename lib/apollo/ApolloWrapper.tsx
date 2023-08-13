@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
 
 const makeClient = () => {
   const httpLink = new HttpLink({
-    uri: "/api/graphql",
+    uri: "/api/server",
     fetchOptions: { cache: "no-store" },
   });
 
