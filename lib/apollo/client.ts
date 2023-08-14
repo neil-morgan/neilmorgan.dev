@@ -5,6 +5,7 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
+// import absoluteUrl from "next-absolute-url";
 import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/constants";
 
 const {
@@ -24,17 +25,15 @@ const {
 // https://www.apollographql.com/docs/apollo-server/security/cors/
 
 const dbLink = createHttpLink({
-  uri:
-   process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/api/server"
-      : "https://neilmorgan.dev/api/server",
-  fetchOptions: {
-    mode: "no-cors",
-  },
+  uri: `${
+    process.env.VERCEL_URL ? process.env.VERCEL_URL : "http://localhost:3000"
+  }/api/server`,
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
   const isPreviewMode = operation.getContext().isPreviewMode || false;
+
+  console.log(process.env.VERCEL_URL);
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
