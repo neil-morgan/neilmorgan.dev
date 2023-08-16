@@ -16,9 +16,9 @@ const {
 const dbLink = createHttpLink({
   uri: `${
     process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}/`
-      : "http://localhost:3000/"
-  }api/server`,
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"
+  }/api/server`,
 });
 
 const cmsLink = new ApolloLink((operation, forward) => {
