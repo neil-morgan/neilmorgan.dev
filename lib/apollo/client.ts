@@ -24,6 +24,8 @@ const dbLink = createHttpLink({
 const cmsLink = new ApolloLink((operation, forward) => {
   const isPreviewMode = operation.getContext().isPreviewMode || false;
 
+  console.log(`https://${process.env.VERCEL_URL}`);
+
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
     fetchOptions: {
