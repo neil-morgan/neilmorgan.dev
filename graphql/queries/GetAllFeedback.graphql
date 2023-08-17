@@ -1,0 +1,7 @@
+query GetAllFeedback {
+  feedbackCollection {
+    items {
+      name
+    }
+  }
+}

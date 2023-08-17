@@ -1,14 +1,14 @@
 import { getClient } from "@/lib/apollo";
-import { GetAllSkillsDocument } from "@/graphql";
+import { GetAllProjectsDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 
 const { CMS } = APOLLO_CLIENTS;
 
-export const getSkillsPageContent = async () => {
+export const getAllProjectsContent = async () => {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: GetAllSkillsDocument,
+    query: GetAllProjectsDocument,
   });
 
-  return data?.skillCollection?.items;
+  return data?.projectCollection?.items;
 };

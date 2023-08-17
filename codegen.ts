@@ -4,7 +4,15 @@ import { CONTENTFUL_BASE_URL } from "./constants";
 
 loadEnvConfig(process.cwd());
 
-const dbSchema = { [`http://localhost:3000/api/server`]: {} };
+const dbSchema = {
+  [process.env.NEXT_PUBLIC_APOLLO_SERVER_URL]: {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: process.env.NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
+    },
+  },
+};
+
 const cmsSchema = {
   [`${CONTENTFUL_BASE_URL}${process.env.CONTENTFUL_SPACE_ID}`]: {
     headers: {

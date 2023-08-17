@@ -5,7 +5,7 @@ import { groupByCategory } from "@/helpers";
 
 const { CMS } = APOLLO_CLIENTS;
 
-export const getPostsPageContent = async () => {
+export const getAllPostsContent = async () => {
   const { data: postsContent } = await getClient().query({
     context: { clientName: CMS },
     query: GetAllPostsDocument,

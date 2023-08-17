@@ -3,7 +3,7 @@ import { getClient } from "@/lib/apollo";
 import { GetCategoryBySlugDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { Posts } from "@/components/organisms";
-import { getPostsCategoryPageContent } from "@/services";
+import { getAllPostsCategoryContent } from "@/services";
 
 export const revalidate = 1;
 
@@ -24,6 +24,6 @@ const PostCategoryPage = async ({
   params,
 }: {
   params: { category: string };
-}) => <Posts posts={await getPostsCategoryPageContent(params.category)} />;
+}) => <Posts posts={await getAllPostsCategoryContent(params.category)} />;
 
 export default PostCategoryPage;

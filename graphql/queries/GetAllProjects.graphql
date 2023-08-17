@@ -1,0 +1,7 @@
+query GetAllProjects {
+  projectCollection {
+    items {
+      title
+    }
+  }
+}

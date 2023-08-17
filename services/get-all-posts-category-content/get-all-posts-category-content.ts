@@ -5,7 +5,7 @@ import type { GroupedPostType } from "@/types";
 
 const { CMS } = APOLLO_CLIENTS;
 
-export const getPostsCategoryPageContent = async (slug: string) => {
+export const getAllPostsCategoryContent = async (slug: string) => {
   const { data } = await getClient().query({
     context: { clientName: CMS },
     query: GetCategoryPageDocument,

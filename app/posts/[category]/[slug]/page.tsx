@@ -5,7 +5,7 @@ import { GetAllPostsSlugsDocument, GetPostBySlugDocument } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/constants";
 import { PostTemplate } from "@/components/templates";
 import { buildRichtextHeadings } from "@/helpers";
-import { getPostPageContent } from "@/services";
+import { getPostContent } from "@/services";
 
 export const revalidate = 1;
 
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
 
-  const content = (await getPostPageContent(
+  const content = (await getPostContent(
     params.slug,
     isEnabled,
   )) as PostProps;

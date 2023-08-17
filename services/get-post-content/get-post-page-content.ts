@@ -9,7 +9,7 @@ import { APOLLO_CLIENTS } from "@/constants";
 
 const { CMS, DB } = APOLLO_CLIENTS;
 
-export const getPostPageContent = async (
+export const getPostContent = async (
   slug: string,
   isPreviewMode: boolean,
 ) => {

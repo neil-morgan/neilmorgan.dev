@@ -304,6 +304,87 @@ export enum EntryOrder {
   SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type Feedback = Entry & {
+  __typename?: "Feedback";
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom: Maybe<FeedbackLinkingCollections>;
+  name: Maybe<Scalars["String"]["output"]>;
+  role: Maybe<Scalars["String"]["output"]>;
+  sys: Sys;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackNameArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackRoleArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type FeedbackCollection = {
+  __typename?: "FeedbackCollection";
+  items: Array<Maybe<Feedback>>;
+  limit: Scalars["Int"]["output"];
+  skip: Scalars["Int"]["output"];
+  total: Scalars["Int"]["output"];
+};
+
+export type FeedbackFilter = {
+  AND: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  name: InputMaybe<Scalars["String"]["input"]>;
+  name_contains: InputMaybe<Scalars["String"]["input"]>;
+  name_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  name_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  name_not: InputMaybe<Scalars["String"]["input"]>;
+  name_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  name_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  role: InputMaybe<Scalars["String"]["input"]>;
+  role_contains: InputMaybe<Scalars["String"]["input"]>;
+  role_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  role_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  role_not: InputMaybe<Scalars["String"]["input"]>;
+  role_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  role_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  sys: InputMaybe<SysFilter>;
+};
+
+export type FeedbackLinkingCollections = {
+  __typename?: "FeedbackLinkingCollections";
+  entryCollection: Maybe<EntryCollection>;
+};
+
+export type FeedbackLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export enum FeedbackOrder {
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  RoleAsc = "role_ASC",
+  RoleDesc = "role_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
 export enum ImageFormat {
   Avif = "AVIF",
   /** JPG image format. */
@@ -830,6 +911,8 @@ export type Query = {
   asset: Maybe<Asset>;
   assetCollection: Maybe<AssetCollection>;
   entryCollection: Maybe<EntryCollection>;
+  feedback: Maybe<Feedback>;
+  feedbackCollection: Maybe<FeedbackCollection>;
   post: Maybe<Post>;
   postCategory: Maybe<PostCategory>;
   postCategoryCollection: Maybe<PostCategoryCollection>;
@@ -870,6 +953,21 @@ export type QueryEntryCollectionArgs = {
   preview: InputMaybe<Scalars["Boolean"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<EntryFilter>;
+};
+
+export type QueryFeedbackArgs = {
+  id: Scalars["String"]["input"];
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QueryFeedbackCollectionArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  locale: InputMaybe<Scalars["String"]["input"]>;
+  order: InputMaybe<Array<InputMaybe<FeedbackOrder>>>;
+  preview: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<FeedbackFilter>;
 };
 
 export type QueryPostArgs = {
@@ -1543,6 +1641,7 @@ export type PostContentFragment = {
       entries: {
         __typename?: "PostBodyEntries";
         inline: Array<
+          | { __typename: "Feedback"; sys: { __typename?: "Sys"; id: string } }
           | {
               __typename: "Post";
               title: string | null;
@@ -1567,6 +1666,7 @@ export type PostContentFragment = {
           | null
         >;
         block: Array<
+          | { __typename: "Feedback"; sys: { __typename?: "Sys"; id: string } }
           | {
               __typename: "Post";
               title: string | null;
@@ -1644,6 +1744,16 @@ export type UpdatePostLikesByIdMutation = {
   } | null;
 };
 
+export type GetAllFeedbackQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllFeedbackQuery = {
+  __typename?: "Query";
+  feedbackCollection: {
+    __typename?: "FeedbackCollection";
+    items: Array<{ __typename?: "Feedback"; name: string | null } | null>;
+  } | null;
+};
+
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllPostsQuery = {
@@ -1692,6 +1802,16 @@ export type GetAllPostsSlugsQuery = {
         slug: string | null;
       } | null;
     } | null>;
+  } | null;
+};
+
+export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllProjectsQuery = {
+  __typename?: "Query";
+  projectCollection: {
+    __typename?: "ProjectCollection";
+    items: Array<{ __typename?: "Project"; title: string | null } | null>;
   } | null;
 };
 
@@ -1810,6 +1930,10 @@ export type GetPostBySlugQuery = {
             __typename?: "PostBodyEntries";
             inline: Array<
               | {
+                  __typename: "Feedback";
+                  sys: { __typename?: "Sys"; id: string };
+                }
+              | {
                   __typename: "Post";
                   title: string | null;
                   slug: string | null;
@@ -1839,6 +1963,10 @@ export type GetPostBySlugQuery = {
               | null
             >;
             block: Array<
+              | {
+                  __typename: "Feedback";
+                  sys: { __typename?: "Sys"; id: string };
+                }
               | {
                   __typename: "Post";
                   title: string | null;
@@ -2384,6 +2512,40 @@ export const UpdatePostLikesByIdDocument = {
   UpdatePostLikesByIdMutation,
   UpdatePostLikesByIdMutationVariables
 >;
+export const GetAllFeedbackDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAllFeedback" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "feedbackCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAllFeedbackQuery, GetAllFeedbackQueryVariables>;
 export const GetAllPostsDocument = {
   kind: "Document",
   definitions: [
@@ -2593,6 +2755,40 @@ export const GetAllPostsSlugsDocument = {
   GetAllPostsSlugsQuery,
   GetAllPostsSlugsQueryVariables
 >;
+export const GetAllProjectsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAllProjects" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "projectCollection" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAllProjectsQuery, GetAllProjectsQueryVariables>;
 export const GetAllSkillsDocument = {
   kind: "Document",
   definitions: [
