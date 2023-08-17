@@ -10,9 +10,7 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
 
-const { APOLLO_SERVER_URL, APOLLO_SERVER_TOKEN, NODE_ENV } = process.env;
-
-if (NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   setVerbosity("debug");
   loadDevMessages();
   loadErrorMessages();
@@ -20,10 +18,10 @@ if (NODE_ENV === "development") {
 
 const makeClient = () => {
   const httpLink = new HttpLink({
-    uri: APOLLO_SERVER_URL,
+    uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URL,
     headers: {
       "Content-Type": "application/json",
-      Authorization: APOLLO_SERVER_TOKEN,
+      Authorization: process.env.NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
     },
     fetchOptions: { cache: "no-store" },
   });

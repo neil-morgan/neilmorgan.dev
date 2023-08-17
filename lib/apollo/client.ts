@@ -11,15 +11,15 @@ const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_DELIVERY_TOKEN,
   CONTENTFUL_PREVIEW_TOKEN,
-  APOLLO_SERVER_URL,
-  APOLLO_SERVER_TOKEN,
+  NEXT_PUBLIC_APOLLO_SERVER_URL,
+  NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
 } = process.env;
 
 const dbLink = createHttpLink({
-  uri: APOLLO_SERVER_URL,
+  uri: NEXT_PUBLIC_APOLLO_SERVER_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: APOLLO_SERVER_TOKEN,
+    Authorization: NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
   },
 });
 
