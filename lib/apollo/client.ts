@@ -7,16 +7,6 @@ import {
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/constants";
 
-declare var process: {
-  env: {
-    CONTENTFUL_SPACE_ID: string;
-    CONTENTFUL_DELIVERY_TOKEN: string;
-    CONTENTFUL_PREVIEW_TOKEN: string;
-    APOLLO_SERVER_URL: string;
-    APOLLO_SERVER_TOKEN: string;
-  };
-};
-
 const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_DELIVERY_TOKEN,
