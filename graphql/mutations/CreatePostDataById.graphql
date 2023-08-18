@@ -1,6 +1,0 @@
-mutation CreatePostDataById($likes: Int, $id: ID) {
-  createPostData(likes: $likes, _id: $id) {
-    likes
-    _id
-  }
-}

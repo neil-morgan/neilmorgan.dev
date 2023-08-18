@@ -4,7 +4,7 @@ import { Wrapper, Main } from "./styles";
 import { DraftMode } from "@/components/molecules";
 import { Footer, Header, Provider } from "@/components/organisms";
 import { IconDefs, ConditionalWrapper } from "@/components/atoms";
-import { getHeaderContent } from "@/services";
+import { getHeader } from "@/services";
 
 export const revalidate = 1;
 
@@ -24,7 +24,7 @@ export default async function RootLayout({
             if={isEnabled}
             wrapWith={children => <DraftMode>{children}</DraftMode>}>
             <Wrapper>
-              <Header content={await getHeaderContent()} />
+              <Header content={await getHeader()} />
               <Main>{children}</Main>
               <Footer />
             </Wrapper>

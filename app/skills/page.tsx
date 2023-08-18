@@ -1,4 +1,4 @@
-import { getAllSkillsContent } from "@/services";
+import { getAllSkills } from "@/services";
 
 export const revalidate = 1;
 
@@ -7,9 +7,7 @@ export const metadata = {
 };
 
 const SkillsPage = async () => {
-  const data = await getAllSkillsContent();
-
-  console.log(data);
+  const data = await getAllSkills();
 
   return <>Skills</>;
 };

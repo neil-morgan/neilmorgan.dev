@@ -1,7 +1,0 @@
-query GetAllSkills {
-  skillCollection {
-    items {
-      title
-    }
-  }
-}

@@ -1,4 +1,0 @@
-fragment PostCategoryContentFragment on PostCategory {
-  title
-  slug
-}

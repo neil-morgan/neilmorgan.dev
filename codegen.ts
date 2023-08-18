@@ -24,9 +24,9 @@ const cmsSchema = {
 
 const config: CodegenConfig = {
   overwrite: true,
-  hooks: { afterAllFileWrite: ["prettier --write"] },
+  // hooks: { afterAllFileWrite: ["prettier --write"] },
   schema: [cmsSchema, dbSchema],
-  documents: "./graphql/**/*.graphql",
+  documents: "**/*.graphql",
   generates: {
     "graphql/generated.ts": {
       plugins: ["typescript", "typescript-operations", "typed-document-node"],

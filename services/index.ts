@@ -1,7 +1,7 @@
-export { getAllFeedbackContent } from "./get-all-feedback-content";
-export { getAllPostsCategoryContent } from "./get-all-posts-category-content";
-export { getAllPostsContent } from "./get-all-posts-content";
-export { getAllProjectsContent } from "./get-all-projects-content";
-export { getAllSkillsContent } from "./get-all-skills-content";
-export { getHeaderContent } from "./get-header-content";
-export { getPostContent } from "./get-post-content";
+export { getAllFeedback } from "./get-all-feedback";
+export { getAllPostCategoryPosts } from "./get-all-post-category-posts";
+export { getAllPosts } from "./get-all-posts";
+export { getAllProjects } from "./get-all-projects";
+export { getAllSkills } from "./get-all-skills";
+export { getHeader } from "./get-header";
+export { getPost } from "./get-post";

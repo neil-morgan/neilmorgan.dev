@@ -1,0 +1,10 @@
+query AllSkills {
+  allSkills: skillCollection {
+    items {
+      title
+      category {
+        ...SkillCategoryFragment
+      }
+    }
+  }
+}

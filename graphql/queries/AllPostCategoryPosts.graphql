@@ -1,0 +1,13 @@
+query AllPostCategoryPosts($slug: String!) {
+  posts: postCollection(where: { category: { slug_contains: $slug } }) {
+    items {
+      title
+      description
+      date
+      slug
+      category {
+        ...PostCategoryFragment
+      }
+    }
+  }
+}

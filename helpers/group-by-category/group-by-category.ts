@@ -5,7 +5,7 @@ export const groupByCategory = <T extends ItemType<any>>(items: T[]) =>
     items.reduce((acc: { [key: string]: GroupedItemType<T> }, item: T) => {
       const category = item?.category;
 
-      if (!category || !category.title || !category.slug) {
+      if (!category) {
         return acc;
       }
 

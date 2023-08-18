@@ -1,6 +1,0 @@
-query GetAllPostsData {
-  postsData {
-    _id
-    likes
-  }
-}

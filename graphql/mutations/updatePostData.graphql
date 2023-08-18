@@ -1,0 +1,7 @@
+
+mutation updatePostData($id: ID, $likes: Int) {
+  updatePostData(_id: $id, likes: $likes) {
+    likes
+    _id
+  }
+}

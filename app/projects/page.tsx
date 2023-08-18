@@ -1,4 +1,4 @@
-import { getAllProjectsContent } from "@/services";
+import { getAllProjects } from "@/services";
 
 export const revalidate = 1;
 
@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 const ProjectsPage = async () => {
-  const data = await getAllProjectsContent();
+  const data = await getAllProjects();
 
   console.log(data);
 

@@ -1,0 +1,10 @@
+query AllPostsSlugs {
+  allPostsSlugs: postCollection(where: { slug_exists: true }) {
+    items {
+      slug
+      category {
+        ...PostCategoryFragment
+      }
+    }
+  }
+}
