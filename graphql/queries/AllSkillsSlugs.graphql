@@ -1,0 +1,10 @@
+query AllSkillsSlugs {
+  allSkillsSlugs: skillCollection(where: { slug_exists: true }) {
+    items {
+      slug
+      category {
+        ...SkillCategoryFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query AllSkillCategoryItems($slug: String!) {
+  skills: skillCollection(where: { category: { slug_contains: $slug } }) {
+    items {
+      title
+      proficiency
+      category {
+        ...SkillCategoryFragment
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ export const getHeader = async (): Promise<GetHeaderContentReturnType> => {
 
   const social = data.socialItems?.items as SocialItem[];
   const postCategories = data.postCategories?.items as CategoryType[];
+  const skillCategories = data.skillCategories?.items as CategoryType[];
 
   return {
     social,
@@ -23,7 +24,6 @@ export const getHeader = async (): Promise<GetHeaderContentReturnType> => {
         title: "Posts",
         slug: "/posts",
         list: {
-          columns: "2",
           options: postCategories.map(({ title, slug }) => ({
             title,
             slug: `/posts/${slug}`,
@@ -34,22 +34,10 @@ export const getHeader = async (): Promise<GetHeaderContentReturnType> => {
         title: "Skills",
         slug: "/skills",
         list: {
-          columns: "1",
-          options: [
-            {
-              icon: "cube",
-              title: "Hard skills",
-              slug: "/skills/hard-skills",
-              description: "Aliquip sit mollit occaecat ipsum enim ad est.",
-            },
-            {
-              icon: "heart",
-              title: "Soft skills",
-              slug: "/skills/hard-skills",
-              description:
-                "Non sunt officia officia ipsum cupidatat exercitation eu fugiat.",
-            },
-          ],
+          options: skillCategories.map(({ title, slug }) => ({
+            title,
+            slug: `/skills/${slug}`,
+          })),
         },
       },
       {

@@ -1,8 +1,8 @@
-import type { GroupedItemType, ItemType } from "@/types";
+import type { GroupedByCategoryType, ItemType } from "@/types";
 
 export const groupByCategory = <T extends ItemType<any>>(items: T[]) =>
   Object.values(
-    items.reduce((acc: { [key: string]: GroupedItemType<T> }, item: T) => {
+    items.reduce((acc: { [key: string]: GroupedByCategoryType<T> }, item: T) => {
       const category = item?.category;
 
       if (!category) {

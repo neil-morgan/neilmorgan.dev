@@ -8,12 +8,11 @@ import {
   DesktopItem,
   DesktopItemHeading,
   DesktopItemLink,
-  DesktopItemText,
   DesktopLink,
   DesktopList,
 } from "./styles";
 import type { DesktopNavProps } from "./types";
-import { Icon, HorizontalSeparator } from "@/components/atoms";
+import { Icon } from "@/components/atoms";
 
 export const DesktopNav = ({
   items,
@@ -32,28 +31,17 @@ export const DesktopNav = ({
               setOpen={setOpenItem}
               anchor={
                 <PopoverButton onClick={() => setOpenItem(i)}>
-                  <Icon name="chevronDown" />
+                  <Icon name="ChevronDown" />
                 </PopoverButton>
               }>
-              <PopoverSection columns={list.columns}>
-                {list.options.map(({ title, slug, description, icon }, i) => (
+              <PopoverSection columns={2}>
+                {list.options.map(({ title, slug }, i) => (
                   <Fragment key={i}>
                     <DesktopItemLink
                       href={slug}
                       onClick={() => setOpenItem(null)}>
-                      <DesktopItemHeading>
-                        {icon && (
-                          <Icon name={icon} css={{ marginRight: "$3" }} />
-                        )}
-                        {title}
-                      </DesktopItemHeading>
-                      {description && (
-                        <DesktopItemText>{description}</DesktopItemText>
-                      )}
+                      <DesktopItemHeading>{title}</DesktopItemHeading>
                     </DesktopItemLink>
-                    {list.columns === "1" && i !== list.options.length - 1 && (
-                      <HorizontalSeparator size="sm" />
-                    )}
                   </Fragment>
                 ))}
               </PopoverSection>

@@ -2,6 +2,8 @@ export { getAllFeedback } from "./get-all-feedback";
 export { getAllPostCategoryPosts } from "./get-all-post-category-posts";
 export { getAllPosts } from "./get-all-posts";
 export { getAllProjects } from "./get-all-projects";
+export { getAllSkillCategoryItems } from "./get-all-skill-category-items";
 export { getAllSkills } from "./get-all-skills";
 export { getHeader } from "./get-header";
 export { getPost } from "./get-post";
+export { getSkill } from "./get-skill";

@@ -18,7 +18,7 @@ export const MobileNav = ({
         size="lg"
         priority="nav"
         onClick={() => setOpenItem(1)}
-        icon={<Icon name="hamburger-thick" />}
+        icon={<Icon name="Hamburger" />}
       />
     }>
     <PopoverSection columns="1" gap="mobile">

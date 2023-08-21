@@ -5,6 +5,12 @@ query Header {
     }
   }
 
+  skillCategories: skillCategoryCollection {
+    items {
+      ...SkillCategoryFragment
+    }
+  }
+
   socialItems: socialItemCollection {
     items {
       title

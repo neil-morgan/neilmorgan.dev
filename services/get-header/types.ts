@@ -7,7 +7,6 @@ export type GetHeaderContentReturnType = {
         title: string;
         slug: string;
         list: {
-          columns: "2" | "1";
           options: {
             title: string;
             slug: string;
@@ -18,9 +17,7 @@ export type GetHeaderContentReturnType = {
         title: string;
         slug: string;
         list: {
-          columns: "2" | "1";
           options: {
-            icon: string;
             title: string;
             slug: string;
             description: string;

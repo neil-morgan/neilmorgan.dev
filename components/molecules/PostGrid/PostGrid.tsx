@@ -24,7 +24,7 @@ export const PostGrid = ({ category, items }: GroupedPostType) => (
             href={`/posts/${category?.slug}/${slug}`}
             css={{ marginTop: "$6" }}
             size="md"
-            rightIcon={<Icon name="arrowRight" />}>
+            rightIcon={<Icon name="ArrowRight" />}>
             READ
           </Button>
         </Pod>

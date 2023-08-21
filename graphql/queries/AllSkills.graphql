@@ -2,6 +2,7 @@ query AllSkills {
   allSkills: skillCollection {
     items {
       title
+      proficiency
       category {
         ...SkillCategoryFragment
       }

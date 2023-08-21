@@ -9,7 +9,7 @@ export const metadata = {
 const SkillsPage = async () => {
   const data = await getAllSkills();
 
-  return <>Skills</>;
+  return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
 };
 
 export default SkillsPage;
