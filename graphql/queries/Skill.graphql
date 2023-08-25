@@ -1,4 +1,4 @@
-query Skill($slug: String!, $preview: Boolean = false) {
+query Skill($slug: String, $preview: Boolean = false) {
   skill: skillCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
     items {
       sys {
@@ -7,6 +7,15 @@ query Skill($slug: String!, $preview: Boolean = false) {
       title
       slug
       proficiency
+    }
+  }
+
+  slugs: skillCollection(where: { slug_exists: true }) {
+    items {
+      slug
+      category {
+        ...SkillCategoryFragment
+      }
     }
   }
 }

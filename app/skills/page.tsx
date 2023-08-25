@@ -3,7 +3,7 @@ import { getAllSkills } from "@/services";
 export const revalidate = 1;
 
 export const metadata = {
-  title: "All posts",
+  title: "All skills",
 };
 
 const SkillsPage = async () => {

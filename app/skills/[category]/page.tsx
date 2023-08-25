@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
   return { title: `${data?.skillCategory?.items[0]?.title} skills` };
 }
 
-const PostCategoryPage = async ({
+const SkillCategoryPage = async ({
   params,
 }: {
   params: { category: string };
@@ -30,4 +30,4 @@ const PostCategoryPage = async ({
   return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
 };
 
-export default PostCategoryPage;
+export default SkillCategoryPage;

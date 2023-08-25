@@ -28,11 +28,7 @@ export async function generateStaticParams() {
     query: AllPostsSlugsDocument,
   });
 
-  if (!data || !data.allPostsSlugs || !data.allPostsSlugs.items) {
-    return [];
-  }
-
-  return data.allPostsSlugs.items.map(post => ({
+  return data?.allPostsSlugs?.items.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
   }));

@@ -2,7 +2,7 @@ import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { getClient } from "@/lib/apollo/client";
 import { APOLLO_CLIENTS } from "@/constants";
-import { GetPostBySlugDocument, type Post } from "@/graphql";
+import { PostDocument } from "@/graphql";
 
 const { query } = getClient();
 const { CMS } = APOLLO_CLIENTS;
@@ -18,12 +18,12 @@ export const GET = async (request: Request) => {
 
   const { data } = await query({
     context: { clientName: CMS },
-    query: GetPostBySlugDocument,
+    query: PostDocument,
     variables: { slug },
   });
 
-  const postCategory = data?.postCollection?.items[0]?.category?.slug;
-  const postSlug = data?.postCollection?.items[0]?.slug;
+  const postCategory = data?.post?.items[0]?.category?.slug;
+  const postSlug = data?.post?.items[0]?.slug;
 
   if (!data || !postSlug || !postCategory) {
     return new Response("Invalid slug", { status: 401 });

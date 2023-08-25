@@ -1,4 +1,4 @@
-import { getAllFeedbackContent } from "@/services";
+import { getAllFeedback } from "@/services";
 
 export const revalidate = 1;
 
@@ -7,11 +7,9 @@ export const metadata = {
 };
 
 const ProjectsPage = async () => {
-  const data = await getAllFeedbackContent();
+  const data = await getAllFeedback();
 
-  console.log(data);
-
-  return <>Projects</>;
+  return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
 };
 
 export default ProjectsPage;

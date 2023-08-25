@@ -6,4 +6,5 @@ export { getAllSkillCategoryItems } from "./get-all-skill-category-items";
 export { getAllSkills } from "./get-all-skills";
 export { getHeader } from "./get-header";
 export { getPost } from "./get-post";
+export { getProject } from "./get-project";
 export { getSkill } from "./get-skill";

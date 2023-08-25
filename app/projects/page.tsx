@@ -3,15 +3,13 @@ import { getAllProjects } from "@/services";
 export const revalidate = 1;
 
 export const metadata = {
-  title: "All posts",
+  title: "All projects",
 };
 
 const ProjectsPage = async () => {
   const data = await getAllProjects();
 
-  console.log(data);
-
-  return <>Projects</>;
+  return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
 };
 
 export default ProjectsPage;
