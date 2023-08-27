@@ -1,0 +1,12 @@
+query Category($slug: String!) {
+  skill: skillCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...SkillCategoryFragment
+    }
+  }
+  post: postCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...PostCategoryFragment
+    }
+  }
+}

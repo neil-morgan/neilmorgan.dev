@@ -1,6 +1,6 @@
 import { getClient } from "@/lib/apollo";
 import {
-  AllPostCategoryPostsDocument,
+  AllPostsCategoryDocument,
   type PostCategory,
   type Post,
 } from "@/graphql";
@@ -9,11 +9,10 @@ import type { GroupedPostType } from "@/types";
 
 const { CMS } = APOLLO_CLIENTS;
 
-export const getAllPostCategoryPosts = async (slug: string) => {
+export const getAllPostsCategory = async (slug: string) => {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: AllPostCategoryPostsDocument,
-    fetchPolicy: "cache-first",
+    query: AllPostsCategoryDocument,
     variables: {
       slug,
     },

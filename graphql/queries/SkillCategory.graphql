@@ -1,7 +1,0 @@
-query SkillCategory($slug: String!) {
-  skillCategory: skillCategoryCollection(where: { slug: $slug }, limit: 1) {
-    items {
-      ...SkillCategoryFragment
-    }
-  }
-}

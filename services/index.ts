@@ -1,10 +1,12 @@
 export { getAllFeedback } from "./get-all-feedback";
-export { getAllPostCategoryPosts } from "./get-all-post-category-posts";
 export { getAllPosts } from "./get-all-posts";
+export { getAllPostsCategory } from "./get-all-posts-category";
 export { getAllProjects } from "./get-all-projects";
-export { getAllSkillCategoryItems } from "./get-all-skill-category-items";
 export { getAllSkills } from "./get-all-skills";
+export { getAllSkillsCategory } from "./get-all-skills-category";
+export { getCategory } from "./get-category";
 export { getHeader } from "./get-header";
 export { getPost } from "./get-post";
+export { getPostData } from "./get-post-data";
 export { getProject } from "./get-project";
 export { getSkill } from "./get-skill";

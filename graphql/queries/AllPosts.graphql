@@ -1,5 +1,5 @@
 query AllPosts {
-  allPosts: postCollection(order: date_DESC, limit: 10) {
+  posts: postCollection(order: date_DESC) {
     items {
       sys {
         id

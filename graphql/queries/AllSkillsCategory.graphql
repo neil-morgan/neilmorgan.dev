@@ -1,4 +1,4 @@
-query AllSkillCategoryItems($slug: String!) {
+query AllSkillsCategory($slug: String!) {
   skills: skillCollection(where: { category: { slug_contains: $slug } }) {
     items {
       title

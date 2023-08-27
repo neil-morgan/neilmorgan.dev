@@ -1,6 +1,6 @@
 import { getClient } from "@/lib/apollo";
 import {
-  AllSkillCategoryItemsDocument,
+  AllSkillsCategoryDocument,
   type SkillCategory,
   type Skill,
 } from "@/graphql";
@@ -9,10 +9,10 @@ import { groupByProficiency } from "@/helpers";
 
 const { CMS } = APOLLO_CLIENTS;
 
-export const getAllSkillCategoryItems = async (slug: string) => {
+export const getAllSkillsCategory = async (slug: string) => {
   const { data } = await getClient().query({
     context: { clientName: CMS },
-    query: AllSkillCategoryItemsDocument,
+    query: AllSkillsCategoryDocument,
     fetchPolicy: "cache-first",
     variables: {
       slug,

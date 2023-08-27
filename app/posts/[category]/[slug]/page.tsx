@@ -1,34 +1,19 @@
 import { draftMode } from "next/headers";
-import type { SlugProps, MetaProps, PostProps } from "./types";
-import { getClient } from "@/lib/apollo";
-import { AllPostsSlugsDocument, PostDocument } from "@/graphql";
-import { APOLLO_CLIENTS } from "@/constants";
+import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
 import { buildRichtextHeadings } from "@/helpers";
-import { getPost } from "@/services";
+import { getPost, getPostData } from "@/services";
 
 export const revalidate = 1;
 
-const { CMS } = APOLLO_CLIENTS;
-
-export async function generateMetadata({ params }: MetaProps) {
-  const { data } = await getClient().query({
-    context: { clientName: CMS },
-    query: PostDocument,
-    variables: {
-      slug: params.slug,
-    },
-  });
-  return { title: data?.post?.items[0]?.title };
+export async function generateMetadata({ params }: SlugMetaProps) {
+  const { post } = await getPost(params.slug);
+  return { title: post.title };
 }
 
 export async function generateStaticParams() {
-  const { data } = await getClient().query({
-    context: { clientName: CMS },
-    query: AllPostsSlugsDocument,
-  });
-
-  return data?.allPostsSlugs?.items.map(post => ({
+  const { slugs } = await getPost();
+  return slugs?.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
   }));
@@ -36,13 +21,13 @@ export async function generateStaticParams() {
 
 const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
-
-  const content = (await getPost(params.slug, isEnabled)) as PostProps;
+  const { post } = await getPost(params.slug, isEnabled);
+  const { likes } = await getPostData(post.sys.id);
 
   return (
     <PostTemplate
-      content={content}
-      headings={buildRichtextHeadings(content?.body?.json.content)}
+      content={{ ...post, likes }}
+      headings={buildRichtextHeadings(post.body?.json.content)}
     />
   );
 };
