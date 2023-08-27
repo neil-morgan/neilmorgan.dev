@@ -13,6 +13,11 @@ export async function generateMetadata({ params }: SlugMetaProps) {
 
 export async function generateStaticParams() {
   const { slugs } = await getPost();
+
+  if (!slugs) {
+    return [];
+  }
+
   return slugs?.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
