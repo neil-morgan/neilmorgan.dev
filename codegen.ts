@@ -4,14 +4,7 @@ import { CONTENTFUL_BASE_URL } from "./constants";
 
 loadEnvConfig(process.cwd());
 
-const dbSchema = {
-  [process.env.NEXT_PUBLIC_APOLLO_SERVER_URL]: {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: process.env.NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
-    },
-  },
-};
+const dbSchema = `http://localhost:3000/api/server`;
 
 const cmsSchema = {
   [`${CONTENTFUL_BASE_URL}${process.env.CONTENTFUL_SPACE_ID}`]: {
@@ -24,7 +17,6 @@ const cmsSchema = {
 
 const config: CodegenConfig = {
   overwrite: true,
-  // hooks: { afterAllFileWrite: ["prettier --write"] },
   schema: [cmsSchema, dbSchema],
   documents: "**/*.graphql",
   generates: {
