@@ -18,11 +18,7 @@ if (process.env.NODE_ENV === "development") {
 
 const makeClient = () => {
   const httpLink = new HttpLink({
-    uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URL,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: process.env.NEXT_PUBLIC_APOLLO_SERVER_TOKEN,
-    },
+    uri: "/api/server",
     fetchOptions: { cache: "no-store" },
   });
 
