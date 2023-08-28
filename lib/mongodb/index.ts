@@ -1,2 +1,2 @@
-export { initializeMongoDB } from "./database";
+export { connectDb } from "./database";
 export { Post } from "./models";
