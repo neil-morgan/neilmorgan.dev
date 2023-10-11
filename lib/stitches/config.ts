@@ -24,8 +24,6 @@ const primaryA = Object.values(themePrimaryA);
 const secondary = Object.values(themeSecondary);
 const secondaryA = Object.values(themeSecondaryA);
 
-console.log(base);
-
 export const lightTheme = createTheme({
   colors: {
     buttonPrimaryColor: base[1],
