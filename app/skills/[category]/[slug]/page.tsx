@@ -14,8 +14,8 @@ export async function generateStaticParams() {
   const { slugs } = await getSkill();
 
   return slugs?.map(skill => ({
-    category: skill?.category?.slug,
-    slug: skill?.slug,
+    category: skill?.category?.slug as string,
+    slug: skill?.slug as string,
   }));
 }
 
