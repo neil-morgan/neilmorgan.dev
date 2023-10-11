@@ -4,6 +4,12 @@ import { PostTemplate } from "@/components/templates";
 import { buildRichtextHeadings } from "@/helpers";
 import { getPost, getPostData } from "@/services";
 
+import { getClient } from "@/lib/apollo";
+import { SlugsDocument } from "@/graphql";
+import { APOLLO_CLIENTS } from "@/constants";
+
+const { CMS } = APOLLO_CLIENTS;
+
 export const revalidate = 1;
 
 export async function generateMetadata({ params }: SlugMetaProps) {
@@ -11,27 +17,23 @@ export async function generateMetadata({ params }: SlugMetaProps) {
   return { title: post.title };
 }
 
-export async function generateStaticParams(): Promise<
-  {
-    category: string | null | undefined;
-    slug: string | null | undefined;
-  }[]
-> {
-  const { slugs } = await getPost();
+export async function generateStaticParams() {
+  const { data } = await getClient().query({
+    context: { clientName: CMS },
+    query: SlugsDocument,
+  });
 
-  const foo = slugs?.map(post => ({
+  if (!data?.slugs?.items) {
+    return [];
+  }
+
+  return data?.slugs?.items.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
-  })) as {
-    category: string | null | undefined;
-    slug: string | null | undefined;
-  }[];
-
-  return foo;
+  }));
 }
 
 const PostPage = async ({ params }: SlugProps) => {
-  console.log(params);
   const { isEnabled } = draftMode();
   const { post } = await getPost(params.slug, isEnabled);
   const { likes } = await getPostData(post.sys.id);
