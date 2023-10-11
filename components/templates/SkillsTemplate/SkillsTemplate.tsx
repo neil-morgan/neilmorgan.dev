@@ -1,7 +1,6 @@
 "use client";
 
 import { Container } from "@/components/atoms";
-import { SkillGrid } from "@/components/molecules";
 import type { GroupedSkillType } from "@/types";
 
 export const SkillsTemplate = ({
@@ -10,14 +9,8 @@ export const SkillsTemplate = ({
   skills: GroupedSkillType | GroupedSkillType[];
 }) => {
   return (
-    <Container css={{ marginTop: "$11" }}>
-      {Array.isArray(skills) ? (
-        skills.map(({ category, items }, i) => (
-          <div key={category.title}>asd</div>
-        ))
-      ) : (
-        <div>asd</div>
-      )}
+    <Container>
+      <pre>{JSON.stringify(skills, null, 2)}</pre>
     </Container>
   );
 };
