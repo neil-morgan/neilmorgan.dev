@@ -1,5 +1,6 @@
 import { CategoryMetaProps } from "@/types";
 import { getAllSkillsCategory, getCategory, getSkill } from "@/services";
+import { SkillsTemplate } from "@/components/templates";
 
 export const revalidate = 1;
 
@@ -25,10 +26,6 @@ const SkillCategoryPage = async ({
   params,
 }: {
   params: { category: string };
-}) => {
-  const data = await getAllSkillsCategory(params.category);
-
-  return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
-};
+}) => <SkillsTemplate skills={await getAllSkillsCategory(params.category)} />;
 
 export default SkillCategoryPage;
