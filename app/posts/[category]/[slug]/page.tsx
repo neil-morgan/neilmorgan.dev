@@ -11,13 +11,23 @@ export async function generateMetadata({ params }: SlugMetaProps) {
   return { title: post.title };
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  {
+    category: string | null | undefined;
+    slug: string | null | undefined;
+  }[]
+> {
   const { slugs } = await getPost();
 
-  return slugs?.map(post => ({
-    category: post?.category?.slug as string,
-    slug: post?.slug as string,
-  }));
+  const foo = slugs?.map(post => ({
+    category: post?.category?.slug,
+    slug: post?.slug,
+  })) as {
+    category: string | null | undefined;
+    slug: string | null | undefined;
+  }[];
+
+  return foo;
 }
 
 const PostPage = async ({ params }: SlugProps) => {

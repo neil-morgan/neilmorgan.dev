@@ -13,9 +13,13 @@ export async function generateMetadata({ params }: SlugMetaProps) {
 export async function generateStaticParams() {
   const { slugs } = await getSkill();
 
+  if (!slugs) {
+    return [];
+  }
+
   return slugs?.map(skill => ({
-    category: skill?.category?.slug as string,
-    slug: skill?.slug as string,
+    category: skill?.category?.slug,
+    slug: skill?.slug,
   }));
 }
 
