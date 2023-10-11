@@ -4,15 +4,18 @@ import { getAllPostsCategory, getCategory } from "@/services";
 
 export const revalidate = 1;
 
-export async function generateMetadata({ params }: CategoryMetaProps) {
-  const data = await getCategory(params.category);
-  return { title: `${data?.title} articles` };
-}
+// export async function generateMetadata({ params }: CategoryMetaProps) {
+//   const data = await getCategory(params.category);
+//   return { title: `${data?.title} articles` };
+// }
 
-const PostCategoryPage = async ({
-  params,
-}: {
-  params: { category: string };
-}) => <PostsTemplate posts={await getAllPostsCategory(params.category)} />;
+const PostCategoryPage = async ({}: // params,
+{
+  // params: { category: string };
+}) => <div>hello</div>;
+
+{
+  /* <PostsTemplate posts={await getAllPostsCategory(params.category)} />; */
+}
 
 export default PostCategoryPage;
