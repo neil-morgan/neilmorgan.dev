@@ -1,6 +1,7 @@
 export { AspectRatio } from "./AspectRatio";
 export { Blockquote } from "./Blockquote";
 export { Button } from "./Button";
+export { Grid } from "./Grid";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
 export { Heading } from "./Heading";

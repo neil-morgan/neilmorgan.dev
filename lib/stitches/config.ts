@@ -26,6 +26,9 @@ const secondaryA = Object.values(themeSecondaryA);
 
 export const lightTheme = createTheme({
   colors: {
+    primary: primary[9],
+    secondary: secondary[9],
+
     buttonPrimaryColor: base[1],
     buttonPrimaryBackground: primary[9],
     buttonPrimaryBackgroundHover: primary[10],
@@ -50,6 +53,9 @@ export const lightTheme = createTheme({
 
 export const darkTheme = createTheme({
   colors: {
+    primary: primary[7],
+    secondary: secondary[7],
+
     buttonPrimaryColor: primary[11],
     buttonPrimaryBackground: primary[7],
     buttonPrimaryBackgroundHover: primary[1],

@@ -3,7 +3,6 @@ import { styled } from "@/lib/stitches";
 export const HeadingElement = styled("h2", {
   position: "relative",
   lineHeight: "$heading",
-  color: "$text",
   "&:hover": { "& a": { opacity: 1 } },
 
   variants: {
@@ -34,6 +33,18 @@ export const HeadingElement = styled("h2", {
       },
     },
 
+    color: {
+      primary: {
+        color: "$primary",
+      },
+      secondary: {
+        color: "$secondary",
+      },
+      text: {
+        color: "$text",
+      },
+    },
+
     style: {
       print: {
         letterSpacing: "$widest",
@@ -44,6 +55,7 @@ export const HeadingElement = styled("h2", {
 
   defaultVariants: {
     size: "h2",
+    color: "text",
   },
 });
 

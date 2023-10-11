@@ -1,1 +1,0 @@
-export { SkillGrid } from "./SkillGrid";

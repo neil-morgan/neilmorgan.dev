@@ -1,6 +1,6 @@
 import { styled } from "@/lib/stitches";
 
-export const Pod = styled("div", {
+export const Wrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
   backgroundColor: "$backgroundClose",
