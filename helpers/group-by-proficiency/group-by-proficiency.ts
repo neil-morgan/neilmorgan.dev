@@ -1,22 +1,24 @@
-import type { GroupedByProficiencyType } from "@/types";
-import { type Skill } from "@/graphql";
+import type {
+  ProficiencyConstraintType,
+  GroupedByProficiencyType,
+} from "@/types";
 
-export const groupByProficiency = (
-  skills: Skill[],
-): GroupedByProficiencyType[] => {
-  const proficiencyMap = new Map<string, Skill[]>();
+export const groupByProficiency = <T extends ProficiencyConstraintType<any>>(
+  items: T[],
+): GroupedByProficiencyType<T>[] => {
+  const proficiencyMap = new Map<string, T[]>();
 
-  for (const skill of skills) {
-    if (!skill.proficiency) continue;
-    const proficiency = skill.proficiency;
+  for (const item of items) {
+    if (!item.proficiency) continue;
+    const proficiency = item.proficiency;
     if (!proficiencyMap.has(proficiency)) {
       proficiencyMap.set(proficiency, []);
     }
-    proficiencyMap.get(proficiency)?.push(skill);
+    proficiencyMap.get(proficiency)?.push(item);
   }
 
   return Array.from(proficiencyMap, ([title, items]) => ({
-    title,
+    proficiency: title,
     items,
   }));
 };

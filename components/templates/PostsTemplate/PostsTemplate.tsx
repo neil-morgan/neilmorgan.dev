@@ -4,7 +4,7 @@ import { Container } from "@/components/atoms";
 import { PostGrid } from "@/components/molecules";
 import type { GroupedPostType } from "@/types";
 
-export const Posts = ({
+export const PostsTemplate = ({
   posts,
 }: {
   posts: GroupedPostType | GroupedPostType[];

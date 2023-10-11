@@ -1,4 +1,4 @@
-import type { Post, SkillCategory, Skill } from "@/graphql";
+import type { Post, Skill } from "@/graphql";
 
 type RichtextHeadingType = { label: string; href: string };
 
@@ -12,25 +12,35 @@ export type CategoryType = {
   slug: string;
 };
 
-export type ItemType<T extends CategoryType> = {
+export type ProficiencyType = {
+  title: string;
+};
+
+export type CategoryConstraintType<T extends CategoryType> = {
   category: T;
   [key: string]: any;
 };
 
-export type GroupedByCategoryType<T extends ItemType<any>> = {
+export type ProficiencyConstraintType<T extends ProficiencyType> = {
+  category: T;
+  [key: string]: any;
+};
+
+export type GroupedByCategoryType<T extends CategoryConstraintType<any>> = {
   category: T["category"];
   items: T[];
 };
 
-export type GroupedByProficiencyType = {
-  title: string;
-  items: Skill[];
+export type GroupedByProficiencyType<T> = {
+  proficiency: string;
+  items: T[];
 };
 
 export type GroupedPostType = GroupedByCategoryType<Post>;
+
 export type GroupedSkillType = {
-  category: SkillCategory;
-  items: GroupedByProficiencyType[];
+  category: CategoryType;
+  items: GroupedByProficiencyType<Skill>[];
 };
 
 type NavigationOptionType = {

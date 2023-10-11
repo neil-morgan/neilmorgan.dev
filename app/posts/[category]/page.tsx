@@ -1,5 +1,5 @@
 import { CategoryMetaProps } from "@/types";
-import { Posts } from "@/components/organisms";
+import { PostsTemplate } from "@/components/templates";
 import { getAllPostsCategory, getCategory } from "@/services";
 
 export const revalidate = 1;
@@ -13,6 +13,6 @@ const PostCategoryPage = async ({
   params,
 }: {
   params: { category: string };
-}) => <Posts posts={await getAllPostsCategory(params.category)} />;
+}) => <PostsTemplate posts={await getAllPostsCategory(params.category)} />;
 
 export default PostCategoryPage;

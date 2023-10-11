@@ -1,6 +1,6 @@
-import { type Skill } from "@/graphql";
+import type { ProficiencyType } from "@/types";
 
-export type GroupedByProficiencyType = {
-  title: string;
-  items: Skill[];
+export type ProficiencyConstraintType<T extends ProficiencyType> = {
+  category: T;
+  [key: string]: any;
 };

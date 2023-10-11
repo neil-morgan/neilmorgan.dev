@@ -24,6 +24,8 @@ const primaryA = Object.values(themePrimaryA);
 const secondary = Object.values(themeSecondary);
 const secondaryA = Object.values(themeSecondaryA);
 
+console.log(base);
+
 export const lightTheme = createTheme({
   colors: {
     buttonPrimaryColor: base[1],
@@ -74,11 +76,15 @@ export const darkTheme = createTheme({
 
 export const globalStyles = globalCss({
   html: {
+    height: "100%",
     boxSizing: "border-box",
     backgroundColor: "$backgroundFar",
     color: "$textBase",
     transition: "$theme",
     scrollBehavior: "smooth",
+  },
+  body: {
+    height: "100%",
   },
   a: { textDecoration: "none" },
   "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },

@@ -20,15 +20,12 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Provider>
           <IconDefs />
-          <ConditionalWrapper
-            if={isEnabled}
-            wrapWith={children => <DraftMode>{children}</DraftMode>}>
-            <Wrapper>
-              <Header content={await getHeader()} />
-              <Main>{children}</Main>
-              <Footer />
-            </Wrapper>
-          </ConditionalWrapper>
+          {isEnabled && <DraftMode />}
+          <Wrapper>
+            <Header content={await getHeader()} />
+            <Main>{children}</Main>
+            <Footer />
+          </Wrapper>
         </Provider>
       </body>
     </html>
