@@ -4,12 +4,6 @@ import { PostTemplate } from "@/components/templates";
 import { buildRichtextHeadings } from "@/helpers";
 import { getPost, getPostData } from "@/services";
 
-import { getClient } from "@/lib/apollo";
-import { SlugsDocument } from "@/graphql";
-import { APOLLO_CLIENTS } from "@/constants";
-
-const { CMS } = APOLLO_CLIENTS;
-
 export const revalidate = 1;
 
 export async function generateMetadata({ params }: SlugMetaProps) {
@@ -18,16 +12,13 @@ export async function generateMetadata({ params }: SlugMetaProps) {
 }
 
 export async function generateStaticParams() {
-  const { data } = await getClient().query({
-    context: { clientName: CMS },
-    query: SlugsDocument,
-  });
+  const { slugs } = await getPost();
 
-  if (!data?.slugs?.items) {
+  if (!slugs) {
     return [];
   }
 
-  return data?.slugs?.items.map(post => ({
+  return slugs?.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
   }));
