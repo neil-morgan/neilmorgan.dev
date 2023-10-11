@@ -14,10 +14,6 @@ export async function generateMetadata({ params }: SlugMetaProps) {
 export async function generateStaticParams() {
   const { slugs } = await getPost();
 
-  if (!slugs) {
-    return [];
-  }
-
   return slugs?.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
@@ -25,6 +21,7 @@ export async function generateStaticParams() {
 }
 
 const PostPage = async ({ params }: SlugProps) => {
+  console.log(params);
   const { isEnabled } = draftMode();
   const { post } = await getPost(params.slug, isEnabled);
   const { likes } = await getPostData(post.sys.id);
