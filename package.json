@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
-    "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w"
+    "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
@@ -53,6 +54,7 @@
     "@types/node": "^20.3.1",
     "@types/react-syntax-highlighter": "^15.5.7",
     "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8"
   }
 }

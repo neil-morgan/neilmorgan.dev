@@ -6,13 +6,10 @@ import NextLink from "next/link";
 import { CardWrapper, CardBody } from "./styles";
 import type { CardProps } from "./types";
 import {
-  Button,
   Heading,
-  Icon,
   Text,
   AspectRatio,
   ConditionalWrapper,
-  HoverHighlight,
 } from "@/components/atoms";
 
 export const Card = ({
