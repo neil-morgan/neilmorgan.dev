@@ -8,9 +8,9 @@ export const metadata = {
 };
 
 const ProjectsPage = async () => {
-  const { feedbackPage } = await getFeatureFlags();
+  const { feedbackContent } = await getFeatureFlags();
 
-  if (!feedbackPage) {
+  if (!feedbackContent) {
     redirect("/");
   }
 
