@@ -13,3 +13,10 @@ export const BREAKPOINTS = {
   xl: "80em",
   "2xl": "96em",
 };
+
+export const FEATURE_FLAGS = {
+  feedback: true,
+  skills: true,
+  posts: true,
+  projects: true,
+};

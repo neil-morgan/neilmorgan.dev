@@ -1,6 +1,6 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnvConfig } from "@next/env";
-import { CONTENTFUL_BASE_URL } from "./constants";
+import { CONTENTFUL_BASE_URL } from "./lib/site/constants";
 
 loadEnvConfig(process.cwd());
 

@@ -1,6 +1,6 @@
 import { getClient } from "@/lib/apollo";
 import { CreatePostDataDocument, PostDataDocument } from "@/graphql";
-import { APOLLO_CLIENTS } from "@/constants";
+import { APOLLO_CLIENTS } from "@/lib/site";
 
 const { DB } = APOLLO_CLIENTS;
 

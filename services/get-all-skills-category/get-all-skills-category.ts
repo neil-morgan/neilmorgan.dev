@@ -1,7 +1,7 @@
 import { getClient } from "@/lib/apollo";
 import { AllSkillsCategoryDocument, type Skill } from "@/graphql";
 import type { CategoryType } from "@/types";
-import { APOLLO_CLIENTS } from "@/constants";
+import { APOLLO_CLIENTS } from "@/lib/site";
 import { groupByProficiency } from "@/helpers";
 
 const { CMS } = APOLLO_CLIENTS;

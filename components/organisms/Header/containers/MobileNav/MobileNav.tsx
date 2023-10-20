@@ -16,7 +16,10 @@ export const MobileNav = ({
     anchor={
       <IconButton
         size="lg"
-        priority="nav"
+        css={{
+          marginLeft: "auto",
+        }}
+        priority="contrast"
         onClick={() => setOpenItem(1)}
         icon={<Icon name="Hamburger" />}
       />

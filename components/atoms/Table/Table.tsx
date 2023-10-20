@@ -1,9 +1,8 @@
 "use client";
-import type { ReactNode } from "react";
 
 import { TableElement } from "./styles";
 
-export const Table = ({ children }: { children: ReactNode }) => (
+export const Table = ({ children }: React.PropsWithChildren) => (
   <TableElement>
     <tbody>{children}</tbody>
   </TableElement>

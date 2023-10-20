@@ -18,8 +18,7 @@ export const DesktopList = styled("ul", {
   display: "flex",
   justifyContent: "center",
   listStyle: "none",
-  marginRight: "auto",
-  marginLeft: "$8",
+  gridColumn: "2 / 5",
   gap: "$6",
 });
 
@@ -30,17 +29,13 @@ export const DesktopItem = styled("li", {
 });
 
 export const DesktopItemLink = styled(NextLink, {
+  ...linkProps,
   display: "flex",
   flexDirection: "column",
   outline: "none",
   textDecoration: "none",
-  userSelect: "none",
-  color: "$navItem",
   lineHeight: 1,
   cursor: "pointer",
-  transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
 });
 
 export const DesktopItemHeading = styled("div", {

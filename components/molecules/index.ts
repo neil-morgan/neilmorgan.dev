@@ -1,3 +1,4 @@
+export { Card } from "./Card";
 export { ContentCard } from "./ContentCard";
 export { DraftMode } from "./DraftMode";
 export { Logo } from "./Logo";

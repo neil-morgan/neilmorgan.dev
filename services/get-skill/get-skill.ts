@@ -1,6 +1,6 @@
 import { getClient } from "@/lib/apollo";
 import { SkillDocument, type Skill } from "@/graphql";
-import { APOLLO_CLIENTS } from "@/constants";
+import { APOLLO_CLIENTS } from "@/lib/site";
 
 const { CMS } = APOLLO_CLIENTS;
 

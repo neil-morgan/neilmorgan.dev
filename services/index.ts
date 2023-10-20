@@ -10,3 +10,4 @@ export { getPost } from "./get-post";
 export { getPostData } from "./get-post-data";
 export { getProject } from "./get-project";
 export { getSkill } from "./get-skill";
+export { getFeatureFlags } from "./get-feature-flags";

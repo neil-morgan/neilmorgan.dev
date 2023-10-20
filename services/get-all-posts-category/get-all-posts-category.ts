@@ -4,7 +4,7 @@ import {
   type PostCategory,
   type Post,
 } from "@/graphql";
-import { APOLLO_CLIENTS } from "@/constants";
+import { APOLLO_CLIENTS } from "@/lib/site";
 import type { GroupedPostType } from "@/types";
 
 const { CMS } = APOLLO_CLIENTS;

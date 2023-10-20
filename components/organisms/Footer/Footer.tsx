@@ -1,12 +1,14 @@
-"use client"
+"use client";
 
 import { FooterElement } from "./styles";
-import { Container } from "@/components/atoms";
+import { Container, Text } from "@/components/atoms";
 
 export const Footer = () => {
   return (
     <FooterElement>
-      <Container>Footer</Container>
+      <Container>
+        <Text>Footer</Text>
+      </Container>
     </FooterElement>
   );
 };

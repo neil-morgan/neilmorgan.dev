@@ -1,8 +1,9 @@
 import { styled } from "@/lib/stitches";
 
 export const TextElement = styled("div", {
-  color: "$text",
-  
+  color: "$text2",
+  transition: "$theme",
+
   variants: {
     size: {
       xs: {

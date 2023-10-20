@@ -9,4 +9,6 @@ export type ButtonProps = {
   rightIcon?: React.ReactNode;
   leftIcon?: React.ReactNode;
   size?: "sm" | "md" | "lg";
+  forceHoverState?: boolean;
+  priority?: "primary";
 };

@@ -13,7 +13,7 @@ export const SecondaryItems = ({ items }: SecondaryItemsProps) => (
         href={href}
         target="_blank"
         icon={<Icon name={title as string} />}
-        priority="nav"
+        priority="contrast"
       />
     ))}
     <ThemeToggle />

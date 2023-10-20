@@ -41,7 +41,7 @@ export const HeadingElement = styled("h2", {
         color: "$secondary",
       },
       text: {
-        color: "$text",
+        color: "$text2",
       },
     },
 

@@ -1,4 +1,5 @@
-import { getAllFeedback } from "@/services";
+import { redirect } from "next/navigation";
+import { getFeatureFlags, getAllFeedback } from "@/services";
 
 export const revalidate = 1;
 
@@ -7,6 +8,12 @@ export const metadata = {
 };
 
 const ProjectsPage = async () => {
+  const { feedbackPage } = await getFeatureFlags();
+
+  if (!feedbackPage) {
+    redirect("/");
+  }
+
   const data = await getAllFeedback();
 
   return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;

@@ -8,10 +8,10 @@ import {
 
 import type { SnippetProps } from "./types";
 import { SnippetWrapper, CodeWrapper, LanguageTab } from "./styles";
-import { Consumer } from "@/lib/stitches";
+import { ThemeConsumer } from "@/lib/stitches";
 
 export const Snippet = ({ code, language, css }: SnippetProps) => (
-  <Consumer>
+  <ThemeConsumer>
     {({ colorMode }) => (
       <SnippetWrapper css={css}>
         <LanguageTab>{language}</LanguageTab>
@@ -27,5 +27,5 @@ export const Snippet = ({ code, language, css }: SnippetProps) => (
         </CodeWrapper>
       </SnippetWrapper>
     )}
-  </Consumer>
+  </ThemeConsumer>
 );

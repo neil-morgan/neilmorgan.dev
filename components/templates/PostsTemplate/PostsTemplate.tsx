@@ -1,22 +1,23 @@
 "use client";
 
-import { Wrapper, Header } from "./styles";
+import { Fragment } from "react";
+import { Wrapper, Header, Grid } from "./styles";
 import {
   Container,
   Heading,
   Text,
-  Pod,
-  Grid,
+  HorizontalSeparator,
 } from "@/components/atoms";
+import { Card } from "@/components/molecules";
 import type { GroupedPostType } from "@/types";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Heading size="h6" as="h2" style="print">
+      <Heading size="h2" as="h2" style="print">
         {category?.title}
       </Heading>
-      <Text>
+      <Text size="lg">
         {items.length} Post{items.length !== 1 && "s"}
       </Text>
     </Header>
@@ -24,13 +25,15 @@ export const PostsCategory = ({ category, items }: GroupedPostType) => (
     <Grid>
       {items.map(({ title, description, slug }, i) =>
         title && description && slug ? (
-          <Pod
+          <Card
             key={i}
             heading={title}
             description={description}
-            cta={{
-              href: `/posts/${category?.slug}/${slug}`,
-              label: "READ",
+            isLink
+            href={`/posts/${category?.slug}/${slug}`}
+            image={{
+              src: `https://source.unsplash.com/random/400x400?sig=${i}`,
+              alt: title,
             }}
           />
         ) : null,
@@ -44,14 +47,13 @@ export const PostsTemplate = ({
 }: {
   posts: GroupedPostType | GroupedPostType[];
 }) => (
-  <Container css={{ marginTop: "$11" }}>
+  <Container>
     {Array.isArray(posts) ? (
-      posts.map(({ category, items }) => (
-        <PostsCategory
-          key={category?.title}
-          category={category}
-          items={items}
-        />
+      posts.map(({ category, items }, i) => (
+        <Fragment key={category?.title}>
+          <PostsCategory category={category} items={items} />
+          {i !== posts.length - 1 && <HorizontalSeparator size="xl" />}
+        </Fragment>
       ))
     ) : (
       <PostsCategory category={posts.category} items={posts.items} />

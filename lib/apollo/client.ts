@@ -7,7 +7,7 @@ import {
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 import { SchemaLink } from "@apollo/client/link/schema";
 import { schema } from "@/app/api/server/route";
-import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/constants";
+import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/lib/site";
 
 const {
   CONTENTFUL_SPACE_ID,

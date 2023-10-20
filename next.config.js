@@ -3,6 +3,6 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["images.ctfassets.net"],
+    domains: ["images.ctfassets.net", "source.unsplash.com"],
   },
 };

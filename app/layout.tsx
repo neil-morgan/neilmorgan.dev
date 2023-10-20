@@ -1,14 +1,12 @@
-import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
 import { DraftMode } from "@/components/molecules";
 import { Footer, Header, Provider } from "@/components/organisms";
-import { IconDefs, ConditionalWrapper } from "@/components/atoms";
+import { IconDefs } from "@/components/atoms";
 import { getHeader } from "@/services";
+import { inter } from "@/lib/site";
 
 export const revalidate = 1;
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default async function RootLayout({
   children,

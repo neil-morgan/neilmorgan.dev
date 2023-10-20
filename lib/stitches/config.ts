@@ -1,102 +1,29 @@
-import { createTheme, createStitches, globalCss } from "@stitches/react";
-import {
-  slate,
-  slateDark,
-  violet,
-  violetA,
-  yellow,
-  yellowA,
-} from "@radix-ui/colors";
-import { getColorValues } from "./helpers";
-import { BREAKPOINTS } from "@/constants";
-
-const themeBase = getColorValues(slate, "base");
-const themeBaseD = getColorValues(slateDark, "baseD");
-const themePrimary = getColorValues(violet, "primary");
-const themePrimaryA = getColorValues(violetA, "primaryA");
-const themeSecondary = getColorValues(yellow, "secondary");
-const themeSecondaryA = getColorValues(yellowA, "secondaryA");
-
-const base = Object.values(themeBase);
-const baseD = Object.values(themeBaseD);
-const primary = Object.values(themePrimary);
-const primaryA = Object.values(themePrimaryA);
-const secondary = Object.values(themeSecondary);
-const secondaryA = Object.values(themeSecondaryA);
-
-export const lightTheme = createTheme({
-  colors: {
-    primary: primary[9],
-    secondary: secondary[9],
-
-    buttonPrimaryColor: base[1],
-    buttonPrimaryBackground: primary[9],
-    buttonPrimaryBackgroundHover: primary[10],
-
-    buttonSecondaryColor: secondary[10],
-    buttonSecondaryBackground: secondaryA[4],
-    buttonSecondaryBackgroundHover: secondaryA[5],
-
-    backgroundFar: base[0],
-    backgroundClose: base[2],
-    backgroundClosest: base[4],
-
-    textBase: baseD[3],
-    textLink: primary[10],
-
-    navItem: baseD[7],
-    navItemHover: baseD[1],
-
-    divider: base[8],
-  },
-});
-
-export const darkTheme = createTheme({
-  colors: {
-    primary: primary[7],
-    secondary: secondary[7],
-
-    buttonPrimaryColor: primary[11],
-    buttonPrimaryBackground: primary[7],
-    buttonPrimaryBackgroundHover: primary[1],
-
-    buttonSecondaryColor: secondary[5],
-    buttonSecondaryBackground: secondaryA[3],
-    buttonSecondaryBackgroundHover: secondaryA[4],
-
-    backgroundFar: baseD[1],
-    backgroundClose: baseD[3],
-    backgroundClosest: baseD[5],
-
-    textBase: base[3],
-    textLink: primary[7],
-
-    navItem: base[7],
-    navItemHover: base[1],
-
-    divider: baseD[7],
-  },
-});
+import { createStitches, globalCss } from "@stitches/react";
+import { base } from "./themes";
+import { BREAKPOINTS } from "@/lib/site";
+import { reverseObjectValues } from "@/utils";
 
 export const globalStyles = globalCss({
   html: {
     height: "100%",
     boxSizing: "border-box",
-    backgroundColor: "$backgroundFar",
-    color: "$textBase",
+    backgroundColor: "$layer2",
+    color: "$text2",
     transition: "$theme",
     scrollBehavior: "smooth",
   },
   body: {
     height: "100%",
   },
-  a: { textDecoration: "none" },
+  a: { textDecoration: "none", color: "unset" },
   "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },
 });
 
 export const { styled } = createStitches({
   theme: {
-    colors: { ...themeBase, ...themeBaseD, ...themePrimary, ...themePrimaryA },
+    colors: {
+      ...base,
+    },
 
     space: {
       0: "0rem", // 0px

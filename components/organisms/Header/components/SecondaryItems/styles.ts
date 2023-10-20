@@ -7,4 +7,5 @@ export const SecondaryItemsWrapper = styled("div", {
   width: "100%",
   maxWidth: "140px",
   justifyContent: "space-between",
+  marginLeft: "auto",
 });
