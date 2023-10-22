@@ -7,7 +7,7 @@ import { DesktopNav, MobileNav } from "./containers";
 import { Container } from "@/components/atoms";
 import { Logo } from "@/components/molecules";
 import { useMediaQuery } from "@/hooks";
-import { BREAKPOINTS } from "@/constants";
+import { BREAKPOINTS } from "@/lib/site";
 
 export const Header = ({ content }: HeaderProps) => {
   const [openItem, setOpenItem] = useState<number | null>(null);

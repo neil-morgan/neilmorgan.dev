@@ -10,24 +10,24 @@ import {
   sunRayPositions,
 } from "./config";
 import type { ThemeToggleProps } from "./types";
-import { Consumer } from "@/lib/stitches";
+import { ThemeConsumer } from "@/lib/stitches";
 import { IconButton } from "@/components/atoms";
 
 export const ThemeToggle = ({ css }: ThemeToggleProps) => (
-  <Consumer>
+  <ThemeConsumer>
     {({ cycleToggleMode, colorMode }) => {
       const isLight = colorMode === "light";
 
       return (
         <IconButton
-          priority="nav"
+          priority="contrast"
           onClick={cycleToggleMode}
           css={css}
           icon={<AnimatedSunIcon isLight={isLight} />}
         />
       );
     }}
-  </Consumer>
+  </ThemeConsumer>
 );
 
 export const AnimatedSunIcon = ({ isLight }: { isLight: boolean }) => (

@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently --names \"app,codegen\" \"yarn dev:app\" \"yarn codegen:watch\"",
+    "dev:app": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts"
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
+    "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
@@ -50,6 +53,8 @@
     "@types/lodash": "^4.14.195",
     "@types/node": "^20.3.1",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8"
   }
 }

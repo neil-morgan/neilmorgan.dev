@@ -11,11 +11,17 @@ export const Heading = ({
   css,
   id,
   size = "h2",
+  color,
   style,
 }: HeadingProps) => {
   const _id = kebabCase(id);
   return (
-    <HeadingElement as={as} size={size ?? as} style={style} css={css}>
+    <HeadingElement
+      as={as}
+      size={size ?? as}
+      style={style}
+      css={css}
+      color={color}>
       {id && (
         <HeadingAnchor href={`#${_id}`} id={_id}>
           <Icon name="link" />

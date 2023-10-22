@@ -1,6 +1,7 @@
 import { styled } from "@/lib/stitches";
 
 export const ButtonElement = styled("button", {
+  position: "relative",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -27,19 +28,27 @@ export const ButtonElement = styled("button", {
         fontSize: "$5",
       },
     },
+
     priority: {
-      primary: {
-        background: "$buttonPrimaryBackground",
-        color: "$buttonPrimaryColor",
+      default: {
+        background: "$layer5",
+        color: "$text2",
         "&:hover": {
-          background: "$buttonPrimaryBackgroundHover",
+          background: "$layer6",
         },
       },
-      secondary: {
-        background: "$buttonSecondaryBackground",
-        color: "$buttonSecondaryColor",
+      primary: {
+        background: "$primary1",
+        color: "$base1 ",
         "&:hover": {
-          background: "$buttonSecondaryBackgroundHover",
+          background: "$primary2",
+        },
+      },
+      contrast: {
+        background: "transparent",
+        color: "$text3",
+        "&:hover": {
+          color: "$text1",
         },
       },
     },
@@ -47,7 +56,7 @@ export const ButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "primary",
+    priority: "default",
   },
 });
 

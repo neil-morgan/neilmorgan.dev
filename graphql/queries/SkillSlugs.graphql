@@ -1,0 +1,7 @@
+query SkillSlugs {
+  skillSlugs: skillCollection(where: { slug_exists: true }) {
+    items {
+      slug
+    }
+  }
+}

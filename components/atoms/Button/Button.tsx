@@ -1,7 +1,7 @@
 import NextLink from "next/link";
-import { ConditionalWrapper } from "../";
 import type { ButtonProps } from "./types";
 import { ButtonElement, LeftIcon, RightIcon } from "./styles";
+import { ConditionalWrapper } from "@/components/atoms";
 
 export const Button = ({
   children,
@@ -12,6 +12,7 @@ export const Button = ({
   rightIcon,
   leftIcon,
   size,
+  priority,
 }: ButtonProps) => {
   const rightIconComponent = rightIcon ? (
     <RightIcon>{rightIcon}</RightIcon>
@@ -31,7 +32,8 @@ export const Button = ({
         as={href ? "a" : "button"}
         css={css}
         onClick={onClick}
-        size={size}>
+        size={size}
+        priority={priority}>
         {leftIconComponent} {children} {rightIconComponent}
       </ButtonElement>
     </ConditionalWrapper>

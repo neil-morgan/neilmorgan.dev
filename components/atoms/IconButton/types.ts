@@ -7,7 +7,7 @@ export type IconButtonProps = {
   isExternal?: boolean;
   onClick?: () => void;
   icon?: React.ReactNode;
-  priority?: "primary" | "secondary" | "nav";
+  priority?: "default" | "primary" | "contrast";
   size?: "sm" | "md" | "lg";
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
 

@@ -4,9 +4,9 @@ import { Root } from "@radix-ui/react-separator";
 import { styled } from "@/lib/stitches";
 
 export const VerticalSeparator = styled(Root, {
-  backgroundColor: "$divider",
+  backgroundColor: "$layer5",
   height: "100%",
-  width: "1px",
+  width: "2px",
   variants: {
     size: {
       xs: {
@@ -29,8 +29,8 @@ export const VerticalSeparator = styled(Root, {
 });
 
 export const HorizontalSeparator = styled(Root, {
-  backgroundColor: "$divider",
-  height: "1px",
+  backgroundColor: "$layer5",
+  height: "2px",
   width: "100%",
   variants: {
     size: {

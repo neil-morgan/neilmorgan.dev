@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { getClient } from "@/lib/apollo/client";
-import { APOLLO_CLIENTS } from "@/constants";
+import { APOLLO_CLIENTS } from "@/lib/site";
 import { PostDocument } from "@/graphql";
 
 const { query } = getClient();

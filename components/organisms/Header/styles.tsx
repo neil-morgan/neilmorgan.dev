@@ -5,10 +5,10 @@ import { styled } from "@/lib/stitches";
 export const linkProps = {
   outline: "none",
   userSelect: "none",
-  color: "$navItem",
+  color: "$text3",
   transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
+  "&:hover": { color: "$text1" },
+  "&:focus": { color: "$text1" },
 };
 
 export const HeaderElement = styled("header", {
@@ -17,8 +17,7 @@ export const HeaderElement = styled("header", {
   width: "100%",
   padding: "$2 0",
   marginBottom: "$10",
-  backgroundColor: "$backgroundFar",
-  transition: "$theme",
+
   "@sm": {
     padding: "$4 0",
   },
@@ -28,14 +27,18 @@ export const HeaderElement = styled("header", {
 });
 
 export const HeaderContent = styled("nav", {
-  display: "flex",
+  display: "grid",
   alignItems: "center",
-  justifyContent: "space-between",
+  gridTemplateColumns: "repeat(2, 1fr)",
+
+  "@md": {
+    gridTemplateColumns: "repeat(5, 1fr)",
+  },
 });
 
 export const PopoverButton = styled("button", {
   all: "unset",
-  color: "$navItem",
+  color: "$text3",
   fontFamily: "inherit",
   borderRadius: "100%",
   height: "$4",
@@ -45,8 +48,8 @@ export const PopoverButton = styled("button", {
   alignItems: "center",
   justifyContent: "center",
   transition: "$theme",
-  "&:hover": { color: "$navItemHover" },
-  "&:focus": { color: "$navItemHover" },
+  "&:hover": { color: "$text1" },
+  "&:focus": { color: "$text1" },
 });
 
 export const PopoverSection = styled("div", {

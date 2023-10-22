@@ -9,6 +9,8 @@ export const Wrapper = styled("div", {
   minHeight: "100vh",
   margin: "0 auto",
   padding: "0 $2",
+  background: "$layer2",
+  transition: "$theme",
 
   "@sm": {
     padding: "0 $4",

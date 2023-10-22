@@ -8,7 +8,7 @@ export const Container = styled("div", {
   variants: {
     size: {
       page: {
-        maxWidth: "1100px",
+        maxWidth: "1200px",
       },
     },
   },

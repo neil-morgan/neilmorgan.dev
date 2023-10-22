@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { AspectRatioElement } from "./styles";
 import type { AspectRatioProps } from "./types";
 
@@ -10,7 +9,7 @@ export const AspectRatio = ({
   <AspectRatioElement
     css={{
       ...css,
-      "&:before": {
+      "&:after": {
         content: "''",
         display: "block",
         paddingTop: `${(1 / ratio) * 100}%`,

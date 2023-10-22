@@ -9,7 +9,7 @@ export const Logo = ({ size = "lg", isLink = false }: LogoProps) => (
   <ConditionalWrapper
     if={isLink}
     wrapWith={children => (
-      <IconButton href="/" size={size} priority="nav">
+      <IconButton href="/" size={size} priority="contrast">
         {children}
       </IconButton>
     )}>

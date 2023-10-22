@@ -1,31 +1,52 @@
+import { redirect } from "next/navigation";
 import { draftMode } from "next/headers";
 import type { SlugProps, SlugMetaProps } from "@/types";
-import { getProject } from "@/services";
+import { getClient } from "@/lib/apollo";
+import { ProjectDocument, ProjectSlugsDocument } from "@/graphql";
+import { getFeatureFlags } from "@/helpers";
 
 export const revalidate = 1;
 
 export async function generateMetadata({ params }: SlugMetaProps) {
-  const { project } = await getProject(params.slug);
-  return { title: project.title };
+  const { data } = await getClient().query({
+    query: ProjectDocument,
+    variables: { slug: params.slug },
+  });
+  return { title: data?.project?.items[0]?.title };
 }
 
 export async function generateStaticParams() {
-  const { slugs } = await getProject();
+  const { data } = await getClient().query({
+    query: ProjectSlugsDocument,
+  });
 
-  if (!slugs) {
+  const { items } = data?.projectSlugs || {};
+
+  if (!items) {
     return [];
   }
 
-  return slugs?.map(skill => ({
-    slug: skill?.slug,
+  return items?.map(project => ({
+    slug: project?.slug,
   }));
 }
 
 const ProjectPage = async ({ params }: SlugProps) => {
-  const { isEnabled } = draftMode();
-  const { project } = await getProject(params.slug, isEnabled);
+  const { projectsContent } = await getFeatureFlags();
 
-  return <pre>{JSON.stringify(project, null, 2)}</pre>;
+  if (!projectsContent) {
+    redirect("/");
+  }
+
+  const { isEnabled } = draftMode();
+
+  const { data } = await getClient().query({
+    context: { isPreviewMode: isEnabled },
+    query: ProjectDocument,
+    variables: { slug: params.slug, preview: isEnabled },
+  });
+
+  return <pre>{JSON.stringify(data?.project?.items[0], null, 2)}</pre>;
 };
 
 export default ProjectPage;

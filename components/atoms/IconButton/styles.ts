@@ -24,25 +24,25 @@ export const IconButtonElement = styled("button", {
       },
     },
     priority: {
+      default: {
+        background: "$layer5",
+        color: "$text2",
+        "&:hover": {
+          background: "$layer6",
+        },
+      },
       primary: {
-        background: "$buttonPrimaryBackground",
-        color: "$buttonPrimaryColor",
+        background: "$primary1",
+        color: "$base1 ",
         "&:hover": {
-          background: "$buttonPrimaryBackgroundHover",
+          background: "$primary2",
         },
       },
-      secondary: {
-        background: "$buttonSecondaryBackground",
-        color: "$buttonSecondaryColor",
-        "&:hover": {
-          background: "$buttonSecondaryBackgroundHover",
-        },
-      },
-      nav: {
+      contrast: {
         background: "transparent",
-        color: "$navItem",
+        color: "$text3",
         "&:hover": {
-          color: "$navItemHover",
+          color: "$text1",
         },
       },
     },

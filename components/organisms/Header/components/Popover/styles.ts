@@ -25,7 +25,7 @@ const slideLeftAndFade = keyframes({
 });
 
 export const PopoverArrow = styled(Arrow, {
-  fill: "$backgroundClose",
+  fill: "$layer4",
 });
 
 export const PopoverWrapper = styled(Content, {
@@ -50,5 +50,5 @@ export const PopoverContent = styled("div", {
   width: "100%",
   boxShadow: "$default",
   minWidth: "180px",
-  backgroundColor: "$backgroundClose",
+  backgroundColor: "$layer4",
 });

@@ -1,0 +1,8 @@
+query FeatureFlags {
+  featureFlags: featureFlagCollection {
+    items {
+      name
+      active
+    }
+  }
+}

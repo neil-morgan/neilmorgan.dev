@@ -1,3 +1,5 @@
-export default async function HomePage() {
-  return <div>home</div>;
-}
+import { HomePageTemplate } from "@/components/templates";
+
+const HomePage = async () => <HomePageTemplate />;
+
+export default HomePage;
