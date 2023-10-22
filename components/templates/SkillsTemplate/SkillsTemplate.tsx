@@ -1,7 +1,7 @@
 "use client";
 
 import { Grid } from "./styles";
-import { Container, Heading, Pod } from "@/components/atoms";
+import { Container, Heading } from "@/components/atoms";
 import type { GroupedSkillType } from "@/types";
 
 export const SkillsTemplate = ({ skills }: { skills: GroupedSkillType[] }) => {
@@ -17,7 +17,7 @@ export const SkillsTemplate = ({ skills }: { skills: GroupedSkillType[] }) => {
                   {proficiency}
                 </Heading>
                 {items.map(({ title }) =>
-                  title ? <Pod key={title} heading={title} /> : null,
+                  title ? <div key={title}>{title}</div> : null,
                 )}
               </>
             ))}

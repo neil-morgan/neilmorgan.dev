@@ -1,4 +1,7 @@
-import { getAllProjects } from "@/services";
+import { redirect } from "next/navigation";
+import { AllProjectsDocument } from "@/graphql";
+import { getClient } from "@/lib/apollo";
+import { getFeatureFlags } from "@/helpers";
 
 export const revalidate = 1;
 
@@ -7,7 +10,15 @@ export const metadata = {
 };
 
 const ProjectsPage = async () => {
-  const data = await getAllProjects();
+  const { projectsContent } = await getFeatureFlags();
+
+  if (!projectsContent) {
+    redirect("/");
+  }
+
+  const { data } = await getClient().query({
+    query: AllProjectsDocument,
+  });
 
   return <>{<pre>{JSON.stringify(data, null, 2)}</pre>}</>;
 };

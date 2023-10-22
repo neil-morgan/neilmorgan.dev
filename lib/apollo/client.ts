@@ -40,9 +40,9 @@ const { getClient } = registerApolloClient(
       ssrMode: true,
       cache: new InMemoryCache(),
       link: ApolloLink.split(
-        operation => operation.getContext().clientName === APOLLO_CLIENTS.CMS,
-        cmsLink,
+        operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
         dbLink,
+        cmsLink,
       ),
       defaultOptions: {
         watchQuery: {

@@ -1,0 +1,7 @@
+query ProjectSlugs($slug: String!, $preview: Boolean = false) {
+  projectSlugs: projectCollection(where: { slug_exists: true }) {
+    items {
+      slug
+    }
+  }
+}
