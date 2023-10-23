@@ -29,6 +29,10 @@ export const TextElement = styled("div", {
           marginTop: "$4",
         },
       },
+
+      strong: {
+        fontWeight: "medium",
+      },
     },
   },
 

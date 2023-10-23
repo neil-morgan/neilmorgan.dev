@@ -6,6 +6,7 @@ export const Text = ({ children, as = "div", size, css }: TextProps) => (
     as={as}
     size={size}
     {...(as === "p" && { style: "p" })}
+    {...(as === "strong" && { style: "strong" })}
     css={css}>
     {children}
   </TextElement>

@@ -1,10 +1,10 @@
 import type { Post, Skill } from "@/graphql";
 
-type RichtextHeadingType = { label: string; href: string };
+type NavigableContentHeadingType = { label: string; href: string };
 
-export type RichtextHeadingsType = {
-  heading: RichtextHeadingType;
-  subHeadings: { heading: RichtextHeadingType }[];
+export type NavigableContentHeadingsType = {
+  heading: NavigableContentHeadingType;
+  subHeadings: { heading: NavigableContentHeadingType }[];
 }[];
 
 export type CategoryType = {

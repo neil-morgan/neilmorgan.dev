@@ -20,7 +20,6 @@ export default async function RootLayout({
 
   const { data } = await getClient().query({
     query: HeaderDocument,
-    fetchPolicy: "no-cache",
   });
 
   const social = data.socialItems?.items as SocialItem[];

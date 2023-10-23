@@ -1,6 +1,6 @@
 import type { TopLevelBlock } from "@contentful/rich-text-types";
 import { kebabCase } from "lodash";
-import type { RichtextHeadingsType } from "@/types";
+import type { NavigableContentHeadingsType } from "@/types";
 
 const buildHeading = (value: string) => ({
   label: value,
@@ -8,7 +8,7 @@ const buildHeading = (value: string) => ({
 });
 
 export const buildRichtextHeadings = (content: TopLevelBlock[]) => {
-  const headings: RichtextHeadingsType = [];
+  const headings: NavigableContentHeadingsType = [];
 
   content.forEach(({ nodeType, content }) => {
     if (nodeType === "heading-1" && "value" in content[0]) {

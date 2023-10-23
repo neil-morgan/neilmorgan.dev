@@ -1,11 +1,5 @@
 import { styled } from "@/lib/stitches";
 
-export const Header = styled("header", {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-});
-
 export const Body = styled("div", {
   display: "flex",
   justifyContent: "center",
@@ -36,11 +30,6 @@ export const Aside = styled("aside", {
 export const AsideHeader = styled("header", {
   display: "flex",
   width: "100%",
-});
-
-export const AsideFooter = styled("footer", {
-  display: "flex",
-  marginTop: "$5",
 });
 
 export const NavList = styled("div", {

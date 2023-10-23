@@ -51,6 +51,7 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const { data } = await getClient().query({
     context: { isPreviewMode: isEnabled },
+    fetchPolicy: "no-cache",
     query: PostDocument,
     variables: { slug: params.slug, preview: isEnabled },
   });

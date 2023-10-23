@@ -52,6 +52,7 @@ const PostCategoryPage = async ({
 
   const { data } = await getClient().query({
     query: AllPostsCategoryDocument,
+    fetchPolicy: "no-cache",
     variables: {
       slug: params.category,
     },
