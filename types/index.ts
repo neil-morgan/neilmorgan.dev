@@ -1,4 +1,12 @@
-import type { Post, Skill } from "@/graphql";
+import type {
+  Post,
+  Skill,
+  Scalars,
+  Maybe,
+  Asset,
+  Entry,
+  ResourceLink,
+} from "@/graphql";
 
 type NavigableContentHeadingType = { label: string; href: string };
 
@@ -72,4 +80,17 @@ export type SlugMetaProps = {
 
 export type SlugProps = {
   params: { slug: string };
+};
+
+export type RichtextType = {
+  json: Scalars["JSON"]["output"];
+  links: {
+    assets: { block: Array<Maybe<Asset>>; hyperlink: Array<Maybe<Asset>> };
+    entries: {
+      block: Array<Maybe<Entry>>;
+      hyperlink: Array<Maybe<Entry>>;
+      inline: Array<Maybe<Entry>>;
+    };
+    resources: { block: Array<ResourceLink> };
+  };
 };

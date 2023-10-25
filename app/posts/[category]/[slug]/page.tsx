@@ -81,12 +81,7 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const { likes } = dataSrc || {};
 
-  return (
-    <PostTemplate
-      content={{ ...post, likes }}
-      headings={buildRichtextHeadings(post.body?.json.content)}
-    />
-  );
+  return <PostTemplate content={{ ...post, likes }} />;
 };
 
 export default PostPage;

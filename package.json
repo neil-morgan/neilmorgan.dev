@@ -12,6 +12,11 @@
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
     "prepare": "husky install"
   },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
     "@apollo/experimental-nextjs-app-support": "^0.4.1",

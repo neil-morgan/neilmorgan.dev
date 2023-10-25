@@ -5,27 +5,26 @@ import { Header } from "./styles";
 import {
   LikeButton,
   Heading,
-  Text,
   Container,
   HorizontalSeparator,
 } from "@/components/atoms";
-import { Richtext, NavigableContent } from "@/components/molecules";
-import { type PostBody } from "@/graphql";
+import { NavigableRichtext } from "@/components/organisms";
 
-export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
-  <Container>
-    <Header>
-      <Heading size="h1" css={{ marginTop: 0 }}>
-        {content.title}
-      </Heading>
-      <LikeButton likes={content?.likes} id={content?.sys.id} />
-    </Header>
+export const PostTemplate = ({ content }: PostTemplateProps) => {
+  if (!content.body) {
+    return null;
+  }
 
-    <HorizontalSeparator size="xl" />
-
-    <NavigableContent headings={headings}>
-      <Text as="p">{content.description}</Text>
-      <Richtext content={content?.body as PostBody} />
-    </NavigableContent>
-  </Container>
-);
+  return (
+    <Container>
+      <Header>
+        <Heading size="h1" css={{ marginTop: 0 }}>
+          {content.title}
+        </Heading>
+        <LikeButton likes={content?.likes} id={content?.sys.id} />
+      </Header>
+      <HorizontalSeparator size="xl" />
+      <NavigableRichtext content={content.body} />z
+    </Container>
+  );
+};
