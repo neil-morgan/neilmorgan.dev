@@ -2,10 +2,10 @@
 
 import { Fragment } from "react";
 import { Aside, Content, Body, NavList, NavListItem } from "./styles";
+import { buildRichtextHeadings } from "./helpers";
 import { Heading, HorizontalSeparator } from "@/components/atoms";
 import { Richtext } from "@/components/molecules";
 import type { RichtextType } from "@/types";
-import { buildRichtextHeadings } from "@/helpers";
 
 export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
   <Body>
@@ -20,7 +20,7 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
       <HorizontalSeparator size="sm" />
 
       <NavList>
-        {buildRichtextHeadings(content.json).map(
+        {buildRichtextHeadings(content.json.content).map(
           ({ heading, subHeadings }, i1) => (
             <Fragment key={`${heading.label}-${i1}`}>
               <NavListItem href={heading.href}>{heading.label}</NavListItem>

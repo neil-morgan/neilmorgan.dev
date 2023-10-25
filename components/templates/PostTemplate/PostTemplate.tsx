@@ -1,5 +1,7 @@
 "use client";
 
+// TODO! Investigate why this import is not working
+import { NavigableRichtext } from "../../organisms/NavigableRichtext";
 import type { PostTemplateProps } from "./types";
 import { Header } from "./styles";
 import {
@@ -8,13 +10,11 @@ import {
   Container,
   HorizontalSeparator,
 } from "@/components/atoms";
-import { NavigableRichtext } from "@/components/organisms";
 
 export const PostTemplate = ({ content }: PostTemplateProps) => {
   if (!content.body) {
     return null;
   }
-
   return (
     <Container>
       <Header>
@@ -24,7 +24,8 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
         <LikeButton likes={content?.likes} id={content?.sys.id} />
       </Header>
       <HorizontalSeparator size="xl" />
-      <NavigableRichtext content={content.body} />z
+
+      <NavigableRichtext content={content.body} />
     </Container>
   );
 };

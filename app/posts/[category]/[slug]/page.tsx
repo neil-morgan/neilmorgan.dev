@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { draftMode } from "next/headers";
 import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
-import { buildRichtextHeadings, getFeatureFlags } from "@/helpers";
+import { getFeatureFlags } from "@/helpers";
 import { getClient } from "@/lib/apollo";
 import {
   CategoryDocument,
@@ -51,7 +51,6 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const { data } = await getClient().query({
     context: { isPreviewMode: isEnabled },
-    fetchPolicy: "no-cache",
     query: PostDocument,
     variables: { slug: params.slug, preview: isEnabled },
   });
