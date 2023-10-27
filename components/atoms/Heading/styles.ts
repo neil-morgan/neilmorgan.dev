@@ -74,7 +74,22 @@ export const HeadingAnchor = styled("a", {
   top: "0",
   transform: "translateX(-150%)",
   transition: "ease 250ms",
-  scrollMarginTop: "$10",
+
+  variants: {
+    scrollMargin: {
+      lg: {
+        scrollMarginTop: "$10",
+      },
+      sm: {
+        scrollMarginTop: "$5",
+      },
+    },
+  },
+
+  defaultVariants: {
+    scrollMargin: "sm",
+  },
+
   "@md": {
     display: "flex",
   },

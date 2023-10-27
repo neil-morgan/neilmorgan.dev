@@ -30,6 +30,7 @@
     "@stitches/react": "^1.2.8",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
+    "cookies-next": "^4.0.0",
     "dotenv": "^16.3.1",
     "dotenv-flow": "^3.2.0",
     "encoding": "^0.1.13",

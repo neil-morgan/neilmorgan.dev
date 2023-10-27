@@ -82,15 +82,17 @@ export type SlugProps = {
   params: { slug: string };
 };
 
+export type RichtextLinksType = {
+  assets: { block: Array<Maybe<Asset>>; hyperlink: Array<Maybe<Asset>> };
+  entries: {
+    block: Array<Maybe<Entry>>;
+    hyperlink: Array<Maybe<Entry>>;
+    inline: Array<Maybe<Entry>>;
+  };
+  resources: { block: Array<ResourceLink> };
+};
+
 export type RichtextType = {
   json: Scalars["JSON"]["output"];
-  links: {
-    assets: { block: Array<Maybe<Asset>>; hyperlink: Array<Maybe<Asset>> };
-    entries: {
-      block: Array<Maybe<Entry>>;
-      hyperlink: Array<Maybe<Entry>>;
-      inline: Array<Maybe<Entry>>;
-    };
-    resources: { block: Array<ResourceLink> };
-  };
+  links: RichtextLinksType;
 };

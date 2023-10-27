@@ -45,6 +45,7 @@ export const Richtext = ({ content }: RichtextProps) => {
           <Heading
             size="h1"
             css={{ marginTop: "$11" }}
+            scrollMargin="lg"
             id={node.content[0].value}>
             {children}
           </Heading>
@@ -59,6 +60,7 @@ export const Richtext = ({ content }: RichtextProps) => {
           <Heading
             size="h3"
             css={{ marginTop: "$6" }}
+            scrollMargin="sm"
             id={node.content[0].value}>
             {children}
           </Heading>

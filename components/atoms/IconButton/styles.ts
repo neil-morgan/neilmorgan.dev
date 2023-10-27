@@ -50,6 +50,6 @@ export const IconButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "primary",
+    priority: "default",
   },
 });

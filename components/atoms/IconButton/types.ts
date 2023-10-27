@@ -9,6 +9,7 @@ export type IconButtonProps = {
   icon?: React.ReactNode;
   priority?: "default" | "primary" | "contrast";
   size?: "sm" | "md" | "lg";
+  disabled?: boolean;
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
 
 export type IconButtonRef =

@@ -680,6 +680,8 @@ export type PostBodyLinks = {
 export type PostBodyResources = {
   __typename?: 'PostBodyResources';
   block: Array<ResourceLink>;
+  hyperlink: Array<ResourceLink>;
+  inline: Array<ResourceLink>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */

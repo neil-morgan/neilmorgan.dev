@@ -11,6 +11,7 @@ export const Heading = ({
   css,
   id,
   size = "h2",
+  scrollMargin,
   color,
   style,
 }: HeadingProps) => {
@@ -23,7 +24,7 @@ export const Heading = ({
       css={css}
       color={color}>
       {id && (
-        <HeadingAnchor href={`#${_id}`} id={_id}>
+        <HeadingAnchor href={`#${_id}`} id={_id} scrollMargin={scrollMargin}>
           <Icon name="link" />
         </HeadingAnchor>
       )}

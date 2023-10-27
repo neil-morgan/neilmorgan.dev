@@ -16,6 +16,7 @@ export const IconButton = forwardRef(
       target,
       size,
       priority,
+      disabled,
     }: IconButtonProps,
     ref: IconButtonRef,
   ) => (
@@ -27,6 +28,7 @@ export const IconButton = forwardRef(
         </NextLink>
       )}>
       <IconButtonElement
+        disabled={disabled}
         ref={ref}
         as={href ? "a" : "button"}
         css={css}

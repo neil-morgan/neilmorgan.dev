@@ -1,6 +1,6 @@
-import { type PostBodyLinks } from "@/graphql";
+import type { RichtextLinksType } from "@/types";
 
-export const getBlockMaps = (links: PostBodyLinks) => {
+export const getBlockMaps = (links: RichtextLinksType) => {
   const entryBlockMap = new Map();
   const assetBlockMap = new Map();
   const inlineBlockMap = new Map();
