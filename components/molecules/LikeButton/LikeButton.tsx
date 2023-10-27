@@ -40,11 +40,11 @@ export const LikeButton = ({ likes, id, liked = false }: LikeButtonProps) => {
   return (
     <Wrapper>
       <IconButton
-        size="lg"
+        size="md"
+        icon="Heart"
         onClick={() => handleClick(isLiked)}
-        priority={isLiked ? "primary" : "default"}>
-        <Icon name="Heart" />
-      </IconButton>
+        priority={isLiked ? "primary" : "default"}
+      />
       <Text size="sm">{likeCount}</Text>
     </Wrapper>
   );

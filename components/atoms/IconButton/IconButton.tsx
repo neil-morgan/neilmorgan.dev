@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { ConditionalWrapper } from "../";
 import { IconButtonElement } from "./styles";
 import type { IconButtonProps, IconButtonRef } from "./types";
+import { Icon } from "@/components/atoms";
 
 export const IconButton = forwardRef(
   (
@@ -36,7 +37,7 @@ export const IconButton = forwardRef(
         onClick={onClick}
         size={size}
         priority={priority}>
-        {children ? children : icon}
+        {children ? children : icon ? <Icon name={icon} /> : null}
       </IconButtonElement>
     </ConditionalWrapper>
   ),

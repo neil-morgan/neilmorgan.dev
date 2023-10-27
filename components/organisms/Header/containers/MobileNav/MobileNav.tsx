@@ -19,9 +19,9 @@ export const MobileNav = ({
         css={{
           marginLeft: "auto",
         }}
+        icon="Hamburger"
         priority="contrast"
         onClick={() => setOpenItem(1)}
-        icon={<Icon name="Hamburger" />}
       />
     }>
     <PopoverSection columns="1" gap="mobile">

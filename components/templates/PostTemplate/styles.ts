@@ -5,3 +5,9 @@ export const Header = styled("header", {
   justifyContent: "space-between",
   alignItems: "center",
 });
+
+export const HeaderActions = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  gap: "$5",
+});

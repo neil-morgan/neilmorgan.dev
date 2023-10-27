@@ -19,12 +19,9 @@ export const ThemeToggle = ({ css }: ThemeToggleProps) => (
       const isLight = colorMode === "light";
 
       return (
-        <IconButton
-          priority="contrast"
-          onClick={cycleToggleMode}
-          css={css}
-          icon={<AnimatedSunIcon isLight={isLight} />}
-        />
+        <IconButton priority="contrast" onClick={cycleToggleMode} css={css}>
+          <AnimatedSunIcon isLight={isLight} />
+        </IconButton>
       );
     }}
   </ThemeConsumer>
