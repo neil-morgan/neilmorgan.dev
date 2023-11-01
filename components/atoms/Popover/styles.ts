@@ -48,7 +48,6 @@ export const PopoverContent = styled("div", {
   flexDirection: "column",
   borderRadius: "$default",
   width: "100%",
-  boxShadow: "$default",
   minWidth: "180px",
   backgroundColor: "$layer4",
   padding: "$4",

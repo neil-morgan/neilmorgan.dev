@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { Aside, Content, Body, NavList, NavListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
-import { Heading, HorizontalSeparator } from "@/components/atoms";
+import { HorizontalSeparator, Text } from "@/components/atoms";
 import { Richtext } from "@/components/molecules";
 import type { RichtextType } from "@/types";
 
@@ -13,9 +13,9 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
       <Richtext content={content} />
     </Content>
     <Aside>
-      <Heading size="h6" style="print">
+      <Text size={4} appearance="print" weight="500">
         CONTENTS
-      </Heading>
+      </Text>
 
       <HorizontalSeparator size="sm" />
 

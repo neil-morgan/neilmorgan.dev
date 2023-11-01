@@ -2,22 +2,17 @@
 
 import { Fragment } from "react";
 import { Wrapper, Header, Grid } from "./styles";
-import {
-  Container,
-  Heading,
-  Text,
-  HorizontalSeparator,
-} from "@/components/atoms";
+import { Container, Text, HorizontalSeparator } from "@/components/atoms";
 import { Card } from "@/components/molecules";
 import type { GroupedPostType } from "@/types";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Heading size="h2" as="h2" style="print">
+      <Text size={7} as="h2" weight="600" appearance="print">
         {category?.title}
-      </Heading>
-      <Text size="lg">
+      </Text>
+      <Text size={3}>
         {items.length} Post{items.length !== 1 && "s"}
       </Text>
     </Header>

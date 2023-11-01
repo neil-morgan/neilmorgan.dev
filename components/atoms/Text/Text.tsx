@@ -1,13 +1,42 @@
-import type { TextProps } from "./types";
-import { TextElement } from "./styles";
+"use client";
 
-export const Text = ({ children, as = "div", size, css }: TextProps) => (
-  <TextElement
-    as={as}
-    size={size}
-    {...(as === "p" && { style: "p" })}
-    {...(as === "strong" && { style: "strong" })}
-    css={css}>
-    {children}
-  </TextElement>
-);
+import { kebabCase } from "lodash";
+import { Icon } from "../Icon";
+import type { TextProps } from "./types";
+import { Element, Anchor } from "./styles";
+
+export const Text = ({
+  as = "div",
+  children,
+  css,
+  id,
+  size,
+  color,
+  weight = "400",
+  style,
+  appearance,
+}: React.PropsWithChildren<TextProps>) => {
+  const _id = kebabCase(id);
+
+  const mergedCss = {
+    ...css,
+    fontWeight: weight,
+    fontStyle: style,
+  };
+
+  return (
+    <Element
+      as={as}
+      size={size}
+      appearance={appearance}
+      css={mergedCss}
+      color={color}>
+      {id && (
+        <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
+          <Icon name="link" />
+        </Anchor>
+      )}
+      {children}
+    </Element>
+  );
+};

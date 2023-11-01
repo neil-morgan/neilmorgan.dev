@@ -2,6 +2,8 @@
 
 import { styled } from "@/lib/stitches";
 
+const background = "$layer4";
+
 export const SnippetWrapper = styled("div", {
   position: "relative",
 });
@@ -9,7 +11,7 @@ export const SnippetWrapper = styled("div", {
 export const CodeWrapper = styled("div", {
   padding: "$7",
   width: "100%",
-  background: "$layer3  ",
+  background,
   borderRadius: "$md",
   transition: "200ms ease-in-out",
   "& code, pre ": {
@@ -26,7 +28,7 @@ export const LanguageTab = styled("div", {
   padding: "$2 $4 $1",
   borderTopLeftRadius: "$md",
   borderTopRightRadius: "$md",
-  background: "$layer3",
+  background,
   transform: "translateY(-100%)",
   transition: "background 200ms ease-in-out",
   textTransform: "uppercase",

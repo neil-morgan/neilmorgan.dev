@@ -7,12 +7,12 @@ import { NavigableRichtext } from "../../organisms/NavigableRichtext";
 import type { PostTemplateProps } from "./types";
 import { Header, HeaderActions } from "./styles";
 import {
-  Heading,
   Container,
   HorizontalSeparator,
   Popover,
   Icon,
   IconButton,
+  Text,
 } from "@/components/atoms";
 import { LikeButton } from "@/components/molecules";
 
@@ -26,9 +26,9 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
   return (
     <Container>
       <Header>
-        <Heading size="h1" css={{ marginTop: 0 }}>
+        <Text size={9} weight="600" css={{ marginTop: 0 }}>
           {content.title}
-        </Heading>
+        </Text>
         <HeaderActions>
           <Popover trigger={<IconButton size="md" icon="Share" />}>
             <LinkedinShareButton url={"https://www.example.com"}>

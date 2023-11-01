@@ -1,7 +1,7 @@
 "use client";
 
 import { Grid } from "./styles";
-import { Container, Heading } from "@/components/atoms";
+import { Container, Text } from "@/components/atoms";
 import type { GroupedSkillType } from "@/types";
 
 export const SkillsTemplate = ({ skills }: { skills: GroupedSkillType[] }) => {
@@ -10,12 +10,12 @@ export const SkillsTemplate = ({ skills }: { skills: GroupedSkillType[] }) => {
       <Grid>
         {skills.map(({ category, items }, i) => (
           <div key={category.title}>
-            <Heading size="h4">{category.title}</Heading>
+            <Text size={3}>{category.title}</Text>
             {items.map(({ proficiency, items }) => (
               <>
-                <Heading size="h6" color="secondary" key={proficiency}>
+                <Text size={2} color="secondary" key={proficiency}>
                   {proficiency}
-                </Heading>
+                </Text>
                 {items.map(({ title }) =>
                   title ? <div key={title}>{title}</div> : null,
                 )}

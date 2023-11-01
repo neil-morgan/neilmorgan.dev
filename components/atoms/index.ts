@@ -3,7 +3,6 @@ export { Blockquote } from "./Blockquote";
 export { Button } from "./Button";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
-export { Heading } from "./Heading";
 export { Icon, IconDefs } from "./Icon";
 export { IconButton } from "./IconButton";
 export { Link } from "./Link";

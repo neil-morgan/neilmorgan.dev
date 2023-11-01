@@ -23,10 +23,10 @@ export const lightTheme = createTheme({
   colors: {
     layer1: root.white,
     layer2: base.base1,
-    layer3: base.base3,
-    layer4: base.base4,
-    layer5: base.base5,
-    layer6: base.base6,
+    layer3: base.base2,
+    layer4: base.base3,
+    layer5: base.base4,
+    layer6: base.base5,
 
     text1: base.base14,
     text2: base.base11,

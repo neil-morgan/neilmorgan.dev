@@ -6,7 +6,7 @@ import { deleteCookie, setCookie } from "cookies-next";
 import { type LikeButtonProps } from "./types";
 import { Wrapper } from "./styles";
 import { UpdatePostDataDocument } from "@/graphql";
-import { IconButton, Icon, Text } from "@/components/atoms";
+import { IconButton, Text } from "@/components/atoms";
 
 export const LikeButton = ({ likes, id, liked = false }: LikeButtonProps) => {
   const [isLiked, setIsLiked] = useState(liked);
@@ -45,7 +45,7 @@ export const LikeButton = ({ likes, id, liked = false }: LikeButtonProps) => {
         onClick={() => handleClick(isLiked)}
         priority={isLiked ? "primary" : "default"}
       />
-      <Text size="sm">{likeCount}</Text>
+      <Text size={1}>{likeCount}</Text>
     </Wrapper>
   );
 };
