@@ -54,10 +54,10 @@ export const Element = styled("div", {
 
     color: {
       primary: {
-        color: "$primary",
+        color: "$primary2",
       },
       secondary: {
-        color: "$secondary",
+        color: "$secondary2",
       },
       default: {
         color: "$text2",

@@ -6,7 +6,7 @@ import { styled } from "@/lib/stitches";
 export const VerticalSeparator = styled(Root, {
   backgroundColor: "$layer5",
   height: "100%",
-  width: "2px",
+  width: "1px",
   variants: {
     size: {
       xs: {
@@ -30,7 +30,7 @@ export const VerticalSeparator = styled(Root, {
 
 export const HorizontalSeparator = styled(Root, {
   backgroundColor: "$layer5",
-  height: "2px",
+  height: "1px",
   width: "100%",
   variants: {
     size: {

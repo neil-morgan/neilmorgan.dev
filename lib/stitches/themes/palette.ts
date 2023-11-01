@@ -36,3 +36,5 @@ export const primary = {
   primary13: "#110931",
   primary14: "#0A051E",
 };
+
+export const secondary = {} //! select a secondary

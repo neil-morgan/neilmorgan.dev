@@ -1,7 +1,7 @@
 import { styled } from "@/lib/stitches";
 
-export const PostEdge = styled("header", {
+export const Wrapper = styled("div", {
   display: "flex",
-  justifyContent: "space-between",
   alignItems: "center",
+  gap: "$5",
 });

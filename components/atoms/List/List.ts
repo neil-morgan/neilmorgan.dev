@@ -8,4 +8,6 @@ export const OrderedList = styled("ol", { ...defaultList });
 
 export const UnorderedList = styled("ul", { ...defaultList });
 
-export const ListItem = styled("li");
+export const ListItem = styled("li", {
+  listStylePosition: "inside",
+});
