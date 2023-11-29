@@ -13,8 +13,8 @@ export const resolvers = {
 
   Mutation: {
     createPostData: async (_: unknown, args: PostResolverType) => {
-      const { _id, likes } = args;
-      const newPost = new Post({ _id, likes });
+      console.log(args); // think this is only the likes, not the title or _id
+      const newPost = new Post(args);
       await newPost.save();
       return newPost;
     },

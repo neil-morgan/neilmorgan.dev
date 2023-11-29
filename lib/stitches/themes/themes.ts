@@ -1,5 +1,5 @@
 import { createTheme } from "@stitches/react";
-import { base, root, primary } from "./palette";
+import { base, root, primary, secondary } from "./palette";
 
 export const darkTheme = createTheme({
   colors: {
@@ -16,6 +16,9 @@ export const darkTheme = createTheme({
 
     primary1: primary.primary5,
     primary2: primary.primary4,
+
+    secondary1: secondary.secondary5,
+    secondary2: secondary.secondary4,
   },
 });
 
@@ -34,5 +37,8 @@ export const lightTheme = createTheme({
 
     primary1: primary.primary6,
     primary2: primary.primary9,
+
+    secondary1: secondary.secondary6,
+    secondary2: secondary.secondary9,
   },
 });

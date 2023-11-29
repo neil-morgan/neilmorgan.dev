@@ -20,3 +20,5 @@ export const FEATURE_FLAGS = {
   posts: true,
   projects: true,
 };
+
+export const COOKIE_PREFIX = "nmlike-";

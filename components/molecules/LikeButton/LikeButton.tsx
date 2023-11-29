@@ -1,39 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
 import { useMutation } from "@apollo/client";
-import { deleteCookie, setCookie } from "cookies-next";
 import { type LikeButtonProps } from "./types";
 import { Wrapper } from "./styles";
+import { LikesContext } from "@/contexts";
 import { UpdatePostDataDocument } from "@/graphql";
 import { IconButton, Text } from "@/components/atoms";
 
-export const LikeButton = ({ likes, id, liked = false }: LikeButtonProps) => {
-  const [isLiked, setIsLiked] = useState(liked);
-  const [likeCount, setLikeCount] = useState(likes as number);
+export const LikeButton = ({ id, likes }: LikeButtonProps) => {
+  const { addLiked, removeLiked, likedItems } = useContext(LikesContext);
   const [mutate] = useMutation(UpdatePostDataDocument);
 
-  const handleClick = (prev: boolean) => {
-    if (prev) {
-      setIsLiked(false);
-      setLikeCount(likeCount - 1);
+  const value = likedItems[id];
+
+  const handleClick = () => {
+    if (value) {
+      removeLiked(id);
       mutate({
-        variables: { id, likes: likeCount - 1 },
+        variables: { id, likes: value - 1 },
       });
-      deleteCookie(`nm-${id}`);
+      return;
     }
 
-    if (!prev) {
-      setIsLiked(true);
-      setLikeCount(likeCount + 1);
+    if (!value) {
+      console.log("called");
+      addLiked(id, 1);
       mutate({
-        variables: { id, likes: likeCount + 1 },
+        variables: { id, likes: value + 1 },
       });
-
-      const expiryDate = new Date();
-      expiryDate.setDate(expiryDate.getDate() + 30);
-
-      setCookie(`nm-${id}`, true, { expires: expiryDate });
     }
   };
 
@@ -42,10 +37,10 @@ export const LikeButton = ({ likes, id, liked = false }: LikeButtonProps) => {
       <IconButton
         size="md"
         icon="Heart"
-        onClick={() => handleClick(isLiked)}
-        priority={isLiked ? "primary" : "default"}
+        onClick={() => handleClick()}
+        priority={value ? "primary" : "default"}
       />
-      <Text size={1}>{likeCount}</Text>
+      <Text size={1}>{likes}</Text>
     </Wrapper>
   );
 };

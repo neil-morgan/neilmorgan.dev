@@ -8,6 +8,7 @@ import { inter, FEATURE_FLAGS } from "@/lib/site";
 import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
 import type { CategoryType } from "@/types";
+import { LikesProvider } from "@/contexts";
 
 export const revalidate = 1;
 

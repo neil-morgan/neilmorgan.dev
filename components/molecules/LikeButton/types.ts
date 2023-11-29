@@ -1,5 +1,4 @@
 export type LikeButtonProps = {
   id: string;
-  likes: number | null | undefined;
-  liked?: boolean;
+  likes: number | null;
 };

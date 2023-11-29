@@ -21,7 +21,7 @@ export const base = {
 };
 
 export const primary = {
-  primary: "#ede7f6",
+  primary1: "#ede7f6",
   primary2: "#d1c4e9",
   primary3: "#b39ddb",
   primary4: "#9575cd",
@@ -37,4 +37,19 @@ export const primary = {
   primary14: "#0A051E",
 };
 
-export const secondary = {} //! select a secondary
+export const secondary = {
+  secondary1: "#fff8e1",
+  secondary2: "#ffecb3",
+  secondary3: "#ffe082",
+  secondary4: "#ffd54f",
+  secondary5: "#ffca28",
+  secondary6: "#ffc107",
+  secondary7: "#ffb300",
+  secondary8: "#ffa000",
+  secondary9: "#ff8f00",
+  secondary10: "#ff6f00",
+  secondary11: "#944000",
+  secondary12: "#6C2F00",
+  secondary13: "#4A2000",
+  secondary14: "#281100",
+};

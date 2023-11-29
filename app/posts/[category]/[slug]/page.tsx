@@ -71,16 +71,18 @@ const PostPage = async ({ params }: SlugProps) => {
     const { data } = await getClient().mutate({
       context: { clientName: APOLLO_CLIENTS.DB },
       mutation: CreatePostDataDocument,
-      variables: { id: post.sys.id, likes: 0 },
+      variables: { title: post.title, id: post.sys.id, likes: 0 },
     });
     dataSrc = data?.createPostData;
   } else {
     dataSrc = fetchedPostData;
   }
 
-  const { likes } = dataSrc || {};
+  const { likes } = dataSrc ?? {};
 
-  return <PostTemplate content={{ ...post, likes }} />;
+  console.log(likes);
+
+  return <PostTemplate content={{ ...post, likes: likes! }} />;
 };
 
 export default PostPage;

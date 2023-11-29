@@ -66,18 +66,17 @@ export const ThemeToggleContext = createContext({
 });
 
 export const ThemeConsumer = ThemeToggleContext.Consumer;
-export const ThemeProvider = ThemeToggleContext.Provider;
 
 export const ThemeToggleHandler = ({ children }: { children: ReactNode }) => {
   const [colorMode, cycleToggleMode] = useColorMode();
   return (
-    <ThemeProvider
+    <ThemeToggleContext.Provider
       value={{
         colorMode,
         cycleToggleMode,
       }}>
       {children}
-    </ThemeProvider>
+    </ThemeToggleContext.Provider>
   );
 };
 
