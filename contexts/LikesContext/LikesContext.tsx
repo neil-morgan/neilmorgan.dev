@@ -31,20 +31,14 @@ export const LikesProvider = ({ children }: { children: ReactNode }) => {
   useQuery(PostsDataByIdsDocument, {
     variables: { ids: getIdsFromLocalStorage(LocalStorageLocation.Likes) },
     onCompleted: data => {
-      const res = data.postsDataByIds?.map(post => {
-        return { id: post?._id, likes: post?.likes, liked: true };
-      });
-
-      if (res && likedItems) {
-        setLikedItems([...res, ...likedItems]);
-      }
+      const res = data.postsDataByIds?.map(post => ({
+        id: post?._id,
+        likes: post?.likes,
+        liked: true,
+      }));
 
       if (res) {
-        setLikedItems([...res]);
-      }
-
-      if (likedItems) {
-        setLikedItems([...likedItems]);
+        setLikedItems(prev => (prev ? [...res, ...prev] : [...res]));
       }
     },
   });

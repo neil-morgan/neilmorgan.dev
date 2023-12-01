@@ -7,6 +7,7 @@ export const VerticalSeparator = styled(Root, {
   backgroundColor: "$layer5",
   height: "100%",
   width: "1px",
+  transition: "$theme",
   variants: {
     size: {
       xs: {
@@ -32,6 +33,7 @@ export const HorizontalSeparator = styled(Root, {
   backgroundColor: "$layer5",
   height: "1px",
   width: "100%",
+  transition: "$theme",
   variants: {
     size: {
       xs: {

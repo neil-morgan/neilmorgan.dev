@@ -27,7 +27,7 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
       <HorizontalSeparator size="xl" />
 
       <PostEdge as="footer">
-        {/* {actions} */}
+        {actions}
         <Text size={5} color="secondary">
           Thanks for reading!
         </Text>

@@ -4,6 +4,7 @@ export const Element = styled("div", {
   position: "relative",
   fontSize: "inherit",
   fontWeight: "normal",
+  transition: "$theme",
 
   "&:hover a": { opacity: 1 },
 
