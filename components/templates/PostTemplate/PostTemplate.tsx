@@ -1,10 +1,9 @@
 "use client";
 
-// TODO! Investigate why this import is not working
-import { NavigableRichtext } from "../../organisms/NavigableRichtext";
 import type { PostTemplateProps } from "./types";
 import { PostEdge } from "./styles";
 import { Actions } from "./components";
+import { NavigableRichtext } from "@/components/organisms/NavigableRichtext";
 import { Container, HorizontalSeparator, Text } from "@/components/atoms";
 
 export const PostTemplate = ({ content }: PostTemplateProps) => {
@@ -28,7 +27,7 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
       <HorizontalSeparator size="xl" />
 
       <PostEdge as="footer">
-        {actions}
+        {/* {actions} */}
         <Text size={5} color="secondary">
           Thanks for reading!
         </Text>

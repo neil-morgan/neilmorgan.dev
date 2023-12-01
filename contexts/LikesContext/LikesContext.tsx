@@ -7,38 +7,72 @@ import {
   useMemo,
   useCallback,
 } from "react";
-import { deleteCookie, setCookie } from "cookies-next";
-import { getLikes } from "./helpers";
-import { COOKIE_PREFIX } from "@/lib/site";
+import { useQuery } from "@apollo/client";
+import type { LikedItemType } from "./types";
+import { LocalStorageLocation } from "@/lib/site";
+import { PostsDataByIdsDocument } from "@/graphql";
+import {
+  addIdToLocalStorage,
+  removeIdFromLocalStorage,
+  getIdsFromLocalStorage,
+} from "@/foo";
 
 export const LikesContext = createContext({
-  likedItems: {} as { [key: string]: number },
+  likedItems: [] as LikedItemType[] | undefined,
   addLiked: (id: string, count: number) => {},
-  removeLiked: (id: string) => {},
+  removeLiked: (id: string, count: number) => {},
 });
+
 export const LikesConsumer = LikesContext.Consumer;
 
 export const LikesProvider = ({ children }: { children: ReactNode }) => {
-  const [likedItems, setLikedItems] = useState(getLikes());
+  const [likedItems, setLikedItems] = useState<LikedItemType[]>();
 
-  const expiryDate = useMemo(() => new Date(), []);
-  expiryDate.setDate(expiryDate.getDate() + 30);
+  useQuery(PostsDataByIdsDocument, {
+    variables: { ids: getIdsFromLocalStorage(LocalStorageLocation.Likes) },
+    onCompleted: data => {
+      const res = data.postsDataByIds?.map(post => {
+        return { id: post?._id, likes: post?.likes, liked: true };
+      });
 
-  const addLiked = useCallback(
-    (id: string, count: number) => {
-      setLikedItems({ ...likedItems, [id]: count });
-      setCookie(`${COOKIE_PREFIX}${id}`, count + 1, { expires: expiryDate });
+      if (res && likedItems) {
+        setLikedItems([...res, ...likedItems]);
+      }
+
+      if (res) {
+        setLikedItems([...res]);
+      }
+
+      if (likedItems) {
+        setLikedItems([...likedItems]);
+      }
     },
-    [expiryDate, likedItems],
-  );
+  });
 
-  const removeLiked = useCallback((id: string) => {
+  const addLiked = useCallback((id: string, count: number) => {
     setLikedItems(prev => {
-      const newLikedItems = { ...prev };
-      delete newLikedItems[id];
-      return newLikedItems;
+      if (prev?.find(item => item.id === id)) {
+        return prev?.map(item => {
+          if (item.id === id) {
+            return { ...item, likes: count, liked: true };
+          }
+          return item;
+        });
+      }
     });
-    deleteCookie(`${COOKIE_PREFIX}-${id}`);
+    addIdToLocalStorage(id, LocalStorageLocation.Likes);
+  }, []);
+
+  const removeLiked = useCallback((id: string, count: number) => {
+    setLikedItems(prev => {
+      return prev?.map(item => {
+        if (item.id === id) {
+          return { ...item, likes: count - 1, liked: false };
+        }
+        return item;
+      });
+    });
+    removeIdFromLocalStorage(id, LocalStorageLocation.Likes);
   }, []);
 
   const value = useMemo(

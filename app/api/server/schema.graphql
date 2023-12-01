@@ -5,8 +5,9 @@ type PostDataAttributes {
 }
 
 type Query {
-  postsData: [PostDataAttributes]
   postData(_id: ID): PostDataAttributes
+  postsData: [PostDataAttributes]
+  postsDataByIds(_ids: [ID]): [PostDataAttributes]
 }
 
 type Mutation {

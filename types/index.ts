@@ -96,3 +96,5 @@ export type RichtextType = {
   json: Scalars["JSON"]["output"];
   links: RichtextLinksType;
 };
+
+export type LocalStorageLocations = "likes";

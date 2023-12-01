@@ -12,20 +12,21 @@ export const LikeButton = ({ id, likes }: LikeButtonProps) => {
   const { addLiked, removeLiked, likedItems } = useContext(LikesContext);
   const [mutate] = useMutation(UpdatePostDataDocument);
 
-  const value = likedItems[id];
+  const item = likedItems?.find(item => item.id === id);
+  const isLiked = item?.liked;
+  const value = item?.likes || likes;
 
   const handleClick = () => {
-    if (value) {
-      removeLiked(id);
+    if (isLiked && value) {
+      removeLiked(id, value);
       mutate({
         variables: { id, likes: value - 1 },
       });
       return;
     }
 
-    if (!value) {
-      console.log("called");
-      addLiked(id, 1);
+    if (!isLiked && value) {
+      addLiked(id, value + 1);
       mutate({
         variables: { id, likes: value + 1 },
       });
@@ -38,9 +39,9 @@ export const LikeButton = ({ id, likes }: LikeButtonProps) => {
         size="md"
         icon="Heart"
         onClick={() => handleClick()}
-        priority={value ? "primary" : "default"}
+        priority={isLiked ? "primary" : "default"}
       />
-      <Text size={1}>{likes}</Text>
+      {value && <Text size={1}>{value}</Text>}
     </Wrapper>
   );
 };
