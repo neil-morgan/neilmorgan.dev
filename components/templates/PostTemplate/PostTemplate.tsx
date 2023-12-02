@@ -1,7 +1,7 @@
 "use client";
 
 import type { PostTemplateProps } from "./types";
-import { PostEdge } from "./styles";
+import { Header } from "./styles";
 import { Actions } from "./components";
 import { NavigableRichtext } from "@/components/organisms/NavigableRichtext";
 import { Container, HorizontalSeparator, Text } from "@/components/atoms";
@@ -11,27 +11,26 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
     return null;
   }
 
-  const actions = <Actions id={content.sys.id} likes={content.likes} />;
-
   return (
     <Container>
-      <PostEdge>
-        <Text size={9} weight="600" css={{ marginTop: 0 }}>
+      <Header>
+        <Text size={9} as="h2" weight={600} css={{ marginBottom: "$11" }}>
           {content.title}
         </Text>
-        {actions}
-      </PostEdge>
-
-      <HorizontalSeparator size="xl" />
+        <Actions
+          id={content.sys.id}
+          likes={content.likes}
+          text={`Posted: ${content.date.split("T")[0]}`}
+        />
+      </Header>
+      <HorizontalSeparator size="sm" />
       <NavigableRichtext content={content.body} />
       <HorizontalSeparator size="xl" />
-
-      <PostEdge as="footer">
-        {actions}
-        <Text size={5} color="secondary">
-          Thanks for reading!
-        </Text>
-      </PostEdge>
+      <Actions
+        id={content.sys.id}
+        likes={content.likes}
+        text="Thanks for reading!"
+      />
     </Container>
   );
 };

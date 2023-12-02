@@ -4,6 +4,8 @@ import { kebabCase } from "lodash";
 import { Icon } from "../Icon";
 import type { TextProps } from "./types";
 import { Element, Anchor } from "./styles";
+import { useMediaQuery } from "@/hooks";
+import { BREAKPOINTS } from "@/lib/site";
 
 export const Text = ({
   as = "div",
@@ -12,11 +14,14 @@ export const Text = ({
   id,
   size,
   color,
-  weight = "400",
+  weight = 400,
   style,
   appearance,
 }: React.PropsWithChildren<TextProps>) => {
   const _id = kebabCase(id);
+  const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.lg})`);
+
+  console.log(isDesktop);
 
   const mergedCss = {
     ...css,
@@ -31,9 +36,9 @@ export const Text = ({
       appearance={appearance}
       css={mergedCss}
       color={color}>
-      {id && (
+      {id && isDesktop && (
         <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
-          <Icon name="link" />
+          <Icon name="Link" />
         </Anchor>
       )}
       {children}

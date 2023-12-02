@@ -1,9 +1,8 @@
 "use client";
 
 import { Fragment } from "react";
-
 import { PopoverButton, PopoverSection } from "../../styles";
-import { Popover, SecondaryItems } from "../../components";
+import { SecondaryItems } from "../../components";
 import {
   DesktopItem,
   DesktopItemHeading,
@@ -12,7 +11,7 @@ import {
   DesktopList,
 } from "./styles";
 import type { DesktopNavProps } from "./types";
-import { Icon } from "@/components/atoms";
+import { Icon, Popover } from "@/components/atoms";
 
 export const DesktopNav = ({
   items,
@@ -39,7 +38,7 @@ export const DesktopNav = ({
                   <Fragment key={i}>
                     <DesktopItemLink
                       href={slug}
-                      onClick={() => setOpenItem(null)}>
+                      onClick={() => setOpenItem(false)}>
                       <DesktopItemHeading>{title}</DesktopItemHeading>
                     </DesktopItemLink>
                   </Fragment>

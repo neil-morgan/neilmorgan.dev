@@ -36,7 +36,6 @@ export const LikeButton = ({ id, likes }: LikeButtonProps) => {
   return (
     <Wrapper>
       <IconButton
-        size="md"
         icon="Heart"
         onClick={() => handleClick()}
         priority={isLiked ? "primary" : "default"}

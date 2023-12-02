@@ -1,21 +1,36 @@
 "use client";
 
 import type { PropsWithChildren } from "react";
-import { Root, Trigger, Portal } from "@radix-ui/react-popover";
+import { Root, Trigger, Portal, Anchor } from "@radix-ui/react-popover";
 import { PopoverArrow, PopoverContent, PopoverWrapper } from "./styles";
+import type { PopoverProps } from "./types";
 
 export const Popover = ({
   children,
   trigger,
-}: PropsWithChildren<{ trigger?: React.ReactNode }>) => {
+  anchor,
+  open,
+  setOpen,
+  withArrow = false,
+  side = "bottom",
+}: PropsWithChildren<PopoverProps>) => {
+  const handleClose = () => setOpen && setOpen(false);
   return (
-    <Root>
-      <Trigger asChild>{trigger}</Trigger>
+    <Root open={open}>
+      {trigger && <Trigger asChild>{trigger}</Trigger>}
+      {anchor && <Anchor asChild>{anchor}</Anchor>}
       <Portal>
-        <PopoverWrapper>
+        <PopoverWrapper
+          hideWhenDetached
+          sideOffset={withArrow ? 5 : 15}
+          side={side}
+          onPointerDownOutside={handleClose}
+          onInteractOutside={handleClose}
+          onFocusOutside={handleClose}
+          onEscapeKeyDown={handleClose}>
           <PopoverContent>
             {children}
-            <PopoverArrow />
+            {withArrow && <PopoverArrow />}
           </PopoverContent>
         </PopoverWrapper>
       </Portal>

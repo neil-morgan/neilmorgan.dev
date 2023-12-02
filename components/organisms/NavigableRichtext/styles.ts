@@ -3,6 +3,7 @@ import { styled } from "@/lib/stitches";
 export const Body = styled("div", {
   display: "flex",
   justifyContent: "center",
+  marginTop: "$9"
 });
 
 export const Content = styled("article", {
@@ -18,6 +19,7 @@ export const Aside = styled("aside", {
   width: "100%",
   height: "100%",
   display: "none",
+  gap: "$5",
   "@lg": {
     display: "flex",
   },

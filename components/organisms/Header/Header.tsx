@@ -10,11 +10,11 @@ import { useMediaQuery } from "@/hooks";
 import { BREAKPOINTS } from "@/lib/site";
 
 export const Header = ({ content }: HeaderProps) => {
-  const [openItem, setOpenItem] = useState<number | null>(null);
+  const [openItem, setOpenItem] = useState<number | false>(false);
   const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.md})`);
 
   useEffect(() => {
-    setOpenItem(null);
+    setOpenItem(false);
   }, [isDesktop]);
 
   return (

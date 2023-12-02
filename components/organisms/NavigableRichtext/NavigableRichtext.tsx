@@ -13,12 +13,9 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
       <Richtext content={content} />
     </Content>
     <Aside>
-      <Text size={4} appearance="print" weight="500">
+      <Text size={4} appearance="print" weight={500}>
         CONTENTS
       </Text>
-
-      <HorizontalSeparator size="sm" />
-
       <NavList>
         {buildRichtextHeadings(content.json.content).map(
           ({ heading, subHeadings }, i1) => (

@@ -1,6 +1,10 @@
 export type PopoverProps = {
   children: React.ReactNode;
-  anchor: React.ReactNode;
-  open: boolean;
-  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-};
+  open?: boolean;
+  side?: "top" | "bottom" | "left" | "right";
+  withArrow?: boolean;
+  setOpen?: React.Dispatch<React.SetStateAction<number | false>>;
+} & (
+  | { anchor: React.ReactNode; trigger?: never }
+  | { trigger: React.ReactNode; anchor?: never }
+);

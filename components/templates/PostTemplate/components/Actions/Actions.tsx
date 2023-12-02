@@ -1,18 +1,27 @@
 "use client";
 
-import { LinkedinShareButton } from "react-share";
-import { Wrapper } from "./styles";
+import { usePathname } from "next/navigation";
+import { Wrapper, Container } from "./styles";
 import type { ActionsProps } from "./types";
-import { Popover, Icon, IconButton } from "@/components/atoms";
-import { LikeButton } from "@/components/molecules";
+import { LikeButton, CopyButton } from "@/components/molecules";
+import { Text } from "@/components/atoms";
+import { SITE_BASE_URL } from "@/lib/site";
 
-export const Actions = ({ likes, id }: ActionsProps) => (
-  <Wrapper>
-    <Popover trigger={<IconButton size="md" icon="Share" />}>
-      <LinkedinShareButton url={"https://www.example.com"}>
-        <Icon name="LinkedIn" />
-      </LinkedinShareButton>
-    </Popover>
-    <LikeButton likes={likes} id={id} />
-  </Wrapper>
-);
+export const Actions = ({ likes, id, text }: ActionsProps) => {
+  const pathname = usePathname();
+  return (
+    <Wrapper>
+      <Container>
+        <CopyButton
+          text={`${SITE_BASE_URL}${pathname}`}
+          message="Url copied to clipboard"
+        />
+        <LikeButton likes={likes} id={id} />
+      </Container>
+
+      <Text size={1} weight={300} as="span">
+        {text}
+      </Text>
+    </Wrapper>
+  );
+};

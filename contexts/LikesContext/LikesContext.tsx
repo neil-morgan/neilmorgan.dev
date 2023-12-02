@@ -15,7 +15,7 @@ import {
   addIdToLocalStorage,
   removeIdFromLocalStorage,
   getIdsFromLocalStorage,
-} from "@/foo";
+} from "@/helpers/local-storage";
 
 export const LikesContext = createContext({
   likedItems: [] as LikedItemType[] | undefined,

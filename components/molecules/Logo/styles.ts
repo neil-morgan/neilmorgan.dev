@@ -2,6 +2,7 @@ import { styled } from "@/lib/stitches";
 
 export const Svg = styled("svg", {
   color: "currentColor",
-  height: "100%",
-  width: "100%",
+  width: "1em",
+  height: "1em",
+  lineHeight: "11em",
 });

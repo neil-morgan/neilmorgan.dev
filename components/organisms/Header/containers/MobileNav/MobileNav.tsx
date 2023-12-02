@@ -1,8 +1,8 @@
-import { Popover, SecondaryItems } from "../../components";
+import { SecondaryItems } from "../../components";
 import { PopoverSection } from "../../styles";
 import type { MobileNavProps } from "./types";
 import { MobileLink, MobileListItem, MobileList } from "./styles";
-import { IconButton, HorizontalSeparator } from "@/components/atoms";
+import { IconButton, HorizontalSeparator, Popover } from "@/components/atoms";
 
 export const MobileNav = ({
   items,
@@ -34,7 +34,7 @@ export const MobileNav = ({
                 <MobileListItem
                   key={i}
                   href={slug}
-                  onClick={() => setOpenItem(null)}>
+                  onClick={() => setOpenItem(false)}>
                   {title}
                 </MobileListItem>
               ))}

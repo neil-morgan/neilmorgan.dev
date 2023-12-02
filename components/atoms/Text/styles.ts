@@ -83,7 +83,7 @@ export const Anchor = styled("a", {
   "&:hover": { opacity: 1 },
   bottom: "0",
   color: "inherit",
-  fontSize: "$6",
+  fontSize: "$5",
   display: "none",
   flexDirection: "column",
   justifyContent: "center",
@@ -92,7 +92,7 @@ export const Anchor = styled("a", {
   opacity: "0",
   position: "absolute",
   top: "0",
-  transform: "translateX(-150%)",
+  transform: "translateX(-120%)",
   transition: "ease 250ms",
 
   variants: {
