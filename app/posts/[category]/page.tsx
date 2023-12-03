@@ -12,8 +12,6 @@ import {
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
 
-export const revalidate = 1;
-
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     query: PostSlugsDocument,
