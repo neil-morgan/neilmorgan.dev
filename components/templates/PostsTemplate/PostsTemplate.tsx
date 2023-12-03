@@ -9,7 +9,7 @@ import type { GroupedPostType } from "@/types";
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Text size={7} as="h2" weight="600" appearance="print">
+      <Text size={7} as="h2" weight={600} appearance="print">
         {category?.title}
       </Text>
       <Text size={3}>
