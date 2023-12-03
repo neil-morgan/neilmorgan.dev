@@ -1,13 +1,16 @@
 import { styled } from "@/lib/stitches";
 
 export const IconButtonElement = styled("button", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   border: 0,
   background: "transparent",
   cursor: "pointer",
   position: "relative",
   height: "1.75em",
   width: "1.75em",
-  padding: "0.3em",
+
   borderRadius: "$default",
   transition: "$theme",
 
@@ -25,10 +28,11 @@ export const IconButtonElement = styled("button", {
     },
     priority: {
       default: {
-        background: "$layer5",
+        background: "$layer4",
+        border: "solid 1px $layer5",
         color: "$text2",
         "&:hover": {
-          background: "$layer6",
+          background: "$layer5",
         },
       },
       primary: {
@@ -50,6 +54,6 @@ export const IconButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "primary",
+    priority: "default",
   },
 });

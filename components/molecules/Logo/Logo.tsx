@@ -1,9 +1,8 @@
 "use client";
 
-import { IconButton } from "../../atoms/IconButton";
-import { ConditionalWrapper } from "../../atoms/ConditionalWrapper";
 import type { LogoProps } from "./types";
 import { Svg } from "./styles";
+import { IconButton, ConditionalWrapper } from "@/components/atoms";
 
 export const Logo = ({ size = "lg", isLink = false }: LogoProps) => (
   <ConditionalWrapper

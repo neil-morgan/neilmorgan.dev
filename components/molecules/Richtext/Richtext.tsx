@@ -14,7 +14,6 @@ import type { RichtextNodeType, RichtextProps } from "./types";
 import {
   AspectRatio,
   Blockquote,
-  Heading,
   HorizontalSeparator,
   Link,
   ListItem,
@@ -42,12 +41,14 @@ export const Richtext = ({ content }: RichtextProps) => {
           return null;
         }
         return (
-          <Heading
-            size="h1"
+          <Text
+            size={7}
+            weight={600}
+            as="h2"
             css={{ marginTop: "$11" }}
             id={node.content[0].value}>
             {children}
-          </Heading>
+          </Text>
         );
       },
 
@@ -56,12 +57,14 @@ export const Richtext = ({ content }: RichtextProps) => {
           return null;
         }
         return (
-          <Heading
-            size="h3"
+          <Text
+            size={5}
+            weight={500}
+            as="h3"
             css={{ marginTop: "$6" }}
             id={node.content[0].value}>
             {children}
-          </Heading>
+          </Text>
         );
       },
 

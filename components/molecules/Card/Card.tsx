@@ -1,16 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { CardWrapper, CardBody } from "./styles";
 import type { CardProps } from "./types";
-import {
-  Heading,
-  Text,
-  AspectRatio,
-  ConditionalWrapper,
-} from "@/components/atoms";
+import { Text, AspectRatio, ConditionalWrapper } from "@/components/atoms";
 
 export const Card = ({
   heading,
@@ -19,17 +13,13 @@ export const Card = ({
   image,
   isLink,
 }: CardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <ConditionalWrapper
       if={isLink}
       wrapWith={children => (
         <NextLink href={href as string}>{children}</NextLink>
       )}>
-      <CardWrapper
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}>
+      <CardWrapper>
         <AspectRatio
           ratio={4 / 5}
           css={{
@@ -45,7 +35,9 @@ export const Card = ({
         </AspectRatio>
 
         <CardBody>
-          <Heading size="h3">{heading}</Heading>
+          <Text size={5} as="h3">
+            {heading}
+          </Text>
           <Text as="p">{description}</Text>
         </CardBody>
       </CardWrapper>

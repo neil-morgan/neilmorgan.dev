@@ -1,5 +1,6 @@
-mutation createPostData($likes: Int, $id: ID) {
-  createPostData(likes: $likes, _id: $id) {
+mutation createPostData($likes: Int, $id: ID, $title: String) {
+  createPostData(likes: $likes, _id: $id, title: $title) {
+    title
     likes
     _id
   }

@@ -3,18 +3,22 @@ import { Post } from "@/lib/mongodb";
 
 export const resolvers = {
   Query: {
-    postsData: async () => {
-      return await Post.find({});
-    },
-
     postData: async (_: unknown, { _id }: PostResolverType) =>
       await Post.findById(_id),
+
+    postsData: async () => await Post.find({}),
+
+    postsDataByIds: async (_: unknown, { _ids }: PostResolverType) =>
+      await Post.find({
+        _id: {
+          $in: _ids,
+        },
+      }),
   },
 
   Mutation: {
     createPostData: async (_: unknown, args: PostResolverType) => {
-      const { _id, likes } = args;
-      const newPost = new Post({ _id, likes });
+      const newPost = new Post(args);
       await newPost.save();
       return newPost;
     },

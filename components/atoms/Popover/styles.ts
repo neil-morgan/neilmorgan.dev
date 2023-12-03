@@ -25,14 +25,18 @@ const slideLeftAndFade = keyframes({
 });
 
 export const PopoverArrow = styled(Arrow, {
-  fill: "$layer4",
+  fill: "$layer5",
+  height: "10px",
+  width: "2px",
 });
 
 export const PopoverWrapper = styled(Content, {
   width: "100%",
   zIndex: "200",
-  padding: "0 $2",
   animationDuration: "400ms",
+  border: "solid 1px $layer5",
+  borderRadius: "$default",
+  backgroundColor: "$layer3",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   willChange: "transform, opacity",
   '&[data-state="open"]': {
@@ -46,9 +50,5 @@ export const PopoverWrapper = styled(Content, {
 export const PopoverContent = styled("div", {
   display: "flex",
   flexDirection: "column",
-  borderRadius: "$default",
   width: "100%",
-  boxShadow: "$default",
-  minWidth: "180px",
-  backgroundColor: "$layer4",
 });

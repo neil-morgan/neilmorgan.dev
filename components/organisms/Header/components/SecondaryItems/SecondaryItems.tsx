@@ -7,15 +7,17 @@ import { ThemeToggle } from "@/components/molecules";
 
 export const SecondaryItems = ({ items }: SecondaryItemsProps) => (
   <SecondaryItemsWrapper>
-    {items.map(({ href, title }, index) => (
-      <IconButton
-        key={index}
-        href={href}
-        target="_blank"
-        icon={<Icon name={title as string} />}
-        priority="contrast"
-      />
-    ))}
+    {items.map(({ href, title }, index) =>
+      !title ? null : (
+        <IconButton
+          key={index}
+          href={href}
+          target="_blank"
+          icon={title}
+          priority="contrast"
+        />
+      ),
+    )}
     <ThemeToggle />
   </SecondaryItemsWrapper>
 );

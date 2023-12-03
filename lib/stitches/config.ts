@@ -58,20 +58,17 @@ export const { styled } = createStitches({
     },
 
     fontSizes: {
-      0: "0.625rem", // 10px
-      1: "0.75rem", // 12px
-      2: "0.875rem", // 14px
-      3: "1rem", // 16px
-      4: "1.125rem", // 18px
-      5: "1.25rem", // 20px
-      6: "1.375rem", // 22px
-      7: "1.5625rem", // 25px
-      8: "1.75rem", // 28px
-      9: "2rem", // 32px - h2
-      10: "2.25rem", // 36px
-      11: "2.625rem", // 42px
-      12: "2.875rem", // 46px
-      13: "3.1875rem", // 51px
+      0: "0.75rem", // 12px
+      1: "0.875rem", // 14px
+      2: "1rem", // 16px
+      3: "1.125rem", // 18px
+      4: "1.25rem", // 20px
+      5: "1.5rem", // 24px
+      6: "2rem", // 32px
+      7: "2.5rem", // 40px
+      8: "3.125rem", // 50px
+      9: "4rem", // 64px
+      10: "6rem", // 96px
     },
 
     fontWeights: {

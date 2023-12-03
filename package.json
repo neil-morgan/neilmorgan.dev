@@ -4,13 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --names \"app,codegen\" \"yarn dev:app\" \"yarn codegen:watch\"",
+    "check": "concurrently --names \"lint,type-check\" \"yarn lint\" \"yarn type-check\"",
     "dev:app": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc -b",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
     "prepare": "husky install"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   },
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
@@ -19,9 +26,9 @@
     "@as-integrations/next": "^2.0.0",
     "@contentful/rich-text-react-renderer": "^15.17.0",
     "@contentful/rich-text-types": "^16.2.0",
-    "@radix-ui/colors": "^1.0.0",
     "@radix-ui/react-popover": "^1.0.6",
     "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@stitches/react": "^1.2.8",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
@@ -37,8 +44,10 @@
     "mongoose": "^7.3.0",
     "next": "13.4.7",
     "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "^15.5.0",
+    "server-only": "^0.0.1",
     "tslib": "^2.6.0",
     "typescript": "5.1.3"
   },

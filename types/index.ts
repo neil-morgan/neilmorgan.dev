@@ -1,10 +1,18 @@
-import type { Post, Skill } from "@/graphql";
+import type {
+  Post,
+  Skill,
+  Scalars,
+  Maybe,
+  Asset,
+  Entry,
+  ResourceLink,
+} from "@/graphql";
 
-type RichtextHeadingType = { label: string; href: string };
+type NavigableContentHeadingType = { label: string; href: string };
 
-export type RichtextHeadingsType = {
-  heading: RichtextHeadingType;
-  subHeadings: { heading: RichtextHeadingType }[];
+export type NavigableContentHeadingsType = {
+  heading: NavigableContentHeadingType;
+  subHeadings: { heading: NavigableContentHeadingType }[];
 }[];
 
 export type CategoryType = {
@@ -73,3 +81,20 @@ export type SlugMetaProps = {
 export type SlugProps = {
   params: { slug: string };
 };
+
+export type RichtextLinksType = {
+  assets: { block: Array<Maybe<Asset>>; hyperlink: Array<Maybe<Asset>> };
+  entries: {
+    block: Array<Maybe<Entry>>;
+    hyperlink: Array<Maybe<Entry>>;
+    inline: Array<Maybe<Entry>>;
+  };
+  resources: { block: Array<ResourceLink> };
+};
+
+export type RichtextType = {
+  json: Scalars["JSON"]["output"];
+  links: RichtextLinksType;
+};
+
+export type LocalStorageLocations = "likes";

@@ -1,69 +1,36 @@
 "use client";
 
-import { Fragment } from "react";
 import type { PostTemplateProps } from "./types";
-import {
-  Aside,
-  AsideFooter,
-  Content,
-  Body,
-  Header,
-  NavList,
-  NavListItem,
-} from "./styles";
-import {
-  LikeButton,
-  Heading,
-  Text,
-  Container,
-  HorizontalSeparator,
-} from "@/components/atoms";
-import { Richtext } from "@/components/molecules";
-import { type PostBody } from "@/graphql";
+import { Header } from "./styles";
+import { Actions } from "./components";
+import { NavigableRichtext } from "@/components/organisms/NavigableRichtext";
+import { Container, HorizontalSeparator, Text } from "@/components/atoms";
 
-export const PostTemplate = ({ content, headings }: PostTemplateProps) => (
-  <Container>
-    <Header>
-      <Heading size="h1" css={{ marginTop: 0 }}>
-        {content.title}
-      </Heading>
-    </Header>
+export const PostTemplate = ({ content }: PostTemplateProps) => {
+  if (!content.body) {
+    return null;
+  }
 
-    <HorizontalSeparator size="xl" />
-
-    <Body>
-      <Content>
-        <Text as="p">{content.description}</Text>
-        <Richtext content={content?.body as PostBody} />
-      </Content>
-      <Aside>
-        <Heading size="h6" style="print">
-          POST CONTENTS
-        </Heading>
-        <HorizontalSeparator size="sm" />
-        <NavList>
-          {headings.map(({ heading, subHeadings }, i1) => (
-            <Fragment key={`${heading.label}-${i1}`}>
-              <NavListItem href={heading.href}>{heading.label}</NavListItem>
-              {subHeadings.length > 0 && (
-                <NavList>
-                  {subHeadings.map(({ heading }, i2) => (
-                    <NavListItem
-                      key={`${heading.label}-${i2}`}
-                      href={heading.href}
-                      size="subHeading">
-                      {heading.label}
-                    </NavListItem>
-                  ))}
-                </NavList>
-              )}
-            </Fragment>
-          ))}
-        </NavList>
-        <AsideFooter>
-          <LikeButton likes={content?.likes} id={content?.sys.id} />
-        </AsideFooter>
-      </Aside>
-    </Body>
-  </Container>
-);
+  return (
+    <Container>
+      <Header>
+        <Text size={9} as="h2" weight={600} css={{ marginBottom: "$11" }}>
+          {content.title}
+        </Text>
+        <Actions
+          id={content.sys.id}
+          likes={content.likes}
+          text={`Posted: ${content.date.split("T")[0]}`}
+        />
+      </Header>
+      <HorizontalSeparator size="sm" />
+      <NavigableRichtext content={content.body} />
+      <HorizontalSeparator size="xl" />
+      <Actions
+        id={content.sys.id}
+        likes={content.likes}
+        text="Thanks for reading!"
+      />
+    </Container>
+  );
+};

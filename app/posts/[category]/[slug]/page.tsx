@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { draftMode } from "next/headers";
 import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
-import { buildRichtextHeadings, getFeatureFlags } from "@/helpers";
+import { getFeatureFlags } from "@/helpers";
 import { getClient } from "@/lib/apollo";
 import {
   CategoryDocument,
@@ -71,21 +71,18 @@ const PostPage = async ({ params }: SlugProps) => {
     const { data } = await getClient().mutate({
       context: { clientName: APOLLO_CLIENTS.DB },
       mutation: CreatePostDataDocument,
-      variables: { id: post.sys.id, likes: 0 },
+      variables: { title: post.title, id: post.sys.id, likes: 0 },
     });
     dataSrc = data?.createPostData;
   } else {
     dataSrc = fetchedPostData;
   }
 
-  const { likes } = dataSrc || {};
+  const { likes } = dataSrc ?? {};
 
-  return (
-    <PostTemplate
-      content={{ ...post, likes }}
-      headings={buildRichtextHeadings(post.body?.json.content)}
-    />
-  );
+  console.log(likes);
+
+  return <PostTemplate content={{ ...post, likes: likes! }} />;
 };
 
 export default PostPage;
