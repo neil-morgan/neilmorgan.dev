@@ -43,7 +43,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         return (
           <Text
             size={7}
-            weight="600"
+            weight={600}
             as="h2"
             css={{ marginTop: "$11" }}
             id={node.content[0].value}>
@@ -59,7 +59,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         return (
           <Text
             size={5}
-            weight="500"
+            weight={500}
             as="h3"
             css={{ marginTop: "$6" }}
             id={node.content[0].value}>
