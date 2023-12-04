@@ -78,8 +78,6 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const { likes } = dataSrc ?? {};
 
-  console.log(likes);
-
   return <PostTemplate content={{ ...post, likes: likes! }} />;
 };
 
