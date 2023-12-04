@@ -14,6 +14,8 @@ import {
 } from "@/graphql";
 import { APOLLO_CLIENTS } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: SlugMetaProps) {
   const { data } = await getClient().query({
     query: CategoryDocument,
