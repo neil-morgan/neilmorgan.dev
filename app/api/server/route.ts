@@ -1,20 +1,10 @@
-import { readFileSync } from "fs";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { ApolloServer } from "@apollo/server";
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { resolvers } from "./resolvers";
+
+import { schema } from "./schema";
 import { connectDb } from "@/lib/mongodb";
 
 connectDb();
-
-const typeDefs = readFileSync("app/api/server/schema.graphql", {
-  encoding: "utf-8",
-});
-
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
 
 const server = new ApolloServer({
   schema,

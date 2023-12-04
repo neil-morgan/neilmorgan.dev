@@ -5,8 +5,6 @@ import { getClient } from "@/lib/apollo";
 import { AllPostsDocument, type Post } from "@/graphql";
 import { groupByCategory, getFeatureFlags } from "@/helpers";
 
-export const revalidate = 1;
-
 export const metadata = {
   title: "All posts",
 };
@@ -19,7 +17,6 @@ const PostsPage = async () => {
   }
 
   const { data } = await getClient().query({
-    fetchPolicy: "no-cache",
     query: AllPostsDocument,
   });
 

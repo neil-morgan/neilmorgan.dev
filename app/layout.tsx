@@ -8,7 +8,6 @@ import { inter, FEATURE_FLAGS } from "@/lib/site";
 import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
 import type { CategoryType } from "@/types";
-import { LikesProvider } from "@/contexts";
 
 export const revalidate = 1;
 
@@ -21,7 +20,6 @@ export default async function RootLayout({
 
   const { data } = await getClient().query({
     query: HeaderDocument,
-    fetchPolicy: "no-cache",
   });
 
   const social = data.socialItems?.items as SocialItem[];

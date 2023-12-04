@@ -21,8 +21,6 @@ export const Text = ({
   const _id = kebabCase(id);
   const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.lg})`);
 
-  console.log(isDesktop);
-
   const mergedCss = {
     ...css,
     fontWeight: weight,
