@@ -39,16 +39,21 @@ const { getClient } = registerApolloClient(
     new ApolloClient({
       ssrMode: true,
       cache: new InMemoryCache(),
+      defaultOptions: {
+        watchQuery: {
+          fetchPolicy: "no-cache",
+          errorPolicy: "ignore",
+        },
+        query: {
+          fetchPolicy: "no-cache",
+          errorPolicy: "all",
+        },
+      },
       link: ApolloLink.split(
         operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
         dbLink,
         cmsLink,
       ),
-      defaultOptions: {
-        watchQuery: {
-          fetchPolicy: "cache-and-network",
-        },
-      },
     }),
 );
 
