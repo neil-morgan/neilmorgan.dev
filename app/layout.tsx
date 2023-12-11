@@ -9,8 +9,6 @@ import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
 import type { CategoryType } from "@/types";
 
-export const revalidate = 1;
-
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
