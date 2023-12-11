@@ -1,6 +1,7 @@
 import {
   createHttpLink,
   ApolloClient,
+  HttpLink,
   ApolloLink,
   InMemoryCache,
 } from "@apollo/client";
@@ -39,11 +40,19 @@ const { getClient } = registerApolloClient(
   () =>
     new NextSSRApolloClient({
       cache: new NextSSRInMemoryCache(),
-      link: ApolloLink.split(
-        operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
-        dbLink,
-        cmsLink,
-      ),
+      link: new HttpLink({
+        uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CONTENTFUL_DELIVERY_TOKEN}`,
+        },
+      }),
+
+      // link: ApolloLink.split(
+      //   operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
+      //   dbLink,
+      //   cmsLink,
+      // ),
     }),
 );
 
