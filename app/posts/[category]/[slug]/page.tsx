@@ -50,37 +50,42 @@ const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
 
   const { data } = await getClient().query({
-    context: { isPreviewMode: isEnabled },
+    context: {
+      isPreviewMode: isEnabled,
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
     query: PostDocument,
     variables: { slug: params.slug, preview: isEnabled },
   });
 
   const post = data.post?.items[0] as Post;
 
-  const {
-    data: { postData: fetchedPostData },
-  } = await getClient().query({
-    context: { clientName: APOLLO_CLIENTS.DB },
-    query: PostDataDocument,
-    variables: { id: post.sys.id },
-  });
+  // const {
+  //   data: { postData: fetchedPostData },
+  // } = await getClient().query({
+  //   context: { clientName: APOLLO_CLIENTS.DB },
+  //   query: PostDataDocument,
+  //   variables: { id: post.sys.id },
+  // });
 
   let dataSrc;
 
-  if (!fetchedPostData) {
-    const { data } = await getClient().mutate({
-      context: { clientName: APOLLO_CLIENTS.DB },
-      mutation: CreatePostDataDocument,
-      variables: { title: post.title, id: post.sys.id, likes: 0 },
-    });
-    dataSrc = data?.createPostData;
-  } else {
-    dataSrc = fetchedPostData;
-  }
+  // if (!fetchedPostData) {
+  //   const { data } = await getClient().mutate({
+  //     context: { clientName: APOLLO_CLIENTS.DB },
+  //     mutation: CreatePostDataDocument,
+  //     variables: { title: post.title, id: post.sys.id, likes: 0 },
+  //   });
+  //   dataSrc = data?.createPostData;
+  // } else {
+  //   dataSrc = fetchedPostData;
+  // }
 
-  const { likes } = dataSrc ?? {};
+  // const { likes } = dataSrc ?? {};
 
-  return <PostTemplate content={{ ...post, likes: likes! }} />;
+  return <PostTemplate content={{ ...post, likes: 0 }} />;
 };
 
 export default PostPage;
