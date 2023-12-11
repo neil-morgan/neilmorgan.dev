@@ -19,11 +19,13 @@ const dbLink = new SchemaLink({ schema });
 
 const cmsLink = new ApolloLink((operation, forward) => {
   const isPreviewMode = operation.getContext().isPreviewMode || false;
+  const fetchOptions = operation.getContext().fetchOptions || {};
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
     fetchOptions: {
       method: "POST",
+      ...fetchOptions,
     },
     headers: {
       "Content-Type": "application/json",
@@ -39,16 +41,6 @@ const { getClient } = registerApolloClient(
     new ApolloClient({
       ssrMode: true,
       cache: new InMemoryCache(),
-      defaultOptions: {
-        watchQuery: {
-          fetchPolicy: "no-cache",
-          errorPolicy: "ignore",
-        },
-        query: {
-          fetchPolicy: "no-cache",
-          errorPolicy: "all",
-        },
-      },
       link: ApolloLink.split(
         operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
         dbLink,
