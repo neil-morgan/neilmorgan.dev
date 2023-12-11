@@ -22,6 +22,11 @@ const cmsLink = new ApolloLink((operation, forward) => {
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
+    fetchOptions: {
+      next: {
+        revalidate: 5,
+      },
+    },
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${
