@@ -6,6 +6,10 @@ import {
 } from "@apollo/client";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 import { SchemaLink } from "@apollo/client/link/schema";
+import {
+  NextSSRInMemoryCache,
+  NextSSRApolloClient,
+} from "@apollo/experimental-nextjs-app-support/ssr";
 import { schema } from "@/app/api/server/schema";
 import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/lib/site";
 
@@ -22,11 +26,6 @@ const cmsLink = new ApolloLink((operation, forward) => {
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
-    fetchOptions: {
-      next: {
-        revalidate: 5,
-      },
-    },
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${
@@ -38,9 +37,8 @@ const cmsLink = new ApolloLink((operation, forward) => {
 
 const { getClient } = registerApolloClient(
   () =>
-    new ApolloClient({
-      ssrMode: true,
-      cache: new InMemoryCache(),
+    new NextSSRApolloClient({
+      cache: new NextSSRInMemoryCache(),
       link: ApolloLink.split(
         operation => operation.getContext().clientName === APOLLO_CLIENTS.DB,
         dbLink,
