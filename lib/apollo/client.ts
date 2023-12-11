@@ -19,14 +19,9 @@ const dbLink = new SchemaLink({ schema });
 
 const cmsLink = new ApolloLink((operation, forward) => {
   const isPreviewMode = operation.getContext().isPreviewMode || false;
-  const fetchOptions = operation.getContext().fetchOptions || {};
 
   return createHttpLink({
     uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
-    fetchOptions: {
-      method: "POST",
-      ...fetchOptions,
-    },
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${
