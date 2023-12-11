@@ -39,6 +39,7 @@ export async function generateStaticParams() {
 }
 
 const PostPage = async ({ params }: SlugProps) => {
+  const client = getClient();
   const { postsContent } = await getFeatureFlags();
 
   if (!postsContent) {
@@ -47,7 +48,7 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const { isEnabled } = draftMode();
 
-  const { data } = await getClient().query({
+  const { data } = await client.query({
     context: {
       isPreviewMode: isEnabled,
       fetchOptions: {
