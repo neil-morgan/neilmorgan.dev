@@ -1,0 +1,5 @@
+query TestPost {
+  post(id: "4MWKHgfgTm1ETnw5zCxyBb") {
+    title
+  }
+}
