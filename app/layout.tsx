@@ -1,11 +1,14 @@
+import { Wrapper, Main } from "./styles";
 import { inter } from "@/lib/site";
 
-export default async function RootLayout({
-  children,
-}: React.PropsWithChildren) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: React.PropsWithChildren) => (
+  <html lang="en">
+    <body className={inter.className}>
+      <Wrapper>
+        <Main>{children}</Main>
+      </Wrapper>
+    </body>
+  </html>
+);
+
+export default RootLayout;
