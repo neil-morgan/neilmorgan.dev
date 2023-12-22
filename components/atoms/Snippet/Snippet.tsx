@@ -8,7 +8,7 @@ import {
 
 import type { SnippetProps } from "./types";
 import { SnippetWrapper, CodeWrapper, LanguageTab } from "./styles";
-import { ThemeConsumer } from "@/lib/stitches";
+import { ThemeConsumer } from "@/providers";
 
 export const Snippet = ({ code, language, css }: SnippetProps) => (
   <ThemeConsumer>
