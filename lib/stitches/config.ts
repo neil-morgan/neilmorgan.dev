@@ -1,7 +1,6 @@
 import { createStitches, globalCss } from "@stitches/react";
 import { base } from "./themes";
 import { BREAKPOINTS } from "@/lib/site";
-import { reverseObjectValues } from "@/utils";
 
 export const globalStyles = globalCss({
   html: {

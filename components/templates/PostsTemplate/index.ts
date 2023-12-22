@@ -1,0 +1,1 @@
+export { PostsTemplate } from "./PostsTemplate";
