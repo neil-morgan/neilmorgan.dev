@@ -1,11 +1,9 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { getClient } from "@/lib/apollo/client";
-import { APOLLO_CLIENTS } from "@/lib/site";
 import { PostDocument } from "@/graphql";
 
 const { query } = getClient();
-const { CMS } = APOLLO_CLIENTS;
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
@@ -17,7 +15,6 @@ export const GET = async (request: Request) => {
   }
 
   const { data } = await query({
-    context: { clientName: CMS },
     query: PostDocument,
     variables: { slug },
   });
