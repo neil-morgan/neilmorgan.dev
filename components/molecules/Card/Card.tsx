@@ -1,46 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import NextLink from "next/link";
-import { CardWrapper, CardBody } from "./styles";
+import { CardWrapper, CardBody, CardFooter } from "./styles";
 import type { CardProps } from "./types";
-import { Text, AspectRatio, ConditionalWrapper } from "@/components/atoms";
+import {
+  Text,
+  AspectRatio,
+  HorizontalSeparator,
+  Button,
+} from "@/components/atoms";
+import { CopyButton } from "@/components/molecules";
 
-export const Card = ({
-  heading,
-  description,
-  href,
-  image,
-  isLink,
-}: CardProps) => {
-  return (
-    <ConditionalWrapper
-      if={isLink}
-      wrapWith={children => (
-        <NextLink href={href as string}>{children}</NextLink>
-      )}>
-      <CardWrapper>
-        <AspectRatio
-          ratio={4 / 5}
-          css={{
-            borderRadius: "$md",
-            overflow: "hidden",
-          }}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </AspectRatio>
+export const Card = ({ heading, description, image, cta }: CardProps) => (
+  <CardWrapper>
+    <AspectRatio
+      ratio={1 / 0.618}
+      css={{
+        borderRadius: "$md",
+        overflow: "hidden",
+      }}>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        style={{ objectFit: "cover" }}
+      />
+    </AspectRatio>
 
-        <CardBody>
-          <Text size={5} as="h3">
-            {heading}
-          </Text>
-          <Text as="p">{description}</Text>
-        </CardBody>
-      </CardWrapper>
-    </ConditionalWrapper>
-  );
-};
+    <CardBody>
+      <Text size={5} as="h3" css={{ marginBottom: "$3" }}>
+        {heading}
+      </Text>
+      <Text size={1} weight={200}>
+        date
+      </Text>
+      <Text as="p">{description}</Text>
+    </CardBody>
+    <HorizontalSeparator size="sm" />
+    <CardFooter>
+      <CopyButton
+        asIcon
+        value="https://www.google.com/"
+        message="Url copied to clipboard"
+      />
+      <Button
+        href={cta.href}
+        size="sm"
+        rightIcon="ArrowRight"
+        priority="primary">
+        {cta.label || "Read more"}
+      </Button>
+    </CardFooter>
+  </CardWrapper>
+);

@@ -5,6 +5,6 @@ export type CardProps = {
     src: string;
     alt: string;
   };
-  href: string;
+  cta: { href: string; label?: string };
   isLink?: boolean;
 };

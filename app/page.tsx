@@ -1,17 +1,8 @@
-import { getClient } from "@/lib/apollo";
-import { TestPostDocument } from "@/graphql";
+import { redirect } from "next/navigation";
+import { LOCATIONS } from "@/lib/site";
 
 const HomePage = async () => {
-  const { data } = await getClient().query({
-    query: TestPostDocument,
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
-  });
-
-  return <>{data?.post?.title}</>;
+  redirect(LOCATIONS.posts);
 };
 
 export default HomePage;

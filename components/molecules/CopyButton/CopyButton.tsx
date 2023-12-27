@@ -3,11 +3,14 @@
 import { type PropsWithChildren, useState } from "react";
 import type { CopyButtonProps } from "./types";
 import { Message } from "./styles";
-import { IconButton, Popover, Text } from "@/components/atoms";
+import { IconButton, Popover, Text, Button } from "@/components/atoms";
 
 export const CopyButton = ({
-  text,
+  value,
+  prompt = "Copy Url",
   message = "Copied to clipboard",
+  asIcon,
+  size = "md",
 }: PropsWithChildren<CopyButtonProps>) => {
   const [copySuccess, setCopySuccess] = useState(false);
 
@@ -23,7 +26,23 @@ export const CopyButton = ({
     <Popover
       open={copySuccess}
       side="top"
-      anchor={<IconButton icon="Copy" onClick={() => copyToClipBoard(text)} />}>
+      anchor={
+        asIcon ? (
+          <IconButton
+            icon="Copy"
+            onClick={() => copyToClipBoard(value)}
+            size={size}
+          />
+        ) : (
+          <Button
+            onClick={() => copyToClipBoard(value)}
+            size={size}
+            leftIcon="Copy"
+            priority="contrast">
+            {prompt}
+          </Button>
+        )
+      }>
       <Message>
         <Text size={0} as="span">
           {message}

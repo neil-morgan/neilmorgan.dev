@@ -4,7 +4,7 @@ import {
   NextSSRInMemoryCache,
   NextSSRApolloClient,
 } from "@apollo/experimental-nextjs-app-support/ssr";
-import { CONTENTFUL_BASE_URL, APOLLO_CLIENTS } from "@/lib/site";
+import { CONTENTFUL_BASE_URL } from "@/lib/site";
 
 const { CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN } = process.env;
 

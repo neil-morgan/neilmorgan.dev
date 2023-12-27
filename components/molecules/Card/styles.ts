@@ -14,4 +14,11 @@ export const CardBody = styled("div", {
   flexDirection: "column",
   alignItems: "flex-start",
   marginTop: "$5",
+  marginBottom: "auto",
+});
+
+export const CardFooter = styled("footer", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 });

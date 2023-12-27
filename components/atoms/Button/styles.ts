@@ -12,7 +12,6 @@ export const ButtonElement = styled("button", {
   cursor: "pointer",
   transition: "$theme",
   letterSpacing: "0.05rem",
-  textTransform: "uppercase",
   textAlign: "center",
 
   variants: {
@@ -58,12 +57,4 @@ export const ButtonElement = styled("button", {
     size: "md",
     priority: "default",
   },
-});
-
-export const RightIcon = styled("span", {
-  marginLeft: "$2",
-});
-
-export const LeftIcon = styled("span", {
-  marginRight: "$2",
 });

@@ -25,7 +25,10 @@ export const PostsCategory = ({ category, items }: GroupedPostType) => (
             heading={title}
             description={description}
             isLink
-            href={`/posts/${category?.slug}/${slug}`}
+            cta={{
+              href: `/posts/${category?.slug}/${slug}`,
+              label: "Read more",
+            }}
             image={{
               src: `https://source.unsplash.com/random/400x400?sig=${i}`,
               alt: title,

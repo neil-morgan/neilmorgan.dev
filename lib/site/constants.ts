@@ -6,10 +6,9 @@ export const SITE_BASE_URL =
 export const CONTENTFUL_BASE_URL =
   "https://graphql.contentful.com/content/v1/spaces/";
 
-// export const APOLLO_CLIENTS = {
-//   CMS: "cms",
-//   DB: "db",
-// };
+export const LOCATIONS = {
+  posts: "/posts",
+};
 
 export const BREAKPOINTS = {
   sm: "30em",
@@ -17,11 +16,4 @@ export const BREAKPOINTS = {
   lg: "62em",
   xl: "80em",
   "2xl": "96em",
-};
-
-export const FEATURE_FLAGS = {
-  feedback: true,
-  skills: true,
-  posts: true,
-  projects: true,
 };

@@ -12,7 +12,6 @@ import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
 import { Header, Footer } from "@/components/organisms";
 import type { CategoryType } from "@/types";
-import { LikesProvider } from "@/providers";
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
   const { isEnabled } = draftMode();
@@ -23,11 +22,8 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
 
   const social = data.socialItems?.items as SocialItem[];
   const postCategories = data.postCategories?.items as CategoryType[];
+
   const navigation = [
-    {
-      title: "Projects",
-      slug: "/projects",
-    },
     {
       title: "Posts",
       slug: "/posts",
@@ -38,11 +34,6 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
         })),
       },
     },
-    { title: "Feedback", slug: "/feedback" },
-    {
-      title: "Skills",
-      slug: "/skills",
-    },
   ];
 
   return (
@@ -51,15 +42,13 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
         <ApolloProvider>
           <StitchesRegistryProvider>
             <ThemeToggleProvider>
-              <LikesProvider>
-                <IconDefs />
-                {isEnabled && <DraftMode />}
-                <Wrapper>
-                  <Header content={{ navigation, social }} />
-                  <Main>{children}</Main>
-                  <Footer />
-                </Wrapper>
-              </LikesProvider>
+              <IconDefs />
+              {isEnabled && <DraftMode />}
+              <Wrapper>
+                <Header content={{ navigation, social }} />
+                <Main>{children}</Main>
+                <Footer />
+              </Wrapper>
             </ThemeToggleProvider>
           </StitchesRegistryProvider>
         </ApolloProvider>

@@ -1,1 +1,0 @@
-export { SkillsTemplate } from "./SkillsTemplate";
