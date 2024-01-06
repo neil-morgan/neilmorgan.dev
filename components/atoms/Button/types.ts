@@ -12,9 +12,3 @@ export type ButtonProps = {
   forceHoverState?: boolean;
   priority?: "default" | "primary" | "contrast";
 };
-
-export type ButtonRef =
-  | ((instance: HTMLButtonElement | null) => void)
-  | React.RefObject<HTMLButtonElement>
-  | null
-  | undefined;

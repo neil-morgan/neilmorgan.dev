@@ -5,8 +5,9 @@ import {
   ApolloProvider,
   StitchesRegistryProvider,
   ThemeToggleProvider,
+  ElementRefsProvider,
 } from "@/providers";
-import { DraftMode } from "@/components/molecules";
+import { DraftMode, PointerGlow } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
@@ -42,13 +43,16 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
         <ApolloProvider>
           <StitchesRegistryProvider>
             <ThemeToggleProvider>
-              <IconDefs />
-              {isEnabled && <DraftMode />}
-              <Wrapper>
-                <Header content={{ navigation, social }} />
-                <Main>{children}</Main>
-                <Footer />
-              </Wrapper>
+              <ElementRefsProvider>
+                <PointerGlow />
+                <IconDefs />
+                {isEnabled && <DraftMode />}
+                <Wrapper>
+                  <Header content={{ navigation, social }} />
+                  <Main>{children}</Main>
+                  <Footer />
+                </Wrapper>
+              </ElementRefsProvider>
             </ThemeToggleProvider>
           </StitchesRegistryProvider>
         </ApolloProvider>

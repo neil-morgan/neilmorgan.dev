@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import type {
   Post,
   Skill,
@@ -98,3 +99,23 @@ export type RichtextType = {
 };
 
 export type LocalStorageLocations = "likes";
+
+export type MousePositionType = number | null;
+
+export type AnchorElementRefType =
+  | ((instance: HTMLAnchorElement | null) => void)
+  | RefObject<HTMLAnchorElement>
+  | null
+  | undefined;
+
+export type ButtonElementRefType =
+  | ((instance: HTMLButtonElement | null) => void)
+  | React.RefObject<HTMLButtonElement>
+  | null
+  | undefined;
+
+export type DivElementRefType =
+  | ((instance: HTMLDivElement | null) => void)
+  | RefObject<HTMLDivElement>
+  | null
+  | undefined;

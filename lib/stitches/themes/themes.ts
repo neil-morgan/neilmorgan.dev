@@ -11,7 +11,7 @@ export const darkTheme = createTheme({
     layer6: base.base9,
 
     text1: root.white,
-    text2: base.base3,
+    text2: base.base1,
     text3: base.base5,
 
     primary1: primary.primary5,

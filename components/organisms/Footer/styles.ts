@@ -4,5 +4,8 @@ export const FooterElement = styled("footer", {
   display: "flex",
   marginTop: "$10",
   padding: "$10 0",
-  background: "linear-gradient(to right, $layer2 0%, $layer3 25% 75%, $layer2 100%);",
+  background: "$layer2",
+  borderTopWidth: "1px",
+  borderTopStyle: "solid",
+  borderTopColor: "rgba(255,255,255,0.05)",
 });

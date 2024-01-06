@@ -11,9 +11,3 @@ export type IconButtonProps = {
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
-
-export type IconButtonRef =
-  | ((instance: HTMLButtonElement | null) => void)
-  | React.RefObject<HTMLButtonElement>
-  | null
-  | undefined;

@@ -4,15 +4,21 @@ export const IconButtonElement = styled("button", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  border: 0,
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "rgba(255,255,255,0.05)",
   background: "transparent",
   cursor: "pointer",
   position: "relative",
   height: "1.75em",
   width: "1.75em",
-
   borderRadius: "$default",
   transition: "$theme",
+
+  "&:hover": {
+    borderColor: "rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.04)",
+  },
 
   variants: {
     size: {
@@ -44,10 +50,7 @@ export const IconButtonElement = styled("button", {
       },
       contrast: {
         background: "transparent",
-        color: "$text3",
-        "&:hover": {
-          color: "$text1",
-        },
+        color: "$text1",
       },
     },
   },

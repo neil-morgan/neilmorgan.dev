@@ -1,24 +1,24 @@
-import { styled } from "@/lib/stitches";
+import { styled, primary } from "@/lib/stitches";
 
-export const CardWrapper = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  borderRadius: "$md",
-  position: "relative",
-  backgroundColor: "$backgroundFar",
-  transition: "background-color $theme",
-});
-
-export const CardBody = styled("div", {
+export const CardWrapper = styled("a", {
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-  marginTop: "$5",
-  marginBottom: "auto",
-});
+  borderRadius: "$md",
+  background: "transparent",
+  padding: "$4",
+  transition: "250ms ease",
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "rgba(255,255,255,0.05)",
+  position: "relative",
 
-export const CardFooter = styled("footer", {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
+  "&:hover": {
+    borderColor: "rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.04)",
+
+    "& h3": {
+      color: primary.primary2,
+    },
+  },
 });

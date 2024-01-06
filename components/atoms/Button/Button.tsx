@@ -1,8 +1,9 @@
 import NextLink from "next/link";
 import { forwardRef } from "react";
-import type { ButtonProps, ButtonRef } from "./types";
+import type { ButtonProps } from "./types";
 import { ButtonElement } from "./styles";
 import { ConditionalWrapper, Icon } from "@/components/atoms";
+import type { ButtonElementRefType } from "@/types";
 
 export const Button = forwardRef(
   (
@@ -17,7 +18,7 @@ export const Button = forwardRef(
       size,
       priority,
     }: ButtonProps,
-    ref: ButtonRef,
+    ref: ButtonElementRefType,
   ) => {
     const rightIconComponent = rightIcon ? (
       <Icon name={rightIcon} css={{ marginLeft: "$2" }} />

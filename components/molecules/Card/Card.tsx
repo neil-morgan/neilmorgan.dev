@@ -1,55 +1,43 @@
 "use client";
 
-import Image from "next/image";
-import { CardWrapper, CardBody, CardFooter } from "./styles";
+import { useEffect, useRef, type RefObject } from "react";
+import NextLink from "next/link";
+import { CardWrapper } from "./styles";
 import type { CardProps } from "./types";
-import {
-  Text,
-  AspectRatio,
-  HorizontalSeparator,
-  Button,
-} from "@/components/atoms";
-import { CopyButton } from "@/components/molecules";
+import { Text } from "@/components/atoms";
+import { useElementRefs } from "@/providers";
 
-export const Card = ({ heading, description, image, cta }: CardProps) => (
-  <CardWrapper>
-    <AspectRatio
-      ratio={1 / 0.618}
-      css={{
-        borderRadius: "$md",
-        overflow: "hidden",
-      }}>
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        style={{ objectFit: "cover" }}
-      />
-    </AspectRatio>
+export const Card = ({ heading, description, href }: CardProps) => {
+  const { elementRefs, addElementRef } = useElementRefs();
+  const elementRef = useRef<HTMLElement | null>(null);
 
-    <CardBody>
-      <Text size={5} as="h3" css={{ marginBottom: "$3" }}>
-        {heading}
-      </Text>
-      <Text size={1} weight={200}>
-        date
-      </Text>
-      <Text as="p">{description}</Text>
-    </CardBody>
-    <HorizontalSeparator size="sm" />
-    <CardFooter>
-      <CopyButton
-        asIcon
-        value="https://www.google.com/"
-        message="Url copied to clipboard"
-      />
-      <Button
-        href={cta.href}
-        size="sm"
-        rightIcon="ArrowRight"
-        priority="primary">
-        {cta.label || "Read more"}
-      </Button>
-    </CardFooter>
-  </CardWrapper>
-);
+  useEffect(
+    () => addElementRef(elementRef.current),
+    [addElementRef, elementRefs],
+  );
+
+  return (
+    <NextLink target="_blank" href={href as string} passHref legacyBehavior>
+      <CardWrapper
+        ref={elementRef as RefObject<HTMLAnchorElement>}
+        css={{
+          position: "relative",
+          overflow: "hidden",
+          "&:before": {
+            position: "absolute",
+            content: '""',
+            height: "100vh",
+            width: "100vw",
+          },
+        }}>
+        <Text size={4} as="h3" css={{ marginBottom: "$3" }}>
+          {heading}
+        </Text>
+        <Text size={1} weight={200}>
+          date
+        </Text>
+        <Text as="p">{description}</Text>
+      </CardWrapper>
+    </NextLink>
+  );
+};
