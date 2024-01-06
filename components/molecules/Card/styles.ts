@@ -8,7 +8,7 @@ export const CardWrapper = styled("a", {
   background: "transparent",
   padding: "$4",
   transition: "250ms ease",
-  borderWidth: "1px",
+  borderWidth: "2px",
   borderStyle: "solid",
   borderColor: "rgba(255,255,255,0.05)",
   position: "relative",
@@ -16,9 +16,5 @@ export const CardWrapper = styled("a", {
   "&:hover": {
     borderColor: "rgba(255,255,255,0.2)",
     background: "rgba(255,255,255,0.04)",
-
-    "& h3": {
-      color: primary.primary2,
-    },
   },
 });

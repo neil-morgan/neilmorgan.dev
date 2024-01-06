@@ -5,7 +5,7 @@ export const FooterElement = styled("footer", {
   marginTop: "$10",
   padding: "$10 0",
   background: "$layer2",
-  borderTopWidth: "1px",
+  borderTopWidth: "2px",
   borderTopStyle: "solid",
   borderTopColor: "rgba(255,255,255,0.05)",
 });

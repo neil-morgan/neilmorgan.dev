@@ -4,7 +4,7 @@ export const IconButtonElement = styled("button", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderWidth: "1px",
+  borderWidth: "2px",
   borderStyle: "solid",
   borderColor: "rgba(255,255,255,0.05)",
   background: "transparent",

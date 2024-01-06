@@ -5,7 +5,9 @@ export const ButtonElement = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  border: 0,
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "rgba(255,255,255,0.05)",
   padding: "$2 $4",
   borderRadius: "$default",
   fontSize: "$4",
@@ -13,6 +15,11 @@ export const ButtonElement = styled("button", {
   transition: "$theme",
   letterSpacing: "0.05rem",
   textAlign: "center",
+
+  "&:hover": {
+    borderColor: "rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.04)",
+  },
 
   variants: {
     size: {
