@@ -34,9 +34,11 @@ export const PopoverWrapper = styled(Content, {
   width: "100%",
   zIndex: "200",
   animationDuration: "400ms",
-  border: "solid 1px $layer5",
   borderRadius: "$default",
-  backgroundColor: "$layer3",
+  backgroundColor: "$layer2",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "rgba(255,255,255,0.05)",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   willChange: "transform, opacity",
   '&[data-state="open"]': {

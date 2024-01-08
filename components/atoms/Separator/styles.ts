@@ -3,8 +3,10 @@
 import { Root } from "@radix-ui/react-separator";
 import { styled } from "@/lib/stitches";
 
+const color = "$border";
+
 export const VerticalSeparator = styled(Root, {
-  backgroundColor: "$layer5",
+  backgroundColor: color,
   height: "100%",
   width: "1px",
   transition: "$theme",
@@ -30,7 +32,7 @@ export const VerticalSeparator = styled(Root, {
 });
 
 export const HorizontalSeparator = styled(Root, {
-  backgroundColor: "$layer5",
+  backgroundColor: color,
   height: "1px",
   width: "100%",
   transition: "$theme",

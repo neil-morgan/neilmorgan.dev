@@ -38,7 +38,7 @@ export const HeaderContent = styled("nav", {
 
 export const PopoverButton = styled("button", {
   all: "unset",
-  color: "$text3",
+  color: "$base2",
   fontFamily: "inherit",
   borderRadius: "100%",
   height: "$4",

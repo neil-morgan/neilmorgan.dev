@@ -1,17 +1,16 @@
 "use client";
 
 import { Fragment } from "react";
-import { PopoverButton, PopoverSection } from "../../styles";
+import { PopoverSection } from "../../styles";
 import { SecondaryItems } from "../../components";
 import {
   DesktopItem,
   DesktopItemHeading,
   DesktopItemLink,
-  DesktopLink,
   DesktopList,
 } from "./styles";
 import type { DesktopNavProps } from "./types";
-import { Icon, Popover } from "@/components/atoms";
+import { Popover, Button, IconButton, Link } from "@/components/atoms";
 
 export const DesktopNav = ({
   items,
@@ -23,24 +22,26 @@ export const DesktopNav = ({
     <DesktopList>
       {items.map(({ title, slug, list }, i) => (
         <DesktopItem key={i}>
-          <DesktopLink href={slug}>{title}</DesktopLink>
+          <Button href={slug} size="md">
+            {title}
+          </Button>
           {list && (
             <Popover
               open={openItem === i}
               setOpen={setOpenItem}
               anchor={
-                <PopoverButton onClick={() => setOpenItem(i)}>
-                  <Icon name="ChevronDown" />
-                </PopoverButton>
+                <IconButton
+                  icon="ChevronDown"
+                  noHighlight
+                  onClick={() => setOpenItem(i)}
+                />
               }>
               <PopoverSection columns={2}>
                 {list.options.map(({ title, slug }, i) => (
                   <Fragment key={i}>
-                    <DesktopItemLink
-                      href={slug}
-                      onClick={() => setOpenItem(false)}>
-                      <DesktopItemHeading>{title}</DesktopItemHeading>
-                    </DesktopItemLink>
+                    <Button size="sm" href={slug} link noHighlight>
+                      {title}
+                    </Button>
                   </Fragment>
                 ))}
               </PopoverSection>

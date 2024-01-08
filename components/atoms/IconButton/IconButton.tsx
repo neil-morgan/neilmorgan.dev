@@ -19,8 +19,8 @@ export const IconButton = forwardRef(
       children,
       target,
       size,
-      priority,
       disabled,
+      noHighlight,
     }: IconButtonProps,
     ref: ButtonElementRefType,
   ) => {
@@ -28,8 +28,10 @@ export const IconButton = forwardRef(
     const elementRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
+      if (noHighlight) return;
+
       addElementRef(elementRef.current);
-    }, [addElementRef, elementRefs]);
+    }, [addElementRef, elementRefs, noHighlight]);
 
     return (
       <ConditionalWrapper
@@ -44,14 +46,14 @@ export const IconButton = forwardRef(
           </NextLink>
         )}>
         <IconButtonElement
+          highlight={!noHighlight}
           disabled={disabled}
           ref={mergeRefs([elementRef, ref])}
           as={href ? "a" : "button"}
           css={css}
           target={target}
           onClick={onClick}
-          size={size}
-          priority={priority}>
+          size={size}>
           {children ? children : icon ? <Icon name={icon} /> : null}
         </IconButtonElement>
       </ConditionalWrapper>

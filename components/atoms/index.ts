@@ -13,4 +13,4 @@ export { Popover } from "./Popover";
 export { Snippet } from "./Snippet";
 export { Table, Td, Tr, Th } from "./Table";
 export { Text } from "./Text";
-export { VerticalSeparator, HorizontalSeparator } from "./Separator";
+export { Separator } from "./Separator";

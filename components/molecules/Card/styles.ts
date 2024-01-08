@@ -1,4 +1,4 @@
-import { styled, primary } from "@/lib/stitches";
+import { styled } from "@/lib/stitches";
 
 export const CardWrapper = styled("a", {
   display: "flex",
@@ -10,11 +10,11 @@ export const CardWrapper = styled("a", {
   transition: "250ms ease",
   borderWidth: "2px",
   borderStyle: "solid",
-  borderColor: "rgba(255,255,255,0.05)",
+  borderColor: "$border",
   position: "relative",
 
   "&:hover": {
-    borderColor: "rgba(255,255,255,0.2)",
+    borderColor: "$borderHover",
     background: "rgba(255,255,255,0.04)",
   },
 });

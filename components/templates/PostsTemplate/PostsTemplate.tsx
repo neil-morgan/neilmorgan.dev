@@ -2,14 +2,14 @@
 
 import { Fragment } from "react";
 import { Wrapper, Header, Grid } from "./styles";
-import { Container, Text, HorizontalSeparator } from "@/components/atoms";
+import { Container, Text, Separator } from "@/components/atoms";
 import { Card } from "@/components/molecules";
 import type { GroupedPostType } from "@/types";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Text size={7} as="h2" weight={600} appearance="print" id="foo">
+      <Text size={6} as="h2" weight={600} appearance="print" id="foo">
         {category?.title}
       </Text>
       <Text size={3}>
@@ -40,10 +40,11 @@ export const PostsTemplate = ({
   <Container>
     {Array.isArray(posts) ? (
       posts.map(({ category, items }, i) => (
-        <Fragment key={category?.title}>
-          <PostsCategory category={category} items={items} />
-          {i !== posts.length - 1 && <HorizontalSeparator size="xl" />}
-        </Fragment>
+        <PostsCategory
+          key={category?.title}
+          category={category}
+          items={items}
+        />
       ))
     ) : (
       <PostsCategory category={posts.category} items={posts.items} />

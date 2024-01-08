@@ -5,27 +5,15 @@ export const ButtonElement = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  borderColor: "rgba(255,255,255,0.05)",
-  padding: "$2 $4",
-  borderRadius: "$default",
-  fontSize: "$4",
   cursor: "pointer",
   transition: "$theme",
-  letterSpacing: "0.05rem",
   textAlign: "center",
-
-  "&:hover": {
-    borderColor: "rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.04)",
-  },
+  border: "0",
 
   variants: {
     size: {
       sm: {
         fontSize: "$1",
-        fontWeight: "$semibold",
       },
       md: {
         fontSize: "$3",
@@ -35,26 +23,26 @@ export const ButtonElement = styled("button", {
       },
     },
 
-    priority: {
-      default: {
-        background: "$layer5",
-        color: "$text2",
-        "&:hover": {
-          background: "$layer6",
-        },
+    link: {
+      true: {
+        border: 0,
       },
-      primary: {
-        background: "$primary1",
-        color: "$base1 ",
-        "&:hover": {
-          background: "$primary2",
-        },
+      false: {
+        padding: "0 0.75em",
+        height: "2em",
+        borderRadius: "$default",
+        letterSpacing: "0.05rem",
       },
-      contrast: {
-        background: "transparent",
-        color: "$text3",
+    },
+
+    highlight: {
+      true: {
+        borderWidth: "2px",
+        borderStyle: "solid",
+        borderColor: "rgba(255,255,255,0.05)",
         "&:hover": {
-          color: "$text1",
+          borderColor: "rgba(255,255,255,0.2)",
+          background: "rgba(255,255,255,0.04)",
         },
       },
     },
@@ -62,6 +50,6 @@ export const ButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "default",
+    highlight: true,
   },
 });

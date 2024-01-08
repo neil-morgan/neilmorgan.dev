@@ -1,9 +1,11 @@
 import NextLink from "next/link";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
+import { mergeRefs } from "react-merge-refs";
 import type { ButtonProps } from "./types";
 import { ButtonElement } from "./styles";
 import { ConditionalWrapper, Icon } from "@/components/atoms";
 import type { ButtonElementRefType } from "@/types";
+import { useElementRefs } from "@/providers";
 
 export const Button = forwardRef(
   (
@@ -16,10 +18,19 @@ export const Button = forwardRef(
       rightIcon,
       leftIcon,
       size,
-      priority,
+      noHighlight,
+      link = false,
     }: ButtonProps,
     ref: ButtonElementRefType,
   ) => {
+    const { elementRefs, addElementRef } = useElementRefs();
+    const elementRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+      if (noHighlight) return;
+      addElementRef(elementRef.current);
+    }, [addElementRef, elementRefs, noHighlight]);
+
     const rightIconComponent = rightIcon ? (
       <Icon name={rightIcon} css={{ marginLeft: "$2" }} />
     ) : null;
@@ -37,12 +48,13 @@ export const Button = forwardRef(
           </NextLink>
         )}>
         <ButtonElement
-          ref={ref}
+          ref={mergeRefs([elementRef, ref])}
           as={href ? "a" : "button"}
           css={css}
           onClick={onClick}
           size={size}
-          priority={priority}>
+          link={link}
+          highlight={!noHighlight}>
           {leftIconComponent} {children} {rightIconComponent}
         </ButtonElement>
       </ConditionalWrapper>

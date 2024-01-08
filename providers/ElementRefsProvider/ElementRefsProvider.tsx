@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import type { ElementPropertiesType, ElementRefType } from "./types";
 
 const ElementRefsContext = createContext<{
@@ -21,6 +27,9 @@ export const ElementRefsProvider = ({
   children: React.ReactNode;
 }) => {
   const [elementRefs, setElementRefs] = useState<ElementRefType[]>([]);
+  const [elementProperties, setElementProperties] = useState<
+    ElementPropertiesType[]
+  >([]);
 
   const addElementRef = (ref: ElementRefType) =>
     setElementRefs(prevRefs => {
@@ -30,23 +39,37 @@ export const ElementRefsProvider = ({
       return prevRefs;
     });
 
-  const elementProperties = elementRefs.map(ref => {
-    const { top, left, bottom, right } = (
-      ref as HTMLElement
-    )?.getBoundingClientRect() || {
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-    };
+  const updateElementProperties = useCallback(() => {
+    const foo = elementRefs.map(ref => {
+      const { top, left, bottom, right } = (
+        ref as HTMLElement
+      )?.getBoundingClientRect() || {
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+      };
 
-    return {
-      top,
-      left,
-      bottom,
-      right,
+      return {
+        top,
+        left,
+        bottom,
+        right,
+      };
+    });
+
+    setElementProperties(foo);
+  }, [elementRefs]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateElementProperties);
+    window.addEventListener("scroll", updateElementProperties);
+    updateElementProperties();
+    return () => {
+      window.removeEventListener("resize", updateElementProperties);
+      window.removeEventListener("scroll", updateElementProperties);
     };
-  });
+  }, [updateElementProperties]);
 
   return (
     <ElementRefsContext.Provider

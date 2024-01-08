@@ -19,6 +19,9 @@ export const darkTheme = createTheme({
 
     secondary1: secondary.secondary5,
     secondary2: secondary.secondary4,
+
+    border: "rgba(255,255,255,0.05)",
+    borderHover: "rgba(255,255,255,0.2)",
   },
 });
 

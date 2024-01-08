@@ -11,4 +11,6 @@ export type ButtonProps = {
   size?: "sm" | "md" | "lg";
   forceHoverState?: boolean;
   priority?: "default" | "primary" | "contrast";
+  noHighlight?: boolean;
+  link?: boolean;
 };

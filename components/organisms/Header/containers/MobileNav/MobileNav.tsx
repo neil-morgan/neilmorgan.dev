@@ -2,7 +2,7 @@ import { SecondaryItems } from "../../components";
 import { PopoverSection } from "../../styles";
 import type { MobileNavProps } from "./types";
 import { MobileLink, MobileListItem, MobileList } from "./styles";
-import { IconButton, HorizontalSeparator, Popover } from "@/components/atoms";
+import { IconButton, Separator, Popover } from "@/components/atoms";
 
 export const MobileNav = ({
   items,
@@ -15,12 +15,10 @@ export const MobileNav = ({
     setOpen={setOpenItem}
     anchor={
       <IconButton
-        size="lg"
         css={{
           marginLeft: "auto",
         }}
         icon="Hamburger"
-        priority="contrast"
         onClick={() => setOpenItem(1)}
       />
     }>
@@ -43,7 +41,7 @@ export const MobileNav = ({
         </div>
       ))}
     </PopoverSection>
-    <HorizontalSeparator />
+    <Separator />
     <PopoverSection as="footer">
       <SecondaryItems items={social} />
     </PopoverSection>
