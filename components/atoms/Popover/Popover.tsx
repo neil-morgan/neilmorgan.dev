@@ -13,8 +13,13 @@ export const Popover = ({
   setOpen,
   withArrow = false,
   side = "bottom",
+  padding = "$4",
+  gap,
+  columns = 1,
 }: PropsWithChildren<PopoverProps>) => {
   const handleClose = () => setOpen && setOpen(false);
+  const gridTemplateColumns = Array(columns).fill("1fr").join(" ");
+
   return (
     <Root open={open}>
       {trigger && <Trigger asChild>{trigger}</Trigger>}
@@ -28,7 +33,7 @@ export const Popover = ({
           onInteractOutside={handleClose}
           onFocusOutside={handleClose}
           onEscapeKeyDown={handleClose}>
-          <PopoverContent>
+          <PopoverContent css={{ padding, gridTemplateColumns, gap }}>
             {children}
             {withArrow && <PopoverArrow />}
           </PopoverContent>

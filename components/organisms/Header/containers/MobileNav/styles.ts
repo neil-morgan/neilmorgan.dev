@@ -14,13 +14,13 @@ export const Wrapper = styled("nav", {
   },
 });
 
-export const MobileLink = styled(NextLink, {
+export const Link = styled(NextLink, {
   ...linkProps,
   display: "flex",
   fontSize: "$4",
 });
 
-export const MobileList = styled("div", {
+export const List = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "$4",
@@ -29,7 +29,7 @@ export const MobileList = styled("div", {
   marginTop: "$4",
 });
 
-export const MobileListItem = styled(NextLink, {
+export const ListItem = styled(NextLink, {
   ...linkProps,
   display: "flex",
 });

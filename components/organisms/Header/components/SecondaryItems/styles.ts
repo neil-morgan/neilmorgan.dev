@@ -4,6 +4,9 @@ import { styled } from "@/lib/stitches";
 
 export const SecondaryItemsWrapper = styled("div", {
   display: "flex",
+  justifyContent: "center",
   gap: "$4",
-  marginLeft: "auto",
+  "@md": {
+    marginLeft: "auto",
+  },
 });

@@ -34,8 +34,7 @@ export const PopoverWrapper = styled(Content, {
   width: "100%",
   zIndex: "200",
   animationDuration: "400ms",
-  borderRadius: "$default",
-  backgroundColor: "$layer3",
+  padding: "0 $2",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   willChange: "transform, opacity",
   '&[data-state="open"]': {
@@ -47,7 +46,8 @@ export const PopoverWrapper = styled(Content, {
 });
 
 export const PopoverContent = styled("div", {
-  display: "flex",
-  flexDirection: "column",
+  display: "grid",
   width: "100%",
+  borderRadius: "$default",
+  backgroundColor: "$layer3",
 });

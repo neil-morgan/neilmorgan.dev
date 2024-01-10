@@ -25,6 +25,9 @@ export const DesktopNav = ({
             <Popover
               open={openItem === i}
               setOpen={setOpenItem}
+              columns={2}
+              gap="$6"
+              padding="$6"
               anchor={
                 <IconButton
                   icon="ChevronDown"
@@ -32,13 +35,11 @@ export const DesktopNav = ({
                   onClick={() => setOpenItem(i)}
                 />
               }>
-              <PopoverSection columns={2}>
-                {list.options.map(({ title, slug }, i) => (
-                  <Button key={i} size="sm" href={slug} link noHighlight>
-                    {title}
-                  </Button>
-                ))}
-              </PopoverSection>
+              {list.options.map(({ title, slug }, i) => (
+                <Button key={i} href={slug} asLink>
+                  {title}
+                </Button>
+              ))}
             </Popover>
           )}
         </Item>

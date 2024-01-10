@@ -19,17 +19,29 @@ export const Button = forwardRef(
       leftIcon,
       size,
       noHighlight,
-      link = false,
+      asLink = false,
     }: ButtonProps,
     ref: ButtonElementRefType,
   ) => {
     const { elementRefs, addElementRef } = useElementRefs();
     const elementRef = useRef<HTMLElement | null>(null);
 
+    const shouldHighlight = () => {
+      if (noHighlight) {
+        return false;
+      }
+
+      if (asLink) {
+        return false;
+      }
+
+      return true;
+    };
+
     useEffect(() => {
-      if (noHighlight) return;
+      if (noHighlight || asLink) return;
       addElementRef(elementRef.current);
-    }, [addElementRef, elementRefs, noHighlight]);
+    }, [addElementRef, asLink, elementRefs, noHighlight]);
 
     const rightIconComponent = rightIcon ? (
       <Icon name={rightIcon} css={{ marginLeft: "$2" }} />
@@ -53,8 +65,8 @@ export const Button = forwardRef(
           css={css}
           onClick={onClick}
           size={size}
-          link={link}
-          highlight={!noHighlight}>
+          asLink={asLink}
+          highlight={shouldHighlight()}>
           {leftIconComponent} {children} {rightIconComponent}
         </ButtonElement>
       </ConditionalWrapper>

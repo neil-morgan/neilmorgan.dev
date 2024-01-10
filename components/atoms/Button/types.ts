@@ -12,5 +12,5 @@ export type ButtonProps = {
   forceHoverState?: boolean;
   priority?: "default" | "primary" | "contrast";
   noHighlight?: boolean;
-  link?: boolean;
+  asLink?: boolean;
 };

@@ -24,7 +24,7 @@ export const ButtonElement = styled("button", {
       },
     },
 
-    link: {
+    asLink: {
       true: {
         border: 0,
       },
@@ -39,9 +39,7 @@ export const ButtonElement = styled("button", {
 
     highlight: {
       true: {
-        borderWidth: "2px",
-        borderStyle: "solid",
-        borderColor: "$border",
+        border: "solid 2px $border",
         "&:hover": {
           borderColor: "borderHover",
           background: "$highlightHover",
