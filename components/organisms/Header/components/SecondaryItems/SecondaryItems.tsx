@@ -2,8 +2,7 @@
 
 import { SecondaryItemsWrapper } from "./styles";
 import type { SecondaryItemsProps } from "./types";
-import { Icon, IconButton } from "@/components/atoms";
-import { ThemeToggle } from "@/components/molecules";
+import { IconButton } from "@/components/atoms";
 
 export const SecondaryItems = ({ items }: SecondaryItemsProps) => (
   <SecondaryItemsWrapper>

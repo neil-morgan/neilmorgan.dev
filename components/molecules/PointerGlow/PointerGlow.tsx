@@ -1,7 +1,6 @@
 "use client";
 
 import { GlowElement } from "./styles";
-import { primary, colors } from "@/lib/stitches";
 import { useMousePosition } from "@/hooks";
 import { useElementRefs } from "@/providers";
 
