@@ -101,7 +101,7 @@ export const Richtext = ({ content }: RichtextProps) => {
           "quote",
         );
         return (
-          <Blockquote
+          <ExpandedEdge
             css={{
               "&:not(:first-child)": {
                 marginTop: "$6",
@@ -110,8 +110,8 @@ export const Richtext = ({ content }: RichtextProps) => {
                 marginBottom: "$6",
               },
             }}>
-            {children}
-          </Blockquote>
+            <Blockquote>{children}</Blockquote>
+          </ExpandedEdge>
         );
       },
 
@@ -145,13 +145,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         const { url, description } = assetBlockMap.get(data.target.sys.id);
         return (
           <ExpandedEdge>
-            <AspectRatio
-              css={{
-                overflow: "hidden",
-                "@sm": {
-                  borderRadius: "$md",
-                },
-              }}>
+            <AspectRatio>
               <Image src={url} alt={description} fill />
             </AspectRatio>
           </ExpandedEdge>

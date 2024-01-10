@@ -1,16 +1,11 @@
 "use client";
 
-import { Fragment } from "react";
 import { PopoverSection } from "../../styles";
 import { SecondaryItems } from "../../components";
-import {
-  DesktopItem,
-  DesktopItemHeading,
-  DesktopItemLink,
-  DesktopList,
-} from "./styles";
+import { Item, List, Wrapper } from "./styles";
 import type { DesktopNavProps } from "./types";
 import { Popover, Button, IconButton, Link } from "@/components/atoms";
+import { Logo } from "@/components/molecules";
 
 export const DesktopNav = ({
   items,
@@ -18,10 +13,11 @@ export const DesktopNav = ({
   openItem,
   setOpenItem,
 }: DesktopNavProps) => (
-  <>
-    <DesktopList>
+  <Wrapper>
+    <Logo isLink />
+    <List>
       {items.map(({ title, slug, list }, i) => (
-        <DesktopItem key={i}>
+        <Item key={i}>
           <Button href={slug} size="md">
             {title}
           </Button>
@@ -45,9 +41,9 @@ export const DesktopNav = ({
               </PopoverSection>
             </Popover>
           )}
-        </DesktopItem>
+        </Item>
       ))}
-    </DesktopList>
+    </List>
     <SecondaryItems items={social} />
-  </>
+  </Wrapper>
 );

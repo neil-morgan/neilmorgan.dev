@@ -3,6 +3,7 @@ import { styled } from "@/lib/stitches";
 export const Body = styled("div", {
   display: "flex",
   marginTop: "$9",
+  justifyContent: "center",
 });
 
 export const Content = styled("article", {

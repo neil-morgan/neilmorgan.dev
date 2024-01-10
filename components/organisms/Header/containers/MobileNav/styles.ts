@@ -4,6 +4,16 @@ import NextLink from "next/link";
 import { linkProps } from "../../styles";
 import { styled } from "@/lib/stitches";
 
+export const Wrapper = styled("nav", {
+  display: "grid",
+  alignItems: "center",
+  gridTemplateColumns: "repeat(2, 1fr)",
+
+  "@md": {
+    display: "none",
+  },
+});
+
 export const MobileLink = styled(NextLink, {
   ...linkProps,
   display: "flex",
