@@ -38,11 +38,9 @@ export const DesktopNav = ({
               }>
               <PopoverSection columns={2}>
                 {list.options.map(({ title, slug }, i) => (
-                  <Fragment key={i}>
-                    <Button size="sm" href={slug} link noHighlight>
-                      {title}
-                    </Button>
-                  </Fragment>
+                  <Button key={i} size="sm" href={slug} link noHighlight>
+                    {title}
+                  </Button>
                 ))}
               </PopoverSection>
             </Popover>

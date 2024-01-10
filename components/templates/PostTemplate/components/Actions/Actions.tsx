@@ -17,8 +17,7 @@ export const Actions = ({ text }: ActionsProps) => {
           message="Url copied to clipboard"
         />
       </Container>
-
-      <Text size={1} weight={300} as="span">
+      <Text size={1} weight={300} as="span" color="$text">
         {text}
       </Text>
     </Wrapper>

@@ -4,7 +4,6 @@ import { inter } from "@/lib/site";
 import {
   ApolloProvider,
   StitchesRegistryProvider,
-  ThemeToggleProvider,
   ElementRefsProvider,
 } from "@/providers";
 import { DraftMode, PointerGlow } from "@/components/molecules";
@@ -42,18 +41,16 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
       <body className={inter.className}>
         <ApolloProvider>
           <StitchesRegistryProvider>
-            <ThemeToggleProvider>
-              <ElementRefsProvider>
-                <PointerGlow />
-                <IconDefs />
-                {isEnabled && <DraftMode />}
-                <Wrapper>
-                  <Header content={{ navigation, social }} />
-                  <Main>{children}</Main>
-                  <Footer />
-                </Wrapper>
-              </ElementRefsProvider>
-            </ThemeToggleProvider>
+            <ElementRefsProvider>
+              <PointerGlow />
+              <IconDefs />
+              {isEnabled && <DraftMode />}
+              <Wrapper>
+                <Header content={{ navigation, social }} />
+                <Main>{children}</Main>
+                <Footer />
+              </Wrapper>
+            </ElementRefsProvider>
           </StitchesRegistryProvider>
         </ApolloProvider>
       </body>

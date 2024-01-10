@@ -12,6 +12,5 @@ export const SecondaryItems = ({ items }: SecondaryItemsProps) => (
         <IconButton key={index} href={href} target="_blank" icon={title} />
       ),
     )}
-    <ThemeToggle />
   </SecondaryItemsWrapper>
 );

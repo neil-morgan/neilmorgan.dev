@@ -6,4 +6,3 @@ export { DraftMode } from "./DraftMode";
 export { Logo } from "./Logo";
 export { PointerGlow } from "./PointerGlow";
 export { Richtext } from "./Richtext";
-export { ThemeToggle } from "./ThemeToggle";

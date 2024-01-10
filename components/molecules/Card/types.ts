@@ -1,5 +1,6 @@
 export type CardProps = {
-  heading: string;
   description?: string;
+  heading: string;
   href: string;
+  subHeading?: string;
 };

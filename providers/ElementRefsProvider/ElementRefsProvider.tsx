@@ -40,25 +40,24 @@ export const ElementRefsProvider = ({
     });
 
   const updateElementProperties = useCallback(() => {
-    const foo = elementRefs.map(ref => {
-      const { top, left, bottom, right } = (
-        ref as HTMLElement
-      )?.getBoundingClientRect() || {
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-      };
-
-      return {
-        top,
-        left,
-        bottom,
-        right,
-      };
-    });
-
-    setElementProperties(foo);
+    setElementProperties(
+      elementRefs.map(ref => {
+        const { top, left, bottom, right } = (
+          ref as HTMLElement
+        )?.getBoundingClientRect() || {
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        };
+        return {
+          top,
+          left,
+          bottom,
+          right,
+        };
+      }),
+    );
   }, [elementRefs]);
 
   useEffect(() => {

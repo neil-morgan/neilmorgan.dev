@@ -44,7 +44,7 @@ export const CopyButton = ({
         )
       }>
       <Message>
-        <Text size={0} as="span">
+        <Text size={2} as="span" color="$white">
           {message}
         </Text>
       </Message>

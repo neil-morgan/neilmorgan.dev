@@ -2,7 +2,7 @@
 
 import { styled } from "@/lib/stitches";
 
-export const defaultList = { marginTop: "$4" };
+export const defaultList = { marginTop: "$4", color: "$text" };
 
 export const OrderedList = styled("ol", { ...defaultList });
 

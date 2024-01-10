@@ -12,7 +12,7 @@ export const IconButtonElement = styled("button", {
   borderRadius: "$default",
   transition: "$theme",
   border: "0",
-  color: "$text1",
+  color: "$white",
 
   variants: {
     size: {
@@ -31,10 +31,10 @@ export const IconButtonElement = styled("button", {
       true: {
         borderWidth: "2px",
         borderStyle: "solid",
-        borderColor: "rgba(255,255,255,0.05)",
+        borderColor: "$border",
         "&:hover": {
-          borderColor: "rgba(255,255,255,0.2)",
-          background: "rgba(255,255,255,0.04)",
+          borderColor: "$borderHover",
+          background: "$highlightHover",
         },
       },
     },

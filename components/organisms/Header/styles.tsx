@@ -7,8 +7,8 @@ export const linkProps = {
   userSelect: "none",
   color: "$text3",
   transition: "$theme",
-  "&:hover": { color: "$text1" },
-  "&:focus": { color: "$text1" },
+  "&:hover": { color: "$white" },
+  "&:focus": { color: "$white" },
 };
 
 export const HeaderElement = styled("header", {
@@ -48,12 +48,13 @@ export const PopoverButton = styled("button", {
   alignItems: "center",
   justifyContent: "center",
   transition: "$theme",
-  "&:hover": { color: "$text1" },
-  "&:focus": { color: "$text1" },
+  "&:hover": { color: "$white" },
+  "&:focus": { color: "$white" },
 });
 
 export const PopoverSection = styled("div", {
   display: "grid",
+  alignItems: "start",
   margin: 0,
   padding: "$5",
   listStyle: "none",

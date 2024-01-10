@@ -1,29 +1,39 @@
 import { createStitches, globalCss } from "@stitches/react";
-import { base } from "./themes";
 import { BREAKPOINTS } from "@/lib/site";
 
 export const globalStyles = globalCss({
   html: {
     height: "100%",
     boxSizing: "border-box",
-    backgroundColor: "$layer2",
-    color: "$text2",
     transition: "$theme",
     scrollBehavior: "smooth",
+    overscrollBehaviorY: "none",
   },
   body: {
     height: "100%",
+    overscrollBehaviorY: "none",
+    backgroundColor: "$layer1",
+    color: "$text",
   },
   a: { textDecoration: "none", color: "unset" },
   "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },
 });
 
+export const colors = {
+  white: "#ffffff",
+  black: "#000000",
+  layer1: "#0D141F",
+  layer2: "#111A27",
+  layer3: "#112840",
+  text: "#ffffffbf",
+  border: "rgba(255,255,255,0.1)",
+  borderHover: "rgba(255,255,255,0.25)",
+  highlightHover: "rgba(255,255,255,0.04)",
+};
+
 export const { styled } = createStitches({
   theme: {
-    colors: {
-      ...base,
-    },
-
+    colors,
     space: {
       0: "0rem", // 0px
       1: "0.25rem", // 4px

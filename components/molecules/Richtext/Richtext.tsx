@@ -14,17 +14,18 @@ import type { RichtextNodeType, RichtextProps } from "./types";
 import {
   AspectRatio,
   Blockquote,
-  HorizontalSeparator,
+  Separator,
   Link,
   ListItem,
   OrderedList,
-  Snippet,
+  CodeSnippet,
   Table,
   Td,
   Text,
   Th,
   Tr,
   UnorderedList,
+  ExpandedEdge,
 } from "@/components/atoms";
 
 export const Richtext = ({ content }: RichtextProps) => {
@@ -43,6 +44,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         return (
           <Text
             size={7}
+            color="$white"
             weight={600}
             as="h2"
             css={{ marginTop: "$11" }}
@@ -58,6 +60,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         }
         return (
           <Text
+            color="$white"
             size={5}
             weight={500}
             as="h3"
@@ -89,7 +92,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         return <ListItem>{children}</ListItem>;
       },
 
-      [BLOCKS.HR]: () => <HorizontalSeparator size="lg" />,
+      [BLOCKS.HR]: () => <Separator size="lg" />,
 
       [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
         const children = removeParagraphTags(
@@ -141,21 +144,17 @@ export const Richtext = ({ content }: RichtextProps) => {
       [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
         const { url, description } = assetBlockMap.get(data.target.sys.id);
         return (
-          <AspectRatio
-            css={{
-              width: "calc(100% + $9)",
-              marginLeft: "-$7",
-              "&:not(:first-child)": {
-                marginTop: "$8",
-              },
-              "&:not(:last-child)": {
-                marginBottom: "$8",
-              },
-              borderRadius: "$md",
-              overflow: "hidden",
-            }}>
-            <Image src={url} alt={description} fill />
-          </AspectRatio>
+          <ExpandedEdge>
+            <AspectRatio
+              css={{
+                overflow: "hidden",
+                "@sm": {
+                  borderRadius: "$md",
+                },
+              }}>
+              <Image src={url} alt={description} fill />
+            </AspectRatio>
+          </ExpandedEdge>
         );
       },
 
@@ -164,13 +163,9 @@ export const Richtext = ({ content }: RichtextProps) => {
 
         if (entry.__typename === "Snippet") {
           return (
-            <Snippet
-              code={entry.code}
-              language={entry.language}
-              css={{
-                margin: "$10 -$7 $9",
-              }}
-            />
+            <ExpandedEdge>
+              <CodeSnippet code={entry.code} language={entry.language} />
+            </ExpandedEdge>
           );
         }
 

@@ -11,25 +11,23 @@ export const Text = ({
   css,
   id,
   size,
-  color,
   weight = 400,
   style,
-  appearance,
+  print = false,
+  color,
 }: React.PropsWithChildren<TextProps>) => {
   const _id = kebabCase(id);
-  const mergedCss = {
-    ...css,
-    fontWeight: weight,
-    fontStyle: style,
-  };
-
   return (
     <Element
       as={as}
       size={size}
-      appearance={appearance}
-      css={mergedCss}
-      color={color}>
+      print={print}
+      css={{
+        ...css,
+        fontWeight: weight,
+        fontStyle: style,
+        color,
+      }}>
       {id && (
         <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
           <Icon name="Link" />

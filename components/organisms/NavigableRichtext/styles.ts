@@ -2,8 +2,7 @@ import { styled } from "@/lib/stitches";
 
 export const Body = styled("div", {
   display: "flex",
-  justifyContent: "center",
-  marginTop: "$9"
+  marginTop: "$9",
 });
 
 export const Content = styled("article", {
@@ -15,8 +14,8 @@ export const Content = styled("article", {
 
 export const Aside = styled("aside", {
   position: "sticky",
-  top: "$12",
   width: "100%",
+  top: "$12",
   height: "100%",
   display: "none",
   gap: "$5",
@@ -46,10 +45,10 @@ export const NavList = styled("div", {
 
 export const NavListItem = styled("a", {
   textDecoration: "none",
-  color: "$text3",
+  color: "$white",
   transition: "$theme",
   "&:hover": {
-    color: "$text1",
+    color: "$white",
   },
   variants: {
     size: {

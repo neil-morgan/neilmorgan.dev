@@ -16,27 +16,21 @@ export const TableElement = styled("table", {
 
 export const Tr = styled("tr", {
   "&:not(:last-of-type) td": {
-    borderBottomWidth: "1px",
-    borderBottomStyle: "dashed",
-    borderBottomColor: "$text3",
+    borderBottom: "dashed 1px $border",
   },
 });
 
 export const Th = styled("th", {
-  borderBottomWidth: "2px",
-  borderBottomStyle: "solid",
-  borderBottomColor: "$text3",
+  color: "$white",
+  borderBottom: "solid 2px $border",
   ...defaultCellStyle,
 });
 
 export const Td = styled("td", {
   ...defaultCellStyle,
   "&:not(:last-of-type)": {
-    borderRightWidth: "1px",
-    borderRightStyle: "dashed",
-    borderRightColor: "$text",
+    borderRight: "dashed 1px $border",
   },
-  borderBottomWidth: "2px",
-  borderBottomStyle: "solid",
-  borderBottomColor: "$text3",
+  borderBottom: "solid 2px $border",
+  color: "$text",
 });

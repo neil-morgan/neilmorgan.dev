@@ -8,7 +8,6 @@ export const Wrapper = styled("div", {
   flexDirection: "column",
   minHeight: "100vh",
   margin: "0 auto",
-  transition: "$theme",
 });
 
 export const Main = styled("main", {
