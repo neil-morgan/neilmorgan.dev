@@ -1,7 +1,6 @@
 import { SecondaryItems } from "../../components";
-import { PopoverSection } from "../../styles";
 import type { MobileNavProps } from "./types";
-import { Link, ListItem, List, Wrapper } from "./styles";
+import { List, Wrapper } from "./styles";
 import { IconButton, Separator, Popover, Button } from "@/components/atoms";
 import { Logo } from "@/components/molecules";
 

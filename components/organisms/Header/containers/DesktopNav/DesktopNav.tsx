@@ -1,10 +1,9 @@
 "use client";
 
-import { PopoverSection } from "../../styles";
 import { SecondaryItems } from "../../components";
 import { Item, List, Wrapper } from "./styles";
 import type { DesktopNavProps } from "./types";
-import { Popover, Button, IconButton, Link } from "@/components/atoms";
+import { Popover, Button, IconButton } from "@/components/atoms";
 import { Logo } from "@/components/molecules";
 
 export const DesktopNav = ({

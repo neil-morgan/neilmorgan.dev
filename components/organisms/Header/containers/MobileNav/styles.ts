@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { linkProps } from "../../styles";
+
 import { styled } from "@/lib/stitches";
 
 export const Wrapper = styled("nav", {
@@ -14,12 +14,6 @@ export const Wrapper = styled("nav", {
   },
 });
 
-export const Link = styled(NextLink, {
-  ...linkProps,
-  display: "flex",
-  fontSize: "$4",
-});
-
 export const List = styled("div", {
   display: "flex",
   flexDirection: "column",
@@ -27,9 +21,4 @@ export const List = styled("div", {
   fontSize: "$3",
   marginLeft: "$4",
   marginTop: "$4",
-});
-
-export const ListItem = styled(NextLink, {
-  ...linkProps,
-  display: "flex",
 });
