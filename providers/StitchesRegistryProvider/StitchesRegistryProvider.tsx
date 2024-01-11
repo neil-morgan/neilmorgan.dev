@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { createStitches } from "@stitches/react";
 import { globalStyles } from "@/lib/stitches";
@@ -10,12 +10,16 @@ export const StitchesRegistryProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [isRendered, setIsRendered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { getCssText } = createStitches();
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useServerInsertedHTML(() => {
-    if (!isRendered) {
-      setIsRendered(true);
+    if (!isMounted) {
+      setIsMounted(true);
       globalStyles();
 
       return (
@@ -27,5 +31,5 @@ export const StitchesRegistryProvider = ({
     }
   });
 
-  return <>{children}</>;
+  return isMounted ? <>{children}</> : null;
 };
