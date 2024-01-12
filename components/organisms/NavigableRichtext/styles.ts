@@ -16,7 +16,7 @@ export const Content = styled("article", {
 export const Aside = styled("aside", {
   position: "sticky",
   width: "100%",
-  top: "$12",
+  top: "$11",
   height: "100%",
   display: "none",
   gap: "$5",

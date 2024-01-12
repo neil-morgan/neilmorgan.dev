@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { Aside, Content, Body, NavList, NavListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
 import { Richtext } from "@/components/molecules";
+import { Button } from "@/components/atoms";
 import type { RichtextType } from "@/types";
 
 export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
@@ -17,16 +18,18 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
         {buildRichtextHeadings(content.json.content).map(
           ({ heading, subHeadings }, i1) => (
             <Fragment key={`${heading.label}-${i1}`}>
-              <NavListItem href={heading.href}>{heading.label}</NavListItem>
+              <Button href={heading.href} asLink size="lg">
+                {heading.label}
+              </Button>
               {subHeadings.length > 0 && (
                 <NavList>
                   {subHeadings.map(({ heading }, i2) => (
-                    <NavListItem
+                    <Button
                       key={`${heading.label}-${i2}`}
                       href={heading.href}
-                      size="subHeading">
+                      asLink>
                       {heading.label}
-                    </NavListItem>
+                    </Button>
                   ))}
                 </NavList>
               )}
