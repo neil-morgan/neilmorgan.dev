@@ -14,4 +14,5 @@ export { OrderedList, UnorderedList, ListItem } from "./List";
 export { Popover } from "./Popover";
 export { Separator } from "./Separator";
 export { Table, Td, Tr, Th } from "./Table";
+export { Tag } from "./Tag";
 export { Text } from "./Text";

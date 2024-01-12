@@ -7,5 +7,5 @@ export const Blockquote = styled("blockquote", {
   background: "$layer3",
   padding: "$7",
   color: "$bodyText",
-  borderLeft: "solid 4px $border",
+  borderLeft: "solid 4px $primary1",
 });

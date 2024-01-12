@@ -8,7 +8,7 @@ export const PointerGlow = () => {
   const { x, y } = useMousePosition();
   const { elementProperties } = useElementRefs();
 
-  const innerGlow = `radial-gradient(250px at ${x}px ${y}px, #ffffff25, transparent 80%)`;
+  const innerGlow = `radial-gradient(250px at ${x}px ${y}px, #ffffff15, transparent 80%)`;
   const outerGlow = `radial-gradient(600px at ${x}px ${y}px, #ffffff08, transparent 80%)`;
   const radius = 5;
 

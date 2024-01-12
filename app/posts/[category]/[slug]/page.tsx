@@ -49,7 +49,7 @@ const PostPage = async ({ params }: SlugProps) => {
 
   const post = data.post?.items[0] as Post;
 
-  return <PostTemplate content={{ ...post, likes: 0 }} />;
+  return <PostTemplate content={{ ...post }} />;
 };
 
 export default PostPage;

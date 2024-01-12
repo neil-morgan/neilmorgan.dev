@@ -23,8 +23,12 @@ export const Wrapper = styled("a", {
     borderColor: "$borderHover",
     background: "$highlightHover",
     "& svg": {
-      color: "$white",
+      color: "$primary1",
       transform: "translate(5px, -5px)",
+    },
+
+    "& h3": {
+      color: "$primary1",
     },
   },
 });
@@ -37,4 +41,10 @@ export const Header = styled("header", {
   marginBottom: "$3",
   gap: "$2",
   color: "$white",
+});
+
+export const Footer = styled("footer", {
+  display: "flex",
+  marginTop: "$4",
+  gap: "$4",
 });

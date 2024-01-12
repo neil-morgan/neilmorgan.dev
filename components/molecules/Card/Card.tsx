@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, type RefObject } from "react";
 import NextLink from "next/link";
-import { Wrapper, Header } from "./styles";
+import { Wrapper, Header, Footer } from "./styles";
 import type { CardProps } from "./types";
-import { Text, Icon } from "@/components/atoms";
+import { Text, Icon, Tag } from "@/components/atoms";
 import { useElementRefs } from "@/providers";
 
-export const Card = ({ heading, description, href, subHeading }: CardProps) => {
+export const Card = ({
+  heading,
+  description,
+  href,
+  subHeading,
+  tags,
+}: CardProps) => {
   const { elementRefs, addElementRef } = useElementRefs();
   const elementRef = useRef<HTMLElement | null>(null);
-
-  const lastWord = heading.split(" ").slice(-1)[0];
-  const previousWords = heading.split(" ").slice(0, -1).join(" ");
 
   useEffect(
     () => addElementRef(elementRef.current),
@@ -34,7 +37,7 @@ export const Card = ({ heading, description, href, subHeading }: CardProps) => {
           },
         }}>
         <Header>
-          <Text size={4} as="h3">
+          <Text size={4} weight={400} as="h3">
             {heading}
           </Text>
           <Icon name="ArrowTopRight" css={{ flexShrink: 0 }} />
@@ -45,6 +48,13 @@ export const Card = ({ heading, description, href, subHeading }: CardProps) => {
           </Text>
         )}
         <Text as="p">{description}</Text>
+        {tags && (
+          <Footer>
+            {tags.map(({ title }, i) => {
+              return <Tag key={title + i}>{title}</Tag>;
+            })}
+          </Footer>
+        )}
       </Wrapper>
     </NextLink>
   );

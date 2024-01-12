@@ -25,6 +25,8 @@ export const colors = {
   layer1: "#0D141F",
   layer2: "#111A27",
   layer3: "#112840",
+  primary1: "#0BD8B6",
+  primary2: "#207E7350",
   text: "#ffffffbf",
   border: "rgba(255,255,255,0.1)",
   borderHover: "rgba(255,255,255,0.25)",

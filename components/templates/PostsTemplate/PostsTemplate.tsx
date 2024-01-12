@@ -3,7 +3,7 @@
 import { Wrapper, Header, Grid } from "./styles";
 import { Container, Text } from "@/components/atoms";
 import { Card } from "@/components/molecules";
-import type { GroupedPostType } from "@/types";
+import type { GroupedPostType, TagType } from "@/types";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
@@ -17,13 +17,14 @@ export const PostsCategory = ({ category, items }: GroupedPostType) => (
     </Header>
 
     <Grid>
-      {items.map(({ title, description, slug }, i) =>
+      {items.map(({ title, description, slug, tagsCollection }, i) =>
         title && description && slug ? (
           <Card
             key={i}
             heading={title}
             description={description}
             href={`/posts/${category?.slug}/${slug}`}
+            tags={tagsCollection?.items as TagType[]}
           />
         ) : null,
       )}
