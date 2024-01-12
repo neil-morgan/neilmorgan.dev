@@ -18,18 +18,13 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
         {buildRichtextHeadings(content.json.content).map(
           ({ heading, subHeadings }, i1) => (
             <Fragment key={`${heading.label}-${i1}`}>
-              <Button href={heading.href} asLink size="lg">
-                {heading.label}
-              </Button>
+              <a href={heading.href}>{heading.label}</a>
               {subHeadings.length > 0 && (
                 <NavList>
                   {subHeadings.map(({ heading }, i2) => (
-                    <Button
-                      key={`${heading.label}-${i2}`}
-                      href={heading.href}
-                      asLink>
+                    <a key={`${heading.label}-${i2}`} href={heading.href}>
                       {heading.label}
-                    </Button>
+                    </a>
                   ))}
                 </NavList>
               )}
