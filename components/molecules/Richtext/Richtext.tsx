@@ -28,7 +28,7 @@ import {
   ExpandedEdge,
 } from "@/components/atoms";
 
-export const Richtext = ({ content }: RichtextProps) => {
+export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
   const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
     content.links,
   );
@@ -48,6 +48,7 @@ export const Richtext = ({ content }: RichtextProps) => {
             weight={600}
             as="h2"
             css={{ marginTop: "$11" }}
+            isInViewport={setCurrentId}
             id={node.content[0].value}>
             {children}
           </Text>
@@ -64,6 +65,7 @@ export const Richtext = ({ content }: RichtextProps) => {
             size={5}
             weight={500}
             as="h3"
+            isInViewport={setCurrentId}
             css={{ marginTop: "$6" }}
             id={node.content[0].value}>
             {children}

@@ -9,7 +9,7 @@ import type {
   ResourceLink,
 } from "@/graphql";
 
-type NavigableContentHeadingType = { label: string; href: string };
+type NavigableContentHeadingType = { id: string; label: string; href: string };
 
 export type NavigableContentHeadingsType = {
   heading: NavigableContentHeadingType;

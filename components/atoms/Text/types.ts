@@ -3,6 +3,7 @@ import type { CSS } from "@stitches/react";
 export type TextProps = {
   css?: CSS;
   id?: string;
+  isInViewport?: (id: string) => void;
   as?:
     | "h1"
     | "h2"

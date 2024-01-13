@@ -34,7 +34,7 @@ export const AsideHeader = styled("header", {
   width: "100%",
 });
 
-export const NavList = styled("div", {
+export const List = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "$4",
@@ -44,24 +44,16 @@ export const NavList = styled("div", {
   },
 });
 
-export const NavListItem = styled("a", {
-  textDecoration: "none",
+export const ListItem = styled("div", {
+  display: "flex",
+  position: "relative",
   color: "$white",
-  transition: "$theme",
-  "&:hover": {
-    color: "$white",
-  },
-  variants: {
-    size: {
-      mainHeading: {
-        fontSize: "$3",
-      },
-      subHeading: {
-        fontSize: "$2",
-      },
-    },
-  },
-  defaultVariants: {
-    size: "mainHeading",
+
+  "& svg": {
+    position: "absolute",
+    top: "50%",
+    left: 0,
+    transform: "translate(-50%, -50%)",
+    color: "$primary1",
   },
 });
