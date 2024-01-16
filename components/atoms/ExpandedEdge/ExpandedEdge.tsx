@@ -4,9 +4,10 @@ import { styled } from "@/lib/stitches";
 
 export const ExpandedEdge = styled("div", {
   position: "relative",
-  margin: "$10 -$7 $9",
+  margin: "$10 -$1",
+  borderRadius: "$md",
   overflow: "hidden",
   "@md": {
-    borderRadius: "$md",
+    margin: "$10 -$7",
   },
 });

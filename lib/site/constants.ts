@@ -13,7 +13,7 @@ export const LOCATIONS = {
 export const BREAKPOINTS = {
   sm: "30em",
   md: "48em",
-  lg: "62em",
+  lg: "67.625em",
   xl: "80em",
   "2xl": "96em",
 };

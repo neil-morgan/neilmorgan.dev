@@ -48,7 +48,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
               <Wrapper>
                 <Header content={{ navigation, social }} />
                 <Main>{children}</Main>
-                <Footer />
+                <Footer content={{ navigation }} />
               </Wrapper>
             </ElementRefsProvider>
           </StitchesRegistryProvider>

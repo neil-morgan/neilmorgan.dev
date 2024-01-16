@@ -1,1 +1,1 @@
-export { OrderedList, UnorderedList, ListItem } from "./List";
+export { List, ListItem } from "./List";

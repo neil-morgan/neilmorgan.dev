@@ -30,8 +30,8 @@ export const ButtonElement = styled("button", {
       },
       false: {
         alignItems: "center",
-        padding: "0 0.75em",
-        height: "2em",
+        padding: "0 1em",
+        height: "2.75em",
         borderRadius: "$default",
         letterSpacing: "0.05rem",
       },

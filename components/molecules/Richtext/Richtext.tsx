@@ -17,14 +17,13 @@ import {
   Separator,
   Link,
   ListItem,
-  OrderedList,
   CodeSnippet,
   Table,
   Td,
   Text,
   Th,
   Tr,
-  UnorderedList,
+  List,
   ExpandedEdge,
 } from "@/components/atoms";
 
@@ -78,11 +77,11 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
       ),
 
       [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-        <UnorderedList>{children}</UnorderedList>
+        <List format="bullets">{children}</List>
       ),
 
       [BLOCKS.OL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-        <OrderedList>{children}</OrderedList>
+        <List format="numbers">{children}</List>
       ),
 
       [BLOCKS.LIST_ITEM]: (node: RichtextNodeType) => {

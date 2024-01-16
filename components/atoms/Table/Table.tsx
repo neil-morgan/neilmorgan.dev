@@ -1,9 +1,11 @@
 "use client";
 
-import { TableElement } from "./styles";
+import { TableElement, TableWrapper } from "./styles";
 
 export const Table = ({ children }: React.PropsWithChildren) => (
-  <TableElement>
-    <tbody>{children}</tbody>
-  </TableElement>
+  <TableWrapper>
+    <TableElement>
+      <tbody>{children}</tbody>
+    </TableElement>
+  </TableWrapper>
 );

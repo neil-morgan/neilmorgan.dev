@@ -9,7 +9,7 @@ export const SnippetWrapper = styled("div", {
 });
 
 export const CodeWrapper = styled("div", {
-  padding: "$7",
+  padding: "$5",
   width: "100%",
   background,
   transition: "200ms ease-in-out",
@@ -20,6 +20,9 @@ export const CodeWrapper = styled("div", {
   "@sm": {
     borderRadius: "$md",
   },
+  "@lg":{
+    padding: "$7",
+  }
 });
 
 export const LanguageTab = styled("div", {

@@ -1,13 +1,16 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { Aside, Content, Body, List, ListItem } from "./styles";
+import { usePathname } from "next/navigation";
+import { Aside, AsideFooter, Content, Body, List, ListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
-import { Richtext } from "@/components/molecules";
-import { Icon } from "@/components/atoms";
+import { Richtext, CopyButton } from "@/components/molecules";
+import { Icon, Separator } from "@/components/atoms";
 import type { RichtextType } from "@/types";
+import { SITE_BASE_URL } from "@/lib/site";
 
 export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
+  const pathname = usePathname();
   const [currentId, setCurrentId] = useState("");
   const currentIdIcon = <Icon name="ChevronRight" />;
 
@@ -25,16 +28,17 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
                 {
                   <ListItem>
                     {heading.id === currentId && currentIdIcon}
+
                     <a href={heading.href}>{heading.label}</a>
                   </ListItem>
                 }
 
                 {subHeadings.length > 0 && (
                   <List>
-                    {subHeadings.map(({ heading }, i2) => (
+                    {subHeadings.map(({ heading: subHeading }, i2) => (
                       <ListItem key={`${heading.label}-${i2}`}>
-                        {heading.id === currentId && currentIdIcon}
-                        <a href={heading.href}>{heading.label}</a>
+                        {subHeading.id === currentId && currentIdIcon}
+                        <a href={subHeading.href}>{subHeading.label}</a>
                       </ListItem>
                     ))}
                   </List>
@@ -43,6 +47,12 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
             ),
           )}
         </List>
+
+        <CopyButton
+          size="sm"
+          value={`${SITE_BASE_URL}${pathname}`}
+          message="Url copied to clipboard"
+        />
       </Aside>
     </Body>
   );

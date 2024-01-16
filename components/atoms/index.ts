@@ -10,7 +10,7 @@ export { ExpandedEdge } from "./ExpandedEdge";
 export { Icon, IconDefs } from "./Icon";
 export { IconButton } from "./IconButton";
 export { Link } from "./Link";
-export { OrderedList, UnorderedList, ListItem } from "./List";
+export { List, ListItem } from "./List";
 export { Popover } from "./Popover";
 export { Separator } from "./Separator";
 export { Table, Td, Tr, Th } from "./Table";
