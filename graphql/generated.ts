@@ -992,6 +992,7 @@ export enum ProjectSkillsCollectionOrder {
 
 export type Query = {
   __typename?: 'Query';
+  _node: Maybe<_Node>;
   asset: Maybe<Asset>;
   assetCollection: Maybe<AssetCollection>;
   entryCollection: Maybe<EntryCollection>;
@@ -1013,6 +1014,13 @@ export type Query = {
   snippetCollection: Maybe<SnippetCollection>;
   socialItem: Maybe<SocialItem>;
   socialItemCollection: Maybe<SocialItemCollection>;
+};
+
+
+export type Query_NodeArgs = {
+  id: Scalars['ID']['input'];
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1714,6 +1722,10 @@ export type SysFilter = {
   publishedVersion_lte: InputMaybe<Scalars['Float']['input']>;
   publishedVersion_not: InputMaybe<Scalars['Float']['input']>;
   publishedVersion_not_in: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type _Node = {
+  _id: Scalars['ID']['output'];
 };
 
 export type CfPostCategoryNestedFilter = {

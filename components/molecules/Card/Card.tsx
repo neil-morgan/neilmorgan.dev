@@ -48,11 +48,11 @@ export const Card = ({
           </Text>
         )}
         <Text as="p">{description}</Text>
-        {tags && (
+        {tags.length > 0 && (
           <Footer>
-            {tags.map(({ title }, i) => {
-              return <Tag key={title + i}>{title}</Tag>;
-            })}
+            {tags.map(({ title }, i) => (
+              <Tag key={title + i}>{title}</Tag>
+            ))}
           </Footer>
         )}
       </Wrapper>
