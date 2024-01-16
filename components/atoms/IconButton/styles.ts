@@ -4,15 +4,15 @@ export const IconButtonElement = styled("button", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  border: 0,
   background: "transparent",
   cursor: "pointer",
   position: "relative",
-  height: "1.75em",
-  width: "1.75em",
-
+  height: "2.75em",
+  width: "2.75em",
   borderRadius: "$default",
   transition: "$theme",
+  border: "0",
+  color: "$white",
 
   variants: {
     size: {
@@ -26,27 +26,15 @@ export const IconButtonElement = styled("button", {
         fontSize: "$5",
       },
     },
-    priority: {
-      default: {
-        background: "$layer4",
-        border: "solid 1px $layer5",
-        color: "$text2",
+
+    highlight: {
+      true: {
+        borderWidth: "2px",
+        borderStyle: "solid",
+        borderColor: "$border",
         "&:hover": {
-          background: "$layer5",
-        },
-      },
-      primary: {
-        background: "$primary1",
-        color: "$base1 ",
-        "&:hover": {
-          background: "$primary2",
-        },
-      },
-      contrast: {
-        background: "transparent",
-        color: "$text3",
-        "&:hover": {
-          color: "$text1",
+          borderColor: "$borderHover",
+          background: "$highlightHover",
         },
       },
     },
@@ -54,6 +42,6 @@ export const IconButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "default",
+    highlight: true,
   },
 });

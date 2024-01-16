@@ -2,8 +2,8 @@ import { styled } from "@/lib/stitches";
 
 export const Body = styled("div", {
   display: "flex",
+  marginTop: "$9",
   justifyContent: "center",
-  marginTop: "$9"
 });
 
 export const Content = styled("article", {
@@ -15,53 +15,50 @@ export const Content = styled("article", {
 
 export const Aside = styled("aside", {
   position: "sticky",
-  top: "$12",
-  width: "100%",
+  top: "$11",
   height: "100%",
+  gap: "$6",
   display: "none",
-  gap: "$5",
-  "@lg": {
-    display: "flex",
-  },
   flexDirection: "column",
   alignItems: "flex-start",
   marginRight: "auto",
-  marginLeft: "$11",
+  justifyContent: "center",
+
+  "@lg": {
+    display: "flex",
+    marginLeft: "$11",
+  },
+  "@xl": {
+    marginLeft: "$12",
+  },
 });
 
-export const AsideHeader = styled("header", {
+export const AsideFooter = styled("footer", {
   display: "flex",
   width: "100%",
+  padding: "0 $4",
 });
 
-export const NavList = styled("div", {
+export const List = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "$4",
-  "& > div": {
-    paddingLeft: "$4",
+  "& > div > div": {
+    marginLeft: "$4",
     gap: "$3",
   },
 });
 
-export const NavListItem = styled("a", {
-  textDecoration: "none",
-  color: "$text3",
-  transition: "$theme",
-  "&:hover": {
-    color: "$text1",
-  },
-  variants: {
-    size: {
-      mainHeading: {
-        fontSize: "$3",
-      },
-      subHeading: {
-        fontSize: "$2",
-      },
-    },
-  },
-  defaultVariants: {
-    size: "mainHeading",
+export const ListItem = styled("div", {
+  display: "flex",
+  position: "relative",
+  color: "$white",
+
+  "& svg": {
+    position: "absolute",
+    top: "50%",
+    left: 0,
+    transform: "translate(-125%, -50%)",
+    color: "$primary1",
   },
 });

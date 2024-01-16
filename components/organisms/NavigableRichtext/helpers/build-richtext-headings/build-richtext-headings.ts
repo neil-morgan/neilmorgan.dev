@@ -2,10 +2,14 @@ import type { TopLevelBlock } from "@contentful/rich-text-types";
 import { kebabCase } from "lodash";
 import type { NavigableContentHeadingsType } from "@/types";
 
-const buildHeading = (value: string) => ({
-  label: value,
-  href: `#${kebabCase(value)}`,
-});
+const buildHeading = (value: string) => {
+  const id = kebabCase(value);
+  return {
+    id,
+    label: value,
+    href: `#${id}`,
+  };
+};
 
 export const buildRichtextHeadings = (content: TopLevelBlock[]) => {
   const headings: NavigableContentHeadingsType = [];

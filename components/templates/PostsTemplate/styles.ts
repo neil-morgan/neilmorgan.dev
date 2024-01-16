@@ -3,6 +3,7 @@ import { styled } from "@/lib/stitches";
 export const Wrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
+  "&:not(:last-child)": { marginBottom: "$12" },
 });
 
 export const Header = styled("header", {
@@ -10,6 +11,7 @@ export const Header = styled("header", {
   justifyContent: "space-between",
   alignItems: "center",
   marginBottom: "$7",
+  color: "$white",
 });
 
 export const Grid = styled("div", {

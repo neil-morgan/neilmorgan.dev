@@ -1,8 +1,6 @@
-import { redirect } from "next/navigation";
 import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
-import { getFeatureFlags } from "@/helpers";
 import {
   CategoryDocument,
   AllPostsCategoryDocument,
@@ -42,16 +40,15 @@ const PostCategoryPage = async ({
 }: {
   params: { category: string };
 }) => {
-  const { postsContent } = await getFeatureFlags();
-
-  if (!postsContent) {
-    redirect("/");
-  }
-
   const { data } = await getClient().query({
     query: AllPostsCategoryDocument,
     variables: {
       slug: params.category,
+    },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
     },
   });
 

@@ -1,13 +1,7 @@
 import { styled } from "@/lib/stitches";
 
-export const Header = styled("header", {
+export const PostFooter = styled("div", {
   display: "flex",
-  flexDirection: "column",
-  gap: "$2",
-});
-
-export const ActionsWrapper = styled("div", {
-  display: "flex",
-  justifyContent: "space-between",
   alignItems: "center",
+  justifyContent: "space-between",
 });

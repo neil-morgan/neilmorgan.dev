@@ -4,22 +4,17 @@ export const ButtonElement = styled("button", {
   position: "relative",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
-  border: 0,
-  padding: "$2 $4",
-  borderRadius: "$default",
-  fontSize: "$4",
   cursor: "pointer",
+  background: "transparent",
   transition: "$theme",
-  letterSpacing: "0.05rem",
-  textTransform: "uppercase",
   textAlign: "center",
+  border: "0",
+  color: "$white",
 
   variants: {
     size: {
       sm: {
         fontSize: "$1",
-        fontWeight: "$semibold",
       },
       md: {
         fontSize: "$3",
@@ -29,26 +24,25 @@ export const ButtonElement = styled("button", {
       },
     },
 
-    priority: {
-      default: {
-        background: "$layer5",
-        color: "$text2",
-        "&:hover": {
-          background: "$layer6",
-        },
+    asLink: {
+      true: {
+        border: 0,
       },
-      primary: {
-        background: "$primary1",
-        color: "$base1 ",
-        "&:hover": {
-          background: "$primary2",
-        },
+      false: {
+        alignItems: "center",
+        padding: "0 1em",
+        height: "2.75em",
+        borderRadius: "$default",
+        letterSpacing: "0.05rem",
       },
-      contrast: {
-        background: "transparent",
-        color: "$text3",
+    },
+
+    highlight: {
+      true: {
+        border: "solid 2px $border",
         "&:hover": {
-          color: "$text1",
+          borderColor: "borderHover",
+          background: "$highlightHover",
         },
       },
     },
@@ -56,14 +50,6 @@ export const ButtonElement = styled("button", {
 
   defaultVariants: {
     size: "md",
-    priority: "default",
+    highlight: true,
   },
-});
-
-export const RightIcon = styled("span", {
-  marginLeft: "$2",
-});
-
-export const LeftIcon = styled("span", {
-  marginRight: "$2",
 });

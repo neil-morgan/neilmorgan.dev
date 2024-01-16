@@ -1,1 +1,1 @@
-export { VerticalSeparator, HorizontalSeparator } from "./Separator";
+export { Separator } from "./Separator";

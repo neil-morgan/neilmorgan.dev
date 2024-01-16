@@ -1,8 +1,8 @@
 import { SecondaryItems } from "../../components";
-import { PopoverSection } from "../../styles";
 import type { MobileNavProps } from "./types";
-import { MobileLink, MobileListItem, MobileList } from "./styles";
-import { IconButton, HorizontalSeparator, Popover } from "@/components/atoms";
+import { List, Wrapper } from "./styles";
+import { IconButton, Separator, Popover, Button } from "@/components/atoms";
+import { Logo } from "@/components/molecules";
 
 export const MobileNav = ({
   items,
@@ -10,42 +10,43 @@ export const MobileNav = ({
   openItem,
   setOpenItem,
 }: MobileNavProps) => (
-  <Popover
-    open={openItem === 1}
-    setOpen={setOpenItem}
-    anchor={
-      <IconButton
-        size="lg"
-        css={{
-          marginLeft: "auto",
-        }}
-        icon="Hamburger"
-        priority="contrast"
-        onClick={() => setOpenItem(1)}
-      />
-    }>
-    <PopoverSection columns="1" gap="mobile">
+  <Wrapper>
+    <Logo isLink />
+    <Popover
+      open={openItem === 1}
+      setOpen={setOpenItem}
+      padding="$6"
+      anchor={
+        <IconButton
+          css={{
+            marginLeft: "auto",
+          }}
+          icon="Hamburger"
+          onClick={() => setOpenItem(1)}
+        />
+      }>
       {items.map(({ title, slug, list }, i) => (
         <div key={i}>
-          <MobileLink href={slug}>{title}</MobileLink>
+          <Button href={slug} size="md" asLink>
+            {title}
+          </Button>
           {list && (
-            <MobileList>
+            <List>
               {list.options.map(({ title, slug }, i) => (
-                <MobileListItem
+                <Button
                   key={i}
+                  asLink
                   href={slug}
                   onClick={() => setOpenItem(false)}>
                   {title}
-                </MobileListItem>
+                </Button>
               ))}
-            </MobileList>
+            </List>
           )}
         </div>
       ))}
-    </PopoverSection>
-    <HorizontalSeparator />
-    <PopoverSection as="footer">
+      <Separator size="md" />
       <SecondaryItems items={social} />
-    </PopoverSection>
-  </Popover>
+    </Popover>
+  </Wrapper>
 );

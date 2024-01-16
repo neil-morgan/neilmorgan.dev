@@ -7,13 +7,7 @@ export type IconButtonProps = {
   isExternal?: boolean;
   onClick?: () => void;
   icon?: string;
-  priority?: "default" | "primary" | "contrast";
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
+  noHighlight?: boolean;
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
-
-export type IconButtonRef =
-  | ((instance: HTMLButtonElement | null) => void)
-  | React.RefObject<HTMLButtonElement>
-  | null
-  | undefined;

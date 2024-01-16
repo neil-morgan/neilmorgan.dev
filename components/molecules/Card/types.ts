@@ -1,10 +1,9 @@
+import type { TagType } from "@/types";
+
 export type CardProps = {
-  heading: string;
   description?: string;
-  image: {
-    src: string;
-    alt: string;
-  };
+  heading: string;
   href: string;
-  isLink?: boolean;
+  subHeading?: string;
+  tags: TagType[];
 };

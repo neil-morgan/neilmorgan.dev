@@ -1,42 +1,59 @@
 "use client";
 
-import { Fragment } from "react";
-import { Aside, Content, Body, NavList, NavListItem } from "./styles";
+import { Fragment, useState } from "react";
+import { usePathname } from "next/navigation";
+import { Aside, AsideFooter, Content, Body, List, ListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
-import { HorizontalSeparator, Text } from "@/components/atoms";
-import { Richtext } from "@/components/molecules";
+import { Richtext, CopyButton } from "@/components/molecules";
+import { Icon, Separator } from "@/components/atoms";
 import type { RichtextType } from "@/types";
+import { SITE_BASE_URL } from "@/lib/site";
 
-export const NavigableRichtext = ({ content }: { content: RichtextType }) => (
-  <Body>
-    <Content>
-      <Richtext content={content} />
-    </Content>
-    <Aside>
-      <Text size={4} appearance="print" weight={500}>
-        CONTENTS
-      </Text>
-      <NavList>
-        {buildRichtextHeadings(content.json.content).map(
-          ({ heading, subHeadings }, i1) => (
-            <Fragment key={`${heading.label}-${i1}`}>
-              <NavListItem href={heading.href}>{heading.label}</NavListItem>
-              {subHeadings.length > 0 && (
-                <NavList>
-                  {subHeadings.map(({ heading }, i2) => (
-                    <NavListItem
-                      key={`${heading.label}-${i2}`}
-                      href={heading.href}
-                      size="subHeading">
-                      {heading.label}
-                    </NavListItem>
-                  ))}
-                </NavList>
-              )}
-            </Fragment>
-          ),
-        )}
-      </NavList>
-    </Aside>
-  </Body>
-);
+export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
+  const pathname = usePathname();
+  const [currentId, setCurrentId] = useState("");
+  const currentIdIcon = <Icon name="ChevronRight" />;
+
+  return (
+    <Body>
+      <Content>
+        <Richtext content={content} setCurrentId={setCurrentId} />
+      </Content>
+
+      <Aside>
+        <List>
+          {buildRichtextHeadings(content.json.content).map(
+            ({ heading, subHeadings }, i1) => (
+              <Fragment key={`${heading.label}-${i1}`}>
+                {
+                  <ListItem>
+                    {heading.id === currentId && currentIdIcon}
+
+                    <a href={heading.href}>{heading.label}</a>
+                  </ListItem>
+                }
+
+                {subHeadings.length > 0 && (
+                  <List>
+                    {subHeadings.map(({ heading: subHeading }, i2) => (
+                      <ListItem key={`${heading.label}-${i2}`}>
+                        {subHeading.id === currentId && currentIdIcon}
+                        <a href={subHeading.href}>{subHeading.label}</a>
+                      </ListItem>
+                    ))}
+                  </List>
+                )}
+              </Fragment>
+            ),
+          )}
+        </List>
+
+        <CopyButton
+          size="sm"
+          value={`${SITE_BASE_URL}${pathname}`}
+          message="Url copied to clipboard"
+        />
+      </Aside>
+    </Body>
+  );
+};
