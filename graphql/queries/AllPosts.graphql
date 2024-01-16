@@ -8,6 +8,12 @@ query AllPosts {
       description
       date
       slug
+      tagsCollection {
+        items {
+          title
+          slug
+        }
+      }
       category {
         ...PostCategoryFragment
       }

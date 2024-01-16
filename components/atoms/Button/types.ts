@@ -6,9 +6,11 @@ export type ButtonProps = {
   href?: string | null;
   isExternal?: boolean;
   onClick?: () => void;
-  rightIcon?: React.ReactNode;
-  leftIcon?: React.ReactNode;
+  rightIcon?: string;
+  leftIcon?: string;
   size?: "sm" | "md" | "lg";
   forceHoverState?: boolean;
-  priority?: "primary";
+  priority?: "default" | "primary" | "contrast";
+  noHighlight?: boolean;
+  asLink?: boolean;
 };

@@ -1,19 +1,19 @@
 import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
-import { DraftMode } from "@/components/molecules";
-import { Footer, Header, Provider } from "@/components/organisms";
+import { inter } from "@/lib/site";
+import {
+  ApolloProvider,
+  StitchesRegistryProvider,
+  ElementRefsProvider,
+} from "@/providers";
+import { DraftMode, PointerGlow } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
-import { getFeatureFlags } from "@/helpers";
-import { inter, FEATURE_FLAGS } from "@/lib/site";
 import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
+import { Header, Footer } from "@/components/organisms";
 import type { CategoryType } from "@/types";
 
-export default async function RootLayout({
-  children,
-}: React.PropsWithChildren) {
-  const { feedbackContent, skillsContent, postsContent, projectsContent } =
-    await getFeatureFlags();
+const RootLayout = async ({ children }: React.PropsWithChildren) => {
   const { isEnabled } = draftMode();
 
   const { data } = await getClient().query({
@@ -22,17 +22,9 @@ export default async function RootLayout({
 
   const social = data.socialItems?.items as SocialItem[];
   const postCategories = data.postCategories?.items as CategoryType[];
-  const navigation = [];
 
-  if (projectsContent && FEATURE_FLAGS.projects) {
-    navigation.push({
-      title: "Projects",
-      slug: "/projects",
-    });
-  }
-
-  if (postsContent && FEATURE_FLAGS.posts) {
-    navigation.push({
+  const navigation = [
+    {
       title: "Posts",
       slug: "/posts",
       list: {
@@ -41,33 +33,29 @@ export default async function RootLayout({
           slug: `/posts/${slug}`,
         })),
       },
-    });
-  }
-
-  if (feedbackContent && FEATURE_FLAGS.feedback) {
-    navigation.push({ title: "Feedback", slug: "/feedback" });
-  }
-
-  if (skillsContent && FEATURE_FLAGS.skills) {
-    navigation.push({
-      title: "Skills",
-      slug: "/skills",
-    });
-  }
+    },
+  ];
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
-          <IconDefs />
-          {isEnabled && <DraftMode />}
-          <Wrapper>
-            <Header content={{ navigation, social }} />
-            <Main>{children}</Main>
-            <Footer />
-          </Wrapper>
-        </Provider>
+        <ApolloProvider>
+          <StitchesRegistryProvider>
+            <ElementRefsProvider>
+              <PointerGlow />
+              <IconDefs />
+              {isEnabled && <DraftMode />}
+              <Wrapper>
+                <Header content={{ navigation, social }} />
+                <Main>{children}</Main>
+                <Footer content={{ navigation }} />
+              </Wrapper>
+            </ElementRefsProvider>
+          </StitchesRegistryProvider>
+        </ApolloProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

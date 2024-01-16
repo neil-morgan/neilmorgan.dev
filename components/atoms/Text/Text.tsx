@@ -1,11 +1,11 @@
 "use client";
 
+import { useEffect } from "react";
 import { kebabCase } from "lodash";
 import { Icon } from "../Icon";
 import type { TextProps } from "./types";
 import { Element, Anchor } from "./styles";
-import { useMediaQuery } from "@/hooks";
-import { BREAKPOINTS } from "@/lib/site";
+import { useIntersectionObserver } from "@/hooks";
 
 export const Text = ({
   as = "div",
@@ -13,28 +13,38 @@ export const Text = ({
   css,
   id,
   size,
-  color,
   weight = 400,
   style,
-  appearance,
+  print = false,
+  color,
+  isInViewport,
 }: React.PropsWithChildren<TextProps>) => {
+  const [ref, entry] = useIntersectionObserver({
+    threshold: 0,
+    root: null,
+    rootMargin: "0px 0px -66% 0px",
+  });
   const _id = kebabCase(id);
-  const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.lg})`);
 
-  const mergedCss = {
-    ...css,
-    fontWeight: weight,
-    fontStyle: style,
-  };
+  useEffect(() => {
+    if (entry?.isIntersecting && isInViewport && id) {
+      isInViewport(_id);
+    }
+  }, [entry?.isIntersecting, _id, isInViewport, id]);
 
   return (
     <Element
+      ref={ref}
       as={as}
       size={size}
-      appearance={appearance}
-      css={mergedCss}
-      color={color}>
-      {id && isDesktop && (
+      print={print}
+      css={{
+        ...css,
+        fontWeight: weight,
+        fontStyle: style,
+        color,
+      }}>
+      {id && (
         <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
           <Icon name="Link" />
         </Anchor>

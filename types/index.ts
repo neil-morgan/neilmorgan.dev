@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import type {
   Post,
   Skill,
@@ -8,7 +9,7 @@ import type {
   ResourceLink,
 } from "@/graphql";
 
-type NavigableContentHeadingType = { label: string; href: string };
+type NavigableContentHeadingType = { id: string; label: string; href: string };
 
 export type NavigableContentHeadingsType = {
   heading: NavigableContentHeadingType;
@@ -22,6 +23,11 @@ export type CategoryType = {
 
 export type ProficiencyType = {
   title: string;
+};
+
+export type TagType = {
+  title: string;
+  slug: string;
 };
 
 export type CategoryConstraintType<T extends CategoryType> = {
@@ -98,3 +104,79 @@ export type RichtextType = {
 };
 
 export type LocalStorageLocations = "likes";
+
+export type MousePositionType = number | null;
+
+export type AnchorElementRefType =
+  | ((instance: HTMLAnchorElement | null) => void)
+  | RefObject<HTMLAnchorElement>
+  | null
+  | undefined;
+
+export type ButtonElementRefType =
+  | ((instance: HTMLButtonElement | null) => void)
+  | React.RefObject<HTMLButtonElement>
+  | null
+  | undefined;
+
+export type DivElementRefType =
+  | ((instance: HTMLDivElement | null) => void)
+  | RefObject<HTMLDivElement>
+  | null
+  | undefined;
+
+export type ColorType =
+  | "$white"
+  | "$black"
+  | "$base1"
+  | "$base2"
+  | "$base3"
+  | "$base4"
+  | "$base5"
+  | "$base6"
+  | "$base7"
+  | "$base8"
+  | "$base9"
+  | "$base10"
+  | "$base11"
+  | "$base12"
+  | "$base13"
+  | "$base14"
+  | "$text";
+
+// space: {
+//   0: "0rem", // 0px
+//   1: "0.25rem", // 4px
+//   2: "0.5rem", // 8px
+//   3: "0.75rem", // 12px
+//   4: "1rem", // 16px
+//   5: "1.5rem", // 24px
+//   6: "2rem", // 32px
+//   7: "2.5rem", // 40px
+//   8: "3rem", // 48px
+//   9: "3.5rem", // 56px
+//   10: "4rem", // 64px
+//   11: "6rem", // 96px
+//   12: "8rem", // 128px
+//   13: "16rem", // 256px
+//   14: "24rem", // 384px
+//   15: "32rem", // 512px
+// },
+
+export type GapType =
+  | "$0"
+  | "$1"
+  | "$2"
+  | "$3"
+  | "$4"
+  | "$5"
+  | "$6"
+  | "$7"
+  | "$8"
+  | "$9"
+  | "$10"
+  | "$11"
+  | "$12"
+  | "$13"
+  | "$14"
+  | "$15";

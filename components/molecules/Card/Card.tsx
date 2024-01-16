@@ -1,46 +1,61 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useRef, type RefObject } from "react";
 import NextLink from "next/link";
-import { CardWrapper, CardBody } from "./styles";
+import { Wrapper, Header, Footer } from "./styles";
 import type { CardProps } from "./types";
-import { Text, AspectRatio, ConditionalWrapper } from "@/components/atoms";
+import { Text, Icon, Tag } from "@/components/atoms";
+import { useElementRefs } from "@/providers";
 
 export const Card = ({
   heading,
   description,
   href,
-  image,
-  isLink,
+  subHeading,
+  tags,
 }: CardProps) => {
-  return (
-    <ConditionalWrapper
-      if={isLink}
-      wrapWith={children => (
-        <NextLink href={href as string}>{children}</NextLink>
-      )}>
-      <CardWrapper>
-        <AspectRatio
-          ratio={4 / 5}
-          css={{
-            borderRadius: "$md",
-            overflow: "hidden",
-          }}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </AspectRatio>
+  const { elementRefs, addElementRef } = useElementRefs();
+  const elementRef = useRef<HTMLElement | null>(null);
 
-        <CardBody>
-          <Text size={5} as="h3">
+  useEffect(
+    () => addElementRef(elementRef.current),
+    [addElementRef, elementRefs],
+  );
+
+  return (
+    <NextLink target="_blank" href={href as string} passHref legacyBehavior>
+      <Wrapper
+        ref={elementRef as RefObject<HTMLAnchorElement>}
+        css={{
+          position: "relative",
+          overflow: "hidden",
+          "&:before": {
+            position: "absolute",
+            content: '""',
+            height: "100vh",
+            width: "100vw",
+          },
+        }}>
+        <Header>
+          <Text size={4} weight={400} as="h3">
             {heading}
           </Text>
-          <Text as="p">{description}</Text>
-        </CardBody>
-      </CardWrapper>
-    </ConditionalWrapper>
+          <Icon name="ArrowTopRight" css={{ flexShrink: 0 }} />
+        </Header>
+        {subHeading && (
+          <Text as="span" size={0} weight={700} css={{ marginTop: "$3" }}>
+            {subHeading}
+          </Text>
+        )}
+        <Text as="p">{description}</Text>
+        {tags && (
+          <Footer>
+            {tags.map(({ title }, i) => {
+              return <Tag key={title + i}>{title}</Tag>;
+            })}
+          </Footer>
+        )}
+      </Wrapper>
+    </NextLink>
   );
 };

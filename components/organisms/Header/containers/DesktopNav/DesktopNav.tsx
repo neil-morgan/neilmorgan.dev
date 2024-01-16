@@ -1,17 +1,10 @@
 "use client";
 
-import { Fragment } from "react";
-import { PopoverButton, PopoverSection } from "../../styles";
 import { SecondaryItems } from "../../components";
-import {
-  DesktopItem,
-  DesktopItemHeading,
-  DesktopItemLink,
-  DesktopLink,
-  DesktopList,
-} from "./styles";
+import { Item, List, Wrapper } from "./styles";
 import type { DesktopNavProps } from "./types";
-import { Icon, Popover } from "@/components/atoms";
+import { Popover, Button, IconButton } from "@/components/atoms";
+import { Logo } from "@/components/molecules";
 
 export const DesktopNav = ({
   items,
@@ -19,36 +12,38 @@ export const DesktopNav = ({
   openItem,
   setOpenItem,
 }: DesktopNavProps) => (
-  <>
-    <DesktopList>
+  <Wrapper>
+    <Logo isLink />
+    <List>
       {items.map(({ title, slug, list }, i) => (
-        <DesktopItem key={i}>
-          <DesktopLink href={slug}>{title}</DesktopLink>
+        <Item key={i}>
+          <Button href={slug} size="md">
+            {title}
+          </Button>
           {list && (
             <Popover
               open={openItem === i}
               setOpen={setOpenItem}
+              columns={2}
+              gap="$6"
+              padding="$6"
               anchor={
-                <PopoverButton onClick={() => setOpenItem(i)}>
-                  <Icon name="ChevronDown" />
-                </PopoverButton>
+                <IconButton
+                  icon="ChevronDown"
+                  noHighlight
+                  onClick={() => setOpenItem(i)}
+                />
               }>
-              <PopoverSection columns={2}>
-                {list.options.map(({ title, slug }, i) => (
-                  <Fragment key={i}>
-                    <DesktopItemLink
-                      href={slug}
-                      onClick={() => setOpenItem(false)}>
-                      <DesktopItemHeading>{title}</DesktopItemHeading>
-                    </DesktopItemLink>
-                  </Fragment>
-                ))}
-              </PopoverSection>
+              {list.options.map(({ title, slug }, i) => (
+                <Button key={i} href={slug} asLink>
+                  {title}
+                </Button>
+              ))}
             </Popover>
           )}
-        </DesktopItem>
+        </Item>
       ))}
-    </DesktopList>
+    </List>
     <SecondaryItems items={social} />
-  </>
+  </Wrapper>
 );

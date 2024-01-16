@@ -5,6 +5,11 @@ query AllPostsCategory($slug: String!) {
       description
       date
       slug
+      tagsCollection {
+        items {
+          title
+        }
+      }
       category {
         ...PostCategoryFragment
       }

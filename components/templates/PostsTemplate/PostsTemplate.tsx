@@ -1,15 +1,14 @@
 "use client";
 
-import { Fragment } from "react";
 import { Wrapper, Header, Grid } from "./styles";
-import { Container, Text, HorizontalSeparator } from "@/components/atoms";
+import { Container, Text } from "@/components/atoms";
 import { Card } from "@/components/molecules";
-import type { GroupedPostType } from "@/types";
+import type { GroupedPostType, TagType } from "@/types";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Text size={7} as="h2" weight={600} appearance="print">
+      <Text size={6} as="h2" weight={600} print>
         {category?.title}
       </Text>
       <Text size={3}>
@@ -18,18 +17,14 @@ export const PostsCategory = ({ category, items }: GroupedPostType) => (
     </Header>
 
     <Grid>
-      {items.map(({ title, description, slug }, i) =>
+      {items.map(({ title, description, slug, tagsCollection }, i) =>
         title && description && slug ? (
           <Card
             key={i}
             heading={title}
             description={description}
-            isLink
             href={`/posts/${category?.slug}/${slug}`}
-            image={{
-              src: `https://source.unsplash.com/random/400x400?sig=${i}`,
-              alt: title,
-            }}
+            tags={tagsCollection?.items as TagType[]}
           />
         ) : null,
       )}
@@ -45,10 +40,11 @@ export const PostsTemplate = ({
   <Container>
     {Array.isArray(posts) ? (
       posts.map(({ category, items }, i) => (
-        <Fragment key={category?.title}>
-          <PostsCategory category={category} items={items} />
-          {i !== posts.length - 1 && <HorizontalSeparator size="xl" />}
-        </Fragment>
+        <PostsCategory
+          key={category?.title}
+          category={category}
+          items={items}
+        />
       ))
     ) : (
       <PostsCategory category={posts.category} items={posts.items} />

@@ -8,6 +8,11 @@ query Post($slug: String, $preview: Boolean = false) {
       description
       date
       slug
+      tagsCollection {
+        items {
+          title
+        }
+      }
       category {
         ...PostCategoryFragment
       }

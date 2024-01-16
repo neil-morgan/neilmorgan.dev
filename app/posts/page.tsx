@@ -1,23 +1,20 @@
-import { redirect } from "next/navigation";
-
-import { PostsTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
-import { AllPostsDocument, type Post } from "@/graphql";
-import { groupByCategory, getFeatureFlags } from "@/helpers";
+import { AllPostsDocument, Post } from "@/graphql";
+import { PostsTemplate } from "@/components/templates";
+import { groupByCategory } from "@/helpers";
 
 export const metadata = {
   title: "All posts",
 };
 
 const PostsPage = async () => {
-  const { postsContent } = await getFeatureFlags();
-
-  if (!postsContent) {
-    redirect("/");
-  }
-
   const { data } = await getClient().query({
     query: AllPostsDocument,
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
   });
 
   return (

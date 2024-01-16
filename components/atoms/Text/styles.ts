@@ -10,6 +10,7 @@ export const Element = styled("div", {
 
   "& ~ p:not(:first-child)": {
     marginTop: "$4",
+    color: "$text",
   },
 
   "& ~ strong": {
@@ -53,20 +54,8 @@ export const Element = styled("div", {
       },
     },
 
-    color: {
-      primary: {
-        color: "$primary2",
-      },
-      secondary: {
-        color: "$secondary2",
-      },
-      default: {
-        color: "$text2",
-      },
-    },
-
-    appearance: {
-      print: {
+    print: {
+      true: {
         letterSpacing: "$widest",
         textTransform: "uppercase",
       },
@@ -74,7 +63,6 @@ export const Element = styled("div", {
   },
 
   defaultVariants: {
-    color: "default",
     size: 2,
   },
 });

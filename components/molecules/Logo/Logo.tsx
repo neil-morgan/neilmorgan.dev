@@ -4,11 +4,11 @@ import type { LogoProps } from "./types";
 import { Svg } from "./styles";
 import { IconButton, ConditionalWrapper } from "@/components/atoms";
 
-export const Logo = ({ size = "lg", isLink = false }: LogoProps) => (
+export const Logo = ({ size = "md", isLink = false }: LogoProps) => (
   <ConditionalWrapper
     if={isLink}
     wrapWith={children => (
-      <IconButton href="/" size={size} priority="contrast">
+      <IconButton href="/" size={size}>
         {children}
       </IconButton>
     )}>

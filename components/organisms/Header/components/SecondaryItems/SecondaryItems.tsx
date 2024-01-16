@@ -2,22 +2,14 @@
 
 import { SecondaryItemsWrapper } from "./styles";
 import type { SecondaryItemsProps } from "./types";
-import { Icon, IconButton } from "@/components/atoms";
-import { ThemeToggle } from "@/components/molecules";
+import { IconButton } from "@/components/atoms";
 
 export const SecondaryItems = ({ items }: SecondaryItemsProps) => (
   <SecondaryItemsWrapper>
     {items.map(({ href, title }, index) =>
       !title ? null : (
-        <IconButton
-          key={index}
-          href={href}
-          target="_blank"
-          icon={title}
-          priority="contrast"
-        />
+        <IconButton key={index} href={href} target="_blank" icon={title} />
       ),
     )}
-    <ThemeToggle />
   </SecondaryItemsWrapper>
 );

@@ -14,20 +14,20 @@ import type { RichtextNodeType, RichtextProps } from "./types";
 import {
   AspectRatio,
   Blockquote,
-  HorizontalSeparator,
+  Separator,
   Link,
   ListItem,
-  OrderedList,
-  Snippet,
+  CodeSnippet,
   Table,
   Td,
   Text,
   Th,
   Tr,
-  UnorderedList,
+  List,
+  ExpandedEdge,
 } from "@/components/atoms";
 
-export const Richtext = ({ content }: RichtextProps) => {
+export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
   const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
     content.links,
   );
@@ -43,9 +43,11 @@ export const Richtext = ({ content }: RichtextProps) => {
         return (
           <Text
             size={7}
+            color="$white"
             weight={600}
             as="h2"
             css={{ marginTop: "$11" }}
+            isInViewport={setCurrentId}
             id={node.content[0].value}>
             {children}
           </Text>
@@ -58,9 +60,11 @@ export const Richtext = ({ content }: RichtextProps) => {
         }
         return (
           <Text
+            color="$white"
             size={5}
             weight={500}
             as="h3"
+            isInViewport={setCurrentId}
             css={{ marginTop: "$6" }}
             id={node.content[0].value}>
             {children}
@@ -73,11 +77,11 @@ export const Richtext = ({ content }: RichtextProps) => {
       ),
 
       [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-        <UnorderedList>{children}</UnorderedList>
+        <List format="bullets">{children}</List>
       ),
 
       [BLOCKS.OL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-        <OrderedList>{children}</OrderedList>
+        <List format="numbers">{children}</List>
       ),
 
       [BLOCKS.LIST_ITEM]: (node: RichtextNodeType) => {
@@ -89,7 +93,7 @@ export const Richtext = ({ content }: RichtextProps) => {
         return <ListItem>{children}</ListItem>;
       },
 
-      [BLOCKS.HR]: () => <HorizontalSeparator size="lg" />,
+      [BLOCKS.HR]: () => <Separator size="lg" />,
 
       [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
         const children = removeParagraphTags(
@@ -98,7 +102,7 @@ export const Richtext = ({ content }: RichtextProps) => {
           "quote",
         );
         return (
-          <Blockquote
+          <ExpandedEdge
             css={{
               "&:not(:first-child)": {
                 marginTop: "$6",
@@ -107,8 +111,8 @@ export const Richtext = ({ content }: RichtextProps) => {
                 marginBottom: "$6",
               },
             }}>
-            {children}
-          </Blockquote>
+            <Blockquote>{children}</Blockquote>
+          </ExpandedEdge>
         );
       },
 
@@ -141,21 +145,11 @@ export const Richtext = ({ content }: RichtextProps) => {
       [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
         const { url, description } = assetBlockMap.get(data.target.sys.id);
         return (
-          <AspectRatio
-            css={{
-              width: "calc(100% + $9)",
-              marginLeft: "-$7",
-              "&:not(:first-child)": {
-                marginTop: "$8",
-              },
-              "&:not(:last-child)": {
-                marginBottom: "$8",
-              },
-              borderRadius: "$md",
-              overflow: "hidden",
-            }}>
-            <Image src={url} alt={description} fill />
-          </AspectRatio>
+          <ExpandedEdge>
+            <AspectRatio>
+              <Image src={url} alt={description} fill />
+            </AspectRatio>
+          </ExpandedEdge>
         );
       },
 
@@ -164,13 +158,9 @@ export const Richtext = ({ content }: RichtextProps) => {
 
         if (entry.__typename === "Snippet") {
           return (
-            <Snippet
-              code={entry.code}
-              language={entry.language}
-              css={{
-                margin: "$10 -$7 $9",
-              }}
-            />
+            <ExpandedEdge>
+              <CodeSnippet code={entry.code} language={entry.language} />
+            </ExpandedEdge>
           );
         }
 

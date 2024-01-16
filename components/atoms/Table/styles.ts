@@ -1,6 +1,7 @@
 "use client";
 
 import { styled } from "@/lib/stitches";
+import { BREAKPOINTS } from "@/lib/site";
 
 const defaultCellStyle = {
   textAlign: "left",
@@ -8,35 +9,36 @@ const defaultCellStyle = {
   verticalAlign: "top",
 };
 
+export const TableWrapper = styled("div", {
+  overflowX: "scroll",
+  margin: "$8 0",
+  width: "100%",
+});
+
 export const TableElement = styled("table", {
   margin: "$8 0",
   width: "100%",
+  minWidth: BREAKPOINTS.sm,
   borderSpacing: "0",
 });
 
 export const Tr = styled("tr", {
   "&:not(:last-of-type) td": {
-    borderBottomWidth: "1px",
-    borderBottomStyle: "dashed",
-    borderBottomColor: "$text3",
+    borderBottom: "dashed 1px $border",
   },
 });
 
 export const Th = styled("th", {
-  borderBottomWidth: "2px",
-  borderBottomStyle: "solid",
-  borderBottomColor: "$text3",
+  color: "$white",
+  borderBottom: "solid 2px $border",
   ...defaultCellStyle,
 });
 
 export const Td = styled("td", {
   ...defaultCellStyle,
   "&:not(:last-of-type)": {
-    borderRightWidth: "1px",
-    borderRightStyle: "dashed",
-    borderRightColor: "$text",
+    borderRight: "dashed 1px $border",
   },
-  borderBottomWidth: "2px",
-  borderBottomStyle: "solid",
-  borderBottomColor: "$text3",
+  borderBottom: "solid 2px $border",
+  color: "$text",
 });

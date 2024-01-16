@@ -1,1 +1,4 @@
-export { useMediaQuery } from "./useMediaQuery";
+"use client";
+
+export { useMousePosition } from "./useMousePosition";
+export { useIntersectionObserver } from "./useIntersectionObserver";

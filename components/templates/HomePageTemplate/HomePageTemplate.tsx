@@ -1,5 +1,5 @@
 "use client";
 
-import { Container, Text } from "@/components/atoms";
+import { Container } from "@/components/atoms";
 
 export const HomePageTemplate = () => <Container></Container>;
