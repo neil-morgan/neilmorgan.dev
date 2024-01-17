@@ -15,7 +15,10 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
       <Text size={8} as="h2" weight={600} color="$white">
         {content.title}
       </Text>
-      <Separator size="lg" />
+      <Text size={4} as="p" weight={400}>
+        {content.description}
+      </Text>
+      <Separator size="xl" />
       <NavigableRichtext content={content.body} />
     </Container>
   );
