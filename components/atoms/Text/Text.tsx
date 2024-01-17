@@ -17,6 +17,7 @@ export const Text = ({
   style,
   print = false,
   color,
+  textAlign = "left",
   isInViewport,
 }: React.PropsWithChildren<TextProps>) => {
   const [ref, entry] = useIntersectionObserver({
@@ -43,6 +44,7 @@ export const Text = ({
         fontWeight: weight,
         fontStyle: style,
         color,
+        textAlign,
       }}>
       {id && (
         <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>

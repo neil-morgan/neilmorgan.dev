@@ -1,6 +1,6 @@
 "use client";
 
-import { FooterElement } from "./styles";
+import { FooterElement, CopyRight } from "./styles";
 import type { FooterProps } from "./types";
 import { Logo } from "@/components/molecules";
 import { Container, Button, List, Text } from "@/components/atoms";
@@ -16,7 +16,12 @@ export const Footer = ({ content }: FooterProps) => (
           </Button>
         </List>
       ))}
-      <Logo isLink />
+      <CopyRight>
+        <Logo isLink />
+        <Text size={0} weight={300} textAlign="right">
+          All rights reserved <br />© Neil Morgan 2024
+        </Text>
+      </CopyRight>
     </Container>
   </FooterElement>
 );
