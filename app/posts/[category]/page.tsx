@@ -56,10 +56,6 @@ const PostCategoryPage = async ({
     },
   });
 
-  if (data.posts?.items.length === 0) {
-    redirect(LOCATIONS.posts);
-  }
-
   const groupedPosts: GroupedPostType = {
     category: data?.posts?.items[0]?.category as PostCategory,
     items: data?.posts?.items as Post[],
