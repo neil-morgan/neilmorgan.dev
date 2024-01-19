@@ -9,6 +9,8 @@ import {
   PostSlugsDocument,
 } from "@/graphql";
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: SlugMetaProps) {
   const { data } = await getClient().query({
     query: CategoryDocument,
