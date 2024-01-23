@@ -11,6 +11,7 @@ import {
   renderText,
 } from "./helpers";
 import type { RichtextNodeType, RichtextProps } from "./types";
+import { Heading } from "./components";
 import {
   AspectRatio,
   Blockquote,
@@ -41,16 +42,15 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
           return null;
         }
         return (
-          <Text
+          <Heading
             size={7}
-            color="$white"
             weight={600}
             as="h2"
             css={{ marginTop: "$11" }}
             isInViewport={setCurrentId}
             id={node.content[0].value}>
             {children}
-          </Text>
+          </Heading>
         );
       },
 
@@ -59,8 +59,7 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
           return null;
         }
         return (
-          <Text
-            color="$white"
+          <Heading
             size={5}
             weight={500}
             as="h3"
@@ -68,7 +67,7 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             css={{ marginTop: "$6" }}
             id={node.content[0].value}>
             {children}
-          </Text>
+          </Heading>
         );
       },
 

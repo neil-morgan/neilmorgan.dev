@@ -15,7 +15,6 @@ export async function generateStaticParams() {
     query: PostSlugsDocument,
   });
   const { items } = data?.postSlugs || {};
-
   if (!items) {
     return [];
   }
@@ -60,4 +59,5 @@ const PostCategoryPage = async ({
   return <PostsTemplate posts={groupedPosts} />;
 };
 
+export const dynamicParams = false;
 export default PostCategoryPage;

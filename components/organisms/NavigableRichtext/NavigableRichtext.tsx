@@ -2,10 +2,11 @@
 
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Aside, AsideFooter, Content, Body, List, ListItem } from "./styles";
+import { Richtext } from "../Richtext";
+import { Aside, Content, Body, List, ListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
-import { Richtext, CopyButton } from "@/components/molecules";
-import { Icon, Separator } from "@/components/atoms";
+import { CopyButton } from "@/components/molecules";
+import { Icon } from "@/components/atoms";
 import type { RichtextType } from "@/types";
 import { SITE_BASE_URL } from "@/lib/site";
 

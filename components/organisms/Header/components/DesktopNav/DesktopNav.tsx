@@ -1,6 +1,6 @@
 "use client";
 
-import { SecondaryItems } from "../../components";
+import { SecondaryItems } from "..";
 import { Item, List, Wrapper } from "./styles";
 import type { DesktopNavProps } from "./types";
 import { Popover, Button, IconButton } from "@/components/atoms";

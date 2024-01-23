@@ -1,4 +1,4 @@
-import { SecondaryItems } from "../../components";
+import { SecondaryItems } from "..";
 import type { MobileNavProps } from "./types";
 import { List, Wrapper } from "./styles";
 import { IconButton, Separator, Popover, Button } from "@/components/atoms";

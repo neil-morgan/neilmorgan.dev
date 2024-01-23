@@ -10,5 +10,5 @@ export const CopyRight = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-end",
-  gap: "$4",
+  gap: "$6",
 });

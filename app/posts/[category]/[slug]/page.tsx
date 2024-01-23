@@ -20,13 +20,16 @@ export async function generateMetadata({ params }: SlugMetaProps) {
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     query: PostSlugsDocument,
+    context: {
+      fetchOptions: {
+        cache: "no-store",
+      },
+    },
   });
   const { items } = data?.postSlugs || {};
-
   if (!items) {
     return [];
   }
-
   return items?.map(post => ({
     category: post?.category?.slug,
     slug: post?.slug,
@@ -35,7 +38,6 @@ export async function generateStaticParams() {
 
 const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
-
   const { data } = await getClient().query({
     context: {
       isPreviewMode: isEnabled,
@@ -46,10 +48,9 @@ const PostPage = async ({ params }: SlugProps) => {
     query: PostDocument,
     variables: { slug: params.slug, preview: isEnabled },
   });
-
   const post = data.post?.items[0] as Post;
-
   return <PostTemplate content={{ ...post }} />;
 };
 
+export const dynamicParams = false;
 export default PostPage;
