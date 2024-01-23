@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { HeaderProps } from "./types";
 import { HeaderElement } from "./styles";
-import { DesktopNav, MobileNav } from "./containers";
+import { DesktopNav, MobileNav } from "./components";
 import { Container } from "@/components/atoms";
 
 export const Header = ({ content }: HeaderProps) => {

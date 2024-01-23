@@ -4,7 +4,6 @@ import type { ColorType } from "@/types";
 export type TextProps = {
   css?: CSS;
   id?: string;
-  isInViewport?: (id: string) => void;
   as?:
     | "h1"
     | "h2"

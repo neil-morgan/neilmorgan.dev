@@ -2,7 +2,7 @@
 
 import type { PostTemplateProps } from "./types";
 
-import { NavigableRichtext } from "@/components/organisms/NavigableRichtext";
+import { NavigableRichtext } from "@/components/organisms/NavigableRichtext/NavigableRichtext";
 import { Separator, Container, Text } from "@/components/atoms";
 
 export const PostTemplate = ({ content }: PostTemplateProps) => {
