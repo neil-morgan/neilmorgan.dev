@@ -1,32 +1,13 @@
-import { redirect } from "next/navigation";
 import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
-import { LOCATIONS } from "@/lib/site";
 import {
   CategoryDocument,
   AllPostsCategoryDocument,
-  PostSlugsDocument,
   type PostCategory,
   type Post,
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
-
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
-  const { data } = await getClient().query({
-    query: PostSlugsDocument,
-  });
-  const { items } = data?.postSlugs || {};
-
-  if (!items) {
-    return [];
-  }
-  return items?.map(post => ({
-    category: post?.category?.slug,
-  }));
-}
 
 export async function generateMetadata({ params }: CategoryMetaProps) {
   const { data } = await getClient().query({
