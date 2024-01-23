@@ -4,10 +4,24 @@ import { getClient } from "@/lib/apollo";
 import {
   CategoryDocument,
   AllPostsCategoryDocument,
+  PostSlugsDocument,
   type PostCategory,
   type Post,
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
+
+export async function generateStaticParams() {
+  const { data } = await getClient().query({
+    query: PostSlugsDocument,
+  });
+  const { items } = data?.postSlugs || {};
+  if (!items) {
+    return [];
+  }
+  return items?.map(post => ({
+    category: post?.category?.slug,
+  }));
+}
 
 export async function generateMetadata({ params }: CategoryMetaProps) {
   const { data } = await getClient().query({
@@ -45,4 +59,5 @@ const PostCategoryPage = async ({
   return <PostsTemplate posts={groupedPosts} />;
 };
 
+export const dynamicParams = false;
 export default PostCategoryPage;
