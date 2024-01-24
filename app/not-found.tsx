@@ -4,26 +4,24 @@ export const metadata = {
   title: "Not found",
 };
 
-const NotFound = () => {
-  return (
-    <Container
-      css={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-      }}>
-      <Text as="h2" size={9} color="$white">
-        404 - Oh&nbsp;no!
-      </Text>
-      <Text size={5}>
-        Sorry, nothing to see here. The page you&apos;re trying to visit
-        doesn&apos;t exist on neilmorgan.dev.
-      </Text>
-      <Button css={{ marginTop: "$8" }} href="/" leftIcon="ArrowTopLeft">
-        Go back home
-      </Button>
-    </Container>
-  );
-};
+const NotFound = () => (
+  <Container
+    css={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+    }}>
+    <Text as="h2" size={9} color="$white">
+      404 - Oh&nbsp;no!
+    </Text>
+    <Text size={5}>
+      Sorry, nothing to see here. The page you&apos;re trying to visit
+      doesn&apos;t exist on neilmorgan.dev.
+    </Text>
+    <Button css={{ marginTop: "$8" }} href="/" leftIcon="ArrowTopLeft">
+      Go back home
+    </Button>
+  </Container>
+);
 
 export default NotFound;
