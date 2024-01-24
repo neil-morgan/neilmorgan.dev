@@ -28,7 +28,7 @@ export const Heading = ({
   }, [entry?.isIntersecting, _id, isInViewport, id]);
 
   return (
-    <Text ref={ref} as={as} css={css} size={size} color="$white">
+    <Text ref={ref} as={as} css={css} size={size} color="$white" id={id}>
       {children}
     </Text>
   );
