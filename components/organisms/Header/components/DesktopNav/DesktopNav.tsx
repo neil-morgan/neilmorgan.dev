@@ -35,7 +35,13 @@ export const DesktopNav = ({
                 />
               }>
               {list.options.map(({ title, slug }, i) => (
-                <Button key={i} href={slug} asLink>
+                <Button
+                  key={i}
+                  href={slug}
+                  asLink
+                  onClick={() => {
+                    setOpenItem(false);
+                  }}>
                   {title}
                 </Button>
               ))}
