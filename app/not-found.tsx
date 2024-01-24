@@ -19,8 +19,8 @@ const NotFound = () => {
         Sorry, nothing to see here. The page you&apos;re trying to visit
         doesn&apos;t exist on neilmorgan.dev.
       </Text>
-      <Button css={{ marginTop: "$8" }} href="/" rightIcon="ArrowRight">
-        Go to home
+      <Button css={{ marginTop: "$8" }} href="/" leftIcon="ArrowTopLeft">
+        Go back home
       </Button>
     </Container>
   );
