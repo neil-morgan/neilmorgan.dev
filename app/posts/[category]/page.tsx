@@ -1,6 +1,7 @@
 import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
+import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
   CategoryDocument,
   AllPostsCategoryDocument,
@@ -10,19 +11,6 @@ import {
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
 
-export async function generateStaticParams() {
-  const { data } = await getClient().query({
-    query: PostSlugsDocument,
-  });
-  const { items } = data?.postSlugs || {};
-  if (!items) {
-    return [];
-  }
-  return items?.map(post => ({
-    category: post?.category?.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: CategoryMetaProps) {
   const { data } = await getClient().query({
     query: CategoryDocument,
@@ -31,7 +19,20 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
     },
   });
 
-  return { title: `${data?.post?.items[0]?.title} articles` };
+  return { title: `${PAGE_TITLE_PREFIX}${data?.post?.items[0]?.title} posts` };
+}
+
+export async function generateStaticParams() {
+  const { data } = await getClient().query({
+    query: PostSlugsDocument,
+  });
+  const { items } = data?.postSlugs || {};
+  if (!items) {
+    return [];
+  }
+  return items?.map(item => ({
+    category: item?.category?.slug,
+  }));
 }
 
 const PostCategoryPage = async ({

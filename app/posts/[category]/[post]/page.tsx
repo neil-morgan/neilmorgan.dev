@@ -2,19 +2,15 @@ import { draftMode } from "next/headers";
 import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
-import {
-  CategoryDocument,
-  PostDocument,
-  Post,
-  PostSlugsDocument,
-} from "@/graphql";
+import { PostDocument, Post, PostSlugsDocument } from "@/graphql";
 
 export async function generateMetadata({ params }: SlugMetaProps) {
   const { data } = await getClient().query({
-    query: CategoryDocument,
-    variables: { slug: params.category },
+    query: PostDocument,
+    variables: { slug: params.slug },
   });
-  return { title: data?.post?.items[0]?.title };
+  const { title, description } = data?.post?.items[0] as Post;
+  return { title, description };
 }
 
 export async function generateStaticParams() {
@@ -30,9 +26,9 @@ export async function generateStaticParams() {
   if (!items) {
     return [];
   }
-  return items?.map(post => ({
-    category: post?.category?.slug,
-    slug: post?.slug,
+  return items?.map(item => ({
+    category: item?.category?.slug,
+    post: item?.slug,
   }));
 }
 

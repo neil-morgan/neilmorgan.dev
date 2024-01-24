@@ -6,6 +6,8 @@ export const SITE_BASE_URL =
 export const CONTENTFUL_BASE_URL =
   "https://graphql.contentful.com/content/v1/spaces/";
 
+export const PAGE_TITLE_PREFIX = "Neil Morgan | ";
+
 export const LOCATIONS = {
   posts: "/posts",
 };

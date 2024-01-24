@@ -2,9 +2,10 @@ import { getClient } from "@/lib/apollo";
 import { AllPostsDocument, Post } from "@/graphql";
 import { PostsTemplate } from "@/components/templates";
 import { groupByCategory } from "@/helpers";
+import { PAGE_TITLE_PREFIX } from "@/lib/site";
 
 export const metadata = {
-  title: "All posts",
+  title: `${PAGE_TITLE_PREFIX} Posts`,
 };
 
 const PostsPage = async () => {
