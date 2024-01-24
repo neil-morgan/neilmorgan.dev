@@ -24,7 +24,7 @@ export const colors = {
   black: "#000000",
   layer1: "#0D141F",
   layer2: "#111A27",
-  layer3: "#112840",
+  layer3: "#182434",
   primary1: "#0BD8B6",
   primary2: "#207E7350",
   text: "#ffffffbf",
