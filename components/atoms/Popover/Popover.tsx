@@ -13,7 +13,7 @@ export const Popover = ({
   setOpen,
   withArrow = false,
   side = "bottom",
-  padding = "$4",
+  padding = "$3",
   gap,
   columns = 1,
 }: PropsWithChildren<PopoverProps>) => {

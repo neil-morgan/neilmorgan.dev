@@ -55,5 +55,6 @@ const PostCategoryPage = async ({
   return <PostsTemplate posts={groupedPosts} />;
 };
 
+export const revalidate = 5;
 export const dynamicParams = false;
 export default PostCategoryPage;

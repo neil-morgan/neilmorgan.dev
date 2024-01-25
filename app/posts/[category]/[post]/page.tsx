@@ -45,5 +45,6 @@ const PostPage = async ({ params }: SlugProps) => {
   return <PostTemplate content={{ ...post }} />;
 };
 
+export const revalidate = 5;
 export const dynamicParams = false;
 export default PostPage;

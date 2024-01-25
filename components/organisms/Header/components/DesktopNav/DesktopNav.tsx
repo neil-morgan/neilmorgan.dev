@@ -26,7 +26,7 @@ export const DesktopNav = ({
               setOpen={setOpenItem}
               columns={2}
               gap="$6"
-              padding="$6"
+              padding="$5"
               anchor={
                 <IconButton
                   icon="ChevronDown"
