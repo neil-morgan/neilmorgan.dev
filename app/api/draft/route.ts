@@ -3,9 +3,8 @@ import { redirect } from "next/navigation";
 import { getClient } from "@/lib/apollo/client";
 import { PostDocument } from "@/graphql";
 
-const { query } = getClient();
-
 export const GET = async (request: Request) => {
+  const { query } = getClient();
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");

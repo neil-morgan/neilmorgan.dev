@@ -5,10 +5,3 @@ declare namespace NodeJS {
     CONTENTFUL_PREVIEW_TOKEN: string;
   }
 }
-
-declare namespace globalThis {
-  var mongoose: {
-    promise: ReturnType<typeof connect> | null;
-    conn: typeof _mongoose | null;
-  };
-}

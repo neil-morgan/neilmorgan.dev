@@ -57,6 +57,7 @@
     "@graphql-codegen/typed-document-node": "^5.0.1",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@parcel/watcher": "^2.4.0",
     "@types/dotenv-flow": "^3.2.0",
     "@types/lodash": "^4.14.195",
     "@types/node": "^20.3.1",
