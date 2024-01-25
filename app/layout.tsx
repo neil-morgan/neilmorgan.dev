@@ -1,4 +1,3 @@
-import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
 import { inter } from "@/lib/site";
 import {
@@ -6,7 +5,7 @@ import {
   StitchesRegistryProvider,
   ElementRefsProvider,
 } from "@/providers";
-import { DraftMode, PointerGlow } from "@/components/molecules";
+import { PointerGlow } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import { getClient } from "@/lib/apollo";
 import { HeaderDocument, type SocialItem } from "@/graphql";
@@ -14,8 +13,6 @@ import { Header, Footer } from "@/components/organisms";
 import type { CategoryType } from "@/types";
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
-  const { isEnabled } = draftMode();
-
   const { data } = await getClient().query({
     query: HeaderDocument,
   });
@@ -44,7 +41,6 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
             <ElementRefsProvider>
               <PointerGlow />
               <IconDefs />
-              {isEnabled && <DraftMode />}
               <Wrapper>
                 <Header content={{ navigation, social }} />
                 <Main>{children}</Main>
