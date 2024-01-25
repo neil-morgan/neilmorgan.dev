@@ -6,7 +6,7 @@ import { Icon } from "@/components/atoms";
 
 export const DraftMode = () => {
   const pathname = usePathname();
-  const href = `/api/disable-draft?slug=${pathname}`;
+  const href = `/api/disable-draft?pathname=${pathname}`;
 
   return (
     <DraftModeToggle>
