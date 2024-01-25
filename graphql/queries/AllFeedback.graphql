@@ -1,7 +1,0 @@
-query AllFeedback {
-  allFeedback: feedbackCollection {
-    items {
-      name
-    }
-  }
-}

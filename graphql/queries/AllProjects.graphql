@@ -1,7 +1,0 @@
-query AllProjects {
-  allProjects: projectCollection {
-    items {
-      title
-    }
-  }
-}
