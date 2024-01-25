@@ -45,11 +45,6 @@ const PostCategoryPage = async ({
     variables: {
       slug: params.category,
     },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   const groupedPosts: GroupedPostType = {

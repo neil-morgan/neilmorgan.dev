@@ -11,11 +11,6 @@ export const metadata = {
 const PostsPage = async () => {
   const { data } = await getClient().query({
     query: AllPostsDocument,
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   return (
@@ -23,4 +18,5 @@ const PostsPage = async () => {
   );
 };
 
+export const revalidate = 5;
 export default PostsPage;
