@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
     },
   });
 
-  return { title: `${PAGE_TITLE_PREFIX}${data?.post?.items[0]?.title} posts` };
+  return { title: `${PAGE_TITLE_PREFIX}${data?.postCategory?.items[0]?.title} posts` };
 }
 
 export async function generateStaticParams() {

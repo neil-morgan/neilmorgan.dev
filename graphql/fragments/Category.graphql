@@ -2,8 +2,3 @@ fragment PostCategoryFragment on PostCategory {
   title
   slug
 }
-
-fragment SkillCategoryFragment on SkillCategory {
-  title
-  slug
-}
