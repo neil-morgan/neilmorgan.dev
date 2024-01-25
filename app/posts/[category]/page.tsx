@@ -45,11 +45,6 @@ const PostCategoryPage = async ({
     variables: {
       slug: params.category,
     },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   const groupedPosts: GroupedPostType = {
@@ -60,5 +55,6 @@ const PostCategoryPage = async ({
   return <PostsTemplate posts={groupedPosts} />;
 };
 
+export const revalidate = 5;
 export const dynamicParams = false;
 export default PostCategoryPage;
