@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Wrapper, Main } from "./styles";
 import { inter } from "@/lib/site";
 import {
@@ -38,6 +39,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
     <html lang="en">
       <body className={inter.className}>
         <Analytics />
+        <SpeedInsights />
         <ApolloProvider>
           <StitchesRegistryProvider>
             <ElementRefsProvider>
