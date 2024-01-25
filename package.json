@@ -32,6 +32,7 @@
     "@stitches/react": "^1.2.8",
     "@types/react": "18.2.41",
     "@types/react-dom": "18.2.17",
+    "@vercel/analytics": "^1.1.2",
     "dotenv": "^16.4.1",
     "encoding": "^0.1.13",
     "eslint": "8.55.0",
