@@ -12,27 +12,26 @@ const {
   CONTENTFUL_PREVIEW_TOKEN,
 } = process.env;
 
-const link = new ApolloLink((operation, forward) => {
-  const isPreviewMode = operation.getContext().isPreviewMode || false;
-
-  return createHttpLink({
-    uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
-    fetchOptions: {
-      method: "POST",
-    },
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${
-        isPreviewMode ? CONTENTFUL_PREVIEW_TOKEN : CONTENTFUL_DELIVERY_TOKEN
-      }`,
-    },
-  }).request(operation, forward);
-});
-
 export const { getClient } = registerApolloClient(
   () =>
     new NextSSRApolloClient({
       cache: new NextSSRInMemoryCache(),
-      link,
+      link: new ApolloLink((operation, forward) => {
+        const isPreviewMode = operation.getContext().isPreviewMode || false;
+        return createHttpLink({
+          uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
+          fetchOptions: {
+            method: "POST",
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              isPreviewMode
+                ? CONTENTFUL_PREVIEW_TOKEN
+                : CONTENTFUL_DELIVERY_TOKEN
+            }`,
+          },
+        }).request(operation, forward);
+      }),
     }),
 );
