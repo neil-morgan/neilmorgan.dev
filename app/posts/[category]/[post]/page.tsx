@@ -5,14 +5,15 @@ import { getClient } from "@/lib/apollo";
 import { PostDocument, Post, PostSlugsDocument } from "@/graphql";
 
 export async function generateMetadata({ params }: SlugMetaProps) {
+  const { isEnabled } = draftMode();
   const { data } = await getClient().query({
     query: PostDocument,
-    variables: { slug: params.slug },
+    context: {
+      isPreviewMode: isEnabled,
+    },
+    variables: { slug: params.slug, preview: isEnabled },
   });
-  const post = data?.post?.items[0] as Post;
-  const title = post?.title || "Default Title";
-  const description = post?.description || "Default Description";
-
+  const { title, description } = data?.post?.items[0] as Post;
   return { title, description };
 }
 
