@@ -9,7 +9,10 @@ export async function generateMetadata({ params }: SlugMetaProps) {
     query: PostDocument,
     variables: { slug: params.slug },
   });
-  const { title, description } = data?.post?.items[0] as Post;
+  const post = data?.post?.items[0] as Post;
+  const title = post?.title || "Default Title";
+  const description = post?.description || "Default Description";
+
   return { title, description };
 }
 
