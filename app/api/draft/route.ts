@@ -15,6 +15,9 @@ export const GET = async (request: Request) => {
 
   const { data } = await query({
     query: PostDocument,
+    context: {
+      isPreviewMode: true,
+    },
     variables: { slug },
   });
 
