@@ -18,8 +18,10 @@ export const GET = async (request: Request) => {
     context: {
       isPreviewMode: true,
     },
-    variables: { slug },
+    variables: { slug, preview: true },
   });
+
+  console.log(data);
 
   const postCategory = data?.post?.items[0]?.category?.slug;
   const postSlug = data?.post?.items[0]?.slug;
