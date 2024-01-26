@@ -4,19 +4,6 @@ import { PostTemplate } from "@/components/templates";
 import { getClient } from "@/lib/apollo";
 import { PostDocument, Post, PostSlugsDocument } from "@/graphql";
 
-export async function generateMetadata({ params }: SlugMetaProps) {
-  const { isEnabled } = draftMode();
-  const { data } = await getClient().query({
-    query: PostDocument,
-    context: {
-      isPreviewMode: isEnabled,
-    },
-    variables: { slug: params.slug, preview: isEnabled },
-  });
-  const { title, description } = data?.post?.items[0] as Post;
-  return { title, description };
-}
-
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     query: PostSlugsDocument,
@@ -36,6 +23,19 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: SlugMetaProps) {
+  const { isEnabled } = draftMode();
+  const { data } = await getClient().query({
+    query: PostDocument,
+    context: {
+      isPreviewMode: isEnabled,
+    },
+    variables: { slug: params.slug, preview: isEnabled },
+  });
+  const { title, description } = data?.post?.items[0] as Post;
+  return { title, description };
+}
+
 const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
   const { data } = await getClient().query({
@@ -50,5 +50,5 @@ const PostPage = async ({ params }: SlugProps) => {
 };
 
 export const revalidate = 5;
-export const dynamicParams = false;
+// export const dynamicParams = false;
 export default PostPage;

@@ -11,17 +11,6 @@ import {
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
 
-export async function generateMetadata({ params }: CategoryMetaProps) {
-  const { data } = await getClient().query({
-    query: CategoryDocument,
-    variables: {
-      slug: params.category,
-    },
-  });
-
-  return { title: `${PAGE_TITLE_PREFIX}${data?.postCategory?.items[0]?.title} posts` };
-}
-
 export async function generateStaticParams() {
   const { data } = await getClient().query({
     query: PostSlugsDocument,
@@ -33,6 +22,19 @@ export async function generateStaticParams() {
   return items?.map(item => ({
     category: item?.category?.slug,
   }));
+}
+
+export async function generateMetadata({ params }: CategoryMetaProps) {
+  const { data } = await getClient().query({
+    query: CategoryDocument,
+    variables: {
+      slug: params.category,
+    },
+  });
+
+  return {
+    title: `${PAGE_TITLE_PREFIX}${data?.postCategory?.items[0]?.title} posts`,
+  };
 }
 
 const PostCategoryPage = async ({
