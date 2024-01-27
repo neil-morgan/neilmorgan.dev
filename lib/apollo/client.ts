@@ -16,8 +16,9 @@ export const { getClient } = registerApolloClient(
   () =>
     new NextSSRApolloClient({
       cache: new NextSSRInMemoryCache(),
-      link: new ApolloLink((operation, forward) =>
-        createHttpLink({
+      link: new ApolloLink((operation, forward) => {
+        console.log(operation.getContext().isPreviewMode);
+        return createHttpLink({
           uri: `${CONTENTFUL_BASE_URL}${CONTENTFUL_SPACE_ID}`,
           fetchOptions: {
             method: "POST",
@@ -25,12 +26,12 @@ export const { getClient } = registerApolloClient(
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${
-              operation.getContext().isPreviewMode || false
+              operation.getContext().isPreviewMode
                 ? CONTENTFUL_PREVIEW_TOKEN
                 : CONTENTFUL_DELIVERY_TOKEN
             }`,
           },
-        }).request(operation, forward),
-      ),
+        }).request(operation, forward);
+      }),
     }),
 );
