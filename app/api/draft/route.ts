@@ -9,7 +9,7 @@ export const GET = async (request: Request) => {
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");
 
-  if (secret !== process.env.CONTENTFUL_PREVIEW_TOKEN || !slug) {
+  if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET || !slug) {
     return new Response("Invalid token", { status: 401 });
   }
 
