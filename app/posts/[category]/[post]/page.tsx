@@ -32,7 +32,10 @@ export async function generateMetadata({ params }: SlugMetaProps) {
     },
     variables: { slug: params.slug, preview: isEnabled },
   });
-  const { title, description } = data?.post?.items[0] as Post;
+
+  const post = data?.post?.items[0] as Post;
+  const title = post?.title;
+  const description = post?.description;
   return { title, description };
 }
 
@@ -50,5 +53,5 @@ const PostPage = async ({ params }: SlugProps) => {
 };
 
 export const revalidate = 5;
-export const dynamicParams = false;
+export const dynamicParams = true;
 export default PostPage;

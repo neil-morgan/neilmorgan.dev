@@ -13,8 +13,6 @@ export const GET = async (request: Request) => {
     return new Response("Invalid token", { status: 401 });
   }
 
-  console.log(slug);
-
   const { data } = await query({
     query: PostDocument,
     context: {
