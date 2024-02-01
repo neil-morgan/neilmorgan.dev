@@ -9,6 +9,9 @@ export async function generateStaticParams() {
     document: AllPostsDocument,
   });
   const { items } = data?.posts || {};
+  if (!items) {
+    return [];
+  }
   return items?.map(item => ({
     category: item?.category?.slug,
     post: item?.slug,
