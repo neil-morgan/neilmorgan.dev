@@ -40,6 +40,6 @@ const PostPage = async ({ params }: SlugProps) => {
 };
 
 export const revalidate = 5;
-export const fetchCache = "no-store";
+export const fetchCache = "force-no-store";
 export const dynamicParams = false;
 export default PostPage;
