@@ -32,7 +32,7 @@ export const MobileNav = ({
           </Button>
           {list && (
             <List>
-              {list.options.map(({ title, slug }, i) => (
+              {list?.options?.map(({ title, slug }, i) => (
                 <Button
                   key={i}
                   asLink

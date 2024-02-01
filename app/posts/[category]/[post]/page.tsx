@@ -1,22 +1,14 @@
 import { draftMode } from "next/headers";
 import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
-import { getClient } from "@/lib/apollo";
-import { PostDocument, Post, PostSlugsDocument } from "@/graphql";
+import { fetchContent } from "@/helpers";
+import { PostDocument, Post, AllPostsDocument } from "@/graphql";
 
 export async function generateStaticParams() {
-  const { data } = await getClient().query({
-    query: PostSlugsDocument,
-    context: {
-      fetchOptions: {
-        cache: "no-store",
-      },
-    },
+  const data = await fetchContent({
+    document: AllPostsDocument,
   });
-  const { items } = data?.postSlugs || {};
-  if (!items) {
-    return [];
-  }
+  const { items } = data?.posts || {};
   return items?.map(item => ({
     category: item?.category?.slug,
     post: item?.slug,
@@ -25,24 +17,22 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: SlugMetaProps) {
   const { isEnabled } = draftMode();
-  const { data } = await getClient().query({
-    query: PostDocument,
-    context: {
-      isPreviewMode: isEnabled,
-    },
+  const data = await fetchContent({
+    document: PostDocument,
+    preview: isEnabled,
     variables: { slug: params.slug, preview: isEnabled },
   });
-  const { title, description } = data?.post?.items[0] as Post;
+  const post = data?.post?.items[0] as Post;
+  const title = post?.title;
+  const description = post?.description;
   return { title, description };
 }
 
 const PostPage = async ({ params }: SlugProps) => {
   const { isEnabled } = draftMode();
-  const { data } = await getClient().query({
-    context: {
-      isPreviewMode: isEnabled,
-    },
-    query: PostDocument,
+  const data = await fetchContent({
+    document: PostDocument,
+    preview: isEnabled,
     variables: { slug: params.slug, preview: isEnabled },
   });
   const post = data.post?.items[0] as Post;
@@ -50,5 +40,6 @@ const PostPage = async ({ params }: SlugProps) => {
 };
 
 export const revalidate = 5;
+export const fetchCache = "no-store";
 export const dynamicParams = false;
 export default PostPage;
