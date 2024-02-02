@@ -1,10 +1,9 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
-import { getClient } from "@/lib/apollo/client";
 import { PostDocument } from "@/graphql";
+import { fetchContent } from "@/helpers";
 
 export const GET = async (request: Request) => {
-  const { query } = getClient();
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");
@@ -13,12 +12,10 @@ export const GET = async (request: Request) => {
     return new Response("Invalid token", { status: 401 });
   }
 
-  const { data } = await query({
-    query: PostDocument,
-    context: {
-      isPreviewMode: true,
-    },
+  const data = await fetchContent({
+    document: PostDocument,
     variables: { slug, preview: true },
+    preview: true,
   });
 
   const postCategory = data?.post?.items[0]?.category?.slug;

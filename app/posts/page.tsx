@@ -1,7 +1,7 @@
-import { getClient } from "@/lib/apollo";
-import { AllPostsDocument, Post } from "@/graphql";
+import { draftMode } from "next/headers";
+import { AllPostsDocument, type Post } from "@/graphql";
 import { PostsTemplate } from "@/components/templates";
-import { groupByCategory } from "@/helpers";
+import { groupByCategory, fetchContent } from "@/helpers";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 
 export const metadata = {
@@ -9,8 +9,9 @@ export const metadata = {
 };
 
 const PostsPage = async () => {
-  const { data } = await getClient().query({
-    query: AllPostsDocument,
+  const data = await fetchContent({
+    document: AllPostsDocument,
+    preview: draftMode().isEnabled,
   });
 
   return (

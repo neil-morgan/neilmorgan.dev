@@ -1,14 +1,13 @@
 query Header {
-  postCategories: postCategoryCollection {
+  postCategoryCollection {
     items {
-      ...PostCategoryFragment
+      ...PostCategory
     }
   }
 
-  socialItems: socialItemCollection {
+  socialItemCollection {
     items {
-      title
-      href
+      ...SocialItem
     }
   }
 }

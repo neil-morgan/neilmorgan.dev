@@ -1,10 +1,10 @@
 import type { NavigationType } from "@/types";
-import type { SocialItem } from "@/graphql";
+import type { SocialItemFragment } from "@/graphql";
 
 export type HeaderProps = {
   content: {
     navigation: NavigationType;
-    social: SocialItem[];
+    social: SocialItemFragment[];
   };
 };
 
@@ -15,9 +15,3 @@ export type NavigationItemProps = {
   description?: string;
   onClick?: () => void;
 };
-
-export type HeaderItemRef =
-  | ((instance: HTMLAnchorElement | null) => void)
-  | React.RefObject<HTMLAnchorElement>
-  | null
-  | undefined;

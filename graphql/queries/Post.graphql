@@ -14,7 +14,7 @@ query Post($slug: String, $preview: Boolean = false) {
         }
       }
       category {
-        ...PostCategoryFragment
+        ...PostCategory
       }
       image {
         title
@@ -51,7 +51,7 @@ query Post($slug: String, $preview: Boolean = false) {
                 slug
                 description
                 category {
-                  ...PostCategoryFragment
+                  ...PostCategory
                 }
               }
             }

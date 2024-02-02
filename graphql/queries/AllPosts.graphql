@@ -15,7 +15,7 @@ query AllPosts {
         }
       }
       category {
-        ...PostCategoryFragment
+        ...PostCategory
       }
     }
   }
