@@ -22,5 +22,5 @@ const PostsPage = async () => {
   );
 };
 
-export const revalidate = 5;
+export const revalidate = 60;
 export default PostsPage;
