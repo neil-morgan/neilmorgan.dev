@@ -4,6 +4,8 @@ import { PostsTemplate } from "@/components/templates";
 import { groupByCategory, fetchContent } from "@/helpers";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 
+const tags = ["post"];
+
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX} Posts`,
 };
@@ -11,6 +13,7 @@ export const metadata = {
 const PostsPage = async () => {
   const data = await fetchContent({
     document: AllPostsDocument,
+    tags,
     preview: draftMode().isEnabled,
   });
 

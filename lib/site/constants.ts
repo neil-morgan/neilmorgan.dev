@@ -3,8 +3,8 @@ export const SITE_BASE_URL =
     ? "http://localhost:3000"
     : "https://www.neilmorgan.dev";
 
-export const CONTENTFUL_BASE_URL =
-  "https://graphql.contentful.com/content/v1/spaces/";
+export const CONTENTFUL_BASE_URL = "https://graphql.contentful.com";
+export const CONTENTFUL_SPACE_URL = `${CONTENTFUL_BASE_URL}/content/v1/spaces/`;
 
 export const PAGE_TITLE_PREFIX = "Neil Morgan | ";
 

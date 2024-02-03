@@ -11,9 +11,12 @@ import {
 import type { GroupedPostType } from "@/types";
 import { fetchContent } from "@/helpers";
 
+const tags = ["post"];
+
 export async function generateStaticParams() {
   const data = await fetchContent({
     document: AllPostsDocument,
+    tags,
   });
   const { items } = data?.posts || {};
   if (!items) {
@@ -43,6 +46,7 @@ const PostCategoryPage = async ({
 }) => {
   const data = await fetchContent({
     document: AllPostsCategoryDocument,
+    tags,
     variables: {
       slug: params.category,
     },

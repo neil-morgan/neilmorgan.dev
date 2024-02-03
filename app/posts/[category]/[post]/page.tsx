@@ -4,9 +4,12 @@ import { PostTemplate } from "@/components/templates";
 import { fetchContent } from "@/helpers";
 import { PostDocument, Post, AllPostsDocument } from "@/graphql";
 
+const tags = ["post"];
+
 export async function generateStaticParams() {
   const data = await fetchContent({
     document: AllPostsDocument,
+    tags,
   });
   const { items } = data?.posts || {};
   if (!items) {
@@ -36,8 +39,10 @@ const PostPage = async ({ params }: SlugProps) => {
   const data = await fetchContent({
     document: PostDocument,
     preview: isEnabled,
+    tags,
     variables: { slug: params.slug, preview: isEnabled },
   });
+
   const post = data.post?.items[0] as Post;
   return <PostTemplate content={{ ...post }} />;
 };
