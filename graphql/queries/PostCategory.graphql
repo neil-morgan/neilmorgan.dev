@@ -1,4 +1,4 @@
-query Category($slug: String!) {
+query PostCategory($slug: String!) {
   postCategory: postCategoryCollection(where: { slug: $slug }, limit: 1) {
     items {
       ...PostCategory

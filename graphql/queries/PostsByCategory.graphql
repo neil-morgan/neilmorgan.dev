@@ -1,9 +1,6 @@
-query AllPosts {
-  posts: postCollection(order: date_DESC) {
+query PostsByCategory($slug: String!) {
+  posts: postCollection(where: { category: { slug_contains: $slug } }) {
     items {
-      sys {
-        id
-      }
       title
       description
       date
@@ -11,7 +8,6 @@ query AllPosts {
       tagsCollection {
         items {
           title
-          slug
         }
       }
       category {

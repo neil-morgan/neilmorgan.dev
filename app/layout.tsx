@@ -1,18 +1,30 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
 import { inter } from "@/lib/site";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
-import { PointerGlow } from "@/components/molecules";
+import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
-import { HeaderDocument, SocialItemFragment } from "@/graphql";
+import {
+  SocialItemFragment,
+  SocialItemsDocument,
+  PostsDocument,
+  type Post,
+} from "@/graphql";
 import { Header, Footer } from "@/components/organisms";
-import { fetchContent } from "@/helpers";
+import { fetchContent, extractCategories } from "@/helpers";
 
-const RootLayout = async ({ children }: React.PropsWithChildren) => {
-  const data = await fetchContent({ document: HeaderDocument });
-  const postCategories = data.postCategoryCollection?.items;
-  const social = data.socialItemCollection?.items as SocialItemFragment[];
+export default async function RootLayout({
+  children,
+}: React.PropsWithChildren) {
+  const socialData = fetchContent({ document: SocialItemsDocument });
+  const postsData = fetchContent({ document: PostsDocument });
+  const [posts, socialItems] = await Promise.all([postsData, socialData]);
+
+  const social = socialItems?.socialItemCollection
+    ?.items as SocialItemFragment[];
+  const postCategories = extractCategories(posts.posts?.items as Post[]);
 
   const navigation = [
     {
@@ -36,6 +48,9 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
           <ElementRefsProvider>
             <PointerGlow />
             <IconDefs />
+            {process.env.NODE_ENV === "development" && (
+              <ToggleDraftMode isEnabled={draftMode().isEnabled} />
+            )}
             <Wrapper>
               <Header content={{ navigation, social }} />
               <Main>{children}</Main>
@@ -46,6 +61,4 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

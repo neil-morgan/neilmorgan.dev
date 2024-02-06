@@ -1,26 +1,30 @@
 import { draftMode } from "next/headers";
-import { AllPostsDocument, type Post } from "@/graphql";
+import { PostsDocument, type Post } from "@/graphql";
 import { PostsTemplate } from "@/components/templates";
 import { groupByCategory, fetchContent } from "@/helpers";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { INFO_MESSAGES } from "@/lib/site";
+import { InfoMessage } from "@/components/molecules";
 
 const tags = ["post"];
+export const revalidate = 5;
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX} Posts`,
 };
 
-const PostsPage = async () => {
+export default async function PostsPage() {
   const data = await fetchContent({
-    document: AllPostsDocument,
+    document: PostsDocument,
     tags,
     preview: draftMode().isEnabled,
   });
 
-  return (
-    <PostsTemplate posts={groupByCategory(data?.posts?.items as Post[])} />
-  );
-};
+  const posts = groupByCategory(data?.posts?.items as Post[]);
 
-export const revalidate = 60;
-export default PostsPage;
+  if (posts.length === 0) {
+    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+  }
+
+  return <PostsTemplate posts={posts} />;
+}

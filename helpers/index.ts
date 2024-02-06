@@ -1,3 +1,4 @@
 export { buildRichtextHeadings } from "./build-richtext-headings";
-export { groupByCategory } from "./group-by-category";
+export { extractCategories } from "./extract-categories";
 export { fetchContent } from "./fetch-content";
+export { groupByCategory } from "./group-by-category";

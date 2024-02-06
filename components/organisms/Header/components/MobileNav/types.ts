@@ -3,7 +3,7 @@ import { type SocialItemFragment } from "@/graphql";
 
 export type MobileNavProps = {
   items: NavigationType;
-  social: SocialItemFragment[];
+  social?: SocialItemFragment[] | null;
   openItem: number | false;
   setOpenItem: React.Dispatch<React.SetStateAction<number | false>>;
 };

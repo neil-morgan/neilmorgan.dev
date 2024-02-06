@@ -19,3 +19,35 @@ export const BREAKPOINTS = {
   xl: "80em",
   "2xl": "96em",
 };
+
+export const INFO_MESSAGES = {
+  pageRemoved: {
+    heading: "Page not available.",
+    message: "Sorry! This page has been either moved or deleted.",
+    action: {
+      label: "Return home",
+      href: "/",
+    },
+  },
+  pageNotFound: {
+    heading: "404 - Oh no!",
+    message:
+      "Sorry, nothing to see here. The page you're trying to visit doesn't exist on neilmorgan.dev.",
+    action: {
+      label: "Return home",
+      href: "/",
+    },
+  },
+  errorOccurred: {
+    heading: "Oh no! An error occurred.",
+    message: "Please try again later.",
+  },
+  noContent: {
+    heading: "Sorry, there isn't any content yet.",
+    message: "I am yet to add content to this page, please check back soon!",
+    action: {
+      label: "Return home",
+      href: "/",
+    },
+  },
+};

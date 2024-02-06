@@ -7,9 +7,16 @@ export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");
+  const redirectLocation = searchParams.get("redirect");
 
-  if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET || !slug) {
+  if (secret !== process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET) {
     return new Response("Invalid token", { status: 401 });
+  }
+
+  draftMode().enable();
+
+  if (redirectLocation) {
+    redirect(redirectLocation);
   }
 
   const data = await fetchContent({
@@ -17,17 +24,11 @@ export const GET = async (request: Request) => {
     variables: { slug, preview: true },
     preview: true,
   });
-
   const postCategory = data?.post?.items[0]?.category?.slug;
-  const postSlug = data?.post?.items[0]?.slug;
 
-  if (!data || !postSlug || !postCategory) {
-    return new Response("Invalid slug", { status: 401 });
+  if (postCategory) {
+    redirect(`/posts/${postCategory}/${slug}`);
   }
 
-  draftMode().enable();
-
-  const redirectUrl = `/posts/${postCategory}/${postSlug}`;
-
-  redirect(redirectUrl);
+  redirect("/");
 };

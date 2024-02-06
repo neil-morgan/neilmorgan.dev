@@ -1,5 +1,5 @@
 import { SocialItemFragment } from "@/graphql";
 
 export type SecondaryItemsProps = {
-  items: SocialItemFragment[];
+  items?: SocialItemFragment[] | null;
 };
