@@ -9,7 +9,7 @@ export const GET = async (request: Request) => {
   const slug = searchParams.get("slug");
   const redirectLocation = searchParams.get("redirect");
 
-  if (secret !== process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET) {
+  if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET) {
     return new Response("Invalid token", { status: 401 });
   }
 
