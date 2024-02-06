@@ -4,7 +4,7 @@ import type { SocialItemFragment } from "@/graphql";
 export type HeaderProps = {
   content: {
     navigation: NavigationType;
-    social: SocialItemFragment[];
+    social?: SocialItemFragment[] | null
   };
 };
 

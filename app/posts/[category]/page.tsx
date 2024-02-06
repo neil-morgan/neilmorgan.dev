@@ -1,19 +1,25 @@
+import { notFound } from "next/navigation";
 import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
-  CategoryDocument,
-  AllPostsCategoryDocument,
+  PostCategoryDocument,
+  PostsByCategoryDocument,
   type PostCategory,
   type Post,
-  AllPostsDocument,
+  PostsDocument,
 } from "@/graphql";
 import type { GroupedPostType } from "@/types";
 import { fetchContent } from "@/helpers";
 
+const tags = ["post"];
+export const revalidate = 5;
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const data = await fetchContent({
-    document: AllPostsDocument,
+    document: PostsDocument,
+    tags,
   });
   const { items } = data?.posts || {};
   if (!items) {
@@ -26,7 +32,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryMetaProps) {
   const data = await fetchContent({
-    document: CategoryDocument,
+    document: PostCategoryDocument,
     variables: {
       slug: params.category,
     },
@@ -36,25 +42,30 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
   };
 }
 
-const PostCategoryPage = async ({
+export default async function PostCategoryPage({
   params,
 }: {
   params: { category: string };
-}) => {
+}) {
   const data = await fetchContent({
-    document: AllPostsCategoryDocument,
+    document: PostsByCategoryDocument,
+    tags,
     variables: {
       slug: params.category,
     },
   });
+
+  const posts = data?.posts?.items as Post[];
+  const category = data?.posts?.items[0]?.category as PostCategory;
+
+  if (!posts || !category) {
+    return notFound();
+  }
+
   const groupedPosts: GroupedPostType = {
-    category: data?.posts?.items[0]?.category as PostCategory,
-    items: data?.posts?.items as Post[],
+    category,
+    items: posts,
   };
 
   return <PostsTemplate posts={groupedPosts} />;
-};
-
-export const revalidate = 5;
-export const dynamicParams = false;
-export default PostCategoryPage;
+}
