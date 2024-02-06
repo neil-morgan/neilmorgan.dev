@@ -1,5 +1,5 @@
-query Posts {
-  posts: postCollection(order: date_DESC) {
+query Posts($preview: Boolean = false) {
+  posts: postCollection(order: date_DESC, preview: $preview) {
     items {
       sys {
         id

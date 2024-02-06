@@ -7,7 +7,6 @@ const allowedOrigins = [CONTENTFUL_BASE_URL];
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret");
   const tag = request.nextUrl.searchParams.get("tag");
-  console.log("HIT");
   if (secret !== process.env.CONTENTFUL_REVALIDATE_SECRET) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
@@ -47,18 +48,21 @@ export default async function PostCategoryPage({
 }: {
   params: { category: string };
 }) {
+  const { isEnabled } = draftMode();
   const data = await fetchContent({
     document: PostsByCategoryDocument,
     tags,
+    preview: isEnabled,
     variables: {
       slug: params.category,
+      preview: isEnabled,
     },
   });
 
   const posts = data?.posts?.items as Post[];
   const category = data?.posts?.items[0]?.category as PostCategory;
 
-  if (!posts || !category) {
+  if (posts.length === 0 || !category) {
     return notFound();
   }
 

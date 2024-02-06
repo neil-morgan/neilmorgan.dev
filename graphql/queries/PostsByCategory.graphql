@@ -1,5 +1,8 @@
-query PostsByCategory($slug: String!) {
-  posts: postCollection(where: { category: { slug_contains: $slug } }) {
+query PostsByCategory($slug: String!, $preview: Boolean = false) {
+  posts: postCollection(
+    where: { category: { slug_contains: $slug } }
+    preview: $preview
+  ) {
     items {
       title
       description

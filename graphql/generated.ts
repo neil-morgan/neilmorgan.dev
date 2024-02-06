@@ -1718,13 +1718,16 @@ export type PostCategoryQueryVariables = Exact<{
 
 export type PostCategoryQuery = { __typename?: 'Query', postCategory: { __typename?: 'PostCategoryCollection', items: Array<{ __typename?: 'PostCategory', title: string | null, slug: string | null } | null> } | null };
 
-export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
+export type PostsQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
 
 
 export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
 
 export type PostsByCategoryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
@@ -1850,8 +1853,8 @@ export const PostCategoryDocument = new TypedDocumentString(`
   slug
 }`) as unknown as TypedDocumentString<PostCategoryQuery, PostCategoryQueryVariables>;
 export const PostsDocument = new TypedDocumentString(`
-    query Posts {
-  posts: postCollection(order: date_DESC) {
+    query Posts($preview: Boolean = false) {
+  posts: postCollection(order: date_DESC, preview: $preview) {
     items {
       sys {
         id
@@ -1877,8 +1880,11 @@ export const PostsDocument = new TypedDocumentString(`
   slug
 }`) as unknown as TypedDocumentString<PostsQuery, PostsQueryVariables>;
 export const PostsByCategoryDocument = new TypedDocumentString(`
-    query PostsByCategory($slug: String!) {
-  posts: postCollection(where: {category: {slug_contains: $slug}}) {
+    query PostsByCategory($slug: String!, $preview: Boolean = false) {
+  posts: postCollection(
+    where: {category: {slug_contains: $slug}}
+    preview: $preview
+  ) {
     items {
       title
       description

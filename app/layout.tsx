@@ -18,8 +18,15 @@ import { fetchContent, extractCategories } from "@/helpers";
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
-  const socialData = fetchContent({ document: SocialItemsDocument });
-  const postsData = fetchContent({ document: PostsDocument });
+  const { isEnabled } = draftMode();
+  const socialData = fetchContent({
+    document: SocialItemsDocument,
+  });
+  const postsData = fetchContent({
+    document: PostsDocument,
+    preview: isEnabled,
+    variables: { preview: isEnabled },
+  });
   const [posts, socialItems] = await Promise.all([postsData, socialData]);
 
   const social = socialItems?.socialItemCollection
@@ -49,7 +56,7 @@ export default async function RootLayout({
             <PointerGlow />
             <IconDefs />
             {process.env.NODE_ENV === "development" && (
-              <ToggleDraftMode isEnabled={draftMode().isEnabled} />
+              <ToggleDraftMode isEnabled={isEnabled} />
             )}
             <Wrapper>
               <Header content={{ navigation, social }} />

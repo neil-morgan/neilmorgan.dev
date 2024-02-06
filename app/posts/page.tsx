@@ -14,10 +14,12 @@ export const metadata = {
 };
 
 export default async function PostsPage() {
+  const { isEnabled } = draftMode();
   const data = await fetchContent({
     document: PostsDocument,
     tags,
-    preview: draftMode().isEnabled,
+    preview: isEnabled,
+    variables: { preview: isEnabled },
   });
 
   const posts = groupByCategory(data?.posts?.items as Post[]);
