@@ -19,6 +19,7 @@ export const Heading = ({
     root: null,
     rootMargin: "0px 0px -66% 0px",
   });
+
   const _id = kebabCase(id);
 
   useEffect(() => {

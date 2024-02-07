@@ -14,10 +14,6 @@ export const Element = styled("div", {
     color: "$text",
   },
 
-  "& ~ strong": {
-    fontWeight: "700",
-  },
-
   variants: {
     size: {
       10: {
@@ -64,7 +60,7 @@ export const Element = styled("div", {
   },
 
   defaultVariants: {
-    size: 2,
+    size: 3,
   },
 });
 

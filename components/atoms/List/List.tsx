@@ -1,23 +1,19 @@
-"use client";
-
 import type { ListProps } from "./types";
-import { Element } from "./styles";
-import { styled } from "@/lib/stitches";
-
-export const ListItem = styled("li", {
-  listStylePosition: "inside",
-});
+import { ListElement } from "./styles";
 
 export const List = ({
   children,
-  format = "bullets",
-  gap,
+  format,
   css,
+  gap = "$5",
 }: React.PropsWithChildren<ListProps>) => (
-  <Element
-    as={format === "numbers" ? "ol" : "ul"}
-    css={{ ...css, gap }}
+  <ListElement
+    css={{
+      ...css,
+      gap,
+    }}
+    as={format === "bullets" ? "ul" : format === "numbers" ? "ol" : "ul"}
     format={format}>
     {children}
-  </Element>
+  </ListElement>
 );

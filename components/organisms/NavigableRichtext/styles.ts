@@ -8,8 +8,10 @@ export const Body = styled("div", {
 
 export const Content = styled("article", {
   maxWidth: "min(686px, 100%)",
-  "& > *:first-child": {
+  "& > *": {
     marginTop: 0,
+
+    "&:not(:last-child)": { marginBottom: "$8" },
   },
 });
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES, type Document } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
@@ -9,24 +9,25 @@ import {
   renderMark,
   removeParagraphTags,
   renderText,
+  getNodeValue,
 } from "./helpers";
 import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import {
   AspectRatio,
   Blockquote,
-  Separator,
-  Link,
-  ListItem,
   CodeSnippet,
+  ExpandedEdge,
+  Link,
+  List,
+  Separator,
   Table,
   Td,
   Text,
   Th,
   Tr,
-  List,
-  ExpandedEdge,
 } from "@/components/atoms";
+import { isInternalUrl } from "@/utils";
 
 export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
   const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
@@ -38,9 +39,8 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
     renderText,
     renderNode: {
       [BLOCKS.HEADING_1]: (node: RichtextNodeType, children: ReactNode) => {
-        if (!("value" in node.content[0])) {
-          return null;
-        }
+        const value = getNodeValue(node);
+        if (!value) return null;
         return (
           <Heading
             size={7}
@@ -48,16 +48,15 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             as="h2"
             css={{ marginTop: "$11" }}
             isInViewport={setCurrentId}
-            id={node.content[0].value}>
+            id={value}>
             {children}
           </Heading>
         );
       },
 
       [BLOCKS.HEADING_2]: (node: RichtextNodeType, children: ReactNode) => {
-        if (!("value" in node.content[0])) {
-          return null;
-        }
+        const value = getNodeValue(node);
+        if (!value) return null;
         return (
           <Heading
             size={5}
@@ -65,7 +64,7 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             as="h3"
             isInViewport={setCurrentId}
             css={{ marginTop: "$6" }}
-            id={node.content[0].value}>
+            id={value}>
             {children}
           </Heading>
         );
@@ -74,7 +73,6 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
       [BLOCKS.PARAGRAPH]: (_: RichtextNodeType, children: ReactNode) => (
         <Text as="p">{children}</Text>
       ),
-
       [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
         <List format="bullets">{children}</List>
       ),
@@ -84,22 +82,14 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
       ),
 
       [BLOCKS.LIST_ITEM]: (node: RichtextNodeType) => {
-        const children = removeParagraphTags(
-          node as Document,
-          renderMark,
-          "li",
-        );
-        return <ListItem>{children}</ListItem>;
+        const children = removeParagraphTags(node, "li");
+        return <li>{children}</li>;
       },
 
       [BLOCKS.HR]: () => <Separator size="lg" />,
 
       [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
-        const children = removeParagraphTags(
-          node as Document,
-          renderMark,
-          "quote",
-        );
+        const children = removeParagraphTags(node, "quote");
         return (
           <ExpandedEdge
             css={{
@@ -124,20 +114,12 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
       ),
 
       [BLOCKS.TABLE_HEADER_CELL]: (node: RichtextNodeType) => {
-        const children = removeParagraphTags(
-          node as Document,
-          renderMark,
-          "th",
-        );
+        const children = removeParagraphTags(node, "th");
         return <Th>{children}</Th>;
       },
 
       [BLOCKS.TABLE_CELL]: (node: RichtextNodeType) => {
-        const children = removeParagraphTags(
-          node as Document,
-          renderMark,
-          "td",
-        );
+        const children = removeParagraphTags(node, "td");
         return <Td>{children}</Td>;
       },
 
@@ -177,10 +159,13 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
         }
       },
 
-      [INLINES.HYPERLINK]: (
-        { data }: RichtextNodeType,
-        children: ReactNode,
-      ) => <Link href={data.uri}>{children}</Link>,
+      [INLINES.HYPERLINK]: (node: RichtextNodeType, children: ReactNode) => (
+        <Link
+          href={node.data.uri}
+          {...(!isInternalUrl(node.data.uri) && { target: "_blank" })}>
+          {children}
+        </Link>
+      ),
     },
   });
 };

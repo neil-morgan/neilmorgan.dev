@@ -15,6 +15,8 @@ import {
 import { Header, Footer } from "@/components/organisms";
 import { fetchContent, extractCategories } from "@/helpers";
 
+//! possibly an issue with prerendering links
+
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
