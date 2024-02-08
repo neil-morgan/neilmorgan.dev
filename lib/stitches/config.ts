@@ -8,6 +8,7 @@ export const globalStyles = globalCss({
     transition: "$theme",
     scrollBehavior: "smooth",
     overscrollBehaviorY: "none",
+    fontFamily: "var(--font-inter)",
   },
   body: {
     height: "100%",

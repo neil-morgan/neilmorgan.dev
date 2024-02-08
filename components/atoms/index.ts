@@ -4,6 +4,7 @@ export { AspectRatio } from "./AspectRatio";
 export { Blockquote } from "./Blockquote";
 export { Button } from "./Button";
 export { CodeSnippet } from "./CodeSnippet";
+export { CodeString } from "./CodeString";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
 export { ExpandedEdge } from "./ExpandedEdge";

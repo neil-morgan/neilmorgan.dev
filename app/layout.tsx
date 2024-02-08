@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
-import { inter } from "@/lib/site";
+import { inter, robotoMono } from "@/lib/site";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
@@ -14,8 +14,6 @@ import {
 } from "@/graphql";
 import { Header, Footer } from "@/components/organisms";
 import { fetchContent, extractCategories } from "@/helpers";
-
-//! possibly an issue with prerendering links
 
 export default async function RootLayout({
   children,
@@ -49,7 +47,7 @@ export default async function RootLayout({
   ];
 
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
       <body>
         <Analytics />
         <SpeedInsights />
