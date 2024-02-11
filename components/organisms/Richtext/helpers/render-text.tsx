@@ -1,34 +1,21 @@
 import { Fragment } from "react";
 import { CodeString } from "@/components/atoms";
 
-export const renderText = (text: string) => {
-  const spans = text.replace(/`([^`]+)`/g, "<span>$1</span>");
-  const breaks = spans
-    .split("\n")
-    .flatMap((line, i, arr) =>
-      i < arr.length - 1 ? [line, <br key={`break-${i}`} />] : [line],
-    );
-
-  return breaks.map((element, index) => {
-    if (typeof element === "string") {
-      return (
-        <Fragment key={index}>
-          {element.split(/(<span>.*?<\/span>)/g).map((part, partIndex) => {
-            if (part.startsWith("<span>") && part.endsWith("</span>")) {
-              return (
-                <CodeString
-                  key={`${index}${partIndex}`}
-                  text={part.replace(/<\/?span>/g, "")}
-                />
-              );
-            }
-
-            return part;
-          })}
-        </Fragment>
-      );
-    } else {
-      return element;
-    }
-  });
+export const renderText = (text: string): React.ReactNode[] => {
+  const lines = text.split("\n");
+  return lines.map((line, index, array) => (
+    <Fragment key={`line-${index}`}>
+      {line
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .split(/(<code>.*?<\/code>)/g)
+        .map((part, partIndex) =>
+          part.startsWith("<code>") && part.endsWith("</code>") ? (
+            <CodeString key={partIndex} text={part.replace(/<\/?code>/g, "")} />
+          ) : (
+            part
+          ),
+        )}
+      {index < array.length - 1 ? <br /> : null}
+    </Fragment>
+  ));
 };

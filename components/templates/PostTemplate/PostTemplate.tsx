@@ -12,7 +12,7 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
 
   return (
     <>
-      <Text size={8} as="h2" weight={600} color="$white">
+      <Text size={9} as="h2" weight={600} color="$white">
         {content.title}
       </Text>
       <Text size={4} as="p" weight={400}>

@@ -13,10 +13,12 @@ const ElementRefsContext = createContext<{
   elementProperties: ElementPropertiesType[];
   elementRefs: ElementRefType[];
   addElementRef: (ref: ElementRefType) => void;
+  updateElementProperties: () => void;
 }>({
   elementRefs: [],
   elementProperties: [],
   addElementRef: () => {},
+  updateElementProperties: () => {},
 });
 
 export const useElementRefs = () => useContext(ElementRefsContext);
@@ -72,7 +74,12 @@ export const ElementRefsProvider = ({
 
   return (
     <ElementRefsContext.Provider
-      value={{ elementRefs, elementProperties, addElementRef }}>
+      value={{
+        elementRefs,
+        elementProperties,
+        addElementRef,
+        updateElementProperties,
+      }}>
       {children}
     </ElementRefsContext.Provider>
   );

@@ -17,13 +17,14 @@ export const Button = forwardRef(
       isExternal,
       rightIcon,
       leftIcon,
+      iconColor,
       size,
       noHighlight,
       asLink = false,
     }: ButtonProps,
     ref: ButtonElementRefType,
   ) => {
-    const { elementRefs, addElementRef } = useElementRefs();
+    const { addElementRef } = useElementRefs();
     const elementRef = useRef<HTMLElement | null>(null);
 
     const shouldHighlight = () => {
@@ -41,14 +42,14 @@ export const Button = forwardRef(
     useEffect(() => {
       if (noHighlight || asLink) return;
       addElementRef(elementRef.current);
-    }, [addElementRef, asLink, elementRefs, noHighlight]);
+    }, [addElementRef, asLink, noHighlight]);
 
     const rightIconComponent = rightIcon ? (
-      <Icon name={rightIcon} css={{ marginLeft: "$2" }} />
+      <Icon name={rightIcon} css={{ marginLeft: "$2", color: iconColor }} />
     ) : null;
 
     const leftIconComponent = leftIcon ? (
-      <Icon name={leftIcon} css={{ marginRight: "$2" }} />
+      <Icon name={leftIcon} css={{ marginRight: "$2", color: iconColor }} />
     ) : null;
 
     return (

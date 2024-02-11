@@ -122,21 +122,15 @@ export type DivElementRefType =
 export type ColorType =
   | "$white"
   | "$black"
-  | "$base1"
-  | "$base2"
-  | "$base3"
-  | "$base4"
-  | "$base5"
-  | "$base6"
-  | "$base7"
-  | "$base8"
-  | "$base9"
-  | "$base10"
-  | "$base11"
-  | "$base12"
-  | "$base13"
-  | "$base14"
-  | "$text";
+  | "$layer1"
+  | "$layer2"
+  | "$layer3"
+  | "$primary1"
+  | "$primary2"
+  | "$text"
+  | "$border"
+  | "$borderHover"
+  | "$highlightHover";
 
 // space: {
 //   0: "0rem", // 0px
