@@ -5,5 +5,5 @@ export type RichtextProps = {
   content: RichtextType;
   setCurrentId: (id: string) => void;
 };
-export type RichtextNodeType = Block | Inline;
+export type RichtextNodeType = Block | Inline
 export type RichtextBlockMapType = Map<any, any>;

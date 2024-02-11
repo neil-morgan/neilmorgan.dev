@@ -1,7 +1,9 @@
-"use client"; // Error components must be Client Components
+"use client";
 
-import { useEffect } from "react";
-import { Container, Text } from "@/components/atoms";
+import { InfoMessage } from "@/components/molecules";
+import { INFO_MESSAGES } from "@/lib/site";
+
+const { pageNotFound, errorOccurred } = INFO_MESSAGES;
 
 export default function Error({
   error,
@@ -9,21 +11,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  const message =
+    error.message === "NEXT_NOT_FOUND" ? pageNotFound : errorOccurred;
 
-  return (
-    <Container
-      css={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-      }}>
-      <Text as="h2" size={9} color="$white">
-        Oh&nbsp;no! An error occurred.
-      </Text>
-      <Text size={5}>Please try again later.</Text>
-    </Container>
-  );
+  return <InfoMessage {...message} />;
 }

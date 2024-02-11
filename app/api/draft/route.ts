@@ -1,36 +1,34 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
-import { getClient } from "@/lib/apollo/client";
 import { PostDocument } from "@/graphql";
+import { fetchContent } from "@/helpers";
 
 export const GET = async (request: Request) => {
-  const { query } = getClient();
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");
+  const redirectLocation = searchParams.get("redirect");
 
-  if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET || !slug) {
+  if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET) {
     return new Response("Invalid token", { status: 401 });
-  }
-
-  const { data } = await query({
-    query: PostDocument,
-    context: {
-      isPreviewMode: true,
-    },
-    variables: { slug, preview: true },
-  });
-
-  const postCategory = data?.post?.items[0]?.category?.slug;
-  const postSlug = data?.post?.items[0]?.slug;
-
-  if (!data || !postSlug || !postCategory) {
-    return new Response("Invalid slug", { status: 401 });
   }
 
   draftMode().enable();
 
-  const redirectUrl = `/posts/${postCategory}/${postSlug}`;
+  if (redirectLocation) {
+    redirect(redirectLocation);
+  }
 
-  redirect(redirectUrl);
+  const data = await fetchContent({
+    document: PostDocument,
+    variables: { slug, preview: true },
+    preview: true,
+  });
+  const postCategory = data?.post?.items[0]?.category?.slug;
+
+  if (postCategory) {
+    redirect(`/posts/${postCategory}/${slug}`);
+  }
+
+  redirect("/");
 };

@@ -33,7 +33,7 @@ export const Text = forwardRef(
         print={print}
         css={{
           ...css,
-          fontWeight: weight,
+          fontWeight: as === "strong" ? 800 : weight,
           fontStyle: style,
           color,
           textAlign,

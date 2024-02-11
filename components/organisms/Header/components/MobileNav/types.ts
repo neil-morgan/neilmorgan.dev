@@ -1,9 +1,9 @@
 import type { NavigationType } from "@/types";
-import { type SocialItem } from "@/graphql";
+import { type SocialItemFragment } from "@/graphql";
 
 export type MobileNavProps = {
   items: NavigationType;
+  social?: SocialItemFragment[] | null;
   openItem: number | false;
-  social: SocialItem[];
   setOpenItem: React.Dispatch<React.SetStateAction<number | false>>;
 };

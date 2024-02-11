@@ -1,53 +1,39 @@
 "use client";
 
-import { type PropsWithChildren, useState } from "react";
+import { type PropsWithChildren, useState, useEffect } from "react";
 import type { CopyButtonProps } from "./types";
-import { Message } from "./styles";
-import { IconButton, Popover, Text, Button } from "@/components/atoms";
+import { Button } from "@/components/atoms";
+import { useElementRefs } from "@/providers";
 
 export const CopyButton = ({
   value,
   prompt = "Copy Url",
-  message = "Copied to clipboard",
-  asIcon,
   size = "md",
 }: PropsWithChildren<CopyButtonProps>) => {
+  const { updateElementProperties } = useElementRefs();
   const [copySuccess, setCopySuccess] = useState(false);
 
   const copyToClipBoard = (copyMe: string) => {
     navigator.clipboard.writeText(copyMe);
     setCopySuccess(true);
+
     setTimeout(() => {
       setCopySuccess(false);
     }, 2000);
   };
 
+  useEffect(() => {
+    // perhaps becomes inefficient if there are many elements
+    updateElementProperties();
+  }, [copySuccess, updateElementProperties]);
+
   return (
-    <Popover
-      open={copySuccess}
-      side="top"
-      anchor={
-        asIcon ? (
-          <IconButton
-            icon="Copy"
-            onClick={() => copyToClipBoard(value)}
-            size={size}
-          />
-        ) : (
-          <Button
-            onClick={() => copyToClipBoard(value)}
-            size={size}
-            leftIcon="Copy"
-            priority="contrast">
-            {prompt}
-          </Button>
-        )
-      }>
-      <Message>
-        <Text size={2} as="span" color="$white">
-          {message}
-        </Text>
-      </Message>
-    </Popover>
+    <Button
+      onClick={() => copyToClipBoard(value)}
+      size={size}
+      iconColor={copySuccess ? "$primary1" : "$white"}
+      leftIcon={copySuccess ? "Checkmark" : "Copy"}>
+      {copySuccess ? "Copied!" : prompt}
+    </Button>
   );
 };

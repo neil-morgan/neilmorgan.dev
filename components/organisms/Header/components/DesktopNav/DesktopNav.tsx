@@ -20,7 +20,7 @@ export const DesktopNav = ({
           <Button href={slug} size="md">
             {title}
           </Button>
-          {list && (
+          {list && list.options && list.options.length > 0 && (
             <Popover
               open={openItem === i}
               setOpen={setOpenItem}

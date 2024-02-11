@@ -1,6 +1,9 @@
-query AllPostsCategory($slug: String!) {
-  posts: postCollection(where: { category: { slug_contains: $slug } }) {
+query Posts($preview: Boolean = false) {
+  posts: postCollection(order: date_DESC, preview: $preview) {
     items {
+      sys {
+        id
+      }
       title
       description
       date
@@ -8,10 +11,11 @@ query AllPostsCategory($slug: String!) {
       tagsCollection {
         items {
           title
+          slug
         }
       }
       category {
-        ...PostCategoryFragment
+        ...PostCategory
       }
     }
   }

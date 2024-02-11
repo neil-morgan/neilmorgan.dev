@@ -1,22 +1,32 @@
-import { getClient } from "@/lib/apollo";
-import { AllPostsDocument, Post } from "@/graphql";
+import { draftMode } from "next/headers";
+import { PostsDocument, type Post } from "@/graphql";
 import { PostsTemplate } from "@/components/templates";
-import { groupByCategory } from "@/helpers";
+import { groupByCategory, fetchContent } from "@/helpers";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { INFO_MESSAGES } from "@/lib/site";
+import { InfoMessage } from "@/components/molecules";
+
+const tags = ["post"];
+export const revalidate = 5;
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX} Posts`,
 };
 
-const PostsPage = async () => {
-  const { data } = await getClient().query({
-    query: AllPostsDocument,
+export default async function PostsPage() {
+  const { isEnabled } = draftMode();
+  const data = await fetchContent({
+    document: PostsDocument,
+    tags,
+    preview: isEnabled,
+    variables: { preview: isEnabled },
   });
 
-  return (
-    <PostsTemplate posts={groupByCategory(data?.posts?.items as Post[])} />
-  );
-};
+  const posts = groupByCategory(data?.posts?.items as Post[]);
 
-export const revalidate = 5;
-export default PostsPage;
+  if (posts.length === 0) {
+    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+  }
+
+  return <PostsTemplate posts={posts} />;
+}
