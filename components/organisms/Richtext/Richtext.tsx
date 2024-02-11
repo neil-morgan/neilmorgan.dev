@@ -14,7 +14,6 @@ import {
 import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import { Article } from "./styles";
-import { FlowChart } from "@/components/molecules";
 import {
   AspectRatio,
   Blockquote,
@@ -142,10 +141,6 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             const entry = entryBlockMap.get(node.data.target.sys.id);
 
             //! split this into a component later
-
-            if (entry.__typename === "FlowChart") {
-              return <FlowChart />;
-            }
 
             if (entry.__typename === "Snippet") {
               return (
