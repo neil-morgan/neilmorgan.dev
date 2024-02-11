@@ -1,4 +1,5 @@
 import type { CSS } from "@stitches/react";
+import type { ColorType } from "@/types";
 
 export type ButtonProps = {
   children: React.ReactNode;
@@ -8,9 +9,8 @@ export type ButtonProps = {
   onClick?: () => void;
   rightIcon?: string;
   leftIcon?: string;
+  iconColor?: ColorType;
   size?: "sm" | "md" | "lg";
-  forceHoverState?: boolean;
-  priority?: "default" | "primary" | "contrast";
   noHighlight?: boolean;
   asLink?: boolean;
 };

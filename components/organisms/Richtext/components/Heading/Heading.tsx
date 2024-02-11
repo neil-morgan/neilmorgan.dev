@@ -12,6 +12,7 @@ export const Heading = ({
   css,
   id,
   size,
+  weight,
   isInViewport,
 }: React.PropsWithChildren<HeadingProps>) => {
   const [ref, entry] = useIntersectionObserver({
@@ -29,7 +30,14 @@ export const Heading = ({
   }, [entry?.isIntersecting, _id, isInViewport, id]);
 
   return (
-    <Text ref={ref} as={as} css={css} size={size} color="$white" id={id}>
+    <Text
+      ref={ref}
+      as={as}
+      css={css}
+      size={size}
+      weight={weight}
+      color="$white"
+      id={id}>
       {children}
     </Text>
   );

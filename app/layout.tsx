@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Wrapper, Main } from "./styles";
-import { inter, robotoMono } from "@/lib/site";
+import { inter, firaMono } from "@/lib/site";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
@@ -47,7 +47,7 @@ export default async function RootLayout({
   ];
 
   return (
-    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>
       <body>
         <Analytics />
         <SpeedInsights />

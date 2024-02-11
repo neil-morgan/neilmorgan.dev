@@ -28,6 +28,8 @@ export const colors = {
   layer3: "#182434",
   primary1: "#0BD8B6",
   primary2: "#207E7350",
+  secondary1: "#9EB1FF",
+  secondary2: "#435DB150",
   text: "#ffffffbf",
   border: "rgba(255,255,255,0.1)",
   borderHover: "rgba(255,255,255,0.25)",

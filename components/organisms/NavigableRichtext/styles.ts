@@ -6,15 +6,6 @@ export const Body = styled("div", {
   justifyContent: "center",
 });
 
-export const Content = styled("article", {
-  maxWidth: "min(686px, 100%)",
-  "& > *": {
-    marginTop: 0,
-
-    "&:not(:last-child)": { marginBottom: "$8" },
-  },
-});
-
 export const Aside = styled("aside", {
   position: "sticky",
   top: "$11",

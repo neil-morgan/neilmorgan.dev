@@ -3,7 +3,7 @@
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Richtext } from "../Richtext";
-import { Aside, Content, Body, List, ListItem } from "./styles";
+import { Aside, Body, List, ListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
 import { CopyButton } from "@/components/molecules";
 import { Icon } from "@/components/atoms";
@@ -17,9 +17,7 @@ export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
 
   return (
     <Body>
-      <Content>
-        <Richtext content={content} setCurrentId={setCurrentId} />
-      </Content>
+      <Richtext content={content} setCurrentId={setCurrentId} />
 
       <Aside>
         <List>

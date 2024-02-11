@@ -4,8 +4,10 @@ import { styled } from "@/lib/stitches";
 
 export const CodeStringElement = styled("code", {
   position: "relative",
-  background: "$primary2",
+  color: "$secondary1",
+  background: "$layer3",
   borderRadius: "$sm",
-  padding: "0.175rem 0.4rem 0.25rem",
-  fontFamily: "var(--font-roboto-mono)",
+  padding: "0.05rem 0.4rem 0.2rem",
+  letterSpacing:"-0.025rem",
+  fontFamily: "var(--font-fira-mono)",
 });

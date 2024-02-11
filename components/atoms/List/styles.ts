@@ -5,6 +5,7 @@ import { styled } from "@/lib/stitches";
 export const ListElement = styled("ul", {
   display: "flex",
   flexDirection: "column",
+  lineHeight: "1.5",
 
   variants: {
     format: {
@@ -18,7 +19,7 @@ export const ListElement = styled("ul", {
           "&:before": {
             position: "absolute",
             left: "0.3rem",
-            top: "0.25rem",
+            top: "0.45rem",
             content: "''",
             height: "0.75rem",
             width: "0.75rem",
