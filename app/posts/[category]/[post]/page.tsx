@@ -8,7 +8,6 @@ import { PostDocument, Post, PostsDocument } from "@/graphql";
 
 const tags = ["post"];
 export const revalidate = 5;
-export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const data = await fetchContent({
