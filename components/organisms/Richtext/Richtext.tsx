@@ -62,7 +62,7 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             if (!value) return null;
             return (
               <Heading
-                size={5}
+                size={6}
                 weight={600}
                 as="h3"
                 isInViewport={setCurrentId}
@@ -73,9 +73,11 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
             );
           },
 
-          [BLOCKS.PARAGRAPH]: (_: RichtextNodeType, children: ReactNode) => (
-            <Text as="p">{children}</Text>
-          ),
+          [BLOCKS.PARAGRAPH]: (node: RichtextNodeType, children: ReactNode) => {
+            const value = getNodeValue(node);
+            if (node.content.length === 1 && !value) return null;
+            return <Text as="p">{children}</Text>;
+          },
           [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
             <List format="bullets">{children}</List>
           ),
