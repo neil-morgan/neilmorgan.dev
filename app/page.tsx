@@ -1,8 +1,5 @@
-import { redirect } from "next/navigation";
-import { LOCATIONS } from "@/lib/site";
+import { HomeTemplate } from "@/components/templates";
 
-const HomePage = async () => {
-  redirect(LOCATIONS.posts);
-};
+const HomePage = async () => <HomeTemplate />;
 
 export default HomePage;
