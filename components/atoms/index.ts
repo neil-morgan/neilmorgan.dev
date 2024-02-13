@@ -1,6 +1,7 @@
 "use client";
 
 export { AspectRatio } from "./AspectRatio";
+export { BackgroundSlice } from "./BackgroundSlice";
 export { Blockquote } from "./Blockquote";
 export { Button } from "./Button";
 export { CodeSnippet } from "./CodeSnippet";

@@ -2,7 +2,6 @@ import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import type { SlugProps, SlugMetaProps } from "@/types";
 import { PostTemplate } from "@/components/templates";
-import { Container } from "@/components/atoms";
 import { fetchContent } from "@/helpers";
 import { PostDocument, Post, PostsDocument } from "@/graphql";
 
@@ -52,9 +51,5 @@ export default async function PostPage({ params }: SlugProps) {
     return notFound();
   }
 
-  return (
-    <Container>
-      <PostTemplate content={{ ...post }} />
-    </Container>
-  );
+  return <PostTemplate content={{ ...post }} />;
 }
