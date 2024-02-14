@@ -16,5 +16,10 @@ export default function Error({
   const message =
     error.message === "NEXT_NOT_FOUND" ? pageNotFound : errorOccurred;
 
-  return <InfoMessage {...message} />;
+  return (
+    <>
+      {error.message}
+      <InfoMessage {...message} />
+    </>
+  );
 }
