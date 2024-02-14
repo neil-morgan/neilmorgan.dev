@@ -1,8 +1,7 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import type { SlugProps, SlugMetaProps } from "@/types";
+import type { PostParamsType } from "@/types";
 import { PostTemplate } from "@/components/templates";
-import { Container } from "@/components/atoms";
 import { fetchContent } from "@/helpers";
 import { PostDocument, Post, PostsDocument } from "@/graphql";
 
@@ -24,12 +23,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: SlugMetaProps) {
+export async function generateMetadata({ params }: PostParamsType) {
   const { isEnabled } = draftMode();
   const data = await fetchContent({
     document: PostDocument,
     preview: isEnabled,
-    variables: { slug: params.slug, preview: isEnabled },
+    variables: { slug: params.post, preview: isEnabled },
   });
   const post = data?.post?.items[0] as Post;
   const title = post?.title;
@@ -37,24 +36,20 @@ export async function generateMetadata({ params }: SlugMetaProps) {
   return { title, description };
 }
 
-export default async function PostPage({ params }: SlugProps) {
+export default async function PostPage({ params }: PostParamsType) {
   const { isEnabled } = draftMode();
   const data = await fetchContent({
     document: PostDocument,
     preview: isEnabled,
     tags,
-    variables: { slug: params.slug, preview: isEnabled },
+    variables: { slug: params.post, preview: isEnabled },
   });
 
   const post = data.post?.items[0] as Post;
 
-  if (!post) {
+  if (!post || post.slug !== params.post) {
     return notFound();
   }
 
-  return (
-    <Container>
-      <PostTemplate content={{ ...post }} />
-    </Container>
-  );
+  return <PostTemplate content={{ ...post }} />;
 }

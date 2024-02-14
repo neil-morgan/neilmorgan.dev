@@ -3,7 +3,7 @@
 import type { PostTemplateProps } from "./types";
 import { PostFooter } from "./styles";
 import { NavigableRichtext } from "@/components/organisms/NavigableRichtext/NavigableRichtext";
-import { Separator, Text } from "@/components/atoms";
+import { Separator, Text, Container } from "@/components/atoms";
 
 export const PostTemplate = ({ content }: PostTemplateProps) => {
   if (!content.body) {
@@ -11,7 +11,7 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
   }
 
   return (
-    <>
+    <Container>
       <Text size={8} as="h2" weight={600} color="$white">
         {content.title}
       </Text>
@@ -25,6 +25,6 @@ export const PostTemplate = ({ content }: PostTemplateProps) => {
           Thanks for reading!
         </Text>
       </PostFooter>
-    </>
+    </Container>
   );
 };

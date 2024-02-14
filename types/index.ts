@@ -74,12 +74,8 @@ export type CategoryMetaProps = {
   params: { category: string };
 };
 
-export type SlugMetaProps = {
-  params: { slug: string; category: string };
-};
-
-export type SlugProps = {
-  params: { slug: string };
+export type PostParamsType = {
+  params: { post: string; category: string };
 };
 
 export type RichtextLinksType = {

@@ -1,0 +1,1 @@
+export { FeaturedSection } from "./FeaturedSection";
