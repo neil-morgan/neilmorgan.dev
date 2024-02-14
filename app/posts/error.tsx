@@ -11,15 +11,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  console.log(error);
-
   const message =
     error.message === "NEXT_NOT_FOUND" ? pageNotFound : errorOccurred;
 
-  return (
-    <>
-      {error.message}
-      <InfoMessage {...message} />
-    </>
-  );
+  return <InfoMessage {...message} />;
 }
