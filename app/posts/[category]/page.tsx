@@ -15,7 +15,6 @@ import { fetchContent } from "@/helpers";
 
 const tags = ["post"];
 export const revalidate = 5;
-export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const data = await fetchContent({
@@ -62,7 +61,7 @@ export default async function PostCategoryPage({
   const posts = data?.posts?.items as Post[];
   const category = data?.posts?.items[0]?.category as PostCategory;
 
-  if (posts.length === 0 || !category) {
+  if (posts.length === 0 || !category || category.slug !== params.category) {
     return notFound();
   }
 

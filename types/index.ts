@@ -74,12 +74,8 @@ export type CategoryMetaProps = {
   params: { category: string };
 };
 
-export type SlugMetaProps = {
-  params: { slug: string; category: string };
-};
-
-export type SlugProps = {
-  params: { slug: string };
+export type PostParamsType = {
+  params: { post: string; category: string };
 };
 
 export type RichtextLinksType = {
@@ -127,6 +123,8 @@ export type ColorType =
   | "$layer3"
   | "$primary1"
   | "$primary2"
+  | "$secondary1"
+  | "$secondary2"
   | "$text"
   | "$border"
   | "$borderHover"
