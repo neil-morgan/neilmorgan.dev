@@ -61,7 +61,7 @@ export default async function PostCategoryPage({
   const posts = data?.posts?.items as Post[];
   const category = data?.posts?.items[0]?.category as PostCategory;
 
-  if (posts.length === 0 || !category) {
+  if (posts.length === 0 || !category || category.slug !== params.category) {
     return notFound();
   }
 

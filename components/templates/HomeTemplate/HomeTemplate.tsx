@@ -9,7 +9,7 @@ export const HomeTemplate = () => (
       <Text size={9} as="h2" weight={600} color="$white">
         Neil Morgan
       </Text>
-      <Text as="p">
+      <Text as="p" css={{ marginBottom: "300px" }}>
         Non cupidatat pariatur veniam consectetur ullamco laborum qui esse.
         Laboris qui culpa proident culpa velit aliquip esse. Consequat
         incididunt aliqua ad cupidatat quis aliquip.
