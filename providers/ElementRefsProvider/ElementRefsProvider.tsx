@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
+import { usePathname } from "next/navigation";
 import type { ElementPropertiesType, ElementRefType } from "./types";
 
 const ElementRefsContext = createContext<{
@@ -28,6 +29,7 @@ export const ElementRefsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const pathname = usePathname();
   const [elementRefs, setElementRefs] = useState<ElementRefType[]>([]);
   const [elementProperties, setElementProperties] = useState<
     ElementPropertiesType[]
@@ -61,6 +63,11 @@ export const ElementRefsProvider = ({
       }),
     );
   }, [elementRefs]);
+
+  useEffect(
+    () => updateElementProperties(),
+    [pathname, updateElementProperties],
+  );
 
   useEffect(() => {
     window.addEventListener("resize", updateElementProperties);
