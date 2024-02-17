@@ -8,7 +8,7 @@ import type { GroupedPostType, TagType } from "@/types";
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Text size={6} as="h2" weight={600} print>
+      <Text size={4} as="h2" weight={600} print>
         {category?.title}
       </Text>
       <Text size={3}>

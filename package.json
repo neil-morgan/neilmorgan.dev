@@ -22,6 +22,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.0",
     "@contentful/rich-text-types": "^16.2.0",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-popover": "^1.0.6",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
