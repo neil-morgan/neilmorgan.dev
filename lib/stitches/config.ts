@@ -1,4 +1,5 @@
 import { createStitches, globalCss } from "@stitches/react";
+import { tealDark } from "@radix-ui/colors";
 import { BREAKPOINTS } from "@/lib/site";
 
 export const globalStyles = globalCss({
@@ -26,8 +27,8 @@ export const colors = {
   layer1: "#0D141F",
   layer2: "#111A27",
   layer3: "#182434",
-  primary1: "#0BD8B6",
-  primary2: "#207E7350",
+  primary1: tealDark.teal11,
+  primary2: `${tealDark.teal8}50`,
   secondary1: "#9EB1FF",
   secondary2: "#435DB150",
   text: "#ffffffbf",

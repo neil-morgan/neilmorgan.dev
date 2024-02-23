@@ -4,13 +4,12 @@ import { GlowElement } from "./styles";
 import { useMousePosition } from "@/hooks";
 import { useElementRefs } from "@/providers";
 
-export const PointerGlow = () => {
-  const { x, y } = useMousePosition();
+export const PointerGlow = ({ children }: React.PropsWithChildren) => {
   const { elementProperties } = useElementRefs();
-
+  const radius = 5;
+  const { x, y } = useMousePosition();
   const innerGlow = `radial-gradient(250px at ${x}px ${y}px, #ffffff15, transparent 80%)`;
   const outerGlow = `radial-gradient(600px at ${x}px ${y}px, #ffffff09, transparent 80%)`;
-  const radius = 5;
 
   return (
     <>
@@ -35,14 +34,14 @@ export const PointerGlow = () => {
 
       <GlowElement
         css={{
-          background: outerGlow,
-        }}
-      />
-
-      <GlowElement
-        css={{
           background: innerGlow,
           clipPath: "url(#innerClipPath)",
+        }}
+      />
+      {children}
+      <GlowElement
+        css={{
+          background: outerGlow,
         }}
       />
     </>

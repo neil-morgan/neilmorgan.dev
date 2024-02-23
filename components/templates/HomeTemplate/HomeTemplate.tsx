@@ -1,23 +1,24 @@
 "use client";
 
-import { Container, Text, Button } from "@/components/atoms";
+import { IntroWrapper, IntroDetails } from "./styles";
+import { HeroAnimation } from "./animations";
+import { Container, Text } from "@/components/atoms";
 import { FeaturedSection, ContentPresentation } from "@/components/molecules";
 
 export const HomeTemplate = () => (
   <>
     <Container>
-      <Text size={9} as="h2" weight={600} color="$white">
-        Neil Morgan
-      </Text>
-      <Text as="p" css={{ marginBottom: "200px" }}>
-        Non cupidatat pariatur veniam consectetur ullamco laborum qui esse.
-        Laboris qui culpa proident culpa velit aliquip esse. Consequat
-        incididunt aliqua ad cupidatat quis aliquip.
-      </Text>
-
-      <Text size={7} as="h3" weight={400} color="$white">
-        3 Snapshot attributes here
-      </Text>
+      <IntroWrapper>
+        <IntroDetails>
+          <Text size={9} as="h2" weight={600} color="$white">
+            A cool heading goes here
+          </Text>
+          <Text as="p" css={{ marginBottom: "$11" }}>
+           Some nifty intro body text which talks about the DNA of what makes me, me. That sort of thing. Animation to the right showing a hologram of DNA being measured and explored.
+          </Text>
+        </IntroDetails>
+        <HeroAnimation />
+      </IntroWrapper>
     </Container>
 
     <FeaturedSection>

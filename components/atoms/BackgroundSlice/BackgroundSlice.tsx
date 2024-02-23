@@ -38,7 +38,7 @@ export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
         <clipPath id="myClip">
           <path
             d="M0,100 L1920,0 L0,0 v100 z"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             fill="#ffffff"
           />
         </clipPath>

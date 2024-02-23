@@ -29,7 +29,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "environment.d.ts"
+    "environment.d.ts",
+    "components/templates/HomeTemplate/animations/hero/index.ts",
+    "components/templates/HomeTemplate/animations/hero/Base.js"
   ],
   "exclude": ["node_modules"]
 }

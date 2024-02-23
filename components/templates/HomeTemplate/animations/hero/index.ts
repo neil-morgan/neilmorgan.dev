@@ -1,0 +1,1 @@
+export { HeroAnimation } from "./HeroAnimation";
