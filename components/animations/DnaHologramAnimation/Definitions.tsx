@@ -3,6 +3,11 @@ import { colors } from "@/lib/stitches";
 
 export const Definitions = () => (
   <defs>
+    <linearGradient id="myGradient" gradientTransform="rotate(90)">
+      <stop offset="5%" stop-color="gold" />
+      <stop offset="95%" stop-color="red" />
+    </linearGradient>
+
     {/* DNA ORB */}
     <radialGradient id="dna-orb">
       <stop offset="10%" stopColor={colors.primary1} />
