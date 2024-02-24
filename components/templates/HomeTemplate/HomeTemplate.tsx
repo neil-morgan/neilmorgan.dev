@@ -4,19 +4,22 @@ import { IntroWrapper, IntroDetails } from "./styles";
 import { DnaHologramAnimation } from "@/components/animations";
 import { Container, Text, Button } from "@/components/atoms";
 import { FeaturedSection, ContentPresentation } from "@/components/molecules";
+import { colors } from "@/lib/stitches";
 
 export const HomeTemplate = () => (
   <>
     <Container>
       <IntroWrapper>
         <IntroDetails>
-          <Text size={9} as="h2" weight={600} color="$white">
-            A cool heading goes here
+          <Text size={8} as="h2" weight={600} color="$white">
+            Hey, I&apos;m Neil.
+          </Text>
+          <Text size={6} as="h3" weight={500} color="$primary1">
+            A Senior Software Engineer.
           </Text>
           <Text as="p">
-            Some nifty intro body text which talks about the DNA of what makes
-            me, me. That sort of thing. Animation to the right showing a
-            hologram of DNA being measured and explored.
+            Design and development is in my DNA . I love to create, build and
+            collaborate. Explore and discover what I can do for you.
           </Text>
           <Button css={{ marginTop: "$8" }}>Primary CTA</Button>
         </IntroDetails>

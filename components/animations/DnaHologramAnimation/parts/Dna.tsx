@@ -1,6 +1,5 @@
 import { tealDark } from "@radix-ui/colors";
 import { motion } from "framer-motion";
-import { colors } from "@/lib/stitches";
 
 const SpinningDnaOrbs = ({
   y,
@@ -125,12 +124,13 @@ const helixConfig = [
   { x: startX + 8, y: startY + 190, delay: 1.9, opacity: 0.1, scale: 0.82 },
 ];
 
-export const Dna = () => {
-  return (
-    <motion.g initial={{ rotate: 45 }}>
-      {helixConfig.map((props, index) => (
-        <SpinningDnaOrbs key={startY + index} {...props} />
-      ))}
-    </motion.g>
-  );
-};
+export const Dna = () => (
+  <motion.g
+    initial={{ rotate: 45, opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ delay: 1.5, duration: 0.5, ease: "easeInOut" }}>
+    {helixConfig.map((props, index) => (
+      <SpinningDnaOrbs key={startY + index} {...props} />
+    ))}
+  </motion.g>
+);

@@ -16,9 +16,11 @@ export const IntroDetails = styled("div", {
   width: "100%",
   textAlign: "center",
   marginBottom: "$11",
+  marginTop: 0,
 
   "@md": {
     maxWidth: "600px",
     marginBottom: 0,
+    marginTop: "$10",
   },
 });
