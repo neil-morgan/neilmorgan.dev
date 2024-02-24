@@ -30,8 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "environment.d.ts",
-    "components/templates/HomeTemplate/animations/hero/index.ts",
-    "components/templates/HomeTemplate/animations/hero/Base.js"
+    "components/animations/DnaHologramAnimation/index.ts",
+    "components/animations/DnaHologramAnimation/Base.tsx"
   ],
   "exclude": ["node_modules"]
 }

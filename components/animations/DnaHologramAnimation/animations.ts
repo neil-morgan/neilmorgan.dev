@@ -1,4 +1,10 @@
-const glowTransitionPreset = {
+import { colors } from "@/lib/stitches";
+
+export const glowTransitionPreset: {
+  duration: number;
+  repeat: number;
+  repeatType: "reverse";
+} = {
   duration: 2,
   repeat: Infinity,
   repeatType: "reverse",
@@ -12,7 +18,7 @@ const discTransitionPreset = {
 
 const stepEndDelay = 1;
 
-const discLoop = {
+export const discLoop = {
   clockwise: {
     animate: { rotateZ: ["0deg", "360deg"] },
     transition: discTransitionPreset,
@@ -23,7 +29,7 @@ const discLoop = {
   },
 };
 
-const loop = {
+export const loop = {
   discFade: {
     initial: { rotateX: 60, scale: 0.9, opacity: 0 },
     animate: { opacity: [0.15, 0.2] },
@@ -87,11 +93,10 @@ const loop = {
   hologramShadowFade: {
     initial: {
       scale: 1,
-      fill: "#0C131F",
+      fill: colors.layer1,
     },
     animate: {
       scale: [1, 1.04],
-      fill: ["#0C131F", "#0F1726"],
     },
     transition: glowTransitionPreset,
   },
@@ -147,7 +152,7 @@ const loop = {
       opacity: 1,
     },
     animate: {
-      opacity: [1, 0.5],
+      opacity: [0.9, 0.5],
     },
     transition: glowTransitionPreset,
   },

@@ -1,8 +1,8 @@
 "use client";
 
 import { IntroWrapper, IntroDetails } from "./styles";
-import { HeroAnimation } from "./animations";
-import { Container, Text } from "@/components/atoms";
+import { DnaHologramAnimation } from "@/components/animations";
+import { Container, Text, Button } from "@/components/atoms";
 import { FeaturedSection, ContentPresentation } from "@/components/molecules";
 
 export const HomeTemplate = () => (
@@ -13,11 +13,14 @@ export const HomeTemplate = () => (
           <Text size={9} as="h2" weight={600} color="$white">
             A cool heading goes here
           </Text>
-          <Text as="p" css={{ marginBottom: "$11" }}>
-           Some nifty intro body text which talks about the DNA of what makes me, me. That sort of thing. Animation to the right showing a hologram of DNA being measured and explored.
+          <Text as="p">
+            Some nifty intro body text which talks about the DNA of what makes
+            me, me. That sort of thing. Animation to the right showing a
+            hologram of DNA being measured and explored.
           </Text>
+          <Button css={{ marginTop: "$8" }}>Primary CTA</Button>
         </IntroDetails>
-        <HeroAnimation />
+        <DnaHologramAnimation />
       </IntroWrapper>
     </Container>
 

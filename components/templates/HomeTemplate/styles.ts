@@ -11,12 +11,14 @@ export const IntroWrapper = styled("div", {
 export const IntroDetails = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$4",
+  alignItems: "flex-start",
   maxWidth: "100%",
   width: "100%",
   textAlign: "center",
+  marginBottom: "$11",
 
   "@md": {
     maxWidth: "600px",
+    marginBottom: 0,
   },
 });
