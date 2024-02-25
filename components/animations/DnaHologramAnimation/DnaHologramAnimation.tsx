@@ -1,5 +1,12 @@
 import { Definitions } from "./Definitions";
-import { Body, Terminals, LightingBefore, LightingAfter, Dna } from "./parts";
+import {
+  Body,
+  Terminals,
+  LightingBefore,
+  LightingAfter,
+  Graphics,
+  Dna,
+} from "./parts";
 
 export const DnaHologramAnimation = () => (
   <svg viewBox="0 0 450 550">
@@ -8,6 +15,7 @@ export const DnaHologramAnimation = () => (
       <LightingBefore />
       <Body />
       <Dna />
+      <Graphics />
       <Terminals />
       <LightingAfter />
     </g>

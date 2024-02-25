@@ -13,90 +13,84 @@ const SpinningDnaOrbs = ({
   delay?: number;
   opacity?: number;
   scale?: number;
-}) => {
-  return (
-    <motion.g initial={{ opacity, scale }}>
-      <motion.g
-        transition={{
+}) => (
+  <motion.g
+    initial={{ opacity: 0, scale }}
+    animate={{ opacity }}
+    transition={{
+      duration: 0.75,
+      delay,
+    }}>
+    <motion.ellipse
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        delay,
+        x: {
           duration: 1,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
           delay,
-        }}
-        animate={{
-          x: [0, 30],
-        }}>
-        <motion.ellipse
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            delay,
-          }}
-          animate={{
-            rx: [3, 5, 3, 1, 3],
-            ry: [3, 5, 3, 1, 3],
-          }}
-          fill="url(#dna-orb)"
-          cx={x}
-          cy={y}
-          rx={3}
-          ry={3}
-        />
-      </motion.g>
+        },
+      }}
+      animate={{
+        rx: [3, 5, 3, 1, 3],
+        ry: [3, 5, 3, 1, 3],
+        x: [0, 30],
+      }}
+      fill="url(#dna-orb)"
+      cx={x}
+      cy={y}
+      rx={3}
+      ry={3}
+    />
 
-      <motion.line
-        x1={x}
-        x2={x + 30}
-        y1={y}
-        y2={y}
-        stroke={`${tealDark.teal6}75`}
-        animate={{
-          x1: [x + 3, x + 15],
-          x2: [x + 27, x + 15],
-        }}
-        transition={{
-          duration: 0.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-          delay,
-        }}
-      />
+    <motion.line
+      x1={x}
+      x2={x + 30}
+      y1={y}
+      y2={y}
+      stroke={`${tealDark.teal6}75`}
+      animate={{
+        x1: [x + 3, x + 15],
+        x2: [x + 27, x + 15],
+      }}
+      transition={{
+        duration: 0.5,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut",
+        delay,
+      }}
+    />
 
-      <motion.g
-        initial={{}}
-        transition={{
+    <motion.ellipse
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        delay,
+        x: {
           duration: 1,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
           delay,
-        }}
-        animate={{
-          x: [30, 0],
-        }}>
-        <motion.ellipse
-          initial={{}}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            delay,
-          }}
-          animate={{
-            rx: [3, 1, 3, 5, 3],
-            ry: [3, 1, 3, 5, 3],
-          }}
-          fill="url(#dna-orb)"
-          cx={x}
-          cy={y}
-          rx={3}
-          ry={3}
-        />
-      </motion.g>
-    </motion.g>
-  );
-};
+        },
+      }}
+      animate={{
+        rx: [3, 1, 3, 5, 3],
+        ry: [3, 1, 3, 5, 3],
+        x: [30, 0],
+      }}
+      fill="url(#dna-orb)"
+      cx={x}
+      cy={y}
+      rx={3}
+      ry={3}
+    />
+  </motion.g>
+);
 
 const startY = 100;
 const startX = 210;
@@ -125,10 +119,7 @@ const helixConfig = [
 ];
 
 export const Dna = () => (
-  <motion.g
-    initial={{ rotate: 45, opacity: 0, scale: 0.5 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 1.5, duration: 0.5, ease: "easeInOut" }}>
+  <motion.g initial={{ rotateZ: 45 }}>
     {helixConfig.map((props, index) => (
       <SpinningDnaOrbs key={startY + index} {...props} />
     ))}
