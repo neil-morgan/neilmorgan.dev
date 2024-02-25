@@ -6,36 +6,6 @@ export const Graphics = () => {
     <>
       <motion.ellipse
         initial={{
-          strokeDashoffset: 100,
-          opacity: 1,
-          scale: 1,
-        }}
-        fill="transparent"
-        stroke={tealDark.teal7}
-        strokeWidth={1}
-        strokeDasharray={7}
-        cx={275}
-        cy={275}
-        rx={5}
-        ry={5}
-      />
-      <motion.ellipse
-        initial={{
-          strokeDashoffset: 100,
-          opacity: 1,
-          scale: 1,
-        }}
-        fill="transparent"
-        stroke={tealDark.teal7}
-        strokeWidth={1}
-        strokeDasharray={12}
-        cx={295}
-        cy={275}
-        rx={5}
-        ry={5}
-      />
-      <motion.ellipse
-        initial={{
           opacity: 1,
           scale: 1,
         }}
@@ -47,13 +17,21 @@ export const Graphics = () => {
           repeatType: "loop",
         }}
         fill="transparent"
-        stroke={tealDark.teal7}
+        stroke={tealDark.teal6}
         strokeWidth={1}
         strokeDasharray={10}
         cx={315}
         cy={275}
         rx={5}
         ry={5}
+      />
+      <line
+        x1={275}
+        y1={270}
+        x2={275}
+        y2={280}
+        stroke={tealDark.teal6}
+        strokeWidth={1}
       />
     </>
   );
