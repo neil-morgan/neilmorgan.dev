@@ -1,1 +1,0 @@
-export { DnaHologramAnimation } from "./DnaHologramAnimation";

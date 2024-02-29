@@ -1,10 +1,9 @@
 "use client";
 
 import { IntroWrapper, IntroDetails } from "./styles";
-import { DnaHologramAnimation } from "@/components/animations";
+import { DnaHologramAnimation } from "@/components/organisms/DnaHologramAnimation";
 import { Container, Text, Button } from "@/components/atoms";
 import { FeaturedSection, ContentPresentation } from "@/components/molecules";
-import { colors } from "@/lib/stitches";
 
 export const HomeTemplate = () => (
   <>
@@ -18,14 +17,22 @@ export const HomeTemplate = () => (
             A Senior Software Engineer.
           </Text>
           <Text as="p">
-            Design and development is in my DNA . I love to create, build and
-            collaborate. Explore and discover what I can do for you.
+            Design and development is in my{" "}
+            <Text as="span" color="$primary1" weight={500}>
+              DNA
+            </Text>
+            . I love to create, build and collaborate. Explore my site and
+            discover how can I help you.
           </Text>
-          <Button css={{ marginTop: "$8" }}>Primary CTA</Button>
+          <Button css={{ marginTop: "$6" }}>Primary CTA</Button>
         </IntroDetails>
         <DnaHologramAnimation />
       </IntroWrapper>
     </Container>
+
+    {/* design using vector points */}
+    {/* development using code brackets */}
+    {/* collaboration... share icon? */}
 
     <FeaturedSection>
       <ContentPresentation

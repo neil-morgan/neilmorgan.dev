@@ -15,12 +15,16 @@ export const IntroDetails = styled("div", {
   maxWidth: "100%",
   width: "100%",
   textAlign: "center",
-  marginBottom: "$11",
+  marginBottom: "$9",
   marginTop: 0,
 
   "@md": {
     maxWidth: "600px",
+    marginTop: "$9",
+  },
+
+  "@lg": {
     marginBottom: 0,
-    marginTop: "$10",
+    marginTop: "$11",
   },
 });
