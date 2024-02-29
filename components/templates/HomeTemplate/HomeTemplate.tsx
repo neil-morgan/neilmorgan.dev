@@ -18,7 +18,7 @@ export const HomeTemplate = () => (
           </Text>
           <Text as="p">
             Design and development is in my{" "}
-            <Text as="span" color="$primary1" weight={500}>
+            <Text as="span" weight={600}>
               DNA
             </Text>
             . I love to create, build and collaborate. Explore my site and
