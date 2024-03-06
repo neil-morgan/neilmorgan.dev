@@ -19,7 +19,7 @@ export const Text = forwardRef(
       style,
       print = false,
       color,
-      textAlign = "left",
+      textAlign = "inherit",
     }: React.PropsWithChildren<TextProps>,
     ref: DivElementRefType,
   ) => {

@@ -62,56 +62,75 @@ const barChartItems = [
   },
 ];
 
-const cascadeDefaults = {
-  initial: {
-    y: -30,
-  },
-  y1: 0,
-  y2: 60,
-  stroke: tealDark.teal5,
-  strokeWidth: 1.5,
+const textCascadeDefaults: {
+  stroke: string;
+  strokeWidth: number;
+  x1: number;
+  transition: {
+    delay: number;
+    duration: number;
+    ease: string;
+    repeat: typeof Infinity;
+    repeatType: "loop";
+  };
+} = {
   transition: {
     duration: 5,
+    delay: 1,
     ease: "linear",
     repeat: Infinity,
+    repeatType: "loop",
   },
+  stroke: tealDark.teal5,
+  strokeWidth: 1,
+  x1: 0,
 };
 
-const cascadeBars = [
+const textCascadeItems = [
   {
-    x1: 1,
-    x2: 1,
-    y1: 0,
-    strokeDasharray: 7,
-    animate: { y: -2 },
+    x2: 20,
+    y1: 1,
+    y2: 1,
   },
   {
-    x1: 5,
-    x2: 5,
-    y1: 0,
-    strokeDasharray: 3,
-    animate: { y: 0 },
+    x2: 25,
+    y1: 5,
+    y2: 5,
   },
   {
-    x1: 9,
-    x2: 9,
-    y1: 0,
-    strokeDasharray: 8,
-    animate: { y: 2 },
+    x2: 15,
+    y1: 9,
+    y2: 9,
   },
   {
-    x1: 13,
-    x2: 13,
-    y1: 0,
-    strokeDasharray: 4,
-    animate: { y: 2 },
+    x2: 25,
+    y1: 17,
+    y2: 17,
   },
   {
-    x1: 17,
-    x2: 17,
-    y1: 0,
-    strokeDasharray: 6,
-    animate: { y: 6 },
+    x2: 20,
+    y1: 25,
+    y2: 25,
+  },
+  {
+    x2: 10,
+    y1: 29,
+    y2: 29,
+  },
+  {
+    x2: 20,
+    y1: 37,
+    y2: 37,
+  },
+  {
+    x2: 25,
+    y1: 41,
+    y2: 41,
+  },
+  {
+    x2: 15,
+    y1: 45,
+    y2: 45,
   },
 ];
 
@@ -159,10 +178,22 @@ export const Graphics = () => (
       />
     </svg>
 
-    <svg x={150} y={105} width={20} height={20} viewBox="0 0 20 20">
-      {cascadeBars.map((line, i) => (
-        <motion.line key={i} {...line} {...cascadeDefaults} />
-      ))}
+    <svg x={140} y={100} width={75} height={15} viewBox="0 0 75 15">
+      <motion.g
+        initial={{
+          y: -38,
+        }}
+        animate={{ y: [-35, 1] }}
+        transition={{
+          duration: 7,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}>
+        {textCascadeItems.map((item, i) => (
+          <line key={i} {...textCascadeDefaults} {...item} />
+        ))}
+      </motion.g>
     </svg>
   </>
 );
