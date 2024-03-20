@@ -1,14 +1,14 @@
+import type { Asset, Maybe, PostTagsCollection } from "@/graphql";
+
 export type ContentPresentationProps = {
-  title: string;
-  body: string;
+  title: string | null;
+  body: string | null;
   reverse?: boolean;
   cta: {
     label: string;
-    href: string;
+    href: string | null;
   };
   label: string;
-  image: {
-    alt: string;
-    src: string;
-  };
+  image: Maybe<Asset>;
+  tags: Maybe<PostTagsCollection>;
 };

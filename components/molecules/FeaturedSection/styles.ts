@@ -10,7 +10,7 @@ export const Body = styled("div", {
   padding: "$6 0",
 
   "@md": {
-    padding: "$10 0",
+    padding: "$9 0",
   },
 
   "> * ": {

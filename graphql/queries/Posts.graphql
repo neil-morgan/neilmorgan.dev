@@ -8,6 +8,10 @@ query Posts($preview: Boolean = false) {
       description
       date
       slug
+      image {
+        url
+        description
+      }
       tagsCollection {
         items {
           title

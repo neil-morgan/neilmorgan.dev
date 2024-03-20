@@ -45,9 +45,9 @@ export default async function PostPage({ params }: PostParamsType) {
     variables: { slug: params.post, preview: isEnabled },
   });
 
-  const post = data.post?.items[0] as Post;
+  const post = data.post?.items[0] as Post
 
-  if (!post || post.slug !== params.post) {
+  if (!post) {
     return notFound();
   }
 

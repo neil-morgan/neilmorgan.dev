@@ -10,7 +10,13 @@ export const AspectImage = ({
 }: React.PropsWithChildren<AspectImageProps>) => (
   <AspectImageContainer>
     <Root ratio={ratio}>
-      <Image src={src} alt={alt} fill objectFit="cover" />
+      <Image
+        src={src}
+        alt={alt || "A blog post image"}
+        fill
+        placeholder="blur"
+        blurDataURL={`/api/placeholder-image?imageUrl=${src}`}
+      />
     </Root>
   </AspectImageContainer>
 );

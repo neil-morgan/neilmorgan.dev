@@ -1,17 +1,28 @@
-import { Wrapper, TagListWrapper } from "./styles";
+import NextLink from "next/link";
+import { ConditionalWrapper } from "../ConditionalWrapper";
+import { TagWrapper, TagListWrapper } from "./styles";
+import type { TagListProps, TagProps } from "./types";
 
-export const Tag = ({ children }: React.PropsWithChildren) => {
-  return <Wrapper>{children}</Wrapper>;
-};
+export const Tag = ({ children, slug }: React.PropsWithChildren<TagProps>) => (
+  <TagWrapper>
+    <ConditionalWrapper
+      if={Boolean(slug)}
+      wrapWith={children => (
+        <NextLink href={slug as string} passHref legacyBehavior>
+          {children}
+        </NextLink>
+      )}>
+      {children}
+    </ConditionalWrapper>
+  </TagWrapper>
+);
 
-type TagListProps = {
-  list: string[];
-};
-
-export const TagList = ({ list }: TagListProps) => {
-  return (
-    <TagListWrapper>
-      <Tag></Tag>
-    </TagListWrapper>
-  );
-};
+export const TagList = ({ list }: TagListProps) => (
+  <TagListWrapper>
+    {list.map(({ title, slug }, i) => (
+      <Tag key={i} slug="">
+        {title}
+      </Tag>
+    ))}
+  </TagListWrapper>
+);

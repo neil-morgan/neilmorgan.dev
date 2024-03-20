@@ -3,7 +3,6 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
-import Image from "next/image";
 import {
   getBlockMaps,
   renderMark,
@@ -15,7 +14,7 @@ import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import { Article } from "./styles";
 import {
-  AspectRatio,
+  AspectImage,
   Blockquote,
   CodeSnippet,
   ExpandedEdge,
@@ -30,13 +29,21 @@ import {
 } from "@/components/atoms";
 import { isInternalUrl } from "@/utils";
 
-export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
+export const Richtext = ({
+  content,
+  setCurrentId,
+  titleImage,
+}: RichtextProps) => {
   const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
     content.links,
   );
 
   return (
     <Article>
+      {titleImage?.url && titleImage?.description && (
+        <AspectImage src={titleImage.url} alt={titleImage.description} />
+      )}
+
       {documentToReactComponents(content.json, {
         renderMark,
         renderText,
@@ -130,19 +137,16 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
 
           [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
             const { url, description } = assetBlockMap.get(data.target.sys.id);
+            console.log(description);
             return (
               <ExpandedEdge>
-                <AspectRatio>
-                  <Image src={url} alt={description} fill />
-                </AspectRatio>
+                <AspectImage src={url} alt={description} />
               </ExpandedEdge>
             );
           },
 
           [BLOCKS.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
             const entry = entryBlockMap.get(node.data.target.sys.id);
-
-            //! split this into a component later
 
             if (entry.__typename === "Snippet") {
               return (
@@ -151,10 +155,6 @@ export const Richtext = ({ content, setCurrentId }: RichtextProps) => {
                 </ExpandedEdge>
               );
             }
-
-            // if (entry.__typename === "Post") {
-            //   return <div>NEEDS CONTENT</div>;
-            // }
           },
 
           [INLINES.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {

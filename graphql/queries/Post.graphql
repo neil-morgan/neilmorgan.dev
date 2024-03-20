@@ -17,7 +17,6 @@ query Post($slug: String, $preview: Boolean = false) {
         ...PostCategory
       }
       image {
-        title
         description
         url
       }

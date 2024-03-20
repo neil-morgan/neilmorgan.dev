@@ -16,6 +16,6 @@ export { List } from "./List";
 export { Popover } from "./Popover";
 export { Separator } from "./Separator";
 export { Table, Td, Tr, Th } from "./Table";
-export { Tag } from "./Tag";
+export { Tag, TagList } from "./Tag";
 export { Text } from "./Text";
 export { AspectImage } from "./AspectImage";

@@ -1,6 +1,6 @@
 import { styled } from "@/lib/stitches";
 
-export const Wrapper = styled("div", {
+export const TagWrapper = styled("div", {
   display: "flex",
   background: "$primary2",
   color: "$primary1",
@@ -10,4 +10,5 @@ export const Wrapper = styled("div", {
 
 export const TagListWrapper = styled("div", {
   display: "flex",
+  gap: "$4",
 });

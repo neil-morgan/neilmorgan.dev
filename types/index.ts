@@ -27,7 +27,7 @@ export type ProficiencyType = {
 
 export type TagType = {
   title: string;
-  slug: string;
+  slug?: string;
 };
 
 export type CategoryConstraintType<T extends CategoryType> = {

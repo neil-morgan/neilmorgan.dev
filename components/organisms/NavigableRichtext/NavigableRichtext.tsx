@@ -5,19 +5,26 @@ import { usePathname } from "next/navigation";
 import { Richtext } from "../Richtext";
 import { Aside, Body, List, ListItem } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
+import type { NavigableRichtextProps } from "./types";
 import { CopyButton } from "@/components/molecules";
 import { Icon } from "@/components/atoms";
-import type { RichtextType } from "@/types";
 import { SITE_BASE_URL } from "@/lib/site";
 
-export const NavigableRichtext = ({ content }: { content: RichtextType }) => {
+export const NavigableRichtext = ({
+  content,
+  titleImage,
+}: NavigableRichtextProps) => {
   const pathname = usePathname();
   const [currentId, setCurrentId] = useState("");
   const currentIdIcon = <Icon name="ChevronRight" />;
 
   return (
     <Body>
-      <Richtext content={content} setCurrentId={setCurrentId} />
+      <Richtext
+        content={content}
+        titleImage={titleImage}
+        setCurrentId={setCurrentId}
+      />
 
       <Aside>
         <List>

@@ -4,7 +4,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import NextLink from "next/link";
 import { Wrapper, Header, Footer } from "./styles";
 import type { CardProps } from "./types";
-import { Text, Icon, Tag } from "@/components/atoms";
+import { Text, Icon, Tag, TagList } from "@/components/atoms";
 import { useElementRefs } from "@/providers";
 
 export const Card = ({
@@ -50,9 +50,7 @@ export const Card = ({
         <Text as="p">{description}</Text>
         {tags.length > 0 && (
           <Footer>
-            {tags.map(({ title }, i) => (
-              <Tag key={title + i}>{title}</Tag>
-            ))}
+            <TagList list={tags} />
           </Footer>
         )}
       </Wrapper>

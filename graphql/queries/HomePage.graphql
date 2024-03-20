@@ -1,0 +1,17 @@
+query HomePage($preview: Boolean = false) {
+  mainHeader: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+    heading
+    subheading
+    body
+  }
+  sellingPoints: contentGroupCollection(
+    where: { internalName: "Selling Point" }
+    preview: $preview
+  ) {
+    items {
+      heading
+      body
+      icon
+    }
+  }
+}
