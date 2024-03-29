@@ -5,3 +5,7 @@ export const Wrapper = styled("div", {
   justifyContent: "center",
   width: "100%",
 });
+
+export const Svg = styled("svg", {
+  minWidth: "360px",
+});
