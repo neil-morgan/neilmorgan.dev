@@ -24,7 +24,7 @@ export const HomeTemplate = ({
           <Text size={8} as="h2" weight={600} color="$white">
             {header.heading}
           </Text>
-          <Text size={6} as="h3" weight={500} color="$primary1">
+          <Text size={5} as="h3" color="$primary1">
             {header.subheading}
           </Text>
           <Text as="p">{header.body}</Text>
@@ -38,11 +38,7 @@ export const HomeTemplate = ({
         {sellingPoints.map((item, i) => (
           <SellingPoint key={i}>
             {item.icon && <Icon name={item.icon} css={{ fontSize: "3rem" }} />}
-            <Text
-              size={5}
-              weight={600}
-              color="$primary1"
-              css={{ margin: "$2 0 $4" }}>
+            <Text size={5} color="$primary1" css={{ margin: "$2 0 $4" }}>
               {item.heading}
             </Text>
             <Text textAlign="center">{item.body}</Text>
