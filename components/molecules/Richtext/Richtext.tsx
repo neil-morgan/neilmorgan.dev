@@ -12,7 +12,6 @@ import {
 } from "./helpers";
 import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
-import { Article } from "./styles";
 import {
   AspectImage,
   Blockquote,
@@ -32,18 +31,14 @@ import { isInternalUrl } from "@/utils";
 export const Richtext = ({
   content,
   setCurrentId,
-  titleImage,
+  base64Map,
 }: RichtextProps) => {
   const { entryBlockMap, inlineBlockMap, assetBlockMap } = getBlockMaps(
     content.links,
   );
 
   return (
-    <Article>
-      {titleImage?.url && titleImage?.description && (
-        <AspectImage src={titleImage.url} alt={titleImage.description} />
-      )}
-
+    <>
       {documentToReactComponents(content.json, {
         renderMark,
         renderText,
@@ -136,11 +131,17 @@ export const Richtext = ({
           },
 
           [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
-            const { url, description } = assetBlockMap.get(data.target.sys.id);
-            console.log(description);
+            const { url, description, title } = assetBlockMap.get(
+              data.target.sys.id,
+            );
+
             return (
               <ExpandedEdge>
-                <AspectImage src={url} alt={description} />
+                <AspectImage
+                  url={url}
+                  description={description}
+                  blurDataUrl={base64Map?.[title]}
+                />
               </ExpandedEdge>
             );
           },
@@ -178,6 +179,6 @@ export const Richtext = ({
           ),
         },
       })}
-    </Article>
+    </>
   );
 };

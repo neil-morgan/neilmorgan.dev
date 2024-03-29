@@ -1,4 +1,4 @@
-import type { CategoryConstraintType, CategoryType } from "@/types";
+import type { CategoryConstraintType, CategoryType } from "@/service";
 
 export const extractCategories = <T extends CategoryConstraintType<any>>(
   items: T[],

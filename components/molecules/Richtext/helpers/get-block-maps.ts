@@ -1,4 +1,4 @@
-import type { RichtextLinksType } from "@/types";
+import type { RichtextLinksType } from "@/service";
 
 export const getBlockMaps = (links: RichtextLinksType) => {
   const entryBlockMap = new Map();

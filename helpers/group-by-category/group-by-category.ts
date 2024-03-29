@@ -1,4 +1,4 @@
-import type { GroupedByCategoryType, CategoryConstraintType } from "@/types";
+import type { GroupedByCategoryType, CategoryConstraintType } from "@/service";
 
 export const groupByCategory = <T extends CategoryConstraintType<any>>(
   items: T[],

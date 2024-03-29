@@ -16,7 +16,7 @@ const config: CodegenConfig = {
   },
   documents: "**/*.graphql",
   generates: {
-    "graphql/generated.ts": {
+    "service/generated.ts": {
       plugins: ["typescript", "typescript-operations", "typed-document-node"],
       config: {
         documentMode: "string",

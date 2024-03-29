@@ -1,5 +1,5 @@
 import type { CSS } from "@stitches/react";
-import type { GapType } from "@/types";
+import type { GapType } from "@/service";
 
 export type ListProps = {
   gap?: GapType;

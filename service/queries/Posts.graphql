@@ -9,6 +9,7 @@ query Posts($preview: Boolean = false) {
       date
       slug
       image {
+        title
         url
         description
       }

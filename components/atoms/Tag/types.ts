@@ -1,4 +1,4 @@
-import type { TagType } from "@/types";
+import type { TagType } from "@/service";
 
 export type TagProps = {
   slug?: string;

@@ -1,6 +1,6 @@
 import type { TopLevelBlock } from "@contentful/rich-text-types";
 import { kebabCase } from "lodash";
-import type { NavigableContentHeadingsType } from "@/types";
+import type { NavigableContentHeadingsType } from "../../types";
 
 const buildHeading = (value: string) => {
   const id = kebabCase(value);

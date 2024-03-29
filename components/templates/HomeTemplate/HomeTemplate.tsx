@@ -15,6 +15,7 @@ export const HomeTemplate = ({
   latestPost,
   header,
   sellingPoints,
+  base64Map,
 }: HomeTemplateProps) => (
   <>
     <Container>
@@ -50,22 +51,29 @@ export const HomeTemplate = ({
       </SellingPointsWrapper>
     </Container>
 
-    {latestPost && (
-      <FeaturedSection>
-        <Container>
-          <ContentPresentation
-            image={latestPost?.image}
-            title={latestPost?.title}
-            label="Latest post"
-            tags={latestPost?.tagsCollection}
-            cta={{
-              href: `/posts/${latestPost.category?.slug}/${latestPost.slug}`,
-              label: "Read more",
-            }}
-            body={latestPost.description}
-          />
-        </Container>
-      </FeaturedSection>
-    )}
+    {latestPost &&
+      latestPost.image?.title &&
+      latestPost.image.description &&
+      latestPost.image.url && (
+        <FeaturedSection>
+          <Container>
+            <ContentPresentation
+              image={{
+                url: latestPost.image.url,
+                description: latestPost.image.description,
+                blurDataUrl: base64Map[latestPost.image.title],
+              }}
+              title={latestPost.title}
+              label="Latest post"
+              tags={latestPost.tagsCollection}
+              cta={{
+                href: `/posts/${latestPost.category?.slug}/${latestPost.slug}`,
+                label: "Read more",
+              }}
+              body={latestPost.description}
+            />
+          </Container>
+        </FeaturedSection>
+      )}
   </>
 );

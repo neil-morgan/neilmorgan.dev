@@ -3,9 +3,9 @@
 import type { PostTemplateProps } from "./types";
 import { PostFooter } from "./styles";
 import { NavigableRichtext } from "@/components/organisms/NavigableRichtext/NavigableRichtext";
-import { Separator, Text, Container, AspectImage } from "@/components/atoms";
+import { Separator, Text, Container } from "@/components/atoms";
 
-export const PostTemplate = ({ content }: PostTemplateProps) => (
+export const PostTemplate = ({ content, base64Map }: PostTemplateProps) => (
   <Container>
     <Text size={8} as="h2" weight={600} color="$white">
       {content.title}
@@ -15,8 +15,12 @@ export const PostTemplate = ({ content }: PostTemplateProps) => (
     </Text>
     <Separator size="xl" />
 
-    {content?.body && (
-      <NavigableRichtext content={content.body} titleImage={content.image} />
+    {content?.body && content?.image && (
+      <NavigableRichtext
+        content={content.body}
+        base64Map={base64Map}
+        image={content.image}
+      />
     )}
 
     <PostFooter>

@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers";
-import { PostsDocument, type Post } from "@/graphql";
+import { PostsDocument, type Post } from "@/service";
 import { PostsTemplate } from "@/components/templates";
 import { groupByCategory, fetchContent } from "@/helpers";
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES } from "@/lib/site";

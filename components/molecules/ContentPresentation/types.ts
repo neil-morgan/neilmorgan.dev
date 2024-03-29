@@ -1,4 +1,4 @@
-import type { Asset, Maybe, PostTagsCollection } from "@/graphql";
+import type { Maybe, PostTagsCollection } from "@/service";
 
 export type ContentPresentationProps = {
   title: string | null;
@@ -9,6 +9,11 @@ export type ContentPresentationProps = {
     href: string | null;
   };
   label: string;
-  image: Maybe<Asset>;
+  image: {
+    url: string;
+    description: string;
+    blurDataUrl: string;
+  };
+
   tags: Maybe<PostTagsCollection>;
 };

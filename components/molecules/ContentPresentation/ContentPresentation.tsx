@@ -1,7 +1,7 @@
 import type { ContentPresentationProps } from "./types";
 import { ContentDetails, ContentWrapper, ContentHeader } from "./styles";
 import { Text, Button, AspectImage, Tag, TagList } from "@/components/atoms";
-import type { TagType } from "@/types";
+import type { TagType } from "@/service";
 
 export const ContentPresentation = ({
   title,
@@ -14,7 +14,11 @@ export const ContentPresentation = ({
 }: ContentPresentationProps) => (
   <ContentWrapper>
     {image?.url && image?.description && (
-      <AspectImage src={image.url} alt={image.description} />
+      <AspectImage
+        url={image.url}
+        description={image.description}
+        blurDataUrl={image.blurDataUrl}
+      />
     )}
     <ContentDetails reverse={reverse}>
       <ContentHeader>

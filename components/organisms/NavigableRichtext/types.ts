@@ -1,7 +1,14 @@
-import type { RichtextType } from "@/types";
-import type { Maybe, Asset } from "@/graphql";
+import type { RichtextType, Asset, ImagesMap } from "@/service";
 
 export type NavigableRichtextProps = {
   content: RichtextType;
-  titleImage: Maybe<Asset>;
+  image?: Asset;
+  base64Map?: ImagesMap;
 };
+
+type NavigableContentHeadingType = { id: string; label: string; href: string };
+
+export type NavigableContentHeadingsType = {
+  heading: NavigableContentHeadingType;
+  subHeadings: { heading: NavigableContentHeadingType }[];
+}[];

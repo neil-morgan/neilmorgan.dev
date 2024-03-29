@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
-import { PostDocument } from "@/graphql";
+import { PostDocument } from "@/service";
 import { fetchContent } from "@/helpers";
 
 export const GET = async (request: Request) => {

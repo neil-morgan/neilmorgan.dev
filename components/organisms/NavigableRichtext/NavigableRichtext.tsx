@@ -2,17 +2,17 @@
 
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Richtext } from "../Richtext";
-import { Aside, Body, List, ListItem } from "./styles";
+import { Aside, Body, List, ListItem, Content } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
 import type { NavigableRichtextProps } from "./types";
-import { CopyButton } from "@/components/molecules";
-import { Icon } from "@/components/atoms";
+import { Richtext, CopyButton } from "@/components/molecules";
+import { Icon, AspectImage, ExpandedEdge } from "@/components/atoms";
 import { SITE_BASE_URL } from "@/lib/site";
 
 export const NavigableRichtext = ({
   content,
-  titleImage,
+  image,
+  base64Map,
 }: NavigableRichtextProps) => {
   const pathname = usePathname();
   const [currentId, setCurrentId] = useState("");
@@ -20,12 +20,22 @@ export const NavigableRichtext = ({
 
   return (
     <Body>
-      <Richtext
-        content={content}
-        titleImage={titleImage}
-        setCurrentId={setCurrentId}
-      />
-
+      <Content>
+        {image?.title && image?.url && image?.description && (
+          <ExpandedEdge>
+            <AspectImage
+              url={image?.url}
+              description={image?.description}
+              blurDataUrl={base64Map?.[image?.title]}
+            />
+          </ExpandedEdge>
+        )}
+        <Richtext
+          content={content}
+          setCurrentId={setCurrentId}
+          base64Map={base64Map}
+        />
+      </Content>
       <Aside>
         <List>
           {buildRichtextHeadings(content.json.content).map(

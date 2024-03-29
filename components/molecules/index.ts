@@ -5,4 +5,5 @@ export { FeaturedSection } from "./FeaturedSection";
 export { InfoMessage } from "./InfoMessage";
 export { Logo } from "./Logo";
 export { PointerGlow } from "./PointerGlow";
+export { Richtext } from "./Richtext";
 export { ToggleDraftMode } from "./ToggleDraftMode";

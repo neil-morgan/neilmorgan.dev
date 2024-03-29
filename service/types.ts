@@ -7,14 +7,9 @@ import type {
   Asset,
   Entry,
   ResourceLink,
-} from "@/graphql";
+} from "@/service";
 
-type NavigableContentHeadingType = { id: string; label: string; href: string };
-
-export type NavigableContentHeadingsType = {
-  heading: NavigableContentHeadingType;
-  subHeadings: { heading: NavigableContentHeadingType }[];
-}[];
+export type ImagesMap = { [title: string]: string };
 
 export type CategoryType = {
   title: string;
@@ -92,8 +87,6 @@ export type RichtextType = {
   json: Scalars["JSON"]["output"];
   links: RichtextLinksType;
 };
-
-export type LocalStorageLocations = "likes";
 
 export type MousePositionType = number | null;
 

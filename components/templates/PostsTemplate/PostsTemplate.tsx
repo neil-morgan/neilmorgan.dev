@@ -3,7 +3,7 @@
 import { Wrapper, Header, Grid } from "./styles";
 import { Container, Text } from "@/components/atoms";
 import { Card } from "@/components/molecules";
-import type { GroupedPostType, TagType } from "@/types";
+import type { GroupedPostType, TagType } from "@/service";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>

@@ -1,9 +1,13 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import type { PostParamsType } from "@/types";
+import {
+  PostDocument,
+  PostsDocument,
+  type Post,
+  type PostParamsType,
+} from "@/service";
 import { PostTemplate } from "@/components/templates";
-import { fetchContent } from "@/helpers";
-import { PostDocument, Post, PostsDocument } from "@/graphql";
+import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -45,11 +49,13 @@ export default async function PostPage({ params }: PostParamsType) {
     variables: { slug: params.post, preview: isEnabled },
   });
 
-  const post = data.post?.items[0] as Post
+  const post = data.post?.items[0] as Post;
+
+  const base64Map = await extractImagesToBase64Map(post);
 
   if (!post) {
     return notFound();
   }
 
-  return <PostTemplate content={{ ...post }} />;
+  return <PostTemplate content={{ ...post }} base64Map={base64Map} />;
 }

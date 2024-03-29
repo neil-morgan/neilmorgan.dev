@@ -1,5 +1,6 @@
 export type AspectImageProps = {
-  src: string;
-  alt: string;
+  url: string;
+  description: string;
   ratio?: number;
+  blurDataUrl?: string;
 };
