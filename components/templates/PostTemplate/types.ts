@@ -1,5 +1,6 @@
-import type { Post } from "@/graphql";
+import type { Post, ImagesMap } from "@/service";
 
 export type PostTemplateProps = {
   content: Post;
+  base64Map: ImagesMap;
 };

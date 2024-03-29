@@ -5,7 +5,7 @@ import { ConditionalWrapper } from "../";
 import { IconButtonElement } from "./styles";
 import type { IconButtonProps } from "./types";
 import { Icon } from "@/components/atoms";
-import type { ButtonElementRefType } from "@/types";
+import type { ButtonElementRefType } from "@/service";
 import { useElementRefs } from "@/providers";
 
 export const IconButton = forwardRef(

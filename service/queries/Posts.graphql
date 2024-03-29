@@ -1,0 +1,27 @@
+query Posts($preview: Boolean = false) {
+  posts: postCollection(order: date_DESC, preview: $preview) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+      date
+      slug
+      image {
+        title
+        url
+        description
+      }
+      tagsCollection {
+        items {
+          title
+          slug
+        }
+      }
+      category {
+        ...PostCategory
+      }
+    }
+  }
+}

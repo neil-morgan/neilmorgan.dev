@@ -3,12 +3,12 @@
 import { Wrapper, Header, Grid } from "./styles";
 import { Container, Text } from "@/components/atoms";
 import { Card } from "@/components/molecules";
-import type { GroupedPostType, TagType } from "@/types";
+import type { GroupedPostType, TagType } from "@/service";
 
 export const PostsCategory = ({ category, items }: GroupedPostType) => (
   <Wrapper>
     <Header>
-      <Text size={6} as="h2" weight={600} print>
+      <Text size={4} as="h2" weight={600} print>
         {category?.title}
       </Text>
       <Text size={3}>

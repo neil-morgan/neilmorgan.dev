@@ -5,8 +5,10 @@ export const AspectRatio = ({
   children,
   ratio = 16 / 9,
   css,
+  rounded,
 }: AspectRatioProps) => (
   <AspectRatioElement
+    rounded={rounded}
     css={{
       ...css,
       "&:after": {

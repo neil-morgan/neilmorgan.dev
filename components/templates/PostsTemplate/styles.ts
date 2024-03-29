@@ -11,7 +11,6 @@ export const Header = styled("header", {
   justifyContent: "space-between",
   alignItems: "center",
   marginBottom: "$7",
-  color: "$white",
 });
 
 export const Grid = styled("div", {

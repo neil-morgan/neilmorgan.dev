@@ -1,0 +1,74 @@
+query Post($slug: String, $preview: Boolean = false) {
+  post: postCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+      date
+      slug
+      tagsCollection {
+        items {
+          title
+        }
+      }
+      category {
+        ...PostCategory
+      }
+      image {
+        title
+        description
+        url
+      }
+
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+              ... on Post {
+                title
+                slug
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+              ... on Snippet {
+                description
+                language
+                code
+              }
+              ... on Post {
+                title
+                slug
+                description
+                category {
+                  ...PostCategory
+                }
+              }
+            }
+          }
+
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}

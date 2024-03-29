@@ -7,11 +7,11 @@ import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import {
-  SocialItemFragment,
-  SocialItemsDocument,
   PostsDocument,
+  SocialItemsDocument,
   type Post,
-} from "@/graphql";
+  type SocialItemFragment,
+} from "@/service";
 import { Header, Footer } from "@/components/organisms";
 import { fetchContent, extractCategories } from "@/helpers";
 
@@ -65,14 +65,16 @@ export default async function RootLayout({
         <SpeedInsights />
         <StitchesRegistryProvider>
           <ElementRefsProvider>
-            <PointerGlow />
             <IconDefs />
             {process.env.NODE_ENV === "development" && (
               <ToggleDraftMode isEnabled={isEnabled} />
             )}
             <Wrapper>
               <Header content={{ navigation, social }} />
-              <Main>{children}</Main>
+              <Main>
+                {children}
+                <PointerGlow />
+              </Main>
               <Footer content={{ navigation }} />
             </Wrapper>
           </ElementRefsProvider>

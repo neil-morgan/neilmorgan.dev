@@ -5,7 +5,7 @@ import { kebabCase } from "lodash";
 import { Icon } from "../Icon";
 import type { TextProps } from "./types";
 import { Element, Anchor } from "./styles";
-import type { DivElementRefType } from "@/types";
+import type { DivElementRefType } from "@/service";
 
 export const Text = forwardRef(
   (
@@ -19,7 +19,7 @@ export const Text = forwardRef(
       style,
       print = false,
       color,
-      textAlign = "left",
+      textAlign = "inherit",
     }: React.PropsWithChildren<TextProps>,
     ref: DivElementRefType,
   ) => {

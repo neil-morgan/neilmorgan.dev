@@ -27,23 +27,33 @@ export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
           gradientTransform="matrix(1 0 0 1 0 300)">
           <stop
             offset={0}
-            style={{ stopColor: colors.primary1, stopOpacity: "0.37" }}
+            style={{ stopColor: colors.primary1, stopOpacity: 0.37 }}
           />
           <stop
             offset="0.35"
             style={{ stopColor: colors.layer2, stopOpacity: 0 }}
           />
         </linearGradient>
+
+        <clipPath id="myClip">
+          <path
+            d="M0,100 L1920,0 L0,0 v100 z"
+            fillRule="evenodd"
+            fill="#ffffff"
+          />
+        </clipPath>
       </defs>
 
       <path
+        clipPath="url(#myClip)"
         fill="url(#highlight)"
         fillRule="evenodd"
         clipRule="evenodd"
         d="M1920,100L0,0v100H1920z"
       />
+
       <path
-        fill={colors.layer2}
+        fill={`${colors.layer2}05`}
         fillRule="evenodd"
         clipRule="evenodd"
         d="M0,100L1920,0v110H0V100z"

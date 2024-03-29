@@ -1,4 +1,4 @@
-import type { NavigationType } from "@/types";
+import type { NavigationType } from "@/service";
 
 export type FooterProps = {
   content: {

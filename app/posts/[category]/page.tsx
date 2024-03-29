@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import { CategoryMetaProps } from "@/types";
 import { PostsTemplate } from "@/components/templates";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
   PostCategoryDocument,
   PostsByCategoryDocument,
-  type PostCategory,
-  type Post,
   PostsDocument,
-} from "@/graphql";
-import type { GroupedPostType } from "@/types";
+  type CategoryMetaProps,
+  type GroupedPostType,
+  type Post,
+  type PostCategory,
+} from "@/service";
 import { fetchContent } from "@/helpers";
 
 const tags = ["post"];
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
     },
   });
   return {
-    title: `${PAGE_TITLE_PREFIX}${data?.postCategory?.items[0]?.title} posts`,
+    title: `${PAGE_TITLE_PREFIX} | ${data?.postCategory?.items[0]?.title} posts`,
   };
 }
 

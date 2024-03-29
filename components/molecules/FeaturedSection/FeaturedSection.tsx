@@ -1,5 +1,5 @@
 import { Wrapper, Body } from "./styles";
-import { BackgroundSlice } from "@/components/atoms";
+import { BackgroundSlice, Container, Text, Button } from "@/components/atoms";
 
 export const FeaturedSection = ({ children }: React.PropsWithChildren) => (
   <Wrapper>

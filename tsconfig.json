@@ -29,7 +29,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "environment.d.ts"
+    "environment.d.ts",
+    "components/organisms/DnaHologramAnimation/index.ts",
+    "components/organisms/DnaHologramAnimation/Base.tsx"
   ],
   "exclude": ["node_modules"]
 }

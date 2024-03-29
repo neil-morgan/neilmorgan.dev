@@ -1,5 +1,5 @@
 import type { CSS } from "@stitches/react";
-import type { ColorType } from "@/types";
+import type { ColorType } from "@/service";
 
 export type ButtonProps = {
   children: React.ReactNode;

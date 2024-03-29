@@ -4,7 +4,7 @@ import { mergeRefs } from "react-merge-refs";
 import type { ButtonProps } from "./types";
 import { ButtonElement } from "./styles";
 import { ConditionalWrapper, Icon } from "@/components/atoms";
-import type { ButtonElementRefType } from "@/types";
+import type { ButtonElementRefType } from "@/service";
 import { useElementRefs } from "@/providers";
 
 export const Button = forwardRef(

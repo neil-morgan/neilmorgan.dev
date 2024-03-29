@@ -1,5 +1,5 @@
-import type { NavigationType } from "@/types";
-import type { SocialItemFragment } from "@/graphql";
+import type { NavigationType } from "@/service";
+import type { SocialItemFragment } from "@/service";
 
 export type HeaderProps = {
   content: {

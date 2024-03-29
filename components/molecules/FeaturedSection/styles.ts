@@ -5,9 +5,14 @@ export const Wrapper = styled("section", {
 });
 
 export const Body = styled("div", {
-  background: "$layer2",
+  background: "transparent",
   minHeight: "30vh",
   padding: "$6 0",
+
+  "@md": {
+    padding: "$9 0",
+  },
+
   "> * ": {
     position: "relative",
     zIndex: 2,
