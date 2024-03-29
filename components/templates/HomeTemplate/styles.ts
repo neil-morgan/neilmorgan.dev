@@ -3,8 +3,10 @@ import { styled } from "@/lib/stitches";
 export const IntroWrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
   "@md": {
     flexDirection: "row",
+    alignItems: "flex-start",
   },
 });
 
@@ -13,7 +15,6 @@ export const IntroDetails = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   maxWidth: "100%",
-  minWidth: "360px",
   width: "100%",
   textAlign: "center",
   marginBottom: "$9",
@@ -21,14 +22,14 @@ export const IntroDetails = styled("div", {
 
   "@md": {
     maxWidth: "600px",
-    marginTop: "$9",
+    marginTop: "$11",
     textAlign: "left",
     alignItems: "flex-start",
   },
 
   "@lg": {
     marginBottom: 0,
-    marginTop: "$11",
+    
   },
 });
 
