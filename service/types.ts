@@ -9,6 +9,8 @@ import type {
   ResourceLink,
 } from "@/service";
 
+type WithoutDollarSign<T> = T extends `$${infer Rest}` ? Rest : T;
+
 export type ImagesMap = { [title: string]: string };
 
 export type CategoryType = {
@@ -122,6 +124,8 @@ export type ColorType =
   | "$border"
   | "$borderHover"
   | "$highlightHover";
+
+export type CorrectedColorType = WithoutDollarSign<ColorType>;
 
 // space: {
 //   0: "0rem", // 0px

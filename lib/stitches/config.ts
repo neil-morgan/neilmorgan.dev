@@ -1,6 +1,7 @@
 import { createStitches, globalCss } from "@stitches/react";
 import { tealDark } from "@radix-ui/colors";
 import { BREAKPOINTS } from "@/lib/site";
+import type { CorrectedColorType } from "@/service";
 
 export const globalStyles = globalCss({
   html: {
@@ -21,7 +22,7 @@ export const globalStyles = globalCss({
   "*, *::before, *::after": { boxSizing: "inherit", margin: 0, padding: 0 },
 });
 
-export const colors = {
+export const colors: { [K in CorrectedColorType]: string } = {
   white: "#ffffff",
   black: "#000000",
   layer1: "#0D141F",
