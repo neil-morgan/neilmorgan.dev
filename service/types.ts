@@ -9,6 +9,8 @@ import type {
   ResourceLink,
 } from "@/service";
 
+type WithoutDollarSign<T> = T extends `$${infer Rest}` ? Rest : T;
+
 export type ImagesMap = { [title: string]: string };
 
 export type CategoryType = {
@@ -123,26 +125,26 @@ export type ColorType =
   | "$borderHover"
   | "$highlightHover";
 
-// space: {
-//   0: "0rem", // 0px
-//   1: "0.25rem", // 4px
-//   2: "0.5rem", // 8px
-//   3: "0.75rem", // 12px
-//   4: "1rem", // 16px
-//   5: "1.5rem", // 24px
-//   6: "2rem", // 32px
-//   7: "2.5rem", // 40px
-//   8: "3rem", // 48px
-//   9: "3.5rem", // 56px
-//   10: "4rem", // 64px
-//   11: "6rem", // 96px
-//   12: "8rem", // 128px
-//   13: "16rem", // 256px
-//   14: "24rem", // 384px
-//   15: "32rem", // 512px
-// },
+export type CorrectedColorType = WithoutDollarSign<ColorType>;
 
-export type GapType =
+export type SpacingOptionsType =
+  | "$1"
+  | "$2"
+  | "$3"
+  | "$4"
+  | "$5"
+  | "$6"
+  | "$7"
+  | "$8"
+  | "$9"
+  | "$10"
+  | "$11"
+  | "$12"
+  | "$13"
+  | "$14"
+  | "$15";
+
+export type GapOptionsType =
   | "$0"
   | "$1"
   | "$2"
