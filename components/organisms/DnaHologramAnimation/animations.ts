@@ -1,6 +1,6 @@
 import { colors } from "@/lib/stitches";
 
-export const glowTransitionPreset: {
+const glowTransitionPreset: {
   duration: number;
   repeat: number;
   repeatType: "reverse";

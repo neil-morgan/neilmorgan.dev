@@ -12,13 +12,8 @@
     "type-check": "tsc -b",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
-    "prepare": "husky install"
-  },
-  "ts-prune": {
-    "ignore": [
-      "service/generated.ts",
-      "service/index.ts"
-    ]
+    "prepare": "husky install",
+    "find-dead-code": "ts-prune --ignore service/index.ts"
   },
   "browser": {
     "fs": false,
