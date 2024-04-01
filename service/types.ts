@@ -127,6 +127,7 @@ export type ColorType =
 
 export type CorrectedColorType = WithoutDollarSign<ColorType>;
 
+export type Foo = "";
 // space: {
 //   0: "0rem", // 0px
 //   1: "0.25rem", // 4px

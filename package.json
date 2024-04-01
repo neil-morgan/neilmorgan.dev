@@ -14,6 +14,12 @@
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w",
     "prepare": "husky install"
   },
+  "ts-prune": {
+    "ignore": [
+      "service/generated.ts",
+      "service/index.ts"
+    ]
+  },
   "browser": {
     "fs": false,
     "os": false,

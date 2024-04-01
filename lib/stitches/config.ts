@@ -8,13 +8,10 @@ export const globalStyles = globalCss({
     height: "100%",
     boxSizing: "border-box",
     transition: "$theme",
-    scrollBehavior: "smooth",
-    overscrollBehaviorY: "none",
     fontFamily: "var(--font-inter)",
   },
   body: {
     height: "100%",
-    overscrollBehaviorY: "none",
     backgroundColor: "$layer1",
     color: "$text",
   },
