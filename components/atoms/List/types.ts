@@ -1,8 +1,8 @@
 import type { CSS } from "@stitches/react";
-import type { GapType } from "@/service";
+import type { GapOptionsType } from "@/service";
 
 export type ListProps = {
-  gap?: GapType;
+  gap?: GapOptionsType;
   css?: CSS;
   format?: "bullets" | "numbers";
 };

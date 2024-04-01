@@ -1,4 +1,4 @@
-import type { Spacing } from "@/lib/stitches";
+import type { SpacingOptionsType } from "@/service";
 
 export type PopoverProps = {
   children: React.ReactNode;
@@ -7,8 +7,8 @@ export type PopoverProps = {
   withArrow?: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<number | false>>;
   columns?: number;
-  padding?: Spacing;
-  gap?: Spacing;
+  padding?: SpacingOptionsType;
+  gap?: SpacingOptionsType;
 } & (
   | { anchor: React.ReactNode; trigger?: never }
   | { trigger: React.ReactNode; anchor?: never }
