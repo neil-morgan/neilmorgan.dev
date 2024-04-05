@@ -50,4 +50,5 @@ export const PopoverContent = styled("div", {
   width: "100%",
   borderRadius: "$default",
   backgroundColor: "$layer3",
+  border: "solid 2px $border",
 });

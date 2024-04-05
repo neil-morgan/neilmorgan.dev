@@ -24,7 +24,7 @@ export const colors: { [K in CorrectedColorType]: string } = {
   black: "#000000",
   layer1: "#0D141F",
   layer2: "#111A27",
-  layer3: "#182434",
+  layer3: "#262E37",
   primary1: tealDark.teal11,
   primary2: `${tealDark.teal8}50`,
   secondary1: "#9EB1FF",

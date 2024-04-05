@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import { CONTENTFUL_SPACE_URL } from "@/lib/site";
-import { type TypedDocumentString } from "@/service";
+import type { TypedDocumentString } from "@/service";
 
 const {
   CONTENTFUL_SPACE_ID,

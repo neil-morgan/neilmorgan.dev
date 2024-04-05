@@ -27,7 +27,11 @@ export const MobileNav = ({
       }>
       {items.map(({ title, slug, list }, i) => (
         <div key={i}>
-          <Button href={slug} size="md" asLink>
+          <Button
+            href={slug}
+            size="md"
+            onClick={() => setOpenItem(false)}
+            asLink>
             {title}
           </Button>
           {list && (

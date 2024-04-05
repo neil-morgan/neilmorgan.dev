@@ -54,18 +54,23 @@ export type GroupedSkillType = {
   items: GroupedByProficiencyType<Skill>[];
 };
 
-export type NavigationType = {
-  title: string;
-  slug: string;
-  list: {
-    options:
-      | {
-          title: string | null | undefined;
+export type NavigationType = (
+  | {
+      title: string;
+      slug: string;
+      list?: undefined;
+    }
+  | {
+      title: string;
+      slug: string;
+      list: {
+        options: {
+          title: string;
           slug: string;
-        }[]
-      | undefined;
-  };
-}[];
+        }[];
+      };
+    }
+)[];
 
 export type CategoryMetaProps = {
   params: { category: string };
