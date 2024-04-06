@@ -29,7 +29,7 @@ export const fetchContent = async <Result, Variables>({
       method: "POST",
       body: JSON.stringify({
         query: document.toString(),
-        variables: variables || {},
+        variables: { ...variables, preview } || {},
       }),
       next: { tags },
       headers: {

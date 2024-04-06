@@ -58,17 +58,15 @@ export type NavigationType = (
   | {
       title: string;
       slug: string;
-      list?: undefined;
+      options?: undefined;
     }
   | {
       title: string;
       slug: string;
-      list: {
-        options: {
-          title: string;
-          slug: string;
-        }[];
-      };
+      options: {
+        title: string;
+        slug: string;
+      }[];
     }
 )[];
 

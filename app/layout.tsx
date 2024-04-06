@@ -9,11 +9,13 @@ import { IconDefs } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
+  SkillsDocument,
   type Post,
+  type Skill,
   type SocialItemFragment,
 } from "@/service";
 import { Header, Footer } from "@/components/organisms";
-import { fetchContent, extractCategories } from "@/helpers";
+import { fetchContent, extractCategories, buildNavigation } from "@/helpers";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -30,33 +32,33 @@ export const firaMono = Fira_Mono({
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
-  const { isEnabled } = draftMode();
+  const { isEnabled: preview } = draftMode();
+
   const socialData = fetchContent({
     document: SocialItemsDocument,
   });
   const postsData = fetchContent({
     document: PostsDocument,
-    preview: isEnabled,
-    variables: { preview: isEnabled },
+    preview,
   });
-  const [posts, socialItems] = await Promise.all([postsData, socialData]);
+  const skillsData = fetchContent({
+    document: SkillsDocument,
+    preview,
+  });
 
-  const social = socialItems?.socialItemCollection
+  const [posts, social, skills] = await Promise.all([
+    postsData,
+    socialData,
+    skillsData,
+  ]);
+
+  const socialItems = social?.socialItemCollection
     ?.items as SocialItemFragment[];
-  const postCategories = extractCategories(posts.posts?.items as Post[]);
 
-  const navigation = [
-    {
-      title: "Posts",
-      slug: "/posts",
-      list: {
-        options: postCategories?.map(category => ({
-          title: category?.title,
-          slug: `/posts/${category?.slug}`,
-        })),
-      },
-    },
-  ];
+  const navigation = buildNavigation(
+    extractCategories(posts.posts?.items as Post[]),
+    extractCategories(skills.skills?.items as Skill[]),
+  );
 
   return (
     <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>
@@ -67,10 +69,10 @@ export default async function RootLayout({
           <ElementRefsProvider>
             <IconDefs />
             {process.env.NODE_ENV === "development" && (
-              <ToggleDraftMode isEnabled={isEnabled} />
+              <ToggleDraftMode isEnabled={preview} />
             )}
             <Wrapper>
-              <Header content={{ navigation, social }} />
+              <Header content={{ navigation, socialItems }} />
               <Main>
                 {children}
                 <PointerGlow />

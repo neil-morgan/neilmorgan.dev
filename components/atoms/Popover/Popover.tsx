@@ -17,7 +17,9 @@ export const Popover = ({
   gap,
   columns = 1,
 }: PropsWithChildren<PopoverProps>) => {
-  const handleClose = () => setOpen && setOpen(false);
+  const handleClose = () => {
+    setOpen && setOpen(false);
+  };
   const gridTemplateColumns = Array(columns).fill("1fr").join(" ");
 
   return (

@@ -14,13 +14,13 @@ export const Header = ({ content }: HeaderProps) => {
       <Container>
         <DesktopNav
           items={content.navigation}
-          social={content.social}
+          social={content.socialItems}
           openItem={openItem}
           setOpenItem={setOpenItem}
         />
         <MobileNav
           items={content.navigation}
-          social={content.social}
+          social={content.socialItems}
           openItem={openItem}
           setOpenItem={setOpenItem}
         />

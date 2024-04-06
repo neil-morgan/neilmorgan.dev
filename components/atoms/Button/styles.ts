@@ -41,7 +41,7 @@ export const ButtonElement = styled("button", {
       true: {
         border: "solid 2px $border",
         "&:hover": {
-          borderColor: "borderHover",
+          borderColor: "$borderHover",
           background: "$highlightHover",
         },
       },

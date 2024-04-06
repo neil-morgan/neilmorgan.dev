@@ -1651,6 +1651,13 @@ export type PostsByCategoryQueryVariables = Exact<{
 
 export type PostsByCategoryQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
 
+export type SkillsQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SkillsQuery = { __typename?: 'Query', skills: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, proficiency: string | null, category: { __typename?: 'SkillCategory', title: string | null, slug: string | null } | null } | null> } | null };
+
 export type SocialItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1857,6 +1864,20 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
   title
   slug
 }`) as unknown as TypedDocumentString<PostsByCategoryQuery, PostsByCategoryQueryVariables>;
+export const SkillsDocument = new TypedDocumentString(`
+    query Skills($preview: Boolean = false) {
+  skills: skillCollection(preview: $preview) {
+    items {
+      title
+      category {
+        title
+        slug
+      }
+      proficiency
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SkillsQuery, SkillsQueryVariables>;
 export const SocialItemsDocument = new TypedDocumentString(`
     query SocialItems {
   socialItemCollection {
