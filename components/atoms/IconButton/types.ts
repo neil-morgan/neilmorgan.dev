@@ -1,11 +1,12 @@
 import type { CSS } from "@stitches/react";
+import type { MouseEvent } from "react";
 
 export type IconButtonProps = {
   css?: CSS;
   target?: string;
   href?: string | null;
   isExternal?: boolean;
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   icon?: string;
   size?: "sm" | "md" | "lg";
   disabled?: boolean;

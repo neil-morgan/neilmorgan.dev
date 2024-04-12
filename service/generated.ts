@@ -172,6 +172,7 @@ export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection: Maybe<EntryCollection>;
   postCollection: Maybe<PostCollection>;
+  skillCollection: Maybe<SkillCollection>;
 };
 
 
@@ -184,6 +185,14 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 
 
 export type AssetLinkingCollectionsPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsSkillCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale: InputMaybe<Scalars['String']['input']>;
   preview: InputMaybe<Scalars['Boolean']['input']>;
@@ -848,6 +857,8 @@ export type PostTagsCollection = {
 };
 
 export enum PostTagsCollectionOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
   ProficiencyAsc = 'proficiency_ASC',
   ProficiencyDesc = 'proficiency_DESC',
   SlugAsc = 'slug_ASC',
@@ -877,8 +888,6 @@ export type Query = {
   postCategoryCollection: Maybe<PostCategoryCollection>;
   postCollection: Maybe<PostCollection>;
   skill: Maybe<Skill>;
-  skillCategory: Maybe<SkillCategory>;
-  skillCategoryCollection: Maybe<SkillCategoryCollection>;
   skillCollection: Maybe<SkillCollection>;
   snippet: Maybe<Snippet>;
   snippetCollection: Maybe<SnippetCollection>;
@@ -979,23 +988,6 @@ export type QuerySkillArgs = {
 };
 
 
-export type QuerySkillCategoryArgs = {
-  id: Scalars['String']['input'];
-  locale: InputMaybe<Scalars['String']['input']>;
-  preview: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type QuerySkillCategoryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale: InputMaybe<Scalars['String']['input']>;
-  order: InputMaybe<Array<InputMaybe<SkillCategoryOrder>>>;
-  preview: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where: InputMaybe<SkillCategoryFilter>;
-};
-
-
 export type QuerySkillCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale: InputMaybe<Scalars['String']['input']>;
@@ -1052,21 +1044,35 @@ export type ResourceSys = {
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
 export type Skill = Entry & {
   __typename?: 'Skill';
-  category: Maybe<SkillCategory>;
+  body: Maybe<SkillBody>;
   contentfulMetadata: ContentfulMetadata;
+  description: Maybe<Scalars['String']['output']>;
+  icon: Maybe<Asset>;
   linkedFrom: Maybe<SkillLinkingCollections>;
   proficiency: Maybe<Scalars['String']['output']>;
   slug: Maybe<Scalars['String']['output']>;
   sys: Sys;
+  tagsCollection: Maybe<SkillTagsCollection>;
   title: Maybe<Scalars['String']['output']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
-export type SkillCategoryArgs = {
+export type SkillBodyArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
+export type SkillDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
+export type SkillIconArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
   preview: InputMaybe<Scalars['Boolean']['input']>;
-  where: InputMaybe<SkillCategoryFilter>;
 };
 
 
@@ -1089,121 +1095,68 @@ export type SkillSlugArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
+export type SkillTagsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  order: InputMaybe<Array<InputMaybe<SkillTagsCollectionOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<SkillFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
 export type SkillTitleArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skillCategory) */
-export type SkillCategory = Entry & {
-  __typename?: 'SkillCategory';
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<SkillCategoryLinkingCollections>;
-  slug: Maybe<Scalars['String']['output']>;
-  sys: Sys;
-  title: Maybe<Scalars['String']['output']>;
+export type SkillBody = {
+  __typename?: 'SkillBody';
+  json: Scalars['JSON']['output'];
+  links: SkillBodyLinks;
 };
 
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skillCategory) */
-export type SkillCategoryLinkedFromArgs = {
-  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+export type SkillBodyAssets = {
+  __typename?: 'SkillBodyAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
 };
 
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skillCategory) */
-export type SkillCategorySlugArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
+export type SkillBodyEntries = {
+  __typename?: 'SkillBodyEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
 };
 
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skillCategory) */
-export type SkillCategoryTitleArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
+export type SkillBodyLinks = {
+  __typename?: 'SkillBodyLinks';
+  assets: SkillBodyAssets;
+  entries: SkillBodyEntries;
+  resources: SkillBodyResources;
 };
 
-export type SkillCategoryCollection = {
-  __typename?: 'SkillCategoryCollection';
-  items: Array<Maybe<SkillCategory>>;
-  limit: Scalars['Int']['output'];
-  skip: Scalars['Int']['output'];
-  total: Scalars['Int']['output'];
+export type SkillBodyResources = {
+  __typename?: 'SkillBodyResources';
+  block: Array<SkillBodyResourcesBlock>;
+  hyperlink: Array<SkillBodyResourcesHyperlink>;
+  inline: Array<SkillBodyResourcesInline>;
 };
 
-export type SkillCategoryFilter = {
-  AND: InputMaybe<Array<InputMaybe<SkillCategoryFilter>>>;
-  OR: InputMaybe<Array<InputMaybe<SkillCategoryFilter>>>;
-  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
-  slug: InputMaybe<Scalars['String']['input']>;
-  slug_contains: InputMaybe<Scalars['String']['input']>;
-  slug_exists: InputMaybe<Scalars['Boolean']['input']>;
-  slug_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  slug_not: InputMaybe<Scalars['String']['input']>;
-  slug_not_contains: InputMaybe<Scalars['String']['input']>;
-  slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  sys: InputMaybe<SysFilter>;
-  title: InputMaybe<Scalars['String']['input']>;
-  title_contains: InputMaybe<Scalars['String']['input']>;
-  title_exists: InputMaybe<Scalars['Boolean']['input']>;
-  title_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  title_not: InputMaybe<Scalars['String']['input']>;
-  title_not_contains: InputMaybe<Scalars['String']['input']>;
-  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+export type SkillBodyResourcesBlock = ResourceLink & {
+  __typename?: 'SkillBodyResourcesBlock';
+  sys: ResourceSys;
 };
 
-export type SkillCategoryLinkingCollections = {
-  __typename?: 'SkillCategoryLinkingCollections';
-  entryCollection: Maybe<EntryCollection>;
-  skillCollection: Maybe<SkillCollection>;
+export type SkillBodyResourcesHyperlink = ResourceLink & {
+  __typename?: 'SkillBodyResourcesHyperlink';
+  sys: ResourceSys;
 };
 
-
-export type SkillCategoryLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale: InputMaybe<Scalars['String']['input']>;
-  preview: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+export type SkillBodyResourcesInline = ResourceLink & {
+  __typename?: 'SkillBodyResourcesInline';
+  sys: ResourceSys;
 };
-
-
-export type SkillCategoryLinkingCollectionsSkillCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale: InputMaybe<Scalars['String']['input']>;
-  order: InputMaybe<Array<InputMaybe<SkillCategoryLinkingCollectionsSkillCollectionOrder>>>;
-  preview: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export enum SkillCategoryLinkingCollectionsSkillCollectionOrder {
-  ProficiencyAsc = 'proficiency_ASC',
-  ProficiencyDesc = 'proficiency_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
-
-export enum SkillCategoryOrder {
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
 
 export type SkillCollection = {
   __typename?: 'SkillCollection';
@@ -1216,9 +1169,18 @@ export type SkillCollection = {
 export type SkillFilter = {
   AND: InputMaybe<Array<InputMaybe<SkillFilter>>>;
   OR: InputMaybe<Array<InputMaybe<SkillFilter>>>;
-  category: InputMaybe<CfSkillCategoryNestedFilter>;
-  category_exists: InputMaybe<Scalars['Boolean']['input']>;
+  body_contains: InputMaybe<Scalars['String']['input']>;
+  body_exists: InputMaybe<Scalars['Boolean']['input']>;
+  body_not_contains: InputMaybe<Scalars['String']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars['String']['input']>;
+  description_contains: InputMaybe<Scalars['String']['input']>;
+  description_exists: InputMaybe<Scalars['Boolean']['input']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not: InputMaybe<Scalars['String']['input']>;
+  description_not_contains: InputMaybe<Scalars['String']['input']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_exists: InputMaybe<Scalars['Boolean']['input']>;
   proficiency: InputMaybe<Scalars['String']['input']>;
   proficiency_contains: InputMaybe<Scalars['String']['input']>;
   proficiency_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1234,6 +1196,8 @@ export type SkillFilter = {
   slug_not_contains: InputMaybe<Scalars['String']['input']>;
   slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys: InputMaybe<SysFilter>;
+  tags: InputMaybe<CfSkillNestedFilter>;
+  tagsCollection_exists: InputMaybe<Scalars['Boolean']['input']>;
   title: InputMaybe<Scalars['String']['input']>;
   title_contains: InputMaybe<Scalars['String']['input']>;
   title_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1247,6 +1211,7 @@ export type SkillLinkingCollections = {
   __typename?: 'SkillLinkingCollections';
   entryCollection: Maybe<EntryCollection>;
   postCollection: Maybe<PostCollection>;
+  skillCollection: Maybe<SkillCollection>;
 };
 
 
@@ -1262,6 +1227,15 @@ export type SkillLinkingCollectionsPostCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale: InputMaybe<Scalars['String']['input']>;
   order: InputMaybe<Array<InputMaybe<SkillLinkingCollectionsPostCollectionOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type SkillLinkingCollectionsSkillCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  order: InputMaybe<Array<InputMaybe<SkillLinkingCollectionsSkillCollectionOrder>>>;
   preview: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -1285,7 +1259,55 @@ export enum SkillLinkingCollectionsPostCollectionOrder {
   TitleDesc = 'title_DESC'
 }
 
+export enum SkillLinkingCollectionsSkillCollectionOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ProficiencyAsc = 'proficiency_ASC',
+  ProficiencyDesc = 'proficiency_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 export enum SkillOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ProficiencyAsc = 'proficiency_ASC',
+  ProficiencyDesc = 'proficiency_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type SkillTagsCollection = {
+  __typename?: 'SkillTagsCollection';
+  items: Array<Maybe<Skill>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum SkillTagsCollectionOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
   ProficiencyAsc = 'proficiency_ASC',
   ProficiencyDesc = 'proficiency_DESC',
   SlugAsc = 'slug_ASC',
@@ -1558,32 +1580,21 @@ export type CfPostCategoryNestedFilter = {
   title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type CfSkillCategoryNestedFilter = {
-  AND: InputMaybe<Array<InputMaybe<CfSkillCategoryNestedFilter>>>;
-  OR: InputMaybe<Array<InputMaybe<CfSkillCategoryNestedFilter>>>;
-  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
-  slug: InputMaybe<Scalars['String']['input']>;
-  slug_contains: InputMaybe<Scalars['String']['input']>;
-  slug_exists: InputMaybe<Scalars['Boolean']['input']>;
-  slug_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  slug_not: InputMaybe<Scalars['String']['input']>;
-  slug_not_contains: InputMaybe<Scalars['String']['input']>;
-  slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  sys: InputMaybe<SysFilter>;
-  title: InputMaybe<Scalars['String']['input']>;
-  title_contains: InputMaybe<Scalars['String']['input']>;
-  title_exists: InputMaybe<Scalars['Boolean']['input']>;
-  title_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  title_not: InputMaybe<Scalars['String']['input']>;
-  title_not_contains: InputMaybe<Scalars['String']['input']>;
-  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
 export type CfSkillNestedFilter = {
   AND: InputMaybe<Array<InputMaybe<CfSkillNestedFilter>>>;
   OR: InputMaybe<Array<InputMaybe<CfSkillNestedFilter>>>;
-  category_exists: InputMaybe<Scalars['Boolean']['input']>;
+  body_contains: InputMaybe<Scalars['String']['input']>;
+  body_exists: InputMaybe<Scalars['Boolean']['input']>;
+  body_not_contains: InputMaybe<Scalars['String']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars['String']['input']>;
+  description_contains: InputMaybe<Scalars['String']['input']>;
+  description_exists: InputMaybe<Scalars['Boolean']['input']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not: InputMaybe<Scalars['String']['input']>;
+  description_not_contains: InputMaybe<Scalars['String']['input']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  icon_exists: InputMaybe<Scalars['Boolean']['input']>;
   proficiency: InputMaybe<Scalars['String']['input']>;
   proficiency_contains: InputMaybe<Scalars['String']['input']>;
   proficiency_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1599,6 +1610,7 @@ export type CfSkillNestedFilter = {
   slug_not_contains: InputMaybe<Scalars['String']['input']>;
   slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys: InputMaybe<SysFilter>;
+  tagsCollection_exists: InputMaybe<Scalars['Boolean']['input']>;
   title: InputMaybe<Scalars['String']['input']>;
   title_contains: InputMaybe<Scalars['String']['input']>;
   title_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1627,7 +1639,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SkillCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SkillCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type PostCategoryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -1649,7 +1661,22 @@ export type PostsByCategoryQueryVariables = Exact<{
 }>;
 
 
-export type PostsByCategoryQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
+export type PostsByCategoryQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
+
+export type SkillQueryVariables = Exact<{
+  slug: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, icon: { __typename?: 'Asset', url: string | null, title: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+
+export type SkillsQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SkillsQuery = { __typename?: 'Query', skills: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, proficiency: string | null, icon: { __typename?: 'Asset', url: string | null, title: string | null } | null, tagsCollection: { __typename?: 'SkillTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
 
 export type SocialItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1842,6 +1869,11 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
       description
       date
       slug
+      image {
+        title
+        url
+        description
+      }
       tagsCollection {
         items {
           title
@@ -1857,6 +1889,71 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
   title
   slug
 }`) as unknown as TypedDocumentString<PostsByCategoryQuery, PostsByCategoryQueryVariables>;
+export const SkillDocument = new TypedDocumentString(`
+    query Skill($slug: String, $preview: Boolean = false) {
+  skill: skillCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
+    items {
+      title
+      slug
+      description
+      icon {
+        url
+        title
+      }
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+            }
+          }
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SkillQuery, SkillQueryVariables>;
+export const SkillsDocument = new TypedDocumentString(`
+    query Skills($preview: Boolean = false) {
+  skills: skillCollection(preview: $preview) {
+    items {
+      title
+      slug
+      proficiency
+      icon {
+        url
+        title
+      }
+      tagsCollection {
+        items {
+          title
+          slug
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<SkillsQuery, SkillsQueryVariables>;
 export const SocialItemsDocument = new TypedDocumentString(`
     query SocialItems {
   socialItemCollection {

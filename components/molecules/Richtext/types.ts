@@ -3,7 +3,7 @@ import type { RichtextType, ImagesMap } from "@/service";
 
 export type RichtextProps = {
   content: RichtextType;
-  setCurrentId: (id: string) => void;
+  setCurrentId?: (id: string) => void;
   base64Map?: ImagesMap;
 };
 export type RichtextNodeType = Block | Inline;

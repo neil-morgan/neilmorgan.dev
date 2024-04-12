@@ -1,3 +1,5 @@
+"use client"
+
 import type { ContentPresentationProps } from "./types";
 import { ContentDetails, ContentWrapper, ContentHeader } from "./styles";
 import { Text, Button, AspectImage, Tag, TagList } from "@/components/atoms";

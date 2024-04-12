@@ -8,7 +8,7 @@ export const Wrapper = styled("nav", {
   gridTemplateColumns: "repeat(5, 1fr)",
 
   "@md": {
-    display: "grid",
+    display: "flex",
   },
 });
 
@@ -16,12 +16,19 @@ export const List = styled("ul", {
   display: "flex",
   justifyContent: "center",
   listStyle: "none",
-  gridColumn: "2 / 5",
-  gap: "$6",
+  marginLeft: "$4",
+  gap: "$4",
 });
 
 export const Item = styled("li", {
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
+});
+
+export const SocialItems = styled("ul", {
+  display: "flex",
+  justifyContent: "center",
+  gap: "$4",
+  marginLeft: "auto",
 });

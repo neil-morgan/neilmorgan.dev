@@ -3,7 +3,7 @@
 import { FooterElement, CopyRight } from "./styles";
 import type { FooterProps } from "./types";
 import { Logo } from "@/components/molecules";
-import { Container, Button, Text, List } from "@/components/atoms";
+import { Container, Button, Text, List, Separator } from "@/components/atoms";
 
 export const Footer = ({ content }: FooterProps) => (
   <FooterElement>

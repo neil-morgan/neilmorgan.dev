@@ -2,13 +2,15 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Inter, Fira_Mono } from "next/font/google";
-import { Wrapper, Main } from "./styles";
+import { PageWrapper, Main } from "./styles";
+import { buildNavigation } from "./helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
+  type NavigationType,
   type Post,
   type SocialItemFragment,
 } from "@/service";
@@ -30,33 +32,24 @@ export const firaMono = Fira_Mono({
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
-  const { isEnabled } = draftMode();
+  const { isEnabled: preview } = draftMode();
+
   const socialData = fetchContent({
     document: SocialItemsDocument,
   });
   const postsData = fetchContent({
     document: PostsDocument,
-    preview: isEnabled,
-    variables: { preview: isEnabled },
+    preview,
   });
-  const [posts, socialItems] = await Promise.all([postsData, socialData]);
 
-  const social = socialItems?.socialItemCollection
+  const [posts, social] = await Promise.all([postsData, socialData]);
+
+  const socialItems = social?.socialItemCollection
     ?.items as SocialItemFragment[];
-  const postCategories = extractCategories(posts.posts?.items as Post[]);
 
-  const navigation = [
-    {
-      title: "Posts",
-      slug: "/posts",
-      list: {
-        options: postCategories?.map(category => ({
-          title: category?.title,
-          slug: `/posts/${category?.slug}`,
-        })),
-      },
-    },
-  ];
+  const navigation = buildNavigation(
+    extractCategories(posts.posts?.items as Post[]),
+  ) as NavigationType;
 
   return (
     <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>
@@ -67,16 +60,17 @@ export default async function RootLayout({
           <ElementRefsProvider>
             <IconDefs />
             {process.env.NODE_ENV === "development" && (
-              <ToggleDraftMode isEnabled={isEnabled} />
+              <ToggleDraftMode isEnabled={preview} />
             )}
-            <Wrapper>
-              <Header content={{ navigation, social }} />
+            <PageWrapper>
+              <Header content={{ navigation, socialItems }} />
               <Main>
                 {children}
                 <PointerGlow />
               </Main>
+
               <Footer content={{ navigation }} />
-            </Wrapper>
+            </PageWrapper>
           </ElementRefsProvider>
         </StitchesRegistryProvider>
       </body>

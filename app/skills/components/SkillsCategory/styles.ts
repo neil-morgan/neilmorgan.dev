@@ -10,18 +10,16 @@ export const Header = styled("header", {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginBottom: "$7",
+  marginBottom: "$6",
 });
 
-export const Grid = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "repeat(1, 1fr)",
-  gridColumnGap: "$6",
-  gridRowGap: "$9",
+export const Row = styled("div", {
+  display: "flex",
+  gap: "$4",
+  flexWrap: "wrap",
+  justifyContent: "flex-start",
+
   "@md": {
-    gridTemplateColumns: "repeat(2, 1fr)",
-  },
-  "@lg": {
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "$6",
   },
 });

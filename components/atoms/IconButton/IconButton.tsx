@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { forwardRef, useRef, useEffect } from "react";
+import { forwardRef, useRef, useEffect, type MouseEventHandler } from "react";
 import { mergeRefs } from "react-merge-refs";
 import { ConditionalWrapper } from "../";
 import { IconButtonElement } from "./styles";
@@ -52,7 +52,7 @@ export const IconButton = forwardRef(
           as={href ? "a" : "button"}
           css={css}
           target={target}
-          onClick={onClick}
+          onClick={onClick as MouseEventHandler<HTMLButtonElement>}
           size={size}>
           {children ? children : icon ? <Icon name={icon} /> : null}
         </IconButtonElement>

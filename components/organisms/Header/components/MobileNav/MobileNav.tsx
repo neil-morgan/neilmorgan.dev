@@ -1,7 +1,6 @@
-import { SecondaryItems } from "..";
 import type { MobileNavProps } from "./types";
-import { List, Wrapper } from "./styles";
-import { IconButton, Separator, Popover, Button } from "@/components/atoms";
+import { List, Options, Wrapper, Footer } from "./styles";
+import { IconButton, Popover, Button } from "@/components/atoms";
 import { Logo } from "@/components/molecules";
 
 export const MobileNav = ({
@@ -13,40 +12,52 @@ export const MobileNav = ({
   <Wrapper>
     <Logo isLink />
     <Popover
-      open={openItem === 1}
+      open={openItem === 10}
       setOpen={setOpenItem}
-      padding="$6"
+      padding="$5"
       anchor={
         <IconButton
           css={{
             marginLeft: "auto",
           }}
           icon="Hamburger"
-          onClick={() => setOpenItem(1)}
+          onClick={() => setOpenItem(10)}
         />
       }>
-      {items.map(({ title, slug, list }, i) => (
-        <div key={i}>
-          <Button href={slug} size="md" asLink>
-            {title}
-          </Button>
-          {list && (
-            <List>
-              {list?.options?.map(({ title, slug }, i) => (
-                <Button
-                  key={i}
-                  asLink
-                  href={slug}
-                  onClick={() => setOpenItem(false)}>
-                  {title}
-                </Button>
-              ))}
-            </List>
-          )}
-        </div>
-      ))}
-      <Separator size="md" />
-      <SecondaryItems items={social} />
+      <List>
+        {items.map(({ title, slug, options }, i) => (
+          <div key={i}>
+            <Button
+              href={slug}
+              size="md"
+              onClick={() => setOpenItem(false)}
+              asLink>
+              {title}
+            </Button>
+            {options && (
+              <Options>
+                {options?.map(({ title, slug }, i) => (
+                  <Button
+                    key={i}
+                    asLink
+                    href={slug}
+                    onClick={() => setOpenItem(false)}>
+                    - {title}
+                  </Button>
+                ))}
+              </Options>
+            )}
+          </div>
+        ))}
+      </List>
+
+      <Footer>
+        {social?.map(({ href, title }, index) =>
+          !title ? null : (
+            <IconButton key={index} href={href} target="_blank" icon={title} />
+          ),
+        )}
+      </Footer>
     </Popover>
   </Wrapper>
 );

@@ -1,9 +1,11 @@
-import type { TagType } from "@/service";
+import type { TagType, ImageType } from "@/service";
 
 export type CardProps = {
   description?: string;
   heading: string;
   href: string;
   subHeading?: string;
-  tags: TagType[];
+  tags?: TagType[];
+  image?: ImageType;
+  priority?: "default" | "primary" | "secondary";
 };

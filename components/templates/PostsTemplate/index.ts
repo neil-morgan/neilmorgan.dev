@@ -1,1 +1,0 @@
-export { PostsTemplate } from "./PostsTemplate";

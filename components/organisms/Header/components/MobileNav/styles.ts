@@ -1,7 +1,5 @@
 "use client";
 
-import NextLink from "next/link";
-
 import { styled } from "@/lib/stitches";
 
 export const Wrapper = styled("nav", {
@@ -14,11 +12,25 @@ export const Wrapper = styled("nav", {
   },
 });
 
-export const List = styled("div", {
+export const List = styled("ul", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$5",
+});
+
+export const Options = styled("li", {
   display: "flex",
   flexDirection: "column",
   gap: "$4",
   fontSize: "$3",
-  marginLeft: "$4",
-  marginTop: "$4",
+  marginLeft: "$2",
+  marginTop: "$2",
+});
+
+export const Footer = styled("footer", {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: "$4",
+  width: "100%",
+  marginTop: "$5",
 });
