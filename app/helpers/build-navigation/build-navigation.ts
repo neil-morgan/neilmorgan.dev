@@ -1,6 +1,6 @@
-import type { CategoryType } from "@/service";
+import type { CategoryItemType } from "@/service";
 
-export const buildNavigation = (postCategories: CategoryType[]) => [
+export const buildNavigation = (postCategories: CategoryItemType[]) => [
   {
     title: "Skills",
     slug: "/skills",
