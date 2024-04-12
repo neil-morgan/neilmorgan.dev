@@ -8,6 +8,11 @@ query PostsByCategory($slug: String!, $preview: Boolean = false) {
       description
       date
       slug
+      image {
+        title
+        url
+        description
+      }
       tagsCollection {
         items {
           title

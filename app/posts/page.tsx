@@ -1,4 +1,5 @@
 import { draftMode } from "next/headers";
+import { PostsCategory } from "./components";
 import { PostsDocument, type Post } from "@/service";
 import {
   groupByCategory,
@@ -6,7 +7,7 @@ import {
   extractImagesToBase64Map,
 } from "@/helpers";
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES } from "@/lib/site";
-import { InfoMessage, PageHeader, PostsCategory } from "@/components/molecules";
+import { InfoMessage, PageHeader } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
 
 const tags = ["post"];

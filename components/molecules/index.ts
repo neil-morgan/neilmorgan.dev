@@ -7,6 +7,5 @@ export { Logo } from "./Logo";
 export { PageHeader } from "./PageHeader";
 export { Pod } from "./Pod";
 export { PointerGlow } from "./PointerGlow";
-export { PostsCategory } from "./PostsCategory";
 export { Richtext } from "./Richtext";
 export { ToggleDraftMode } from "./ToggleDraftMode";

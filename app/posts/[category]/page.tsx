@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
+import { PostsCategory } from "../components";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
   PostCategoryDocument,
@@ -8,9 +9,8 @@ import {
   type CategoryMetaProps,
   type Post,
 } from "@/service";
-import { fetchContent } from "@/helpers";
+import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { Container } from "@/components/atoms";
-import { PostsCategory } from "@/components/molecules";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -63,9 +63,11 @@ export default async function PostCategoryPage({
     return notFound();
   }
 
+  const base64Map = await extractImagesToBase64Map(posts);
+
   return (
     <Container>
-      <PostsCategory category={category} items={posts} />
+      <PostsCategory category={category} items={posts} base64Map={base64Map} />
     </Container>
   );
 }

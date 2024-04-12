@@ -42,7 +42,6 @@ export const fetchContent = async <Result, Variables>({
   );
 
   const result = (await response.json()) as GraphQLResponse<Result>;
-  console.log(result);
 
   if ("errors" in result) {
     throw new Error(result.errors.message);
