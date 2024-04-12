@@ -1,13 +1,15 @@
-import type { CategoryConstraintType, CategoryType } from "@/service";
+import type { PostCategoryFragment } from "@/service";
 
-export const extractCategories = <T extends CategoryConstraintType<any>>(
-  items: T[],
-) => {
-  const categories: { [key: string]: CategoryType } = {};
+type ItemWithCategory<T> = T & { category: PostCategoryFragment | null };
+
+export const extractCategories = <T>(items: ItemWithCategory<T>[]) => {
+  const categories: { [key: string]: PostCategoryFragment } = {};
 
   items.forEach(item => {
-    const { title, slug } = item.category as CategoryType;
-    categories[slug] = { title, slug };
+    if (item.category) {
+      const { title, slug } = item.category;
+      categories[slug || ""] = { title, slug };
+    }
   });
 
   return Object.values(categories);
