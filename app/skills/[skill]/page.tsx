@@ -4,8 +4,9 @@ import type { SkillParamsType } from "./types";
 import { Content, Body, Aside, Projects, HeaderWrapper } from "./styles";
 import { SkillDocument, type Skill, type RichtextType } from "@/service";
 import { Container, Text, Separator, AspectImage } from "@/components/atoms";
-import { PageHeader, Richtext, Card } from "@/components/molecules";
+import { PageHeader, Richtext } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
+import { PAGE_TITLE_PREFIX } from "@/lib/site";
 
 const tags = ["skill"];
 export const revalidate = 5;
@@ -32,9 +33,11 @@ export async function generateMetadata({ params }: SkillParamsType) {
     variables: { slug: params.skill, preview: isEnabled },
   });
   const skill = data?.skill?.items[0] as Skill;
-  const title = skill?.title;
-  // const description = skill?.description;
-  return { title: "Skill" };
+
+  return {
+    title: `${PAGE_TITLE_PREFIX} | ${skill?.title}`,
+    description: skill?.description,
+  };
 }
 
 export default async function SkillPage({ params }: SkillParamsType) {
@@ -86,7 +89,7 @@ export default async function SkillPage({ params }: SkillParamsType) {
           </Text>
 
           <Projects>
-            <Text size={0}>Coming soon...</Text>
+            <Text size={0}>Feature coming soon...</Text>
             {/* <Card
               heading="An example project"
               href="/"
