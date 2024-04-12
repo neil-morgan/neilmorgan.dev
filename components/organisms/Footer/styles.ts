@@ -1,19 +1,16 @@
 import { styled } from "@/lib/stitches";
 
 export const FooterElement = styled("footer", {
-  marginBottom: "$10",
+  padding: "$10 0",
+  marginTop: "$6",
 
   "@sm": {
-    marginBottom: "$4",
+    padding: "$4 0",
   },
   "@md": {
-    marginBottom: "$6",
+    padding: "$6 0",
+    marginTop: "$8",
   },
-});
-
-export const Content = styled("div", {
-  display: "flex",
-  justifyContent: "space-between",
 });
 
 export const CopyRight = styled("div", {
