@@ -6,10 +6,11 @@ import { PageWrapper, Main } from "./styles";
 import { buildNavigation } from "./helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
-import { IconDefs, Separator } from "@/components/atoms";
+import { IconDefs } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
+  type NavigationType,
   type Post,
   type SocialItemFragment,
 } from "@/service";
@@ -48,7 +49,7 @@ export default async function RootLayout({
 
   const navigation = buildNavigation(
     extractCategories(posts.posts?.items as Post[]),
-  );
+  ) as NavigationType;
 
   return (
     <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>
