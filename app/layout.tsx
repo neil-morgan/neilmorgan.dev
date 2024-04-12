@@ -6,7 +6,7 @@ import { PageWrapper, Main } from "./styles";
 import { buildNavigation } from "./helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
-import { IconDefs } from "@/components/atoms";
+import { IconDefs, Separator } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
@@ -67,6 +67,7 @@ export default async function RootLayout({
                 {children}
                 <PointerGlow />
               </Main>
+
               <Footer content={{ navigation }} />
             </PageWrapper>
           </ElementRefsProvider>

@@ -3,6 +3,11 @@ query Skill($slug: String, $preview: Boolean = false) {
     items {
       title
       slug
+      description
+      icon {
+        url
+        title
+      }
       body {
         json
         links {

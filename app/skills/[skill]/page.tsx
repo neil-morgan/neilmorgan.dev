@@ -1,9 +1,9 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import type { SkillParamsType } from "./types";
-import { Content, Body, Aside } from "./styles";
+import { Content, Body, Aside, Projects, HeaderWrapper } from "./styles";
 import { SkillDocument, type Skill, type RichtextType } from "@/service";
-import { Container, Text } from "@/components/atoms";
+import { Container, Text, Separator, AspectImage } from "@/components/atoms";
 import { PageHeader, Richtext, Card } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 
@@ -55,33 +55,59 @@ export default async function SkillPage({ params }: SkillParamsType) {
 
   return (
     <Container>
-      {skill.title && (
-        <PageHeader
-          title={skill.title}
-          subTitle="Anim cillum nisi tempor officia pariatur elit."
-        />
-      )}
+      <HeaderWrapper>
+        {skill?.icon?.url && skill.icon.title && (
+          <AspectImage
+            ratio={1}
+            fit="cover"
+            url={skill.icon.url}
+            width={150}
+            description="A cartoon rocket taking off - Image by Andy Hermawan on Unsplash."
+            blurDataUrl={base64Map[skill.icon.title]}
+          />
+        )}
+        {skill.title && (
+          <PageHeader
+            title={skill.title}
+            subTitle={skill.description}
+            kicker="Skill"
+          />
+        )}
+      </HeaderWrapper>
+      <Separator size="xl" />
       <Content>
         <Body>
           <Richtext content={skill?.body as RichtextType} />
         </Body>
+
         <Aside>
           <Text print size={2} weight={600}>
-            Related Projects
+            Notable Projects
           </Text>
-          <Card
-            heading="An example project"
-            href=""
-            description="Pariatur reprehenderit magna est et duis."
-            tags={[
-              {
-                title: "React.js",
-              },
-              {
-                title: "Next.js",
-              },
-            ]}
-          />
+
+          <Projects>
+            <Text size={0}>Coming soon...</Text>
+            {/* <Card
+              heading="An example project"
+              href="/"
+              description="Pariatur reprehenderit magna est et duis."
+              image={{
+                url: "https://images.ctfassets.net/96c2x2gvt3wj/5u52J4iFrUdnuADmpWDKQH/81fc9f739651aec60ed3654dce6506c7/andy-hermawan-bVBvv5xlX3g-unsplash.jpg",
+                description:
+                  "A cartoon rocket taking off - Image by Andy Hermawan on Unsplash.",
+                blurDataUrl:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGNgYJFsq1nUUDqLgUGIQUUt9MfH//ev/eeVMAMAbc8J+bmWxrAAAAAASUVORK5CYII=",
+              }}
+              tags={[
+                {
+                  title: "React.js",
+                },
+                {
+                  title: "Next.js",
+                },
+              ]}
+            /> */}
+          </Projects>
         </Aside>
       </Content>
     </Container>

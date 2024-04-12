@@ -9,8 +9,9 @@ export const AspectImage = ({
   blurDataUrl,
   fit = "contain",
   ratio = 809 / 500,
+  width,
 }: React.PropsWithChildren<AspectImageProps>) => (
-  <AspectImageContainer>
+  <AspectImageContainer css={{ width: `${width}px` }}>
     <Root ratio={ratio}>
       <Image
         src={url}

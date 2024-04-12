@@ -16,6 +16,7 @@ export const Card = ({
   tags,
   image,
 }: CardProps) => {
+  console.log(image);
   const { elementRefs, addElementRef } = useElementRefs();
   const elementRef = useRef<HTMLElement | null>(null);
 

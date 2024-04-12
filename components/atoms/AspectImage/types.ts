@@ -4,4 +4,5 @@ export type AspectImageProps = {
   ratio?: number;
   blurDataUrl?: string;
   fit?: "cover" | "contain";
+  width?: number;
 };

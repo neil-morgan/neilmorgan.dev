@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
-import { SkillsContainer, Proficiency, ProficiencyItems } from "./styles";
 import { sortProficienciesByPriority } from "./helpers";
+import { SkillsCategory } from "./components";
 import { SkillsDocument, type Skill } from "@/service";
 import {
   groupByCategory,
@@ -8,8 +8,8 @@ import {
   extractImagesToBase64Map,
 } from "@/helpers";
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES } from "@/lib/site";
-import { InfoMessage, PageHeader, Pod } from "@/components/molecules";
-import { Container, Text, Separator } from "@/components/atoms";
+import { InfoMessage, PageHeader } from "@/components/molecules";
+import { Container, Separator } from "@/components/atoms";
 
 const tags = ["skill"];
 export const revalidate = 5;
@@ -44,33 +44,17 @@ export default async function SkillsPage() {
         subTitle="Though I am keenly interested in back-end development, my main area of expertise is front-end."
       />
       <Separator size="xl" />
-      <SkillsContainer>
-        {sortProficienciesByPriority(proficiencies).map(
-          ({ category, items }, i) => (
-            <Proficiency key={i}>
-              <Text size={4} as="h2" weight={600} print>
-                {category.title} Skills
-              </Text>
-              <ProficiencyItems>
-                {items.map(({ title, slug, icon }, i) =>
-                  title && icon?.title && icon?.url && slug ? (
-                    <Pod
-                      key={i}
-                      heading={title}
-                      href={`/skills/${slug}`}
-                      image={{
-                        url: icon.url,
-                        description: "",
-                        blurDataUrl: base64Map[icon.title],
-                      }}
-                    />
-                  ) : null,
-                )}
-              </ProficiencyItems>
-            </Proficiency>
-          ),
-        )}
-      </SkillsContainer>
+
+      {sortProficienciesByPriority(proficiencies).map(
+        ({ category, items }, i) => (
+          <SkillsCategory
+            key={i}
+            category={category}
+            items={items}
+            base64Map={base64Map}
+          />
+        ),
+      )}
     </Container>
   );
 }
