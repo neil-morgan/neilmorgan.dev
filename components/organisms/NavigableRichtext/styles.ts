@@ -9,18 +9,13 @@ export const Body = styled("div", {
 export const Content = styled("article", {
   maxWidth: "min(700px, 100%)",
   width: "100%",
-  "& > *": {
-    marginTop: 0,
-
-    "&:not(:last-child)": { marginBottom: "$7" },
-  },
 });
 
 export const Aside = styled("aside", {
   position: "sticky",
   top: "$11",
   height: "100%",
-  gap: "$6",
+  gap: "$4",
   display: "none",
   flexDirection: "column",
   alignItems: "flex-start",

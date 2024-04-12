@@ -2,20 +2,19 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Inter, Fira_Mono } from "next/font/google";
-import { Wrapper, Main } from "./styles";
+import { PageWrapper, Main } from "./styles";
+import { buildNavigation } from "./helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
-  SkillsDocument,
   type Post,
-  type Skill,
   type SocialItemFragment,
 } from "@/service";
 import { Header, Footer } from "@/components/organisms";
-import { fetchContent, extractCategories, buildNavigation } from "@/helpers";
+import { fetchContent, extractCategories } from "@/helpers";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -41,23 +40,14 @@ export default async function RootLayout({
     document: PostsDocument,
     preview,
   });
-  const skillsData = fetchContent({
-    document: SkillsDocument,
-    preview,
-  });
 
-  const [posts, social, skills] = await Promise.all([
-    postsData,
-    socialData,
-    skillsData,
-  ]);
+  const [posts, social] = await Promise.all([postsData, socialData]);
 
   const socialItems = social?.socialItemCollection
     ?.items as SocialItemFragment[];
 
   const navigation = buildNavigation(
     extractCategories(posts.posts?.items as Post[]),
-    extractCategories(skills.skills?.items as Skill[]),
   );
 
   return (
@@ -71,14 +61,14 @@ export default async function RootLayout({
             {process.env.NODE_ENV === "development" && (
               <ToggleDraftMode isEnabled={preview} />
             )}
-            <Wrapper>
+            <PageWrapper>
               <Header content={{ navigation, socialItems }} />
               <Main>
                 {children}
                 <PointerGlow />
               </Main>
               <Footer content={{ navigation }} />
-            </Wrapper>
+            </PageWrapper>
           </ElementRefsProvider>
         </StitchesRegistryProvider>
       </body>

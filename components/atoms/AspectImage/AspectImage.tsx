@@ -7,14 +7,16 @@ export const AspectImage = ({
   url,
   description,
   blurDataUrl,
+  fit = "contain",
   ratio = 809 / 500,
 }: React.PropsWithChildren<AspectImageProps>) => (
   <AspectImageContainer>
     <Root ratio={ratio}>
       <Image
         src={url}
-        alt={description || "A blog post image"}
+        alt={description}
         fill
+        objectFit={fit}
         placeholder="blur"
         blurDataURL={blurDataUrl}
       />

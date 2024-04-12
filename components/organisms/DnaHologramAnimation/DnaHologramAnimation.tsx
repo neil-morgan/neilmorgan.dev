@@ -1,3 +1,5 @@
+"use client";
+
 import { Definitions } from "./Definitions";
 import {
   Body,

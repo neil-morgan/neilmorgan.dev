@@ -6,7 +6,7 @@ import { Aside, Body, List, ListItem, Content } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
 import type { NavigableRichtextProps } from "./types";
 import { Richtext, CopyButton } from "@/components/molecules";
-import { Icon, AspectImage, ExpandedEdge } from "@/components/atoms";
+import { Icon, AspectImage, ExpandedEdge, Text } from "@/components/atoms";
 import { SITE_BASE_URL } from "@/lib/site";
 
 export const NavigableRichtext = ({
@@ -22,9 +22,10 @@ export const NavigableRichtext = ({
     <Body>
       <Content>
         {image?.title && image?.url && image?.description && (
-          <ExpandedEdge>
+          <ExpandedEdge css={{ marginBottom: "$7" }}>
             <AspectImage
               url={image?.url}
+              fit="cover"
               description={image?.description}
               blurDataUrl={base64Map?.[image?.title]}
             />
@@ -37,6 +38,7 @@ export const NavigableRichtext = ({
         />
       </Content>
       <Aside>
+        <Text size={2} print>Content</Text>
         <List>
           {buildRichtextHeadings(content.json.content).map(
             ({ heading, subHeadings }, i1) => (
@@ -48,7 +50,6 @@ export const NavigableRichtext = ({
                     <a href={heading.href}>{heading.label}</a>
                   </ListItem>
                 }
-
                 {subHeadings.length > 0 && (
                   <List>
                     {subHeadings.map(({ heading: subHeading }, i2) => (

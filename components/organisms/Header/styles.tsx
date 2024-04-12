@@ -7,12 +7,13 @@ export const HeaderElement = styled("header", {
   alignItems: "center",
   width: "100%",
   padding: "$2 0",
-  marginBottom: "$10",
+  marginBottom: "$6",
 
   "@sm": {
     padding: "$4 0",
   },
   "@md": {
     padding: "$6 0",
+    marginBottom: "$8",
   },
 });

@@ -10,7 +10,7 @@ export const Header = styled("header", {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginBottom: "$7",
+  marginBottom: "$6",
 });
 
 export const Grid = styled("div", {

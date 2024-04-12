@@ -1,17 +1,16 @@
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import { PostsTemplate } from "@/components/templates";
 import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
   PostCategoryDocument,
   PostsByCategoryDocument,
   PostsDocument,
   type CategoryMetaProps,
-  type GroupedPostType,
   type Post,
-  type PostCategory,
 } from "@/service";
 import { fetchContent } from "@/helpers";
+import { Container } from "@/components/atoms";
+import { PostsCategory } from "@/components/molecules";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -47,28 +46,26 @@ export default async function PostCategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { isEnabled } = draftMode();
+  const { isEnabled: preview } = draftMode();
   const data = await fetchContent({
     document: PostsByCategoryDocument,
     tags,
-    preview: isEnabled,
+    preview,
     variables: {
       slug: params.category,
-      preview: isEnabled,
     },
   });
 
   const posts = data?.posts?.items as Post[];
-  const category = data?.posts?.items[0]?.category as PostCategory;
+  const category = data?.posts?.items[0]?.category;
 
-  if (posts.length === 0 || !category || category.slug !== params.category) {
+  if (posts.length === 0 || category?.slug !== params.category) {
     return notFound();
   }
 
-  const groupedPosts: GroupedPostType = {
-    category,
-    items: posts,
-  };
-
-  return <PostsTemplate posts={groupedPosts} />;
+  return (
+    <Container>
+      <PostsCategory category={category} items={posts} />
+    </Container>
+  );
 }

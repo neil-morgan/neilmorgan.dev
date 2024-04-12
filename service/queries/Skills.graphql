@@ -2,11 +2,18 @@ query Skills($preview: Boolean = false) {
   skills: skillCollection(preview: $preview) {
     items {
       title
-      category {
-        title
-        slug
-      }
+      slug
       proficiency
+      icon {
+        url
+        title
+      }
+      tagsCollection {
+        items {
+          title
+          slug
+        }
+      }
     }
   }
 }

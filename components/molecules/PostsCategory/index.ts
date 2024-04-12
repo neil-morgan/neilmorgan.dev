@@ -1,0 +1,1 @@
+export { PostsCategory } from "./PostsCategory";

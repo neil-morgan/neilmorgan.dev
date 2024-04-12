@@ -25,7 +25,6 @@ export const DesktopNav = ({
                 open={openItem === i}
                 setOpen={setOpenItem}
                 columns={2}
-                withArrow
                 gap="$6"
                 padding="$5"
                 anchor={
@@ -50,7 +49,6 @@ export const DesktopNav = ({
         ))}
       </List>
     )}
-
     <SocialItems>
       {social?.map(({ href, title }, index) =>
         !title ? null : (

@@ -1,5 +1,7 @@
+"use client"
+
 import { Wrapper, Body } from "./styles";
-import { BackgroundSlice, Container, Text, Button } from "@/components/atoms";
+import { BackgroundSlice } from "@/components/atoms";
 
 export const FeaturedSection = ({ children }: React.PropsWithChildren) => (
   <Wrapper>

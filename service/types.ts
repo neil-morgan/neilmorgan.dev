@@ -1,57 +1,29 @@
 import type { RefObject } from "react";
-import type {
-  Post,
-  Skill,
-  Scalars,
-  Maybe,
-  Asset,
-  Entry,
-  ResourceLink,
-} from "@/service";
+import type { Scalars, Maybe, Asset, Entry, ResourceLink } from "@/service";
 
 type WithoutDollarSign<T> = T extends `$${infer Rest}` ? Rest : T;
 
 export type ImagesMap = { [title: string]: string };
 
-export type CategoryType = {
-  title: string;
-  slug: string;
+export type ImageType = {
+  url: string;
+  description: string;
+  blurDataUrl?: string;
 };
 
-export type ProficiencyType = {
-  title: string;
+export type CategoryItemType = {
+  title: string | null;
+  slug?: string | null;
+};
+
+export type GroupedCategoryType<T> = {
+  category: CategoryItemType;
+  items: T[];
 };
 
 export type TagType = {
   title: string;
   slug?: string;
-};
-
-export type CategoryConstraintType<T extends CategoryType> = {
-  category: T;
-  [key: string]: any;
-};
-
-export type ProficiencyConstraintType<T extends ProficiencyType> = {
-  category: T;
-  [key: string]: any;
-};
-
-export type GroupedByCategoryType<T extends CategoryConstraintType<any>> = {
-  category: T["category"];
-  items: T[];
-};
-
-export type GroupedByProficiencyType<T> = {
-  proficiency: string;
-  items: T[];
-};
-
-export type GroupedPostType = GroupedByCategoryType<Post>;
-
-export type GroupedSkillType = {
-  category: CategoryType;
-  items: GroupedByProficiencyType<Skill>[];
 };
 
 export type NavigationType = (
@@ -74,10 +46,6 @@ export type CategoryMetaProps = {
   params: { category: string };
 };
 
-export type PostParamsType = {
-  params: { post: string; category: string };
-};
-
 export type RichtextLinksType = {
   assets: { block: Array<Maybe<Asset>>; hyperlink: Array<Maybe<Asset>> };
   entries: {
@@ -92,6 +60,13 @@ export type RichtextType = {
   json: Scalars["JSON"]["output"];
   links: RichtextLinksType;
 };
+
+type NavigableContentHeadingType = { id: string; label: string; href: string };
+
+export type NavigableContentHeadingsType = {
+  heading: NavigableContentHeadingType;
+  subHeadings: { heading: NavigableContentHeadingType }[];
+}[];
 
 export type MousePositionType = number | null;
 
@@ -125,6 +100,7 @@ export type ColorType =
   | "$secondary2"
   | "$text"
   | "$border"
+  | "$borderPrimary"
   | "$borderHover"
   | "$highlightHover";
 

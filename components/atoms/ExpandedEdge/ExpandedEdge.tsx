@@ -1,15 +1,14 @@
 "use client";
 
-import { styled } from "@/lib/stitches";
+import { styled, space } from "@/lib/stitches";
 
 export const ExpandedEdge = styled("div", {
   position: "relative",
-  marginLeft: "$-1",
-  marginRight: "$-1",
   borderRadius: "$md",
   overflow: "hidden",
+
   "@md": {
-    marginLeft: "$-7",
-    marginRight: "$-7",
+    width: `calc(100% + ${space[8]})`,
+    transform: `translateX(-${space[5]})`,
   },
 });

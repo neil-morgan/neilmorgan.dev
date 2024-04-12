@@ -31,6 +31,7 @@ export const colors: { [K in CorrectedColorType]: string } = {
   secondary2: "#435DB150",
   text: "#ffffffbf",
   border: "rgba(255,255,255,0.1)",
+  borderPrimary: `${tealDark.teal11}33`,
   borderHover: "rgba(255,255,255,0.25)",
   highlightHover: "rgba(255,255,255,0.04)",
 };

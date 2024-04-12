@@ -8,7 +8,7 @@ export const Wrapper = styled("nav", {
   gridTemplateColumns: "repeat(5, 1fr)",
 
   "@md": {
-    display: "grid",
+    display: "flex",
   },
 });
 
@@ -16,7 +16,7 @@ export const List = styled("ul", {
   display: "flex",
   justifyContent: "center",
   listStyle: "none",
-  gridColumn: "2 / 5",
+  marginLeft: "$4",
   gap: "$4",
 });
 

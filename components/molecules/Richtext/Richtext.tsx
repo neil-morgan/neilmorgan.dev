@@ -10,6 +10,7 @@ import {
   renderText,
   getNodeValue,
 } from "./helpers";
+import { Article } from "./styles";
 import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import {
@@ -38,7 +39,7 @@ export const Richtext = ({
   );
 
   return (
-    <>
+    <Article>
       {documentToReactComponents(content.json, {
         renderMark,
         renderText,
@@ -139,6 +140,7 @@ export const Richtext = ({
               <ExpandedEdge>
                 <AspectImage
                   url={url}
+                  fit="cover"
                   description={description}
                   blurDataUrl={base64Map?.[title]}
                 />
@@ -179,6 +181,6 @@ export const Richtext = ({
           ),
         },
       })}
-    </>
+    </Article>
   );
 };
