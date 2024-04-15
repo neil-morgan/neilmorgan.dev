@@ -58,7 +58,11 @@ export default async function PostPage({ params }: PostParamsType) {
   return (
     <Container>
       {post.title && (
-        <PageHeader title={post.title} subTitle={post.description} />
+        <PageHeader
+          kicker="Post"
+          title={post.title}
+          subTitle={post.description}
+        />
       )}
       <Separator size="xl" />
 
