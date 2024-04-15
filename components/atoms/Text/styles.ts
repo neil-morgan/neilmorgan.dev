@@ -5,7 +5,6 @@ export const Element = styled("div", {
   fontSize: "inherit",
   fontWeight: "normal",
   transition: "$theme",
-  lineHeight: "1.5",
 
   "&:hover a": { opacity: 1 },
 
@@ -13,7 +12,6 @@ export const Element = styled("div", {
     marginTop: "$4",
     color: "$text",
   },
-
   variants: {
     size: {
       10: {

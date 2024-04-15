@@ -24,6 +24,7 @@ export const Text = forwardRef(
     ref: DivElementRefType,
   ) => {
     const _id = kebabCase(id);
+    const lineHeight = size && size >= 8 && size <= 10 ? 1.2 : 1.5;
 
     return (
       <Element
@@ -37,6 +38,7 @@ export const Text = forwardRef(
           fontStyle: style,
           color,
           textAlign,
+          lineHeight,
         }}>
         {id && (
           <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
