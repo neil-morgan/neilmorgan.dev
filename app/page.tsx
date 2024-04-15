@@ -9,7 +9,11 @@ import { PAGE_TITLE_PREFIX } from "@/lib/site";
 import { PostsDocument, HomePageDocument, ContentGroup, Post } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { Container, Text, Icon } from "@/components/atoms";
-import { FeaturedSection, ContentPresentation } from "@/components/molecules";
+import {
+  FeaturedSection,
+  ContentPresentation,
+  PageHeader,
+} from "@/components/molecules";
 import { DnaHologramAnimation } from "@/components/organisms";
 
 export const metadata = {
@@ -45,13 +49,13 @@ const HomePage = async () => {
       <Container>
         <IntroWrapper>
           <IntroDetails>
-            <Text size={9} as="h2" weight={600} color="$white">
-              {header.heading}
-            </Text>
-            <Text size={2} weight={600} as="h3" print color="$primary1">
-              {header.subheading}
-            </Text>
-            <Text>{header.body}</Text>
+            {header.heading && (
+              <PageHeader
+                title={header.heading}
+                kicker={header.subheading}
+                subTitle={header.body}
+              />
+            )}
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>

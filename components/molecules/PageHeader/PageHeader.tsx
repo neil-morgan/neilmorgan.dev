@@ -10,7 +10,7 @@ export const PageHeader = ({ kicker, title, subTitle }: PageHeaderProps) => (
       </Text>
     )}
 
-    <Text size={6} as="h3" weight={500} color="$white">
+    <Text size={8} as="h3" weight={500} color="$white">
       {title}
     </Text>
 
