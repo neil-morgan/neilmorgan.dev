@@ -4,6 +4,7 @@ query Skill($slug: String, $preview: Boolean = false) {
       title
       slug
       description
+      date
       icon {
         url
         title

@@ -57,3 +57,10 @@ export const Projects = styled("div", {
     flexDirection: "column",
   },
 });
+
+export const Stats = styled("div", {
+  display: "flex",
+  gap: "$4",
+  marginBottom: "$7",
+  color: "$secondary1",
+});

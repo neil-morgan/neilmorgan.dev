@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import type { SkillParamsType } from "./types";
-import { Content, Body, Aside, Projects, HeaderWrapper } from "./styles";
+import { Content, Body, Aside, Projects, HeaderWrapper, Stats } from "./styles";
 import { SkillDocument, type Skill, type RichtextType } from "@/service";
 import { Container, Text, Separator, AspectImage } from "@/components/atoms";
 import { PageHeader, Richtext } from "@/components/molecules";
@@ -80,6 +80,10 @@ export default async function SkillPage({ params }: SkillParamsType) {
       <Separator size="xl" />
       <Content>
         <Body>
+          <Stats>
+            <Text size={0}>Used since {skill.date}</Text>
+            <Text size={0}>Used in {0} projects</Text>
+          </Stats>
           <Richtext content={skill?.body as RichtextType} />
         </Body>
 
