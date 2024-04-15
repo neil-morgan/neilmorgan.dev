@@ -36,6 +36,7 @@ export const IntroDetails = styled("div", {
   textAlign: "center",
   marginBottom: "$9",
   marginTop: 0,
+  gap: "$4",
 
   "@md": {
     maxWidth: "600px",

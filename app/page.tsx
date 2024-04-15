@@ -51,7 +51,7 @@ const HomePage = async () => {
             <Text size={2} weight={600} as="h3" print color="$primary1">
               {header.subheading}
             </Text>
-            <Text as="p">{header.body}</Text>
+            <Text>{header.body}</Text>
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>
