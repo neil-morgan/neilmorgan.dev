@@ -8,7 +8,7 @@ export const Element = styled("div", {
 
   "&:hover a": { opacity: 1 },
 
-  "& ~ p:not(:first-child)": {
+  "& ~ p:not(:first-of-type):not(:first-child)": {
     marginTop: "$4",
     color: "$text",
   },

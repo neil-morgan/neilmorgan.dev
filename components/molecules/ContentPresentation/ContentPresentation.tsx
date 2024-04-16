@@ -34,8 +34,10 @@ export const ContentPresentation = ({
       <Text size={5} as="h3" weight={400} color="$white">
         {title}
       </Text>
-      <Text>{body}</Text>
-      <Button href={cta.href}>{cta.label}</Button>
+      <Text as="p">{body}</Text>
+      <Button href={cta.href} css={{ marginTop: "$2" }}>
+        {cta.label}
+      </Button>
     </ContentDetails>
   </ContentWrapper>
 );

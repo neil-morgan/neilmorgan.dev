@@ -65,7 +65,7 @@ export const PageHeader = ({
       </ConditionalWrapper>
 
       {subTitle && (
-        <Text size={3} as="h3" weight={400}>
+        <Text size={3} as="p" weight={400}>
           {subTitle}
         </Text>
       )}
