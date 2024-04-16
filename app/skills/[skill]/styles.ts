@@ -4,9 +4,13 @@ import { styled } from "@/lib/stitches";
 
 export const HeaderWrapper = styled("div", {
   display: "flex",
-  gap: "$6",
+  gap: "$3",
   width: "100%",
   alignItems: "center",
+
+  "@md":{
+    gap: "$6",
+  }
 });
 
 export const Content = styled("div", {

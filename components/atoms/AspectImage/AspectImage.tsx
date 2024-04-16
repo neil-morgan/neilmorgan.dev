@@ -10,8 +10,9 @@ export const AspectImage = ({
   fit = "contain",
   ratio = 809 / 500,
   width,
+  css,
 }: React.PropsWithChildren<AspectImageProps>) => (
-  <AspectImageContainer css={{ width: `${width}px` }}>
+  <AspectImageContainer css={{ width: `${width}px`, ...css }}>
     <Root ratio={ratio}>
       <Image
         src={url}
