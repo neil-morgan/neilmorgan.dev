@@ -62,28 +62,24 @@ export default async function SkillPage({ params }: SkillParamsType) {
     { label: "Skill" },
   ];
 
+  console.log(skill);
+
   return (
     <Container>
-      <HeaderWrapper>
-        {skill?.icon?.url && skill.icon.title && (
-          <AspectImage
-            ratio={1}
-            fit="cover"
-            url={skill.icon.url}
-            width={150}
-            description="A cartoon rocket taking off - Image by Andy Hermawan on Unsplash."
-            blurDataUrl={base64Map[skill.icon.title]}
-          />
-        )}
-        {skill.title && (
-          <PageHeader
-            title={skill.title}
-            subTitle={skill.description}
-            kicker="Skill"
-            breadcrumbs={breadcrumbs}
-          />
-        )}
-      </HeaderWrapper>
+      {skill.title && skill.icon?.url && skill.icon?.title && (
+        <PageHeader
+          title={skill.title}
+          subTitle={skill.description}
+          kicker="Skill"
+          breadcrumbs={breadcrumbs}
+          image={{
+            url: skill.icon.url,
+            description: skill.icon.title,
+            blurDataUrl: base64Map[skill.icon.title],
+          }}
+        />
+      )}
+
       <Separator size="xl" />
       <Content>
         <Body>

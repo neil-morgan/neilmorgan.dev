@@ -3,8 +3,8 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS, type Document } from "@contentful/rich-text-types";
 import type { ReactNode } from "react";
-import { renderMark } from ".";
 import type { RichtextNodeType } from "../types";
+import { renderMark } from ".";
 
 export const removeParagraphTags = (
   node: RichtextNodeType,
