@@ -71,7 +71,9 @@ const HomePage = async () => {
               <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
                 {item.heading}
               </Text>
-              <Text textAlign="center">{item.body}</Text>
+              <Text as="p" textAlign="center">
+                {item.body}
+              </Text>
             </SellingPoint>
           ))}
         </SellingPointsWrapper>
