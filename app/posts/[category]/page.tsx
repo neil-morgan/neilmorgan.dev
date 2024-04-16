@@ -10,7 +10,8 @@ import {
   type Post,
 } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
-import { Container } from "@/components/atoms";
+import { Container, Separator } from "@/components/atoms";
+import { PageHeader } from "@/components/molecules";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -64,9 +65,20 @@ export default async function PostCategoryPage({
   }
 
   const base64Map = await extractImagesToBase64Map(posts);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Posts", href: "/posts" },
+    { label: category?.title as string },
+  ];
 
   return (
     <Container>
+      <PageHeader
+        kicker="Post Category"
+        title={`${category.title} thoughts and opinions`}
+        breadcrumbs={breadcrumbs}
+      />
+      <Separator size="xl" />
       <PostsCategory category={category} items={posts} base64Map={base64Map} />
     </Container>
   );

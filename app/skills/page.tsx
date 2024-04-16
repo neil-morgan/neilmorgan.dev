@@ -30,11 +30,13 @@ export default async function SkillsPage() {
     data?.skills?.items as Skill[],
     "proficiency",
   );
-  const base64Map = await extractImagesToBase64Map(proficiencies);
 
   if (proficiencies.length === 0) {
     return <InfoMessage {...INFO_MESSAGES.noContent} />;
   }
+
+  const base64Map = await extractImagesToBase64Map(proficiencies);
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Skills" }];
 
   return (
     <Container>
@@ -42,6 +44,7 @@ export default async function SkillsPage() {
         kicker="Skills"
         title="My tech-stack and proficiencies"
         subTitle="Though I am keenly interested in back-end development, my main area of expertise is front-end."
+        breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
 

@@ -1,11 +1,16 @@
 import type { PageHeaderProps } from "./types";
 import { Wrapper } from "./styles";
-import { Text } from "@/components/atoms";
+import { Text, Breadcrumbs } from "@/components/atoms";
 
-export const PageHeader = ({ kicker, title, subTitle }: PageHeaderProps) => (
+export const PageHeader = ({
+  kicker,
+  title,
+  subTitle,
+  breadcrumbs,
+}: PageHeaderProps) => (
   <Wrapper>
     {kicker && (
-      <Text size={1} as="h2" print weight={600} color="$primary1">
+      <Text size={1} as="h2" print weight={600} color="$secondary1">
         {kicker}
       </Text>
     )}
@@ -15,9 +20,10 @@ export const PageHeader = ({ kicker, title, subTitle }: PageHeaderProps) => (
     </Text>
 
     {subTitle && (
-      <Text size={3} as="h3" weight={400} >
+      <Text size={3} as="h3" weight={400}>
         {subTitle}
       </Text>
     )}
+    {breadcrumbs && <Breadcrumbs crumbs={breadcrumbs} />}
   </Wrapper>
 );

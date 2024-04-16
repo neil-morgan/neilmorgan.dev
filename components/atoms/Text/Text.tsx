@@ -24,7 +24,7 @@ export const Text = forwardRef(
     ref: DivElementRefType,
   ) => {
     const _id = kebabCase(id);
-    const lineHeight = size && size >= 8 && size <= 10 ? 1.2 : 1.5;
+    const lineHeight = size && size >= 8 ? 1.2 : as === "p" ? 1.5 : 1.3;
 
     return (
       <Element

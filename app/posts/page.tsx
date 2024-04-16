@@ -26,11 +26,13 @@ export default async function PostsPage() {
   });
 
   const posts = groupByCategory(data?.posts?.items as Post[], "category");
-  const base64Map = await extractImagesToBase64Map(posts);
 
   if (posts.length === 0) {
     return <InfoMessage {...INFO_MESSAGES.noContent} />;
   }
+
+  const base64Map = await extractImagesToBase64Map(posts);
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Posts" }];
 
   return (
     <Container>
@@ -38,6 +40,7 @@ export default async function PostsPage() {
         kicker="Posts"
         title="My thoughts and opinions"
         subTitle="I relentlessly dream and obsess. Here is somewhere I can let it all out."
+        breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
       {posts.map(({ category, items }, i) => (

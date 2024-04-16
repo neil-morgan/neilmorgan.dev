@@ -26,6 +26,11 @@ export type TagType = {
   slug?: string;
 };
 
+export type BreadcrumbType = {
+  label: string;
+  href?: string;
+};
+
 export type NavigationType = (
   | {
       title: string;
