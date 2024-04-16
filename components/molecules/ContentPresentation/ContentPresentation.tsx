@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import type { ContentPresentationProps } from "./types";
 import { ContentDetails, ContentWrapper, ContentHeader } from "./styles";
@@ -18,6 +18,7 @@ export const ContentPresentation = ({
     {image?.url && image?.description && (
       <AspectImage
         url={image.url}
+        fit="cover"
         description={image.description}
         blurDataUrl={image.blurDataUrl}
       />
