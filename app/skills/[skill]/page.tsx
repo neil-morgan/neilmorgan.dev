@@ -62,8 +62,6 @@ export default async function SkillPage({ params }: SkillParamsType) {
     { label: "Skill" },
   ];
 
-  console.log(skill);
-
   return (
     <Container>
       {skill.title && skill.icon?.url && skill.icon?.title && (
