@@ -46,7 +46,6 @@ export const NavigableRichtext = ({
                 {
                   <ListItem>
                     {heading.id === currentId && currentIdIcon}
-
                     <a href={heading.href}>{heading.label}</a>
                   </ListItem>
                 }

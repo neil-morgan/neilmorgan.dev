@@ -68,7 +68,7 @@ const HomePage = async () => {
               {item.icon && (
                 <Icon name={item.icon} css={{ fontSize: "3rem" }} />
               )}
-              <Text size={5} color="$primary1" css={{ margin: "$2 0 $4" }}>
+              <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
                 {item.heading}
               </Text>
               <Text textAlign="center">{item.body}</Text>

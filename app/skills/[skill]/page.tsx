@@ -50,11 +50,17 @@ export default async function SkillPage({ params }: SkillParamsType) {
   });
 
   const skill = data.skill?.items[0] as Skill;
-  const base64Map = await extractImagesToBase64Map(skill);
 
   if (!skill) {
     return notFound();
   }
+
+  const base64Map = await extractImagesToBase64Map(skill);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Skills", href: "/skills" },
+    { label: "Skill" },
+  ];
 
   return (
     <Container>
@@ -74,6 +80,7 @@ export default async function SkillPage({ params }: SkillParamsType) {
             title={skill.title}
             subTitle={skill.description}
             kicker="Skill"
+            breadcrumbs={breadcrumbs}
           />
         )}
       </HeaderWrapper>

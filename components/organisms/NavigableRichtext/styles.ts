@@ -57,6 +57,6 @@ export const ListItem = styled("div", {
     top: "50%",
     left: 0,
     transform: "translate(-125%, -50%)",
-    color: "$primary1",
+    color: "$secondary1",
   },
 });

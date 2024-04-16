@@ -49,11 +49,21 @@ export default async function PostPage({ params }: PostParamsType) {
   });
 
   const post = data.post?.items[0] as Post;
-  const base64Map = await extractImagesToBase64Map(post);
 
   if (!post) {
     return notFound();
   }
+
+  const base64Map = await extractImagesToBase64Map(post);
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Posts", href: "/posts" },
+    {
+      label: post.category?.title as string,
+      href: `/posts/${post.category?.slug}`,
+    },
+    { label: "Post" },
+  ];
 
   return (
     <Container>
@@ -62,6 +72,7 @@ export default async function PostPage({ params }: PostParamsType) {
           kicker="Post"
           title={post.title}
           subTitle={post.description}
+          breadcrumbs={breadcrumbs}
         />
       )}
       <Separator size="xl" />

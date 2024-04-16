@@ -1,8 +1,10 @@
-"use client";
 
+"use client";
+export { AspectImage } from "./AspectImage";
 export { AspectRatio } from "./AspectRatio";
 export { BackgroundSlice } from "./BackgroundSlice";
 export { Blockquote } from "./Blockquote";
+export { Breadcrumbs } from "./Breadcrumbs";
 export { Button } from "./Button";
 export { CodeSnippet } from "./CodeSnippet";
 export { CodeString } from "./CodeString";
@@ -18,4 +20,3 @@ export { Separator } from "./Separator";
 export { Table, Td, Tr, Th } from "./Table";
 export { Tag, TagList } from "./Tag";
 export { Text } from "./Text";
-export { AspectImage } from "./AspectImage";
