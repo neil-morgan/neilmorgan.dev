@@ -6,7 +6,7 @@ export const buildNavigation = (postCategories: CategoryItemType[]) => [
     slug: "/skills",
   },
   { title: "Projects", slug: "projects/" },
-  { title: "Experience", slug: "/" },
+  // { title: "Experience", slug: "/" },
   {
     title: "Posts",
     slug: "/posts",
