@@ -32,10 +32,7 @@ export default async function PostsPage() {
   }
 
   const base64Map = await extractImagesToBase64Map(posts);
-  const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Posts" },
-  ];
+  const breadcrumbs = [LOCATIONS.home, { label: "Posts" }];
 
   return (
     <Container>

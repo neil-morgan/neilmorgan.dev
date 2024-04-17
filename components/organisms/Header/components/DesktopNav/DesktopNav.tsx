@@ -15,10 +15,10 @@ export const DesktopNav = ({
     <Logo isLink />
     {items.length > 0 && (
       <List>
-        {items.map(({ title, slug, options }, i) => (
+        {items.map(({ label, slug, options }, i) => (
           <Item key={i}>
             <Button href={slug} size="md">
-              {title}
+              {label}
             </Button>
             {options && options.length > 0 && (
               <Popover
@@ -34,13 +34,13 @@ export const DesktopNav = ({
                     onClick={() => setOpenItem(i)}
                   />
                 }>
-                {options.map(({ title, slug }, i) => (
+                {options.map(({ label, slug }, i) => (
                   <Button
                     key={i}
                     href={slug}
                     asLink
                     onClick={() => setOpenItem(false)}>
-                    {title}
+                    {label}
                   </Button>
                 ))}
               </Popover>

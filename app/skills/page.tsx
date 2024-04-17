@@ -36,10 +36,7 @@ export default async function SkillsPage() {
   }
 
   const base64Map = await extractImagesToBase64Map(proficiencies);
-  const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Skills" },
-  ];
+  const breadcrumbs = [LOCATIONS.home, { label: LOCATIONS.skills.label }];
 
   return (
     <Container>
