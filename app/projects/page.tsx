@@ -1,4 +1,6 @@
-import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
+import { Container, Separator } from "@/components/atoms";
+import { PageHeader } from "@/components/molecules";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
@@ -9,7 +11,24 @@ export const metadata = {
 export const revalidate = 5;
 
 const ProjectsPage = async () => {
-  return <div>Projects</div>;
+  const breadcrumbs = [
+    { label: "Home", href: LOCATIONS.home },
+    {
+      label: "Projects",
+    },
+  ];
+
+  return (
+    <Container>
+      <PageHeader
+        kicker="Projects"
+        title="Minim Lorem duis voluptate ad."
+        subTitle="Nulla duis voluptate laborum mollit."
+        breadcrumbs={breadcrumbs}
+      />
+      <Separator size="xl" />
+    </Container>
+  );
 };
 
 export default ProjectsPage;
