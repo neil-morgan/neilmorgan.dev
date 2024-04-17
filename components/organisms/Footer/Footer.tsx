@@ -3,16 +3,16 @@
 import { FooterElement, CopyRight } from "./styles";
 import type { FooterProps } from "./types";
 import { Logo } from "@/components/molecules";
-import { Container, Button, Text, List, Separator } from "@/components/atoms";
+import { Container, Button, Text, List } from "@/components/atoms";
 
 export const Footer = ({ content }: FooterProps) => (
   <FooterElement>
     <Container css={{ display: "flex", justifyContent: "space-between" }}>
       <List gap="$3">
         <Text size={1}>Links</Text>
-        {content.navigation.map(({ title, slug }, i) => (
+        {content.navigation.map(({ label, slug }, i) => (
           <Button asLink href={slug} key={slug + i}>
-            {title}
+            {label}
           </Button>
         ))}
       </List>
