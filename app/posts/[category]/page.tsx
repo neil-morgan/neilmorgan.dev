@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
     },
   });
   return {
-    title: `${PAGE_TITLE_PREFIX} | ${data?.postCategory?.items[0]?.title} posts`,
+    title: `${data?.postCategory?.items[0]?.title} posts | ${PAGE_TITLE_PREFIX}`,
   };
 }
 

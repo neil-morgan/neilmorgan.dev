@@ -61,7 +61,7 @@ export default async function PostPage({ params }: PostParamsType) {
     LOCATIONS.posts,
     {
       label: post.category?.title as string,
-      href: `${LOCATIONS.posts}/${post.category?.slug}`,
+      slug: `${LOCATIONS.posts.slug}/${post.category?.slug}`,
     },
     { label: "Post" },
   ];

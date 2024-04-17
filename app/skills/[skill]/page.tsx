@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: SkillParamsType) {
   const skill = data?.skill?.items[0] as Skill;
 
   return {
-    title: `${PAGE_TITLE_PREFIX} | ${skill?.title}`,
+    title: `${skill?.title} | ${PAGE_TITLE_PREFIX}`,
     description: skill?.description,
   };
 }

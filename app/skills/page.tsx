@@ -15,7 +15,7 @@ const tags = ["skill"];
 export const revalidate = 5;
 
 export const metadata = {
-  title: `${PAGE_TITLE_PREFIX} | Skills`,
+  title: `Skills | ${PAGE_TITLE_PREFIX}`,
 };
 
 export default async function SkillsPage() {
