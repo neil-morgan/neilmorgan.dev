@@ -71,8 +71,8 @@ export default async function PostPage({ params }: PostParamsType) {
       {post.title && (
         <PageHeader
           kicker="Post"
-          title={post.title}
-          subTitle={post.description}
+          heading={post.title}
+          body={post.description}
           breadcrumbs={breadcrumbs}
         />
       )}

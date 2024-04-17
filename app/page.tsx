@@ -18,8 +18,7 @@ import { DnaHologramAnimation } from "@/components/organisms";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
-  description:
-    "Design and development is in my DNA. I love to create, build and collaborate. Explore my site and discover how can I help you.",
+  description: "Frontend Engineer - React.",
 };
 
 const tags = ["post"];
@@ -40,7 +39,7 @@ const HomePage = async () => {
   const [{ posts }, page] = await Promise.all([postsData, pageData]);
 
   const latestPost = posts?.items[0] as Post;
-  const header = page.mainHeader as ContentGroup;
+  const header = page.header as ContentGroup;
   const sellingPoints = page.sellingPoints?.items as ContentGroup[];
   const base64Map = await extractImagesToBase64Map(latestPost);
 
@@ -51,9 +50,9 @@ const HomePage = async () => {
           <IntroDetails>
             {header.heading && (
               <PageHeader
-                title={header.heading}
-                kicker={header.subheading}
-                subTitle={header.body}
+                heading={header.heading}
+                kicker={header.kicker}
+                body={header.body}
               />
             )}
           </IntroDetails>

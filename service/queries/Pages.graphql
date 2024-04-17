@@ -1,12 +1,12 @@
 query HomePage($preview: Boolean = false) {
-  mainHeader: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+  header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+    kicker
     heading
-    subheading
     body
   }
 
   sellingPoints: contentGroupCollection(
-    where: { internalName: "Selling Point" }
+    where: { internalName_contains: "Selling Point" }
     preview: $preview
   ) {
     items {
@@ -14,5 +14,21 @@ query HomePage($preview: Boolean = false) {
       body
       icon
     }
+  }
+}
+
+query SkillsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+
+query PostsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
   }
 }

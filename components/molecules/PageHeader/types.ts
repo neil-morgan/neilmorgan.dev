@@ -1,9 +1,9 @@
 import type { BreadcrumbType, ImagesMap, ImageType } from "@/service";
 
 export type PageHeaderProps = {
-  title: string;
+  heading: string;
   kicker?: string | null;
-  subTitle?: string | null;
+  body?: string | null;
   breadcrumbs?: BreadcrumbType[];
   base64Map?: ImagesMap;
   image?: ImageType;
