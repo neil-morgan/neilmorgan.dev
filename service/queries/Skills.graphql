@@ -1,3 +1,49 @@
+query Skill($slug: String, $preview: Boolean = false) {
+  skill: skillCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
+    items {
+      title
+      slug
+      description
+      date
+      icon {
+        url
+        description
+        title
+      }
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+            }
+          }
+
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 query Skills($preview: Boolean = false) {
   skills: skillCollection(preview: $preview) {
     items {

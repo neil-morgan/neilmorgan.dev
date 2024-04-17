@@ -1,3 +1,78 @@
+query Post($slug: String, $preview: Boolean = false) {
+  post: postCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
+    items {
+      sys {
+        id
+      }
+      title
+      description
+      date
+      slug
+      tagsCollection {
+        items {
+          title
+        }
+      }
+      category {
+        ...PostCategory
+      }
+      image {
+        title
+        description
+        url
+      }
+
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+              ... on Post {
+                title
+                slug
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+              ... on Snippet {
+                description
+                language
+                code
+              }
+              ... on Post {
+                title
+                slug
+                description
+                category {
+                  ...PostCategory
+                }
+              }
+            }
+          }
+
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 query Posts($preview: Boolean = false) {
   posts: postCollection(order: date_DESC, preview: $preview) {
     items {
@@ -17,6 +92,41 @@ query Posts($preview: Boolean = false) {
         items {
           title
           slug
+        }
+      }
+      category {
+        ...PostCategory
+      }
+    }
+  }
+}
+
+query PostCategory($slug: String!) {
+  postCategory: postCategoryCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...PostCategory
+    }
+  }
+}
+
+query PostsByCategory($slug: String!, $preview: Boolean = false) {
+  posts: postCollection(
+    where: { category: { slug_contains: $slug } }
+    preview: $preview
+  ) {
+    items {
+      title
+      description
+      date
+      slug
+      image {
+        title
+        url
+        description
+      }
+      tagsCollection {
+        items {
+          title
         }
       }
       category {

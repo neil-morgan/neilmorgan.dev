@@ -1,12 +1,12 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import type { SkillParamsType } from "./types";
-import { Content, Body, Aside, Projects, HeaderWrapper, Stats } from "./styles";
+import { Content, Body, Aside, Projects, Stats } from "./styles";
 import { SkillDocument, type Skill, type RichtextType } from "@/service";
-import { Container, Text, Separator, AspectImage } from "@/components/atoms";
+import { Container, Text, Separator } from "@/components/atoms";
 import { PageHeader, Richtext } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
-import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 
 const tags = ["skill"];
 export const revalidate = 5;
@@ -57,8 +57,8 @@ export default async function SkillPage({ params }: SkillParamsType) {
 
   const base64Map = await extractImagesToBase64Map(skill);
   const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Skills", href: "/skills" },
+    { label: "Home", href: LOCATIONS.home },
+    { label: "Skills", href: LOCATIONS.skills },
     { label: "Skill" },
   ];
 

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
 import { PostsCategory } from "../components";
-import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import {
   PostCategoryDocument,
   PostsByCategoryDocument,
@@ -66,8 +66,8 @@ export default async function PostCategoryPage({
 
   const base64Map = await extractImagesToBase64Map(posts);
   const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Posts", href: "/posts" },
+    { label: "Home", href: LOCATIONS.home },
+    { label: "Posts", href: LOCATIONS.posts },
     { label: category?.title as string },
   ];
 

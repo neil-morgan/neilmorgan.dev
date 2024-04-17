@@ -7,7 +7,7 @@ import {
   fetchContent,
   extractImagesToBase64Map,
 } from "@/helpers";
-import { PAGE_TITLE_PREFIX, INFO_MESSAGES } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
 import { InfoMessage, PageHeader } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
 
@@ -36,7 +36,10 @@ export default async function SkillsPage() {
   }
 
   const base64Map = await extractImagesToBase64Map(proficiencies);
-  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Skills" }];
+  const breadcrumbs = [
+    { label: "Home", href: LOCATIONS.home },
+    { label: "Skills" },
+  ];
 
   return (
     <Container>
