@@ -1,7 +1,7 @@
 import { styled } from "@/lib/stitches";
 
 export const FooterElement = styled("footer", {
-  padding: "$10 0",
+  padding: "$3 0",
   marginTop: "$6",
 
   "@sm": {
