@@ -10,5 +10,6 @@ export const TagWrapper = styled("div", {
 
 export const TagListWrapper = styled("div", {
   display: "flex",
+  flexWrap: "wrap",
   gap: "$4",
 });

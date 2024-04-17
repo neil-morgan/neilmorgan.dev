@@ -28,11 +28,12 @@ export const ContentDetails = styled("div", {
   },
 });
 
-export const ContentHeader = styled("header", {
+export const ContentFooter = styled("footer", {
   display: "flex",
   width: "100%",
   alignItems: "center",
   justifyContent: "space-between",
+  marginTop: "$4",
 });
 
 export const ContentImage = styled("div", {

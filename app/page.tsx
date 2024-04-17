@@ -6,7 +6,13 @@ import {
   SellingPoint,
 } from "./styles";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
-import { PostsDocument, HomePageDocument, ContentGroup, Post } from "@/service";
+import {
+  PostsDocument,
+  HomePageDocument,
+  type ContentGroup,
+  type Post,
+  type TagType,
+} from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { Container, Text, Icon } from "@/components/atoms";
 import {
@@ -93,7 +99,33 @@ const HomePage = async () => {
                 }}
                 title={latestPost.title}
                 label="Latest post"
-                tags={latestPost.tagsCollection}
+                tags={latestPost.tagsCollection?.items as TagType[]}
+                cta={{
+                  href: `${LOCATIONS.posts}/${latestPost.category?.slug}/${latestPost.slug}`,
+                  label: "Read more",
+                }}
+                body={latestPost.description}
+              />
+            </Container>
+          </FeaturedSection>
+        )}
+
+      {latestPost &&
+        latestPost.image?.title &&
+        latestPost.image.description &&
+        latestPost.image.url && (
+          <FeaturedSection>
+            <Container>
+              <ContentPresentation
+                reverse
+                image={{
+                  url: latestPost.image.url,
+                  description: latestPost.image.description,
+                  blurDataUrl: base64Map[latestPost.image.title],
+                }}
+                title={latestPost.title}
+                label="Latest project"
+                tags={latestPost.tagsCollection?.items as TagType[]}
                 cta={{
                   href: `${LOCATIONS.posts}/${latestPost.category?.slug}/${latestPost.slug}`,
                   label: "Read more",
