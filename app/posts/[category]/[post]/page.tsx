@@ -7,6 +7,7 @@ import { Container, Text, Separator } from "@/components/atoms";
 import { NavigableRichtext } from "@/components/organisms";
 import { PageHeader } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
+import { LOCATIONS } from "@/lib/site";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -56,11 +57,11 @@ export default async function PostPage({ params }: PostParamsType) {
 
   const base64Map = await extractImagesToBase64Map(post);
   const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Posts", href: "/posts" },
+    { label: "Home", href: LOCATIONS.home },
+    { label: "Posts", href: LOCATIONS.posts },
     {
       label: post.category?.title as string,
-      href: `/posts/${post.category?.slug}`,
+      href: `${LOCATIONS.posts}/${post.category?.slug}`,
     },
     { label: "Post" },
   ];

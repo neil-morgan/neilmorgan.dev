@@ -5,7 +5,7 @@ import {
   SellingPointsWrapper,
   SellingPoint,
 } from "./styles";
-import { PAGE_TITLE_PREFIX } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import { PostsDocument, HomePageDocument, ContentGroup, Post } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { Container, Text, Icon } from "@/components/atoms";
@@ -95,7 +95,7 @@ const HomePage = async () => {
                 label="Latest post"
                 tags={latestPost.tagsCollection}
                 cta={{
-                  href: `/posts/${latestPost.category?.slug}/${latestPost.slug}`,
+                  href: `${LOCATIONS.posts}/${latestPost.category?.slug}/${latestPost.slug}`,
                   label: "Read more",
                 }}
                 body={latestPost.description}
