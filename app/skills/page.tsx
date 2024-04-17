@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { sortProficienciesByPriority } from "./helpers";
 import { SkillsCategory } from "./components";
-import { SkillsDocument, type Skill } from "@/service";
+import { SkillsDocument, SkillsPageDocument, type Skill } from "@/service";
 import {
   groupByCategory,
   fetchContent,
@@ -20,14 +20,24 @@ export const metadata = {
 
 export default async function SkillsPage() {
   const { isEnabled: preview } = draftMode();
-  const data = await fetchContent({
+  const skillsData = await fetchContent({
     document: SkillsDocument,
     tags,
     preview,
   });
+  const pageData = await fetchContent({
+    document: SkillsPageDocument,
+    tags,
+    preview,
+  });
+
+  const [{ skills }, { header }] = await Promise.all([
+    skillsData,
+    pageData,
+  ]);
 
   const proficiencies = groupByCategory(
-    data?.skills?.items as Skill[],
+    skills?.items as Skill[],
     "proficiency",
   );
 
@@ -40,12 +50,14 @@ export default async function SkillsPage() {
 
   return (
     <Container>
-      <PageHeader
-        kicker="Skills"
-        title="My tech-stack and proficiencies"
-        subTitle="Though I am keenly interested in back-end development, my main area of expertise is front-end."
-        breadcrumbs={breadcrumbs}
-      />
+      {header?.heading && (
+        <PageHeader
+          kicker={header?.kicker}
+          heading={header?.heading}
+          body={header?.body}
+          breadcrumbs={breadcrumbs}
+        />
+      )}
       <Separator size="xl" />
 
       {sortProficienciesByPriority(proficiencies).map(

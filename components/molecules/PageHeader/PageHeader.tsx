@@ -11,8 +11,8 @@ import {
 
 export const PageHeader = ({
   kicker,
-  title,
-  subTitle,
+  heading,
+  body,
   breadcrumbs,
   image,
 }: PageHeaderProps) => (
@@ -60,13 +60,13 @@ export const PageHeader = ({
           />
         )}
         <Text size={8} as="h3" weight={500} color="$white">
-          {title}
+          {heading}
         </Text>
       </ConditionalWrapper>
 
-      {subTitle && (
+      {body && (
         <Text size={3} as="p" weight={400}>
-          {subTitle}
+          {body}
         </Text>
       )}
       {breadcrumbs && <Breadcrumbs crumbs={breadcrumbs} />}

@@ -230,6 +230,7 @@ export type ContentGroup = Entry & {
   heading: Maybe<Scalars['String']['output']>;
   icon: Maybe<Scalars['String']['output']>;
   internalName: Maybe<Scalars['String']['output']>;
+  kicker: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<ContentGroupLinkingCollections>;
   subheading: Maybe<Scalars['String']['output']>;
   sys: Sys;
@@ -257,6 +258,12 @@ export type ContentGroupIconArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupInternalNameArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
+export type ContentGroupKickerArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -318,6 +325,13 @@ export type ContentGroupFilter = {
   internalName_not: InputMaybe<Scalars['String']['input']>;
   internalName_not_contains: InputMaybe<Scalars['String']['input']>;
   internalName_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  kicker: InputMaybe<Scalars['String']['input']>;
+  kicker_contains: InputMaybe<Scalars['String']['input']>;
+  kicker_exists: InputMaybe<Scalars['Boolean']['input']>;
+  kicker_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  kicker_not: InputMaybe<Scalars['String']['input']>;
+  kicker_not_contains: InputMaybe<Scalars['String']['input']>;
+  kicker_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   subheading: InputMaybe<Scalars['String']['input']>;
   subheading_contains: InputMaybe<Scalars['String']['input']>;
   subheading_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -357,6 +371,8 @@ export enum ContentGroupOrder {
   IconDesc = 'icon_DESC',
   InternalNameAsc = 'internalName_ASC',
   InternalNameDesc = 'internalName_DESC',
+  KickerAsc = 'kicker_ASC',
+  KickerDesc = 'kicker_DESC',
   SubheadingAsc = 'subheading_ASC',
   SubheadingDesc = 'subheading_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -1664,7 +1680,21 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', mainHeader: { __typename?: 'ContentGroup', heading: string | null, subheading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null };
+
+export type SkillsPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
+export type PostsPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -1753,13 +1783,13 @@ export const SocialItemFragmentDoc = new TypedDocumentString(`
     `, {"fragmentName":"SocialItem"}) as unknown as TypedDocumentString<SocialItemFragment, unknown>;
 export const HomePageDocument = new TypedDocumentString(`
     query HomePage($preview: Boolean = false) {
-  mainHeader: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+  header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+    kicker
     heading
-    subheading
     body
   }
   sellingPoints: contentGroupCollection(
-    where: {internalName: "Selling Point"}
+    where: {internalName_contains: "Selling Point"}
     preview: $preview
   ) {
     items {
@@ -1770,6 +1800,24 @@ export const HomePageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<HomePageQuery, HomePageQueryVariables>;
+export const SkillsPageDocument = new TypedDocumentString(`
+    query SkillsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
+export const PostsPageDocument = new TypedDocumentString(`
+    query PostsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
 export const PostDocument = new TypedDocumentString(`
     query Post($slug: String, $preview: Boolean = false) {
   post: postCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
