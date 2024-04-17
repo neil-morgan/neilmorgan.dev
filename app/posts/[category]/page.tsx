@@ -66,8 +66,8 @@ export default async function PostCategoryPage({
 
   const base64Map = await extractImagesToBase64Map(posts);
   const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Posts", href: LOCATIONS.posts },
+    LOCATIONS.home,
+    LOCATIONS.posts,
     { label: category?.title as string },
   ];
 

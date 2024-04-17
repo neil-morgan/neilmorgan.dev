@@ -2,16 +2,12 @@ import type { CategoryItemType } from "@/service";
 import { LOCATIONS } from "@/lib/site";
 
 export const buildNavigation = (postCategories: CategoryItemType[]) => [
+  LOCATIONS.skills,
   {
-    title: "Skills",
-    slug: LOCATIONS.skills,
-  },
-  {
-    title: "Posts",
-    slug: LOCATIONS.posts,
+    ...LOCATIONS.posts,
     options: postCategories?.map(category => ({
-      title: category?.title,
-      slug: `${LOCATIONS.posts}/${category?.slug}`,
+      label: category?.title,
+      slug: `${LOCATIONS.posts.slug}/${category?.slug}`,
     })),
   },
 ];

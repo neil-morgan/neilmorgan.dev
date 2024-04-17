@@ -6,12 +6,12 @@ import type { BreadcrumbsProps } from "./types";
 
 export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => (
   <Wrapper>
-    {crumbs.map(({ label, href }, i) => (
+    {crumbs.map(({ label, slug }, i) => (
       <Fragment key={i}>
         {i === 0 ? null : <>&nbsp;&gt;&nbsp;</>}
 
-        {href ? (
-          <Link href={href}>{label}</Link>
+        {slug ? (
+          <Link href={slug}>{label}</Link>
         ) : (
           <Text weight={500} size={2}>
             {label}

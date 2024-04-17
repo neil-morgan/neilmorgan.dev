@@ -25,24 +25,24 @@ export const MobileNav = ({
         />
       }>
       <List>
-        {items.map(({ title, slug, options }, i) => (
+        {items.map(({ label, slug, options }, i) => (
           <div key={i}>
             <Button
               href={slug}
               size="md"
               onClick={() => setOpenItem(false)}
               asLink>
-              {title}
+              {label}
             </Button>
             {options && (
               <Options>
-                {options?.map(({ title, slug }, i) => (
+                {options?.map(({ label, slug }, i) => (
                   <Button
                     key={i}
                     asLink
                     href={slug}
                     onClick={() => setOpenItem(false)}>
-                    - {title}
+                    - {label}
                   </Button>
                 ))}
               </Options>
