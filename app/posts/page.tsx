@@ -14,7 +14,7 @@ const tags = ["post"];
 export const revalidate = 5;
 
 export const metadata = {
-  title: `${PAGE_TITLE_PREFIX} | Posts`,
+  title: `Posts | ${PAGE_TITLE_PREFIX}`,
 };
 
 export default async function PostsPage() {
