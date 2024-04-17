@@ -4,6 +4,7 @@ query HomePage($preview: Boolean = false) {
     subheading
     body
   }
+
   sellingPoints: contentGroupCollection(
     where: { internalName: "Selling Point" }
     preview: $preview
