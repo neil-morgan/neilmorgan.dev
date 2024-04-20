@@ -67,3 +67,36 @@ export const SellingPoint = styled("div", {
   flexDirection: "column",
   alignItems: "center",
 });
+
+export const FeedbackWrapper = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  margin: "$8 auto",
+  width: "100%",
+  padding: "0 5%",
+  position: "relative",
+  textAlign: "center",
+
+  "@md": {
+    padding: "0 10%",
+  },
+
+  "& > p:before": {
+    content: "open-quote",
+    position: "absolute",
+    fontSize: "$10",
+    color: "$secondary1",
+    transform: "translate(-50%, -60%)",
+    top: 0,
+    left: "50%",
+    zIndex: "-1",
+  },
+});
+
+export const FeedbackFooter = styled("footer", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$2",
+  marginTop: "$4",
+  alignItems: "center",
+});

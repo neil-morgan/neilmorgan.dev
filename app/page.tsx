@@ -4,6 +4,8 @@ import {
   IntroDetails,
   SellingPointsWrapper,
   SellingPoint,
+  FeedbackWrapper,
+  FeedbackFooter,
 } from "./styles";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import {
@@ -14,13 +16,14 @@ import {
   type TagType,
 } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
-import { Container, Text, Icon } from "@/components/atoms";
+import { Container, Text, Icon, Link } from "@/components/atoms";
 import {
   FeaturedSection,
   ContentPresentation,
   PageHeader,
 } from "@/components/molecules";
 import { DnaHologramAnimation } from "@/components/organisms";
+import { formatDate } from "@/utils/format-date";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
@@ -33,6 +36,7 @@ export const revalidate = 5;
 
 const HomePage = async () => {
   const { isEnabled: preview } = draftMode();
+
   const postsData = await fetchContent({
     document: PostsDocument,
     tags,
@@ -46,6 +50,7 @@ const HomePage = async () => {
   const [{ posts }, page] = await Promise.all([postsData, pageData]);
 
   const latestPost = posts?.items[0] as Post;
+  const latestFeedback = page.feedback?.items[0];
   const header = page.mainHeader as ContentGroup;
   const sellingPoints = page.sellingPoints?.items as ContentGroup[];
   const base64Map = await extractImagesToBase64Map(latestPost);
@@ -109,6 +114,20 @@ const HomePage = async () => {
             </Container>
           </FeaturedSection>
         )}
+
+      <Container>
+        <FeedbackWrapper>
+          <Text as="p">{latestFeedback?.body}</Text>
+          <FeedbackFooter>
+            {latestFeedback?.url && (
+              <Link href={latestFeedback?.url} target="_blank">
+                {latestFeedback?.author} | {latestFeedback?.authorRole}
+              </Link>
+            )}
+            <Text size={0}>{formatDate(latestFeedback?.date)}</Text>
+          </FeedbackFooter>
+        </FeedbackWrapper>
+      </Container>
 
       {latestPost &&
         latestPost.image?.title &&

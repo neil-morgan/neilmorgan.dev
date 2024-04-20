@@ -230,6 +230,7 @@ export type ContentGroup = Entry & {
   heading: Maybe<Scalars['String']['output']>;
   icon: Maybe<Scalars['String']['output']>;
   internalName: Maybe<Scalars['String']['output']>;
+  kicker: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<ContentGroupLinkingCollections>;
   subheading: Maybe<Scalars['String']['output']>;
   sys: Sys;
@@ -257,6 +258,12 @@ export type ContentGroupIconArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupInternalNameArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
+export type ContentGroupKickerArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -318,6 +325,13 @@ export type ContentGroupFilter = {
   internalName_not: InputMaybe<Scalars['String']['input']>;
   internalName_not_contains: InputMaybe<Scalars['String']['input']>;
   internalName_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  kicker: InputMaybe<Scalars['String']['input']>;
+  kicker_contains: InputMaybe<Scalars['String']['input']>;
+  kicker_exists: InputMaybe<Scalars['Boolean']['input']>;
+  kicker_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  kicker_not: InputMaybe<Scalars['String']['input']>;
+  kicker_not_contains: InputMaybe<Scalars['String']['input']>;
+  kicker_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   subheading: InputMaybe<Scalars['String']['input']>;
   subheading_contains: InputMaybe<Scalars['String']['input']>;
   subheading_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -357,6 +371,8 @@ export enum ContentGroupOrder {
   IconDesc = 'icon_DESC',
   InternalNameAsc = 'internalName_ASC',
   InternalNameDesc = 'internalName_DESC',
+  KickerAsc = 'kicker_ASC',
+  KickerDesc = 'kicker_DESC',
   SubheadingAsc = 'subheading_ASC',
   SubheadingDesc = 'subheading_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -426,6 +442,139 @@ export enum EntryOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type Feedback = Entry & {
+  __typename?: 'Feedback';
+  author: Maybe<Scalars['String']['output']>;
+  authorRole: Maybe<Scalars['String']['output']>;
+  body: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  date: Maybe<Scalars['DateTime']['output']>;
+  linkedFrom: Maybe<FeedbackLinkingCollections>;
+  sys: Sys;
+  url: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackAuthorArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackAuthorRoleArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackBodyArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackDateArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackUrlArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FeedbackCollection = {
+  __typename?: 'FeedbackCollection';
+  items: Array<Maybe<Feedback>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type FeedbackFilter = {
+  AND: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
+  author: InputMaybe<Scalars['String']['input']>;
+  authorRole: InputMaybe<Scalars['String']['input']>;
+  authorRole_contains: InputMaybe<Scalars['String']['input']>;
+  authorRole_exists: InputMaybe<Scalars['Boolean']['input']>;
+  authorRole_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorRole_not: InputMaybe<Scalars['String']['input']>;
+  authorRole_not_contains: InputMaybe<Scalars['String']['input']>;
+  authorRole_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  author_contains: InputMaybe<Scalars['String']['input']>;
+  author_exists: InputMaybe<Scalars['Boolean']['input']>;
+  author_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  author_not: InputMaybe<Scalars['String']['input']>;
+  author_not_contains: InputMaybe<Scalars['String']['input']>;
+  author_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body: InputMaybe<Scalars['String']['input']>;
+  body_contains: InputMaybe<Scalars['String']['input']>;
+  body_exists: InputMaybe<Scalars['Boolean']['input']>;
+  body_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body_not: InputMaybe<Scalars['String']['input']>;
+  body_not_contains: InputMaybe<Scalars['String']['input']>;
+  body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  date: InputMaybe<Scalars['DateTime']['input']>;
+  date_exists: InputMaybe<Scalars['Boolean']['input']>;
+  date_gt: InputMaybe<Scalars['DateTime']['input']>;
+  date_gte: InputMaybe<Scalars['DateTime']['input']>;
+  date_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  date_lt: InputMaybe<Scalars['DateTime']['input']>;
+  date_lte: InputMaybe<Scalars['DateTime']['input']>;
+  date_not: InputMaybe<Scalars['DateTime']['input']>;
+  date_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  sys: InputMaybe<SysFilter>;
+  url: InputMaybe<Scalars['String']['input']>;
+  url_contains: InputMaybe<Scalars['String']['input']>;
+  url_exists: InputMaybe<Scalars['Boolean']['input']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  url_not: InputMaybe<Scalars['String']['input']>;
+  url_not_contains: InputMaybe<Scalars['String']['input']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FeedbackLinkingCollections = {
+  __typename?: 'FeedbackLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type FeedbackLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum FeedbackOrder {
+  AuthorRoleAsc = 'authorRole_ASC',
+  AuthorRoleDesc = 'authorRole_DESC',
+  AuthorAsc = 'author_ASC',
+  AuthorDesc = 'author_DESC',
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 export enum ImageFormat {
@@ -885,6 +1034,8 @@ export type Query = {
   contentGroup: Maybe<ContentGroup>;
   contentGroupCollection: Maybe<ContentGroupCollection>;
   entryCollection: Maybe<EntryCollection>;
+  feedback: Maybe<Feedback>;
+  feedbackCollection: Maybe<FeedbackCollection>;
   post: Maybe<Post>;
   postCategory: Maybe<PostCategory>;
   postCategoryCollection: Maybe<PostCategoryCollection>;
@@ -946,6 +1097,23 @@ export type QueryEntryCollectionArgs = {
   preview: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryFeedbackArgs = {
+  id: Scalars['String']['input'];
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryFeedbackCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  order: InputMaybe<Array<InputMaybe<FeedbackOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<FeedbackFilter>;
 };
 
 
@@ -1664,7 +1832,7 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', mainHeader: { __typename?: 'ContentGroup', heading: string | null, subheading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null };
+export type HomePageQuery = { __typename?: 'Query', mainHeader: { __typename?: 'ContentGroup', heading: string | null, subheading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, body: string | null, date: any | null, url: string | null } | null> } | null };
 
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -1672,7 +1840,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type PostsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1702,7 +1870,7 @@ export type SkillQueryVariables = Exact<{
 }>;
 
 
-export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, date: number | null, icon: { __typename?: 'Asset', url: string | null, description: string | null, title: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, date: number | null, icon: { __typename?: 'Asset', url: string | null, description: string | null, title: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1759,13 +1927,22 @@ export const HomePageDocument = new TypedDocumentString(`
     body
   }
   sellingPoints: contentGroupCollection(
-    where: {internalName: "Selling Point"}
+    where: {internalName_contains: "Selling Point"}
     preview: $preview
   ) {
     items {
       heading
       body
       icon
+    }
+  }
+  feedback: feedbackCollection(order: date_DESC, limit: 1, preview: $preview) {
+    items {
+      author
+      authorRole
+      body
+      date
+      url
     }
   }
 }

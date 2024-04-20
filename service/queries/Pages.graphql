@@ -6,13 +6,23 @@ query HomePage($preview: Boolean = false) {
   }
 
   sellingPoints: contentGroupCollection(
-    where: { internalName: "Selling Point" }
+    where: { internalName_contains: "Selling Point" }
     preview: $preview
   ) {
     items {
       heading
       body
       icon
+    }
+  }
+
+  feedback: feedbackCollection(order: date_DESC, limit: 1, preview: $preview) {
+    items {
+      author
+      authorRole
+      body
+      date
+      url
     }
   }
 }
