@@ -105,7 +105,7 @@ const HomePage = async () => {
                 label="Latest post"
                 tags={latestPost.tagsCollection?.items as TagType[]}
                 cta={{
-                  href: `${LOCATIONS.posts}/${latestPost.category?.slug}/${latestPost.slug}`,
+                  href: `${LOCATIONS.posts.slug}/${latestPost.category?.slug}/${latestPost.slug}`,
                   label: "Read more",
                 }}
                 body={latestPost.description}
