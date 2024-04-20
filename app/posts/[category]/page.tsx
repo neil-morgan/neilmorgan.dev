@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: CategoryMetaProps) {
     },
   });
   return {
-    title: `${PAGE_TITLE_PREFIX} | ${data?.postCategory?.items[0]?.title} posts`,
+    title: `${data?.postCategory?.items[0]?.title} posts | ${PAGE_TITLE_PREFIX}`,
   };
 }
 
@@ -66,8 +66,8 @@ export default async function PostCategoryPage({
 
   const base64Map = await extractImagesToBase64Map(posts);
   const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Posts", href: LOCATIONS.posts },
+    LOCATIONS.home,
+    LOCATIONS.posts,
     { label: category?.title as string },
   ];
 
@@ -75,7 +75,7 @@ export default async function PostCategoryPage({
     <Container>
       <PageHeader
         kicker="Post Category"
-        title={`${category.title} thoughts and opinions`}
+        heading={`${category.title} thoughts and opinions`}
         breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />

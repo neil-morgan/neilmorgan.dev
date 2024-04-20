@@ -1832,7 +1832,21 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', mainHeader: { __typename?: 'ContentGroup', heading: string | null, subheading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, body: string | null, date: any | null, url: string | null } | null> } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, body: string | null, date: any | null, url: string | null } | null> } | null };
+
+export type SkillsPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
+export type PostsPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -1921,9 +1935,9 @@ export const SocialItemFragmentDoc = new TypedDocumentString(`
     `, {"fragmentName":"SocialItem"}) as unknown as TypedDocumentString<SocialItemFragment, unknown>;
 export const HomePageDocument = new TypedDocumentString(`
     query HomePage($preview: Boolean = false) {
-  mainHeader: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+  header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
+    kicker
     heading
-    subheading
     body
   }
   sellingPoints: contentGroupCollection(
@@ -1947,6 +1961,24 @@ export const HomePageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<HomePageQuery, HomePageQueryVariables>;
+export const SkillsPageDocument = new TypedDocumentString(`
+    query SkillsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
+export const PostsPageDocument = new TypedDocumentString(`
+    query PostsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
 export const PostDocument = new TypedDocumentString(`
     query Post($slug: String, $preview: Boolean = false) {
   post: postCollection(where: {slug: $slug}, limit: 1, preview: $preview) {

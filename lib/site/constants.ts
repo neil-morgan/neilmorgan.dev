@@ -9,11 +9,11 @@ export const CONTENTFUL_SPACE_URL = `${CONTENTFUL_BASE_URL}/content/v1/spaces/`;
 export const PAGE_TITLE_PREFIX = "Neil Morgan";
 
 export const LOCATIONS = {
-  home: "/",
-  posts: "/posts",
-  skills: "/skills",
-  projects: "/projects",
-  experience: "/experience",
+  home: { label: "Home", slug: "/" },
+  posts: { label: "Posts", slug: "/posts" },
+  skills: { label: "Skills", slug: "/skills" },
+  projects: { label: "Projects", slug: "/projects" },
+  experience: { label: "Experience", slug: "/experience" },
 };
 
 export const BREAKPOINTS = {

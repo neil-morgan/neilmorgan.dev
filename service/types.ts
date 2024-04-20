@@ -28,20 +28,20 @@ export type TagType = {
 
 export type BreadcrumbType = {
   label: string;
-  href?: string;
+  slug?: string;
 };
 
 export type NavigationType = (
   | {
-      title: string;
+      label: string;
       slug: string;
       options?: undefined;
     }
   | {
-      title: string;
+      label: string;
       slug: string;
       options: {
-        title: string;
+        label: string;
         slug: string;
       }[];
     }

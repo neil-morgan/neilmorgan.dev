@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { PostsCategory } from "./components";
-import { PostsDocument, type Post } from "@/service";
+import { PostsDocument, PostsPageDocument, type Post } from "@/service";
 import {
   groupByCategory,
   fetchContent,
@@ -14,39 +14,45 @@ const tags = ["post"];
 export const revalidate = 5;
 
 export const metadata = {
-  title: `${PAGE_TITLE_PREFIX} | Posts`,
+  title: `Posts | ${PAGE_TITLE_PREFIX}`,
 };
 
 export default async function PostsPage() {
   const { isEnabled: preview } = draftMode();
-  const data = await fetchContent({
+  const postsData = await fetchContent({
     document: PostsDocument,
     tags,
     preview,
   });
+  const pageData = await fetchContent({
+    document: PostsPageDocument,
+    tags,
+    preview,
+  });
 
-  const posts = groupByCategory(data?.posts?.items as Post[], "category");
+  const [{ posts }, { header }] = await Promise.all([postsData, pageData]);
 
-  if (posts.length === 0) {
+  const groupedPosts = groupByCategory(posts?.items as Post[], "category");
+
+  if (groupedPosts.length === 0) {
     return <InfoMessage {...INFO_MESSAGES.noContent} />;
   }
 
-  const base64Map = await extractImagesToBase64Map(posts);
-  const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Posts" },
-  ];
+  const base64Map = await extractImagesToBase64Map(groupedPosts);
+  const breadcrumbs = [LOCATIONS.home, { label: "Posts" }];
 
   return (
     <Container>
-      <PageHeader
-        kicker="Posts"
-        title="My thoughts and opinions"
-        subTitle="I relentlessly dream and obsess. Here is somewhere I can let it all out."
-        breadcrumbs={breadcrumbs}
-      />
+      {header?.heading && (
+        <PageHeader
+          kicker={header.kicker}
+          heading={header.heading}
+          body={header.body}
+          breadcrumbs={breadcrumbs}
+        />
+      )}
       <Separator size="xl" />
-      {posts.map(({ category, items }, i) => (
+      {groupedPosts.map(({ category, items }, i) => (
         <PostsCategory
           key={category?.title}
           category={category}

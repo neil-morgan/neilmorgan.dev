@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: SkillParamsType) {
   const skill = data?.skill?.items[0] as Skill;
 
   return {
-    title: `${PAGE_TITLE_PREFIX} | ${skill?.title}`,
+    title: `${skill?.title} | ${PAGE_TITLE_PREFIX}`,
     description: skill?.description,
   };
 }
@@ -56,18 +56,14 @@ export default async function SkillPage({ params }: SkillParamsType) {
   }
 
   const base64Map = await extractImagesToBase64Map(skill);
-  const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Skills", href: LOCATIONS.skills },
-    { label: "Skill" },
-  ];
+  const breadcrumbs = [LOCATIONS.home, LOCATIONS.skills, { label: "Skill" }];
 
   return (
     <Container>
       {skill.title && skill.icon?.url && skill.icon?.title && (
         <PageHeader
-          title={skill.title}
-          subTitle={skill.description}
+          heading={skill.title}
+          body={skill.description}
           kicker="Skill"
           breadcrumbs={breadcrumbs}
           image={{

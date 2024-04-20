@@ -57,11 +57,11 @@ export default async function PostPage({ params }: PostParamsType) {
 
   const base64Map = await extractImagesToBase64Map(post);
   const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Posts", href: LOCATIONS.posts },
+    LOCATIONS.home,
+    LOCATIONS.posts,
     {
       label: post.category?.title as string,
-      href: `${LOCATIONS.posts}/${post.category?.slug}`,
+      slug: `${LOCATIONS.posts.slug}/${post.category?.slug}`,
     },
     { label: "Post" },
   ];
@@ -71,8 +71,8 @@ export default async function PostPage({ params }: PostParamsType) {
       {post.title && (
         <PageHeader
           kicker="Post"
-          title={post.title}
-          subTitle={post.description}
+          heading={post.title}
+          body={post.description}
           breadcrumbs={breadcrumbs}
         />
       )}

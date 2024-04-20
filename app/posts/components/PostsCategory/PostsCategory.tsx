@@ -5,6 +5,7 @@ import type { PostsCategoryType } from "./types";
 import { Card } from "@/components/molecules";
 import { Text } from "@/components/atoms";
 import type { TagType } from "@/service";
+import { LOCATIONS } from "@/lib/site";
 
 export const PostsCategory = ({
   category,
@@ -32,7 +33,7 @@ export const PostsCategory = ({
             key={i}
             heading={title}
             description={description}
-            href={`/posts/${category?.slug}/${slug}`}
+            href={`${LOCATIONS.posts.slug}/${category?.slug}/${slug}`}
             tags={tagsCollection?.items as TagType[]}
             image={{
               url: image.url,
