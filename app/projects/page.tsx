@@ -21,8 +21,8 @@ const ProjectsPage = async () => {
     <Container>
       <PageHeader
         kicker="Projects"
-        title="Minim Lorem duis voluptate ad."
-        subTitle="Nulla duis voluptate laborum mollit."
+        heading="Minim Lorem duis voluptate ad."
+        body="Nulla duis voluptate laborum mollit."
         breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
