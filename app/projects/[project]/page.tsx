@@ -61,5 +61,5 @@ export default async function ProjectPage() {
   //     { label: "Skill" },
   //   ];
 
-  return <Container></Container>;
+  return <Container>Projects</Container>;
 }

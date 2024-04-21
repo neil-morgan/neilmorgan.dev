@@ -1,7 +1,15 @@
+import { draftMode } from "next/headers";
 import { ProjectsWrapper } from "./styles";
-import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS, INFO_MESSAGES } from "@/lib/site";
 import { Container, Separator } from "@/components/atoms";
-import { ContentPresentation, PageHeader } from "@/components/molecules";
+import {
+  ContentPresentation,
+  PageHeader,
+  InfoMessage,
+} from "@/components/molecules";
+import { fetchContent, extractImagesToBase64Map } from "@/helpers";
+import { ProjectsDocument, type Project, type TagType } from "@/service";
+import { isNumberEven } from "@/utils";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
@@ -12,10 +20,21 @@ export const metadata = {
 export const revalidate = 5;
 
 const ProjectsPage = async () => {
-  const breadcrumbs = [
-    { label: "Home", href: LOCATIONS.home },
-    { label: "Projects" },
-  ];
+  const { isEnabled: preview } = draftMode();
+
+  const { projects } = await fetchContent({
+    document: ProjectsDocument,
+    preview,
+  });
+
+  if (projects && projects?.items.length === 0) {
+    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+  }
+
+  const breadcrumbs = [LOCATIONS.home, { label: "Projects" }];
+  const base64Map = await extractImagesToBase64Map(
+    projects?.items as Project[],
+  );
 
   return (
     <Container>
@@ -26,40 +45,31 @@ const ProjectsPage = async () => {
         breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
-      <ProjectsWrapper>
-        <ContentPresentation
-          title="Aute id deserunt proident ipsum."
-          body="Eu ipsum eiusmod duis ad. Est excepteur consequat adipisicing minim adipisicing."
-          cta={{ label: "See more", href: "" }}
-          label="Project"
-          tags={[
-            { title: "asd", slug: "" },
-            { title: "asd", slug: "" },
-            { title: "asd", slug: "" },
-          ]}
-          image={{
-            url: "https://images.ctfassets.net/96c2x2gvt3wj/5u52J4iFrUdnuADmpWDKQH/81fc9f739651aec60ed3654dce6506c7/andy-hermawan-bVBvv5xlX3g-unsplash.jpg",
-            description:
-              "A cartoon rocket taking off - Image by Andy Hermawan on Unsplash.",
-            blurDataUrl:
-              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGNgYJFsq1nUUDqLgUGIQUUt9MfH//ev/eeVMAMAbc8J+bmWxrAAAAAASUVORK5CYII=",
-          }}
-        />
 
-        <ContentPresentation
-          title="asd"
-          reverse
-          body="as"
-          cta={{ label: "sad", href: "" }}
-          label="asd"
-          image={{
-            url: "https://images.ctfassets.net/96c2x2gvt3wj/5u52J4iFrUdnuADmpWDKQH/81fc9f739651aec60ed3654dce6506c7/andy-hermawan-bVBvv5xlX3g-unsplash.jpg",
-            description:
-              "A cartoon rocket taking off - Image by Andy Hermawan on Unsplash.",
-            blurDataUrl:
-              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGNgYJFsq1nUUDqLgUGIQUUt9MfH//ev/eeVMAMAbc8J+bmWxrAAAAAASUVORK5CYII=",
-          }}
-        />
+      <ProjectsWrapper>
+        {projects?.items.map((project, i) =>
+          project?.heading &&
+          project?.description &&
+          project?.slug &&
+          project.image?.url &&
+          project.image.title &&
+          project.image.description ? (
+            <ContentPresentation
+              key={i}
+              title={project.heading}
+              body={project.description}
+              cta={{ label: "See more", href: `/projects/${project.slug}` }}
+              label="Project"
+              tags={project.skillsUsedCollection?.items as TagType[]}
+              reverse={!isNumberEven(i)}
+              image={{
+                url: project.image.url,
+                description: project.image.description,
+                blurDataUrl: base64Map[project.image?.title],
+              }}
+            />
+          ) : null,
+        )}
       </ProjectsWrapper>
     </Container>
   );

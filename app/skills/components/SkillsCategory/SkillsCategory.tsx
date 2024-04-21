@@ -12,10 +12,10 @@ export const SkillsCategory = ({
 }: SkillsCategoryType) => (
   <Wrapper>
     <Header>
-      <Text size={4} as="h2" weight={600} print>
+      <Text size={2} as="h2" weight={600} print>
         {category?.title} Skills
       </Text>
-      <Text size={3} color="$secondary1">
+      <Text size={2} color="$secondary1">
         {items.length} Skill{items.length !== 1 && "s"}
       </Text>
     </Header>

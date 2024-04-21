@@ -24,7 +24,7 @@ export const ContentPresentation = ({
     )}
     <ContentDetails reverse={reverse}>
       {label && (
-        <Text print size={1} weight={600}>
+        <Text print size={1} weight={600} color="$secondary1">
           {label}
         </Text>
       )}

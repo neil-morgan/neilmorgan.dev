@@ -5,6 +5,16 @@ query Skill($slug: String, $preview: Boolean = false) {
       slug
       description
       date
+      relatedSkillsCollection {
+        items {
+          title
+          slug
+          icon {
+            url
+            title
+          }
+        }
+      }
       icon {
         url
         description
@@ -53,12 +63,6 @@ query Skills($preview: Boolean = false) {
       icon {
         url
         title
-      }
-      tagsCollection {
-        items {
-          title
-          slug
-        }
       }
     }
   }

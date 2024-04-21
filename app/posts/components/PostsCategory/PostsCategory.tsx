@@ -14,10 +14,10 @@ export const PostsCategory = ({
 }: PostsCategoryType) => (
   <Wrapper>
     <Header>
-      <Text size={4} as="h2" weight={600} print>
+      <Text size={2} as="h2" weight={600} print>
         {category?.title}
       </Text>
-      <Text size={3} color="$secondary1">
+      <Text size={2} color="$secondary1">
         {items.length} Post{items.length !== 1 && "s"}
       </Text>
     </Header>

@@ -41,6 +41,7 @@ const HomePage = async () => {
     tags,
     preview,
   });
+  
   const pageData = await fetchContent({
     document: HomePageDocument,
     preview,
