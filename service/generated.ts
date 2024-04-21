@@ -2170,6 +2170,13 @@ export type PostsPageQueryVariables = Exact<{
 
 export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
+export type ProjectsPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type ProjectsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2205,7 +2212,7 @@ export type ProjectsQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, description: string | null, slug: string | null, date: any | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
 
 export type SkillQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2308,6 +2315,15 @@ export const PostsPageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
+export const ProjectsPageDocument = new TypedDocumentString(`
+    query ProjectsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<ProjectsPageQuery, ProjectsPageQueryVariables>;
 export const PostDocument = new TypedDocumentString(`
     query Post($slug: String, $preview: Boolean = false) {
   post: postCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
@@ -2467,6 +2483,7 @@ export const ProjectsDocument = new TypedDocumentString(`
       heading
       description
       slug
+      date
       image {
         title
         url

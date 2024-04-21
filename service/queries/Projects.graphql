@@ -4,6 +4,7 @@ query Projects($preview: Boolean = false) {
       heading
       description
       slug
+      date
       image {
         title
         url

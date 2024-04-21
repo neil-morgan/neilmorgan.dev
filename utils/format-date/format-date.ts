@@ -1,4 +1,7 @@
-export const formatDate = (inputDate: string) => {
+export const formatDate = (
+  inputDate: string,
+  separator: "-" | "/" | " " = " ",
+) => {
   const dateParts = inputDate.split("T")[0].split("-");
-  return dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+  return dateParts[2] + separator + dateParts[1] + separator + dateParts[0];
 };

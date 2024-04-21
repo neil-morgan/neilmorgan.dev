@@ -42,3 +42,11 @@ query PostsPage($preview: Boolean = false) {
     body
   }
 }
+
+query ProjectsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}

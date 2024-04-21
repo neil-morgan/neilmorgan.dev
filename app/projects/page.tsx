@@ -8,8 +8,13 @@ import {
   InfoMessage,
 } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
-import { ProjectsDocument, type Project, type TagType } from "@/service";
-import { isNumberEven } from "@/utils";
+import {
+  ProjectsDocument,
+  ProjectsPageDocument,
+  type Project,
+  type TagType,
+} from "@/service";
+import { isNumberEven, formatDate } from "@/utils";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
@@ -22,10 +27,20 @@ export const revalidate = 5;
 const ProjectsPage = async () => {
   const { isEnabled: preview } = draftMode();
 
-  const { projects } = await fetchContent({
+  const projectsData = await fetchContent({
     document: ProjectsDocument,
     preview,
   });
+
+  const pageData = await fetchContent({
+    document: ProjectsPageDocument,
+    preview,
+  });
+
+  const [{ projects }, { header }] = await Promise.all([
+    projectsData,
+    pageData,
+  ]);
 
   if (projects && projects?.items.length === 0) {
     return <InfoMessage {...INFO_MESSAGES.noContent} />;
@@ -38,12 +53,14 @@ const ProjectsPage = async () => {
 
   return (
     <Container>
-      <PageHeader
-        kicker="Projects"
-        heading="Minim Lorem duis voluptate ad."
-        body="Nulla duis voluptate laborum mollit."
-        breadcrumbs={breadcrumbs}
-      />
+      {header?.heading && (
+        <PageHeader
+          kicker={header?.kicker}
+          heading={header?.heading}
+          body={header?.body}
+          breadcrumbs={breadcrumbs}
+        />
+      )}
       <Separator size="xl" />
 
       <ProjectsWrapper>
@@ -58,8 +75,8 @@ const ProjectsPage = async () => {
               key={i}
               title={project.heading}
               body={project.description}
-              cta={{ label: "See more", href: `/projects/${project.slug}` }}
-              label="Project"
+              cta={{ label: "More", href: `/projects/${project.slug}` }}
+              label={formatDate(project?.date)}
               tags={project.skillsUsedCollection?.items as TagType[]}
               reverse={!isNumberEven(i)}
               image={{
