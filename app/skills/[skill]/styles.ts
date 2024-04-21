@@ -8,9 +8,9 @@ export const HeaderWrapper = styled("div", {
   width: "100%",
   alignItems: "center",
 
-  "@md":{
+  "@md": {
     gap: "$6",
-  }
+  },
 });
 
 export const Content = styled("div", {
@@ -27,6 +27,7 @@ export const Body = styled("article", {
   flexDirection: "column",
   maxWidth: "min(700px, 100%)",
   width: "100%",
+  gap: "$8",
 
   "@md": {
     maxWidth: "100%",
@@ -38,7 +39,7 @@ export const Aside = styled("aside", {
   flexDirection: "column",
   alignItems: "flex-start",
   minWidth: "360px",
-  marginTop: "$10",
+  marginTop: "$8",
 
   "@lg": {
     marginTop: 0,
@@ -65,6 +66,5 @@ export const Projects = styled("div", {
 export const Stats = styled("div", {
   display: "flex",
   gap: "$4",
-  marginBottom: "$7",
   color: "$secondary1",
 });

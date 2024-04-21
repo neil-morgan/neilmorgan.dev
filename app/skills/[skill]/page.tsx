@@ -1,5 +1,6 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { SkillsCategory } from "../components";
 import type { SkillParamsType } from "./types";
 import { Content, Body, Aside, Projects, Stats } from "./styles";
 import { SkillDocument, type Skill, type RichtextType } from "@/service";
@@ -82,6 +83,13 @@ export default async function SkillPage({ params }: SkillParamsType) {
             <Text size={0}>Used in {0} projects</Text>
           </Stats>
           <Richtext content={skill?.body as RichtextType} />
+          {skill.relatedSkillsCollection && (
+            <SkillsCategory
+              category={{ title: "Related" }}
+              items={skill.relatedSkillsCollection.items as Skill[]}
+              base64Map={base64Map}
+            />
+          )}
         </Body>
 
         <Aside>
