@@ -36,7 +36,7 @@ query SkillsPage($preview: Boolean = false) {
 }
 
 query PostsPage($preview: Boolean = false) {
-  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+  header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
     kicker
     heading
     body

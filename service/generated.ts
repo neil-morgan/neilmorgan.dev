@@ -2316,7 +2316,7 @@ export const SkillsPageDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
 export const PostsPageDocument = new TypedDocumentString(`
     query PostsPage($preview: Boolean = false) {
-  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+  header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
     kicker
     heading
     body
