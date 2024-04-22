@@ -2190,7 +2190,7 @@ export type PostsQueryVariables = Exact<{
 }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
+export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
 
 export type PostCategoryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -2213,6 +2213,14 @@ export type ProjectsQueryVariables = Exact<{
 
 
 export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, description: string | null, slug: string | null, date: any | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
+
+export type ProjectQueryVariables = Exact<{
+  slug: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', url: string | null, title: string | null, description: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2405,9 +2413,6 @@ export const PostsDocument = new TypedDocumentString(`
     query Posts($preview: Boolean = false) {
   posts: postCollection(order: date_DESC, preview: $preview) {
     items {
-      sys {
-        id
-      }
       title
       description
       date
@@ -2499,6 +2504,52 @@ export const ProjectsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProjectsQuery, ProjectsQueryVariables>;
+export const ProjectDocument = new TypedDocumentString(`
+    query Project($slug: String, $preview: Boolean = false) {
+  project: projectCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
+    items {
+      heading
+      description
+      date
+      slug
+      image {
+        title
+        url
+        description
+      }
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+            }
+          }
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProjectQuery, ProjectQueryVariables>;
 export const SkillDocument = new TypedDocumentString(`
     query Skill($slug: String, $preview: Boolean = false) {
   skill: skillCollection(where: {slug: $slug}, limit: 1, preview: $preview) {

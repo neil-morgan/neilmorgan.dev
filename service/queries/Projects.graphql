@@ -19,3 +19,52 @@ query Projects($preview: Boolean = false) {
     }
   }
 }
+
+query Project($slug: String, $preview: Boolean = false) {
+  project: projectCollection(
+    where: { slug: $slug }
+    limit: 1
+    preview: $preview
+  ) {
+    items {
+      heading
+      description
+      date
+      slug
+      image {
+        title
+        url
+        description
+      }
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+            }
+          }
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}

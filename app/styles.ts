@@ -78,7 +78,7 @@ export const FeedbackWrapper = styled("div", {
   textAlign: "center",
 
   "@md": {
-    padding: "0 10%",
+    padding: "0 20%",
   },
 
   "& > p:before": {

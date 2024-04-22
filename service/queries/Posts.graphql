@@ -76,9 +76,6 @@ query Post($slug: String, $preview: Boolean = false) {
 query Posts($preview: Boolean = false) {
   posts: postCollection(order: date_DESC, preview: $preview) {
     items {
-      sys {
-        id
-      }
       title
       description
       date

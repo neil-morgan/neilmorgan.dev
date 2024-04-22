@@ -11,8 +11,10 @@ import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import {
   PostsDocument,
   HomePageDocument,
+  ProjectsDocument,
   type ContentGroup,
   type Post,
+  type Project,
   type TagType,
 } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
@@ -41,19 +43,32 @@ const HomePage = async () => {
     tags,
     preview,
   });
-  
+
+  const projectsData = await fetchContent({
+    document: ProjectsDocument,
+    preview,
+  });
+
   const pageData = await fetchContent({
     document: HomePageDocument,
     preview,
   });
 
-  const [{ posts }, page] = await Promise.all([postsData, pageData]);
+  const [{ posts }, { projects }, page] = await Promise.all([
+    postsData,
+    projectsData,
+    pageData,
+  ]);
 
   const latestPost = posts?.items[0] as Post;
   const latestFeedback = page.feedback?.items[0];
+  const latestProject = projects?.items[0] as Project;
   const header = page.header as ContentGroup;
   const sellingPoints = page.sellingPoints?.items as ContentGroup[];
-  const base64Map = await extractImagesToBase64Map(latestPost);
+  const base64Map = await extractImagesToBase64Map({
+    latestPost,
+    latestProject,
+  });
 
   return (
     <>
@@ -129,27 +144,27 @@ const HomePage = async () => {
         </FeedbackWrapper>
       </Container>
 
-      {latestPost &&
-        latestPost.image?.title &&
-        latestPost.image.description &&
-        latestPost.image.url && (
+      {latestProject &&
+        latestProject.image?.title &&
+        latestProject.image.description &&
+        latestProject.image.url && (
           <FeaturedSection>
             <Container>
               <ContentPresentation
                 reverse
                 image={{
-                  url: latestPost.image.url,
-                  description: latestPost.image.description,
-                  blurDataUrl: base64Map[latestPost.image.title],
+                  url: latestProject.image.url,
+                  description: latestProject.image.description,
+                  blurDataUrl: base64Map[latestProject.image.title],
                 }}
-                title={latestPost.title}
+                title={latestProject.heading}
                 label="Latest project"
-                tags={latestPost.tagsCollection?.items as TagType[]}
+                tags={latestProject.skillsUsedCollection?.items as TagType[]}
                 cta={{
-                  href: `${LOCATIONS.posts.slug}/${latestPost.category?.slug}/${latestPost.slug}`,
+                  href: `${LOCATIONS.projects.slug}/${latestProject.slug}`,
                   label: "Read more",
                 }}
-                body={latestPost.description}
+                body={latestProject.description}
               />
             </Container>
           </FeaturedSection>
