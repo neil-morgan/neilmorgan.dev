@@ -118,7 +118,7 @@ const HomePage = async () => {
                   blurDataUrl: base64Map[latestPost.image.title],
                 }}
                 title={latestPost.title}
-                label="Latest post"
+                kicker="Latest post"
                 tags={latestPost.tagsCollection?.items as TagType[]}
                 cta={{
                   href: `${LOCATIONS.posts.slug}/${latestPost.category?.slug}/${latestPost.slug}`,
@@ -158,7 +158,7 @@ const HomePage = async () => {
                   blurDataUrl: base64Map[latestProject.image.title],
                 }}
                 title={latestProject.heading}
-                label="Latest project"
+                kicker="Latest project"
                 tags={latestProject.skillsUsedCollection?.items as TagType[]}
                 cta={{
                   href: `${LOCATIONS.projects.slug}/${latestProject.slug}`,

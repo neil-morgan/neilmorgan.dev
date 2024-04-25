@@ -45,11 +45,11 @@ export const Button = forwardRef(
     }, [addElementRef, asLink, noHighlight]);
 
     const rightIconComponent = rightIcon ? (
-      <Icon name={rightIcon} css={{ marginLeft: "$2", color: iconColor }} />
+      <Icon name={rightIcon} css={{ marginLeft: "$3", color: iconColor }} />
     ) : null;
 
     const leftIconComponent = leftIcon ? (
-      <Icon name={leftIcon} css={{ marginRight: "$2", color: iconColor }} />
+      <Icon name={leftIcon} css={{ marginRight: "$3", color: iconColor }} />
     ) : null;
 
     return (

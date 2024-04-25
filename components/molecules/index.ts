@@ -9,3 +9,4 @@ export { Pod } from "./Pod";
 export { PointerGlow } from "./PointerGlow";
 export { Richtext } from "./Richtext";
 export { ToggleDraftMode } from "./ToggleDraftMode";
+export { PodGroup } from "./PodGroup";

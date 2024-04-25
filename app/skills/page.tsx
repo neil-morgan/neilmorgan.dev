@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { sortProficienciesByPriority } from "./helpers";
-import { SkillsCategory } from "./components";
+import { Proficiencies } from "./styles";
 import { SkillsDocument, SkillsPageDocument, type Skill } from "@/service";
 import {
   groupByCategory,
@@ -8,7 +8,7 @@ import {
   extractImagesToBase64Map,
 } from "@/helpers";
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
-import { InfoMessage, PageHeader } from "@/components/molecules";
+import { InfoMessage, PageHeader, PodGroup } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
 
 const tags = ["skill"];
@@ -31,10 +31,7 @@ export default async function SkillsPage() {
     preview,
   });
 
-  const [{ skills }, { header }] = await Promise.all([
-    skillsData,
-    pageData,
-  ]);
+  const [{ skills }, { header }] = await Promise.all([skillsData, pageData]);
 
   const proficiencies = groupByCategory(
     skills?.items as Skill[],
@@ -60,16 +57,18 @@ export default async function SkillsPage() {
       )}
       <Separator size="xl" />
 
-      {sortProficienciesByPriority(proficiencies).map(
-        ({ category, items }, i) => (
-          <SkillsCategory
-            key={i}
-            category={category}
-            items={items}
-            base64Map={base64Map}
-          />
-        ),
-      )}
+      <Proficiencies>
+        {sortProficienciesByPriority(proficiencies).map(
+          ({ category, items }, i) => (
+            <PodGroup
+              key={i}
+              heading={`${category?.title} Skills`}
+              items={items}
+              base64Map={base64Map}
+            />
+          ),
+        )}
+      </Proficiencies>
     </Container>
   );
 }

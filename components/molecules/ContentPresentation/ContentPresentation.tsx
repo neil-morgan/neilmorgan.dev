@@ -1,12 +1,12 @@
 "use client";
 
 import type { ContentPresentationProps } from "./types";
-import { ContentDetails, ContentWrapper, ContentFooter } from "./styles";
+import { ContentDetails, ContentWrapper } from "./styles";
 import { Text, Button, AspectImage, TagList } from "@/components/atoms";
 
 export const ContentPresentation = ({
   title,
-  label,
+  kicker,
   body,
   cta,
   image,
@@ -23,19 +23,19 @@ export const ContentPresentation = ({
       />
     )}
     <ContentDetails reverse={reverse}>
-      {label && (
-        <Text print size={1} weight={600} color="$secondary1">
-          {label}
+      {kicker && (
+        <Text print size={0} weight={600} color="$secondary1">
+          {kicker}
         </Text>
       )}
       <Text size={5} as="h3" weight={400} color="$white">
         {title}
       </Text>
       <Text as="p">{body}</Text>
-      <ContentFooter>
-        <Button href={cta.href}>{cta.label}</Button>
-        {tags && <TagList list={tags} />}
-      </ContentFooter>
+      {tags && <TagList list={tags} />}
+      <Button href={cta.href} css={{ marginTop: "$4" }} rightIcon="ChevronRight">
+        {cta.label}
+      </Button>
     </ContentDetails>
   </ContentWrapper>
 );

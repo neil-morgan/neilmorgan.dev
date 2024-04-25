@@ -1,6 +1,5 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import { SkillsCategory } from "../components";
 import type { SkillParamsType } from "./types";
 import { Content, Body, Aside, Projects, Stats } from "./styles";
 import {
@@ -10,7 +9,7 @@ import {
   type RichtextType,
 } from "@/service";
 import { Container, Text, Separator } from "@/components/atoms";
-import { PageHeader, Richtext } from "@/components/molecules";
+import { PageHeader, Richtext, PodGroup } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 
@@ -89,8 +88,8 @@ export default async function SkillPage({ params }: SkillParamsType) {
           </Stats>
           <Richtext content={skill?.body as RichtextType} />
           {skill.relatedSkillsCollection && (
-            <SkillsCategory
-              category={{ title: "Related" }}
+            <PodGroup
+              heading="Related Skills"
               items={skill.relatedSkillsCollection.items as Skill[]}
               base64Map={base64Map}
             />

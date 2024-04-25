@@ -32,9 +32,16 @@ query Project($slug: String, $preview: Boolean = false) {
       date
       slug
       image {
-        title
-        url
-        description
+        ...Image
+      }
+      skillsUsedCollection {
+        items {
+          title
+          slug
+          icon {
+            ...Image
+          }
+        }
       }
       body {
         json
@@ -58,9 +65,7 @@ query Project($slug: String, $preview: Boolean = false) {
               sys {
                 id
               }
-              url
-              title
-              description
+              ...Image
             }
           }
         }

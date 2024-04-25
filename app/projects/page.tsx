@@ -76,7 +76,6 @@ const ProjectsPage = async () => {
               title={project.heading}
               body={project.description}
               cta={{ label: "More", href: `/projects/${project.slug}` }}
-              label={formatDate(project?.date)}
               tags={project.skillsUsedCollection?.items as TagType[]}
               reverse={!isNumberEven(i)}
               image={{

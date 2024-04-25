@@ -8,7 +8,7 @@ export type ContentPresentationProps = {
     label: string;
     href: string | null;
   };
-  label?: string;
+  kicker?: string;
   image: {
     url: string;
     description: string;

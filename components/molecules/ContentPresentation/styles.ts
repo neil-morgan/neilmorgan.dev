@@ -16,7 +16,7 @@ export const ContentDetails = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
-  gap: "$4",
+  gap: "$5",
 
   variants: {
     reverse: {
@@ -26,18 +26,4 @@ export const ContentDetails = styled("div", {
       },
     },
   },
-});
-
-export const ContentFooter = styled("footer", {
-  display: "flex",
-  width: "100%",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginTop: "$4",
-});
-
-export const ContentImage = styled("div", {
-  display: "flex",
-  alignItems: "center",
-  position: "relative",
 });
