@@ -17,7 +17,7 @@ export type CategoryItemType = {
 };
 
 export type GroupedCategoryType<T> = {
-  category: CategoryItemType;
+  category?: CategoryItemType;
   items: T[];
 };
 
@@ -30,6 +30,34 @@ export type BreadcrumbType = {
   label: string;
   slug?: string;
 };
+
+export type IconType =
+  | "Angle"
+  | "ArrowRight"
+  | "ArrowTopRight"
+  | "ArrowTopLeft"
+  | "ChevronDown"
+  | "ChevronRight"
+  | "Code"
+  | "Copy"
+  | "Checkmark"
+  | "Cross"
+  | "Cube"
+  | "Dimensions"
+  | "Github"
+  | "Globe"
+  | "Hamburger"
+  | "Heart"
+  | "HeartFilled"
+  | "Info"
+  | "Layers"
+  | "Lightning"
+  | "Link"
+  | "LinkedIn"
+  | "PaintDrop"
+  | "Rocket"
+  | "Share"
+  | "Star";
 
 export type NavigationType = (
   | {

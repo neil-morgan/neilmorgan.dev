@@ -1,11 +1,40 @@
-query Skill($slug: String, $preview: Boolean = false) {
-  skill: skillCollection(where: { slug: $slug }, limit: 1, preview: $preview) {
+query Projects($preview: Boolean = false) {
+  projects: projectCollection(order: date_DESC, preview: $preview) {
     items {
-      title
+      heading
+      description
       slug
+      date
+      image {
+        title
+        url
+        description
+      }
+      skillsUsedCollection {
+        items {
+          title
+          slug
+        }
+      }
+    }
+  }
+}
+
+query Project($slug: String, $preview: Boolean = false) {
+  project: projectCollection(
+    where: { slug: $slug }
+    limit: 1
+    preview: $preview
+  ) {
+    items {
+      heading
       description
       date
-      relatedSkillsCollection {
+      slug
+      image {
+        ...Image
+      }
+      skillsUsedCollection {
         items {
           title
           slug
@@ -13,9 +42,6 @@ query Skill($slug: String, $preview: Boolean = false) {
             ...Image
           }
         }
-      }
-      icon {
-        ...Image
       }
       body {
         json
@@ -34,7 +60,6 @@ query Skill($slug: String, $preview: Boolean = false) {
               }
             }
           }
-
           assets {
             block {
               sys {
@@ -44,19 +69,6 @@ query Skill($slug: String, $preview: Boolean = false) {
             }
           }
         }
-      }
-    }
-  }
-}
-
-query Skills($preview: Boolean = false) {
-  skills: skillCollection(preview: $preview) {
-    items {
-      title
-      slug
-      proficiency
-      icon {
-        ...Image
       }
     }
   }

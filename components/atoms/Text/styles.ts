@@ -47,6 +47,9 @@ export const Element = styled("div", {
       0: {
         fontSize: "$0",
       },
+      inherit: {
+        fontSize: "inherit",
+      },
     },
 
     print: {

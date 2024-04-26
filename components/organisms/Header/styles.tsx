@@ -6,7 +6,7 @@ export const HeaderElement = styled("header", {
   display: "flex",
   alignItems: "center",
   width: "100%",
-  padding: "$2 0",
+  padding: "$3 0",
   marginBottom: "$6",
 
   "@sm": {

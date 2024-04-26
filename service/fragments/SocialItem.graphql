@@ -1,4 +1,0 @@
-fragment SocialItem on SocialItem {
-  title
-  href
-}

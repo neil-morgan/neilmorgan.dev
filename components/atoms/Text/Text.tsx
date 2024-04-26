@@ -14,7 +14,7 @@ export const Text = forwardRef(
       children,
       css,
       id,
-      size,
+      size = "inherit",
       weight = 400,
       style,
       print = false,
@@ -24,7 +24,8 @@ export const Text = forwardRef(
     ref: DivElementRefType,
   ) => {
     const _id = kebabCase(id);
-    const lineHeight = size && size >= 8 ? 1.2 : as === "p" ? 1.5 : 1.3;
+    const sizeIsNumber = typeof size === "number";
+    const lineHeight = sizeIsNumber && size >= 8 ? 1.2 : as === "p" ? 1.5 : 1.3;
 
     return (
       <Element
@@ -41,7 +42,10 @@ export const Text = forwardRef(
           lineHeight,
         }}>
         {id && (
-          <Anchor href={`#${_id}`} id={_id} scrollMargin={size}>
+          <Anchor
+            href={`#${_id}`}
+            id={_id}
+            {...(sizeIsNumber && { scrollMargin: size })}>
             <Icon name="Link" />
           </Anchor>
         )}

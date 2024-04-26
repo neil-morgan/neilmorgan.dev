@@ -2,21 +2,11 @@
 
 import { styled } from "@/lib/stitches";
 
-export const HeaderWrapper = styled("div", {
-  display: "flex",
-  gap: "$3",
-  width: "100%",
-  alignItems: "center",
-
-  "@md": {
-    gap: "$6",
-  },
-});
-
 export const Content = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$8",
+  marginTop: "$8",
+  gap: "$11",
   "@lg": {
     flexDirection: "row",
   },
@@ -25,7 +15,7 @@ export const Content = styled("div", {
 export const Body = styled("article", {
   display: "flex",
   flexDirection: "column",
-  maxWidth: "min(700px, 100%)",
+  maxWidth: "700px",
   width: "100%",
   gap: "$8",
 });
@@ -35,26 +25,11 @@ export const Aside = styled("aside", {
   flexDirection: "column",
   alignItems: "flex-start",
   minWidth: "360px",
+  gap: "$6",
 });
 
-export const Projects = styled("div", {
+export const Actions = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$5",
-  marginTop: "$5",
-  width: "100%",
-
-  "@md": {
-    flexDirection: "row",
-  },
-
-  "@lg": {
-    flexDirection: "column",
-  },
-});
-
-export const Stats = styled("div", {
-  display: "flex",
   gap: "$4",
-  color: "$secondary1",
 });
