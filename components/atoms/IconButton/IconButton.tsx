@@ -5,7 +5,7 @@ import { ConditionalWrapper } from "../";
 import { IconButtonElement } from "./styles";
 import type { IconButtonProps } from "./types";
 import { Icon } from "@/components/atoms";
-import type { ButtonElementRefType } from "@/service";
+import type { ButtonElementRefType, IconType } from "@/service";
 import { useElementRefs } from "@/providers";
 
 export const IconButton = forwardRef(
@@ -54,7 +54,7 @@ export const IconButton = forwardRef(
           target={target}
           onClick={onClick as MouseEventHandler<HTMLButtonElement>}
           size={size}>
-          {children ? children : icon ? <Icon name={icon} /> : null}
+          {children ? children : icon ? <Icon name={icon as IconType} /> : null}
         </IconButtonElement>
       </ConditionalWrapper>
     );
