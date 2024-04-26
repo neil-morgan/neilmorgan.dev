@@ -18,6 +18,7 @@ export const Button = forwardRef(
       rightIcon,
       leftIcon,
       iconColor,
+      disabled,
       size,
       noHighlight,
       asLink = false,
@@ -40,16 +41,16 @@ export const Button = forwardRef(
     };
 
     useEffect(() => {
-      if (noHighlight || asLink) return;
+      if (disabled || noHighlight || asLink) return;
       addElementRef(elementRef.current);
-    }, [addElementRef, asLink, noHighlight]);
+    }, [addElementRef, asLink, disabled, noHighlight]);
 
     const rightIconComponent = rightIcon ? (
-      <Icon name={rightIcon} css={{ marginLeft: "$3", color: iconColor }} />
+      <Icon name={rightIcon} css={{ marginLeft: "0.8em", color: iconColor }} />
     ) : null;
 
     const leftIconComponent = leftIcon ? (
-      <Icon name={leftIcon} css={{ marginRight: "$3", color: iconColor }} />
+      <Icon name={leftIcon} css={{ marginRight: "1em", color: iconColor }} />
     ) : null;
 
     return (
@@ -61,6 +62,7 @@ export const Button = forwardRef(
           </NextLink>
         )}>
         <ButtonElement
+          disabled={disabled}
           ref={mergeRefs([elementRef, ref])}
           as={href ? "a" : "button"}
           css={css}

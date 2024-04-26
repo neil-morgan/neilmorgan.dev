@@ -55,9 +55,11 @@ export type IconType =
   | "Link"
   | "LinkedIn"
   | "PaintDrop"
+  | "Person"
   | "Rocket"
   | "Share"
-  | "Star";
+  | "Star"
+  | "Quote";
 
 export type NavigationType = (
   | {

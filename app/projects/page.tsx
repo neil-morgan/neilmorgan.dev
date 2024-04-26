@@ -14,7 +14,7 @@ import {
   type Project,
   type TagType,
 } from "@/service";
-import { isNumberEven, formatDate } from "@/utils";
+import { isNumberEven } from "@/utils";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,

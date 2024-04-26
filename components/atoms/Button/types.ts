@@ -13,4 +13,5 @@ export type ButtonProps = {
   size?: "sm" | "md" | "lg";
   noHighlight?: boolean;
   asLink?: boolean;
+  disabled?: boolean;
 };
