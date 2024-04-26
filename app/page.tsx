@@ -15,6 +15,7 @@ import {
   type ContentGroup,
   type Post,
   type Project,
+  type IconType,
   type TagType,
 } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
@@ -92,7 +93,7 @@ const HomePage = async () => {
           {sellingPoints.map((item, i) => (
             <SellingPoint key={i}>
               {item.icon && (
-                <Icon name={item.icon} css={{ fontSize: "3rem" }} />
+                <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }} />
               )}
               <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
                 {item.heading}
