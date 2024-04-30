@@ -2,10 +2,20 @@ import { styled } from "@/lib/stitches";
 
 export const TagWrapper = styled("div", {
   display: "flex",
-  background: "$primary2",
-  color: "$primary1",
   padding: "$1 $3",
   borderRadius: "$md",
+  variants: {
+    color: {
+      primary: {
+        background: "$primary2",
+        color: "$primary1",
+      },
+      secondary: {
+        background: "$secondary2",
+        color: "$secondary1",
+      },
+    },
+  },
 });
 
 export const TagListWrapper = styled("div", {

@@ -1,17 +1,12 @@
 import { Actions } from "./styles";
+import type { LinksProps } from "./types";
 import { Container, Separator, Button, Text } from "@/components/atoms";
 import { PageHeader } from "@/components/molecules";
 import { LOCATIONS } from "@/lib/site";
-import type { IconType } from "@/service";
 
 const ExperiencePage = () => {
   const breadcrumbs = [LOCATIONS.home, { label: "Experience" }];
-  const links: {
-    label: string;
-    slug: string;
-    icon: IconType;
-    disabled?: boolean;
-  }[] = [
+  const links: LinksProps = [
     { ...LOCATIONS.projects, icon: "Cube" },
     { ...LOCATIONS.skills, icon: "Rocket" },
     { ...LOCATIONS.roles, icon: "Person", disabled: true },
@@ -32,7 +27,7 @@ const ExperiencePage = () => {
           {links.map(({ label, slug, icon, disabled }) => (
             <Button
               size="lg"
-              rightIcon={icon as IconType}
+              rightIcon={icon}
               key={slug}
               href={slug}
               disabled={disabled}>

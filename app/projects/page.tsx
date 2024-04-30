@@ -67,6 +67,7 @@ const ProjectsPage = async () => {
         {projects?.items.map((project, i) =>
           project?.heading &&
           project?.description &&
+          project?.categories &&
           project?.slug &&
           project.image?.url &&
           project.image.title &&
@@ -76,7 +77,9 @@ const ProjectsPage = async () => {
               title={project.heading}
               body={project.description}
               cta={{ label: "More", href: `/projects/${project.slug}` }}
-              tags={project.skillsUsedCollection?.items as TagType[]}
+              tags={project.categories.map(cat => ({
+                title: cat as string,
+              }))}
               reverse={!isNumberEven(i)}
               image={{
                 url: project.image.url,

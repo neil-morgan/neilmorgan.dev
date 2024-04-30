@@ -148,7 +148,8 @@ const HomePage = async () => {
       {latestProject &&
         latestProject.image?.title &&
         latestProject.image.description &&
-        latestProject.image.url && (
+        latestProject.image.url &&
+        latestProject.categories && (
           <FeaturedSection>
             <Container>
               <ContentPresentation
@@ -160,7 +161,9 @@ const HomePage = async () => {
                 }}
                 title={latestProject.heading}
                 kicker="Latest project"
-                tags={latestProject.skillsUsedCollection?.items as TagType[]}
+                tags={latestProject.categories.map(cat => ({
+                  title: cat as string,
+                }))}
                 cta={{
                   href: `${LOCATIONS.projects.slug}/${latestProject.slug}`,
                   label: "Read more",

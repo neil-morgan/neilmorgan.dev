@@ -52,7 +52,7 @@ export const Richtext = ({
                 size={7}
                 weight={600}
                 as="h2"
-                css={{ marginTop: "$10" }}
+                css={{ "&:not(:first-child)": { marginTop: "$10" } }}
                 isInViewport={setCurrentId}
                 id={value}>
                 {children}
@@ -69,7 +69,7 @@ export const Richtext = ({
                 weight={600}
                 as="h3"
                 isInViewport={setCurrentId}
-                css={{ marginTop: "$10" }}
+                css={{ "&:not(:first-child)": { marginTop: "$10" } }}
                 id={value}>
                 {children}
               </Heading>

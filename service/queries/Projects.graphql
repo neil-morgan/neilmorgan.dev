@@ -2,6 +2,7 @@ query Projects($preview: Boolean = false) {
   projects: projectCollection(order: date_DESC, preview: $preview) {
     items {
       heading
+      categories
       description
       slug
       date
@@ -28,7 +29,9 @@ query Project($slug: String, $preview: Boolean = false) {
   ) {
     items {
       heading
+      categories
       description
+      introduction
       date
       slug
       image {
