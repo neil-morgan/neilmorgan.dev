@@ -79,7 +79,7 @@ export const Richtext = ({
           [BLOCKS.PARAGRAPH]: (node: RichtextNodeType, children: ReactNode) => {
             const value = getNodeValue(node);
             if (node.content.length === 1 && !value) return null;
-            return <Text as="p">{children}</Text>;
+            return <Text as="p" size={3}>{children}</Text>;
           },
           [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
             <List format="bullets">{children}</List>

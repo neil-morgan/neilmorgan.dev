@@ -107,11 +107,11 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
               <Text weight={500} size={2} color="$text">
                 From{" "}
                 <Text as="span" color="$secondary1">
-                  2023
+                  {formatDate(project.startDate)}
                 </Text>{" "}
                 to{" "}
                 <Text as="span" color="$secondary1">
-                  {formatDate(project.date)}
+                  {formatDate(project.endDate)}
                 </Text>
               </Text>
             </AsideDate>

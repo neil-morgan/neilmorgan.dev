@@ -86,7 +86,10 @@ export default async function SkillPage({ params }: SkillParamsType) {
             <Text size={0}>Used since {skill.date}</Text>
             <Text size={0}>Used in {0} projects</Text>
           </Stats>
-          <Richtext content={skill?.body as RichtextType} />
+          <Richtext
+            content={skill?.body as RichtextType}
+            base64Map={base64Map}
+          />
           {skill.relatedSkillsCollection && (
             <PodGroup
               heading="Related Skills"

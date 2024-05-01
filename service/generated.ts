@@ -1041,16 +1041,16 @@ export type Project = Entry & {
   body: Maybe<ProjectBody>;
   categories: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contentfulMetadata: ContentfulMetadata;
-  date: Maybe<Scalars['DateTime']['output']>;
   description: Maybe<Scalars['String']['output']>;
+  endDate: Maybe<Scalars['DateTime']['output']>;
   githubLink: Maybe<Scalars['String']['output']>;
   heading: Maybe<Scalars['String']['output']>;
   image: Maybe<Asset>;
-  introduction: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<ProjectLinkingCollections>;
   siteLink: Maybe<Scalars['String']['output']>;
   skillsUsedCollection: Maybe<ProjectSkillsUsedCollection>;
   slug: Maybe<Scalars['String']['output']>;
+  startDate: Maybe<Scalars['DateTime']['output']>;
   sys: Sys;
 };
 
@@ -1068,13 +1068,13 @@ export type ProjectCategoriesArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectDateArgs = {
+export type ProjectDescriptionArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectDescriptionArgs = {
+export type ProjectEndDateArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1095,12 +1095,6 @@ export type ProjectHeadingArgs = {
 export type ProjectImageArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
   preview: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectIntroductionArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1129,6 +1123,12 @@ export type ProjectSkillsUsedCollectionArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
 export type ProjectSlugArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
+export type ProjectStartDateArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1199,15 +1199,6 @@ export type ProjectFilter = {
   categories_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   categories_exists: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
-  date: InputMaybe<Scalars['DateTime']['input']>;
-  date_exists: InputMaybe<Scalars['Boolean']['input']>;
-  date_gt: InputMaybe<Scalars['DateTime']['input']>;
-  date_gte: InputMaybe<Scalars['DateTime']['input']>;
-  date_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  date_lt: InputMaybe<Scalars['DateTime']['input']>;
-  date_lte: InputMaybe<Scalars['DateTime']['input']>;
-  date_not: InputMaybe<Scalars['DateTime']['input']>;
-  date_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   description: InputMaybe<Scalars['String']['input']>;
   description_contains: InputMaybe<Scalars['String']['input']>;
   description_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1215,6 +1206,15 @@ export type ProjectFilter = {
   description_not: InputMaybe<Scalars['String']['input']>;
   description_not_contains: InputMaybe<Scalars['String']['input']>;
   description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  endDate: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_exists: InputMaybe<Scalars['Boolean']['input']>;
+  endDate_gt: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_gte: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  endDate_lt: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_lte: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_not: InputMaybe<Scalars['DateTime']['input']>;
+  endDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   githubLink: InputMaybe<Scalars['String']['input']>;
   githubLink_contains: InputMaybe<Scalars['String']['input']>;
   githubLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1230,13 +1230,6 @@ export type ProjectFilter = {
   heading_not_contains: InputMaybe<Scalars['String']['input']>;
   heading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   image_exists: InputMaybe<Scalars['Boolean']['input']>;
-  introduction: InputMaybe<Scalars['String']['input']>;
-  introduction_contains: InputMaybe<Scalars['String']['input']>;
-  introduction_exists: InputMaybe<Scalars['Boolean']['input']>;
-  introduction_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  introduction_not: InputMaybe<Scalars['String']['input']>;
-  introduction_not_contains: InputMaybe<Scalars['String']['input']>;
-  introduction_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   siteLink: InputMaybe<Scalars['String']['input']>;
   siteLink_contains: InputMaybe<Scalars['String']['input']>;
   siteLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1253,6 +1246,15 @@ export type ProjectFilter = {
   slug_not: InputMaybe<Scalars['String']['input']>;
   slug_not_contains: InputMaybe<Scalars['String']['input']>;
   slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startDate: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_exists: InputMaybe<Scalars['Boolean']['input']>;
+  startDate_gt: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_gte: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  startDate_lt: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_lte: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_not: InputMaybe<Scalars['DateTime']['input']>;
+  startDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   sys: InputMaybe<SysFilter>;
 };
 
@@ -1270,10 +1272,10 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum ProjectOrder {
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
+  EndDateAsc = 'endDate_ASC',
+  EndDateDesc = 'endDate_DESC',
   GithubLinkAsc = 'githubLink_ASC',
   GithubLinkDesc = 'githubLink_DESC',
   HeadingAsc = 'heading_ASC',
@@ -1282,6 +1284,8 @@ export enum ProjectOrder {
   SiteLinkDesc = 'siteLink_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
+  StartDateAsc = 'startDate_ASC',
+  StartDateDesc = 'startDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1770,10 +1774,10 @@ export enum SkillLinkingCollectionsPostCollectionOrder {
 }
 
 export enum SkillLinkingCollectionsProjectCollectionOrder {
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
+  EndDateAsc = 'endDate_ASC',
+  EndDateDesc = 'endDate_DESC',
   GithubLinkAsc = 'githubLink_ASC',
   GithubLinkDesc = 'githubLink_DESC',
   HeadingAsc = 'heading_ASC',
@@ -1782,6 +1786,8 @@ export enum SkillLinkingCollectionsProjectCollectionOrder {
   SiteLinkDesc = 'siteLink_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
+  StartDateAsc = 'startDate_ASC',
+  StartDateDesc = 'startDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -2239,7 +2245,7 @@ export type ProjectsQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, categories: Array<string | null> | null, description: string | null, slug: string | null, date: any | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, categories: Array<string | null> | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
 
 export type ProjectQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2247,7 +2253,7 @@ export type ProjectQueryVariables = Exact<{
 }>;
 
 
-export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, categories: Array<string | null> | null, description: string | null, introduction: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', heading: string | null, categories: Array<string | null> | null, description: string | null, startDate: any | null, endDate: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2518,13 +2524,12 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<PostsByCategoryQuery, PostsByCategoryQueryVariables>;
 export const ProjectsDocument = new TypedDocumentString(`
     query Projects($preview: Boolean = false) {
-  projects: projectCollection(order: date_DESC, preview: $preview) {
+  projects: projectCollection(order: endDate_DESC, preview: $preview) {
     items {
       heading
       categories
       description
       slug
-      date
       image {
         title
         url
@@ -2547,8 +2552,8 @@ export const ProjectDocument = new TypedDocumentString(`
       heading
       categories
       description
-      introduction
-      date
+      startDate
+      endDate
       slug
       image {
         ...Image

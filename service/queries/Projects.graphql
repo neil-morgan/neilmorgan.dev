@@ -1,11 +1,10 @@
 query Projects($preview: Boolean = false) {
-  projects: projectCollection(order: date_DESC, preview: $preview) {
+  projects: projectCollection(order: endDate_DESC, preview: $preview) {
     items {
       heading
       categories
       description
       slug
-      date
       image {
         title
         url
@@ -31,8 +30,8 @@ query Project($slug: String, $preview: Boolean = false) {
       heading
       categories
       description
-      introduction
-      date
+      startDate
+      endDate
       slug
       image {
         ...Image
