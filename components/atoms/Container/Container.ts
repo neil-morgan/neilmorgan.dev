@@ -17,11 +17,9 @@ export const Container = styled("div", {
     padding: "0 $4",
   },
   "@md": {
-    padding: "0 $5",
-  },
-  "@lg": {
     padding: "0 $7",
   },
+
   defaultVariants: {
     size: "page",
   },

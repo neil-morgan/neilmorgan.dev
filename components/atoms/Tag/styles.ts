@@ -9,6 +9,11 @@ export const TagWrapper = styled("div", {
       primary: {
         background: "$primary2",
         color: "$primary1",
+        transition: "$theme",
+        "&:hover": {
+          background: "$primary1",
+          color: "$layer1",
+        },
       },
       secondary: {
         background: "$secondary2",

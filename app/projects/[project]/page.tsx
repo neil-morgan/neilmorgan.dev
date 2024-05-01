@@ -1,20 +1,12 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import type { ProjectParamsType } from "./types";
-import {
-  Content,
-  Body,
-  Aside,
-  AsideStats,
-  Actions,
-  Introduction,
-} from "./styles";
+import { Content, Aside, AsideStats, AsideDate, Actions } from "./styles";
 import {
   ProjectDocument,
   ProjectsDocument,
   Project,
   type RichtextType,
-  type Skill,
 } from "@/service";
 import {
   Container,
@@ -24,7 +16,7 @@ import {
   Text,
   TagList,
 } from "@/components/atoms";
-import { PageHeader, Richtext, PodGroup } from "@/components/molecules";
+import { PageHeader, Richtext } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import { formatDate } from "@/utils";
@@ -106,43 +98,62 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
         )}
 
       <Content>
-        <Introduction>
-          <Text as="p">{project.introduction}</Text>
-          <Aside>
-            <AsideStats>
-              <Text size={2} weight={600} color="$secondary1">
+        <Aside>
+          <AsideStats>
+            <AsideDate>
+              <Text size={4} weight={500} color="$white">
                 Year:{" "}
-                <Text as="span" color="$text">
+              </Text>
+              <Text weight={500} size={2} color="$text">
+                From{" "}
+                <Text as="span" color="$secondary1">
+                  2023
+                </Text>{" "}
+                to{" "}
+                <Text as="span" color="$secondary1">
                   {formatDate(project.date)}
                 </Text>
               </Text>
-              {project?.categories && (
-                <TagList
-                  list={project.categories.map(cat => ({
-                    title: cat as string,
-                  }))}
-                />
-              )}
-            </AsideStats>
+            </AsideDate>
+            <Separator />
+            <Text size={4} weight={500} color="$white">
+              Categories:
+            </Text>
+            {project?.categories && (
+              <TagList
+                list={project.categories.map(cat => ({
+                  title: cat as string,
+                }))}
+              />
+            )}
+            <Separator />
+            <Text size={4} weight={500} color="$white">
+              Skills used:
+            </Text>
+            {project.skillsUsedCollection?.items && (
+              <TagList
+                list={project.skillsUsedCollection?.items.map(cat => ({
+                  title: cat?.title as string,
+                  slug: `${LOCATIONS.skills.slug}/${cat?.slug as string}`,
+                }))}
+              />
+            )}
+          </AsideStats>
+          <Separator />
+          <Actions>
+            <Button size="sm" leftIcon="Github">
+              Github
+            </Button>
+            <Button size="sm" leftIcon="Globe">
+              Demo
+            </Button>
+          </Actions>
+        </Aside>
 
-            <Actions>
-              <Button leftIcon="Github">Github</Button>
-              <Button leftIcon="Globe">Demo</Button>
-            </Actions>
-          </Aside>
-        </Introduction>
-        <Body>
-          <Richtext
-            content={project?.body as RichtextType}
-            base64Map={base64Map}
-          />
-          <Separator size="sm" />
-          <PodGroup
-            heading="Tech stack"
-            items={project.skillsUsedCollection?.items as Skill[]}
-            base64Map={base64Map}
-          />
-        </Body>
+        <Richtext
+          content={project?.body as RichtextType}
+          base64Map={base64Map}
+        />
       </Content>
     </Container>
   );

@@ -1,30 +1,33 @@
+"use client";
+
 import NextLink from "next/link";
 import { ConditionalWrapper } from "../ConditionalWrapper";
 import { TagWrapper, TagListWrapper } from "./styles";
 import type { TagListProps, TagProps } from "./types";
 
-export const Tag = ({
-  children,
-  slug,
-  color,
-}: React.PropsWithChildren<TagProps>) => (
-  <TagWrapper color={color}>
+export const Tag = ({ children, slug }: React.PropsWithChildren<TagProps>) => {
+  const isLink = Boolean(slug);
+  return (
     <ConditionalWrapper
-      if={Boolean(slug)}
+      if={isLink}
       wrapWith={children => (
         <NextLink href={slug as string} passHref legacyBehavior>
           {children}
         </NextLink>
       )}>
-      {children}
+      <TagWrapper
+        as={isLink ? "a" : "div"}
+        color={isLink ? "primary" : "secondary"}>
+        {children}
+      </TagWrapper>
     </ConditionalWrapper>
-  </TagWrapper>
-);
+  );
+};
 
-export const TagList = ({ list, color = "secondary" }: TagListProps) => (
+export const TagList = ({ list }: TagListProps) => (
   <TagListWrapper>
     {list.map(({ title, slug }, i) => (
-      <Tag key={i} slug="" color={color}>
+      <Tag key={i} slug={slug}>
         {title}
       </Tag>
     ))}
