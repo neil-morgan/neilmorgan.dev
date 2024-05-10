@@ -34,6 +34,11 @@ const SpinningDnaOrbs = ({
           delay,
         },
       }}
+      initial={{
+        x: 0,
+        rx: 3,
+        ry: 3,
+      }}
       animate={{
         rx: [3, 5, 3, 1, 3],
         ry: [3, 5, 3, 1, 3],
@@ -52,6 +57,10 @@ const SpinningDnaOrbs = ({
       y1={y}
       y2={y}
       stroke={`${tealDark.teal6}75`}
+      initial={{
+        x1: x,
+        x2: x + 30,
+      }}
       animate={{
         x1: [x + 3, x + 15],
         x2: [x + 27, x + 15],
@@ -77,6 +86,11 @@ const SpinningDnaOrbs = ({
           ease: "easeInOut",
           delay,
         },
+      }}
+      initial={{
+        x: 0,
+        rx: 3,
+        ry: 3,
       }}
       animate={{
         rx: [3, 1, 3, 5, 3],
