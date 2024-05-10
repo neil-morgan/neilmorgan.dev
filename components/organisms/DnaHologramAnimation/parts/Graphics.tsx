@@ -64,6 +64,9 @@ const barChartItems = [
 
 const textCascadeDefaults: {
   stroke: string;
+  initial: {
+    x1: number;
+  };
   strokeWidth: number;
   x1: number;
   transition: {
@@ -74,6 +77,9 @@ const textCascadeDefaults: {
     repeatType: "loop";
   };
 } = {
+  initial: {
+    x1: 0,
+  },
   transition: {
     duration: 5,
     delay: 1,
