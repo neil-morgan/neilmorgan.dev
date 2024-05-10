@@ -5,7 +5,6 @@ export type ButtonProps = {
   children: React.ReactNode;
   css?: CSS;
   href?: string | null;
-  isExternal?: boolean;
   onClick?: () => void;
   rightIcon?: IconType;
   leftIcon?: IconType;

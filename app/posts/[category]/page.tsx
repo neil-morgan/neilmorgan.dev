@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import { PostsCategory } from "../components";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import {
   PostCategoryDocument,
@@ -11,7 +10,7 @@ import {
 } from "@/service";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { Container, Separator } from "@/components/atoms";
-import { PageHeader } from "@/components/molecules";
+import { PageHeader, CardGroup } from "@/components/molecules";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -79,7 +78,21 @@ export default async function PostCategoryPage({
         breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
-      <PostsCategory category={category} items={posts} base64Map={base64Map} />
+
+      <CardGroup
+        heading={category?.title as string}
+        items={posts.map(post => ({
+          title: post.title as string,
+          description: post.description as string,
+          slug: `${LOCATIONS.posts.slug}/${category?.slug}/${post.slug}`,
+          image: post.image,
+          tags: post.tagsCollection?.items.map(tag => ({
+            title: tag?.title as string,
+            slug: tag?.slug as string,
+          })),
+        }))}
+        base64Map={base64Map}
+      />
     </Container>
   );
 }

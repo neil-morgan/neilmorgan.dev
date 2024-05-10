@@ -7,19 +7,21 @@ import { Text } from "@/components/atoms";
 
 export const PodGroup = ({
   heading,
-  plural,
   items,
   base64Map,
+  showCount = true,
 }: PodGroupType) => (
   <Wrapper>
     <Header>
       <Text size={2} as="h2" weight={600} print>
         {heading}
       </Text>
-      <Text size={2} color="$secondary1">
-        {items.length} {plural || "Item"}
-        {items.length !== 1 && "s"}
-      </Text>
+      {showCount && (
+        <Text size={2} color="$secondary1">
+          {items.length} Item
+          {items.length !== 1 && "s"}
+        </Text>
+      )}
     </Header>
     <Row>
       {items.map(({ title, slug, icon }, i) =>

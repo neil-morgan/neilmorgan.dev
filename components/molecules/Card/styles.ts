@@ -2,7 +2,6 @@ import { styled } from "@/lib/stitches";
 
 export const Wrapper = styled("a", {
   display: "flex",
-  width: "100%",
   borderRadius: "$md",
   background: "transparent",
   padding: "$4",
@@ -18,6 +17,7 @@ export const Wrapper = styled("a", {
     transition: "ease 250ms",
     color: "transparent",
     marginLeft: "auto",
+    marginBottom: "auto",
   },
 
   "&:hover": {
@@ -48,7 +48,7 @@ export const ContentImage = styled("div", {
 export const Header = styled("header", {
   display: "flex",
   width: "100%",
-  alignItems: "flex-start",
+  alignItems: "center",
   gap: "$4",
   color: "$white",
 });

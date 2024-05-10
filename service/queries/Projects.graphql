@@ -32,6 +32,8 @@ query Project($slug: String, $preview: Boolean = false) {
       description
       startDate
       endDate
+      githubLink
+      demoLink
       slug
       image {
         ...Image

@@ -141,12 +141,16 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
           </AsideStats>
           <Separator />
           <Actions>
-            <Button size="sm" leftIcon="Github">
-              Github
-            </Button>
-            <Button size="sm" leftIcon="Globe">
-              Demo
-            </Button>
+            {project.githubLink && (
+              <Button href={project.githubLink} size="sm" leftIcon="Github">
+                Github
+              </Button>
+            )}
+            {project.demoLink && (
+              <Button size="sm" leftIcon="Globe">
+                Demo
+              </Button>
+            )}
           </Actions>
         </Aside>
 

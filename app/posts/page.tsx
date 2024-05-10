@@ -1,5 +1,4 @@
 import { draftMode } from "next/headers";
-import { PostsCategory } from "./components";
 import { PostsDocument, PostsPageDocument, type Post } from "@/service";
 import {
   groupByCategory,
@@ -7,7 +6,7 @@ import {
   extractImagesToBase64Map,
 } from "@/helpers";
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
-import { InfoMessage, PageHeader } from "@/components/molecules";
+import { InfoMessage, PageHeader, CardGroup } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
 
 const tags = ["post"];
@@ -52,14 +51,25 @@ export default async function PostsPage() {
         />
       )}
       <Separator size="xl" />
-      {groupedPosts.map(({ category, items }, i) => (
-        <PostsCategory
-          key={category?.title}
-          category={category}
-          items={items}
-          base64Map={base64Map}
-        />
-      ))}
+      {groupedPosts.map(({ category, items }) =>
+        category?.title ? (
+          <CardGroup
+            key={category.title}
+            heading={category.title}
+            items={items.map(post => ({
+              title: post.title as string,
+              description: post.description as string,
+              slug: `${LOCATIONS.posts.slug}/${category?.slug}/${post.slug}`,
+              image: post.image,
+              tags: post.tagsCollection?.items.map(tag => ({
+                title: tag?.title as string,
+                slug: tag?.slug as string,
+              })),
+            }))}
+            base64Map={base64Map}
+          />
+        ) : null,
+      )}
     </Container>
   );
 }

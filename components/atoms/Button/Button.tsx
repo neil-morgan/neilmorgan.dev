@@ -6,6 +6,7 @@ import { ButtonElement } from "./styles";
 import { ConditionalWrapper, Icon } from "@/components/atoms";
 import type { ButtonElementRefType } from "@/service";
 import { useElementRefs } from "@/providers";
+import { isInternalUrl } from "@/utils";
 
 export const Button = forwardRef(
   (
@@ -14,7 +15,6 @@ export const Button = forwardRef(
       css,
       href,
       onClick,
-      isExternal,
       rightIcon,
       leftIcon,
       iconColor,
@@ -27,6 +27,7 @@ export const Button = forwardRef(
   ) => {
     const { addElementRef } = useElementRefs();
     const elementRef = useRef<HTMLElement | null>(null);
+    const isExternalLink = !isInternalUrl(href as string);
 
     const shouldHighlight = () => {
       if (noHighlight) {
@@ -53,9 +54,11 @@ export const Button = forwardRef(
       <Icon name={leftIcon} css={{ marginRight: "1em", color: iconColor }} />
     ) : null;
 
+
+
     return (
       <ConditionalWrapper
-        if={Boolean(href) && !isExternal}
+        if={Boolean(href)}
         wrapWith={children => (
           <NextLink href={href as string} passHref legacyBehavior>
             {children}
@@ -65,6 +68,10 @@ export const Button = forwardRef(
           disabled={disabled}
           ref={mergeRefs([elementRef, ref])}
           as={href ? "a" : "button"}
+          {...(href &&
+            isExternalLink && {
+              target: "_blank",
+            })}
           css={css}
           onClick={onClick}
           size={size}

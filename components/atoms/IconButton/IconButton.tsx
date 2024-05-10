@@ -7,6 +7,7 @@ import type { IconButtonProps } from "./types";
 import { Icon } from "@/components/atoms";
 import type { ButtonElementRefType, IconType } from "@/service";
 import { useElementRefs } from "@/providers";
+import { isInternalUrl } from "@/utils";
 
 export const IconButton = forwardRef(
   (
@@ -14,7 +15,7 @@ export const IconButton = forwardRef(
       css,
       href,
       onClick,
-      isExternal,
+
       icon,
       children,
       target,
@@ -26,6 +27,7 @@ export const IconButton = forwardRef(
   ) => {
     const { elementRefs, addElementRef } = useElementRefs();
     const elementRef = useRef<HTMLElement | null>(null);
+    const isExternalLink = !isInternalUrl(href as string);
 
     useEffect(() => {
       if (noHighlight) return;
@@ -35,7 +37,7 @@ export const IconButton = forwardRef(
 
     return (
       <ConditionalWrapper
-        if={Boolean(href) && !isExternal}
+        if={Boolean(href)}
         wrapWith={children => (
           <NextLink
             target={target}
@@ -50,6 +52,10 @@ export const IconButton = forwardRef(
           disabled={disabled}
           ref={mergeRefs([elementRef, ref])}
           as={href ? "a" : "button"}
+          {...(href &&
+            isExternalLink && {
+              target: "_blank",
+            })}
           css={css}
           target={target}
           onClick={onClick as MouseEventHandler<HTMLButtonElement>}

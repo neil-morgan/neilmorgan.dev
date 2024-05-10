@@ -5,11 +5,12 @@ import { Content, Body, Aside, Projects, Stats } from "./styles";
 import {
   SkillDocument,
   SkillsDocument,
+  type TagType,
   type Skill,
   type RichtextType,
 } from "@/service";
 import { Container, Text, Separator } from "@/components/atoms";
-import { PageHeader, Richtext, PodGroup } from "@/components/molecules";
+import { PageHeader, Richtext, PodGroup, Card } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 
@@ -84,7 +85,10 @@ export default async function SkillPage({ params }: SkillParamsType) {
         <Body>
           <Stats>
             <Text size={0}>Used since {skill.date}</Text>
-            <Text size={0}>Used in {0} projects</Text>
+            <Text size={0}>
+              Used in {skill.projectsCollection?.items.length} project
+              {skill.projectsCollection?.items.length === 1 ? "" : "s"}
+            </Text>
           </Stats>
           <Richtext
             content={skill?.body as RichtextType}
@@ -93,41 +97,46 @@ export default async function SkillPage({ params }: SkillParamsType) {
           {skill.relatedSkillsCollection && (
             <PodGroup
               heading="Related Skills"
+              showCount={false}
               items={skill.relatedSkillsCollection.items as Skill[]}
               base64Map={base64Map}
             />
           )}
         </Body>
+        {skill.projectsCollection &&
+          skill.projectsCollection?.items.length > 0 && (
+            <Aside>
+              <Text print size={2} weight={600}>
+                Recent Projects
+              </Text>
 
-        <Aside>
-          <Text print size={2} weight={600}>
-            Notable Projects
-          </Text>
-
-          <Projects>
-            <Text size={0}>Feature coming soon...</Text>
-            {/* <Card
-              heading="An example project"
-              href="/"
-              description="Pariatur reprehenderit magna est et duis."
-              image={{
-                url: "https://images.ctfassets.net/96c2x2gvt3wj/5u52J4iFrUdnuADmpWDKQH/81fc9f739651aec60ed3654dce6506c7/andy-hermawan-bVBvv5xlX3g-unsplash.jpg",
-                description:
-                  "A cartoon rocket taking off - Image by Andy Hermawan on Unsplash.",
-                blurDataUrl:
-                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGNgYJFsq1nUUDqLgUGIQUUt9MfH//ev/eeVMAMAbc8J+bmWxrAAAAAASUVORK5CYII=",
-              }}
-              tags={[
-                {
-                  title: "React.js",
-                },
-                {
-                  title: "Next.js",
-                },
-              ]}
-            /> */}
-          </Projects>
-        </Aside>
+              <Projects>
+                {skill?.projectsCollection?.items.map((project, i) =>
+                  project?.heading &&
+                  project.slug &&
+                  project.description &&
+                  project.image?.url &&
+                  project.image.description &&
+                  project.image.title ? (
+                    <Card
+                      key={i}
+                      heading={project?.heading}
+                      href={`/projects/${project?.slug}`}
+                      description={project.description}
+                      image={{
+                        url: project.image.url,
+                        description: project.image.description,
+                        blurDataUrl: base64Map[project.image.title],
+                      }}
+                      tags={project.categories?.map(category => ({
+                        title: category as string,
+                      }))}
+                    />
+                  ) : null,
+                )}
+              </Projects>
+            </Aside>
+          )}
       </Content>
     </Container>
   );

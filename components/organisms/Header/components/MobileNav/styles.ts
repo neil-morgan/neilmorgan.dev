@@ -21,7 +21,7 @@ export const List = styled("ul", {
 export const Options = styled("li", {
   display: "flex",
   flexDirection: "column",
-  gap: "$4",
+  gap: "$2",
   fontSize: "$3",
   marginLeft: "$2",
   marginTop: "$2",
