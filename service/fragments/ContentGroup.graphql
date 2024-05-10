@@ -1,7 +1,0 @@
-fragment ContentGroup on ContentGroup {
-  heading
-  subheading
-  icon
-  url
-  body
-}

@@ -15,6 +15,16 @@ query HomePage($preview: Boolean = false) {
       icon
     }
   }
+
+  feedback: feedbackCollection(order: date_DESC, limit: 1, preview: $preview) {
+    items {
+      author
+      authorRole
+      body
+      date
+      url
+    }
+  }
 }
 
 query SkillsPage($preview: Boolean = false) {
@@ -27,6 +37,14 @@ query SkillsPage($preview: Boolean = false) {
 
 query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+
+query ProjectsPage($preview: Boolean = false) {
+  header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
     kicker
     heading
     body

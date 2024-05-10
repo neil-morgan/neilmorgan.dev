@@ -1,28 +1,29 @@
 "use client";
 
+import { Card } from "../Card";
 import { Wrapper, Header, Grid } from "./styles";
-import type { PostsCategoryType } from "./types";
-import { Card } from "@/components/molecules";
+import type { CardGroupProps } from "./types";
 import { Text } from "@/components/atoms";
-import type { TagType } from "@/service";
-import { LOCATIONS } from "@/lib/site";
 
-export const PostsCategory = ({
-  category,
+export const CardGroup = ({
+  heading,
   items,
   base64Map,
-}: PostsCategoryType) => (
+  showCount,
+}: CardGroupProps) => (
   <Wrapper>
     <Header>
       <Text size={2} as="h2" weight={600} print>
-        {category?.title}
+        {heading}
       </Text>
-      <Text size={2} color="$secondary1">
-        {items.length} Post{items.length !== 1 && "s"}
-      </Text>
+      {showCount && (
+        <Text size={2} color="$secondary1">
+          {items?.length} Item{items?.length !== 1 && "s"}
+        </Text>
+      )}
     </Header>
     <Grid>
-      {items.map(({ title, description, slug, image, tagsCollection }, i) =>
+      {items?.map(({ title, description, slug, image, tags }, i) =>
         title &&
         description &&
         image?.title &&
@@ -33,8 +34,8 @@ export const PostsCategory = ({
             key={i}
             heading={title}
             description={description}
-            href={`${LOCATIONS.posts.slug}/${category?.slug}/${slug}`}
-            tags={tagsCollection?.items as TagType[]}
+            href={slug}
+            tags={tags}
             image={{
               url: image.url,
               description: image.description,

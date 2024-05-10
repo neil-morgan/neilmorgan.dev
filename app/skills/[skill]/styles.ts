@@ -16,7 +16,7 @@ export const HeaderWrapper = styled("div", {
 export const Content = styled("div", {
   display: "flex",
   flexDirection: "column",
-
+  gap: "$8",
   "@lg": {
     flexDirection: "row",
   },
@@ -28,10 +28,6 @@ export const Body = styled("article", {
   maxWidth: "min(700px, 100%)",
   width: "100%",
   gap: "$8",
-
-  "@md": {
-    maxWidth: "100%",
-  },
 });
 
 export const Aside = styled("aside", {
@@ -39,12 +35,6 @@ export const Aside = styled("aside", {
   flexDirection: "column",
   alignItems: "flex-start",
   minWidth: "360px",
-  marginTop: "$8",
-
-  "@lg": {
-    marginTop: 0,
-    marginLeft: "$11",
-  },
 });
 
 export const Projects = styled("div", {

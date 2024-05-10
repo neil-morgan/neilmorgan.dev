@@ -1,0 +1,23 @@
+fragment ContentGroup on ContentGroup {
+  heading
+  subheading
+  icon
+  url
+  body
+}
+
+fragment PostCategory on PostCategory {
+  title
+  slug
+}
+
+fragment SocialItem on SocialItem {
+  title
+  href
+}
+
+fragment Image on Asset {
+  title
+  description
+  url
+}

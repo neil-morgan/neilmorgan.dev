@@ -1,4 +1,4 @@
-import type { Maybe, PostTagsCollection } from "@/service";
+import type { TagType } from "@/service";
 
 export type ContentPresentationProps = {
   title: string | null;
@@ -8,12 +8,12 @@ export type ContentPresentationProps = {
     label: string;
     href: string | null;
   };
-  label: string;
+  kicker?: string;
   image: {
     url: string;
     description: string;
     blurDataUrl: string;
   };
 
-  tags: Maybe<PostTagsCollection>;
+  tags?: TagType[];
 };

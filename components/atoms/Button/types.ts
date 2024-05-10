@@ -1,16 +1,16 @@
 import type { CSS } from "@stitches/react";
-import type { ColorType } from "@/service";
+import type { ColorType, IconType } from "@/service";
 
 export type ButtonProps = {
   children: React.ReactNode;
   css?: CSS;
   href?: string | null;
-  isExternal?: boolean;
   onClick?: () => void;
-  rightIcon?: string;
-  leftIcon?: string;
+  rightIcon?: IconType;
+  leftIcon?: IconType;
   iconColor?: ColorType;
   size?: "sm" | "md" | "lg";
   noHighlight?: boolean;
   asLink?: boolean;
+  disabled?: boolean;
 };

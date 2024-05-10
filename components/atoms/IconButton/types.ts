@@ -5,7 +5,6 @@ export type IconButtonProps = {
   css?: CSS;
   target?: string;
   href?: string | null;
-  isExternal?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   icon?: string;
   size?: "sm" | "md" | "lg";

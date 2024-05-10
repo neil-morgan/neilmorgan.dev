@@ -3,6 +3,7 @@ import { styled } from "@/lib/stitches";
 export const ButtonElement = styled("button", {
   position: "relative",
   display: "flex",
+  justifyContent: "space-between",
   alignItems: "center",
   cursor: "pointer",
   background: "transparent",
@@ -12,6 +13,13 @@ export const ButtonElement = styled("button", {
   color: "$white",
 
   variants: {
+    disabled: {
+      true: {
+        opacity: 0.5,
+        pointerEvents: "none",
+      },
+    },
+
     size: {
       sm: {
         fontSize: "$1",

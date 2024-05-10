@@ -1,0 +1,79 @@
+query Projects($preview: Boolean = false) {
+  projects: projectCollection(order: endDate_DESC, preview: $preview) {
+    items {
+      heading
+      categories
+      description
+      slug
+      image {
+        title
+        url
+        description
+      }
+      skillsUsedCollection {
+        items {
+          title
+          slug
+        }
+      }
+    }
+  }
+}
+
+query Project($slug: String, $preview: Boolean = false) {
+  project: projectCollection(
+    where: { slug: $slug }
+    limit: 1
+    preview: $preview
+  ) {
+    items {
+      heading
+      categories
+      description
+      startDate
+      endDate
+      githubLink
+      demoLink
+      slug
+      image {
+        ...Image
+      }
+      skillsUsedCollection {
+        items {
+          title
+          slug
+          icon {
+            ...Image
+          }
+        }
+      }
+      body {
+        json
+        links {
+          entries {
+            inline {
+              __typename
+              sys {
+                id
+              }
+            }
+            block {
+              __typename
+              sys {
+                id
+              }
+            }
+          }
+          assets {
+            block {
+              sys {
+                id
+              }
+              ...Image
+            }
+          }
+        }
+      }
+    }
+  }
+}

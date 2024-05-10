@@ -5,20 +5,30 @@ query Skill($slug: String, $preview: Boolean = false) {
       slug
       description
       date
+      projectsCollection {
+        items {
+          categories
+          heading
+          description
+          slug
+          image {
+            url
+            description
+            title
+          }
+        }
+      }
       relatedSkillsCollection {
         items {
           title
           slug
           icon {
-            url
-            title
+            ...Image
           }
         }
       }
       icon {
-        url
-        description
-        title
+        ...Image
       }
       body {
         json
@@ -43,9 +53,7 @@ query Skill($slug: String, $preview: Boolean = false) {
               sys {
                 id
               }
-              url
-              title
-              description
+              ...Image
             }
           }
         }
@@ -61,8 +69,7 @@ query Skills($preview: Boolean = false) {
       slug
       proficiency
       icon {
-        url
-        title
+        ...Image
       }
     }
   }
