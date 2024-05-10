@@ -32,8 +32,11 @@ export const ContentPresentation = ({
         {title}
       </Text>
       <Text as="p">{body}</Text>
-      {tags && <TagList list={tags} />}
-      <Button href={cta.href} css={{ marginTop: "$4" }} rightIcon="ChevronRight">
+      {tags && tags.length > 0 && <TagList list={tags} />}
+      <Button
+        href={cta.href}
+        css={{ marginTop: "$4" }}
+        rightIcon="ChevronRight">
         {cta.label}
       </Button>
     </ContentDetails>
