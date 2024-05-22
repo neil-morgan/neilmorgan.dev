@@ -22,4 +22,3 @@ export { Separator } from "./Separator";
 export { Table, Td, Tr, Th } from "./Table";
 export { Tag, TagList } from "./Tag";
 export { Text } from "./Text";
-export { Masonry } from "./Masonry";

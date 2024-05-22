@@ -1,16 +1,13 @@
 import { draftMode } from "next/headers";
-import { FeedbackItem } from "./styles";
 import { fetchContent } from "@/helpers";
 import { AllFeedbackDocument } from "@/service";
 import {
   Container,
   ContentButton,
   MasonryGrid,
-  Masonry,
-  Link,
   Text,
 } from "@/components/atoms";
-import { PageHeader, Card } from "@/components/molecules";
+import { PageHeader } from "@/components/molecules";
 import { NoticePage } from "@/components/templates";
 import { LOCATIONS } from "@/lib/site";
 
