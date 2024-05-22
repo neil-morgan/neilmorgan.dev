@@ -19,7 +19,7 @@ const FeedbackPage = async () => {
     preview,
   });
 
-  if (feedbackCollection && feedbackCollection?.items.length === 0) {
+  if (feedbackCollection && feedbackCollection?.items.length < 3) {
     return <NoticePage noticeType="noContent" />;
   }
 
