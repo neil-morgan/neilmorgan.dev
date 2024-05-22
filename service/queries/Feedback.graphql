@@ -1,0 +1,11 @@
+query AllFeedback {
+  feedbackCollection {
+    items {
+      author
+      authorRole
+      date
+      body
+      url
+    }
+  }
+}

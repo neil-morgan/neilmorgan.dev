@@ -10,7 +10,7 @@ const ExperiencePage = () => {
     { ...LOCATIONS.projects, icon: "Cube" },
     { ...LOCATIONS.skills, icon: "Rocket" },
     { ...LOCATIONS.roles, icon: "Person", disabled: true },
-    { ...LOCATIONS.feedback, icon: "Quote", disabled: true },
+    { ...LOCATIONS.feedback, icon: "Quote" },
   ];
 
   return (
@@ -37,7 +37,7 @@ const ExperiencePage = () => {
         </Actions>
         <Separator size="xl" />
 
-        <Text size={5}>Timeline of events</Text>
+        <Text size={5}>Timeline of experience</Text>
         <Text size={0}>Feature coming soon...</Text>
       </Container>
     </>

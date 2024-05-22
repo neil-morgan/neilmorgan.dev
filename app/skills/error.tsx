@@ -1,16 +1,11 @@
-"use client";
+"use client"
 
-import { InfoMessage } from "@/components/molecules";
-import { Container } from "@/components/atoms";
-import { INFO_MESSAGES } from "@/lib/site";
+import { NoticePage } from "@/components/templates";
 
-export default function Error({}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  return (
-    <Container>
-      <InfoMessage {...INFO_MESSAGES.errorOccurred} />
-    </Container>
-  );
+export const metadata = {
+  title: "Not found",
+};
+
+export default function Error() {
+  return <NoticePage noticeType="errorOccurred" />;
 }

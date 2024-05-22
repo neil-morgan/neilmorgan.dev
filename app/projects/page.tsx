@@ -12,9 +12,9 @@ import {
   ProjectsDocument,
   ProjectsPageDocument,
   type Project,
-  type TagType,
 } from "@/service";
 import { isNumberEven } from "@/utils";
+import { NoticePage } from "@/components/templates";
 
 export const metadata = {
   title: `${PAGE_TITLE_PREFIX}`,
@@ -43,7 +43,7 @@ const ProjectsPage = async () => {
   ]);
 
   if (projects && projects?.items.length === 0) {
-    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+    return <NoticePage noticeType="noContent" />;
   }
 
   const breadcrumbs = [LOCATIONS.home, { label: "Projects" }];

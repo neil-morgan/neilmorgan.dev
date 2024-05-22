@@ -2330,6 +2330,11 @@ export type SocialItemFragment = { __typename?: 'SocialItem', title: string | nu
 
 export type ImageFragment = { __typename?: 'Asset', title: string | null, description: string | null, url: string | null };
 
+export type AllFeedbackQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, body: string | null, url: string | null } | null> } | null };
+
 export type HomePageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
@@ -2465,6 +2470,19 @@ export const ImageFragmentDoc = new TypedDocumentString(`
   url
 }
     `, {"fragmentName":"Image"}) as unknown as TypedDocumentString<ImageFragment, unknown>;
+export const AllFeedbackDocument = new TypedDocumentString(`
+    query AllFeedback {
+  feedbackCollection {
+    items {
+      author
+      authorRole
+      date
+      body
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AllFeedbackQuery, AllFeedbackQueryVariables>;
 export const HomePageDocument = new TypedDocumentString(`
     query HomePage($preview: Boolean = false) {
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {

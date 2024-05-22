@@ -1,3 +1,5 @@
+"use client";
+
 import { createStitches, globalCss } from "@stitches/react";
 import { tealDark } from "@radix-ui/colors";
 import { BREAKPOINTS } from "@/lib/site";
@@ -36,7 +38,7 @@ export const colors: { [K in CorrectedColorType]: string } = {
   highlightHover: "rgba(255,255,255,0.04)",
 };
 
-export const space = {
+export const space: { [key: string]: string } = {
   0: "0rem", // 0px
   1: "0.25rem", // 4px
   2: "0.5rem", // 8px
@@ -156,10 +158,10 @@ export const { styled } = createStitches({
   },
 
   media: {
-    sm: `(min-width: ${BREAKPOINTS.sm})`,
-    md: `(min-width: ${BREAKPOINTS.md})`,
-    lg: `(min-width:${BREAKPOINTS.lg})`,
-    xl: `(min-width:${BREAKPOINTS.xl})`,
-    "2xl": `(min-width: ${BREAKPOINTS["2xl"]})`,
+    sm: `(min-width: ${BREAKPOINTS.sm / 16}em)`,
+    md: `(min-width: ${BREAKPOINTS.md / 16}em)`,
+    lg: `(min-width:${BREAKPOINTS.lg / 16}em)`,
+    xl: `(min-width:${BREAKPOINTS.xl / 16}em)`,
+    "2xl": `(min-width: ${BREAKPOINTS["2xl"] / 16}em)`,
   },
 });

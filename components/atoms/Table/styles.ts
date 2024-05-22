@@ -18,7 +18,7 @@ export const TableWrapper = styled("div", {
 export const TableElement = styled("table", {
   margin: "$8 0",
   width: "100%",
-  minWidth: BREAKPOINTS.sm,
+  minWidth: `${BREAKPOINTS.sm / 16}rem`,
   borderSpacing: "0",
 });
 
