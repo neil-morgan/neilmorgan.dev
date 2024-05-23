@@ -24,6 +24,7 @@ import {
   FeaturedSection,
   ContentPresentation,
   PageHeader,
+  AuthorImage,
 } from "@/components/molecules";
 import { DnaHologramAnimation } from "@/components/organisms";
 import { formatDate } from "@/utils/format-date";
@@ -62,7 +63,7 @@ const HomePage = async () => {
   ]);
 
   const latestPost = posts?.items[0] as Post;
-  const latestFeedback = page.feedback?.items[0];
+  const feedback = page.feedback;
   const latestProject = projects?.items[0] as Project;
   const header = page.header as ContentGroup;
   const sellingPoints = page.sellingPoints?.items as ContentGroup[];
@@ -70,6 +71,8 @@ const HomePage = async () => {
     latestPost,
     latestProject,
   });
+
+  console.log(feedback);
 
   return (
     <>
@@ -133,14 +136,19 @@ const HomePage = async () => {
 
       <Container>
         <FeedbackWrapper>
-          <Text as="p">{latestFeedback?.body}</Text>
+          <AuthorImage
+            url={feedback?.authorImageUrl}
+            name={feedback?.author}
+            size="lg"
+          />
+          <Text as="p">{feedback?.body}</Text>
           <FeedbackFooter>
-            {latestFeedback?.url && (
-              <Link href={latestFeedback?.url} target="_blank">
-                {latestFeedback?.author} | {latestFeedback?.authorRole}
+            {feedback?.url && (
+              <Link href={feedback?.url} target="_blank">
+                {feedback?.author} | {feedback?.authorRole}
               </Link>
             )}
-            <Text size={0}>{formatDate(latestFeedback?.date)}</Text>
+            <Text size={0}>{formatDate(feedback?.date)}</Text>
           </FeedbackFooter>
         </FeedbackWrapper>
       </Container>

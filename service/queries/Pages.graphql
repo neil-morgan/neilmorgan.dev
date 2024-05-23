@@ -16,14 +16,13 @@ query HomePage($preview: Boolean = false) {
     }
   }
 
-  feedback: feedbackCollection(order: date_DESC, limit: 1, preview: $preview) {
-    items {
-      author
-      authorRole
-      body
-      date
-      url
-    }
+  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1") {
+    author
+    authorRole
+    authorImageUrl
+    body
+    date
+    url
   }
 }
 

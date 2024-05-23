@@ -69,8 +69,6 @@ export const ElementRefsProvider = ({
     [pathname, updateElementProperties],
   );
 
-  console.log(elementProperties);
-
   useEffect(() => {
     window.addEventListener("resize", updateElementProperties);
     window.addEventListener("scroll", updateElementProperties);

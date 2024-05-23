@@ -1,7 +1,6 @@
 "use client";
 
 export { AspectImage } from "./AspectImage";
-export { AspectRatio } from "./AspectRatio";
 export { BackgroundSlice } from "./BackgroundSlice";
 export { Blockquote } from "./Blockquote";
 export { Breadcrumbs } from "./Breadcrumbs";

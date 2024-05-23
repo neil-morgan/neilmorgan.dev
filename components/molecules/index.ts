@@ -1,3 +1,4 @@
+export { AuthorImage } from "./AuthorImage";
 export { Card } from "./Card";
 export { CardGroup } from "./CardGroup";
 export { ContentPresentation } from "./ContentPresentation";

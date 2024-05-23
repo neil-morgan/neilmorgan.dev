@@ -14,10 +14,10 @@ export const Wrapper = styled("a", {
   borderColor: "$border",
   color: "$text",
 
-  "& svg": {
+  "& .arrow": {
     position: "absolute",
-    top: "5px",
-    right: "5px",
+    top: "0.5rem",
+    right: "0.5rem",
     transition: "ease 250ms",
     color: "transparent",
     marginLeft: "auto",
@@ -28,9 +28,9 @@ export const Wrapper = styled("a", {
   "&:hover": {
     borderColor: "$borderHover",
     background: "$highlightHover",
-    "& svg": {
+    "& .arrow": {
       color: "$primary1",
-      transform: "translate(4px, -4px)",
+      transform: "translate(0.25rem, -0.25rem)",
     },
   },
 });

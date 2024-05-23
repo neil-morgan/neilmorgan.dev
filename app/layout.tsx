@@ -3,7 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Inter, Fira_Mono } from "next/font/google";
 import { PageWrapper, Main } from "./styles";
-import { buildNavigation } from "./helpers";
+import { buildNavigation } from "@/helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
@@ -69,7 +69,7 @@ export default async function RootLayout({
                 <PointerGlow />
               </Main>
 
-              {/* <Footer content={{ navigation }} /> */}
+              <Footer content={{ navigation }} />
             </PageWrapper>
           </ElementRefsProvider>
         </StitchesRegistryProvider>

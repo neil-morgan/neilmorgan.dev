@@ -19,8 +19,7 @@ export const AspectImage = ({
         alt={description}
         fill
         objectFit={fit}
-        placeholder="blur"
-        blurDataURL={blurDataUrl}
+        {...(blurDataUrl && { placeholder: "blur", blurDataURL: blurDataUrl })}
       />
     </Root>
   </AspectImageContainer>

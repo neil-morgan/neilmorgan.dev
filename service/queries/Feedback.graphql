@@ -1,11 +1,15 @@
-query AllFeedback {
-  feedbackCollection {
+query AllFeedback($preview: Boolean = false) {
+  feedbackCollection(order: date_DESC, preview: $preview) {
     items {
       author
       authorRole
+      authorImageUrl
       date
       body
       url
+      comments {
+        json
+      }
     }
   }
 }
