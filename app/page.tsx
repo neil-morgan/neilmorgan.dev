@@ -95,7 +95,7 @@ const HomePage = async () => {
           {sellingPoints.map((item, i) => (
             <SellingPoint key={i}>
               {item.icon && (
-                <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }}  />
+                <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }} />
               )}
               <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
                 {item.heading}
@@ -147,7 +147,9 @@ const HomePage = async () => {
                 {feedback?.author} | {feedback?.authorRole}
               </Link>
             )}
-            <Text size={0}>{formatDate(feedback?.date)}</Text>
+            <Text size={0}>
+              {formatDate(feedback?.date, "space", "monthYear")}
+            </Text>
           </FeedbackFooter>
         </FeedbackWrapper>
       </Container>
