@@ -11,6 +11,7 @@ import { Icon } from "../Icon";
 import { Wrapper } from "./styles";
 import type { ContentButtonProps } from "./types";
 import { useElementRefs } from "@/providers";
+import { isInternalUrl } from "@/utils";
 
 export const ContentButton = ({
   href,
@@ -26,7 +27,9 @@ export const ContentButton = ({
 
   return (
     <NextLink href={href as string} passHref legacyBehavior>
-      <Wrapper ref={elementRef as RefObject<HTMLAnchorElement>} target="_blank">
+      <Wrapper
+        ref={elementRef as RefObject<HTMLAnchorElement>}
+        {...(!isInternalUrl(href) && { target: "_blank" })}>
         <Icon name="ArrowTopRight" css={{ flexShrink: 0 }} className="arrow" />
         {children}
       </Wrapper>

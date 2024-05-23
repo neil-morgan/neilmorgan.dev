@@ -1,5 +1,5 @@
+import { LOCATIONS } from "../../lib/site";
 import type { CategoryItemType } from "@/service";
-import { LOCATIONS } from "@/lib/site";
 
 export const buildNavigation = (postCategories: CategoryItemType[]) => [
   {

@@ -17,9 +17,7 @@ import { isNumberEven } from "@/utils";
 import { NoticePage } from "@/components/templates";
 
 export const metadata = {
-  title: `${PAGE_TITLE_PREFIX}`,
-  description:
-    "Design and development is in my DNA. I love to create, build and collaborate. Explore my site and discover how can I help you.",
+  title: `Projects | ${PAGE_TITLE_PREFIX}`,
 };
 
 export const revalidate = 5;
