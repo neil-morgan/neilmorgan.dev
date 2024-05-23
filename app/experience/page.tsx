@@ -4,8 +4,12 @@ import type { LinksProps } from "./types";
 import { Container, Separator, Button, Text } from "@/components/atoms";
 import { ExperiencePageDocument } from "@/service";
 import { PageHeader } from "@/components/molecules";
-import { LOCATIONS } from "@/lib/site";
+import { LOCATIONS, PAGE_TITLE_PREFIX } from "@/lib/site";
 import { fetchContent } from "@/helpers";
+
+export const metadata = {
+  title: `Experience | ${PAGE_TITLE_PREFIX}`,
+};
 
 const ExperiencePage = async () => {
   const { isEnabled: preview } = draftMode();

@@ -11,10 +11,14 @@ import {
 } from "@/components/atoms";
 import { PageHeader, Richtext, AuthorImage } from "@/components/molecules";
 import { NoticePage } from "@/components/templates";
-import { LOCATIONS } from "@/lib/site";
+import { LOCATIONS, PAGE_TITLE_PREFIX } from "@/lib/site";
 import { formatDate } from "@/utils";
 
 export const revalidate = 5;
+
+export const metadata = {
+  title: `Feedback | ${PAGE_TITLE_PREFIX}`,
+};
 
 const FeedbackPage = async () => {
   const { isEnabled: preview } = draftMode();
