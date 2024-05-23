@@ -2425,6 +2425,13 @@ export type SkillsPageQueryVariables = Exact<{
 
 export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
+export type ExperiencePageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type ExperiencePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
 export type FeedbackPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
@@ -2609,6 +2616,15 @@ export const SkillsPageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
+export const ExperiencePageDocument = new TypedDocumentString(`
+    query ExperiencePage($preview: Boolean = false) {
+  header: contentGroup(id: "I7saQUgmDJYK5JqgopF3H", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<ExperiencePageQuery, ExperiencePageQueryVariables>;
 export const FeedbackPageDocument = new TypedDocumentString(`
     query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {

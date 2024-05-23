@@ -1,10 +1,20 @@
+import { draftMode } from "next/headers";
 import { Actions } from "./styles";
 import type { LinksProps } from "./types";
 import { Container, Separator, Button, Text } from "@/components/atoms";
+import { ExperiencePageDocument } from "@/service";
 import { PageHeader } from "@/components/molecules";
 import { LOCATIONS } from "@/lib/site";
+import { fetchContent } from "@/helpers";
 
-const ExperiencePage = () => {
+const ExperiencePage = async () => {
+  const { isEnabled: preview } = draftMode();
+
+  const { header } = await fetchContent({
+    document: ExperiencePageDocument,
+    preview,
+  });
+
   const breadcrumbs = [LOCATIONS.home, { label: "Experience" }];
   const links: LinksProps = [
     { ...LOCATIONS.projects, icon: "Cube" },
@@ -16,12 +26,14 @@ const ExperiencePage = () => {
   return (
     <>
       <Container as="section">
-        <PageHeader
-          breadcrumbs={breadcrumbs}
-          kicker="Experience"
-          heading="My experience as a developer"
-          body="Life can only be understood backwards; but it must be lived forwards"
-        />
+        {header?.heading && (
+          <PageHeader
+            breadcrumbs={breadcrumbs}
+            kicker={header.kicker}
+            heading={header.heading}
+            body={header.body}
+          />
+        )}
         <Separator size="xl" />
         <Actions>
           {links.map(({ label, slug, icon, disabled }) => (
