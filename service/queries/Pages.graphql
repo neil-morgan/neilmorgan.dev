@@ -37,6 +37,14 @@ query SkillsPage($preview: Boolean = false) {
   }
 }
 
+query ExperiencePage($preview: Boolean = false) {
+  header: contentGroup(id: "I7saQUgmDJYK5JqgopF3H", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+
 query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
     kicker
