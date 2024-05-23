@@ -8,6 +8,7 @@ import {
 import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
 import { InfoMessage, PageHeader, CardGroup } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
+import { NoticePage } from "@/components/templates";
 
 const tags = ["post"];
 export const revalidate = 5;
@@ -34,7 +35,7 @@ export default async function PostsPage() {
   const groupedPosts = groupByCategory(posts?.items as Post[], "category");
 
   if (groupedPosts.length === 0) {
-    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+    return <NoticePage noticeType="noContent" />;
   }
 
   const base64Map = await extractImagesToBase64Map(groupedPosts);

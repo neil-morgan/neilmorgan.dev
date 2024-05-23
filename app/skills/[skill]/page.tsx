@@ -94,14 +94,15 @@ export default async function SkillPage({ params }: SkillParamsType) {
             content={skill?.body as RichtextType}
             base64Map={base64Map}
           />
-          {skill.relatedSkillsCollection && (
-            <PodGroup
-              heading="Related Skills"
-              showCount={false}
-              items={skill.relatedSkillsCollection.items as Skill[]}
-              base64Map={base64Map}
-            />
-          )}
+          {skill.relatedSkillsCollection &&
+            skill.relatedSkillsCollection.items.length > 0 && (
+              <PodGroup
+                heading="Related Skills"
+                showCount={false}
+                items={skill.relatedSkillsCollection.items as Skill[]}
+                base64Map={base64Map}
+              />
+            )}
         </Body>
         {skill.projectsCollection &&
           skill.projectsCollection?.items.length > 0 && (

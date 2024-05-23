@@ -93,7 +93,7 @@ export type RichtextLinksType = {
 
 export type RichtextType = {
   json: Scalars["JSON"]["output"];
-  links: RichtextLinksType;
+  links?: RichtextLinksType;
 };
 
 type NavigableContentHeadingType = { id: string; label: string; href: string };

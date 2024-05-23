@@ -32,6 +32,7 @@ export const Wrapper = styled("a", {
 
 export const ContentBody = styled("div", {
   display: "flex",
+  width: "100%",
   gap: "$3",
   flexDirection: "column",
   alignItems: "flex-start",

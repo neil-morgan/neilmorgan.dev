@@ -18,12 +18,20 @@ export const LOCATIONS = {
   roles: { label: "Roles", slug: "/roles" },
 };
 
-export const BREAKPOINTS = {
-  sm: "30em",
-  md: "48em",
-  lg: "67.625em",
-  xl: "80em",
-  "2xl": "96em",
+export const BREAKPOINTS: {
+  base: number;
+  sm: number;
+  md: number;
+  lg: number;
+  xl: number;
+  "2xl": number;
+} = {
+  base: 0,
+  sm: 480,
+  md: 768,
+  lg: 1082,
+  xl: 1280,
+  "2xl": 1536,
 };
 
 export const INFO_MESSAGES = {

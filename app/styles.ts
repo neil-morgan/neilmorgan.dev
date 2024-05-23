@@ -70,26 +70,18 @@ export const SellingPoint = styled("div", {
 
 export const FeedbackWrapper = styled("div", {
   display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   flexDirection: "column",
   margin: "$8 auto",
   width: "100%",
   padding: "0 5%",
   position: "relative",
+  gap: "$5",
   textAlign: "center",
 
   "@md": {
     padding: "0 20%",
-  },
-
-  "& > p:before": {
-    content: "open-quote",
-    position: "absolute",
-    fontSize: "$10",
-    color: "$secondary1",
-    transform: "translate(-50%, -60%)",
-    top: 0,
-    left: "50%",
-    zIndex: "-1",
   },
 });
 
@@ -97,6 +89,5 @@ export const FeedbackFooter = styled("footer", {
   display: "flex",
   flexDirection: "column",
   gap: "$2",
-  marginTop: "$4",
   alignItems: "center",
 });

@@ -24,6 +24,8 @@ import {
   FeaturedSection,
   ContentPresentation,
   PageHeader,
+  AuthorImage,
+  Richtext,
 } from "@/components/molecules";
 import { DnaHologramAnimation } from "@/components/organisms";
 import { formatDate } from "@/utils/format-date";
@@ -62,7 +64,7 @@ const HomePage = async () => {
   ]);
 
   const latestPost = posts?.items[0] as Post;
-  const latestFeedback = page.feedback?.items[0];
+  const feedback = page.feedback;
   const latestProject = projects?.items[0] as Project;
   const header = page.header as ContentGroup;
   const sellingPoints = page.sellingPoints?.items as ContentGroup[];
@@ -93,7 +95,7 @@ const HomePage = async () => {
           {sellingPoints.map((item, i) => (
             <SellingPoint key={i}>
               {item.icon && (
-                <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }} />
+                <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }}  />
               )}
               <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
                 {item.heading}
@@ -133,14 +135,19 @@ const HomePage = async () => {
 
       <Container>
         <FeedbackWrapper>
-          <Text as="p">{latestFeedback?.body}</Text>
+          <AuthorImage
+            url={feedback?.authorImageUrl}
+            name={feedback?.author}
+            size="lg"
+          />
+          {feedback?.comments && <Richtext content={feedback?.comments} />}
           <FeedbackFooter>
-            {latestFeedback?.url && (
-              <Link href={latestFeedback?.url} target="_blank">
-                {latestFeedback?.author} | {latestFeedback?.authorRole}
+            {feedback?.url && (
+              <Link href={feedback?.url} target="_blank">
+                {feedback?.author} | {feedback?.authorRole}
               </Link>
             )}
-            <Text size={0}>{formatDate(latestFeedback?.date)}</Text>
+            <Text size={0}>{formatDate(feedback?.date)}</Text>
           </FeedbackFooter>
         </FeedbackWrapper>
       </Container>

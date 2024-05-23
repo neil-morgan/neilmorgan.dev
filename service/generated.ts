@@ -457,8 +457,10 @@ export enum EntryOrder {
 export type Feedback = Entry & {
   __typename?: 'Feedback';
   author: Maybe<Scalars['String']['output']>;
+  authorImageUrl: Maybe<Scalars['String']['output']>;
   authorRole: Maybe<Scalars['String']['output']>;
   body: Maybe<Scalars['String']['output']>;
+  comments: Maybe<FeedbackComments>;
   contentfulMetadata: ContentfulMetadata;
   date: Maybe<Scalars['DateTime']['output']>;
   linkedFrom: Maybe<FeedbackLinkingCollections>;
@@ -474,6 +476,12 @@ export type FeedbackAuthorArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackAuthorImageUrlArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
 export type FeedbackAuthorRoleArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
@@ -481,6 +489,12 @@ export type FeedbackAuthorRoleArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
 export type FeedbackBodyArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
+export type FeedbackCommentsArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -510,10 +524,65 @@ export type FeedbackCollection = {
   total: Scalars['Int']['output'];
 };
 
+export type FeedbackComments = {
+  __typename?: 'FeedbackComments';
+  json: Scalars['JSON']['output'];
+  links: FeedbackCommentsLinks;
+};
+
+export type FeedbackCommentsAssets = {
+  __typename?: 'FeedbackCommentsAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type FeedbackCommentsEntries = {
+  __typename?: 'FeedbackCommentsEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type FeedbackCommentsLinks = {
+  __typename?: 'FeedbackCommentsLinks';
+  assets: FeedbackCommentsAssets;
+  entries: FeedbackCommentsEntries;
+  resources: FeedbackCommentsResources;
+};
+
+export type FeedbackCommentsResources = {
+  __typename?: 'FeedbackCommentsResources';
+  block: Array<FeedbackCommentsResourcesBlock>;
+  hyperlink: Array<FeedbackCommentsResourcesHyperlink>;
+  inline: Array<FeedbackCommentsResourcesInline>;
+};
+
+export type FeedbackCommentsResourcesBlock = ResourceLink & {
+  __typename?: 'FeedbackCommentsResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type FeedbackCommentsResourcesHyperlink = ResourceLink & {
+  __typename?: 'FeedbackCommentsResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type FeedbackCommentsResourcesInline = ResourceLink & {
+  __typename?: 'FeedbackCommentsResourcesInline';
+  sys: ResourceSys;
+};
+
 export type FeedbackFilter = {
   AND: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
   OR: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
   author: InputMaybe<Scalars['String']['input']>;
+  authorImageUrl: InputMaybe<Scalars['String']['input']>;
+  authorImageUrl_contains: InputMaybe<Scalars['String']['input']>;
+  authorImageUrl_exists: InputMaybe<Scalars['Boolean']['input']>;
+  authorImageUrl_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorImageUrl_not: InputMaybe<Scalars['String']['input']>;
+  authorImageUrl_not_contains: InputMaybe<Scalars['String']['input']>;
+  authorImageUrl_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   authorRole: InputMaybe<Scalars['String']['input']>;
   authorRole_contains: InputMaybe<Scalars['String']['input']>;
   authorRole_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -534,6 +603,9 @@ export type FeedbackFilter = {
   body_not: InputMaybe<Scalars['String']['input']>;
   body_not_contains: InputMaybe<Scalars['String']['input']>;
   body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  comments_contains: InputMaybe<Scalars['String']['input']>;
+  comments_exists: InputMaybe<Scalars['Boolean']['input']>;
+  comments_not_contains: InputMaybe<Scalars['String']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
   date: InputMaybe<Scalars['DateTime']['input']>;
   date_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -568,6 +640,8 @@ export type FeedbackLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum FeedbackOrder {
+  AuthorImageUrlAsc = 'authorImageUrl_ASC',
+  AuthorImageUrlDesc = 'authorImageUrl_DESC',
   AuthorRoleAsc = 'authorRole_ASC',
   AuthorRoleDesc = 'authorRole_DESC',
   AuthorAsc = 'author_ASC',
@@ -2330,12 +2404,19 @@ export type SocialItemFragment = { __typename?: 'SocialItem', title: string | nu
 
 export type ImageFragment = { __typename?: 'Asset', title: string | null, description: string | null, url: string | null };
 
+export type AllFeedbackQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, body: string | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null> } | null };
+
 export type HomePageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, body: string | null, date: any | null, url: string | null } | null> } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, body: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type SkillsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2343,6 +2424,13 @@ export type SkillsPageQueryVariables = Exact<{
 
 
 export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
+export type FeedbackPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
 export type PostsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2465,6 +2553,23 @@ export const ImageFragmentDoc = new TypedDocumentString(`
   url
 }
     `, {"fragmentName":"Image"}) as unknown as TypedDocumentString<ImageFragment, unknown>;
+export const AllFeedbackDocument = new TypedDocumentString(`
+    query AllFeedback($preview: Boolean = false) {
+  feedbackCollection(order: date_DESC, preview: $preview) {
+    items {
+      author
+      authorRole
+      authorImageUrl
+      date
+      body
+      url
+      comments {
+        json
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AllFeedbackQuery, AllFeedbackQueryVariables>;
 export const HomePageDocument = new TypedDocumentString(`
     query HomePage($preview: Boolean = false) {
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
@@ -2482,13 +2587,15 @@ export const HomePageDocument = new TypedDocumentString(`
       icon
     }
   }
-  feedback: feedbackCollection(order: date_DESC, limit: 1, preview: $preview) {
-    items {
-      author
-      authorRole
-      body
-      date
-      url
+  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1", preview: $preview) {
+    author
+    authorRole
+    authorImageUrl
+    body
+    date
+    url
+    comments {
+      json
     }
   }
 }
@@ -2502,6 +2609,15 @@ export const SkillsPageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
+export const FeedbackPageDocument = new TypedDocumentString(`
+    query FeedbackPage($preview: Boolean = false) {
+  header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<FeedbackPageQuery, FeedbackPageQueryVariables>;
 export const PostsPageDocument = new TypedDocumentString(`
     query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {

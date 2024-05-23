@@ -7,4 +7,5 @@ export const Wrapper = styled("div", {
   flex: 1,
   flexDirection: "column",
   alignItems: "flex-start",
+  gap: "$6",
 });

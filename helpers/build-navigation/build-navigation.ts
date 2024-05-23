@@ -14,7 +14,7 @@ export const buildNavigation = (postCategories: CategoryItemType[]) => [
     options: [
       LOCATIONS.skills,
       LOCATIONS.projects,
-      // LOCATIONS.feedback,
+      LOCATIONS.feedback,
       // LOCATIONS.roles,
     ],
   },

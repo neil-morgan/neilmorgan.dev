@@ -16,9 +16,14 @@ export const Svg = styled("svg", {
         lineHeight: "1.2em",
       },
       lg: {
-        width: "1.4em",
-        height: "1.4em",
-        lineHeight: "1.4em",
+        width: "1.6em",
+        height: "1.6em",
+        lineHeight: "1.6em",
+      },
+      xl: {
+        width: "2em",
+        height: "2em",
+        lineHeight: "2em",
       },
     },
   },

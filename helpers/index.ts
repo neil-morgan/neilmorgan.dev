@@ -1,3 +1,4 @@
+export { buildNavigation } from "./build-navigation";
 export { extractCategories } from "./extract-categories";
 export { extractImagesToBase64Map } from "./extract-images-to-base64-map";
 export { fetchContent } from "./fetch-content";
