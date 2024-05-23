@@ -23,6 +23,9 @@ query HomePage($preview: Boolean = false) {
     body
     date
     url
+    comments {
+      json
+    }
   }
 }
 

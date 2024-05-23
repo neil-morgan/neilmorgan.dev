@@ -25,6 +25,7 @@ import {
   ContentPresentation,
   PageHeader,
   AuthorImage,
+  Richtext,
 } from "@/components/molecules";
 import { DnaHologramAnimation } from "@/components/organisms";
 import { formatDate } from "@/utils/format-date";
@@ -141,7 +142,7 @@ const HomePage = async () => {
             name={feedback?.author}
             size="lg"
           />
-          <Text as="p">{feedback?.body}</Text>
+          {feedback?.comments && <Richtext content={feedback?.comments} />}
           <FeedbackFooter>
             {feedback?.url && (
               <Link href={feedback?.url} target="_blank">

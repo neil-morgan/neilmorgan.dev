@@ -39,29 +39,31 @@ const FeedbackPage = async () => {
         body="Improvement begins with I"
       />
       <MasonryGrid gutter={6}>
-        {feedbackCollection?.items.map((feedback, i) => (
-          <ContentButton key={i} href="/">
-            <FeedbackHeader>
-              <AuthorImage
-                url={feedback?.authorImageUrl}
-                name={feedback?.author}
-              />
-              <FeedbackAuthor>
-                <Text size={3} color="$white" weight={500}>
-                  {feedback?.author}
-                </Text>
-                <Text size={1} color="$secondary1">
-                  {feedback?.authorRole}
-                </Text>
-                <Text size={0}>
-                  {formatDate(feedback?.date, "space", "monthYear")}
-                </Text>
-              </FeedbackAuthor>
-            </FeedbackHeader>
-            <Separator />
-            {feedback?.comments && <Richtext content={feedback?.comments} />}
-          </ContentButton>
-        ))}
+        {feedbackCollection?.items.map((feedback, i) =>
+          feedback?.url ? (
+            <ContentButton key={i} href={feedback?.url}>
+              <FeedbackHeader>
+                <AuthorImage
+                  url={feedback?.authorImageUrl}
+                  name={feedback?.author}
+                />
+                <FeedbackAuthor>
+                  <Text size={3} color="$white" weight={500}>
+                    {feedback?.author}
+                  </Text>
+                  <Text size={1} color="$secondary1">
+                    {feedback?.authorRole}
+                  </Text>
+                  <Text size={0}>
+                    {formatDate(feedback?.date, "space", "monthYear")}
+                  </Text>
+                </FeedbackAuthor>
+              </FeedbackHeader>
+              <Separator />
+              {feedback?.comments && <Richtext content={feedback?.comments} />}
+            </ContentButton>
+          ) : null,
+        )}
       </MasonryGrid>
     </Container>
   );

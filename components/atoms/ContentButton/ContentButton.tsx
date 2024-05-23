@@ -25,8 +25,8 @@ export const ContentButton = ({
   );
 
   return (
-    <NextLink target="_blank" href={href as string} passHref legacyBehavior>
-      <Wrapper ref={elementRef as RefObject<HTMLAnchorElement>}>
+    <NextLink href={href as string} passHref legacyBehavior>
+      <Wrapper ref={elementRef as RefObject<HTMLAnchorElement>} target="_blank">
         <Icon name="ArrowTopRight" css={{ flexShrink: 0 }} className="arrow" />
         {children}
       </Wrapper>

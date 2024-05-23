@@ -2416,7 +2416,7 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, body: string | null, date: any | null, url: string | null } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, body: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type SkillsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2587,6 +2587,9 @@ export const HomePageDocument = new TypedDocumentString(`
     body
     date
     url
+    comments {
+      json
+    }
   }
 }
     `) as unknown as TypedDocumentString<HomePageQuery, HomePageQueryVariables>;
