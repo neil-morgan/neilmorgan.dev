@@ -6,24 +6,24 @@ export const Svg = styled("svg", {
   variants: {
     size: {
       sm: {
-        width: "1rem",
-        height: "1rem",
-        lineHeight: "1rem",
+        width: "1em",
+        height: "1em",
+        lineHeight: "1em",
       },
       md: {
-        width: "1.2rem",
-        height: "1.2rem",
-        lineHeight: "1.2rem",
+        width: "1.2em",
+        height: "1.2em",
+        lineHeight: "1.2em",
       },
       lg: {
-        width: "1.6rem",
-        height: "1.6rem",
-        lineHeight: "1.6rem",
+        width: "1.6em",
+        height: "1.6em",
+        lineHeight: "1.6em",
       },
       xl: {
-        width: "2rem",
-        height: "2rem",
-        lineHeight: "2rem",
+        width: "2em",
+        height: "2em",
+        lineHeight: "2em",
       },
     },
   },

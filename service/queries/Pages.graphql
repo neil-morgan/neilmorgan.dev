@@ -16,7 +16,7 @@ query HomePage($preview: Boolean = false) {
     }
   }
 
-  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1") {
+  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1", preview: $preview) {
     author
     authorRole
     authorImageUrl
@@ -31,6 +31,14 @@ query HomePage($preview: Boolean = false) {
 
 query SkillsPage($preview: Boolean = false) {
   header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+
+query FeedbackPage($preview: Boolean = false) {
+  header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
     kicker
     heading
     body

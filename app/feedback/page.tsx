@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { FeedbackAuthor, FeedbackHeader } from "./styles";
 import { fetchContent } from "@/helpers";
-import { AllFeedbackDocument } from "@/service";
+import { AllFeedbackDocument, FeedbackPageDocument } from "@/service";
 import {
   Container,
   ContentButton,
@@ -19,10 +19,20 @@ export const revalidate = 5;
 const FeedbackPage = async () => {
   const { isEnabled: preview } = draftMode();
 
-  const { feedbackCollection } = await fetchContent({
+  const feedbackData = await fetchContent({
     document: AllFeedbackDocument,
     preview,
   });
+
+  const pageData = await fetchContent({
+    document: FeedbackPageDocument,
+    preview,
+  });
+
+  const [{ feedbackCollection }, { header }] = await Promise.all([
+    feedbackData,
+    pageData,
+  ]);
 
   if (feedbackCollection && feedbackCollection?.items.length < 3) {
     return <NoticePage noticeType="noContent" />;
@@ -32,12 +42,15 @@ const FeedbackPage = async () => {
 
   return (
     <Container as="section">
-      <PageHeader
-        breadcrumbs={breadcrumbs}
-        kicker="Feedback"
-        heading="The thoughts and opinions of others"
-        body="Improvement begins with I"
-      />
+      {header?.heading && (
+        <PageHeader
+          heading={header.heading}
+          kicker={header.kicker}
+          body={header.body}
+          breadcrumbs={breadcrumbs}
+        />
+      )}
+
       <MasonryGrid gutter={6}>
         {feedbackCollection?.items.map((feedback, i) =>
           feedback?.url ? (

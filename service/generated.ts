@@ -2425,6 +2425,13 @@ export type SkillsPageQueryVariables = Exact<{
 
 export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
 
+export type FeedbackPageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null };
+
 export type PostsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
@@ -2580,7 +2587,7 @@ export const HomePageDocument = new TypedDocumentString(`
       icon
     }
   }
-  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1") {
+  feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1", preview: $preview) {
     author
     authorRole
     authorImageUrl
@@ -2602,6 +2609,15 @@ export const SkillsPageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
+export const FeedbackPageDocument = new TypedDocumentString(`
+    query FeedbackPage($preview: Boolean = false) {
+  header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
+    kicker
+    heading
+    body
+  }
+}
+    `) as unknown as TypedDocumentString<FeedbackPageQuery, FeedbackPageQueryVariables>;
 export const PostsPageDocument = new TypedDocumentString(`
     query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
