@@ -1,3 +1,3 @@
 export type ContentButtonProps = {
-  href: string;
+  href?: string | null;
 };

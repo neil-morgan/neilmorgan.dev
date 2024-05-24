@@ -14,6 +14,21 @@ export const Wrapper = styled("a", {
   borderColor: "$border",
   color: "$text",
 
+  variants: {
+    hover: {
+      true: {
+        "&:hover": {
+          borderColor: "$borderHover",
+          background: "$highlightHover",
+          "& .arrow": {
+            color: "$primary1",
+            transform: "translate(0.25rem, -0.25rem)",
+          },
+        },
+      },
+    },
+  },
+
   "& .arrow": {
     position: "absolute",
     top: "0.5rem",
@@ -23,14 +38,5 @@ export const Wrapper = styled("a", {
     marginLeft: "auto",
     marginBottom: "auto",
     transform: "translate(0, 0)",
-  },
-
-  "&:hover": {
-    borderColor: "$borderHover",
-    background: "$highlightHover",
-    "& .arrow": {
-      color: "$primary1",
-      transform: "translate(0.25rem, -0.25rem)",
-    },
   },
 });
