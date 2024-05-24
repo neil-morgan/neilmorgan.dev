@@ -20,7 +20,6 @@ query HomePage($preview: Boolean = false) {
     author
     authorRole
     authorImageUrl
-    body
     date
     url
     comments {

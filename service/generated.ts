@@ -459,7 +459,6 @@ export type Feedback = Entry & {
   author: Maybe<Scalars['String']['output']>;
   authorImageUrl: Maybe<Scalars['String']['output']>;
   authorRole: Maybe<Scalars['String']['output']>;
-  body: Maybe<Scalars['String']['output']>;
   comments: Maybe<FeedbackComments>;
   contentfulMetadata: ContentfulMetadata;
   date: Maybe<Scalars['DateTime']['output']>;
@@ -483,12 +482,6 @@ export type FeedbackAuthorImageUrlArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
 export type FeedbackAuthorRoleArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
-export type FeedbackBodyArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -596,13 +589,6 @@ export type FeedbackFilter = {
   author_not: InputMaybe<Scalars['String']['input']>;
   author_not_contains: InputMaybe<Scalars['String']['input']>;
   author_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  body: InputMaybe<Scalars['String']['input']>;
-  body_contains: InputMaybe<Scalars['String']['input']>;
-  body_exists: InputMaybe<Scalars['Boolean']['input']>;
-  body_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  body_not: InputMaybe<Scalars['String']['input']>;
-  body_not_contains: InputMaybe<Scalars['String']['input']>;
-  body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   comments_contains: InputMaybe<Scalars['String']['input']>;
   comments_exists: InputMaybe<Scalars['Boolean']['input']>;
   comments_not_contains: InputMaybe<Scalars['String']['input']>;
@@ -2409,14 +2395,14 @@ export type AllFeedbackQueryVariables = Exact<{
 }>;
 
 
-export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, body: string | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null> } | null };
+export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null> } | null };
 
 export type HomePageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, body: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, heading: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', heading: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type SkillsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2568,7 +2554,6 @@ export const AllFeedbackDocument = new TypedDocumentString(`
       authorRole
       authorImageUrl
       date
-      body
       url
       comments {
         json
@@ -2598,7 +2583,6 @@ export const HomePageDocument = new TypedDocumentString(`
     author
     authorRole
     authorImageUrl
-    body
     date
     url
     comments {
