@@ -42,8 +42,6 @@ const FeedbackPage = async () => {
     return <NoticePage noticeType="noContent" />;
   }
 
-  console.log(feedbackData);
-
   const breadcrumbs = [LOCATIONS.home, { label: "Feedback" }];
 
   return (
