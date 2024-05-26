@@ -13,9 +13,8 @@ export const LOCATIONS = {
   posts: { label: "Posts", slug: "/posts" },
   skills: { label: "Skills", slug: "/skills" },
   projects: { label: "Projects", slug: "/projects" },
-  experience: { label: "Experience", slug: "/experience" },
   feedback: { label: "Feedback", slug: "/feedback" },
-  roles: { label: "Roles", slug: "/roles" },
+  history: { label: "History", slug: "/history" },
 };
 
 export const BREAKPOINTS: {

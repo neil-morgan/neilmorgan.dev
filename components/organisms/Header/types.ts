@@ -4,7 +4,7 @@ import type { SocialItemFragment } from "@/service";
 export type HeaderProps = {
   content: {
     navigation: NavigationType;
-    socialItems?: SocialItemFragment[] | null
+    socialItems: SocialItemFragment[] 
   };
 };
 

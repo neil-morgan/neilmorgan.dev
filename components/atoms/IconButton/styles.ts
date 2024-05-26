@@ -25,6 +25,9 @@ export const IconButtonElement = styled("button", {
       lg: {
         fontSize: "$5",
       },
+      xl: {
+        fontSize: "$7",
+      },
     },
 
     highlight: {

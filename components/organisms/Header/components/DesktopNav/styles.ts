@@ -7,7 +7,7 @@ export const Wrapper = styled("nav", {
   alignItems: "center",
   gridTemplateColumns: "repeat(5, 1fr)",
 
-  "@md": {
+  "@lg": {
     display: "flex",
   },
 });

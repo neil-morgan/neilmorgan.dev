@@ -6,6 +6,7 @@ export { CopyButton } from "./CopyButton";
 export { FeaturedSection } from "./FeaturedSection";
 export { InfoMessage } from "./InfoMessage";
 export { Logo } from "./Logo";
+export { NavLists } from "./NavLists";
 export { PageHeader } from "./PageHeader";
 export { Pod } from "./Pod";
 export { PodGroup } from "./PodGroup";

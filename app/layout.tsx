@@ -69,7 +69,7 @@ export default async function RootLayout({
                 <PointerGlow />
               </Main>
 
-              <Footer content={{ navigation }} />
+              <Footer content={{ navigation, socialItems }} />
             </PageWrapper>
           </ElementRefsProvider>
         </StitchesRegistryProvider>

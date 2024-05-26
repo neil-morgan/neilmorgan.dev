@@ -7,30 +7,7 @@ export const Wrapper = styled("nav", {
   alignItems: "center",
   gridTemplateColumns: "repeat(2, 1fr)",
 
-  "@md": {
+  "@lg": {
     display: "none",
   },
-});
-
-export const List = styled("ul", {
-  display: "flex",
-  flexDirection: "column",
-  gap: "$5",
-});
-
-export const Options = styled("li", {
-  display: "flex",
-  flexDirection: "column",
-  gap: "$2",
-  fontSize: "$3",
-  marginLeft: "$2",
-  marginTop: "$2",
-});
-
-export const Footer = styled("footer", {
-  display: "flex",
-  justifyContent: "space-between",
-  gap: "$4",
-  width: "100%",
-  marginTop: "$5",
 });

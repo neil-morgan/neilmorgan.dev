@@ -1,13 +1,12 @@
-"use client";
 
-import { Item, List, Wrapper, SocialItems } from "./styles";
+
+import { Item, List, Wrapper } from "./styles";
 import type { DesktopNavProps } from "./types";
 import { Popover, Button, IconButton } from "@/components/atoms";
 import { Logo } from "@/components/molecules";
 
 export const DesktopNav = ({
   items,
-  social,
   openItem,
   setOpenItem,
 }: DesktopNavProps) => (
@@ -49,12 +48,5 @@ export const DesktopNav = ({
         ))}
       </List>
     )}
-    <SocialItems>
-      {social?.map(({ href, title }, index) =>
-        !title ? null : (
-          <IconButton key={index} href={href} target="_blank" icon={title} />
-        ),
-      )}
-    </SocialItems>
   </Wrapper>
 );

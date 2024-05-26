@@ -30,6 +30,9 @@ export const ButtonElement = styled("button", {
       lg: {
         fontSize: "$5",
       },
+      xl: {
+        fontSize: "$7",
+      },
     },
 
     asLink: {

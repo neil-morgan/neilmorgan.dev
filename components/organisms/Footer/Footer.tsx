@@ -1,27 +1,36 @@
 "use client";
 
-import { FooterElement, CopyRight } from "./styles";
+import { FooterElement, FooterItems, FooterLinks, CopyRight } from "./styles";
 import type { FooterProps } from "./types";
-import { Logo } from "@/components/molecules";
-import { Container, Button, Text, List } from "@/components/atoms";
+import { Logo, NavLists } from "@/components/molecules";
+import { Container, Text } from "@/components/atoms";
 
 export const Footer = ({ content }: FooterProps) => (
   <FooterElement>
-    <Container css={{ display: "flex", justifyContent: "space-between" }}>
-      <List gap="$3">
-        <Text size={1}>Links</Text>
-        {content.navigation.map(({ label, slug }, i) => (
-          <Button asLink href={slug} key={slug + i}>
-            {label}
-          </Button>
-        ))}
-      </List>
-      <CopyRight>
-        <Logo isLink />
-        <Text size={0} weight={300} textAlign="right">
-          All rights reserved <br />© Neil Morgan 2024
-        </Text>
-      </CopyRight>
+    <Container>
+      <FooterItems>
+        <CopyRight>
+          <Logo isLink size="md" />
+          <Text color="$white" size={4} weight={600} css={{ marginTop: "$4" }}>
+            Neil Morgan
+          </Text>
+          <Text size={0} weight={300}>
+            All rights reserved <br />© 2024
+          </Text>
+        </CopyRight>
+        <NavLists
+          lists={[
+            { heading: "Pages", items: content.navigation },
+            {
+              heading: "Links",
+              items: content.socialItems.map(item => ({
+                label: item.title as string,
+                slug: item.href as string,
+              })),
+            },
+          ]}
+        />
+      </FooterItems>
     </Container>
   </FooterElement>
 );

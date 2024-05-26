@@ -7,7 +7,7 @@ export type IconButtonProps = {
   href?: string | null;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   icon?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   disabled?: boolean;
   noHighlight?: boolean;
 } & ({ children?: never } | { icon?: never; children?: React.ReactNode });
