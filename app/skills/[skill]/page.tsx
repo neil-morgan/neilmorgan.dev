@@ -5,7 +5,6 @@ import { Content, Body, Aside, Projects, Stats } from "./styles";
 import {
   SkillDocument,
   SkillsDocument,
-  type TagType,
   type Skill,
   type RichtextType,
 } from "@/service";

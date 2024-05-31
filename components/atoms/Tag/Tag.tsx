@@ -24,8 +24,8 @@ export const Tag = ({ children, slug }: React.PropsWithChildren<TagProps>) => {
   );
 };
 
-export const TagList = ({ list }: TagListProps) => (
-  <TagListWrapper>
+export const TagList = ({ list, css }: TagListProps) => (
+  <TagListWrapper css={css}>
     {list.map(({ title, slug }, i) => (
       <Tag key={i} slug={slug}>
         {title}

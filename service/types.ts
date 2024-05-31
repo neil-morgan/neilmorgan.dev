@@ -1,5 +1,12 @@
 import type { RefObject } from "react";
-import type { Scalars, Maybe, Asset, Entry, ResourceLink } from "@/service";
+import type {
+  Scalars,
+  Maybe,
+  Asset,
+  Entry,
+  ResourceLink,
+  PostCategoryFragment,
+} from "@/service";
 
 type WithoutDollarSign<T> = T extends `$${infer Rest}` ? Rest : T;
 
@@ -11,25 +18,25 @@ export type ImageType = {
   blurDataUrl?: string;
 };
 
-export type CategoryItemType = {
-  title: string | null;
-  slug?: string | null;
-};
-
-export type GroupedCategoryType<T> = {
-  category?: CategoryItemType;
-  items: T[];
-};
-
 export type TagType = {
   title: string;
   slug?: string;
+};
+
+export type GroupedCategoryType<T> = {
+  category?: PostCategoryFragment;
+  items: T[];
 };
 
 export type BreadcrumbType = {
   label: string;
   slug?: string;
 };
+
+export type NavigationType = {
+  label: string;
+  slug: string;
+}[];
 
 export type IconType =
   | "Angle"
@@ -60,22 +67,6 @@ export type IconType =
   | "Share"
   | "Star"
   | "Quote";
-
-export type NavigationType = (
-  | {
-      label: string;
-      slug: string;
-      options?: undefined;
-    }
-  | {
-      label: string;
-      slug: string;
-      options: {
-        label: string;
-        slug: string;
-      }[];
-    }
-)[];
 
 export type CategoryMetaProps = {
   params: { category: string };

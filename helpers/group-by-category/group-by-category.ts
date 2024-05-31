@@ -1,10 +1,10 @@
-import type { GroupedCategoryType, CategoryItemType } from "@/service";
+import type { GroupedCategoryType, TagType } from "@/service";
 
 export const groupByCategory = <T, K extends keyof T>(
   objectArray: T[],
   key: K,
 ): GroupedCategoryType<T>[] => {
-  const isCategoryItem = (item: any): item is CategoryItemType =>
+  const isCategoryItem = (item: any): item is TagType =>
     typeof item === "object" && "title" in item;
 
   const groupedObject = objectArray.reduce(

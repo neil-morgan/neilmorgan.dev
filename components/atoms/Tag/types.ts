@@ -1,3 +1,4 @@
+import type { CSS } from "@stitches/react";
 import type { TagType } from "@/service";
 
 export type TagProps = {
@@ -6,4 +7,5 @@ export type TagProps = {
 
 export type TagListProps = {
   list: TagType[];
+  css?: CSS;
 };

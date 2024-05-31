@@ -17,3 +17,11 @@ export const HeaderElement = styled("header", {
     marginBottom: "$8",
   },
 });
+
+export const DesktopNavList = styled("ul", {
+  display: "flex",
+  justifyContent: "center",
+  listStyle: "none",
+  marginLeft: "$4",
+  gap: "$4",
+});

@@ -15,7 +15,6 @@ export const IconButton = forwardRef(
       css,
       href,
       onClick,
-
       icon,
       children,
       target,
