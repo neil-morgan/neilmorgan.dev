@@ -1,13 +1,18 @@
 import { draftMode } from "next/headers";
-import { PostsDocument, PostsPageDocument, type Post } from "@/service";
+import {
+  PostsDocument,
+  PostsPageDocument,
+  type Post,
+  type TagType,
+} from "@/service";
 import {
   groupByCategory,
   fetchContent,
   extractImagesToBase64Map,
 } from "@/helpers";
-import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
-import { InfoMessage, PageHeader, CardGroup } from "@/components/molecules";
-import { Container, Separator } from "@/components/atoms";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
+import { PageHeader, CardGroup } from "@/components/molecules";
+import { Container, Separator, TagList } from "@/components/atoms";
 import { NoticePage } from "@/components/templates";
 
 const tags = ["post"];
@@ -33,6 +38,7 @@ export default async function PostsPage() {
   const [{ posts }, { header }] = await Promise.all([postsData, pageData]);
 
   const groupedPosts = groupByCategory(posts?.items as Post[], "category");
+  const categories = groupedPosts.map(({ category }) => category);
 
   if (groupedPosts.length === 0) {
     return <NoticePage noticeType="noContent" />;
@@ -52,6 +58,9 @@ export default async function PostsPage() {
         />
       )}
       <Separator size="xl" />
+      {categories.length > 1 && (
+        <TagList list={categories as TagType[]} css={{ marginBottom: "$8" }} />
+      )}
       {groupedPosts.map(({ category, items }) =>
         category?.title ? (
           <CardGroup

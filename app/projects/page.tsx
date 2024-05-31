@@ -49,6 +49,8 @@ const ProjectsPage = async () => {
     projects?.items as Project[],
   );
 
+  console.log(projects?.items[0]?.categories);
+
   return (
     <Container>
       {header?.heading && (

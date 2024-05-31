@@ -17,8 +17,9 @@ export const FooterItems = styled("div", {
   justifyContent: "space-between",
   alignItems: "center",
   flexDirection: "column",
-  gap: "$10",
+  gap: "$6",
   "@sm": {
+    gap: "$10",
     alignItems: "flex-start",
     flexDirection: "row",
   },

@@ -3,19 +3,17 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { draftMode } from "next/headers";
 import { Inter, Fira_Mono } from "next/font/google";
 import { PageWrapper, Main } from "./styles";
-import { buildNavigation } from "@/helpers";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
 import {
   PostsDocument,
   SocialItemsDocument,
-  type NavigationType,
-  type Post,
   type SocialItemFragment,
 } from "@/service";
 import { Header, Footer } from "@/components/organisms";
-import { fetchContent, extractCategories } from "@/helpers";
+import { fetchContent } from "@/helpers";
+import { LOCATIONS } from "@/lib/site";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -47,9 +45,13 @@ export default async function RootLayout({
   const socialItems = social?.socialItemCollection
     ?.items as SocialItemFragment[];
 
-  const navigation = buildNavigation(
-    extractCategories(posts.posts?.items as Post[]),
-  ) as NavigationType;
+  const navigation = [
+    // LOCATIONS.history,
+    LOCATIONS.skills,
+    LOCATIONS.projects,
+    LOCATIONS.feedback,
+    LOCATIONS.posts,
+  ];
 
   return (
     <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>
