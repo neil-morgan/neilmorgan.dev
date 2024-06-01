@@ -46,9 +46,9 @@ const FeedbackPage = async () => {
 
   return (
     <Container as="section">
-      {header?.heading && (
+      {header?.title && (
         <PageHeader
-          heading={header.heading}
+          title={header.title}
           kicker={header.kicker}
           body={header.body}
           breadcrumbs={breadcrumbs}

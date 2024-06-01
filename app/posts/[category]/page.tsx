@@ -74,12 +74,13 @@ export default async function PostCategoryPage({
     <Container>
       <PageHeader
         kicker="Post Category"
-        heading={`${category.title} thoughts and opinions`}
+        title={`${category.title} thoughts and opinions`}
         breadcrumbs={breadcrumbs}
       />
       <Separator size="xl" />
 
       <CardGroup
+        showCount
         heading={category?.title as string}
         items={posts.map(post => ({
           title: post.title as string,

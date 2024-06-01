@@ -67,7 +67,7 @@ export default async function SkillPage({ params }: SkillParamsType) {
     <Container>
       {skill.title && skill.icon?.url && skill.icon?.title && (
         <PageHeader
-          heading={skill.title}
+          title={skill.title}
           body={skill.description}
           kicker="Skill"
           breadcrumbs={breadcrumbs}

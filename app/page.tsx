@@ -78,9 +78,9 @@ const HomePage = async () => {
       <Container>
         <IntroWrapper>
           <IntroDetails>
-            {header.heading && (
+            {header.title && (
               <PageHeader
-                heading={header.heading}
+                title={header.title}
                 kicker={header.kicker}
                 body={header.body}
               />
@@ -98,7 +98,7 @@ const HomePage = async () => {
                 <Icon name={item.icon as IconType} css={{ fontSize: "3rem" }} />
               )}
               <Text size={5} color="$secondary1" css={{ margin: "$2 0 $4" }}>
-                {item.heading}
+                {item.title}
               </Text>
               <Text as="p" textAlign="center">
                 {item.body}
@@ -168,7 +168,7 @@ const HomePage = async () => {
                   description: latestProject.image.description,
                   blurDataUrl: base64Map[latestProject.image.title],
                 }}
-                title={latestProject.heading}
+                title={latestProject.title}
                 kicker="Latest project"
                 tags={latestProject.categories.map(cat => ({
                   title: cat as string,

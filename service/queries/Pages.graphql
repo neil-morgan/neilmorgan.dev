@@ -1,7 +1,7 @@
 query HomePage($preview: Boolean = false) {
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 
@@ -10,7 +10,7 @@ query HomePage($preview: Boolean = false) {
     preview: $preview
   ) {
     items {
-      heading
+      title
       body
       icon
     }
@@ -31,7 +31,7 @@ query HomePage($preview: Boolean = false) {
 query SkillsPage($preview: Boolean = false) {
   header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 }
@@ -39,7 +39,7 @@ query SkillsPage($preview: Boolean = false) {
 query ExperiencePage($preview: Boolean = false) {
   header: contentGroup(id: "I7saQUgmDJYK5JqgopF3H", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 }
@@ -47,7 +47,7 @@ query ExperiencePage($preview: Boolean = false) {
 query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 }
@@ -55,7 +55,7 @@ query FeedbackPage($preview: Boolean = false) {
 query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 }
@@ -63,7 +63,7 @@ query PostsPage($preview: Boolean = false) {
 query ProjectsPage($preview: Boolean = false) {
   header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
     kicker
-    heading
+    title
     body
   }
 }

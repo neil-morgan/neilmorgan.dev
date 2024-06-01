@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: ProjectParamsType) {
   const project = data?.project?.items[0] as Project;
 
   return {
-    title: `${PAGE_TITLE_PREFIX} | ${project?.heading}`,
+    title: `${PAGE_TITLE_PREFIX} | ${project?.title}`,
     description: project?.description,
   };
 }
@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
     <Container>
       {project.heading && (
         <PageHeader
-          heading={project.heading}
+          title={project.heading}
           body={project.description}
           kicker="Project"
           breadcrumbs={breadcrumbs}
