@@ -49,10 +49,10 @@ export default async function PostsPage() {
 
   return (
     <Container>
-      {header?.heading && (
+      {header?.title && (
         <PageHeader
           kicker={header.kicker}
-          heading={header.heading}
+          title={header.title}
           body={header.body}
           breadcrumbs={breadcrumbs}
         />
@@ -76,6 +76,7 @@ export default async function PostsPage() {
                 slug: tag?.slug as string,
               })),
             }))}
+            showCount
             base64Map={base64Map}
           />
         ) : null,

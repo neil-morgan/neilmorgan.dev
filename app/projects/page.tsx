@@ -1,12 +1,8 @@
 import { draftMode } from "next/headers";
 import { ProjectsWrapper } from "./styles";
-import { PAGE_TITLE_PREFIX, LOCATIONS, INFO_MESSAGES } from "@/lib/site";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import { Container, Separator } from "@/components/atoms";
-import {
-  ContentPresentation,
-  PageHeader,
-  InfoMessage,
-} from "@/components/molecules";
+import { ContentPresentation, PageHeader } from "@/components/molecules";
 import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import {
   ProjectsDocument,
@@ -53,10 +49,10 @@ const ProjectsPage = async () => {
 
   return (
     <Container>
-      {header?.heading && (
+      {header?.title && (
         <PageHeader
           kicker={header?.kicker}
-          heading={header?.heading}
+          title={header?.title}
           body={header?.body}
           breadcrumbs={breadcrumbs}
         />
@@ -65,7 +61,7 @@ const ProjectsPage = async () => {
 
       <ProjectsWrapper>
         {projects?.items.map((project, i) =>
-          project?.heading &&
+          project?.title &&
           project?.description &&
           project?.categories &&
           project?.slug &&
@@ -74,7 +70,7 @@ const ProjectsPage = async () => {
           project.image.description ? (
             <ContentPresentation
               key={i}
-              title={project.heading}
+              title={project.title}
               body={project.description}
               cta={{ label: "More", href: `/projects/${project.slug}` }}
               tags={project.categories.map(cat => ({

@@ -7,9 +7,10 @@ import {
   fetchContent,
   extractImagesToBase64Map,
 } from "@/helpers";
-import { PAGE_TITLE_PREFIX, INFO_MESSAGES, LOCATIONS } from "@/lib/site";
-import { InfoMessage, PageHeader, PodGroup } from "@/components/molecules";
+import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
+import { PageHeader, PodGroup } from "@/components/molecules";
 import { Container, Separator } from "@/components/atoms";
+import { NoticePage } from "@/components/templates";
 
 const tags = ["skill"];
 export const revalidate = 5;
@@ -39,7 +40,7 @@ export default async function SkillsPage() {
   );
 
   if (proficiencies.length === 0) {
-    return <InfoMessage {...INFO_MESSAGES.noContent} />;
+    return <NoticePage noticeType="noContent" />;
   }
 
   const base64Map = await extractImagesToBase64Map(proficiencies);
@@ -47,10 +48,10 @@ export default async function SkillsPage() {
 
   return (
     <Container>
-      {header?.heading && (
+      {header?.title && (
         <PageHeader
           kicker={header?.kicker}
-          heading={header?.heading}
+          title={header?.title}
           body={header?.body}
           breadcrumbs={breadcrumbs}
         />
