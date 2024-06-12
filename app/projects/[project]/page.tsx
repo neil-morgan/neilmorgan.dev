@@ -77,9 +77,9 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
 
   return (
     <Container>
-      {project.heading && (
+      {project.title && (
         <PageHeader
-          title={project.heading}
+          title={project.title}
           body={project.description}
           kicker="Project"
           breadcrumbs={breadcrumbs}
@@ -102,18 +102,9 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
           <AsideStats>
             <AsideDate>
               <Text size={4} weight={500} color="$white">
-                Year:{" "}
+                Date:
               </Text>
-              <Text weight={500} size={2} color="$text">
-                From{" "}
-                <Text as="span" color="$secondary1">
-                  {formatDate(project.startDate)}
-                </Text>{" "}
-                to{" "}
-                <Text as="span" color="$secondary1">
-                  {formatDate(project.endDate)}
-                </Text>
-              </Text>
+              <Text color="$secondary1">{formatDate(project.date)}</Text>
             </AsideDate>
             <Separator />
             <Text size={4} weight={500} color="$white">

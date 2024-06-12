@@ -236,7 +236,6 @@ export type ContentGroup = Entry & {
   __typename?: 'ContentGroup';
   body: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
-  heading: Maybe<Scalars['String']['output']>;
   icon: Maybe<Scalars['String']['output']>;
   internalName: Maybe<Scalars['String']['output']>;
   kicker: Maybe<Scalars['String']['output']>;
@@ -250,12 +249,6 @@ export type ContentGroup = Entry & {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupBodyArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
-export type ContentGroupHeadingArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -320,13 +313,6 @@ export type ContentGroupFilter = {
   body_not_contains: InputMaybe<Scalars['String']['input']>;
   body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
-  heading: InputMaybe<Scalars['String']['input']>;
-  heading_contains: InputMaybe<Scalars['String']['input']>;
-  heading_exists: InputMaybe<Scalars['Boolean']['input']>;
-  heading_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  heading_not: InputMaybe<Scalars['String']['input']>;
-  heading_not_contains: InputMaybe<Scalars['String']['input']>;
-  heading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   icon: InputMaybe<Scalars['String']['input']>;
   icon_contains: InputMaybe<Scalars['String']['input']>;
   icon_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -388,8 +374,6 @@ export type ContentGroupLinkingCollectionsEntryCollectionArgs = {
 export enum ContentGroupOrder {
   BodyAsc = 'body_ASC',
   BodyDesc = 'body_DESC',
-  HeadingAsc = 'heading_ASC',
-  HeadingDesc = 'heading_DESC',
   IconAsc = 'icon_ASC',
   IconDesc = 'icon_DESC',
   InternalNameAsc = 'internalName_ASC',
@@ -1117,16 +1101,14 @@ export type Project = Entry & {
   body: Maybe<ProjectBody>;
   categories: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contentfulMetadata: ContentfulMetadata;
+  date: Maybe<Scalars['DateTime']['output']>;
   demoLink: Maybe<Scalars['String']['output']>;
   description: Maybe<Scalars['String']['output']>;
-  endDate: Maybe<Scalars['DateTime']['output']>;
   githubLink: Maybe<Scalars['String']['output']>;
-  heading: Maybe<Scalars['String']['output']>;
   image: Maybe<Asset>;
   linkedFrom: Maybe<ProjectLinkingCollections>;
   skillsUsedCollection: Maybe<ProjectSkillsUsedCollection>;
   slug: Maybe<Scalars['String']['output']>;
-  startDate: Maybe<Scalars['DateTime']['output']>;
   sys: Sys;
   title: Maybe<Scalars['String']['output']>;
 };
@@ -1145,6 +1127,12 @@ export type ProjectCategoriesArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
+export type ProjectDateArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
 export type ProjectDemoLinkArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
@@ -1157,19 +1145,7 @@ export type ProjectDescriptionArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectEndDateArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
 export type ProjectGithubLinkArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectHeadingArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1200,12 +1176,6 @@ export type ProjectSkillsUsedCollectionArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
 export type ProjectSlugArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectStartDateArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1282,6 +1252,15 @@ export type ProjectFilter = {
   categories_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   categories_exists: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  date: InputMaybe<Scalars['DateTime']['input']>;
+  date_exists: InputMaybe<Scalars['Boolean']['input']>;
+  date_gt: InputMaybe<Scalars['DateTime']['input']>;
+  date_gte: InputMaybe<Scalars['DateTime']['input']>;
+  date_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  date_lt: InputMaybe<Scalars['DateTime']['input']>;
+  date_lte: InputMaybe<Scalars['DateTime']['input']>;
+  date_not: InputMaybe<Scalars['DateTime']['input']>;
+  date_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   demoLink: InputMaybe<Scalars['String']['input']>;
   demoLink_contains: InputMaybe<Scalars['String']['input']>;
   demoLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1296,15 +1275,6 @@ export type ProjectFilter = {
   description_not: InputMaybe<Scalars['String']['input']>;
   description_not_contains: InputMaybe<Scalars['String']['input']>;
   description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  endDate: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_exists: InputMaybe<Scalars['Boolean']['input']>;
-  endDate_gt: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_gte: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  endDate_lt: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_lte: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_not: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   githubLink: InputMaybe<Scalars['String']['input']>;
   githubLink_contains: InputMaybe<Scalars['String']['input']>;
   githubLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1312,13 +1282,6 @@ export type ProjectFilter = {
   githubLink_not: InputMaybe<Scalars['String']['input']>;
   githubLink_not_contains: InputMaybe<Scalars['String']['input']>;
   githubLink_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  heading: InputMaybe<Scalars['String']['input']>;
-  heading_contains: InputMaybe<Scalars['String']['input']>;
-  heading_exists: InputMaybe<Scalars['Boolean']['input']>;
-  heading_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  heading_not: InputMaybe<Scalars['String']['input']>;
-  heading_not_contains: InputMaybe<Scalars['String']['input']>;
-  heading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   image_exists: InputMaybe<Scalars['Boolean']['input']>;
   skillsUsed: InputMaybe<CfSkillNestedFilter>;
   skillsUsedCollection_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1329,15 +1292,6 @@ export type ProjectFilter = {
   slug_not: InputMaybe<Scalars['String']['input']>;
   slug_not_contains: InputMaybe<Scalars['String']['input']>;
   slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  startDate: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_exists: InputMaybe<Scalars['Boolean']['input']>;
-  startDate_gt: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_gte: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  startDate_lt: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_lte: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_not: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   sys: InputMaybe<SysFilter>;
   title: InputMaybe<Scalars['String']['input']>;
   title_contains: InputMaybe<Scalars['String']['input']>;
@@ -1393,20 +1347,16 @@ export enum ProjectLinkingCollectionsSkillCollectionOrder {
 }
 
 export enum ProjectOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   DemoLinkAsc = 'demoLink_ASC',
   DemoLinkDesc = 'demoLink_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
-  EndDateAsc = 'endDate_ASC',
-  EndDateDesc = 'endDate_DESC',
   GithubLinkAsc = 'githubLink_ASC',
   GithubLinkDesc = 'githubLink_DESC',
-  HeadingAsc = 'heading_ASC',
-  HeadingDesc = 'heading_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
-  StartDateAsc = 'startDate_ASC',
-  StartDateDesc = 'startDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1911,20 +1861,16 @@ export enum SkillLinkingCollectionsPostCollectionOrder {
 }
 
 export enum SkillLinkingCollectionsProjectCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   DemoLinkAsc = 'demoLink_ASC',
   DemoLinkDesc = 'demoLink_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
-  EndDateAsc = 'endDate_ASC',
-  EndDateDesc = 'endDate_DESC',
   GithubLinkAsc = 'githubLink_ASC',
   GithubLinkDesc = 'githubLink_DESC',
-  HeadingAsc = 'heading_ASC',
-  HeadingDesc = 'heading_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
-  StartDateAsc = 'startDate_ASC',
-  StartDateDesc = 'startDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1988,20 +1934,16 @@ export type SkillProjectsCollection = {
 };
 
 export enum SkillProjectsCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   DemoLinkAsc = 'demoLink_ASC',
   DemoLinkDesc = 'demoLink_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
-  EndDateAsc = 'endDate_ASC',
-  EndDateDesc = 'endDate_DESC',
   GithubLinkAsc = 'githubLink_ASC',
   GithubLinkDesc = 'githubLink_DESC',
-  HeadingAsc = 'heading_ASC',
-  HeadingDesc = 'heading_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
-  StartDateAsc = 'startDate_ASC',
-  StartDateDesc = 'startDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -2232,6 +2174,8 @@ export type Sys = {
   environmentId: Scalars['String']['output'];
   firstPublishedAt: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['String']['output'];
+  /** The locale that was requested. */
+  locale: Maybe<Scalars['String']['output']>;
   publishedAt: Maybe<Scalars['DateTime']['output']>;
   publishedVersion: Maybe<Scalars['Int']['output']>;
   spaceId: Scalars['String']['output'];
@@ -2310,6 +2254,15 @@ export type CfProjectNestedFilter = {
   categories_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   categories_exists: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  date: InputMaybe<Scalars['DateTime']['input']>;
+  date_exists: InputMaybe<Scalars['Boolean']['input']>;
+  date_gt: InputMaybe<Scalars['DateTime']['input']>;
+  date_gte: InputMaybe<Scalars['DateTime']['input']>;
+  date_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  date_lt: InputMaybe<Scalars['DateTime']['input']>;
+  date_lte: InputMaybe<Scalars['DateTime']['input']>;
+  date_not: InputMaybe<Scalars['DateTime']['input']>;
+  date_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   demoLink: InputMaybe<Scalars['String']['input']>;
   demoLink_contains: InputMaybe<Scalars['String']['input']>;
   demoLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -2324,15 +2277,6 @@ export type CfProjectNestedFilter = {
   description_not: InputMaybe<Scalars['String']['input']>;
   description_not_contains: InputMaybe<Scalars['String']['input']>;
   description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  endDate: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_exists: InputMaybe<Scalars['Boolean']['input']>;
-  endDate_gt: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_gte: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  endDate_lt: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_lte: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_not: InputMaybe<Scalars['DateTime']['input']>;
-  endDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   githubLink: InputMaybe<Scalars['String']['input']>;
   githubLink_contains: InputMaybe<Scalars['String']['input']>;
   githubLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -2340,13 +2284,6 @@ export type CfProjectNestedFilter = {
   githubLink_not: InputMaybe<Scalars['String']['input']>;
   githubLink_not_contains: InputMaybe<Scalars['String']['input']>;
   githubLink_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  heading: InputMaybe<Scalars['String']['input']>;
-  heading_contains: InputMaybe<Scalars['String']['input']>;
-  heading_exists: InputMaybe<Scalars['Boolean']['input']>;
-  heading_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  heading_not: InputMaybe<Scalars['String']['input']>;
-  heading_not_contains: InputMaybe<Scalars['String']['input']>;
-  heading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   image_exists: InputMaybe<Scalars['Boolean']['input']>;
   skillsUsedCollection_exists: InputMaybe<Scalars['Boolean']['input']>;
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2356,15 +2293,6 @@ export type CfProjectNestedFilter = {
   slug_not: InputMaybe<Scalars['String']['input']>;
   slug_not_contains: InputMaybe<Scalars['String']['input']>;
   slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  startDate: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_exists: InputMaybe<Scalars['Boolean']['input']>;
-  startDate_gt: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_gte: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  startDate_lt: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_lte: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_not: InputMaybe<Scalars['DateTime']['input']>;
-  startDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   sys: InputMaybe<SysFilter>;
   title: InputMaybe<Scalars['String']['input']>;
   title_contains: InputMaybe<Scalars['String']['input']>;
@@ -2425,7 +2353,7 @@ export type CfSkillNestedFilter = {
   title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type ContentGroupFragment = { __typename?: 'ContentGroup', heading: string | null, subheading: string | null, icon: string | null, url: string | null, body: string | null };
+export type ContentGroupFragment = { __typename?: 'ContentGroup', title: string | null, subheading: string | null, icon: string | null, url: string | null, body: string | null };
 
 export type PostCategoryFragment = { __typename?: 'PostCategory', title: string | null, slug: string | null };
 
@@ -2517,7 +2445,7 @@ export type ProjectsQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
 
 export type ProjectQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2525,7 +2453,7 @@ export type ProjectQueryVariables = Exact<{
 }>;
 
 
-export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, startDate: any | null, endDate: any | null, githubLink: string | null, demoLink: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, date: any | null, githubLink: string | null, demoLink: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2533,7 +2461,7 @@ export type SkillQueryVariables = Exact<{
 }>;
 
 
-export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, date: number | null, projectsCollection: { __typename?: 'SkillProjectsCollection', items: Array<{ __typename?: 'Project', categories: Array<string | null> | null, heading: string | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', url: string | null, description: string | null, title: string | null } | null } | null> } | null, relatedSkillsCollection: { __typename?: 'SkillRelatedSkillsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, date: number | null, projectsCollection: { __typename?: 'SkillProjectsCollection', items: Array<{ __typename?: 'Project', categories: Array<string | null> | null, title: string | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', url: string | null, description: string | null, title: string | null } | null } | null> } | null, relatedSkillsCollection: { __typename?: 'SkillRelatedSkillsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2563,7 +2491,7 @@ export class TypedDocumentString<TResult, TVariables>
 }
 export const ContentGroupFragmentDoc = new TypedDocumentString(`
     fragment ContentGroup on ContentGroup {
-  heading
+  title
   subheading
   icon
   url
@@ -2831,11 +2759,12 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<PostsByCategoryQuery, PostsByCategoryQueryVariables>;
 export const ProjectsDocument = new TypedDocumentString(`
     query Projects($preview: Boolean = false) {
-  projects: projectCollection(order: endDate_DESC, preview: $preview) {
+  projects: projectCollection(order: date_DESC, preview: $preview) {
     items {
       title
       categories
       description
+      date
       slug
       image {
         title
@@ -2859,8 +2788,7 @@ export const ProjectDocument = new TypedDocumentString(`
       title
       categories
       description
-      startDate
-      endDate
+      date
       githubLink
       demoLink
       slug
@@ -2922,7 +2850,7 @@ export const SkillDocument = new TypedDocumentString(`
       projectsCollection {
         items {
           categories
-          heading
+          title
           description
           slug
           image {

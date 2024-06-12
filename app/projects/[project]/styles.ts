@@ -30,7 +30,7 @@ export const AsideStats = styled("div", {
 export const AsideDate = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$1",
+  gap: "$2",
 });
 
 export const Actions = styled("div", {

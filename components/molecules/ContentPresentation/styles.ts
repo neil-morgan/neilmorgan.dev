@@ -16,7 +16,6 @@ export const ContentDetails = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
-  gap: "$5",
 
   variants: {
     reverse: {

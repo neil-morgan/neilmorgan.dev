@@ -1,25 +1,24 @@
-export const formatDate = (
-  inputDate: string,
-  separator: "hyphen" | "slash" | "space" = "space",
-  part: "full" | "monthYear" | "year" = "year",
-) => {
+import type { FormatDateOptions } from "./types";
+
+export const formatDate = (inputDate: string, options?: FormatDateOptions) => {
+  const { separator, format } = options || {};
   const dateParts = inputDate.split("T")[0].split("-");
   const selectedSeparator =
     separator === "hyphen" ? "-" : separator === "slash" ? "/" : " ";
 
-  if (part === "full") {
-    return (
-      dateParts[2] +
-      selectedSeparator +
-      dateParts[1] +
-      selectedSeparator +
-      dateParts[0]
-    );
-  }
-  if (part === "monthYear") {
+  if (format === "monthYear") {
     return dateParts[1] + selectedSeparator + dateParts[0];
   }
-  if (part === "year") {
+
+  if (format === "year") {
     return dateParts[0];
   }
+
+  return (
+    dateParts[2] +
+    selectedSeparator +
+    dateParts[1] +
+    selectedSeparator +
+    dateParts[0]
+  );
 };

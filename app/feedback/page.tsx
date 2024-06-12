@@ -71,7 +71,10 @@ const FeedbackPage = async () => {
                   {feedback?.authorRole}
                 </Text>
                 <Text size={0}>
-                  {formatDate(feedback?.date, "space", "monthYear")}
+                  {formatDate(feedback?.date, {
+                    separator: "space",
+                    format: "monthYear",
+                  })}
                 </Text>
               </FeedbackAuthor>
             </FeedbackHeader>
