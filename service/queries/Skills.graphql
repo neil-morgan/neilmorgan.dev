@@ -8,7 +8,7 @@ query Skill($slug: String, $preview: Boolean = false) {
       projectsCollection {
         items {
           categories
-          heading
+          title
           description
           slug
           image {

@@ -45,8 +45,6 @@ const ProjectsPage = async () => {
     projects?.items as Project[],
   );
 
-  console.log(projects?.items[0]?.categories);
-
   return (
     <Container>
       {header?.title && (
@@ -67,6 +65,7 @@ const ProjectsPage = async () => {
           project?.slug &&
           project.image?.url &&
           project.image.title &&
+          project.date &&
           project.image.description ? (
             <ContentPresentation
               key={i}
@@ -76,6 +75,7 @@ const ProjectsPage = async () => {
               tags={project.categories.map(cat => ({
                 title: cat as string,
               }))}
+              date={project.date}
               reverse={!isNumberEven(i)}
               image={{
                 url: project.image.url,

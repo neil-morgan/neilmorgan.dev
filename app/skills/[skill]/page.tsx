@@ -63,6 +63,8 @@ export default async function SkillPage({ params }: SkillParamsType) {
   const base64Map = await extractImagesToBase64Map(skill);
   const breadcrumbs = [LOCATIONS.home, LOCATIONS.skills, { label: "Skill" }];
 
+  console.log(skill?.projectsCollection?.items);
+
   return (
     <Container>
       {skill.title && skill.icon?.url && skill.icon?.title && (
@@ -109,32 +111,33 @@ export default async function SkillPage({ params }: SkillParamsType) {
               <Text print size={2} weight={600}>
                 Recent Projects
               </Text>
-
-              <Projects>
-                {skill?.projectsCollection?.items.map((project, i) =>
-                  project?.heading &&
-                  project.slug &&
-                  project.description &&
-                  project.image?.url &&
-                  project.image.description &&
-                  project.image.title ? (
-                    <Card
-                      key={i}
-                      heading={project?.heading}
-                      href={`/projects/${project?.slug}`}
-                      description={project.description}
-                      image={{
-                        url: project.image.url,
-                        description: project.image.description,
-                        blurDataUrl: base64Map[project.image.title],
-                      }}
-                      tags={project.categories?.map(category => ({
-                        title: category as string,
-                      }))}
-                    />
-                  ) : null,
-                )}
-              </Projects>
+              {skill?.projectsCollection?.items.length > 0 && (
+                <Projects>
+                  {skill?.projectsCollection?.items.map((project, i) =>
+                    project?.title &&
+                    project.slug &&
+                    project.description &&
+                    project.image?.url &&
+                    project.image.description &&
+                    project.image.title ? (
+                      <Card
+                        key={i}
+                        heading={project?.title}
+                        href={`/projects/${project?.slug}`}
+                        description={project.description}
+                        image={{
+                          url: project.image.url,
+                          description: project.image.description,
+                          blurDataUrl: base64Map[project.image.title],
+                        }}
+                        tags={project.categories?.map(category => ({
+                          title: category as string,
+                        }))}
+                      />
+                    ) : null,
+                  )}
+                </Projects>
+              )}
             </Aside>
           )}
       </Content>

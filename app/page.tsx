@@ -120,6 +120,7 @@ const HomePage = async () => {
                   description: latestPost.image.description,
                   blurDataUrl: base64Map[latestPost.image.title],
                 }}
+                date={formatDate(latestPost.date)}
                 title={latestPost.title}
                 kicker="Latest post"
                 tags={latestPost.tagsCollection?.items as TagType[]}
@@ -148,7 +149,10 @@ const HomePage = async () => {
               </Link>
             )}
             <Text size={0}>
-              {formatDate(feedback?.date, "space", "monthYear")}
+              {formatDate(feedback?.date, {
+                separator: "space",
+                format: "monthYear",
+              })}
             </Text>
           </FeedbackFooter>
         </FeedbackWrapper>
@@ -168,6 +172,7 @@ const HomePage = async () => {
                   description: latestProject.image.description,
                   blurDataUrl: base64Map[latestProject.image.title],
                 }}
+                date={formatDate(latestProject.date)}
                 title={latestProject.title}
                 kicker="Latest project"
                 tags={latestProject.categories.map(cat => ({

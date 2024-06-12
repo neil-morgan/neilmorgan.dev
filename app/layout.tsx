@@ -6,11 +6,7 @@ import { PageWrapper, Main } from "./styles";
 import { StitchesRegistryProvider, ElementRefsProvider } from "@/providers";
 import { PointerGlow, ToggleDraftMode } from "@/components/molecules";
 import { IconDefs } from "@/components/atoms";
-import {
-  PostsDocument,
-  SocialItemsDocument,
-  type SocialItemFragment,
-} from "@/service";
+import { SocialItemsDocument, type SocialItemFragment } from "@/service";
 import { Header, Footer } from "@/components/organisms";
 import { fetchContent } from "@/helpers";
 import { LOCATIONS } from "@/lib/site";
@@ -32,21 +28,15 @@ export default async function RootLayout({
 }: React.PropsWithChildren) {
   const { isEnabled: preview } = draftMode();
 
-  const socialData = fetchContent({
+  const socialData = await fetchContent({
     document: SocialItemsDocument,
   });
-  const postsData = fetchContent({
-    document: PostsDocument,
-    preview,
-  });
 
-  const [posts, social] = await Promise.all([postsData, socialData]);
-
-  const socialItems = social?.socialItemCollection
+  const socialItems = socialData.socialItemCollection
     ?.items as SocialItemFragment[];
 
   const navigation = [
-    // LOCATIONS.history,
+    // LOCATIONS.timeline,
     LOCATIONS.skills,
     LOCATIONS.projects,
     LOCATIONS.feedback,

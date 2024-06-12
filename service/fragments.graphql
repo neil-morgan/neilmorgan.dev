@@ -1,5 +1,5 @@
 fragment ContentGroup on ContentGroup {
-  heading
+  title
   subheading
   icon
   url
