@@ -35,7 +35,7 @@ export const PageHeader = ({
     )}
     <Body>
       {kicker && (
-        <Text size={1} as="h2" print weight={600} color="$secondary1">
+        <Text size={2} as="h2" print weight={600} color="$secondary1">
           {kicker}
         </Text>
       )}

@@ -13,7 +13,7 @@ export const PodGroup = ({
 }: PodGroupType) => (
   <Wrapper>
     <Header>
-      <Text size={2} as="h2" weight={600} print>
+      <Text size={2} as="h2" weight={600} print color="$secondary1">
         {heading}
       </Text>
       {showCount && (
@@ -29,7 +29,7 @@ export const PodGroup = ({
           <Pod
             key={i}
             heading={title}
-            href={`/skills/${slug}`}
+            href={slug}
             image={{
               url: icon.url,
               description: icon.description,

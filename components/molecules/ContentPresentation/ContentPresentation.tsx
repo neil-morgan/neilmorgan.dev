@@ -26,7 +26,7 @@ export const ContentPresentation = ({
     )}
     <ContentDetails reverse={reverse}>
       {kicker && (
-        <Text print size={0} weight={600} color="$secondary1">
+        <Text print size={2} as="h2" weight={600} color="$secondary1">
           {kicker}
         </Text>
       )}

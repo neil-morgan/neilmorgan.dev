@@ -20,6 +20,7 @@ export const ContentButton = ({
 }: PropsWithChildren<ContentButtonProps>) => {
   const { elementRefs, addElementRef } = useElementRefs();
   const elementRef = useRef<HTMLElement | null>(null);
+  const internalUrl = isInternalUrl(href as string);
 
   useEffect(() => {
     if (!href) {
@@ -30,7 +31,7 @@ export const ContentButton = ({
 
   return (
     <ConditionalWrapper
-      if={Boolean(href)}
+      if={Boolean(href) && internalUrl}
       wrapWith={children => (
         <NextLink href={href as string} passHref legacyBehavior>
           {children}
@@ -39,9 +40,10 @@ export const ContentButton = ({
       <Wrapper
         hover={Boolean(href)}
         ref={elementRef as RefObject<HTMLAnchorElement>}
-        {...(href && !isInternalUrl(href) && { target: "_blank" })}>
+        {...(href && !internalUrl && { target: "_blank" })}>
         {href && (
           <Icon
+            size="sm"
             name="ArrowTopRight"
             css={{ flexShrink: 0 }}
             className="arrow"

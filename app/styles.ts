@@ -91,3 +91,10 @@ export const FeedbackFooter = styled("footer", {
   gap: "$2",
   alignItems: "center",
 });
+
+export const Proficiencies = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$11",
+  margin: "$10 0",
+});
