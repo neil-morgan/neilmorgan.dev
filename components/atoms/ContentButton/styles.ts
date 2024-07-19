@@ -22,9 +22,12 @@ export const Wrapper = styled("a", {
           background: "$highlightHover",
           "& .arrow": {
             color: "$primary1",
-            transform: "translate(0.25rem, -0.25rem)",
+            transform: "translate(0.4rem, -0.4rem)",
           },
         },
+      },
+      false: {
+        borderColor: "transparent",
       },
     },
   },

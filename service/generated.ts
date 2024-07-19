@@ -232,8 +232,9 @@ export enum AssetOrder {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
-export type ContentGroup = Entry & {
+export type ContentGroup = Entry & _Node & {
   __typename?: 'ContentGroup';
+  _id: Scalars['ID']['output'];
   body: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   icon: Maybe<Scalars['String']['output']>;
@@ -414,7 +415,7 @@ export type ContentfulMetadataTagsFilter = {
 
 /**
  * Represents a tag entity for finding and organizing content easily.
- *     Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
+ *       Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
  */
 export type ContentfulTag = {
   __typename?: 'ContentfulTag';
@@ -454,8 +455,9 @@ export enum EntryOrder {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
-export type Feedback = Entry & {
+export type Feedback = Entry & _Node & {
   __typename?: 'Feedback';
+  _id: Scalars['ID']['output'];
   author: Maybe<Scalars['String']['output']>;
   authorImageUrl: Maybe<Scalars['String']['output']>;
   authorRole: Maybe<Scalars['String']['output']>;
@@ -742,8 +744,9 @@ export type ImageTransformOptions = {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/post) */
-export type Post = Entry & {
+export type Post = Entry & _Node & {
   __typename?: 'Post';
+  _id: Scalars['ID']['output'];
   body: Maybe<PostBody>;
   category: Maybe<PostCategory>;
   contentfulMetadata: ContentfulMetadata;
@@ -868,8 +871,9 @@ export type PostBodyResourcesInline = ResourceLink & {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/postCategory) */
-export type PostCategory = Entry & {
+export type PostCategory = Entry & _Node & {
   __typename?: 'PostCategory';
+  _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
   linkedFrom: Maybe<PostCategoryLinkingCollections>;
   slug: Maybe<Scalars['String']['output']>;
@@ -1096,8 +1100,9 @@ export enum PostTagsCollectionOrder {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type Project = Entry & {
+export type Project = Entry & _Node & {
   __typename?: 'Project';
+  _id: Scalars['ID']['output'];
   body: Maybe<ProjectBody>;
   categories: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contentfulMetadata: ContentfulMetadata;
@@ -1603,8 +1608,9 @@ export type ResourceSys = {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/skill) */
-export type Skill = Entry & {
+export type Skill = Entry & _Node & {
   __typename?: 'Skill';
+  _id: Scalars['ID']['output'];
   body: Maybe<SkillBody>;
   contentfulMetadata: ContentfulMetadata;
   date: Maybe<Scalars['Int']['output']>;
@@ -1986,8 +1992,9 @@ export enum SkillRelatedSkillsCollectionOrder {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/snippet) */
-export type Snippet = Entry & {
+export type Snippet = Entry & _Node & {
   __typename?: 'Snippet';
+  _id: Scalars['ID']['output'];
   code: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   description: Maybe<Scalars['String']['output']>;
@@ -2085,8 +2092,9 @@ export enum SnippetOrder {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/socialItem) */
-export type SocialItem = Entry & {
+export type SocialItem = Entry & _Node & {
   __typename?: 'SocialItem';
+  _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
   href: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<SocialItemLinkingCollections>;
