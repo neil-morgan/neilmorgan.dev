@@ -93,6 +93,8 @@ const HomePage = async () => {
     latestProject,
   });
 
+  console.log(latestPost.sys);
+
   return (
     <>
       <Container>
@@ -140,7 +142,9 @@ const HomePage = async () => {
                   description: latestPost.image.description,
                   blurDataUrl: base64Map[latestPost.image.title],
                 }}
-                date={formatDate(latestPost.date)}
+                {...(latestPost.sys.firstPublishedAt && {
+                  date: formatDate(latestPost.sys.firstPublishedAt),
+                })}
                 title={latestPost.title}
                 kicker="Latest post"
                 tags={latestPost.tagsCollection?.items as TagType[]}
