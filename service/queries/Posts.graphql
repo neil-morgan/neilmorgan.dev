@@ -8,7 +8,6 @@ query Post($slug: String, $preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       tagsCollection {
         items {
@@ -80,7 +79,6 @@ query Posts($preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       image {
         title
@@ -120,7 +118,6 @@ query PostsByCategory($slug: String!, $preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       image {
         title
