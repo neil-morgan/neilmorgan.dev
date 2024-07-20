@@ -93,8 +93,6 @@ const HomePage = async () => {
     latestProject,
   });
 
-  console.log(latestPost.sys);
-
   return (
     <>
       <Container>
