@@ -2079,14 +2079,14 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', id: string, publishedAt: any | null, firstPublishedAt: any | null }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type PostsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
+export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', publishedAt: any | null, firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
 
 export type PostCategoryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -2101,7 +2101,7 @@ export type PostsByCategoryQueryVariables = Exact<{
 }>;
 
 
-export type PostsByCategoryQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
+export type PostsByCategoryQuery = { __typename?: 'Query', posts: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, date: any | null, slug: string | null, sys: { __typename?: 'Sys', publishedAt: any | null, firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null } | null> } | null };
 
 export type ProjectsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2250,6 +2250,8 @@ export const PostDocument = new TypedDocumentString(`
     items {
       sys {
         id
+        publishedAt
+        firstPublishedAt
       }
       title
       description
@@ -2326,6 +2328,10 @@ export const PostsDocument = new TypedDocumentString(`
     query Posts($preview: Boolean = false) {
   posts: postCollection(order: date_DESC, preview: $preview) {
     items {
+      sys {
+        publishedAt
+        firstPublishedAt
+      }
       title
       description
       date
@@ -2370,6 +2376,10 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
     preview: $preview
   ) {
     items {
+      sys {
+        publishedAt
+        firstPublishedAt
+      }
       title
       description
       date

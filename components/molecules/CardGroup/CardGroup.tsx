@@ -23,7 +23,7 @@ export const CardGroup = ({
       )}
     </Header>
     <Grid>
-      {items?.map(({ title, description, slug, image, tags }, i) =>
+      {items?.map(({ title, description, slug, date, image, tags }, i) =>
         title &&
         description &&
         image?.title &&
@@ -35,6 +35,7 @@ export const CardGroup = ({
             heading={title}
             description={description}
             href={slug}
+            date={date}
             tags={tags}
             image={{
               url: image.url,

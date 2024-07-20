@@ -60,7 +60,7 @@ export const Richtext = ({
           if (!value) return null;
           return (
             <Heading
-              size={6}
+              size={5}
               weight={600}
               as="h3"
               isInViewport={setCurrentId}

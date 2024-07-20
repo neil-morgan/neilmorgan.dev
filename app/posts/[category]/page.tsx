@@ -87,6 +87,7 @@ export default async function PostCategoryPage({
           description: post.description as string,
           slug: `${LOCATIONS.posts.slug}/${category?.slug}/${post.slug}`,
           image: post.image,
+          date: post.sys.publishedAt,
           tags: post.tagsCollection?.items.map(tag => ({
             title: tag?.title as string,
             slug: tag?.slug as string,

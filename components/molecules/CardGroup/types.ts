@@ -9,6 +9,7 @@ export type CardGroupProps = {
         title: string;
         description: string;
         slug: string;
+        date?: string;
         tags?: TagType[];
         image: {
           title: string | null;

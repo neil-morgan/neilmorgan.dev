@@ -80,6 +80,8 @@ export default async function PostPage({ params }: PostParamsType) {
 
       {post?.body && post?.image && (
         <NavigableRichtext
+          publishedAt={post.sys.firstPublishedAt}
+          modifiedAt={post.sys.publishedAt}
           content={post.body}
           base64Map={base64Map}
           image={post.image}
