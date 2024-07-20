@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/core": "^7.24.5",
     "@contentful/rich-text-react-renderer": "^15.17.0",
-    "@contentful/rich-text-types": "^16.2.0",
+    "@contentful/rich-text-types": "^16.8.1",
     "@plaiceholder/next": "^3.0.0",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
