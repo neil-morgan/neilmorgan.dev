@@ -4,6 +4,8 @@ export type NavigableRichtextProps = {
   content: RichtextType;
   image?: Asset;
   base64Map: ImagesMap;
+  publishedAt?: string;
+  modifiedAt?: string;
 };
 
 type NavigableContentHeadingType = { id: string; label: string; href: string };

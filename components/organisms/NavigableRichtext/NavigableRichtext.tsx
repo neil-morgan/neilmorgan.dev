@@ -2,15 +2,18 @@
 
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Aside, Body, List, ListItem, Content } from "./styles";
+import { Aside, Body, List, ListItem, Content, Dates } from "./styles";
 import { buildRichtextHeadings } from "./helpers";
 import type { NavigableRichtextProps } from "./types";
 import { Richtext, CopyButton } from "@/components/molecules";
 import { Icon, AspectImage, ExpandedEdge, Text } from "@/components/atoms";
 import { SITE_BASE_URL } from "@/lib/site";
+import { formatDate } from "@/utils";
 
 export const NavigableRichtext = ({
   content,
+  publishedAt,
+  modifiedAt,
   image,
   base64Map,
 }: NavigableRichtextProps) => {
@@ -31,6 +34,28 @@ export const NavigableRichtext = ({
             />
           </ExpandedEdge>
         )}
+
+        {!publishedAt && !modifiedAt ? null : (
+          <Dates>
+            {publishedAt && (
+              <Text size={1}>
+                <Text as="span" color="$secondary1" weight={600}>
+                  Published:
+                </Text>{" "}
+                {formatDate(publishedAt)}
+              </Text>
+            )}
+            {modifiedAt && (
+              <Text size={1}>
+                <Text as="span" color="$secondary1" weight={600}>
+                  Modified:
+                </Text>{" "}
+                {formatDate(modifiedAt)}
+              </Text>
+            )}
+          </Dates>
+        )}
+
         <Richtext
           content={content}
           setCurrentId={setCurrentId}
@@ -38,7 +63,9 @@ export const NavigableRichtext = ({
         />
       </Content>
       <Aside>
-        <Text size={2} print>Content</Text>
+        <Text size={2} print>
+          Content
+        </Text>
         <List>
           {buildRichtextHeadings(content.json.content).map(
             ({ heading, subHeadings }, i1) => (

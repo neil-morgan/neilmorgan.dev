@@ -11,6 +11,12 @@ export const Content = styled("article", {
   width: "100%",
 });
 
+export const Dates = styled("div", {
+  display: "flex",
+  marginBottom: "$6",
+  gap: "$4",
+});
+
 export const Aside = styled("aside", {
   position: "sticky",
   top: "$11",
