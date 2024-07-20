@@ -1,6 +1,10 @@
 import type { FormatDateOptions } from "./types";
 
 export const formatDate = (inputDate: string, options?: FormatDateOptions) => {
+  if (isNaN(Date.parse(inputDate))) {
+    throw new Error("Invalid date format");
+  }
+
   const { separator, format } = options || {};
   const dateParts = inputDate.split("T")[0].split("-");
   const selectedSeparator =

@@ -2383,20 +2383,6 @@ export type HomePageQueryVariables = Exact<{
 
 export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, url: string | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
-export type SkillsPageQueryVariables = Exact<{
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type SkillsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null };
-
-export type ExperiencePageQueryVariables = Exact<{
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type ExperiencePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null };
-
 export type FeedbackPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
@@ -2462,21 +2448,6 @@ export type ProjectQueryVariables = Exact<{
 
 
 export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, date: any | null, githubLink: string | null, demoLink: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
-
-export type SkillQueryVariables = Exact<{
-  slug: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type SkillQuery = { __typename?: 'Query', skill: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, description: string | null, date: number | null, projectsCollection: { __typename?: 'SkillProjectsCollection', items: Array<{ __typename?: 'Project', categories: Array<string | null> | null, title: string | null, description: string | null, slug: string | null, image: { __typename?: 'Asset', url: string | null, description: string | null, title: string | null } | null } | null> } | null, relatedSkillsCollection: { __typename?: 'SkillRelatedSkillsCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'SkillBody', json: any, links: { __typename?: 'SkillBodyLinks', entries: { __typename?: 'SkillBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'SkillBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
-
-export type SkillsQueryVariables = Exact<{
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type SkillsQuery = { __typename?: 'Query', skills: { __typename?: 'SkillCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, proficiency: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null };
 
 export type SocialItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2570,24 +2541,6 @@ export const HomePageDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<HomePageQuery, HomePageQueryVariables>;
-export const SkillsPageDocument = new TypedDocumentString(`
-    query SkillsPage($preview: Boolean = false) {
-  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
-    kicker
-    title
-    body
-  }
-}
-    `) as unknown as TypedDocumentString<SkillsPageQuery, SkillsPageQueryVariables>;
-export const ExperiencePageDocument = new TypedDocumentString(`
-    query ExperiencePage($preview: Boolean = false) {
-  header: contentGroup(id: "I7saQUgmDJYK5JqgopF3H", preview: $preview) {
-    kicker
-    title
-    body
-  }
-}
-    `) as unknown as TypedDocumentString<ExperiencePageQuery, ExperiencePageQueryVariables>;
 export const FeedbackPageDocument = new TypedDocumentString(`
     query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
@@ -2847,92 +2800,6 @@ export const ProjectDocument = new TypedDocumentString(`
   description
   url
 }`) as unknown as TypedDocumentString<ProjectQuery, ProjectQueryVariables>;
-export const SkillDocument = new TypedDocumentString(`
-    query Skill($slug: String, $preview: Boolean = false) {
-  skill: skillCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
-    items {
-      title
-      slug
-      description
-      date
-      projectsCollection {
-        items {
-          categories
-          title
-          description
-          slug
-          image {
-            url
-            description
-            title
-          }
-        }
-      }
-      relatedSkillsCollection {
-        items {
-          title
-          slug
-          icon {
-            ...Image
-          }
-        }
-      }
-      icon {
-        ...Image
-      }
-      body {
-        json
-        links {
-          entries {
-            inline {
-              __typename
-              sys {
-                id
-              }
-            }
-            block {
-              __typename
-              sys {
-                id
-              }
-            }
-          }
-          assets {
-            block {
-              sys {
-                id
-              }
-              ...Image
-            }
-          }
-        }
-      }
-    }
-  }
-}
-    fragment Image on Asset {
-  title
-  description
-  url
-}`) as unknown as TypedDocumentString<SkillQuery, SkillQueryVariables>;
-export const SkillsDocument = new TypedDocumentString(`
-    query Skills($preview: Boolean = false) {
-  skills: skillCollection(preview: $preview) {
-    items {
-      title
-      slug
-      proficiency
-      icon {
-        ...Image
-      }
-    }
-  }
-}
-    fragment Image on Asset {
-  title
-  description
-  url
-}`) as unknown as TypedDocumentString<SkillsQuery, SkillsQueryVariables>;
 export const SocialItemsDocument = new TypedDocumentString(`
     query SocialItems {
   socialItemCollection {
