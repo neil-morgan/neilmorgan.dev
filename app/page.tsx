@@ -142,8 +142,8 @@ const HomePage = async () => {
                   description: latestPost.image.description,
                   blurDataUrl: base64Map[latestPost.image.title],
                 }}
-                {...(latestPost.sys.firstPublishedAt && {
-                  date: formatDate(latestPost.sys.firstPublishedAt),
+                {...(latestPost.sys.publishedAt && {
+                  date: formatDate(latestPost.sys.publishedAt),
                 })}
                 title={latestPost.title}
                 kicker="Latest post"

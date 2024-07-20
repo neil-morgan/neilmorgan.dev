@@ -3,12 +3,14 @@
 import { Header, ContentBody, ContentImage, Footer } from "./styles";
 import type { CardProps } from "./types";
 import { Text, TagList, AspectImage, ContentButton } from "@/components/atoms";
+import { formatDate } from "@/utils";
 
 export const Card = ({
   heading,
   description,
   href,
   tags,
+  date,
   image,
 }: CardProps) => (
   <ContentButton href={href}>
@@ -29,10 +31,16 @@ export const Card = ({
           {heading}
         </Text>
       </Header>
+
       {description && <Text as="p">{description}</Text>}
-      {tags && tags?.length > 0 && (
+      {!tags && !date ? null : (
         <Footer>
-          <TagList list={tags} />
+          {date && (
+            <Text size={1} weight={600} color="$secondary1">
+              {formatDate(date)}
+            </Text>
+          )}
+          {tags && tags?.length > 0 && <TagList list={tags} />}
         </Footer>
       )}
     </ContentBody>
