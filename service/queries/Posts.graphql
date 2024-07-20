@@ -8,7 +8,6 @@ query Post($slug: String, $preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       tagsCollection {
         items {
@@ -72,7 +71,7 @@ query Post($slug: String, $preview: Boolean = false) {
 }
 
 query Posts($preview: Boolean = false) {
-  posts: postCollection(order: date_DESC, preview: $preview) {
+  posts: postCollection(order: sys_firstPublishedAt_DESC, preview: $preview) {
     items {
       sys {
         publishedAt
@@ -80,7 +79,6 @@ query Posts($preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       image {
         title
@@ -120,7 +118,6 @@ query PostsByCategory($slug: String!, $preview: Boolean = false) {
       }
       title
       description
-      date
       slug
       image {
         title
