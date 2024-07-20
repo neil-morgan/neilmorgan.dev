@@ -11,7 +11,12 @@ export const Icon = ({
   css,
   className,
 }: IconProps) => (
-  <Svg size={size} color={color} css={css} className={className}>
+  <Svg
+    size={size}
+    color={color}
+    css={css}
+    className={className}
+    data-testid={`${name}-testid`}>
     <use
       href={`#${paths.find(path => path.name === name.trim())?.name}-icon`}
     />
@@ -26,7 +31,8 @@ export const IconDefs = () => (
           id={`${name}-icon`}
           viewBox="0 0 15 15"
           fill="currentColor"
-          key={name}>
+          key={name}
+          data-testid={`${name}-testid`}>
           <path
             d={path}
             fill="currentColor"

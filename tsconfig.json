@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "noErrorTruncation": true,
+    "types": ["@testing-library/jest-dom"],
     "plugins": [
       {
         "name": "next"

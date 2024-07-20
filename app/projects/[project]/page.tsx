@@ -125,7 +125,6 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
               <TagList
                 list={project.skillsUsedCollection?.items.map(cat => ({
                   title: cat?.title as string,
-                  slug: `${LOCATIONS.skills.slug}/${cat?.slug as string}`,
                 }))}
               />
             )}

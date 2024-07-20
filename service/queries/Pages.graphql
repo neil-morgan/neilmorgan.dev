@@ -28,22 +28,6 @@ query HomePage($preview: Boolean = false) {
   }
 }
 
-query SkillsPage($preview: Boolean = false) {
-  header: contentGroup(id: "2GgKvTlLajWh3jOpVJoOSj", preview: $preview) {
-    kicker
-    title
-    body
-  }
-}
-
-query ExperiencePage($preview: Boolean = false) {
-  header: contentGroup(id: "I7saQUgmDJYK5JqgopF3H", preview: $preview) {
-    kicker
-    title
-    body
-  }
-}
-
 query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
     kicker
