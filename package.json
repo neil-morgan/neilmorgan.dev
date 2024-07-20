@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --names \"app,codegen\" \"yarn dev:app\" \"yarn codegen:watch\"",
-    "check": "concurrently --names \"lint,type-check\" \"yarn lint\" \"yarn type-check\"",
     "dev:app": "next dev",
     "build": "next build",
     "start": "next start",
