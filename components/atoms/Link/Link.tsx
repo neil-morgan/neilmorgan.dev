@@ -9,10 +9,11 @@ export const Link = ({ target, href, children }: LinkProps) => {
     <StyledLink
       href={href}
       as={isExternalLink ? "a" : NextLink}
-      {...(href &&
-        isExternalLink && {
-          target: "_blank",
-        })}>
+      {...(href && isExternalLink && target
+        ? {
+            target: "_blank",
+          }
+        : { target })}>
       {children}
     </StyledLink>
   );
