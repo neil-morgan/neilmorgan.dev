@@ -15,6 +15,7 @@ import { LOCATIONS, PAGE_TITLE_PREFIX } from "@/lib/site";
 import { formatDate } from "@/utils";
 
 export const revalidate = 5;
+export const maxDuration = 30;
 
 export const metadata = {
   title: `Feedback | ${PAGE_TITLE_PREFIX}`,

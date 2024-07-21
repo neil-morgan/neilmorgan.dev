@@ -17,6 +17,7 @@ export const metadata = {
 };
 
 export const revalidate = 5;
+export const maxDuration = 30;
 
 const ProjectsPage = async () => {
   const { isEnabled: preview } = draftMode();

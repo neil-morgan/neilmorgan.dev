@@ -23,6 +23,7 @@ import { formatDate } from "@/utils";
 
 const tags = ["content"];
 export const revalidate = 5;
+export const maxDuration = 30;
 
 export async function generateStaticParams() {
   const data = await fetchContent({
