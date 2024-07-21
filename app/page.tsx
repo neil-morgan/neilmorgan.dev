@@ -44,8 +44,10 @@ export const metadata = {
   description: "Frontend Engineer - React.",
 };
 
+
 const tags = ["content"];
 export const revalidate = 5;
+export const maxDuration = 30;
 
 const HomePage = async () => {
   const { isEnabled: preview } = draftMode();
