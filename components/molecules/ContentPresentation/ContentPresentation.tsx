@@ -49,7 +49,7 @@ export const ContentPresentation = ({
       )}
       <Button
         href={cta.href}
-        css={{ marginTop: "$6" }}
+        css={{ marginTop: "$6", alignSelf: "flex-start" }}
         rightIcon="ChevronRight">
         {cta.label}
       </Button>
