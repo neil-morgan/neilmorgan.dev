@@ -44,7 +44,7 @@ export const metadata = {
   description: "Frontend Engineer - React.",
 };
 
-const tags = ["post"];
+const tags = ["content"];
 export const revalidate = 5;
 
 const HomePage = async () => {
@@ -58,6 +58,7 @@ const HomePage = async () => {
 
   const projectsData = await fetchContent({
     document: ProjectsDocument,
+    tags,
     preview,
   });
 

@@ -15,7 +15,7 @@ import { PageHeader, CardGroup } from "@/components/molecules";
 import { Container, Separator, TagList } from "@/components/atoms";
 import { NoticePage } from "@/components/templates";
 
-const tags = ["post"];
+const tags = ["content"];
 export const revalidate = 5;
 
 export const metadata = {
