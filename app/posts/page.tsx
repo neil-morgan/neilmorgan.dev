@@ -17,6 +17,7 @@ import { NoticePage } from "@/components/templates";
 
 const tags = ["content"];
 export const revalidate = 5;
+export const maxDuration = 30;
 
 export const metadata = {
   title: `Posts | ${PAGE_TITLE_PREFIX}`,
