@@ -73,7 +73,7 @@ export const FeedbackWrapper = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  margin: "$8 auto",
+  margin: "0 auto",
   width: "100%",
   padding: "0 5%",
   position: "relative",
@@ -81,6 +81,7 @@ export const FeedbackWrapper = styled("div", {
   textAlign: "center",
 
   "@md": {
+    margin: "$8 auto",
     padding: "0 20%",
   },
 });
@@ -96,5 +97,8 @@ export const Proficiencies = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: "$11",
-  margin: "$10 0",
+
+  "@md": {
+    margin: "$7 0",
+  },
 });
