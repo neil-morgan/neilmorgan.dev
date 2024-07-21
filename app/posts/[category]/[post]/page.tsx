@@ -11,6 +11,7 @@ import { LOCATIONS } from "@/lib/site";
 
 const tags = ["post"];
 export const revalidate = 5;
+export const maxDuration = 30;
 
 export async function generateStaticParams() {
   const data = await fetchContent({
