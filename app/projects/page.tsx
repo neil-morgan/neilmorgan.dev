@@ -9,7 +9,7 @@ import {
   ProjectsPageDocument,
   type Project,
 } from "@/service";
-import { isNumberEven } from "@/utils";
+import { isNumberEven, formatDate } from "@/utils";
 import { NoticePage } from "@/components/templates";
 
 export const metadata = {
@@ -75,7 +75,7 @@ const ProjectsPage = async () => {
               tags={project.categories.map(cat => ({
                 title: cat as string,
               }))}
-              date={project.date}
+              date={formatDate(project.date)}
               reverse={!isNumberEven(i)}
               image={{
                 url: project.image.url,
