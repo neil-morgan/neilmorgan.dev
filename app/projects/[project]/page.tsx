@@ -21,7 +21,7 @@ import { fetchContent, extractImagesToBase64Map } from "@/helpers";
 import { PAGE_TITLE_PREFIX, LOCATIONS } from "@/lib/site";
 import { formatDate } from "@/utils";
 
-const tags = ["project"];
+const tags = ["content"];
 export const revalidate = 5;
 
 export async function generateStaticParams() {
