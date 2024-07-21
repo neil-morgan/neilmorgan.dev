@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 import { CONTENTFUL_BASE_URL } from "@/lib/site";
 
+export const maxDuration = 15;
 const allowedOrigins = [CONTENTFUL_BASE_URL];
 
 export async function POST(request: NextRequest) {
