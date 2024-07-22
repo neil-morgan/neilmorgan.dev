@@ -2086,7 +2086,7 @@ export type ProjectsQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, date: any | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, slug: string | null, sys: { __typename?: 'Sys', firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, url: string | null, description: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null } | null> } | null } | null> } | null };
 
 export type ProjectQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2094,7 +2094,7 @@ export type ProjectQueryVariables = Exact<{
 }>;
 
 
-export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, date: any | null, githubLink: string | null, demoLink: string | null, slug: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, githubLink: string | null, demoLink: string | null, slug: string | null, sys: { __typename?: 'Sys', firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2381,12 +2381,14 @@ export const PostsByCategoryDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<PostsByCategoryQuery, PostsByCategoryQueryVariables>;
 export const ProjectsDocument = new TypedDocumentString(`
     query Projects($preview: Boolean = false) {
-  projects: projectCollection(order: date_DESC, preview: $preview) {
+  projects: projectCollection(order: sys_firstPublishedAt_DESC, preview: $preview) {
     items {
+      sys {
+        firstPublishedAt
+      }
       title
       categories
       description
-      date
       slug
       image {
         title
@@ -2407,10 +2409,12 @@ export const ProjectDocument = new TypedDocumentString(`
     query Project($slug: String, $preview: Boolean = false) {
   project: projectCollection(where: {slug: $slug}, limit: 1, preview: $preview) {
     items {
+      sys {
+        firstPublishedAt
+      }
       title
       categories
       description
-      date
       githubLink
       demoLink
       slug

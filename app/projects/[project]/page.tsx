@@ -105,7 +105,9 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
               <Text size={4} weight={500} color="$white">
                 Date:
               </Text>
-              <Text color="$secondary1">{formatDate(project.date)}</Text>
+              <Text color="$secondary1">
+                {formatDate(project.sys.firstPublishedAt)}
+              </Text>
             </AsideDate>
             <Separator />
             <Text size={4} weight={500} color="$white">

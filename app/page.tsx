@@ -44,7 +44,6 @@ export const metadata = {
   description: "Frontend Engineer - React.",
 };
 
-
 const tags = ["content"];
 export const revalidate = 5;
 export const maxDuration = 30;
@@ -188,7 +187,7 @@ const HomePage = async () => {
                   description: latestProject.image.description,
                   blurDataUrl: base64Map[latestProject.image.title],
                 }}
-                date={formatDate(latestProject.date)}
+                date={formatDate(latestProject.sys.firstPublishedAt)}
                 title={latestProject.title}
                 kicker="Latest project"
                 tags={latestProject.categories.map(cat => ({
