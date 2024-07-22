@@ -66,7 +66,7 @@ const ProjectsPage = async () => {
           project?.slug &&
           project.image?.url &&
           project.image.title &&
-          project.date &&
+          project.sys.firstPublishedAt &&
           project.image.description ? (
             <ContentPresentation
               key={i}
@@ -76,7 +76,7 @@ const ProjectsPage = async () => {
               tags={project.categories.map(cat => ({
                 title: cat as string,
               }))}
-              date={formatDate(project.date)}
+              date={formatDate(project.sys.firstPublishedAt)}
               reverse={!isNumberEven(i)}
               image={{
                 url: project.image.url,

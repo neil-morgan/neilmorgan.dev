@@ -1,10 +1,15 @@
 query Projects($preview: Boolean = false) {
-  projects: projectCollection(order: date_DESC, preview: $preview) {
+  projects: projectCollection(
+    order: sys_firstPublishedAt_DESC
+    preview: $preview
+  ) {
     items {
+      sys {
+        firstPublishedAt
+      }
       title
       categories
       description
-      date
       slug
       image {
         title
@@ -28,10 +33,12 @@ query Project($slug: String, $preview: Boolean = false) {
     preview: $preview
   ) {
     items {
+      sys {
+        firstPublishedAt
+      }
       title
       categories
       description
-      date
       githubLink
       demoLink
       slug
