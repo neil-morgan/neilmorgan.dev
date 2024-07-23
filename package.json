@@ -39,7 +39,7 @@
     "@vercel/speed-insights": "^1.0.12",
     "dotenv": "^16.4.1",
     "encoding": "^0.1.13",
-    "eslint": "8.55.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "14.0.3",
     "framer-motion": "^11.0.5",
     "graphql": "^16.6.0",
