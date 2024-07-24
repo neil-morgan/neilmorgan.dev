@@ -15,6 +15,7 @@ import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import {
   AspectImage,
+  AspectIframe,
   Blockquote,
   CodeSnippet,
   ExpandedEdge,
@@ -163,6 +164,14 @@ export const Richtext = ({
             return (
               <ExpandedEdge>
                 <CodeSnippet code={entry.code} language={entry.language} />
+              </ExpandedEdge>
+            );
+          }
+
+          if (entry.__typename === "EmbeddedIframe") {
+            return (
+              <ExpandedEdge>
+                <AspectIframe url={entry.url} />
               </ExpandedEdge>
             );
           }

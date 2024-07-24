@@ -1,5 +1,6 @@
 "use client";
 
+export { AspectIframe } from "./AspectIframe";
 export { AspectImage } from "./AspectImage";
 export { BackgroundSlice } from "./BackgroundSlice";
 export { Blockquote } from "./Blockquote";
