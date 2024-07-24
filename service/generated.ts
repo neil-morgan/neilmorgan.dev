@@ -423,6 +423,178 @@ export type ContentfulTag = {
   name: Maybe<Scalars['String']['output']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedIframe) */
+export type EmbeddedIframe = Entry & _Node & {
+  __typename?: 'EmbeddedIframe';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom: Maybe<EmbeddedIframeLinkingCollections>;
+  sys: Sys;
+  title: Maybe<Scalars['String']['output']>;
+  url: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedIframe) */
+export type EmbeddedIframeLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedIframe) */
+export type EmbeddedIframeTitleArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedIframe) */
+export type EmbeddedIframeUrlArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EmbeddedIframeCollection = {
+  __typename?: 'EmbeddedIframeCollection';
+  items: Array<Maybe<EmbeddedIframe>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type EmbeddedIframeFilter = {
+  AND: InputMaybe<Array<InputMaybe<EmbeddedIframeFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<EmbeddedIframeFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']['input']>;
+  title_contains: InputMaybe<Scalars['String']['input']>;
+  title_exists: InputMaybe<Scalars['Boolean']['input']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not: InputMaybe<Scalars['String']['input']>;
+  title_not_contains: InputMaybe<Scalars['String']['input']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  url: InputMaybe<Scalars['String']['input']>;
+  url_contains: InputMaybe<Scalars['String']['input']>;
+  url_exists: InputMaybe<Scalars['Boolean']['input']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  url_not: InputMaybe<Scalars['String']['input']>;
+  url_not_contains: InputMaybe<Scalars['String']['input']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EmbeddedIframeLinkingCollections = {
+  __typename?: 'EmbeddedIframeLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type EmbeddedIframeLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum EmbeddedIframeOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedYoutubeVideo) */
+export type EmbeddedYoutubeVideo = Entry & _Node & {
+  __typename?: 'EmbeddedYoutubeVideo';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  embedCode: Maybe<Scalars['String']['output']>;
+  linkedFrom: Maybe<EmbeddedYoutubeVideoLinkingCollections>;
+  sys: Sys;
+  title: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedYoutubeVideo) */
+export type EmbeddedYoutubeVideoEmbedCodeArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedYoutubeVideo) */
+export type EmbeddedYoutubeVideoLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/embeddedYoutubeVideo) */
+export type EmbeddedYoutubeVideoTitleArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EmbeddedYoutubeVideoCollection = {
+  __typename?: 'EmbeddedYoutubeVideoCollection';
+  items: Array<Maybe<EmbeddedYoutubeVideo>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type EmbeddedYoutubeVideoFilter = {
+  AND: InputMaybe<Array<InputMaybe<EmbeddedYoutubeVideoFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<EmbeddedYoutubeVideoFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  embedCode: InputMaybe<Scalars['String']['input']>;
+  embedCode_contains: InputMaybe<Scalars['String']['input']>;
+  embedCode_exists: InputMaybe<Scalars['Boolean']['input']>;
+  embedCode_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  embedCode_not: InputMaybe<Scalars['String']['input']>;
+  embedCode_not_contains: InputMaybe<Scalars['String']['input']>;
+  embedCode_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']['input']>;
+  title_contains: InputMaybe<Scalars['String']['input']>;
+  title_exists: InputMaybe<Scalars['Boolean']['input']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not: InputMaybe<Scalars['String']['input']>;
+  title_not_contains: InputMaybe<Scalars['String']['input']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EmbeddedYoutubeVideoLinkingCollections = {
+  __typename?: 'EmbeddedYoutubeVideoLinkingCollections';
+  entryCollection: Maybe<EntryCollection>;
+};
+
+
+export type EmbeddedYoutubeVideoLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum EmbeddedYoutubeVideoOrder {
+  EmbedCodeAsc = 'embedCode_ASC',
+  EmbedCodeDesc = 'embedCode_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 export type Entry = {
   contentfulMetadata: ContentfulMetadata;
   sys: Sys;
@@ -1082,7 +1254,6 @@ export type Project = Entry & _Node & {
   body: Maybe<ProjectBody>;
   categories: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contentfulMetadata: ContentfulMetadata;
-  date: Maybe<Scalars['DateTime']['output']>;
   demoLink: Maybe<Scalars['String']['output']>;
   description: Maybe<Scalars['String']['output']>;
   githubLink: Maybe<Scalars['String']['output']>;
@@ -1103,12 +1274,6 @@ export type ProjectBodyArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
 export type ProjectCategoriesArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/project) */
-export type ProjectDateArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1233,15 +1398,6 @@ export type ProjectFilter = {
   categories_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   categories_exists: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
-  date: InputMaybe<Scalars['DateTime']['input']>;
-  date_exists: InputMaybe<Scalars['Boolean']['input']>;
-  date_gt: InputMaybe<Scalars['DateTime']['input']>;
-  date_gte: InputMaybe<Scalars['DateTime']['input']>;
-  date_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  date_lt: InputMaybe<Scalars['DateTime']['input']>;
-  date_lte: InputMaybe<Scalars['DateTime']['input']>;
-  date_not: InputMaybe<Scalars['DateTime']['input']>;
-  date_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   demoLink: InputMaybe<Scalars['String']['input']>;
   demoLink_contains: InputMaybe<Scalars['String']['input']>;
   demoLink_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -1297,8 +1453,6 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum ProjectOrder {
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
   DemoLinkAsc = 'demoLink_ASC',
   DemoLinkDesc = 'demoLink_DESC',
   DescriptionAsc = 'description_ASC',
@@ -1351,6 +1505,10 @@ export type Query = {
   assetCollection: Maybe<AssetCollection>;
   contentGroup: Maybe<ContentGroup>;
   contentGroupCollection: Maybe<ContentGroupCollection>;
+  embeddedIframe: Maybe<EmbeddedIframe>;
+  embeddedIframeCollection: Maybe<EmbeddedIframeCollection>;
+  embeddedYoutubeVideo: Maybe<EmbeddedYoutubeVideo>;
+  embeddedYoutubeVideoCollection: Maybe<EmbeddedYoutubeVideoCollection>;
   entryCollection: Maybe<EntryCollection>;
   feedback: Maybe<Feedback>;
   feedbackCollection: Maybe<FeedbackCollection>;
@@ -1407,6 +1565,40 @@ export type QueryContentGroupCollectionArgs = {
   preview: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<ContentGroupFilter>;
+};
+
+
+export type QueryEmbeddedIframeArgs = {
+  id: Scalars['String']['input'];
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryEmbeddedIframeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  order: InputMaybe<Array<InputMaybe<EmbeddedIframeOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<EmbeddedIframeFilter>;
+};
+
+
+export type QueryEmbeddedYoutubeVideoArgs = {
+  id: Scalars['String']['input'];
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryEmbeddedYoutubeVideoCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  order: InputMaybe<Array<InputMaybe<EmbeddedYoutubeVideoOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<EmbeddedYoutubeVideoFilter>;
 };
 
 
@@ -1680,8 +1872,6 @@ export enum SkillLinkingCollectionsPostCollectionOrder {
 }
 
 export enum SkillLinkingCollectionsProjectCollectionOrder {
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
   DemoLinkAsc = 'demoLink_ASC',
   DemoLinkDesc = 'demoLink_DESC',
   DescriptionAsc = 'description_ASC',
@@ -2057,7 +2247,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string, publishedAt: any | null, firstPublishedAt: any | null }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostCollection', items: Array<{ __typename?: 'Post', title: string | null, description: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string, publishedAt: any | null, firstPublishedAt: any | null }, tagsCollection: { __typename?: 'PostTagsCollection', items: Array<{ __typename?: 'Skill', title: string | null } | null> } | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'PostBody', json: any, links: { __typename?: 'PostBodyLinks', entries: { __typename?: 'PostBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedYoutubeVideo', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedYoutubeVideo', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', title: string | null, slug: string | null, description: string | null, category: { __typename?: 'PostCategory', title: string | null, slug: string | null } | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', description: string | null, language: string | null, code: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PostBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type PostsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2094,7 +2284,7 @@ export type ProjectQueryVariables = Exact<{
 }>;
 
 
-export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, githubLink: string | null, demoLink: string | null, slug: string | null, sys: { __typename?: 'Sys', firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type ProjectQuery = { __typename?: 'Query', project: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title: string | null, categories: Array<string | null> | null, description: string | null, githubLink: string | null, demoLink: string | null, slug: string | null, sys: { __typename?: 'Sys', firstPublishedAt: any | null }, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, skillsUsedCollection: { __typename?: 'ProjectSkillsUsedCollection', items: Array<{ __typename?: 'Skill', title: string | null, slug: string | null, icon: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null } | null> } | null, body: { __typename?: 'ProjectBody', json: any, links: { __typename?: 'ProjectBodyLinks', entries: { __typename?: 'ProjectBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedYoutubeVideo', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', url: string | null, sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedYoutubeVideo', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ProjectBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 export type SkillsQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2444,6 +2634,9 @@ export const ProjectDocument = new TypedDocumentString(`
               __typename
               sys {
                 id
+              }
+              ... on EmbeddedIframe {
+                url
               }
             }
           }
