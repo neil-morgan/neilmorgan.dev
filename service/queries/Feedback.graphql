@@ -6,7 +6,6 @@ query AllFeedback($preview: Boolean = false) {
       authorImage {
         ...Image
       }
-      authorImageUrl
       date
       url
       comments {

@@ -22,7 +22,6 @@ query HomePage($preview: Boolean = false) {
     authorImage {
       ...Image
     }
-    authorImageUrl
     date
     url
     comments {

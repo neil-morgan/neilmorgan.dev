@@ -555,7 +555,6 @@ export type Feedback = Entry & _Node & {
   _id: Scalars['ID']['output'];
   author: Maybe<Scalars['String']['output']>;
   authorImage: Maybe<Asset>;
-  authorImageUrl: Maybe<Scalars['String']['output']>;
   authorRole: Maybe<Scalars['String']['output']>;
   comments: Maybe<FeedbackComments>;
   contentfulMetadata: ContentfulMetadata;
@@ -576,12 +575,6 @@ export type FeedbackAuthorArgs = {
 export type FeedbackAuthorImageArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
   preview: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/feedback) */
-export type FeedbackAuthorImageUrlArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -674,13 +667,6 @@ export type FeedbackFilter = {
   AND: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
   OR: InputMaybe<Array<InputMaybe<FeedbackFilter>>>;
   author: InputMaybe<Scalars['String']['input']>;
-  authorImageUrl: InputMaybe<Scalars['String']['input']>;
-  authorImageUrl_contains: InputMaybe<Scalars['String']['input']>;
-  authorImageUrl_exists: InputMaybe<Scalars['Boolean']['input']>;
-  authorImageUrl_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  authorImageUrl_not: InputMaybe<Scalars['String']['input']>;
-  authorImageUrl_not_contains: InputMaybe<Scalars['String']['input']>;
-  authorImageUrl_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   authorImage_exists: InputMaybe<Scalars['Boolean']['input']>;
   authorRole: InputMaybe<Scalars['String']['input']>;
   authorRole_contains: InputMaybe<Scalars['String']['input']>;
@@ -732,8 +718,6 @@ export type FeedbackLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum FeedbackOrder {
-  AuthorImageUrlAsc = 'authorImageUrl_ASC',
-  AuthorImageUrlDesc = 'authorImageUrl_DESC',
   AuthorRoleAsc = 'authorRole_ASC',
   AuthorRoleDesc = 'authorRole_DESC',
   AuthorAsc = 'author_ASC',
@@ -2124,14 +2108,14 @@ export type AllFeedbackQueryVariables = Exact<{
 }>;
 
 
-export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null> } | null };
+export type AllFeedbackQuery = { __typename?: 'Query', feedbackCollection: { __typename?: 'FeedbackCollection', items: Array<{ __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null> } | null };
 
 export type HomePageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, authorImageUrl: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type FeedbackPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2262,7 +2246,6 @@ export const AllFeedbackDocument = new TypedDocumentString(`
       authorImage {
         ...Image
       }
-      authorImageUrl
       date
       url
       comments {
@@ -2299,7 +2282,6 @@ export const HomePageDocument = new TypedDocumentString(`
     authorImage {
       ...Image
     }
-    authorImageUrl
     date
     url
     comments {
