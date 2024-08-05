@@ -35,7 +35,12 @@ export default async function RootLayout({
   const socialItems = socialData.socialItemCollection
     ?.items as SocialItemFragment[];
 
-  const navigation = [LOCATIONS.posts, LOCATIONS.projects, LOCATIONS.feedback];
+  const navigation = [
+    LOCATIONS.profile,
+    LOCATIONS.posts,
+    LOCATIONS.projects,
+    LOCATIONS.feedback,
+  ];
 
   return (
     <html lang="en" className={`${inter.variable} ${firaMono.variable}`}>

@@ -11,6 +11,7 @@ export const PAGE_TITLE_PREFIX = "Neil Morgan";
 export const LOCATIONS = {
   home: { label: "Home", slug: "/" },
   posts: { label: "Posts", slug: "/posts" },
+  profile: { label: "Profile", slug: "/profile" },
   projects: { label: "Projects", slug: "/projects" },
   feedback: { label: "Feedback", slug: "/feedback" },
 };

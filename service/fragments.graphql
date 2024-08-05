@@ -2,7 +2,6 @@ fragment ContentGroup on ContentGroup {
   title
   subheading
   icon
-  url
   body
 }
 

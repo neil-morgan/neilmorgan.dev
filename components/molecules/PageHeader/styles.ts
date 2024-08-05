@@ -19,5 +19,5 @@ export const Body = styled("header", {
 export const TitleWrapper = styled("div", {
   display: "flex",
   alignItems: "center",
-  gap: "$3",
+  gap: "$5",
 });
