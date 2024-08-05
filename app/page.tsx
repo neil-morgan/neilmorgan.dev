@@ -93,6 +93,7 @@ const HomePage = async () => {
   const base64Map = await extractImagesToBase64Map({
     latestPost,
     latestProject,
+    feedback,
   });
 
   return (
@@ -205,11 +206,13 @@ const HomePage = async () => {
 
       <Container>
         <FeedbackWrapper>
-          <AuthorImage
-            url={feedback?.authorImageUrl}
-            name={feedback?.author}
-            size="lg"
-          />
+          {feedback?.authorImage?.url && feedback?.authorImage?.title && (
+            <AuthorImage
+              url={feedback.authorImage.url}
+              name={feedback.authorImage.description}
+              size="lg"
+            />
+          )}
           {feedback?.comments && <Richtext content={feedback?.comments} />}
           <FeedbackFooter>
             {feedback?.url && (

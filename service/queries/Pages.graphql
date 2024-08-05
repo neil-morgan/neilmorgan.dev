@@ -19,6 +19,9 @@ query HomePage($preview: Boolean = false) {
   feedback(id: "6WJzQPqnU1GtQOS4Lpu5I1", preview: $preview) {
     author
     authorRole
+    authorImage {
+      ...Image
+    }
     authorImageUrl
     date
     url

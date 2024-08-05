@@ -31,12 +31,18 @@ export const ContentButton = ({
 
   return (
     <ConditionalWrapper
-      if={Boolean(href) && internalUrl}
-      wrapWith={children => (
-        <NextLink href={href as string} passHref legacyBehavior>
-          {children}
-        </NextLink>
-      )}>
+      if={Boolean(href)}
+      wrapWith={children =>
+        internalUrl ? (
+          <NextLink href={href as string} passHref legacyBehavior>
+            {children}
+          </NextLink>
+        ) : (
+          <a href={href as string} target="_blank">
+            {children}
+          </a>
+        )
+      }>
       <Wrapper
         hover={Boolean(href)}
         ref={elementRef as RefObject<HTMLAnchorElement>}
