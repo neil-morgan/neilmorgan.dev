@@ -61,7 +61,7 @@ const FeedbackPage = async () => {
           <ContentButton key={i} href={feedback?.url}>
             <FeedbackHeader>
               <AuthorImage
-                url={feedback?.authorImageUrl}
+                url={feedback?.authorImage?.url}
                 name={feedback?.author}
               />
               <FeedbackAuthor>
