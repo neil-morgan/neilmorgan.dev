@@ -170,11 +170,20 @@ export type AssetFilter = {
 
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
+  contentGroupCollection: Maybe<ContentGroupCollection>;
   entryCollection: Maybe<EntryCollection>;
   feedbackCollection: Maybe<FeedbackCollection>;
   postCollection: Maybe<PostCollection>;
   projectCollection: Maybe<ProjectCollection>;
   skillCollection: Maybe<SkillCollection>;
+};
+
+
+export type AssetLinkingCollectionsContentGroupCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -246,7 +255,9 @@ export type ContentGroup = Entry & _Node & {
   _id: Scalars['ID']['output'];
   body: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
+  heading: Maybe<Scalars['String']['output']>;
   icon: Maybe<Scalars['String']['output']>;
+  image: Maybe<Asset>;
   internalName: Maybe<Scalars['String']['output']>;
   kicker: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<ContentGroupLinkingCollections>;
@@ -264,8 +275,21 @@ export type ContentGroupBodyArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
+export type ContentGroupHeadingArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupIconArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
+export type ContentGroupImageArgs = {
+  locale: InputMaybe<Scalars['String']['input']>;
+  preview: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -323,6 +347,13 @@ export type ContentGroupFilter = {
   body_not_contains: InputMaybe<Scalars['String']['input']>;
   body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  heading: InputMaybe<Scalars['String']['input']>;
+  heading_contains: InputMaybe<Scalars['String']['input']>;
+  heading_exists: InputMaybe<Scalars['Boolean']['input']>;
+  heading_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  heading_not: InputMaybe<Scalars['String']['input']>;
+  heading_not_contains: InputMaybe<Scalars['String']['input']>;
+  heading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   icon: InputMaybe<Scalars['String']['input']>;
   icon_contains: InputMaybe<Scalars['String']['input']>;
   icon_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -330,6 +361,7 @@ export type ContentGroupFilter = {
   icon_not: InputMaybe<Scalars['String']['input']>;
   icon_not_contains: InputMaybe<Scalars['String']['input']>;
   icon_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  image_exists: InputMaybe<Scalars['Boolean']['input']>;
   internalName: InputMaybe<Scalars['String']['input']>;
   internalName_contains: InputMaybe<Scalars['String']['input']>;
   internalName_exists: InputMaybe<Scalars['Boolean']['input']>;
@@ -384,6 +416,8 @@ export type ContentGroupLinkingCollectionsEntryCollectionArgs = {
 export enum ContentGroupOrder {
   BodyAsc = 'body_ASC',
   BodyDesc = 'body_DESC',
+  HeadingAsc = 'heading_ASC',
+  HeadingDesc = 'heading_DESC',
   IconAsc = 'icon_ASC',
   IconDesc = 'icon_DESC',
   InternalNameAsc = 'internalName_ASC',
@@ -2115,28 +2149,35 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, body: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, heading: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type FeedbackPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null };
+export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
 
 export type PostsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null };
+export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
 
 export type ProjectsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type ProjectsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, body: string | null } | null };
+export type ProjectsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
+
+export type ProfilePageQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type ProfilePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null, profileImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null };
 
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2264,7 +2305,7 @@ export const HomePageDocument = new TypedDocumentString(`
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
     kicker
     title
-    body
+    heading
   }
   sellingPoints: contentGroupCollection(
     where: {internalName_contains: "Selling Point"}
@@ -2272,7 +2313,7 @@ export const HomePageDocument = new TypedDocumentString(`
   ) {
     items {
       title
-      body
+      heading
       icon
     }
   }
@@ -2299,7 +2340,7 @@ export const FeedbackPageDocument = new TypedDocumentString(`
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
     kicker
     title
-    body
+    heading
   }
 }
     `) as unknown as TypedDocumentString<FeedbackPageQuery, FeedbackPageQueryVariables>;
@@ -2308,7 +2349,7 @@ export const PostsPageDocument = new TypedDocumentString(`
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
     kicker
     title
-    body
+    heading
   }
 }
     `) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
@@ -2317,10 +2358,26 @@ export const ProjectsPageDocument = new TypedDocumentString(`
   header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
     kicker
     title
-    body
+    heading
   }
 }
     `) as unknown as TypedDocumentString<ProjectsPageQuery, ProjectsPageQueryVariables>;
+export const ProfilePageDocument = new TypedDocumentString(`
+    query ProfilePage($preview: Boolean = false) {
+  header: contentGroup(id: "2S0GiLkaE40m61E074ajln", preview: $preview) {
+    kicker
+    title
+    heading
+  }
+  profileImage: asset(id: "1rPt9eSA6ZiroXcV4g2RGZ") {
+    ...Image
+  }
+}
+    fragment Image on Asset {
+  title
+  description
+  url
+}`) as unknown as TypedDocumentString<ProfilePageQuery, ProfilePageQueryVariables>;
 export const PostDocument = new TypedDocumentString(`
     query Post($slug: String, $preview: Boolean = false) {
   post: postCollection(where: {slug: $slug}, limit: 1, preview: $preview) {

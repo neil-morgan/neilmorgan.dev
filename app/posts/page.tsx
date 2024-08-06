@@ -54,7 +54,7 @@ export default async function PostsPage() {
         <PageHeader
           kicker={header.kicker}
           title={header.title}
-          body={header.body}
+          heading={header.heading}
           breadcrumbs={breadcrumbs}
         />
       )}

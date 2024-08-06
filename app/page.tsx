@@ -27,7 +27,7 @@ import {
   groupByCategory,
   sortProficienciesByPriority,
 } from "@/helpers";
-import { Container, Text, Icon, Link } from "@/components/atoms";
+import { Button, Container, Text, Icon, Link } from "@/components/atoms";
 import {
   FeaturedSection,
   ContentPresentation,
@@ -105,9 +105,12 @@ const HomePage = async () => {
               <PageHeader
                 title={header.title}
                 kicker={header.kicker}
-                body={header.body}
+                heading={header.heading}
               />
             )}
+            {/* <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
+              Find out more
+            </Button> */}
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>
@@ -124,7 +127,7 @@ const HomePage = async () => {
                 {item.title}
               </Text>
               <Text as="p" textAlign="center">
-                {item.body}
+                {item.heading}
               </Text>
             </SellingPoint>
           ))}
