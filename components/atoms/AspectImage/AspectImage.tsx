@@ -12,7 +12,7 @@ export const AspectImage = ({
   width,
   css,
 }: React.PropsWithChildren<AspectImageProps>) => (
-  <AspectImageContainer css={{ width: `${width}px`, ...css }}>
+  <AspectImageContainer css={{ maxWidth: `${width}px`, ...css }}>
     <Root ratio={ratio}>
       <Image
         src={url}

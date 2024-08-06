@@ -3,7 +3,9 @@ query AllFeedback($preview: Boolean = false) {
     items {
       author
       authorRole
-      authorImageUrl
+      authorImage {
+        ...Image
+      }
       date
       url
       comments {

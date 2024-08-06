@@ -27,7 +27,7 @@ import {
   groupByCategory,
   sortProficienciesByPriority,
 } from "@/helpers";
-import { Container, Text, Icon, Link } from "@/components/atoms";
+import { Button, Container, Text, Icon, Link } from "@/components/atoms";
 import {
   FeaturedSection,
   ContentPresentation,
@@ -93,6 +93,7 @@ const HomePage = async () => {
   const base64Map = await extractImagesToBase64Map({
     latestPost,
     latestProject,
+    feedback,
   });
 
   return (
@@ -104,9 +105,12 @@ const HomePage = async () => {
               <PageHeader
                 title={header.title}
                 kicker={header.kicker}
-                body={header.body}
+                heading={header.heading}
               />
             )}
+            {/* <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
+              Find out more
+            </Button> */}
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>
@@ -205,11 +209,13 @@ const HomePage = async () => {
 
       <Container>
         <FeedbackWrapper>
-          <AuthorImage
-            url={feedback?.authorImageUrl}
-            name={feedback?.author}
-            size="lg"
-          />
+          {feedback?.authorImage?.url && feedback?.authorImage?.title && (
+            <AuthorImage
+              url={feedback.authorImage.url}
+              name={feedback.authorImage.description}
+              size="lg"
+            />
+          )}
           {feedback?.comments && <Richtext content={feedback?.comments} />}
           <FeedbackFooter>
             {feedback?.url && (

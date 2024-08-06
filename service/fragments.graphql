@@ -3,6 +3,7 @@ fragment ContentGroup on ContentGroup {
   subheading
   icon
   body
+  url
 }
 
 fragment PostCategory on PostCategory {

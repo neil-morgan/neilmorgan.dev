@@ -81,8 +81,7 @@ export default async function ProjectPage({ params }: ProjectParamsType) {
       {project.title && (
         <PageHeader
           title={project.title}
-          body={project.description}
-          kicker="Project"
+          heading={project.description}
           breadcrumbs={breadcrumbs}
         />
       )}

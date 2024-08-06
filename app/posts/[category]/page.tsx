@@ -74,7 +74,6 @@ export default async function PostCategoryPage({
   return (
     <Container>
       <PageHeader
-        kicker="Post Category"
         title={`${category.title} thoughts and opinions`}
         breadcrumbs={breadcrumbs}
       />

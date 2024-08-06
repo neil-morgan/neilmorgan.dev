@@ -52,7 +52,7 @@ const ProjectsPage = async () => {
         <PageHeader
           kicker={header?.kicker}
           title={header?.title}
-          body={header?.body}
+          heading={header?.heading}
           breadcrumbs={breadcrumbs}
         />
       )}

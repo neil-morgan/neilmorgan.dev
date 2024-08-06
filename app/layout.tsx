@@ -36,7 +36,7 @@ export default async function RootLayout({
     ?.items as SocialItemFragment[];
 
   const navigation = [
-    LOCATIONS.profile,
+    // LOCATIONS.profile,
     LOCATIONS.posts,
     LOCATIONS.projects,
     LOCATIONS.feedback,
