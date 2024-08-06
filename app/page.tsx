@@ -127,7 +127,7 @@ const HomePage = async () => {
                 {item.title}
               </Text>
               <Text as="p" textAlign="center">
-                {item.body}
+                {item.heading}
               </Text>
             </SellingPoint>
           ))}

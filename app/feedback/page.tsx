@@ -51,7 +51,7 @@ const FeedbackPage = async () => {
         <PageHeader
           title={header.title}
           kicker={header.kicker}
-          body={header.body}
+          heading={header.heading}
           breadcrumbs={breadcrumbs}
         />
       )}
