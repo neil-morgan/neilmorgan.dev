@@ -1,8 +1,6 @@
 query HomePage($preview: Boolean = false) {
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 
   sellingPoints: contentGroupCollection(
@@ -32,36 +30,24 @@ query HomePage($preview: Boolean = false) {
 
 query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
 
 query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
 
 query ProjectsPage($preview: Boolean = false) {
   header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
 
 query ProfilePage($preview: Boolean = false) {
   header: contentGroup(id: "2S0GiLkaE40m61E074ajln", preview: $preview) {
-    kicker
-    title
-    heading
-  }
-
-  profileImage: asset(id: "1rPt9eSA6ZiroXcV4g2RGZ") {
-    ...Image
+    ...ContentGroup
   }
 }

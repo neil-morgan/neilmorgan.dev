@@ -108,9 +108,9 @@ const HomePage = async () => {
                 heading={header.heading}
               />
             )}
-            {/* <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
+            <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
               Find out more
-            </Button> */}
+            </Button>
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>
