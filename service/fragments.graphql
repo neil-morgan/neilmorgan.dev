@@ -1,8 +1,38 @@
 fragment ContentGroup on ContentGroup {
+  kicker
   title
-  subheading
+  heading
   icon
-  body
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
   url
 }
 

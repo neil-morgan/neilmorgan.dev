@@ -253,7 +253,7 @@ export enum AssetOrder {
 export type ContentGroup = Entry & _Node & {
   __typename?: 'ContentGroup';
   _id: Scalars['ID']['output'];
-  body: Maybe<Scalars['String']['output']>;
+  body: Maybe<ContentGroupBody>;
   contentfulMetadata: ContentfulMetadata;
   heading: Maybe<Scalars['String']['output']>;
   icon: Maybe<Scalars['String']['output']>;
@@ -261,7 +261,6 @@ export type ContentGroup = Entry & _Node & {
   internalName: Maybe<Scalars['String']['output']>;
   kicker: Maybe<Scalars['String']['output']>;
   linkedFrom: Maybe<ContentGroupLinkingCollections>;
-  subheading: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title: Maybe<Scalars['String']['output']>;
   url: Maybe<Scalars['String']['output']>;
@@ -312,12 +311,6 @@ export type ContentGroupLinkedFromArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
-export type ContentGroupSubheadingArgs = {
-  locale: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupTitleArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
 };
@@ -326,6 +319,54 @@ export type ContentGroupTitleArgs = {
 /** [See type definition](https://app.contentful.com/spaces/96c2x2gvt3wj/content_types/contentGroup) */
 export type ContentGroupUrlArgs = {
   locale: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContentGroupBody = {
+  __typename?: 'ContentGroupBody';
+  json: Scalars['JSON']['output'];
+  links: ContentGroupBodyLinks;
+};
+
+export type ContentGroupBodyAssets = {
+  __typename?: 'ContentGroupBodyAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ContentGroupBodyEntries = {
+  __typename?: 'ContentGroupBodyEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ContentGroupBodyLinks = {
+  __typename?: 'ContentGroupBodyLinks';
+  assets: ContentGroupBodyAssets;
+  entries: ContentGroupBodyEntries;
+  resources: ContentGroupBodyResources;
+};
+
+export type ContentGroupBodyResources = {
+  __typename?: 'ContentGroupBodyResources';
+  block: Array<ContentGroupBodyResourcesBlock>;
+  hyperlink: Array<ContentGroupBodyResourcesHyperlink>;
+  inline: Array<ContentGroupBodyResourcesInline>;
+};
+
+export type ContentGroupBodyResourcesBlock = ResourceLink & {
+  __typename?: 'ContentGroupBodyResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ContentGroupBodyResourcesHyperlink = ResourceLink & {
+  __typename?: 'ContentGroupBodyResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ContentGroupBodyResourcesInline = ResourceLink & {
+  __typename?: 'ContentGroupBodyResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ContentGroupCollection = {
@@ -339,13 +380,9 @@ export type ContentGroupCollection = {
 export type ContentGroupFilter = {
   AND: InputMaybe<Array<InputMaybe<ContentGroupFilter>>>;
   OR: InputMaybe<Array<InputMaybe<ContentGroupFilter>>>;
-  body: InputMaybe<Scalars['String']['input']>;
   body_contains: InputMaybe<Scalars['String']['input']>;
   body_exists: InputMaybe<Scalars['Boolean']['input']>;
-  body_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  body_not: InputMaybe<Scalars['String']['input']>;
   body_not_contains: InputMaybe<Scalars['String']['input']>;
-  body_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
   heading: InputMaybe<Scalars['String']['input']>;
   heading_contains: InputMaybe<Scalars['String']['input']>;
@@ -376,13 +413,6 @@ export type ContentGroupFilter = {
   kicker_not: InputMaybe<Scalars['String']['input']>;
   kicker_not_contains: InputMaybe<Scalars['String']['input']>;
   kicker_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  subheading: InputMaybe<Scalars['String']['input']>;
-  subheading_contains: InputMaybe<Scalars['String']['input']>;
-  subheading_exists: InputMaybe<Scalars['Boolean']['input']>;
-  subheading_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  subheading_not: InputMaybe<Scalars['String']['input']>;
-  subheading_not_contains: InputMaybe<Scalars['String']['input']>;
-  subheading_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys: InputMaybe<SysFilter>;
   title: InputMaybe<Scalars['String']['input']>;
   title_contains: InputMaybe<Scalars['String']['input']>;
@@ -414,8 +444,6 @@ export type ContentGroupLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum ContentGroupOrder {
-  BodyAsc = 'body_ASC',
-  BodyDesc = 'body_DESC',
   HeadingAsc = 'heading_ASC',
   HeadingDesc = 'heading_DESC',
   IconAsc = 'icon_ASC',
@@ -424,8 +452,6 @@ export enum ContentGroupOrder {
   InternalNameDesc = 'internalName_DESC',
   KickerAsc = 'kicker_ASC',
   KickerDesc = 'kicker_DESC',
-  SubheadingAsc = 'subheading_ASC',
-  SubheadingDesc = 'subheading_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -2129,7 +2155,7 @@ export type CfSkillNestedFilter = {
   title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type ContentGroupFragment = { __typename?: 'ContentGroup', title: string | null, subheading: string | null, icon: string | null, body: string | null, url: string | null };
+export type ContentGroupFragment = { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null };
 
 export type PostCategoryFragment = { __typename?: 'PostCategory', title: string | null, slug: string | null };
 
@@ -2149,35 +2175,35 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, heading: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null, sellingPoints: { __typename?: 'ContentGroupCollection', items: Array<{ __typename?: 'ContentGroup', title: string | null, heading: string | null, icon: string | null } | null> } | null, feedback: { __typename?: 'Feedback', author: string | null, authorRole: string | null, date: any | null, url: string | null, authorImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, comments: { __typename?: 'FeedbackComments', json: any } | null } | null };
 
 export type FeedbackPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
+export type FeedbackPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null };
 
 export type PostsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
+export type PostsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null };
 
 export type ProjectsPageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type ProjectsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null };
+export type ProjectsPageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null };
 
 export type ProfilePageQueryVariables = Exact<{
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type ProfilePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null } | null, profileImage: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null };
+export type ProfilePageQuery = { __typename?: 'Query', header: { __typename?: 'ContentGroup', kicker: string | null, title: string | null, heading: string | null, icon: string | null, url: string | null, image: { __typename?: 'Asset', title: string | null, description: string | null, url: string | null } | null, body: { __typename?: 'ContentGroupBody', json: any, links: { __typename?: 'ContentGroupBodyLinks', entries: { __typename?: 'ContentGroupBodyEntries', inline: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null>, block: Array<{ __typename: 'ContentGroup', sys: { __typename?: 'Sys', id: string } } | { __typename: 'EmbeddedIframe', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Feedback', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Post', sys: { __typename?: 'Sys', id: string } } | { __typename: 'PostCategory', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Project', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Skill', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Snippet', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SocialItem', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'ContentGroupBodyAssets', block: Array<{ __typename?: 'Asset', title: string | null, description: string | null, url: string | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null };
 
 export type PostQueryVariables = Exact<{
   slug: InputMaybe<Scalars['String']['input']>;
@@ -2250,15 +2276,56 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-export const ContentGroupFragmentDoc = new TypedDocumentString(`
-    fragment ContentGroup on ContentGroup {
+export const ImageFragmentDoc = new TypedDocumentString(`
+    fragment Image on Asset {
   title
-  subheading
-  icon
-  body
+  description
   url
 }
-    `, {"fragmentName":"ContentGroup"}) as unknown as TypedDocumentString<ContentGroupFragment, unknown>;
+    `, {"fragmentName":"Image"}) as unknown as TypedDocumentString<ImageFragment, unknown>;
+export const ContentGroupFragmentDoc = new TypedDocumentString(`
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+    fragment Image on Asset {
+  title
+  description
+  url
+}`, {"fragmentName":"ContentGroup"}) as unknown as TypedDocumentString<ContentGroupFragment, unknown>;
 export const PostCategoryFragmentDoc = new TypedDocumentString(`
     fragment PostCategory on PostCategory {
   title
@@ -2271,13 +2338,6 @@ export const SocialItemFragmentDoc = new TypedDocumentString(`
   href
 }
     `, {"fragmentName":"SocialItem"}) as unknown as TypedDocumentString<SocialItemFragment, unknown>;
-export const ImageFragmentDoc = new TypedDocumentString(`
-    fragment Image on Asset {
-  title
-  description
-  url
-}
-    `, {"fragmentName":"Image"}) as unknown as TypedDocumentString<ImageFragment, unknown>;
 export const AllFeedbackDocument = new TypedDocumentString(`
     query AllFeedback($preview: Boolean = false) {
   feedbackCollection(order: date_DESC, preview: $preview) {
@@ -2303,9 +2363,7 @@ export const AllFeedbackDocument = new TypedDocumentString(`
 export const HomePageDocument = new TypedDocumentString(`
     query HomePage($preview: Boolean = false) {
   header: contentGroup(id: "5t74CstVexkKy4nE6yfA8X", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
   sellingPoints: contentGroupCollection(
     where: {internalName_contains: "Selling Point"}
@@ -2330,7 +2388,44 @@ export const HomePageDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Image on Asset {
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+fragment Image on Asset {
   title
   description
   url
@@ -2338,42 +2433,191 @@ export const HomePageDocument = new TypedDocumentString(`
 export const FeedbackPageDocument = new TypedDocumentString(`
     query FeedbackPage($preview: Boolean = false) {
   header: contentGroup(id: "uuvedEuhBFSLJOE8VRNMh", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
-    `) as unknown as TypedDocumentString<FeedbackPageQuery, FeedbackPageQueryVariables>;
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+fragment Image on Asset {
+  title
+  description
+  url
+}`) as unknown as TypedDocumentString<FeedbackPageQuery, FeedbackPageQueryVariables>;
 export const PostsPageDocument = new TypedDocumentString(`
     query PostsPage($preview: Boolean = false) {
   header: contentGroup(id: "3aNsWEynwXYrcZJkMBXRco", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
-    `) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+fragment Image on Asset {
+  title
+  description
+  url
+}`) as unknown as TypedDocumentString<PostsPageQuery, PostsPageQueryVariables>;
 export const ProjectsPageDocument = new TypedDocumentString(`
     query ProjectsPage($preview: Boolean = false) {
   header: contentGroup(id: "2W7HV7mQOmMg07cNHsf3nm", preview: $preview) {
-    kicker
-    title
-    heading
+    ...ContentGroup
   }
 }
-    `) as unknown as TypedDocumentString<ProjectsPageQuery, ProjectsPageQueryVariables>;
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+fragment Image on Asset {
+  title
+  description
+  url
+}`) as unknown as TypedDocumentString<ProjectsPageQuery, ProjectsPageQueryVariables>;
 export const ProfilePageDocument = new TypedDocumentString(`
     query ProfilePage($preview: Boolean = false) {
   header: contentGroup(id: "2S0GiLkaE40m61E074ajln", preview: $preview) {
-    kicker
-    title
-    heading
-  }
-  profileImage: asset(id: "1rPt9eSA6ZiroXcV4g2RGZ") {
-    ...Image
+    ...ContentGroup
   }
 }
-    fragment Image on Asset {
+    fragment ContentGroup on ContentGroup {
+  kicker
+  title
+  heading
+  icon
+  image {
+    ...Image
+  }
+  body {
+    json
+    links {
+      entries {
+        inline {
+          __typename
+          sys {
+            id
+          }
+        }
+        block {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
+      assets {
+        block {
+          sys {
+            id
+          }
+          ...Image
+        }
+      }
+    }
+  }
+  url
+}
+fragment Image on Asset {
   title
   description
   url

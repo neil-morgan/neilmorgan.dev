@@ -10,7 +10,7 @@ import {
   renderText,
   getNodeValue,
 } from "./helpers";
-import { Article } from "./styles";
+import { Wrapper } from "./styles";
 import type { RichtextNodeType, RichtextProps } from "./types";
 import { Heading } from "./components";
 import {
@@ -34,8 +34,9 @@ export const Richtext = ({
   content,
   setCurrentId,
   base64Map,
+  css,
 }: RichtextProps) => (
-  <Article>
+  <Wrapper css={css}>
     {documentToReactComponents(content.json, {
       renderMark,
       renderText,
@@ -199,5 +200,5 @@ export const Richtext = ({
         ),
       },
     })}
-  </Article>
+  </Wrapper>
 );

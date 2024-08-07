@@ -2,10 +2,19 @@
 
 import { styled } from "@/lib/stitches";
 
-export const PageWrapper = styled("div", {
-  position: "relative",
+export const Introduction = styled("div", {
   display: "flex",
+  gap: "$8",
   flexDirection: "column",
-  minHeight: "100vh",
-  margin: "0 auto",
+  alignItems: "center",
+
+  "@md": {
+    alignItems: "flex-start",
+    flexDirection: "row",
+    gap: "$6",
+  },
+
+  "@lg": {
+    gap: "$8",
+  },
 });
