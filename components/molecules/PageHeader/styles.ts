@@ -7,5 +7,4 @@ export const Wrapper = styled("header", {
   flexDirection: "column",
   gap: "$4",
   width: "100%",
-  alignItems: "flex-start",
 });
