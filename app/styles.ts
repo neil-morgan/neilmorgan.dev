@@ -20,10 +20,19 @@ export const IntroWrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: "",
   "@md": {
     flexDirection: "row",
     alignItems: "flex-start",
+  },
+});
+
+export const Actions = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "wrap",
+  gap: "$3 $6",
+  "@sm": {
+    flexDirection: "row",
   },
 });
 
@@ -40,7 +49,7 @@ export const IntroDetails = styled("div", {
 
   "@md": {
     maxWidth: "600px",
-    marginTop: "$11",
+    marginTop: "$10",
     textAlign: "left",
     alignItems: "flex-start",
   },

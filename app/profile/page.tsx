@@ -32,7 +32,7 @@ const ProfilePage = async () => {
 
   const header = pageData.header as ContentGroup;
   const base64Map = await extractImagesToBase64Map({
-    header,
+    pageData,
   });
 
   return (

@@ -2,6 +2,7 @@ import { draftMode } from "next/headers";
 import {
   IntroWrapper,
   IntroDetails,
+  Actions,
   SellingPointsWrapper,
   SellingPoint,
   FeedbackWrapper,
@@ -27,7 +28,14 @@ import {
   groupByCategory,
   sortProficienciesByPriority,
 } from "@/helpers";
-import { Button, Container, Text, Icon, Link } from "@/components/atoms";
+import {
+  Button,
+  Container,
+  Text,
+  Icon,
+  DownloadFileButton,
+  Link,
+} from "@/components/atoms";
 import {
   FeaturedSection,
   ContentPresentation,
@@ -108,9 +116,18 @@ const HomePage = async () => {
                 heading={header.heading}
               />
             )}
-            <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
-              Find out more
-            </Button>
+            <Actions>
+              <Button href={LOCATIONS.profile.slug} rightIcon="ChevronRight">
+                Find out more
+              </Button>
+              {pageData?.cv?.url && pageData.cv.fileName && (
+                <DownloadFileButton
+                  fileUrl={pageData.cv.url}
+                  fileName={pageData.cv.fileName}
+                  buttonLabel="Download CV"
+                />
+              )}
+            </Actions>
           </IntroDetails>
           <DnaHologramAnimation />
         </IntroWrapper>

@@ -9,6 +9,7 @@ export type ButtonProps = {
   rightIcon?: IconType;
   leftIcon?: IconType;
   iconColor?: ColorType;
+  download?: string;
   size?: "sm" | "md" | "lg";
   noHighlight?: boolean;
   asLink?: boolean;

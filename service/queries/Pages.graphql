@@ -26,6 +26,11 @@ query HomePage($preview: Boolean = false) {
       json
     }
   }
+
+  cv: asset(id: "6scivKqG2WWNC2kSO0gPl") {
+    url
+    fileName
+  }
 }
 
 query FeedbackPage($preview: Boolean = false) {
