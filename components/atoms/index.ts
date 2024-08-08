@@ -1,5 +1,5 @@
-"use client";
 
+"use client";
 export { AspectIframe } from "./AspectIframe";
 export { AspectImage } from "./AspectImage";
 export { BackgroundSlice } from "./BackgroundSlice";
@@ -11,6 +11,7 @@ export { CodeString } from "./CodeString";
 export { ConditionalWrapper } from "./ConditionalWrapper";
 export { Container } from "./Container";
 export { ContentButton } from "./ContentButton";
+export { DownloadFileButton } from "./DownloadFileButton";
 export { ExpandedEdge } from "./ExpandedEdge";
 export { Icon, IconDefs } from "./Icon";
 export { IconButton } from "./IconButton";

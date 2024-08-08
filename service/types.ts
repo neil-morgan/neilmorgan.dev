@@ -53,6 +53,7 @@ export type IconType =
   | "Dimensions"
   | "Github"
   | "Globe"
+  | "File"
   | "Hamburger"
   | "Heart"
   | "HeartFilled"

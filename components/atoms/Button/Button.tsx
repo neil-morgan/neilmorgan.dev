@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, useMemo } from "react";
 import { mergeRefs } from "react-merge-refs";
 import type { ButtonProps } from "./types";
 import { ButtonElement } from "./styles";
@@ -13,33 +13,27 @@ export const Button = forwardRef(
     {
       children,
       css,
-      href,
+      href = "",
       onClick,
       rightIcon,
       leftIcon,
       iconColor,
-      disabled,
+      disabled = false,
       size,
-      noHighlight,
+
+      noHighlight = false,
       asLink = false,
     }: ButtonProps,
     ref: ButtonElementRefType,
   ) => {
     const { addElementRef } = useElementRefs();
     const elementRef = useRef<HTMLElement | null>(null);
-    const isExternalLink = !isInternalUrl(href as string);
+    const isExternalLink = !isInternalUrl(href ?? "");
 
-    const shouldHighlight = () => {
-      if (noHighlight) {
-        return false;
-      }
-
-      if (asLink) {
-        return false;
-      }
-
-      return true;
-    };
+    const shouldHighlight = useMemo(
+      () => !(noHighlight || asLink),
+      [noHighlight, asLink],
+    );
 
     useEffect(() => {
       if (disabled || noHighlight || asLink) return;
@@ -54,11 +48,16 @@ export const Button = forwardRef(
       <Icon name={leftIcon} css={{ marginRight: "1em", color: iconColor }} />
     ) : null;
 
-
+    const props = href
+      ? {
+          as: "a",
+          ...(isExternalLink && { href, target: "_blank" }),
+        }
+      : { as: "button" };
 
     return (
       <ConditionalWrapper
-        if={Boolean(href)}
+        if={Boolean(href) && !isExternalLink}
         wrapWith={children => (
           <NextLink href={href as string} passHref legacyBehavior>
             {children}
@@ -67,17 +66,15 @@ export const Button = forwardRef(
         <ButtonElement
           disabled={disabled}
           ref={mergeRefs([elementRef, ref])}
-          as={href ? "a" : "button"}
-          {...(href &&
-            isExternalLink && {
-              target: "_blank",
-            })}
           css={css}
           onClick={onClick}
           size={size}
           asLink={asLink}
-          highlight={shouldHighlight()}>
-          {leftIconComponent} {children} {rightIconComponent}
+          highlight={shouldHighlight}
+          {...props}>
+          {leftIconComponent}
+          {children}
+          {rightIconComponent}
         </ButtonElement>
       </ConditionalWrapper>
     );
