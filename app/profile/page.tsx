@@ -9,7 +9,7 @@ import {
   Link,
 } from "@/components/atoms";
 import { PageHeader, Richtext } from "@/components/molecules";
-import { LOCATIONS } from "@/lib/site";
+import { LOCATIONS, PAGE_TITLE_PREFIX } from "@/lib/site";
 import {
   ProfilePageDocument,
   type ContentGroup,
@@ -19,6 +19,10 @@ import {
 const tags = ["content"];
 export const revalidate = 5;
 export const maxDuration = 30;
+
+export const metadata = {
+  title: `Profile | ${PAGE_TITLE_PREFIX}`,
+};
 
 const ProfilePage = async () => {
   const { isEnabled: preview } = draftMode();
