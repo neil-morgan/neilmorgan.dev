@@ -4,6 +4,7 @@ describe("isImageUrl", () => {
   it("should return true for valid image URLs", () => {
     expect(isImageUrl("https://example.com/image.png")).toBe(true);
     expect(isImageUrl("https://example.com/path/to/image.jpg")).toBe(true);
+    expect(isImageUrl("https://example.com/path/to/image.jpeg")).toBe(true);
     expect(isImageUrl("https://example.com/path/to/image.svg")).toBe(true);
   });
 
