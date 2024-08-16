@@ -1,1 +1,1 @@
-export { sortProficienciesByPriority } from "./sort-array-by-category-order";
+export { sortProficienciesByPriority } from "./sort-proficiencies-by-priority";
