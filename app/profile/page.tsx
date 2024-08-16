@@ -35,9 +35,7 @@ const ProfilePage = async () => {
   });
 
   const header = pageData.header as ContentGroup;
-  const base64Map = await extractImagesToBase64Map({
-    pageData,
-  });
+  const base64Map = await extractImagesToBase64Map(pageData);
 
   return (
     <Container>
