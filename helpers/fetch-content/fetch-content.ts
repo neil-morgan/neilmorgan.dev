@@ -8,10 +8,6 @@ const {
   CONTENTFUL_PREVIEW_TOKEN,
 } = process.env;
 
-type GraphQLResponse<GraphQLData> =
-  | { data: GraphQLData }
-  | { errors: GraphQLError };
-
 export const fetchContent = async <Result, Variables>({
   document,
   variables,
@@ -41,10 +37,12 @@ export const fetchContent = async <Result, Variables>({
     },
   );
 
-  const result = (await response.json()) as GraphQLResponse<Result>;
+  const result = await response.json();
 
-  if ("errors" in result) {
-    throw new Error(result.errors.message);
+  if (result.errors) {
+    throw new Error(
+      result.errors.map((error: GraphQLError) => error.message).join(", "),
+    );
   }
 
   return result.data;
