@@ -1,4 +1,11 @@
-import React, { useCallback, useState, RefCallback } from "react";
+import {
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+  useMemo,
+  type RefCallback,
+} from "react";
 
 interface IntersectionObserverOptions {
   threshold?: number | number[];
@@ -12,29 +19,39 @@ export const useIntersectionObserver = (
   const { threshold = 1, root = null, rootMargin = "0px" } = options;
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 
-  const previousObserver = React.useRef<IntersectionObserver | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const observerOptions = useMemo(
+    () => ({ threshold, root, rootMargin }),
+    [threshold, root, rootMargin],
+  );
 
   const customRef: RefCallback<any> = useCallback(
     (node: Element | null) => {
-      if (previousObserver.current) {
-        previousObserver.current.disconnect();
-        previousObserver.current = null;
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
 
-      if (node?.nodeType === Node.ELEMENT_NODE) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            setEntry(entry);
-          },
-          { threshold, root, rootMargin },
-        );
+      if (node) {
+        observerRef.current = new IntersectionObserver(([newEntry]) => {
+          setEntry(prevEntry =>
+            prevEntry !== newEntry ? newEntry : prevEntry,
+          );
+        }, observerOptions);
 
-        observer.observe(node);
-        previousObserver.current = observer;
+        observerRef.current.observe(node);
       }
     },
-    [threshold, root, rootMargin],
+    [observerOptions],
   );
+
+  useEffect(() => {
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   return [customRef, entry];
 };
