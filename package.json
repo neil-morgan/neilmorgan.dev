@@ -27,7 +27,7 @@
     "@contentful/rich-text-types": "^16.8.1",
     "@plaiceholder/next": "^3.0.0",
     "@radix-ui/colors": "^3.0.0",
-    "@radix-ui/react-aspect-ratio": "^1.0.3",
+    "@radix-ui/react-aspect-ratio": "^1.1.8",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.1.3",
