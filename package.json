@@ -67,7 +67,7 @@
     "@graphql-codegen/typed-document-node": "^5.0.9",
     "@graphql-codegen/typescript": "^4.1.1",
     "@graphql-codegen/typescript-resolvers": "^4.0.1",
-    "@parcel/watcher": "^2.4.0",
+    "@parcel/watcher": "^2.5.1",
     "@testing-library/dom": "^10.3.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.0",
