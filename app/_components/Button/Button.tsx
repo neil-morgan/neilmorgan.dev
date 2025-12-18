@@ -78,7 +78,7 @@ export const Button = ({
   width = "content",
 }: ButtonProps) => {
   const { addElementRef } = useElementRefs();
-  const elementRef = useRef<HTMLButtonElement | null>(null);
+  const elementRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
   const sizeVariable = createCssSizeVariables(size, sizes);
   const hasOnlyLeftIcon = iconLeft && !loading && !iconRight;
   const hasOnlyRightIcon = !iconLeft && !loading && iconRight;
@@ -110,30 +110,21 @@ export const Button = ({
     addElementRef(elementRef.current);
   }, [addElementRef, disabled, loading, noHighlight]);
 
-  const buttonElement = (
-    <button
-      style={{ ...sizeVariable }}
-      className={combineClassNames(
-        styles.button,
-        styles[`width-${width}`],
-        hasIcon && styles["with-icon"],
-        hasBothIcons && styles["both-icons"],
-        hasOnlyLeftIcon && styles["single-icon-left"],
-        hasOnlyRightIcon && styles["single-icon-right"],
-        isIconSpaceNear && styles["icon-near"],
-        className,
-        shouldHighlight && "highlight",
-        "highlightable"
-      )}
-      onClick={onClick}
-      disabled={loading || disabled}
-      type={shouldRenderNextLink ? undefined : type}
-      formAction={formAction}
-      aria-label={loading && loadingText ? `${loadingText}` : label}
-      aria-disabled={loading || disabled}
-      aria-busy={loading}
-      ref={mergeRefs([elementRef, ref])}
-    >
+  const sharedClassName = combineClassNames(
+    styles.button,
+    styles[`width-${width}`],
+    hasIcon && styles["with-icon"],
+    hasBothIcons && styles["both-icons"],
+    hasOnlyLeftIcon && styles["single-icon-left"],
+    hasOnlyRightIcon && styles["single-icon-right"],
+    isIconSpaceNear && styles["icon-near"],
+    className,
+    shouldHighlight && "highlight",
+    "highlightable"
+  );
+
+  const content = (
+    <>
       {loading && !loadingText && (
         <Spinner
           style={sizeVariable}
@@ -145,17 +136,26 @@ export const Button = ({
         <span className={styles.label}>{loadingText || label}</span>
         {renderIconDirection("right", iconRight)}
       </div>
-    </button>
+    </>
   );
 
   if (shouldRenderNextLink) {
     return (
       <NextLink
+        ref={mergeRefs([
+          elementRef as React.RefObject<HTMLAnchorElement>,
+          ref as React.Ref<HTMLAnchorElement>,
+        ])}
+        style={{ ...sizeVariable }}
+        className={sharedClassName}
+        onClick={onClick}
         href={href as string}
-        style={{ textDecoration: "none" }}
         tabIndex={disabled || loading ? -1 : 0}
+        aria-label={loading && loadingText ? `${loadingText}` : label}
+        aria-disabled={loading || disabled}
+        aria-busy={loading}
       >
-        {buttonElement}
+        {content}
       </NextLink>
     );
   }
@@ -163,17 +163,43 @@ export const Button = ({
   if (isExternalLink && href) {
     return (
       <a
+        ref={mergeRefs([
+          elementRef as React.RefObject<HTMLAnchorElement>,
+          ref as React.Ref<HTMLAnchorElement>,
+        ])}
+        style={{ ...sizeVariable }}
+        className={sharedClassName}
+        onClick={onClick}
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
         tabIndex={disabled || loading ? -1 : 0}
         aria-label={`${label} (opens in new tab)`}
+        aria-disabled={loading || disabled}
+        aria-busy={loading}
       >
-        {buttonElement}
+        {content}
       </a>
     );
   }
 
-  return buttonElement;
+  return (
+    <button
+      ref={mergeRefs([
+        elementRef as React.RefObject<HTMLButtonElement>,
+        ref as React.Ref<HTMLButtonElement>,
+      ])}
+      style={{ ...sizeVariable }}
+      className={sharedClassName}
+      onClick={onClick}
+      disabled={loading || disabled}
+      type={type}
+      formAction={formAction}
+      aria-label={loading && loadingText ? `${loadingText}` : label}
+      aria-disabled={loading || disabled}
+      aria-busy={loading}
+    >
+      {content}
+    </button>
+  );
 };

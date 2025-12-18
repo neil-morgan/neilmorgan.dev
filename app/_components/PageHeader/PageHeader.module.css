@@ -7,6 +7,14 @@
   margin: 0 auto 4rem;
   gap: 1rem;
 
+  > h3 {
+    color: var(--secondary);
+    font-weight: 700;
+
+    font-size: 1rem;
+    letter-spacing: 1px;
+    
+  }
   > h1 {
     color: #ffffff;
     font-weight: 500;

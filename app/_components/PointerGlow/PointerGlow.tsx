@@ -2,7 +2,7 @@
 
 import { useMousePosition } from "@/app/_hooks";
 import { useElementRefs } from "@/app/_providers";
-import { gray } from "@/app/_styles/palette";
+import { steel } from "@/app/_styles/palette";
 
 import styles from "./PointerGlow.module.css";
 
@@ -10,8 +10,8 @@ export const PointerGlow = ({ children }: React.PropsWithChildren) => {
   const { elementProperties } = useElementRefs();
   const radius = 5;
   const { x, y } = useMousePosition();
-  const innerGlow = `radial-gradient(250px at ${x}px ${y}px, ${gray[11]}15, transparent 80%)`;
-  const outerGlow = `radial-gradient(600px at ${x}px ${y}px, ${gray[11]}09, transparent 80%)`;
+  const innerGlow = `radial-gradient(250px at ${x}px ${y}px, #ffffff15, transparent 80%)`;
+  const outerGlow = `radial-gradient(600px at ${x}px ${y}px, #ffffff09, transparent 80%)`;
 
   return (
     <>

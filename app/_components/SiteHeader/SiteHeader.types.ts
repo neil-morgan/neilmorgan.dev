@@ -1,19 +1,14 @@
-import type {
-  LinkFragment,
-  CategoryFragment,
-  UniquePageFragment,
-} from "@/app/_graphql";
+import type { IconNameType } from "@/app/_components/Icon";
 
 export type SiteHeaderProps = {
-  links: ({
-    label?: string | null;
+  links: {
+    label: string;
     href: string;
-  } | null)[];
+  }[];
 
-  social?:
-    | ({
-        label: string;
-        url: string;
-      } | null)[]
-    | undefined;
+  social?: {
+    label: string;
+    url: string;
+    icon: IconNameType;
+  }[];
 };

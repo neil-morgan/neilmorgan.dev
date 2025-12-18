@@ -38,11 +38,12 @@ export const IconButton = ({
   noHighlight = false,
   onClick,
   ref,
+  ariaLabel,
   size = "1rem",
   type = "button",
 }: IconButtonProps) => {
   const { addElementRef } = useElementRefs();
-  const elementRef = useRef<HTMLButtonElement | null>(null);
+  const elementRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
   const sizeVariable = createCssSizeVariables(size, sizes);
   const isExternalLink = !isInternalUrl(href ?? "");
   const shouldHighlight = useMemo(() => !noHighlight, [noHighlight]);
@@ -53,59 +54,82 @@ export const IconButton = ({
     addElementRef(elementRef.current);
   }, [addElementRef, disabled, loading, noHighlight]);
 
-  const buttonElement = (
-    <button
-      ref={mergeRefs([elementRef, ref])}
-      className={combineClassNames(
-        styles.button,
-        className,
-        shouldHighlight && "highlight",
-        "highlightable"
-      )}
-      style={{
-        ...sizeVariable,
-        ...(iconSize && { "--iconSize": `${iconSize}` }),
-      }}
-      onClick={onClick}
-      disabled={loading || disabled}
-      type={shouldRenderNextLink ? undefined : type}
-      aria-disabled={loading || disabled}
-      aria-busy={loading}
-    >
-      {loading && <Spinner style={sizeVariable} className={styles.spinner} />}
+  const sharedClassName = combineClassNames(
+    styles.button,
+    className,
+    shouldHighlight && "highlight",
+    "highlightable"
+  );
 
+  const sharedStyle = {
+    ...sizeVariable,
+    ...(iconSize && { "--iconSize": `${iconSize}` }),
+  };
+
+  const content = (
+    <>
+      {loading && <Spinner style={sizeVariable} className={styles.spinner} />}
       {icon && !loading && (
         <Icon style={sizeVariable} className={styles.icon} name={icon} />
       )}
-    </button>
+    </>
   );
 
   if (shouldRenderNextLink) {
     return (
       <NextLink
+        aria-busy={loading}
+        aria-disabled={loading || disabled}
+        aria-label={ariaLabel}
+        className={sharedClassName}
         href={href as string}
-        style={{ textDecoration: "none" }}
+        onClick={onClick}
+        ref={mergeRefs([elementRef as React.RefObject<HTMLAnchorElement>, ref as React.Ref<HTMLAnchorElement>])}
+        style={sharedStyle}
         tabIndex={disabled || loading ? -1 : 0}
       >
-        {buttonElement}
+        {content}
       </NextLink>
     );
   }
 
   if (isExternalLink && href) {
+    const externalAriaLabel = ariaLabel 
+      ? `${ariaLabel} (opens in new tab)` 
+      : "(opens in new tab)";
+      
     return (
       <a
+        aria-busy={loading}
+        aria-disabled={loading || disabled}
+        aria-label={externalAriaLabel}
+        className={sharedClassName}
         href={href}
-        target="_blank"
+        onClick={onClick}
+        ref={mergeRefs([elementRef as React.RefObject<HTMLAnchorElement>, ref as React.Ref<HTMLAnchorElement>])}
         rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
+        style={sharedStyle}
         tabIndex={disabled || loading ? -1 : 0}
-        aria-label="(opens in new tab)"
+        target="_blank"
       >
-        {buttonElement}
+        {content}
       </a>
     );
   }
 
-  return buttonElement;
+  return (
+    <button
+      aria-busy={loading}
+      aria-disabled={loading || disabled}
+      aria-label={ariaLabel}
+      className={sharedClassName}
+      disabled={loading || disabled}
+      onClick={onClick}
+      ref={mergeRefs([elementRef as React.RefObject<HTMLButtonElement>, ref as React.Ref<HTMLButtonElement>])}
+      style={sharedStyle}
+      type={type}
+    >
+      {content}
+    </button>
+  );
 };

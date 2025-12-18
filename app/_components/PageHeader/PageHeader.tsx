@@ -4,10 +4,18 @@ import styles from "./PageHeader.module.css";
 
 import type { PageHeaderProps } from "./PageHeader.types";
 
-export const PageHeader = ({ slug, title, description }: PageHeaderProps) => (
-  <header className={styles["page-header"]}>
-    <Breadcrumbs crumbs={slug} />
-    <h1>{title}</h1>
-    {description && <p>{description}</p>}
-  </header>
-);
+export const PageHeader = ({
+  slug,
+  title,
+  description,
+  kicker,
+}: PageHeaderProps) => {
+  return (
+    <header className={styles["page-header"]}>
+      <Breadcrumbs crumbs={slug} />
+      {kicker && <h3 className={styles.kicker}>{kicker}</h3>}
+      <h1>{title}</h1>
+      {description && <p>{description}</p>}
+    </header>
+  );
+};

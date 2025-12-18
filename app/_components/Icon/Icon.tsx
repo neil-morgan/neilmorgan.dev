@@ -20,7 +20,7 @@ export const paths = (Object.keys(icons) as Array<keyof typeof icons>).map(
   })
 );
 
-export const Icon = ({ className, name, size, style }: IconProps) => {
+export const Icon = ({ className, name, size = "100%", style }: IconProps) => {
   const sizeVariable = size ? createCssSizeVariables(size, defaultSizes) : {};
 
   return (

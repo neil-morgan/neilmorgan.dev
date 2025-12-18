@@ -8,10 +8,11 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { Components, PageHeader, Link } from "@/app/_components";
 import {
   AllPageSlugsDocument,
-  CategoryContentFragment,
   CategoryDocument,
   PageContentBySlugDocument,
+  type CategoryContentFragment,
   type PageContentLinksFragment,
+  type PageHeaderFragment,
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { isInternalUrl, toSentenceCase } from "@/app/_utils";
@@ -91,11 +92,11 @@ const Page = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
 
   let content: ReactNode = null;
-  let headerProps: {
-    slug: string[];
-    title: string;
-    description?: string | null;
-  } | null = null;
+  let headerProps:
+    | (PageHeaderFragment & {
+        slug: string[];
+      })
+    | null = null;
 
   if (params.slug?.length === 1) {
     const category = toSentenceCase(params.slug[0]);
@@ -108,7 +109,12 @@ const Page = async ({ params: pageParams }: PageParams) => {
     const categoriesContent = categoryData?.pageCollection?.items;
     console.log("categoriesContent:", categoriesContent);
     if (categoriesContent && categoriesContent.length > 0) {
-      headerProps = { slug: params.slug, title: category };
+      headerProps = {
+        slug: params.slug,
+        title: category,
+        kicker: null,
+        description: null,
+      };
       content = (
         <Category content={categoriesContent as CategoryContentFragment[]} />
       );
@@ -130,6 +136,7 @@ const Page = async ({ params: pageParams }: PageParams) => {
       headerProps = {
         slug: params.slug || [],
         title: page.title,
+        kicker: page.kicker,
         description: page.description,
       };
     }

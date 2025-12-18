@@ -1,4 +1,4 @@
-query HeaderContent {
+query SiteNavListContent {
   social: linkCollection(where: { label_in: ["LinkedIn", "Github"] }) {
     items {
       ...Link

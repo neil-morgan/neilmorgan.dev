@@ -24,6 +24,6 @@ export interface ButtonProps {
   variant?: ButtonVariant;
   width?: ButtonWidth;
   formAction?: string | ((formData: FormData) => void | Promise<void>);
-  ref?: React.Ref<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
   noHighlight?: boolean;
 }

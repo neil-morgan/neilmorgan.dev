@@ -1,4 +1,14 @@
 fragment Link on Link {
   label
   url
+  icon
+}
+
+fragment Category on Page {
+  category
+}
+
+fragment PageMeta on Page {
+  metaTitle
+  slug
 }

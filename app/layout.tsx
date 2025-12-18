@@ -5,7 +5,7 @@ import { Inter, Fira_Mono } from "next/font/google";
 import {
   IconDefs,
   PointerGlow,
-  SiteHeaderServer as Header,
+  SiteHeader,
   SiteFooterServer as Footer,
 } from "@/app/_components";
 import { ElementRefsProvider } from "@/app/_providers";
@@ -42,7 +42,7 @@ export default function RootLayout({
       >
         <ElementRefsProvider>
           <IconDefs />
-          <Header />
+          <SiteHeader />
           {children}
           <Footer />
           <PointerGlow />

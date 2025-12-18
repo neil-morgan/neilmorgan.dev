@@ -41,9 +41,8 @@ fragment PageContentLinks on PageContentLinks {
 query PageContentBySlug($slug: String, $preview: Boolean = false) {
   pageCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
     items {
+      ...PageHeader
       slug
-      title
-      description
       metaTitle
       content {
         json

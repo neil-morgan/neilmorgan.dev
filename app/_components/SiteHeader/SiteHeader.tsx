@@ -1,28 +1,54 @@
-import { IconButton, Button } from "@/app/_components";
+import { IconButton, Button, SiteNavList, Popover } from "@/app/_components";
+import { SiteNavContent } from "@/app/_content";
 
 import styles from "./SiteHeader.module.css";
 
-import type { SiteHeaderProps } from "./SiteHeader.types";
+export const SiteHeader = async () => (
+  <SiteNavContent>
+    {({ allLinks, social }) => (
+      <header className={styles["site-header"]}>
+        <ul>
+          <IconButton icon="siteLogo" iconSize={0.6} href="/" />
+          {allLinks.map((link, index) =>
+            link ? (
+              <Button
+                className={styles.desktop}
+                key={index}
+                label={link.label}
+                href={link.href}
+              />
+            ) : null
+          )}
+        </ul>
 
-export const SiteHeader = ({ links, social }: SiteHeaderProps) => {
-  return (
-    <header className={styles["site-header"]}>
-      <ul>
-        <IconButton icon="siteLogo" iconSize={0.6} href="/" />
-        {links.map((link, index) =>
-          link ? (
-            <Button key={index} label={link.label} href={link.href} />
-          ) : null
-        )}
-      </ul>
+        <ul>
+          {social?.map((link, index) =>
+            link ? (
+              <IconButton
+                key={index}
+                href={link.url}
+                icon={link.icon}
+                className={styles.desktop}
+                iconSize={0.5}
+              />
+            ) : null
+          )}
+        </ul>
 
-      <ul>
-        {social?.map((link, index) =>
-          link ? (
-            <Button key={index} label={link.label} href={link.url} />
-          ) : null
-        )}
-      </ul>
-    </header>
-  );
-};
+        <Popover
+          className={styles.mobile}
+          trigger={
+            <IconButton
+              className={styles.mobile}
+              icon="menu"
+              iconSize={0.5}
+              ariaLabel="Open Menu"
+            />
+          }
+        >
+          <SiteNavList />
+        </Popover>
+      </header>
+    )}
+  </SiteNavContent>
+);

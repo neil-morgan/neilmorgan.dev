@@ -5,6 +5,7 @@ export type IconButtonVariant = "solid" | "bordered" | "ghost";
 export type IconButtonType = "button" | "submit" | "reset";
 
 export interface IconButtonProps {
+  ariaLabel?: string;
   className?: string;
   disabled?: boolean;
   href?: string;
@@ -16,7 +17,7 @@ export interface IconButtonProps {
   type?: IconButtonType;
   variant?: IconButtonVariant;
   noHighlight?: boolean;
-  ref?: React.Ref<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export interface IconButtonStoryParams {
