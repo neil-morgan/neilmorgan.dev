@@ -1,0 +1,21 @@
+.page-header {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--site-width);
+  padding: 0 2rem;
+  width: 100%;
+  margin: 0 auto 4rem;
+  gap: 1rem;
+
+  > h1 {
+    color: #ffffff;
+    font-weight: 500;
+    margin: 0;
+    font-size: 3.5rem;
+  }
+  > p {
+    max-width: 40rem;
+    font-size: 1.25rem;
+    color: var(--text);
+  }
+}

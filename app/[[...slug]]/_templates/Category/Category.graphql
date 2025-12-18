@@ -1,0 +1,18 @@
+fragment CategoryContent on Page {
+  slug
+  category
+  description
+  title
+}
+
+query Category($preview: Boolean = false, $category: String) {
+  pageCollection(
+    where: { category: $category }
+    limit: 100
+    preview: $preview
+  ) {
+    items {
+      ...CategoryContent
+    }
+  }
+}

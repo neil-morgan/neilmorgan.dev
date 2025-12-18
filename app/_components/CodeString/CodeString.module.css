@@ -1,0 +1,9 @@
+.container {
+  position: relative;
+  color: red;
+  background: blue;
+  border-radius: 8px;
+  padding: 4px 8px 12px;
+  font-family: "Fira Mono", monospace;
+  letter-spacing: -0.025rem;
+}

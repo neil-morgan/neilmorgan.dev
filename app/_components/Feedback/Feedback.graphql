@@ -1,0 +1,15 @@
+fragment Feedback on Feedback {
+  __typename
+  sys {
+    id
+  }
+  author
+  authorRole
+  authorImage {
+    url
+    description
+  }
+  date
+  comments 
+  url
+}

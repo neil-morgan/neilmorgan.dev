@@ -1,0 +1,10 @@
+.container {
+  max-width: var(--site-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  &.fullWidth {
+    max-width: 100%;
+  }
+}

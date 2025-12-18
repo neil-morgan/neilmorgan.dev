@@ -1,0 +1,36 @@
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: ease 200ms;
+  color: #ffffff;
+  height: calc(var(--size) * 3);
+  width: calc(var(--size) * 3);
+  font-size: var(--size);
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-base);
+    color: var(--color-default);
+  }
+
+  .spinner,
+  .success {
+    position: absolute;
+  }
+
+  .icon {
+    height: calc(100% * var(--iconSize));
+    width: 100%;
+    margin: auto;
+    display: block;
+  }
+
+  .spinner {
+    height: calc(var(--size) * (4 / 2.65));
+    width: calc(var(--size) * (4 / 2.65));
+  }
+}

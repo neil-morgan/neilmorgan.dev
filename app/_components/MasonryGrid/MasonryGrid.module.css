@@ -1,0 +1,8 @@
+.container {
+  margin-top: 10px;
+
+  > div,
+  > div > div {
+    gap: inherit !important;
+  }
+}

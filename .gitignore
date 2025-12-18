@@ -19,6 +19,10 @@
 
 # production
 /build
+/app/_styles/colors.css
+
+# generated files
+/app/_graphql/generated.ts
 
 # misc
 .DS_Store

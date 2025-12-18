@@ -1,0 +1,14 @@
+fragment Skill on Skill {
+  __typename
+  sys {
+    id
+  }
+  title
+  date
+  proficiency
+  slug
+  icon {
+    url
+    description
+  }
+}

@@ -1,0 +1,4 @@
+fragment Link on Link {
+  label
+  url
+}
