@@ -4,9 +4,30 @@
 // import type { FooterProps } from "./SiteFooter.types";
 // import { Logo, NavLists } from "@/components/molecules";
 // import { Container, Text } from "@/components/atoms";
+import { IconButton, SiteNavList } from "@/app/_components";
+import { SiteNavContent } from "@/app/_content";
 
-export const SiteFooter = ({ content }) => {
-  return <div>Site Footer Component</div>;
+import styles from "./SiteFooter.module.css";
+
+export const SiteFooter = () => {
+  return (
+    <SiteNavContent>
+      {() => (
+        <footer className={styles["site-footer"]}>
+          <div className={styles["footer-credentials"]}>
+            <IconButton icon="siteLogo" iconSize={0.6} href="/" />
+            <h3>Neil Morgan</h3>
+            <p>
+              All rights reserved
+              <br />© 2024
+            </p>
+          </div>
+
+          <SiteNavList />
+        </footer>
+      )}
+    </SiteNavContent>
+  );
   // <FooterElement>
   //   <Container>
   //     <FooterItems>

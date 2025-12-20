@@ -2,32 +2,22 @@ import type { ReactNode } from "react";
 
 import { notFound } from "next/navigation";
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-
-import { Components, PageHeader, Link } from "@/app/_components";
+import { PageHeader, Richtext } from "@/app/_components";
+import type { RichtextLinksType } from "@/app/_components/Richtext";
 import {
   AllPageSlugsDocument,
   CategoryDocument,
   PageContentBySlugDocument,
   type CategoryContentFragment,
-  type PageContentLinksFragment,
   type PageHeaderFragment,
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
-import { isInternalUrl, toSentenceCase } from "@/app/_utils";
+import { toSentenceCase } from "@/app/_utils";
 
-import {
-  getRichtextEntry,
-  renderMark,
-  removeParagraphTags,
-  renderText,
-  getNodeValue,
-} from "./_helpers";
 import { Category } from "./_templates";
 import styles from "./Page.module.css";
 
-import type { RichtextNodeType, PageParams } from "./Page.types";
+import type { PageParams } from "./Page.types";
 
 export const dynamicParams = true;
 
@@ -105,14 +95,13 @@ const Page = async ({ params: pageParams }: PageParams) => {
       document: CategoryDocument,
       variables: { category },
     });
-
     const categoriesContent = categoryData?.pageCollection?.items;
-    console.log("categoriesContent:", categoriesContent);
     if (categoriesContent && categoriesContent.length > 0) {
       headerProps = {
         slug: params.slug,
         title: category,
         kicker: null,
+        image: null,
         description: null,
       };
       content = (
@@ -130,127 +119,20 @@ const Page = async ({ params: pageParams }: PageParams) => {
     });
     if (!data || data?.pageCollection?.items.length === 0) return notFound();
     const page = data?.pageCollection?.items[0];
-    const pageContentLinks = data?.pageCollection?.items[0]?.content
-      ?.links as PageContentLinksFragment;
     if (page?.title) {
       headerProps = {
         slug: params.slug || [],
         title: page.title,
         kicker: page.kicker,
+        image: page.image,
         description: page.description,
       };
     }
     content = page?.content && (
-      <div>
-        {documentToReactComponents(page.content.json, {
-          renderMark,
-          renderText,
-          renderNode: {
-            [BLOCKS.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
-              if (!page.content?.links) return null;
-              const entry = getRichtextEntry(pageContentLinks, node);
-              return entry?.sys.id ? (
-                <Components id={entry.sys.id} __typename={entry.__typename} />
-              ) : null;
-            },
-
-            // [BLOCKS.EMBEDDED_ASSET]: ({ data }: RichtextNodeType) => {
-            //   if (!content.links) return null;
-            //   const { url, description, title } = getBlockMap(content.links).get(
-            //     data.target.sys.id
-            //   );
-            //   return <img />;
-            // },
-
-            // [INLINES.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
-            //   if (!content.links) {
-            //     return null;
-            //   }
-            //   const { inlineBlockMap } = getBlockMaps(content.links);
-            //   const { __typename, slug, title } = inlineBlockMap.get(
-            //     node.data.target.sys.id
-            //   );
-            // },
-
-            [BLOCKS.HEADING_1]: (
-              node: RichtextNodeType,
-              children: ReactNode
-            ) => {
-              const value = getNodeValue(node);
-              if (!value) return null;
-              return <h1 id={value}>{children}</h1>;
-            },
-
-            [BLOCKS.HEADING_2]: (
-              node: RichtextNodeType,
-              children: ReactNode
-            ) => {
-              const value = getNodeValue(node);
-              if (!value) return null;
-              return <h2 id={value}>{children}</h2>;
-            },
-
-            [BLOCKS.PARAGRAPH]: (
-              node: RichtextNodeType,
-              children: ReactNode
-            ) => {
-              const value = getNodeValue(node);
-              if (node.content.length === 1 && !value) return null;
-              return <p>{children}</p>;
-            },
-
-            [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-              <ul>{children}</ul>
-            ),
-
-            [BLOCKS.OL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
-              <ol>{children}</ol>
-            ),
-
-            [BLOCKS.LIST_ITEM]: (node: RichtextNodeType) => {
-              const children = removeParagraphTags(node, "li");
-              return <li>{children}</li>;
-            },
-
-            [BLOCKS.HR]: () => <hr />,
-
-            [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
-              const children = removeParagraphTags(node, "quote");
-              return <blockquote>{children}</blockquote>;
-            },
-
-            [BLOCKS.TABLE]: (_: RichtextNodeType, children: ReactNode) => (
-              <table>{children}</table>
-            ),
-
-            [BLOCKS.TABLE_ROW]: (_: RichtextNodeType, children: ReactNode) => (
-              <tr>{children}</tr>
-            ),
-
-            [BLOCKS.TABLE_HEADER_CELL]: (node: RichtextNodeType) => {
-              const children = removeParagraphTags(node, "th");
-              return <th>{children}</th>;
-            },
-
-            [BLOCKS.TABLE_CELL]: (node: RichtextNodeType) => {
-              const children = removeParagraphTags(node, "td");
-              return <td>{children}</td>;
-            },
-
-            [INLINES.HYPERLINK]: (
-              node: RichtextNodeType,
-              children: ReactNode
-            ) => (
-              <Link
-                href={node.data.uri}
-                {...(!isInternalUrl(node.data.uri) && { target: "_blank" })}
-              >
-                {children}
-              </Link>
-            ),
-          },
-        })}
-      </div>
+      <Richtext
+        json={page.content.json}
+        links={page.content.links as RichtextLinksType}
+      />
     );
   }
 

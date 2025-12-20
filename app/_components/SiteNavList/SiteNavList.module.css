@@ -7,7 +7,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-right: 2rem;
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
 }
 
 .listHeading {
@@ -34,4 +36,7 @@
   font-weight: 500;
   line-height: 1.5rem;
   transition: color 0.2s ease-in-out;
+  &:hover {
+    text-decoration: underline;
+  }
 }

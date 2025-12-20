@@ -8,8 +8,7 @@ import styles from "./AspectImage.module.css";
 
 import type { AspectImageProps } from "./types";
 
-export const AspectImage = ({
-  blurDataUrl,
+export const AspectImage = async ({
   borderRadius = "0.25rem",
   className,
   description,
@@ -18,25 +17,21 @@ export const AspectImage = ({
   style,
   url,
   width,
-}: React.PropsWithChildren<AspectImageProps>) => (
-  <div
-    className={combineClassNames(styles.container, className)}
-    style={
-      {
-        maxWidth: `${width}px`,
-        "--border-radius": borderRadius,
-        ...style,
-      } as React.CSSProperties
-    }
-  >
-    <Root ratio={ratio}>
-      <Image
-        src={url}
-        alt={description}
-        fill
-        objectFit={fit}
-        {...(blurDataUrl && { placeholder: "blur", blurDataURL: blurDataUrl })}
-      />
-    </Root>
-  </div>
-);
+}: React.PropsWithChildren<AspectImageProps>) => {
+  return (
+    <div
+      className={combineClassNames(styles.container, className)}
+      style={
+        {
+          maxWidth: `${width}px`,
+          "--border-radius": borderRadius,
+          ...style,
+        } as React.CSSProperties
+      }
+    >
+      <Root ratio={ratio}>
+        <Image src={url} alt={description} fill objectFit={fit} />
+      </Root>
+    </div>
+  );
+};

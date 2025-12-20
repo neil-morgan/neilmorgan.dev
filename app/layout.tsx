@@ -6,7 +6,7 @@ import {
   IconDefs,
   PointerGlow,
   SiteHeader,
-  SiteFooterServer as Footer,
+  SiteFooter,
 } from "@/app/_components";
 import { ElementRefsProvider } from "@/app/_providers";
 
@@ -44,7 +44,7 @@ export default function RootLayout({
           <IconDefs />
           <SiteHeader />
           {children}
-          <Footer />
+          <SiteFooter />
           <PointerGlow />
         </ElementRefsProvider>
       </body>

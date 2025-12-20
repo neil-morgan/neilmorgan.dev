@@ -2,4 +2,8 @@ fragment PageHeader on Page {
   title
   kicker
   description
+  image {
+    url
+    description
+  }
 }

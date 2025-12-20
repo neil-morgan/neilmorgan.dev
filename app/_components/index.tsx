@@ -26,6 +26,7 @@ export * from "./NoticePage";
 export * from "./PageHeader";
 export * from "./PointerGlow";
 export * from "./Popover";
+export * from "./Richtext";
 export * from "./Section";
 export * from "./SiteFooter";
 export * from "./SiteHeader";

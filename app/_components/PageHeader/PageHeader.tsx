@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "@/app/_components";
+import { Breadcrumbs, AspectImage } from "@/app/_components";
 
 import styles from "./PageHeader.module.css";
 
@@ -9,13 +9,16 @@ export const PageHeader = ({
   title,
   description,
   kicker,
+  image,
 }: PageHeaderProps) => {
   return (
     <header className={styles["page-header"]}>
-      <Breadcrumbs crumbs={slug} />
-      {kicker && <h3 className={styles.kicker}>{kicker}</h3>}
-      <h1>{title}</h1>
-      {description && <p>{description}</p>}
+      <div>
+        <Breadcrumbs crumbs={slug} />
+        {kicker && <h3 className={styles.kicker}>{kicker}</h3>}
+        <h1>{title}</h1>
+        {description && <p>{description}</p>}
+      </div>
     </header>
   );
 };
