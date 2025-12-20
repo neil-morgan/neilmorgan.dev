@@ -1,11 +1,14 @@
-.page-header {
+.pageHeader {
   display: flex;
-  flex-direction: column;
+
   max-width: var(--site-width);
   padding: 0 2rem;
   width: 100%;
   margin: 0 auto 4rem;
+  justify-content: space-between;
+}
 
+.headerText {
   > h3 {
     color: var(--secondary);
     font-weight: 700;
@@ -24,4 +27,8 @@
     font-size: 1.25rem;
     color: var(--text);
   }
+}
+
+.headerImage {
+  margin: 0 auto;
 }

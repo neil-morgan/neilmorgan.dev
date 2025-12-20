@@ -14,6 +14,7 @@ import {
   renderText,
   getNodeValue,
 } from "./helpers";
+import styles from "./Richtext.module.css";
 
 import type { RichtextNodeType, RichtextProps } from "./Richtext.types";
 
@@ -56,19 +57,67 @@ export const Richtext = ({ links, json }: RichtextProps) => (
         [BLOCKS.HEADING_1]: (node: RichtextNodeType, children: ReactNode) => {
           const value = getNodeValue(node);
           if (!value) return null;
-          return <h1 id={value}>{children}</h1>;
+          return (
+            <h1 id={value} className={styles.h1}>
+              {children}
+            </h1>
+          );
         },
 
         [BLOCKS.HEADING_2]: (node: RichtextNodeType, children: ReactNode) => {
           const value = getNodeValue(node);
           if (!value) return null;
-          return <h2 id={value}>{children}</h2>;
+          return (
+            <h2 id={value} className={styles.h2}>
+              {children}
+            </h2>
+          );
+        },
+
+        [BLOCKS.HEADING_3]: (node: RichtextNodeType, children: ReactNode) => {
+          const value = getNodeValue(node);
+          if (!value) return null;
+          return (
+            <h3 id={value} className={styles.h3}>
+              {children}
+            </h3>
+          );
+        },
+
+        [BLOCKS.HEADING_4]: (node: RichtextNodeType, children: ReactNode) => {
+          const value = getNodeValue(node);
+          if (!value) return null;
+          return (
+            <h4 id={value} className={styles.h4}>
+              {children}
+            </h4>
+          );
+        },
+
+        [BLOCKS.HEADING_5]: (node: RichtextNodeType, children: ReactNode) => {
+          const value = getNodeValue(node);
+          if (!value) return null;
+          return (
+            <h5 id={value} className={styles.h5}>
+              {children}
+            </h5>
+          );
+        },
+
+        [BLOCKS.HEADING_6]: (node: RichtextNodeType, children: ReactNode) => {
+          const value = getNodeValue(node);
+          if (!value) return null;
+          return (
+            <h6 id={value} className={styles.h6}>
+              {children}
+            </h6>
+          );
         },
 
         [BLOCKS.PARAGRAPH]: (node: RichtextNodeType, children: ReactNode) => {
           const value = getNodeValue(node);
           if (node.content.length === 1 && !value) return null;
-          return <p>{children}</p>;
+          return <p className={styles.p}>{children}</p>;
         },
 
         [BLOCKS.UL_LIST]: (_: RichtextNodeType, children: ReactNode) => (
@@ -88,7 +137,11 @@ export const Richtext = ({ links, json }: RichtextProps) => (
 
         [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
           const children = removeParagraphTags(node, "quote");
-          return <blockquote>{children}</blockquote>;
+          return (
+            <blockquote className={styles.blockquote}>
+              <div>{children}</div>
+            </blockquote>
+          );
         },
 
         [BLOCKS.TABLE]: (_: RichtextNodeType, children: ReactNode) => (

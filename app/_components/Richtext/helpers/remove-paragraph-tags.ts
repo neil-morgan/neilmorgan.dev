@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -9,10 +7,9 @@ import { renderMark } from ".";
 
 import type { RichtextNodeType } from "../Richtext.types";
 
-
 export const removeParagraphTags = (
   node: RichtextNodeType,
-  element: string,
+  element: string
 ) => {
   const elements: { [key: string]: string } = {
     li: BLOCKS.LIST_ITEM,

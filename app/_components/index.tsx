@@ -31,6 +31,6 @@ export * from "./Section";
 export * from "./SiteFooter";
 export * from "./SiteHeader";
 export * from "./SiteLogo";
+export * from "./SiteNavList";
 export * from "./Skill";
 export * from "./Spinner";
-export * from "./SiteNavList";
