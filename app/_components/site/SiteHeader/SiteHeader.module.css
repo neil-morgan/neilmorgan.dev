@@ -1,0 +1,32 @@
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--site-width);
+  width: 100%;
+  margin: 2rem auto 0;
+  color: #ffffff;
+  padding: 0 var(--site-padding-desktop);
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+
+  @media (max-width: env(breakpoint-md)) {
+    padding: 0 var(--site-padding-mobile);
+    margin: 1rem auto 0;
+  }
+}
+
+.desktop {
+  display: none;
+  @media (min-width: env(breakpoint-md)) {
+    display: flex;
+  }
+}
+
+.mobile {
+  display: flex;
+  @media (min-width: env(breakpoint-md)) {
+    display: none;
+  }
+}

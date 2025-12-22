@@ -19,7 +19,7 @@
 
 # production
 /build
-/app/_styles/colors.css
+/app/_styles/styles.css
 
 # generated files
 /app/_graphql/generated.ts

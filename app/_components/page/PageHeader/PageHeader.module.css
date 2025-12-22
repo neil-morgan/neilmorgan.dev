@@ -1,0 +1,42 @@
+.pageHeader {
+  max-width: var(--site-width);
+  padding: 0 var(--site-padding-desktop);
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  @media (max-width: env(breakpoint-md)) {
+    padding: 0 var(--site-padding-mobile);
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+.headerText {
+  width: 100%;
+  > h3 {
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  > h1 {
+    color: #ffffff;
+    font-weight: 500;
+    margin: 0.25rem 0 1rem;
+    font-size: 3.5rem;
+  }
+  > p {
+    max-width: 40rem;
+    font-size: 1.25rem;
+    color: var(--text);
+    @media (max-width: env(breakpoint-md)) {
+      max-width: 100%;
+    }
+  }
+}
+
+.headerImage {
+  margin: 0 auto;
+}

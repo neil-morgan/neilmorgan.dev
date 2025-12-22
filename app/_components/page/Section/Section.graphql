@@ -1,0 +1,30 @@
+fragment SectionFragment on Section {
+  title
+  layout
+  fullWidth
+  contentCollection(limit: 100) {
+    items {
+      ... on Feedback {
+        ...Feedback
+      }
+      ... on Skill {
+        ...Skill
+      }
+      ... on SellingPoint {
+        ...SellingPoint
+      }
+    }
+  }
+}
+
+query SectionContent($preview: Boolean = false, $id: String!) {
+  section: sectionCollection(
+    limit: 1
+    where: { sys: { id: $id } }
+    preview: $preview
+  ) {
+    items {
+      ...SectionFragment
+    }
+  }
+}

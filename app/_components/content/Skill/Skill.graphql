@@ -1,0 +1,7 @@
+fragment Skill on Skill {
+  __typename
+  sys {
+    id
+  }
+  
+}

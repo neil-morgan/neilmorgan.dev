@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { IconNameType } from "@/app/_components/Icon";
+import { IconNameType } from "@/app/_components/common/Icon";
 
 export type SiteNavContentData = {
   allLinks: Array<{ label: string; href: string }>;

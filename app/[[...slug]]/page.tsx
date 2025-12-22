@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 
 import { PageHeader, Richtext } from "@/app/_components";
-import type { RichtextLinksType } from "@/app/_components/Richtext";
+import type { RichtextLinksType } from "@/app/_components/common/Richtext";
 import {
   AllPageSlugsDocument,
   CategoryDocument,

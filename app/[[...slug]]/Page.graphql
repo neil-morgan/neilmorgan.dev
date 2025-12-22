@@ -25,6 +25,12 @@ fragment PageContentLinks on PageContentLinks {
           id
         }
       }
+      ... on SellingPoint {
+        __typename
+        sys {
+          id
+        }
+      }
     }
   }
   assets {

@@ -25,11 +25,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   > main {
-    margin: 4rem auto;
+    margin: 6rem auto;
     width: 100%;
     display: flex;
     flex: 1;
     flex-direction: column;
+    @media (max-width: env(breakpoint-md)) {
+      margin: 4rem auto;
+    }
   }
 }
 

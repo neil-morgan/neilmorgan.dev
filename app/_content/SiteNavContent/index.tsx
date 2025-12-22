@@ -1,6 +1,6 @@
 import { cloneElement, ReactElement } from "react";
 
-import { IconNameType } from "@/app/_components/Icon";
+import { IconNameType } from "@/app/_components/common/Icon";
 import { HeaderContentDocument } from "@/app/_graphql";
 import { fetchContent } from "@/app/_helpers";
 

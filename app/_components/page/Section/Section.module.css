@@ -1,0 +1,23 @@
+.container {
+  max-width: var(--site-width);
+  width: 100%;
+  margin: 6rem auto 8rem;
+  padding: 0 2rem;
+  &.fullWidth {
+    max-width: 100%;
+  }
+  @media (max-width: env(breakpoint-md)) {
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+}
+
+.threeColumnGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  @media (max-width: env(breakpoint-md)) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
