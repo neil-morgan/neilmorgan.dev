@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  height: 5.25vw;
+
+  &.reverse {
+    transform: rotateZ(180deg);
+  }
+}
+.svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

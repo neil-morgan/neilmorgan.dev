@@ -9,12 +9,11 @@ export const SellingPoint = ({
   description,
   icon,
 }: SellingPointProps) => {
-  console.log(title);
   return (
     <div className={styles.sellingPoint}>
       <Icon name={icon} size="3rem" />
-      <h3>{title}</h3>
-      <p>{description}</p>
+      {/* <h3>{title}</h3> */}
+      {/* <p>{description}</p> */}
     </div>
   );
 };

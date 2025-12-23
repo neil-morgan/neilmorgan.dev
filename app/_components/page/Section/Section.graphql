@@ -1,7 +1,17 @@
-fragment SectionFragment on Section {
+fragment Page on Page {
   title
-  layout
+  slug
+}
+
+fragment Section on Section {
+  breakpoint
+  columns
+  featured
   fullWidth
+  gap
+  layout
+  margin
+  title
   contentCollection(limit: 100) {
     items {
       ... on Feedback {
@@ -12,6 +22,9 @@ fragment SectionFragment on Section {
       }
       ... on SellingPoint {
         ...SellingPoint
+      }
+      ... on Page {
+        ...Page
       }
     }
   }
@@ -24,7 +37,7 @@ query SectionContent($preview: Boolean = false, $id: String!) {
     preview: $preview
   ) {
     items {
-      ...SectionFragment
+      ...Section
     }
   }
 }

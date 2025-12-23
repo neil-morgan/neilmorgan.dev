@@ -3,12 +3,12 @@
   padding: 0 var(--site-padding-desktop);
   display: flex;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   justify-content: space-between;
   @media (max-width: env(breakpoint-md)) {
     padding: 0 var(--site-padding-mobile);
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
   }
 }
 

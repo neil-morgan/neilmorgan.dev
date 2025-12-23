@@ -1,4 +1,11 @@
-import { Feedback, Skill, MasonryGrid, SellingPoint } from "@/app/_components";
+import {
+  Feedback,
+  Skill,
+  MasonryGrid,
+  SellingPoint,
+  BackgroundSlice,
+  ConditionalWrapper,
+} from "@/app/_components";
 import { SectionContentDocument } from "@/app/_graphql";
 import { fetchContent } from "@/app/_helpers";
 import { combineClassNames } from "@/app/_utils";
@@ -11,10 +18,7 @@ const layoutMap = {
   masonry: (content: React.ReactNode) => (
     <MasonryGrid gutter="2rem">{content}</MasonryGrid>
   ),
-  "3-column": (content: React.ReactNode) => (
-    <div className={styles.threeColumnGrid}>{content}</div>
-  ),
-  default: (content: React.ReactNode) => <div>{content}</div>,
+  default: (content: React.ReactNode) => <>{content}</>,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,8 +45,22 @@ export const SectionServer = async ({ id }: SectionProps) => {
     variables: { id },
   });
 
-  const { title, layout, fullWidth, contentCollection } =
-    section?.items[0] || {};
+  const {
+    breakpoint,
+    columns,
+    contentCollection,
+    featured,
+    fullWidth,
+    gap,
+    layout,
+    margin,
+    title,
+  } = section?.items[0] || {};
+
+  const sectionStyles = {
+    "--margin": `${margin}rem`,
+    "--gap": `${gap}rem`,
+  } as React.CSSProperties;
 
   const sortedContentByDate = [...(contentCollection?.items || [])].sort(
     (a, b) => {
@@ -68,11 +86,21 @@ export const SectionServer = async ({ id }: SectionProps) => {
     <section
       className={combineClassNames(
         styles.container,
-        fullWidth && styles.fullWidth
+        styles[`columns-${columns || 1}`],
+        featured && styles.featured,
+        (fullWidth || featured) && styles["full-width"]
       )}
+      style={sectionStyles}
     >
-      {title && <h3>{title}</h3>}
-      {layoutMap[finalLayoutKey](content)}
+      {featured && <BackgroundSlice />}
+      <ConditionalWrapper
+        condition={!!featured}
+        wrapper={(children) => <div className={styles.body}>{children}</div>}
+      >
+        {title && <h3>{title}</h3>}
+        {layoutMap[finalLayoutKey](content)}
+      </ConditionalWrapper>
+      {featured && <BackgroundSlice reverse />}
     </section>
   );
 };

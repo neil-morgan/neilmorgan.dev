@@ -4,14 +4,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-colors-css.mjs --watch & next dev",
+    "dev": "node scripts/generate-styles-css.mjs --watch & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "generate:colors": "node scripts/generate-styles-css.mjs",
-    "generate:colors:watch": "node scripts/generate-styles-css.mjs --watch",
+    "generate:styles": "node scripts/generate-styles-css.mjs",
+    "generate:styles:watch": "node scripts/generate-styles-css.mjs --watch",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w"
   },
