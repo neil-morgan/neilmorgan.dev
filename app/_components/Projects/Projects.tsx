@@ -1,4 +1,4 @@
-import { Card } from "@/app/_components";
+import { Card, Link } from "@/app/_components";
 import { ProjectsContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 
@@ -21,6 +21,9 @@ export const Projects = async () => {
           ) : null
         )}
       </div>
+      <Link href="/projects" className={styles["see-all"]}>
+        See All
+      </Link>
     </section>
   );
 };

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  
 }
 
 .link-group-grid {
@@ -15,4 +16,9 @@
   padding: 1rem;
   gap: 1rem;
   flex-direction: column;
+}
+
+.see-all {
+  align-self: center;
+  
 }

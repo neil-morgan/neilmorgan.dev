@@ -1,15 +1,15 @@
 import NextLink from "next/link";
 
-import { isInternalUrl } from "@/app/_utils";
+import { isInternalUrl, combineClassNames } from "@/app/_utils";
 
 import styles from "./Link.module.css";
 
 import type { LinkProps } from "./types";
 
-export const Link = ({ target, href, children }: LinkProps) => {
+export const Link = ({ target, href, children, className }: LinkProps) => {
   const props = {
     href,
-    className: styles.link,
+    className: combineClassNames(styles.link, className),
     ...(target && { target }),
   };
   return isInternalUrl(href) ? (

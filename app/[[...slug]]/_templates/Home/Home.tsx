@@ -10,20 +10,30 @@ import {
   Projects,
   Skills,
 } from "@/app/_components";
-import { PageContentBySlugDocument } from "@/app/_graphql/generated";
+import {
+  PageContentBySlugDocument,
+  HomeContentDocument,
+} from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 
 import styles from "./Home.module.css";
 
 export const Home = async () => {
-  const pageData = await fetchContent({
-    document: PageContentBySlugDocument,
-    variables: {
-      slug: "/",
-    },
-  });
+  const [pageData, homeData] = await Promise.all([
+    fetchContent({
+      document: PageContentBySlugDocument,
+      variables: {
+        limit: 3,
+        slug: "/",
+      },
+    }),
+    fetchContent({
+      document: HomeContentDocument,
+    }),
+  ]);
 
   const page = pageData?.pageCollection?.items[0];
+  const { uniquePages, categories } = homeData;
   if (!page) return notFound();
 
   return (
@@ -36,9 +46,13 @@ export const Home = async () => {
           and drive business success.
         </p>
         <nav>
-          <Button href="/about" label="FEEDBACK" size="xs" />
-          <Button href="/about" label="FOOBAR" size="xs" />
-          <Button href="/about" label="BAZQUX" size="xs" />
+          <Button
+            href="mailto:neilmorgan.dev@gmail.com"
+            label="CONTACT"
+            size="xs"
+            iconRight="envelope"
+          />
+          <Button href="/about" label="RÉSUMÉ" size="xs" iconRight="file" />
         </nav>
         <div>
           <IconButton icon="github" iconSize={0.5} size="xs" />

@@ -1,6 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 
-import { Card, AspectImage, Icon } from "@/app/_components";
+import { Card, AspectImage, Icon, Link } from "@/app/_components";
 import { ExperienceContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { formatDate } from "@/app/_utils/format-date/format-date";
@@ -10,6 +10,7 @@ import styles from "./Experience.module.css";
 export const Experience = async () => {
   const { experiences } = await fetchContent({
     document: ExperienceContentDocument,
+    variables: { preview: false, limit: 3 },
   });
 
   return (
@@ -72,6 +73,9 @@ export const Experience = async () => {
           </Card>
         ) : null;
       })}
+      <Link href="/experience" className={styles["see-all"]}>
+        See All
+      </Link>
     </section>
   );
 };

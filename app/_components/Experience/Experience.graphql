@@ -1,9 +1,9 @@
-query ExperienceContent($preview: Boolean) {
+query ExperienceContent($preview: Boolean, $limit: Int = 20) {
   experiences: pageCollection(
     preview: $preview
     order: date_DESC
     where: { category: "Experience" }
-    limit: 20
+    limit: $limit
   ) {
     items {
       title

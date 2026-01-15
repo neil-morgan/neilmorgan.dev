@@ -1,0 +1,15 @@
+query HomeContent {
+  categories: pageCollection(where: { category_exists: true }) {
+    items {
+      category
+    }
+  }
+  uniquePages: pageCollection(
+    where: { category_exists: false, slug_not: "/" }
+  ) {
+    items {
+      metaTitle
+      slug
+    }
+  }
+}
