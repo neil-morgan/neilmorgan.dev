@@ -1,6 +1,6 @@
 "use client";
 
-import { NoticePage } from "@/app/_components";
+import { Notice } from "./_templates/Notice";
 
 export const metadata = {
   title: "An error occurred",
@@ -9,7 +9,7 @@ export const metadata = {
 export default function Error() {
   return (
     <main>
-      <NoticePage title="Error" message="An error occurred" />
+      <Notice title="Error" message="An error occurred" />
     </main>
   );
 }

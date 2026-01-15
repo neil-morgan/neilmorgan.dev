@@ -1,0 +1,36 @@
+.experiences {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience {
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.content {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.content header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.content header span {
+  font-size: 0.8rem;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  gap: 0.66rem;
+  align-items: center;
+}

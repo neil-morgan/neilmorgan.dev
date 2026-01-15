@@ -1,5 +1,0 @@
-fragment PageHeader on Page {
-  title
-  kicker
-  description
-}

@@ -1,0 +1,15 @@
+query ProjectsContent($preview: Boolean) {
+  projects: pageCollection(
+    preview: $preview
+    order: date_DESC
+    where: { category: "Projects" }
+    limit: 20
+  ) {
+    items {
+      title
+      description
+      date
+      slug
+    }
+  }
+}

@@ -1,0 +1,23 @@
+query ExperienceContent($preview: Boolean) {
+  experiences: pageCollection(
+    preview: $preview
+    order: date_DESC
+    where: { category: "Experience" }
+    limit: 20
+  ) {
+    items {
+      title
+      kicker
+      description
+      images: imagesCollection {
+        items {
+          title
+          url
+          description
+        }
+      }
+      date
+      slug
+    }
+  }
+}

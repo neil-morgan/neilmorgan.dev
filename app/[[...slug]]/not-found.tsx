@@ -1,9 +1,9 @@
-import { NoticePage } from "@/app/_components";
+import { Notice } from "./_templates/Notice";
 
 export default function NotFound() {
   return (
     <main>
-      <NoticePage />
+      <Notice />
     </main>
   );
 }

@@ -1,0 +1,26 @@
+fragment PageHeader on Page {
+  title
+  kicker
+  description
+  images: imagesCollection {
+    items {
+      title
+      description
+      url
+    }
+  }
+  links: linksCollection {
+    items {
+      label
+      icon
+      page {
+        slug
+      }
+      section {
+        sys {
+          id
+        }
+      }
+    }
+  }
+}

@@ -4,11 +4,9 @@ import { Inter, Fira_Mono } from "next/font/google";
 
 import {
   IconDefs,
-  PointerGlow,
-  SiteHeader,
-  SiteFooter,
+  InteractionProvider,
+  InteractionPointer,
 } from "@/app/_components";
-import { ElementRefsProvider } from "@/app/_providers";
 
 import type { Metadata } from "next";
 
@@ -40,13 +38,11 @@ export default function RootLayout({
         className={`${inter.variable} ${firaMono.variable}`}
         suppressHydrationWarning
       >
-        <ElementRefsProvider>
+        <InteractionProvider>
           <IconDefs />
-          <SiteHeader />
           {children}
-          <SiteFooter />
-          <PointerGlow />
-        </ElementRefsProvider>
+          <InteractionPointer />
+        </InteractionProvider>
       </body>
     </html>
   );

@@ -18,6 +18,17 @@ export const formatDate = (inputDate: string, options?: FormatDateOptions) => {
     return dateParts[0];
   }
 
+  if (format === "monthNameYear") {
+    const date = new Date(inputDate);
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    return `${month} ${year}`;
+  }
+
   return (
     dateParts[2] +
     selectedSeparator +

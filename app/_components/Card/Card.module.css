@@ -1,0 +1,14 @@
+.card {
+  display: flex;
+  
+  width: 100%;  
+  color: var(--text);
+
+  &a {
+    text-decoration: none;
+  }
+
+  &button {
+    cursor: pointer;
+  }
+}

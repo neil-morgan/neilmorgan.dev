@@ -1,16 +1,8 @@
 {
   "plugins": {
     "postcss-env-function": {
-      "importFrom": [
-        {
-          "environmentVariables": {
-            "breakpoint-sm": "480px",
-            "breakpoint-md": "768px",
-            "breakpoint-lg": "1024px",
-            "breakpoint-xl": "1216px"
-          }
-        }
-      ]
-    }
+      "importFrom": ["./app/_styles/breakpoints.cjs"]
+    },
+    "postcss-easing-gradients": {}
   }
 }

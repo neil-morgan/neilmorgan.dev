@@ -1,0 +1,12 @@
+query SkillsContent($preview: Boolean) {
+  skills: skillCollection(preview: $preview) {
+    items {
+      title
+      proficiency
+      icon {
+        url
+        description
+      }
+    }
+  }
+}

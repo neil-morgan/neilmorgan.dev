@@ -1,6 +1,6 @@
 import type { ComponentsProps } from "@/app/_types";
 
-import { SectionServer as Section } from "./page/Section";
+import { Section } from "./Section";
 
 const componentMap = {
   Section,
@@ -12,28 +12,28 @@ export const Components = ({ id, __typename, ...rest }: ComponentsProps) => {
   return <Component id={id} {...rest} />;
 };
 
-export * from "./common/AspectImage";
-export * from "./common/Breadcrumbs";
-export * from "./common/Button";
-export * from "./common/Card";
-export * from "./common/CodeString";
-export * from "./common/ConditionalWrapper";
-export * from "./common/Icon";
-export * from "./common/IconButton";
-export * from "./common/Link";
-export * from "./common/MasonryGrid";
-export * from "./common/Popover";
-export * from "./common/Richtext";
-export * from "./common/Spinner";
-export * from "./content/Feedback";
-export * from "./content/SellingPoint";
-export * from "./content/Skill";
-export * from "./page/PageHeader";
-export * from "./page/Section";
-export * from "./site/NoticePage";
-export * from "./site/PointerGlow";
-export * from "./site/SiteFooter";
-export * from "./site/SiteHeader";
-export * from "./site/SiteLogo";
-export * from "./site/SiteNavList";
-export * from "./common/BackgroundSlice";
+export * from "./AspectImage";
+export * from "./BackgroundSlice";
+export * from "./Breadcrumbs";
+export * from "./Button";
+export * from "./Card";
+export * from "./CodeString";
+export * from "./ConditionalWrapper";
+export * from "./Experience";
+export * from "./Feedback";
+export * from "./Footer";
+export * from "./Icon";
+export * from "./IconButton";
+export * from "./Interaction";
+export * from "./Interaction";
+export * from "./Link";
+export * from "./Logo";
+export * from "./MasonryGrid";
+export * from "./PageHeader";
+export * from "./Popover";
+export * from "./Projects";
+export * from "./Richtext";
+export * from "./Section";
+export * from "./Skills";
+export * from "./Spinner";
+export * from "./Spread";

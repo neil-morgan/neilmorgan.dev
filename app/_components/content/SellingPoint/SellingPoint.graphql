@@ -1,9 +1,0 @@
-fragment SellingPoint on SellingPoint {
-  __typename
-  sys {
-    id
-  }
-  title
-  description
-  icon
-}

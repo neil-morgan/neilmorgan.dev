@@ -1,8 +1,0 @@
-query SiteFooterContent {
-  social: linkCollection(where: { label_in: ["LinkedIn", "Github"] }) {
-    items {
-      label
-      url
-    }
-  }
-}

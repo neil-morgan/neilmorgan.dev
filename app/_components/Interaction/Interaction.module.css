@@ -1,0 +1,29 @@
+.interaction {
+  box-shadow: 0px 0px 0 1px var(--border4);
+  border-radius: 0.25rem;
+  background-color: var(--layer2a5);
+  transition: ease 200ms;
+
+  @media (min-width: env(breakpoint-md)) {
+    &:hover:not(:disabled) {
+      box-shadow: 0px 0px 0 1px var(--border2);
+      background-color: var(--interaction);
+    }
+  }
+
+  @media (max-width: env(breakpoint-md)) {
+    background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%);
+  }
+}
+
+.interaction-canvas {
+  display: block;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  @media (max-width: env(breakpoint-md)) {
+    display: none;
+  }
+}

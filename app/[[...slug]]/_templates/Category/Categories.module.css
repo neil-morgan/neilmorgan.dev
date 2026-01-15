@@ -1,4 +1,6 @@
-.categories {
+.wrapper {
+  display: flex;
+  gap: 3rem;
   max-width: var(--site-width);
   margin: 0 auto;
   padding: 0 2rem;

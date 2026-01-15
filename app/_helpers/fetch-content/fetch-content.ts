@@ -1,4 +1,5 @@
 import { GraphQLError } from "graphql";
+import { notFound } from "next/navigation";
 
 import type { TypedDocumentString } from "@/app/_graphql";
 
@@ -13,11 +14,13 @@ export const fetchContent = async <Result, Variables>({
   variables,
   preview,
   tags,
+  notFoundOnEmpty,
 }: {
   document: TypedDocumentString<Result, Variables>;
   variables?: Variables;
   preview?: boolean;
   tags?: string[];
+  notFoundOnEmpty?: boolean;
 }): Promise<Result> => {
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,
@@ -43,6 +46,13 @@ export const fetchContent = async <Result, Variables>({
     throw new Error(
       result.errors.map((error: GraphQLError) => error.message).join(", ")
     );
+  }
+
+  if (notFoundOnEmpty) {
+    if (!result.data || 
+        (result.data.pageCollection && result.data.pageCollection.items.length === 0)) {
+      notFound();
+    }
   }
 
   return result.data;

@@ -1,0 +1,43 @@
+fragment Page on Page {
+  __typename
+  sys {
+    id
+    publishedAt
+  }
+  title
+  kicker
+  description
+  slug
+}
+
+fragment Section on Section {
+  featured
+  fullWidth
+  gap
+  layout
+  margin
+  minimumColumns
+  title
+  contentCollection(limit: 100) {
+    items {
+      ... on Feedback {
+        ...Feedback
+      }
+      ... on Page {
+        ...Page
+      }
+    }
+  }
+}
+
+query SectionContent($preview: Boolean = false, $id: String!) {
+  section: sectionCollection(
+    limit: 1
+    where: { sys: { id: $id } }
+    preview: $preview
+  ) {
+    items {
+      ...Section
+    }
+  }
+}

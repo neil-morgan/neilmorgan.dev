@@ -1,4 +1,4 @@
-fragment Link on Link {
+fragment ExternalLink on ExternalLink {
   label
   url
   icon

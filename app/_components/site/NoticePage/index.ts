@@ -1,1 +1,0 @@
-export { NoticePage } from "./NoticePage";
