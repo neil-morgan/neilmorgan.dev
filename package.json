@@ -45,7 +45,7 @@
     "framer-motion": "^11.0.5",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mongoose": "^8.0.2",
     "next": "15.0.3",
     "plaiceholder": "^3.0.0",
