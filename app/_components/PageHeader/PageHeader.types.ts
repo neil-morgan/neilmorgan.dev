@@ -1,5 +1,3 @@
-import type { PageHeaderFragment } from "@/app/_graphql";
-
-export type PageHeaderProps = PageHeaderFragment & {
+export type PageHeaderProps = {
   slug: string[];
 };

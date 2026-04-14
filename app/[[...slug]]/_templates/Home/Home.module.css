@@ -23,7 +23,7 @@ div.container {
 
     @media (max-width: env(breakpoint-md)) {
       width: 100%;
-      margin: 6rem 0 0;
+      margin: 4rem 0 0;
     }
 
     > .content {
@@ -54,13 +54,12 @@ div.container {
 
     h1 {
       position: relative;
-      margin-bottom: 0.5rem;
-      font-size: 3rem;
       letter-spacing: 0.5rem;
       font-weight: 600;
       letter-spacing: 0rem;
     }
     h2 {
+      font-size: 1.5rem;
       font-weight: 400;
       margin-bottom: 1rem;
     }

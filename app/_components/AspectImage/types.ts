@@ -9,7 +9,8 @@ export type AspectImageProps = {
   ratio?: number;
   style?: React.CSSProperties;
   url: string;
-  width?: CssSizeValueType;
+  scale?: "up" | "down";
+  size?: CssSizeValueType;
   shadow?: boolean;
   href?: string;
 };

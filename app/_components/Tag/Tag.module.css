@@ -1,0 +1,23 @@
+.tag {
+  display: flex;
+  align-items: center;
+  border-radius: calc(var(--size) * 0.25);
+  width: fit-content;
+  font-size: calc(var(--size) * 1);
+  padding: calc(var(--size) * 0.3) calc(var(--size) * 0.5);
+  &.primary {
+    color: var(--primary);
+    background: var(--primary-a7);
+  }
+  &.secondary {
+    color: var(--secondary);
+    background: var(--secondary-a7);
+  }
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: calc(var(--size) * 1);
+  gap: calc(var(--size) * 0.75);
+}

@@ -1,5 +1,9 @@
 .container {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 2rem;
+
+  @media (max-width: env(breakpoint-md)) {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }

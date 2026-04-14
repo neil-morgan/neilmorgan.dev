@@ -3,12 +3,20 @@ import { randomUUID } from "crypto";
 import Image from "next/image";
 import NextLink from "next/link";
 
-import { olive } from "@/app/_styles/palette";
-import { combineClassNames } from "@/app/_utils";
+import { olive, type CssSizeConfigType } from "@/app/_styles";
+import { combineClassNames, createCssSizeVariables } from "@/app/_utils";
 
 import styles from "./AspectImage.module.css";
 
 import type { AspectImageProps } from "./types";
+
+const sizes: CssSizeConfigType = {
+  xs: "1rem",
+  sm: "2.5rem",
+  md: "5rem",
+  lg: "7rem",
+  xl: "10rem",
+};
 
 const shimmer = (id: string) => `
 <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -38,10 +46,12 @@ export const AspectImage = async ({
   style,
   url,
   href,
-  width,
+  scale = "up",
+  size = "3rem",
   shadow = false,
 }: React.PropsWithChildren<AspectImageProps>) => {
   const uniqueId = randomUUID();
+  const sizeVariable = createCssSizeVariables(size, sizes);
 
   const imageElement = (
     <Image
@@ -57,12 +67,13 @@ export const AspectImage = async ({
     <div
       className={combineClassNames(
         styles.container,
+        scale === "up" ? styles.scaleUp : styles.scaleDown,
         shadow && styles.shadow,
         className
       )}
       style={
         {
-          "--width": width,
+          ...sizeVariable,
           "--border-radius": borderRadius,
           "--aspect-ratio": ratio,
           ...style,

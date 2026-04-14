@@ -9,6 +9,8 @@ export const Skills = async () => {
     document: SkillsContentDocument,
   });
 
+  if (!skills?.items || skills.items.length === 0) return null;
+
   const order = ["Expert", "Proficient", "Familiar"];
   const skillGroups = skills?.items
     .reduce((acc, skill) => {
@@ -37,7 +39,7 @@ export const Skills = async () => {
 
   return (
     <section className={styles["link-group"]}>
-      <h2>Skills</h2>
+      <h4>Knowledge</h4>
       <div>
         {skillGroups?.map((group, index) =>
           group ? (

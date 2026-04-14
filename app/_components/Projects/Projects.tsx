@@ -1,4 +1,4 @@
-import { Card, Link } from "@/app/_components";
+import { Card } from "@/app/_components";
 import { ProjectsContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 
@@ -8,9 +8,12 @@ export const Projects = async () => {
   const { projects } = await fetchContent({
     document: ProjectsContentDocument,
   });
+
+  if (!projects?.items || projects.items.length === 0) return null;
+
   return (
     <section className={styles.projects}>
-      <h2>Projects</h2>
+      <h4>Projects</h4>
       <div className={styles["link-group-grid"]}>
         {projects?.items.map((project, index) =>
           project?.slug ? (
@@ -21,9 +24,6 @@ export const Projects = async () => {
           ) : null
         )}
       </div>
-      <Link href="/projects" className={styles["see-all"]}>
-        See All
-      </Link>
     </section>
   );
 };

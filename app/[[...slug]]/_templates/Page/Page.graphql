@@ -26,6 +26,23 @@ fragment PageContentLinks on PageContentLinks {
         }
       }
     }
+    inline {
+      sys {
+        id
+      }
+      ... on Section {
+        __typename
+        sys {
+          id
+        }
+      }
+      ... on Page {
+        __typename
+        sys {
+          id
+        }
+      }
+    }
   }
   assets {
     block {

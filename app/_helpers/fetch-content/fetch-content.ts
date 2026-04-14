@@ -1,5 +1,6 @@
-import { GraphQLError } from "graphql";
 import { notFound } from "next/navigation";
+
+import { GraphQLError } from "graphql";
 
 import type { TypedDocumentString } from "@/app/_graphql";
 
@@ -37,20 +38,23 @@ export const fetchContent = async <Result, Variables>({
           preview ? CONTENTFUL_PREVIEW_TOKEN : CONTENTFUL_DELIVERY_TOKEN
         }`,
       },
-    }
+    },
   );
 
   const result = await response.json();
 
   if (result.errors) {
     throw new Error(
-      result.errors.map((error: GraphQLError) => error.message).join(", ")
+      result.errors.map((error: GraphQLError) => error.message).join(", "),
     );
   }
 
   if (notFoundOnEmpty) {
-    if (!result.data || 
-        (result.data.pageCollection && result.data.pageCollection.items.length === 0)) {
+    if (
+      !result.data ||
+      (result.data.pageCollection &&
+        result.data.pageCollection.items.length === 0)
+    ) {
       notFound();
     }
   }

@@ -8,8 +8,9 @@ export const metadata = {
 
 export default function Error() {
   return (
-    <main>
-      <Notice title="Error" message="An error occurred" />
-    </main>
+    <Notice
+      title="Error"
+      message="Sorry! An error occurred. Please try again later."
+    />
   );
 }

@@ -71,9 +71,7 @@ export const generateMetadata = async ({ params: pageParams }: PageParams) => {
 
 const Root = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
-  const IS_HOME_PAGE = !params.slug;
-  if (IS_HOME_PAGE) return <Home />;
-  return <Page slug={params.slug} />;
+  return !params.slug ? <Home /> : <Page slug={params.slug} />;
 };
 
 export default Root;

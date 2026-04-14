@@ -12,6 +12,7 @@ import { combineClassNames } from "@/app/_utils";
 import {
   getRichtextEntry,
   renderMark,
+  getBlockMaps,
   removeParagraphTags,
   renderText,
   getNodeValue,
@@ -48,15 +49,21 @@ export const Richtext = ({ links, json, noPadding }: RichtextProps) => {
           //   return <img />;
           // },
 
-          // [INLINES.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
-          //   if (!content.links) {
-          //     return null;
-          //   }
-          //   const { inlineBlockMap } = getBlockMaps(content.links);
-          //   const { __typename, slug, title } = inlineBlockMap.get(
-          //     node.data.target.sys.id
-          //   );
-          // },
+          [INLINES.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
+            if (!links) return null;
+
+            const { inlineBlockMap } = getBlockMaps(links);
+            const entry = inlineBlockMap.get(node.data.target.sys.id);
+
+            if (!entry?.sys.id || !entry.__typename) return null;
+
+            return (
+              <Components
+                id={entry.sys.id}
+                __typename={entry.__typename as Typename}
+              />
+            );
+          },
 
           [BLOCKS.HEADING_1]: (node: RichtextNodeType, children: ReactNode) => {
             const value = getNodeValue(node);
@@ -172,7 +179,7 @@ export const Richtext = ({ links, json, noPadding }: RichtextProps) => {
 
           [INLINES.HYPERLINK]: (
             node: RichtextNodeType,
-            children: ReactNode
+            children: ReactNode,
           ) => (
             <Link
               href={node.data.uri}

@@ -1,14 +1,21 @@
 .container {
   position: relative;
-  min-width: var(--width, 100%);
-  width: var(--width, 100%);
-  height: var(--height, auto);
+  width: 100%;
   overflow: hidden;
-  border-radius: var(--border-radius);
+  border-radius: calc(var(--size) * 0.05);
   aspect-ratio: var(--aspect-ratio);
+  max-width: var(--size, 100%);
+
+  &.scaleUp {
+    min-width: var(--size, 100%);
+  }
+
   &.shadow {
-    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075);
   }
 }

@@ -1,4 +1,4 @@
-import { teal, olive } from "./palette";
+import { teal, iris, olive } from "./palette";
 
 const colors = {
   primary: teal[11],
@@ -14,6 +14,20 @@ const colors = {
   primaryA10: `${teal[11]}05`,
 
   primary2: teal[9],
+
+  secondary: iris[11],
+  secondaryA1: `${iris[11]}90`,
+  secondaryA2: `${iris[11]}80`,
+  secondaryA3: `${iris[11]}70`,
+  secondaryA4: `${iris[11]}60`,
+  secondaryA5: `${iris[11]}50`,
+  secondaryA6: `${iris[11]}40`,
+  secondaryA7: `${iris[11]}30`,
+  secondaryA8: `${iris[11]}20`,
+  secondaryA9: `${iris[11]}10`,
+  secondaryA10: `${iris[11]}05`,
+
+  secondary2: iris[9],
 
   heading: olive[12],
   text: olive[11],

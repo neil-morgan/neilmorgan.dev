@@ -2,13 +2,27 @@ fragment PageHeader on Page {
   title
   kicker
   description
-  images: imagesCollection {
-    items {
+  date
+  to
+  category
+  image {
+    url
+    description
+  }
+  agency {
+    logo {
       title
-      description
       url
     }
+    name
+    url
   }
+  skills: skillsCollection {
+    items {
+      title
+    }
+  }
+
   links: linksCollection {
     items {
       label
@@ -21,6 +35,14 @@ fragment PageHeader on Page {
           id
         }
       }
+    }
+  }
+}
+
+query PageHeaderBySlug($slug: String, $preview: Boolean = false) {
+  pageCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+    items {
+      ...PageHeader
     }
   }
 }

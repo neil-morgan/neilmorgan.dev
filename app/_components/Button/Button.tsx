@@ -33,7 +33,7 @@ const renderIcon = (
   loading: boolean,
   loadingText: string | undefined,
   loadingPlacement: string,
-  sizeVariable: object
+  sizeVariable: object,
 ) => {
   if (loading && loadingText && loadingPlacement === direction) {
     return (
@@ -70,6 +70,7 @@ export const Button = ({
   loadingPlacement = "center",
   loadingText,
   onClick,
+  primary = false,
   ref,
   size = "1rem",
   type = "button",
@@ -88,7 +89,7 @@ export const Button = ({
   const shouldRenderNextLink = Boolean(href) && !isExternalLink;
 
   const handleClick = (
-    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => {
     if (href?.includes("#")) {
       const hashIndex = href.indexOf("#");
@@ -111,7 +112,7 @@ export const Button = ({
 
   const renderIconDirection = (
     direction: "left" | "right",
-    icon: IconNameType | undefined
+    icon: IconNameType | undefined,
   ) =>
     renderIcon(
       direction,
@@ -119,18 +120,19 @@ export const Button = ({
       loading,
       loadingText,
       loadingPlacement,
-      sizeVariable
+      sizeVariable,
     );
 
   const sharedClassName = combineClassNames(
     styles.button,
+    primary && styles.primary,
     styles[`width-${width}`],
     hasIcon && styles["with-icon"],
     hasBothIcons && styles["both-icons"],
     hasOnlyLeftIcon && styles["single-icon-left"],
     hasOnlyRightIcon && styles["single-icon-right"],
     isIconSpaceNear && styles["icon-near"],
-    className
+    className,
   );
 
   const content = (

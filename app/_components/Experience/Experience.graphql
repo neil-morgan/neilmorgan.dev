@@ -9,11 +9,21 @@ query ExperienceContent($preview: Boolean, $limit: Int = 20) {
       title
       kicker
       description
-      images: imagesCollection {
-        items {
+      image {
+        url
+        description
+      }
+      agency {
+        logo {
           title
           url
-          description
+        }
+        name
+        url
+      }
+      skills: skillsCollection {
+        items {
+          title
         }
       }
       date

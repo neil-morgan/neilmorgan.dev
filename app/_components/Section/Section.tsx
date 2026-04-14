@@ -69,7 +69,7 @@ export const Section = async ({ id }: SectionProps) => {
       if (!dateA) return 1;
       if (!dateB) return -1;
       return new Date(dateB).getTime() - new Date(dateA).getTime();
-    }
+    },
   );
 
   const content = sortedContentByDate.map((props) => {
@@ -87,7 +87,7 @@ export const Section = async ({ id }: SectionProps) => {
       className={combineClassNames(
         styles.section,
         featured && styles.featured,
-        (fullWidth || featured) && styles["full-width"]
+        (fullWidth || featured) && styles["full-width"],
       )}
       style={sectionStyles}
     >
@@ -95,7 +95,7 @@ export const Section = async ({ id }: SectionProps) => {
       <div
         className={combineClassNames(
           styles.container,
-          featured && styles.featured
+          featured && styles.featured,
         )}
       >
         {title && <h3>{title}</h3>}

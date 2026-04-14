@@ -23,7 +23,7 @@ export const Feedback = ({
         <AspectImage
           url={authorImage?.url}
           description={authorImage?.description}
-          width="5rem"
+          size="5rem"
           borderRadius="0.25rem"
           ratio={1}
         />

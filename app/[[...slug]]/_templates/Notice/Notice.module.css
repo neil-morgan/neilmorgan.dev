@@ -1,5 +1,11 @@
 .container {
   display: flex;
+  height: 75vh;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+}
+
+.action {
+  margin-top: 3rem;
 }

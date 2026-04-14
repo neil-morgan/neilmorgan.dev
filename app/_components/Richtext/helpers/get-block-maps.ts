@@ -13,7 +13,7 @@ export const getBlockMaps = (links: RichtextLinksType) => {
     entryBlockMap.set(entry?.sys.id, entry);
   }
 
-  for (const entry of links.entries.inline) {
+  for (const entry of links.entries.inline ?? []) {
     inlineBlockMap.set(entry?.sys.id, entry);
   }
 

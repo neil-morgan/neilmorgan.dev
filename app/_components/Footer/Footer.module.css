@@ -1,11 +1,24 @@
 .footer {
   display: flex;
-  justify-content: flex-end;
   max-width: var(--site-width);
   width: 100%;
-  padding-top: 2rem;
   margin: 6rem auto;
-  border-top: solid 1px var(--border5);
+
+  &.withPadding {
+    padding: 0 var(--site-padding-desktop);
+    @media (max-width: env(breakpoint-md)) {
+      padding: 0 var(--site-padding-mobile);
+    }
+  }
+
+  > div {
+    padding-top: 2rem;
+    justify-content: flex-end;
+    width: 100%;
+    border-top: solid 1px var(--border4);
+    display: flex;
+    gap: 4rem;
+  }
 }
 
 .footer-credentials {
@@ -22,18 +35,5 @@
   p {
     font-size: 0.75rem;
     margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: env(breakpoint-sm)) {
-  .footer {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .footer-credentials {
-    align-items: center;
-    text-align: center;
   }
 }
