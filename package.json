@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/generate-styles-css.mjs --watch & next dev",
-    "build": "next build",
+    "build": "npm run codegen && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
