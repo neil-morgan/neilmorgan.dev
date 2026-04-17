@@ -1,5 +1,5 @@
-import "@/app/_styles/globals.css";
-import "@/app/_styles/styles.css";
+import "./_styles/globals.css";
+import "./_styles/styles.css";
 import { Inter, Fira_Mono } from "next/font/google";
 
 import {

@@ -7,3 +7,5 @@ declare namespace NodeJS {
     CONTENTFUL_REVALIDATE_SECRET: string;
   }
 }
+
+declare module "*.css";

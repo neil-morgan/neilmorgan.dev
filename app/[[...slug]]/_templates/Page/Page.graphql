@@ -70,3 +70,12 @@ query PageContentBySlug($slug: String, $preview: Boolean = false) {
     }
   }
 }
+
+query Category($category: String, $preview: Boolean = false) {
+  pageCollection(preview: $preview, where: { category: $category }, limit: 100) {
+    items {
+      slug
+      category
+    }
+  }
+}

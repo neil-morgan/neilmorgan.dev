@@ -50,7 +50,7 @@ export const Skills = async () => {
                   skill?.icon?.url && skill.title ? (
                     <div key={skillIndex} className={styles["skill-item"]}>
                       <AspectImage
-                        width="2.5rem"
+                        size="2.5rem"
                         borderRadius="0.5rem"
                         fit="contain"
                         url={skill.icon.url}
