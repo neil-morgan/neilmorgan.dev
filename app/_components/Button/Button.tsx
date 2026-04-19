@@ -151,54 +151,52 @@ export const Button = ({
     </>
   );
 
-  return (
-    <Interaction>
-      {shouldRenderNextLink ? (
-        <NextLink
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          style={{ ...sizeVariable }}
-          className={sharedClassName}
-          onClick={handleClick}
-          href={href as string}
-          tabIndex={disabled || loading ? -1 : 0}
-          aria-label={loading && loadingText ? `${loadingText}` : label}
-          aria-disabled={loading || disabled}
-          aria-busy={loading}
-        >
-          {content}
-        </NextLink>
-      ) : isExternalLink && href ? (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          style={{ ...sizeVariable }}
-          className={sharedClassName}
-          onClick={handleClick}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={disabled || loading ? -1 : 0}
-          aria-label={`${label} (opens in new tab)`}
-          aria-disabled={loading || disabled}
-          aria-busy={loading}
-        >
-          {content}
-        </a>
-      ) : (
-        <button
-          ref={ref as React.Ref<HTMLButtonElement>}
-          style={{ ...sizeVariable }}
-          className={sharedClassName}
-          onClick={onClick}
-          disabled={loading || disabled}
-          type={type}
-          formAction={formAction}
-          aria-label={loading && loadingText ? `${loadingText}` : label}
-          aria-disabled={loading || disabled}
-          aria-busy={loading}
-        >
-          {content}
-        </button>
-      )}
-    </Interaction>
+  const buttonElement = shouldRenderNextLink ? (
+    <NextLink
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      style={{ ...sizeVariable }}
+      className={sharedClassName}
+      onClick={handleClick}
+      href={href as string}
+      tabIndex={disabled || loading ? -1 : 0}
+      aria-label={loading && loadingText ? `${loadingText}` : label}
+      aria-disabled={loading || disabled}
+      aria-busy={loading}
+    >
+      {content}
+    </NextLink>
+  ) : isExternalLink && href ? (
+    <a
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      style={{ ...sizeVariable }}
+      className={sharedClassName}
+      onClick={handleClick}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      tabIndex={disabled || loading ? -1 : 0}
+      aria-label={`${label} (opens in new tab)`}
+      aria-disabled={loading || disabled}
+      aria-busy={loading}
+    >
+      {content}
+    </a>
+  ) : (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      style={{ ...sizeVariable }}
+      className={sharedClassName}
+      onClick={onClick}
+      disabled={loading || disabled}
+      type={type}
+      formAction={formAction}
+      aria-label={loading && loadingText ? `${loadingText}` : label}
+      aria-disabled={loading || disabled}
+      aria-busy={loading}
+    >
+      {content}
+    </button>
   );
+
+  return primary ? buttonElement : <Interaction>{buttonElement}</Interaction>;
 };
