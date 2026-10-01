@@ -1,8 +1,7 @@
 query ExperienceContent($preview: Boolean, $limit: Int = 20) {
-  experiences: pageCollection(
+  experiences: experienceCollection(
     preview: $preview
     order: date_DESC
-    where: { category: "Experience" }
     limit: $limit
   ) {
     items {
@@ -27,7 +26,6 @@ query ExperienceContent($preview: Boolean, $limit: Int = 20) {
         }
       }
       date
-      slug
     }
   }
 }

@@ -27,12 +27,8 @@ export const Experience = async () => {
             })
           : "Present";
 
-        return experience?.slug ? (
-          <Card
-            key={index}
-            className={styles.experience}
-            href={experience.slug}
-          >
+        return experience?.title ? (
+          <Card key={index} className={styles.experience}>
             <div className={styles.images}>
               {experience.image?.url && (
                 <AspectImage
@@ -48,7 +44,7 @@ export const Experience = async () => {
               {experience.agency && <Icon name="arrowUp" size="1.5rem" />}
               {experience.agency?.logo?.url && (
                 <AspectImage
-                  size="2rem"
+                  size="1.66rem"
                   scale="down"
                   url={experience.agency.logo.url}
                   description={
@@ -68,7 +64,7 @@ export const Experience = async () => {
                 <div className={styles.specifics}>
                   <span>{experience.agency ? "Contract" : "In-house"}</span>
                   <p>
-                    <span>{fromDate}</span> - <span>{toDate}</span>
+                    <span>{fromDate}</span> to <span>{toDate}</span>
                   </p>
                 </div>
               </header>

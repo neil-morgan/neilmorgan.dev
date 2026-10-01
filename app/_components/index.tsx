@@ -27,7 +27,6 @@ export * from "./Interaction";
 export * from "./Link";
 export * from "./MasonryGrid";
 export * from "./PageHeader";
-export * from "./Projects";
 export * from "./Richtext";
 export * from "./Section";
 export * from "./Skills";

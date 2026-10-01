@@ -1,12 +1,11 @@
 .experiences {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
   justify-content: center;
 }
 
 .experience {
-  padding: 1rem 1rem 1.25rem;
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -15,6 +14,7 @@
 .content {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
   flex-direction: column;
 
   header {
@@ -26,9 +26,11 @@
     .role {
       display: flex;
       flex-direction: column;
+
       h3 {
         font-size: 1.2rem;
       }
+
       h4 {
         font-size: 0.85rem;
       }
@@ -43,19 +45,21 @@
       text-align: right;
       font-size: 0.8rem;
 
-      > span {
+      >span {
         color: #ffffff;
       }
 
       p {
         font-size: inherit;
         margin: 0;
+
         span {
           white-space: nowrap;
         }
       }
     }
   }
+
   .tags {
     margin-top: 0.75rem;
   }

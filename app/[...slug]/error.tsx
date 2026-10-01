@@ -1,6 +1,6 @@
 "use client";
 
-import { Notice } from "./_templates/Notice";
+import { Notice } from "@/app/_components/Notice";
 
 export const metadata = {
   title: "An error occurred",

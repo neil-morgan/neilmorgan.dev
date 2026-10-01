@@ -1,4 +1,10 @@
 import {
+  Richtext,
+  type RichtextLinksType,
+  PageHeader,
+  Footer,
+} from "@/app/_components";
+import {
   AllPageSlugsDocument,
   CategoryDocument,
   PageContentBySlugDocument,
@@ -6,9 +12,9 @@ import {
 import { fetchContent } from "@/app/_helpers";
 import { toSentenceCase } from "@/app/_utils";
 
-import { Home, Page } from "./_templates";
+import styles from "./page.module.css";
 
-import type { PageParams } from "./_templates/Page/Page.types";
+import type { PageParams } from "./page.types";
 
 export const dynamicParams = true;
 
@@ -71,7 +77,26 @@ export const generateMetadata = async ({ params: pageParams }: PageParams) => {
 
 const Root = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
-  return !params.slug ? <Home /> : <Page slug={params.slug} />;
+  const pageData = await fetchContent({
+    document: PageContentBySlugDocument,
+    variables: {
+      slug: params.slug[1] || params.slug[0],
+    },
+  });
+  const page = pageData?.pageCollection?.items[0];
+
+  return (
+    <main className={styles.page}>
+      <PageHeader slug={params.slug} />
+      {page?.content && (
+        <Richtext
+          json={page.content.json}
+          links={page.content.links as RichtextLinksType}
+        />
+      )}
+      <Footer withPadding />
+    </main>
+  );
 };
 
 export default Root;
