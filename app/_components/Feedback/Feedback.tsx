@@ -1,6 +1,7 @@
-import { Card, AspectImage } from "@/app/_components";
 import type { FeedbackFragment } from "@/app/_graphql";
 import { formatDate, parseHtml } from "@/app/_utils";
+
+import { Card, AspectImage } from "@/app/_components";
 
 import styles from "./Feedback.module.css";
 

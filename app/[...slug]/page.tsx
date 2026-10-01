@@ -1,16 +1,17 @@
 import {
-  Richtext,
-  type RichtextLinksType,
-  PageHeader,
-  Footer,
-} from "@/app/_components";
-import {
   AllPageSlugsDocument,
   CategoryDocument,
   PageContentBySlugDocument,
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { toSentenceCase } from "@/app/_utils";
+
+import {
+  Richtext,
+  type RichtextLinksType,
+  PageHeader,
+  Footer,
+} from "@/app/_components";
 
 import styles from "./page.module.css";
 

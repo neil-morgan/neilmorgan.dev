@@ -1,5 +1,6 @@
-import { Icon } from "@/app/_components";
 import { combineClassNames } from "@/app/_utils";
+
+import { Icon } from "@/app/_components";
 
 import styles from "./Spinner.module.css";
 

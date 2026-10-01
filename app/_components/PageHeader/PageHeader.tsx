@@ -1,6 +1,7 @@
-import { Breadcrumbs, TagList, AspectImage } from "@/app/_components";
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers/fetch-content/fetch-content";
+
+import { Breadcrumbs, TagList, AspectImage } from "@/app/_components";
 
 import styles from "./PageHeader.module.css";
 

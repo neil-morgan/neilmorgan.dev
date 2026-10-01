@@ -1,6 +1,7 @@
-import { AspectImage } from "@/app/_components";
 import { SkillsContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
+
+import { AspectImage } from "@/app/_components";
 
 import styles from "./Skills.module.css";
 
@@ -13,21 +14,24 @@ export const Skills = async () => {
 
   const order = ["Expert", "Proficient", "Familiar"];
   const skillGroups = skills?.items
-    .reduce((acc, skill) => {
-      if (!skill?.proficiency) return acc;
-      const existingGroup = acc.find(
-        (group) => group.title === skill.proficiency
-      );
-      if (existingGroup) {
-        existingGroup.skills.push(skill);
-      } else {
-        acc.push({
-          title: skill.proficiency,
-          skills: [skill],
-        });
-      }
-      return acc;
-    }, [] as Array<{ title: string; skills: typeof skills.items }>)
+    .reduce(
+      (acc, skill) => {
+        if (!skill?.proficiency) return acc;
+        const existingGroup = acc.find(
+          (group) => group.title === skill.proficiency,
+        );
+        if (existingGroup) {
+          existingGroup.skills.push(skill);
+        } else {
+          acc.push({
+            title: skill.proficiency,
+            skills: [skill],
+          });
+        }
+        return acc;
+      },
+      [] as Array<{ title: string; skills: typeof skills.items }>,
+    )
     .sort((a, b) => {
       const indexA = order.indexOf(a.title);
       const indexB = order.indexOf(b.title);
@@ -59,11 +63,11 @@ export const Skills = async () => {
                       />
                       <span>{skill.title}</span>
                     </div>
-                  ) : null
+                  ) : null,
                 )}
               </div>
             </div>
-          ) : null
+          ) : null,
         )}
       </div>
     </section>

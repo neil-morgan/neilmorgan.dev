@@ -2,10 +2,12 @@ import { SectionContentDocument } from "@/app/_graphql";
 import { fetchContent } from "@/app/_helpers";
 import { combineClassNames, formatDate } from "@/app/_utils";
 
-import { BackgroundSlice } from "../BackgroundSlice";
-import { Feedback } from "../Feedback";
-import { MasonryGrid } from "../MasonryGrid";
-import { Spread } from "../Spread";
+import {
+  MasonryGrid,
+  BackgroundSlice,
+  Feedback,
+  Spread,
+} from "@/app/_components";
 
 import styles from "./Section.module.css";
 

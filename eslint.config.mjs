@@ -6,6 +6,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
+    files: ["**/*.{js,jsx,mjs,ts,tsx}"],
     rules: {
       "import/order": [
         "error",
@@ -31,9 +32,14 @@ const eslintConfig = defineConfig([
               position: "before",
             },
             {
-              pattern: "@/app/**",
+              pattern: "@/app/_components{,/**}",
               group: "internal",
               position: "after",
+            },
+            {
+              pattern: "@/app/**",
+              group: "internal",
+              position: "before",
             },
           ],
           pathGroupsExcludedImportTypes: ["react", "next"],

@@ -6,9 +6,10 @@ import NextLink from "next/link";
 
 import { mergeRefs } from "react-merge-refs";
 
-import { Interaction } from "@/app/_components";
 import { useElementRefs } from "@/app/_providers";
 import { combineClassNames, isInternalUrl } from "@/app/_utils";
+
+import { Interaction } from "@/app/_components";
 
 import styles from "./Card.module.css";
 

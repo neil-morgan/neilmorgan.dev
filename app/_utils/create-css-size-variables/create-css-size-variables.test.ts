@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it, expect } from "vitest";
 
-import "@testing-library/jest-dom";
 import type { CssSizeConfigType } from "@/app/_styles";
 
 import { createCssSizeVariables } from "./create-css-size-variables";
@@ -124,11 +124,9 @@ describe("createCssSizeVariables", () => {
     it.each([["-1rem"], ["-16px"], ["-2.5em"]] as const)(
       "handles negative values correctly: %s",
       (input) => {
-        expect(createCssSizeVariables(input, defaultSizeConfig)).toEqual(
-          {
-            "--size": input,
-          },
-        );
+        expect(createCssSizeVariables(input, defaultSizeConfig)).toEqual({
+          "--size": input,
+        });
       },
     );
   });
@@ -137,11 +135,9 @@ describe("createCssSizeVariables", () => {
     it.each([["0rem"], ["0px"], ["0%"]] as const)(
       "handles zero values correctly: %s",
       (input) => {
-        expect(createCssSizeVariables(input, defaultSizeConfig)).toEqual(
-          {
-            "--size": input,
-          },
-        );
+        expect(createCssSizeVariables(input, defaultSizeConfig)).toEqual({
+          "--size": input,
+        });
       },
     );
   });
@@ -166,7 +162,9 @@ describe("createCssSizeVariables", () => {
       "always returns string values for CSS properties: %s",
       (size) => {
         const result = createCssSizeVariables(size, defaultSizeConfig);
-        expect(typeof (result as Record<string, string>)["--size"]).toBe("string");
+        expect(typeof (result as Record<string, string>)["--size"]).toBe(
+          "string",
+        );
       },
     );
   });

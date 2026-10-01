@@ -1,11 +1,15 @@
 // ElementRefsProvider.test.tsx
 import React from "react";
-import { render, screen, act } from "@testing-library/react";
+
 import { usePathname } from "next/navigation";
+
+import { render, screen, act } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { ElementRefsProvider, useElementRefs } from "./ElementRefsProvider";
 
-jest.mock("next/navigation", () => ({
-  usePathname: jest.fn(),
+vi.mock("next/navigation", () => ({
+  usePathname: vi.fn(),
 }));
 
 const TestComponent = () => {
@@ -25,7 +29,7 @@ const TestComponent = () => {
         data-testid="addElementRef"
         onClick={() => {
           const mockElement = document.createElement("div");
-          mockElement.getBoundingClientRect = jest.fn(() => ({
+          mockElement.getBoundingClientRect = vi.fn(() => ({
             top: 10,
             left: 20,
             bottom: 30,
@@ -37,12 +41,14 @@ const TestComponent = () => {
             toJSON: () => {},
           }));
           addElementRef(mockElement);
-        }}>
+        }}
+      >
         Add Element Ref
       </button>
       <button
         data-testid="updateElementProperties"
-        onClick={updateElementProperties}>
+        onClick={updateElementProperties}
+      >
         Update Element Properties
       </button>
     </div>
@@ -51,7 +57,7 @@ const TestComponent = () => {
 
 describe("ElementRefsProvider", () => {
   beforeEach(() => {
-    (usePathname as jest.Mock).mockReturnValue("/test-path");
+    vi.mocked(usePathname).mockReturnValue("/test-path");
   });
 
   it("should provide initial context values", () => {
@@ -88,6 +94,9 @@ describe("ElementRefsProvider", () => {
 
     act(() => {
       screen.getByTestId("addElementRef").click();
+    });
+
+    act(() => {
       screen.getByTestId("updateElementProperties").click();
     });
 
@@ -97,8 +106,8 @@ describe("ElementRefsProvider", () => {
   });
 
   it("should add and remove event listeners", () => {
-    const addEventListenerSpy = jest.spyOn(window, "addEventListener");
-    const removeEventListenerSpy = jest.spyOn(window, "removeEventListener");
+    const addEventListenerSpy = vi.spyOn(window, "addEventListener");
+    const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
 
     const { unmount } = render(
       <ElementRefsProvider>

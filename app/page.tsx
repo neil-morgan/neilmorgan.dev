@@ -22,20 +22,20 @@ const Home = async () => {
           <Button
             href="mailto:neilmorgan.dev@gmail.com"
             label="Contact"
-            size="sm"
+            size="xs"
             primary
             iconRight="envelope"
           />
           <Button
             href="/feedback"
             label="My Feedback"
-            size="sm"
+            size="xs"
             iconRight="quote"
           />
         </nav>
         <div>
-          <IconButton icon="github" iconSize={0.5} size="xs" />
-          <IconButton icon="linkedIn" iconSize={0.5} size="xs" />
+          <IconButton icon="github" iconSize={0.5} href="" size="xs" />
+          <IconButton icon="linkedIn" iconSize={0.5} href="" size="xs" />
         </div>
       </header>
 

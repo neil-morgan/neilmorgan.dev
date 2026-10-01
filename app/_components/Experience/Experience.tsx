@@ -1,7 +1,8 @@
-import { Card, AspectImage, Icon, TagList } from "@/app/_components";
 import { ExperienceContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { formatDate } from "@/app/_utils/format-date/format-date";
+
+import { Card, AspectImage, Icon, TagList } from "@/app/_components";
 
 import styles from "./Experience.module.css";
 

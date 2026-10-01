@@ -1,14 +1,16 @@
 // fetch-content.test.ts
 import { GraphQLError } from "graphql";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { TypedDocumentString } from "@/app/_graphql";
 
 import { fetchContent } from "./fetch-content";
 
-global.fetch = jest.fn();
+const mockFetch = vi.fn();
+vi.stubGlobal("fetch", mockFetch);
 
 beforeEach(() => {
-  (fetch as jest.Mock).mockClear();
+  mockFetch.mockClear();
 });
 
 describe("fetchContent", () => {
@@ -19,8 +21,8 @@ describe("fetchContent", () => {
 
   it("should fetch data successfully", async () => {
     const mockData = { data: { test: "value" } };
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockData),
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce(mockData),
     });
 
     const result = await fetchContent({
@@ -44,8 +46,8 @@ describe("fetchContent", () => {
 
   it("should throw an error when fetch returns errors", async () => {
     const mockError = { errors: [new GraphQLError("Test error")] };
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockError),
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce(mockError),
     });
 
     await expect(
@@ -57,8 +59,8 @@ describe("fetchContent", () => {
 
   it("should use preview token when preview is true", async () => {
     const mockData = { data: { test: "value" } };
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockData),
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce(mockData),
     });
 
     await fetchContent({
@@ -80,8 +82,8 @@ describe("fetchContent", () => {
 
   it("should include variables and tags in the request", async () => {
     const mockData = { data: { test: "value" } };
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockData),
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce(mockData),
     });
 
     const variables = { var1: "value1" };

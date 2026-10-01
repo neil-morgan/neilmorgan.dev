@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { SITE_BASE_URL } from "@/config";
 
 import { isInternalUrl } from "./is-internal-url";

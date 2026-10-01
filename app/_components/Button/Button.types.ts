@@ -1,5 +1,6 @@
-import type { IconNameType } from "@/app/_components/Icon";
 import type { CssSizeType } from "@/app/_styles";
+
+import type { IconNameType } from "@/app/_components/Icon";
 
 export type ButtonVariant = "solid" | "bordered" | "ghost";
 export type ButtonColorScheme = "electric-blue" | "orange" | "liquorice";

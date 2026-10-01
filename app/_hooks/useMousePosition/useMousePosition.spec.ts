@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 import { useMousePosition } from "./useMousePosition";
 
@@ -22,8 +23,8 @@ describe("useMousePosition", () => {
   });
 
   it("should remove event listener on unmount", () => {
-    const addEventListenerSpy = jest.spyOn(window, "addEventListener");
-    const removeEventListenerSpy = jest.spyOn(window, "removeEventListener");
+    const addEventListenerSpy = vi.spyOn(window, "addEventListener");
+    const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
 
     const { unmount } = renderHook(() => useMousePosition());
 
