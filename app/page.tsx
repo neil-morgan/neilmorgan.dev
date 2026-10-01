@@ -34,8 +34,8 @@ const Home = async () => {
           />
         </nav>
         <div>
-          <IconButton icon="github" iconSize={0.5} href="" size="xs" />
-          <IconButton icon="linkedIn" iconSize={0.5} href="" size="xs" />
+          <IconButton icon="github" iconSize={0.5} href="https://github.com/neil-morgan" size="xs" />
+          <IconButton icon="linkedIn" iconSize={0.5} href="https://www.linkedin.com/in/neil-morgan-/" size="xs" />
         </div>
       </header>
 
