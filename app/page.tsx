@@ -22,14 +22,14 @@ const Home = async () => {
           <Button
             href="mailto:neilmorgan.dev@gmail.com"
             label="Contact"
-            size="xs"
+            size="sm"
             primary
             iconRight="envelope"
           />
           <Button
             href="/feedback"
-            label="My Feedback"
-            size="xs"
+            label="Opinions"
+            size="sm"
             iconRight="quote"
           />
         </nav>
