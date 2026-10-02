@@ -1,23 +1,32 @@
-import { ExperienceContentDocument } from "@/app/_graphql/generated";
-import { fetchContent } from "@/app/_helpers";
+"use client";
+import { useLayoutEffect, useState } from "react";
+import { ExperienceFragment } from "@/app/_graphql";
 import { formatDate } from "@/app/_utils/format-date/format-date";
-
-import { Card, AspectImage, Icon, TagList } from "@/app/_components";
-
+import { Card, AspectImage, Icon, TagList, Button } from "@/app/_components";
+import { useInteraction } from "@/app/_components/Interaction/Interaction.provider";
 import styles from "./Experience.module.css";
 
-export const Experience = async () => {
-  const { experiences } = await fetchContent({
-    document: ExperienceContentDocument,
-    variables: { preview: false, limit: 20 },
-  });
+export const ExperienceClient = ({
+  items,
+}: {
+  items: ExperienceFragment[];
+}) => {
+  const [limit, setLimit] = useState(3);
+  const { updateElementProperties } = useInteraction();
 
-  if (!experiences?.items || experiences.items.length === 0) return null;
+  useLayoutEffect(() => {
+    updateElementProperties();
+  }, [limit, updateElementProperties]);
+
+  const handleShow = () => setLimit(limit === items.length ? 3 : items.length);
+  const isShowingAll = limit === items.length;
+  const buttonMessage = isShowingAll ? "See less" : "See all";
+  const buttonIcon = isShowingAll ? "arrowUp" : "arrowDown";
 
   return (
     <section className={styles.experiences}>
-      {experiences?.items.map((experience, index) => {
-        const previousExperience = experiences?.items[index - 1];
+      {items.slice(0, limit).map((experience, index) => {
+        const previousExperience = items[index - 1];
         const fromDate = experience?.date
           ? formatDate(experience.date, { format: "monthYear" })
           : "";
@@ -85,6 +94,12 @@ export const Experience = async () => {
           </Card>
         ) : null;
       })}
+      <Button
+        label={buttonMessage}
+        size="xs"
+        iconRight={buttonIcon}
+        onClick={handleShow}
+      />
     </section>
   );
 };
