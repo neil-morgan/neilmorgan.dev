@@ -1,6 +1,7 @@
-import { Breadcrumbs, TagList, AspectImage } from "@/app/_components";
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers/fetch-content/fetch-content";
+
+import { Breadcrumbs, TagList, AspectImage } from "@/app/_components";
 
 import styles from "./PageHeader.module.css";
 
@@ -35,13 +36,6 @@ export const PageHeader = async ({ slug }: PageHeaderProps) => {
               .map((skill) => ({ title: skill.title }))}
           />
         )}
-        {/* <p className={styles.dateRange}>
-          {formatDate(from, {
-            format: "monthNameYear",
-          })}
-          &nbsp;-&nbsp;
-          {to ? formatDate(to, { format: "monthNameYear" }) : "Present"}
-        </p> */}
       </div>
       {image?.url && image.description && (
         <AspectImage

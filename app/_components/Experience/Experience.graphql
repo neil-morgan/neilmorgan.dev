@@ -1,33 +1,35 @@
+fragment Experience on Experience {
+  title
+  kicker
+  description
+  image {
+    url
+    description
+  }
+  agency {
+    logo {
+      title
+      url
+    }
+    name
+    url
+  }
+  skills: skillsCollection {
+    items {
+      title
+    }
+  }
+  date
+}
+
 query ExperienceContent($preview: Boolean, $limit: Int = 20) {
-  experiences: pageCollection(
+  experiences: experienceCollection(
     preview: $preview
     order: date_DESC
-    where: { category: "Experience" }
     limit: $limit
   ) {
     items {
-      title
-      kicker
-      description
-      image {
-        url
-        description
-      }
-      agency {
-        logo {
-          title
-          url
-        }
-        name
-        url
-      }
-      skills: skillsCollection {
-        items {
-          title
-        }
-      }
-      date
-      slug
+      ...Experience
     }
   }
 }

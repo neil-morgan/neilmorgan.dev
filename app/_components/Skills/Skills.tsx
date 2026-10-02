@@ -1,6 +1,7 @@
-import { AspectImage } from "@/app/_components";
 import { SkillsContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
+
+import { AspectImage } from "@/app/_components";
 
 import styles from "./Skills.module.css";
 
@@ -11,23 +12,26 @@ export const Skills = async () => {
 
   if (!skills?.items || skills.items.length === 0) return null;
 
-  const order = ["Expert", "Proficient", "Familiar"];
+  const order = ["I regularly use", "I am proficient with", "I am familiar with"];
   const skillGroups = skills?.items
-    .reduce((acc, skill) => {
-      if (!skill?.proficiency) return acc;
-      const existingGroup = acc.find(
-        (group) => group.title === skill.proficiency
-      );
-      if (existingGroup) {
-        existingGroup.skills.push(skill);
-      } else {
-        acc.push({
-          title: skill.proficiency,
-          skills: [skill],
-        });
-      }
-      return acc;
-    }, [] as Array<{ title: string; skills: typeof skills.items }>)
+    .reduce(
+      (acc, skill) => {
+        if (!skill?.proficiency) return acc;
+        const existingGroup = acc.find(
+          (group) => group.title === skill.proficiency,
+        );
+        if (existingGroup) {
+          existingGroup.skills.push(skill);
+        } else {
+          acc.push({
+            title: skill.proficiency,
+            skills: [skill],
+          });
+        }
+        return acc;
+      },
+      [] as Array<{ title: string; skills: typeof skills.items }>,
+    )
     .sort((a, b) => {
       const indexA = order.indexOf(a.title);
       const indexB = order.indexOf(b.title);
@@ -39,33 +43,30 @@ export const Skills = async () => {
 
   return (
     <section className={styles["link-group"]}>
-      <h4>Knowledge</h4>
-      <div>
-        {skillGroups?.map((group, index) =>
-          group ? (
-            <div key={index} className={styles.skill}>
-              <h4>{group.title}</h4>
-              <div className={styles["skill-grid"]}>
-                {group.skills.map((skill, skillIndex) =>
-                  skill?.icon?.url && skill.title ? (
-                    <div key={skillIndex} className={styles["skill-item"]}>
-                      <AspectImage
-                        size="2.5rem"
-                        borderRadius="0.5rem"
-                        fit="contain"
-                        url={skill.icon.url}
-                        description={skill.icon.description || skill.title}
-                        shadow
-                      />
-                      <span>{skill.title}</span>
-                    </div>
-                  ) : null
-                )}
-              </div>
+      {skillGroups?.map((group, index) =>
+        group ? (
+          <div key={index} className={styles.skill}>
+            <h4>{group.title}</h4>
+            <div className={styles["skill-grid"]}>
+              {group.skills.map((skill, skillIndex) =>
+                skill?.icon?.url && skill.title ? (
+                  <div key={skillIndex} className={styles["skill-item"]}>
+                    <AspectImage
+                      size="2.5rem"
+                      borderRadius="0.5rem"
+                      fit="contain"
+                      url={skill.icon.url}
+                      description={skill.icon.description || skill.title}
+                      shadow
+                    />
+                    <span>{skill.title}</span>
+                  </div>
+                ) : null,
+              )}
             </div>
-          ) : null
-        )}
-      </div>
+          </div>
+        ) : null,
+      )}
     </section>
   );
 };

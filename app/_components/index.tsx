@@ -2,11 +2,10 @@ import type { ComponentsProps } from "@/app/_types";
 
 import { Section } from "./Section";
 
-const componentMap = {
-  Section,
-};
-
 export const Components = ({ id, __typename, ...rest }: ComponentsProps) => {
+  const componentMap = {
+    Section,
+  };
   const Component = componentMap[__typename as keyof typeof componentMap];
   if (!Component) return null;
   return <Component id={id} {...rest} />;
@@ -27,7 +26,6 @@ export * from "./Interaction";
 export * from "./Link";
 export * from "./MasonryGrid";
 export * from "./PageHeader";
-export * from "./Projects";
 export * from "./Richtext";
 export * from "./Section";
 export * from "./Skills";

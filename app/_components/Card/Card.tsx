@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 import NextLink from "next/link";
 
 import { mergeRefs } from "react-merge-refs";
 
-import { Interaction } from "@/app/_components";
 import { useElementRefs } from "@/app/_providers";
 import { combineClassNames, isInternalUrl } from "@/app/_utils";
+
+import { Interaction } from "@/app/_components";
 
 import styles from "./Card.module.css";
 
@@ -23,25 +24,25 @@ export const Card = ({
 }: CardProps) => {
   const { addElementRef } = useElementRefs();
   const elementRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
-  const shouldHighlight = useMemo(() => !noHighlight, [noHighlight]);
+  const shouldHighlight = Boolean(href && !noHighlight);
 
   const classNames = combineClassNames(
     styles.card,
     className,
     shouldHighlight && "highlight",
-    "highlightable"
+    href && "highlightable",
   );
 
   useEffect(() => {
-    if (noHighlight) return;
+    if (!shouldHighlight) return;
     addElementRef(elementRef.current);
-  }, [addElementRef, noHighlight]);
+  }, [addElementRef, shouldHighlight]);
 
   const isInternalLink = href && isInternalUrl(href);
   const isExternalLink = href && !isInternalUrl(href);
 
   return (
-    <Interaction>
+    <Interaction disabled={!href}>
       {isInternalLink ? (
         <NextLink
           href={href}

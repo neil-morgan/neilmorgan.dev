@@ -2,13 +2,14 @@
 
 import NextLink from "next/link";
 
-import { Icon, Spinner, Interaction } from "@/app/_components";
 import { type CssSizeConfigType } from "@/app/_styles";
 import {
   combineClassNames,
   isInternalUrl,
   createCssSizeVariables,
 } from "@/app/_utils";
+
+import { Icon, Spinner, Interaction } from "@/app/_components";
 
 import styles from "./IconButton.module.css";
 

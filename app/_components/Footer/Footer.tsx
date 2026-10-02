@@ -1,5 +1,6 @@
-import { IconButton } from "@/app/_components";
 import { combineClassNames } from "@/app/_utils";
+
+import { IconButton } from "@/app/_components";
 
 import styles from "./Footer.module.css";
 
@@ -9,7 +10,7 @@ export const Footer = ({ withPadding = false }: FooterProps) => (
   <footer
     className={combineClassNames(
       styles.footer,
-      withPadding && styles.withPadding
+      withPadding && styles.withPadding,
     )}
   >
     <div>

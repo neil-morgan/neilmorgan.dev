@@ -3,11 +3,12 @@ import type { ReactNode } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
-import { Components } from "@/app/_components";
-import { Link } from "@/app/_components";
 import type { Typename } from "@/app/_types";
 import { isInternalUrl } from "@/app/_utils";
 import { combineClassNames } from "@/app/_utils";
+
+import { Link } from "@/app/_components";
+import { Components } from "@/app/_components";
 
 import {
   getRichtextEntry,

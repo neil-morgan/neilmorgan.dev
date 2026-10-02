@@ -45,7 +45,6 @@ function parseStylesFromTS(filePath, palettePath) {
   let match;
 
   while ((match = constRegex.exec(content)) !== null) {
-    const constName = match[1];
     const startIdx = content.indexOf("{", match.index);
 
     // Find the matching closing brace

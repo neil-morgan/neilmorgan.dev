@@ -22,21 +22,6 @@ fragment PageHeader on Page {
       title
     }
   }
-
-  links: linksCollection {
-    items {
-      label
-      icon
-      page {
-        slug
-      }
-      section {
-        sys {
-          id
-        }
-      }
-    }
-  }
 }
 
 query PageHeaderBySlug($slug: String, $preview: Boolean = false) {

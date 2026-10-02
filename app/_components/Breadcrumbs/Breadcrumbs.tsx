@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 
-import { Link } from "@/app/_components";
 import { toSentenceCase } from "@/app/_utils";
+
+import { Link } from "@/app/_components";
 
 import styles from "./Breadcrumbs.module.css";
 

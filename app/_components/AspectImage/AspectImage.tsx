@@ -1,13 +1,9 @@
-import { randomUUID } from "crypto";
-
+import { useId } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-
 import { olive, type CssSizeConfigType } from "@/app/_styles";
 import { combineClassNames, createCssSizeVariables } from "@/app/_utils";
-
 import styles from "./AspectImage.module.css";
-
 import type { AspectImageProps } from "./types";
 
 const sizes: CssSizeConfigType = {
@@ -37,7 +33,7 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
-export const AspectImage = async ({
+export const AspectImage = ({
   borderRadius = "0.25rem",
   className,
   description,
@@ -50,7 +46,7 @@ export const AspectImage = async ({
   size = "3rem",
   shadow = false,
 }: React.PropsWithChildren<AspectImageProps>) => {
-  const uniqueId = randomUUID();
+  const uniqueId = useId();
   const sizeVariable = createCssSizeVariables(size, sizes);
 
   const imageElement = (
@@ -69,7 +65,7 @@ export const AspectImage = async ({
         styles.container,
         scale === "up" ? styles.scaleUp : styles.scaleDown,
         shadow && styles.shadow,
-        className
+        className,
       )}
       style={
         {

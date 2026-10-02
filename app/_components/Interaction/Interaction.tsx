@@ -14,9 +14,9 @@ export const Interaction = ({ children, disabled }: InteractionProps) => {
   const { addElementRef } = useInteraction();
   const refCallback = useCallback(
     (node: HTMLElement | null) => {
-      if (node) addElementRef(node);
+      if (node && !disabled) addElementRef(node);
     },
-    [addElementRef]
+    [addElementRef, disabled]
   );
   if (!isValidElement(children))
     throw new Error(
