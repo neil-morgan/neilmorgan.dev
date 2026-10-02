@@ -43,7 +43,6 @@ const eslintConfig = defineConfig([
             },
           ],
           pathGroupsExcludedImportTypes: ["react", "next"],
-          "newlines-between": "always",
           alphabetize: {
             order: "asc",
             caseInsensitive: true,

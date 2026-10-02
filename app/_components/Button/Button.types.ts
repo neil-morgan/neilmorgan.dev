@@ -27,6 +27,5 @@ export interface ButtonProps {
   ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
   size?: CssSizeType;
   type?: ButtonType;
-  variant?: ButtonVariant;
   width?: ButtonWidth;
 }
