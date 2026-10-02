@@ -16,7 +16,6 @@ export const Experience = async () => {
 
   return (
     <section className={styles.experiences}>
-      <h4>Experience</h4>
       {experiences?.items.map((experience, index) => {
         const previousExperience = experiences?.items[index - 1];
         const fromDate = experience?.date
