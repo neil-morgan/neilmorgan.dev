@@ -5,7 +5,7 @@ import { combineClassNames, createCssSizeVariables } from "@/app/_utils";
 import styles from "./AspectImage.module.css";
 import type { AspectImageProps } from "./types";
 
-const sizes: CssSizeConfigType = {
+const breakpointSizes: CssSizeConfigType = {
   xs: "1rem",
   sm: "2.5rem",
   md: "5rem",
@@ -23,16 +23,18 @@ export const AspectImage = ({
   url,
   href,
   scale = "up",
+  sizes,
   size = "3rem",
   shadow = false,
 }: React.PropsWithChildren<AspectImageProps>) => {
-  const sizeVariable = createCssSizeVariables(size, sizes);
+  const sizeVariable = createCssSizeVariables(size, breakpointSizes);
 
   const imageElement = (
     <Image
       src={url}
       alt={description}
       fill
+      sizes={sizes}
       style={{ objectFit: fit }}
     />
   );

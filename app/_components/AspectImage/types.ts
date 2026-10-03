@@ -11,6 +11,7 @@ export type AspectImageProps = {
   url: string;
   scale?: "up" | "down";
   size?: CssSizeValueType;
+  sizes?: string;
   shadow?: boolean;
   href?: string;
 };
