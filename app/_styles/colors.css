@@ -401,4 +401,74 @@
   --yellow-10: #ffff57;
   --yellow-11: #f5e147;
   --yellow-12: #f6eeb4;
+
+  --primary: var(--teal-11);
+  --primary2: var(--teal-9);
+  --primary-a1: color-mix(in srgb, var(--primary) 56.47%, transparent);
+  --primary-a2: color-mix(in srgb, var(--primary) 50.20%, transparent);
+  --primary-a3: color-mix(in srgb, var(--primary) 43.92%, transparent);
+  --primary-a4: color-mix(in srgb, var(--primary) 37.65%, transparent);
+  --primary-a5: color-mix(in srgb, var(--primary) 31.37%, transparent);
+  --primary-a6: color-mix(in srgb, var(--primary) 25.10%, transparent);
+  --primary-a7: color-mix(in srgb, var(--primary) 18.82%, transparent);
+  --primary-a8: color-mix(in srgb, var(--primary) 12.55%, transparent);
+  --primary-a9: color-mix(in srgb, var(--primary) 6.27%, transparent);
+  --primary-a10: color-mix(in srgb, var(--primary) 1.96%, transparent);
+
+  --secondary: var(--iris-11);
+  --secondary2: var(--iris-9);
+  --secondary-a1: color-mix(in srgb, var(--secondary) 56.47%, transparent);
+  --secondary-a2: color-mix(in srgb, var(--secondary) 50.20%, transparent);
+  --secondary-a3: color-mix(in srgb, var(--secondary) 43.92%, transparent);
+  --secondary-a4: color-mix(in srgb, var(--secondary) 37.65%, transparent);
+  --secondary-a5: color-mix(in srgb, var(--secondary) 31.37%, transparent);
+  --secondary-a6: color-mix(in srgb, var(--secondary) 25.10%, transparent);
+  --secondary-a7: color-mix(in srgb, var(--secondary) 18.82%, transparent);
+  --secondary-a8: color-mix(in srgb, var(--secondary) 12.55%, transparent);
+  --secondary-a9: color-mix(in srgb, var(--secondary) 6.27%, transparent);
+  --secondary-a10: color-mix(in srgb, var(--secondary) 1.96%, transparent);
+
+  --heading: var(--olive-12);
+  --text: var(--olive-11);
+  --border1: var(--olive-11);
+  --border2: var(--olive-9);
+  --border3: var(--olive-7);
+  --border4: var(--olive-5);
+  --border5: var(--olive-3);
+
+  --layer1: var(--olive-1);
+  --layer2: var(--olive-2);
+  --layer2a1: color-mix(in srgb, var(--layer2) 56.47%, transparent);
+  --layer2a2: color-mix(in srgb, var(--layer2) 50.20%, transparent);
+  --layer2a3: color-mix(in srgb, var(--layer2) 43.92%, transparent);
+  --layer2a4: color-mix(in srgb, var(--layer2) 37.65%, transparent);
+  --layer2a5: color-mix(in srgb, var(--layer2) 31.37%, transparent);
+  --layer2a6: color-mix(in srgb, var(--layer2) 25.10%, transparent);
+  --layer2a7: color-mix(in srgb, var(--layer2) 18.82%, transparent);
+  --layer2a8: color-mix(in srgb, var(--layer2) 12.55%, transparent);
+  --layer2a9: color-mix(in srgb, var(--layer2) 6.27%, transparent);
+  --layer2a10: color-mix(in srgb, var(--layer2) 1.96%, transparent);
+
+  --layer3: var(--olive-3);
+  --layer3a1: color-mix(in srgb, var(--layer3) 56.47%, transparent);
+  --layer3a2: color-mix(in srgb, var(--layer3) 50.20%, transparent);
+  --layer3a3: color-mix(in srgb, var(--layer3) 43.92%, transparent);
+  --layer3a4: color-mix(in srgb, var(--layer3) 37.65%, transparent);
+  --layer3a5: color-mix(in srgb, var(--layer3) 31.37%, transparent);
+  --layer3a6: color-mix(in srgb, var(--layer3) 25.10%, transparent);
+  --layer3a7: color-mix(in srgb, var(--layer3) 18.82%, transparent);
+  --layer3a8: color-mix(in srgb, var(--layer3) 12.55%, transparent);
+  --layer3a9: color-mix(in srgb, var(--layer3) 6.27%, transparent);
+  --layer3a10: color-mix(in srgb, var(--layer3) 1.96%, transparent);
+
+  --layer4: var(--olive-4);
+
+  --interaction: color-mix(in srgb, var(--olive-12) 2.75%, transparent);
+  
+  --glow-inner: color-mix(in srgb, var(--olive-12) 7.45%, transparent);
+  --glow-outer: color-mix(in srgb, var(--olive-11) 2.75%, transparent);
+
+  --site-padding-desktop: 2rem;
+  --site-padding-mobile: 1rem;
+  --site-width: 1200px;
 }

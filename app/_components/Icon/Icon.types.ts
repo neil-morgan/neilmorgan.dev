@@ -1,8 +1,4 @@
-import type {
-  CssSizeType,
-  ColorShadeType,
-  ColorSchemeType,
-} from "@/app/_styles";
+import type { CssSizeType } from "@/app/_styles";
 
 import { icons } from "./icons";
 
@@ -15,8 +11,6 @@ export type IconPathType = {
 
 export interface IconProps {
   className?: string;
-  color?: ColorSchemeType;
-  shade?: ColorShadeType;
   name: IconNameType;
   size?: CssSizeType;
   style?: React.CSSProperties;
@@ -24,5 +18,4 @@ export interface IconProps {
 
 export interface IconStoryParams {
   sizes: CssSizeType[];
-  colors: ColorSchemeType[];
 }

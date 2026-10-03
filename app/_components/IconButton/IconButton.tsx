@@ -1,21 +1,16 @@
 "use client";
-
 import NextLink from "next/link";
-
 import { type CssSizeConfigType } from "@/app/_styles";
 import {
   combineClassNames,
   isInternalUrl,
   createCssSizeVariables,
 } from "@/app/_utils";
-
 import { Icon, Spinner, Interaction } from "@/app/_components";
-
 import styles from "./IconButton.module.css";
-
 import type { IconButtonProps } from "./IconButton.types";
 
-const sizes: CssSizeConfigType = {
+const breakpointSizes: CssSizeConfigType = {
   xs: "0.75rem",
   sm: "1rem",
   md: "1.25rem",
@@ -36,7 +31,7 @@ export const IconButton = ({
   size = "1rem",
   type = "button",
 }: IconButtonProps) => {
-  const sizeVariable = createCssSizeVariables(size, sizes);
+  const sizeVariable = createCssSizeVariables(size, breakpointSizes);
   const isExternalLink = !isInternalUrl(href ?? "");
   const shouldRenderNextLink = Boolean(href) && !isExternalLink;
   const sharedClassName = combineClassNames(styles.button, className);

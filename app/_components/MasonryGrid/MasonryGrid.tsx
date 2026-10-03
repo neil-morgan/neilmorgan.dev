@@ -4,7 +4,7 @@ import type { PropsWithChildren } from "react";
 
 import dynamic from "next/dynamic";
 
-import { BREAKPOINTS } from "@/config";
+import { BREAKPOINTS } from "@/app/_styles";
 
 import styles from "./MasonryGrid.module.css";
 

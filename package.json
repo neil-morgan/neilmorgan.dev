@@ -4,14 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-styles-css.mjs --watch & next dev",
-    "build": "npm run generate:styles && npm run codegen && next build",
+    "dev": "next dev",
+    "build": "npm run codegen && next build",
     "start": "next start",
     "lint": "eslint",
+    "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate:styles": "node scripts/generate-styles-css.mjs",
-    "generate:styles:watch": "node scripts/generate-styles-css.mjs --watch",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w"
   },
@@ -44,6 +43,8 @@
     "sanitize-html": "^2.17.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^20",
@@ -53,6 +54,7 @@
     "@types/sanitize-html": "^2.16.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5",

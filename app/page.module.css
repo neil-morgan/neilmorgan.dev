@@ -26,15 +26,11 @@ div.container {
       margin: 4rem 0 0;
     }
 
-    >p {
-      margin-bottom: 1em;
-    }
-
     >.content {
       display: flex;
       flex-direction: column;
       gap: 4rem;
-      margin-top: 1.5rem;
+      margin-top: 3.5rem;
     }
   }
 

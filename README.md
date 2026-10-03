@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Git Hooks
+
+Run `pnpm install` to install dependencies and configure Husky automatically.
+Git hooks run `pnpm lint` before each commit, validate the commit message with
+Commitlint, and run `pnpm test` before each push. Failed checks block the operation.
+
+Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/):
+`type(optional-scope): description`. For example:
+
+```text
+feat: new component
+fix: broken url
+feat(ui): add navigation component
+```
+
+Supported types are `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`,
+`refactor`, `revert`, `style`, and `test`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
