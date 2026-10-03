@@ -22,7 +22,7 @@ const DEFAULT_SIZE_CONFIG: CssSizeConfigType = {
 
 export const getCssSizeValue = (
   size: CssSizeType,
-  config?: CssSizeConfigType
+  config?: CssSizeConfigType,
 ): CssSizeValueType => {
   if (
     !SIZE_ALIAS.includes(size as CssSizeAliasType) &&

@@ -14,14 +14,14 @@ const Masonry = dynamic(
   () => import("react-responsive-masonry").then((mod) => mod.default),
   {
     ssr: false,
-  }
+  },
 );
 
 const ResponsiveMasonry = dynamic(
   () => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),
   {
     ssr: false,
-  }
+  },
 );
 
 const defaultResponsive: { [bp: number]: number } = {

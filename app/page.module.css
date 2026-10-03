@@ -26,7 +26,7 @@ div.container {
       margin: 4rem 0 0;
     }
 
-    >.content {
+    > .content {
       display: flex;
       flex-direction: column;
       gap: 4rem;
@@ -34,7 +34,7 @@ div.container {
     }
   }
 
-  >header {
+  > header {
     position: sticky;
     padding: 6rem 0;
     inset: 0;
@@ -97,7 +97,7 @@ div.container {
       }
     }
 
-    >div {
+    > div {
       display: flex;
       gap: 1rem;
       margin-top: auto;

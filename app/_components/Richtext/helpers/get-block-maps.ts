@@ -22,7 +22,7 @@ export const getBlockMaps = (links: RichtextLinksType) => {
 
 export const getBlockMap = (
   links: RichtextLinksType,
-  node: RichtextNodeType
+  node: RichtextNodeType,
 ) => {
   const blockMap = new Map();
   for (const entry of links.entries.block) {

@@ -7,7 +7,6 @@
   z-index: 10000;
   border-radius: 0.75rem;
   user-select: none;
-
 }
 
 .checkbox {
@@ -39,7 +38,7 @@
     cursor: inherit;
   }
 
-  input:focus-visible+.icon {
+  input:focus-visible + .icon {
     outline: 2px solid currentColor;
     outline-offset: 4px;
   }

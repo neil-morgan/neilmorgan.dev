@@ -44,10 +44,10 @@ describe("fetchContent", () => {
         headers: expect.objectContaining({
           "Content-Type": "application/json",
           Authorization: expect.stringContaining(
-            process.env.CONTENTFUL_DELIVERY_TOKEN
+            process.env.CONTENTFUL_DELIVERY_TOKEN,
           ),
         }),
-      })
+      }),
     );
   });
 
@@ -60,7 +60,7 @@ describe("fetchContent", () => {
     await expect(
       fetchContent({
         document: mockDocument,
-      })
+      }),
     ).rejects.toThrow("Test error");
   });
 
@@ -81,10 +81,10 @@ describe("fetchContent", () => {
         cache: "no-store",
         headers: expect.objectContaining({
           Authorization: expect.stringContaining(
-            process.env.CONTENTFUL_PREVIEW_TOKEN
+            process.env.CONTENTFUL_PREVIEW_TOKEN,
           ),
         }),
-      })
+      }),
     );
   });
 
@@ -107,7 +107,7 @@ describe("fetchContent", () => {
         headers: expect.objectContaining({
           Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_TOKEN}`,
         }),
-      })
+      }),
     );
   });
 
@@ -124,7 +124,7 @@ describe("fetchContent", () => {
     expect(requestOptions.cache).toBeUndefined();
     expect(JSON.parse(requestOptions.body).variables.preview).toBe(false);
     expect(requestOptions.headers.Authorization).toBe(
-      `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`
+      `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
     );
   });
 
@@ -140,7 +140,7 @@ describe("fetchContent", () => {
     expect(requestOptions.cache).toBeUndefined();
     expect(JSON.parse(requestOptions.body).variables.preview).toBe(false);
     expect(requestOptions.headers.Authorization).toBe(
-      `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`
+      `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
     );
   });
 
@@ -166,10 +166,10 @@ describe("fetchContent", () => {
           JSON.stringify({
             query: "query { test }",
             variables: { ...variables, preview: false },
-          })
+          }),
         ),
         next: { tags },
-      })
+      }),
     );
   });
 });

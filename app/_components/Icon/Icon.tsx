@@ -17,7 +17,7 @@ export const paths = (Object.keys(icons) as Array<keyof typeof icons>).map(
   (key) => ({
     name: key,
     path: icons[key],
-  })
+  }),
 );
 
 export const Icon = ({ className, name, size = "1rem", style }: IconProps) => {
@@ -30,7 +30,7 @@ export const Icon = ({ className, name, size = "1rem", style }: IconProps) => {
       .filter(
         (i) =>
           i.toLowerCase().includes(name.toLowerCase()) ||
-          name.toLowerCase().includes(i.toLowerCase())
+          name.toLowerCase().includes(i.toLowerCase()),
       )
       .slice(0, 5);
     console.warn(
@@ -44,7 +44,7 @@ export const Icon = ({ className, name, size = "1rem", style }: IconProps) => {
           availableIcons.length > 10
             ? `, ... and ${availableIcons.length - 10} more`
             : ""
-        }`
+        }`,
     );
     return null;
   }

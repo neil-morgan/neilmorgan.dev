@@ -4,10 +4,10 @@ import { getCssValueAndFormat, getCssSizeValue } from "@/app/_utils";
 export const createCssSizeVariables = (
   size: CssSizeType,
   sizesConfig: CssSizeConfigType,
-  flag = "--size"
+  flag = "--size",
 ) => {
   const { value, format } = getCssValueAndFormat(
-    getCssSizeValue(size, sizesConfig)
+    getCssSizeValue(size, sizesConfig),
   );
 
   return {

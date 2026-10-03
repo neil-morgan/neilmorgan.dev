@@ -9,7 +9,7 @@ import type { RichtextNodeType } from "../Richtext.types";
 
 export const removeParagraphTags = (
   node: RichtextNodeType,
-  element: string
+  element: string,
 ) => {
   const elements: { [key: string]: string } = {
     li: BLOCKS.LIST_ITEM,

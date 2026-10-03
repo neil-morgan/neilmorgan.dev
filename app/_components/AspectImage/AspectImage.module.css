@@ -5,7 +5,12 @@
   border-radius: calc(var(--size) * 0.05);
   aspect-ratio: var(--aspect-ratio);
   max-width: var(--size, 100%);
-  background: linear-gradient(90deg, var(--layer2), var(--layer3), var(--layer2));
+  background: linear-gradient(
+    90deg,
+    var(--layer2),
+    var(--layer3),
+    var(--layer2)
+  );
   background-size: 200% 100%;
   animation: shimmer 1s linear infinite;
 

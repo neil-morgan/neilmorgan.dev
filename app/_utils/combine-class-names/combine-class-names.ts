@@ -3,7 +3,7 @@ export const combineClassNames = (
 ): string =>
   classNames
     .filter(Boolean)
-    .map(name => (typeof name === 'string' ? name.trim() : name))
+    .map((name) => (typeof name === "string" ? name.trim() : name))
     .filter(Boolean)
-    .join(' ')
+    .join(" ")
     .trim();

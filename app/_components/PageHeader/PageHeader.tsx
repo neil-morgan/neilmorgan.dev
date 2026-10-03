@@ -1,7 +1,7 @@
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers/fetch-content/fetch-content";
 
-import { Breadcrumbs, TagList, AspectImage } from "@/app/_components";
+import { Breadcrumbs, AspectImage } from "@/app/_components";
 
 import styles from "./PageHeader.module.css";
 
@@ -17,7 +17,7 @@ export const PageHeader = async ({ slug }: PageHeaderProps) => {
 
   if (!data) return null;
 
-  const { title, description, kicker, skills, image } =
+  const { title, description, kicker, image } =
     data.pageCollection?.items[0] || {};
 
   return (
@@ -27,15 +27,6 @@ export const PageHeader = async ({ slug }: PageHeaderProps) => {
         <h1>{title}</h1>
         {kicker && <h4 className={styles.kicker}>{kicker}</h4>}
         {description && <p>{description}</p>}
-        {skills?.items && skills.items.length > 0 && (
-          <TagList
-            className={styles.tagList}
-            color="secondary"
-            list={skills.items
-              .filter((skill): skill is { title: string } => !!skill?.title)
-              .map((skill) => ({ title: skill.title }))}
-          />
-        )}
       </div>
       {image?.url && image.description && (
         <AspectImage

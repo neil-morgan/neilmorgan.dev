@@ -12,7 +12,11 @@ export const Skills = async () => {
 
   if (!skills?.items || skills.items.length === 0) return null;
 
-  const order = ["I regularly use", "I am proficient with", "I am familiar with"];
+  const order = [
+    "I regularly use",
+    "I am proficient with",
+    "I am familiar with",
+  ];
   const skillGroups = skills?.items
     .reduce(
       (acc, skill) => {

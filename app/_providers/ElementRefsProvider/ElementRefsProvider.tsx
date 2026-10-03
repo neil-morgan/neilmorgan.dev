@@ -35,7 +35,7 @@ export const ElementRefsProvider = ({ children }: PropsWithChildren) => {
 
   const addElementRef = (ref: ElementRefType) =>
     setElementRefs((prevRefs) =>
-      !prevRefs.includes(ref) ? [...prevRefs, ref] : prevRefs
+      !prevRefs.includes(ref) ? [...prevRefs, ref] : prevRefs,
     );
 
   const updateElementProperties = useCallback(
@@ -51,14 +51,14 @@ export const ElementRefsProvider = ({ children }: PropsWithChildren) => {
             bottom: bottom ?? 0,
             right: right ?? 0,
           };
-        })
+        }),
       ),
-    [elementRefs]
+    [elementRefs],
   );
 
   useEffect(
     () => queueMicrotask(() => updateElementProperties()),
-    [pathname, updateElementProperties]
+    [pathname, updateElementProperties],
   );
 
   useEffect(() => {

@@ -4,7 +4,7 @@ type BlockEntry = RichtextLinksType["entries"]["block"][number];
 
 export const getRichtextEntry = (
   links: RichtextLinksType,
-  node: RichtextNodeType
+  node: RichtextNodeType,
 ): BlockEntry | undefined => {
   const blockMap = new Map<string, BlockEntry>();
   for (const entry of links.entries.block) {

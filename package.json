@@ -8,6 +8,8 @@
     "build": "npm run codegen && next build",
     "start": "next start",
     "lint": "eslint",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -56,6 +58,7 @@
     "eslint-config-next": "16.0.7",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "prettier": "^3.9.9",
     "ts-node": "^10.9.2",
     "typescript": "^5",
     "vitest": "^4.1.4"

@@ -16,11 +16,11 @@ export const Interaction = ({ children, disabled }: InteractionProps) => {
     (node: HTMLElement | null) => {
       if (node && !disabled) addElementRef(node);
     },
-    [addElementRef, disabled]
+    [addElementRef, disabled],
   );
   if (!isValidElement(children))
     throw new Error(
-      "Interaction component requires a single valid React element as a child"
+      "Interaction component requires a single valid React element as a child",
     );
   const childProps = children.props as {
     className?: string;
@@ -30,7 +30,7 @@ export const Interaction = ({ children, disabled }: InteractionProps) => {
     ...childProps,
     className: combineClassNames(
       childProps.className,
-      !disabled && styles.interaction
+      !disabled && styles.interaction,
     ),
     ref: refCallback,
   } as never);
