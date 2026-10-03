@@ -1,6 +1,7 @@
 import "./_styles/globals.css";
 import "./_styles/colors.css";
 import { Inter, Fira_Mono } from "next/font/google";
+import { DebugMenuServer } from "@/app/_components";
 
 import {
   IconDefs,
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`${inter.variable} ${firaMono.variable}`}
         suppressHydrationWarning
       >
+        <DebugMenuServer />
         <InteractionProvider>
           <IconDefs />
           {children}

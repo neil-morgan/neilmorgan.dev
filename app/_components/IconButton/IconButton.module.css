@@ -24,8 +24,8 @@
   }
 
   .icon {
-    height: calc(100% * var(--iconSize));
-    width: 100%;
+    height: calc(var(--size) * 3 * var(--iconSize));
+    width: calc(var(--size) * 3 * var(--iconSize));
     margin: auto;
     display: block;
   }

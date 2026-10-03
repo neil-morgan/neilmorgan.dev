@@ -3,24 +3,10 @@ fragment PageHeader on Page {
   kicker
   description
   date
-  to
   category
   image {
     url
     description
-  }
-  agency {
-    logo {
-      title
-      url
-    }
-    name
-    url
-  }
-  skills: skillsCollection {
-    items {
-      title
-    }
   }
 }
 

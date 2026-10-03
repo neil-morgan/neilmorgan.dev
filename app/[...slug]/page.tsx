@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import {
   AllPageSlugsDocument,
   CategoryDocument,
@@ -5,14 +6,12 @@ import {
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { toSentenceCase } from "@/app/_utils";
-
 import {
   Richtext,
   type RichtextLinksType,
   PageHeader,
   Footer,
 } from "@/app/_components";
-
 import styles from "./page.module.css";
 
 import type { PageParams } from "./page.types";
@@ -20,7 +19,10 @@ import type { PageParams } from "./page.types";
 export const dynamicParams = true;
 
 export const generateStaticParams = async () => {
-  const pageData = await fetchContent({ document: AllPageSlugsDocument });
+  const pageData = await fetchContent({
+    document: AllPageSlugsDocument,
+    preview: false,
+  });
   const pages = pageData.pageCollection?.items;
   if (!pages) return [];
   const routes: { slug: string[] }[] = [];
@@ -85,6 +87,8 @@ const Root = async ({ params: pageParams }: PageParams) => {
     },
   });
   const page = pageData?.pageCollection?.items[0];
+
+  if (!page) notFound();
 
   return (
     <main className={styles.page}>

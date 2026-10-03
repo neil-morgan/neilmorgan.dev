@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-
 import { GraphQLError } from "graphql";
-
 import type { TypedDocumentString } from "@/app/_graphql";
+import { isDraftModeEnabled } from "@/app/_helpers/debugMenu/is-draft-mode-enabled";
 
 const {
   CONTENTFUL_SPACE_ID,
@@ -23,19 +22,23 @@ export const fetchContent = async <Result, Variables>({
   tags?: string[];
   notFoundOnEmpty?: boolean;
 }): Promise<Result> => {
+  const isPreview =
+    preview ?? (await isDraftModeEnabled())?.previewMode === true;
+
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,
     {
       method: "POST",
       body: JSON.stringify({
         query: document.toString(),
-        variables: { ...variables, preview },
+        variables: { ...variables, preview: isPreview },
       }),
+      ...(isPreview ? { cache: "no-store" as const } : {}),
       next: { tags },
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${
-          preview ? CONTENTFUL_PREVIEW_TOKEN : CONTENTFUL_DELIVERY_TOKEN
+          isPreview ? CONTENTFUL_PREVIEW_TOKEN : CONTENTFUL_DELIVERY_TOKEN
         }`,
       },
     },

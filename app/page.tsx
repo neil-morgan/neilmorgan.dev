@@ -26,12 +26,7 @@ const Home = async () => {
             primary
             iconRight="envelope"
           />
-          <Button
-            href="/feedback"
-            label="Opinions"
-            size="sm"
-            iconRight="quote"
-          />
+          <IconButton href="/feedback" size="sm" icon="quote" />
         </nav>
         <div>
           <IconButton

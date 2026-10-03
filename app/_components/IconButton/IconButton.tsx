@@ -23,7 +23,7 @@ export const IconButton = ({
   disabled = false,
   href = "",
   icon,
-  iconSize = 1,
+  iconSize,
   loading = false,
   onClick,
   ref,
@@ -38,7 +38,7 @@ export const IconButton = ({
 
   const sharedStyle = {
     ...sizeVariable,
-    ...(iconSize && { "--iconSize": `${iconSize}` }),
+    "--iconSize": `${iconSize ?? 4 / (2.65 * 3)}`,
   };
 
   const content = (
