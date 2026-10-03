@@ -1,26 +1,21 @@
 "use client";
-
 import NextLink from "next/link";
-
 import { type CssSizeConfigType } from "@/app/_styles";
 import {
   combineClassNames,
   isInternalUrl,
   createCssSizeVariables,
 } from "@/app/_utils";
-
 import {
   Interaction,
   Spinner,
   Icon,
   type IconNameType,
 } from "@/app/_components";
-
 import styles from "./Button.module.css";
-
 import type { ButtonProps } from "./Button.types";
 
-const sizes: CssSizeConfigType = {
+const breakpointSizes: CssSizeConfigType = {
   xs: "0.75rem",
   sm: "1rem",
   md: "1.25rem",
@@ -77,7 +72,7 @@ export const Button = ({
   type = "button",
   width = "content",
 }: ButtonProps) => {
-  const sizeVariable = createCssSizeVariables(size, sizes);
+  const sizeVariable = createCssSizeVariables(size, breakpointSizes);
   const hasOnlyLeftIcon = iconLeft && !loading && !iconRight;
   const hasOnlyRightIcon = !iconLeft && !loading && iconRight;
   const hasBothIcons = Boolean(iconLeft && iconRight);
