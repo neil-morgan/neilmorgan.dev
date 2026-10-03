@@ -1,17 +1,5 @@
 import { CSS_UNITS, SIZE_ALIAS, HEADING_ELEMENTS } from "./constants";
 
-export type ColorSchemeType = "electric-blue" | "orange" | "liquorice";
-export type ColorShadeType =
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900;
-
 export type CssUnitType = (typeof CSS_UNITS)[number];
 export type CssSizeAliasType = (typeof SIZE_ALIAS)[number];
 export type CssHeadingElementType = (typeof HEADING_ELEMENTS)[number];

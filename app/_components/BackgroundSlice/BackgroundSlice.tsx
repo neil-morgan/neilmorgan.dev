@@ -1,8 +1,5 @@
-import { styles as gStyles } from "@/app/_styles";
 import { combineClassNames } from "@/app/_utils";
-
 import styles from "./BackgroundSlice.module.css";
-
 import type { BackgroundSliceProps } from "./types";
 
 export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
@@ -20,8 +17,8 @@ export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
           y2={-100}
           gradientTransform="matrix(1 0 0 1 0 300)"
         >
-          <stop offset="0.1" style={{ stopColor: gStyles.primary }} />
-          <stop offset="0.5" style={{ stopColor: gStyles.primary2 }} />
+          <stop offset="0.1" stopColor="var(--primary)" />
+          <stop offset="0.5" stopColor="var(--primary2)" />
         </linearGradient>
         <linearGradient
           id="highlight-glow"
@@ -32,14 +29,8 @@ export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
           y2="254.1935"
           gradientTransform="matrix(1 0 0 1 0 300)"
         >
-          <stop
-            offset={0}
-            style={{ stopColor: gStyles.primary, stopOpacity: 0.37 }}
-          />
-          <stop
-            offset="0.35"
-            style={{ stopColor: gStyles.layer2, stopOpacity: 0 }}
-          />
+          <stop offset={0} stopColor="var(--primary)" stopOpacity={0.37} />
+          <stop offset="0.35" stopColor="var(--layer2)" stopOpacity={0} />
         </linearGradient>
 
         <clipPath id="myClip">
@@ -60,7 +51,7 @@ export const BackgroundSlice = ({ reverse }: BackgroundSliceProps) => (
       />
 
       <path
-        fill={`${gStyles.layer2}05`}
+        fill="var(--layer2a10)"
         fillRule="evenodd"
         clipRule="evenodd"
         d="M0,100L1920,0v110H0V100z"

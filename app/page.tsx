@@ -55,13 +55,14 @@ const Home = async () => {
           experiences that are accessible, responsive, and maintainable. My
           reputation as a passionate advocate for quality, excellence, and value
           is visible in feedback received from across the industry.
-        </p>
-        <p>
+          <br />
+          <br />
           My work sits at the intersection of design and engineering — I am
           comfortable translating visual direction into scalable UI. I care
           about clean implementation, strong visual hierarchy, and creating
           experiences that feel intentional.
         </p>
+        <p></p>
         <div className={styles.content}>
           <Experience />
           <Skills />

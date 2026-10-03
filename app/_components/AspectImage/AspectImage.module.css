@@ -5,6 +5,9 @@
   border-radius: calc(var(--size) * 0.05);
   aspect-ratio: var(--aspect-ratio);
   max-width: var(--size, 100%);
+  background: linear-gradient(90deg, var(--layer2), var(--layer3), var(--layer2));
+  background-size: 200% 100%;
+  animation: shimmer 1s linear infinite;
 
   &.scaleUp {
     min-width: var(--size, 100%);
@@ -17,5 +20,11 @@
       0 4px 4px hsl(0deg 0% 0% / 0.075),
       0 8px 8px hsl(0deg 0% 0% / 0.075),
       0 16px 16px hsl(0deg 0% 0% / 0.075);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
   }
 }
