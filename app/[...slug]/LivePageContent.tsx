@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import type { ReactNode } from "react";
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
@@ -27,23 +26,16 @@ export const LivePageContent = ({
   pageData,
   slug,
 }: LivePageContentProps) => {
-  const router = useRouter();
   const updatedPageData = useContentfulLiveUpdates(pageData, {
     query: pageContentQuery,
     locale: "en-US",
   });
   const page = updatedPageData?.pageCollection?.items[0];
-  const hasUpdatedData =
-    JSON.stringify(updatedPageData) !== JSON.stringify(pageData);
 
   const inspectorProps = useContentfulInspectorMode({
     entryId: page?.sys.id,
     locale: "en-US",
   });
-
-  useEffect(() => {
-    if (hasUpdatedData) router.refresh();
-  }, [hasUpdatedData, router]);
 
   if (!page || !inspectorProps) return null;
 
