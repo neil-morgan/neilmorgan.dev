@@ -6,12 +6,8 @@ import {
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { toSentenceCase } from "@/app/_utils";
-import {
-  Richtext,
-  type RichtextLinksType,
-  PageHeader,
-  Footer,
-} from "@/app/_components";
+import { Footer, Richtext, type RichtextLinksType } from "@/app/_components";
+import { LivePageContent } from "./LivePageContent";
 import styles from "./page.module.css";
 
 import type { PageParams } from "./page.types";
@@ -92,13 +88,14 @@ const Root = async ({ params: pageParams }: PageParams) => {
 
   return (
     <main className={styles.page}>
-      <PageHeader slug={params.slug} />
-      {page?.content && (
-        <Richtext
-          json={page.content.json}
-          links={page.content.links as RichtextLinksType}
-        />
-      )}
+      <LivePageContent pageData={pageData} slug={params.slug}>
+        {page.content && (
+          <Richtext
+            json={page.content.json}
+            links={page.content.links as RichtextLinksType}
+          />
+        )}
+      </LivePageContent>
       <Footer withPadding />
     </main>
   );

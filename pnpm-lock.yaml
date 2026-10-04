@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      "@contentful/live-preview":
+        specifier: ^4.10.26
+        version: 4.10.26(graphql@16.12.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       "@contentful/rich-text-react-renderer":
         specifier: ^16.1.6
         version: 16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -418,6 +421,21 @@ packages:
       }
     engines: { node: ">=22.12.0" }
 
+  "@contentful/content-source-maps@0.12.3":
+    resolution:
+      {
+        integrity: sha512-HzimXvs48eg+tjWtDuOIZzjbSYxfC8CLMZaTwzPqF6wW0TM5KoQIfDJZrGlnpGrZ66lXvyEc5nuYCa58ow8C7g==,
+      }
+
+  "@contentful/live-preview@4.10.26":
+    resolution:
+      {
+        integrity: sha512-LbeuFQti5xsp1PCKRolJh0aHqj9UT5pteGLGwhluNVObL9op9jhlO9jP8WQSuQ3GKGta1N/2X117Ik5CiHOXCA==,
+      }
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
   "@contentful/rich-text-react-renderer@16.1.6":
     resolution:
       {
@@ -434,6 +452,13 @@ packages:
         integrity: sha512-EA5vTfROZePoPmSlqLVd+luL/ev8CjnI20y6vWFVPlLRxQbv4XytXRzatydPE63CqfsPylF7NCn2z8rTLhnWfg==,
       }
     engines: { node: ">=6.0.0" }
+
+  "@contentful/rich-text-types@17.2.7":
+    resolution:
+      {
+        integrity: sha512-aIdozk8vk5gsYcallOrwEiL6+GSlMXZorDOmiVELfpbVaXMJPJPlf2CBw3LUzviAqCw0UPQcKHHCwG7SdY7u5w==,
+      }
+    engines: { node: ">=20.0.0" }
 
   "@conventional-changelog/git-client@3.1.2":
     resolution:
@@ -2640,6 +2665,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  "@vercel/stega@1.1.0":
+    resolution:
+      {
+        integrity: sha512-DFOm3Gk78nKDkppQEG5aj8Wj8R8hPKu/xrz4Rtp0AfiaNbZNCoJbxn7VI6iMxqhGeLdUDy/8mTuTWMz/izAtPA==,
+      }
+
   "@vitest/expect@4.1.4":
     resolution:
       {
@@ -3959,12 +3990,24 @@ packages:
         integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==,
       }
 
+  flatted@3.4.4:
+    resolution:
+      {
+        integrity: sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==,
+      }
+
   for-each@0.3.5:
     resolution:
       {
         integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==,
       }
     engines: { node: ">= 0.4" }
+
+  foreach@2.0.6:
+    resolution:
+      {
+        integrity: sha512-k6GAGDyqLe9JaebCsFCoudPPWfihKu8pylYXRlqP1J7ms39iPoTtk2fviNglIeQEwdh0bQeKJ01ZPyuyQvKzwg==,
+      }
 
   formdata-polyfill@4.0.10:
     resolution:
@@ -4774,6 +4817,12 @@ packages:
         integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==,
       }
 
+  json-pointer@0.6.2:
+    resolution:
+      {
+        integrity: sha512-vLWcKbOaXlO+jvRy4qNd+TI1QUPZzfJj1tpJ3vAXDych5XJf93ftpUKe5pKCrzyIIwgBJcOcCVRUfqQP25afBw==,
+      }
+
   json-schema-traverse@0.4.1:
     resolution:
       {
@@ -4976,6 +5025,13 @@ packages:
         integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==,
       }
     engines: { node: ">=10" }
+
+  lodash.isequal@4.5.0:
+    resolution:
+      {
+        integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==,
+      }
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 
   lodash.merge@4.6.2:
     resolution:
@@ -7098,6 +7154,24 @@ snapshots:
       conventional-commits-parser: 7.1.2
       picocolors: 1.1.1
 
+  "@contentful/content-source-maps@0.12.3":
+    dependencies:
+      "@vercel/stega": 1.1.0
+      json-pointer: 0.6.2
+
+  "@contentful/live-preview@4.10.26(graphql@16.12.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)":
+    dependencies:
+      "@contentful/content-source-maps": 0.12.3
+      "@contentful/rich-text-types": 17.2.7
+      flatted: 3.4.4
+      graphql-tag: 2.12.6(graphql@16.12.0)
+      json-pointer: 0.6.2
+      lodash.isequal: 4.5.0
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+    transitivePeerDependencies:
+      - graphql
+
   "@contentful/rich-text-react-renderer@16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)":
     dependencies:
       "@contentful/rich-text-types": 17.2.5
@@ -7114,6 +7188,8 @@ snapshots:
     transitivePeerDependencies:
       - "@lingui/babel-plugin-lingui-macro"
       - babel-plugin-macros
+
+  "@contentful/rich-text-types@17.2.7": {}
 
   "@conventional-changelog/git-client@3.1.2(conventional-commits-parser@7.1.2)":
     dependencies:
@@ -8642,6 +8718,8 @@ snapshots:
   "@unrs/resolver-binding-win32-x64-msvc@1.11.1":
     optional: true
 
+  "@vercel/stega@1.1.0": {}
+
   "@vitest/expect@4.1.4":
     dependencies:
       "@standard-schema/spec": 1.1.0
@@ -9590,9 +9668,13 @@ snapshots:
 
   flatted@3.3.3: {}
 
+  flatted@3.4.4: {}
+
   for-each@0.3.5:
     dependencies:
       is-callable: 1.2.7
+
+  foreach@2.0.6: {}
 
   formdata-polyfill@4.0.10:
     dependencies:
@@ -10070,6 +10152,10 @@ snapshots:
 
   json-parse-even-better-errors@2.3.1: {}
 
+  json-pointer@0.6.2:
+    dependencies:
+      foreach: 2.0.6
+
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
@@ -10172,6 +10258,8 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+
+  lodash.isequal@4.5.0: {}
 
   lodash.merge@4.6.2: {}
 

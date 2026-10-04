@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "test": "vitest run",
@@ -17,6 +18,7 @@
     "codegen:watch": "graphql-codegen --require dotenv/config --config codegen.ts -w"
   },
   "dependencies": {
+    "@contentful/live-preview": "^4.10.26",
     "@contentful/rich-text-react-renderer": "^16.1.6",
     "@contentful/rich-text-types": "^17.2.5",
     "@graphql-codegen/cli": "^6.1.0",

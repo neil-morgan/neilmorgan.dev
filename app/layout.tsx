@@ -1,6 +1,7 @@
 import "./_styles/globals.css";
 import "./_styles/colors.css";
 import { Inter, Fira_Mono } from "next/font/google";
+import { ContentfulPreviewProvider } from "@/app/_providers";
 import { DebugMenuServer } from "@/app/_components";
 
 import {
@@ -40,11 +41,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <DebugMenuServer />
-        <InteractionProvider>
-          <IconDefs />
-          {children}
-          <InteractionPointer />
-        </InteractionProvider>
+        <ContentfulPreviewProvider>
+          <InteractionProvider>
+            <IconDefs />
+            {children}
+            <InteractionPointer />
+          </InteractionProvider>
+        </ContentfulPreviewProvider>
       </body>
     </html>
   );
