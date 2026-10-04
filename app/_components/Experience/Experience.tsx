@@ -46,6 +46,7 @@ export const ExperienceClient = ({
                   }
                   size="2.66rem"
                   borderRadius="0.5rem"
+                  sizes="2.66rem"
                   fit="cover"
                   url={experience.image.url}
                 />

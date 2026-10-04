@@ -25,6 +25,7 @@ export const Feedback = ({
           url={authorImage?.url}
           description={authorImage?.description}
           size="5rem"
+          sizes="5rem"
           borderRadius="0.25rem"
           ratio={1}
         />
