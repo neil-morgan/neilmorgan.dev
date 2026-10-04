@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
@@ -10,19 +9,24 @@ import {
   PageContentBySlugDocument,
   type PageContentBySlugQuery,
 } from "@/app/_graphql/generated";
-import { PageHeader } from "@/app/_components";
+import {
+  LiveRichtext,
+  PageHeader,
+  type RichtextLinksType,
+} from "@/app/_components";
+import type { LiveRichtextEntry } from "@/app/_components/Richtext/LiveRichtext";
 import styles from "./LivePageContent.module.css";
 
 const pageContentQuery = parse(PageContentBySlugDocument.toString());
 
 type LivePageContentProps = {
-  children: ReactNode;
+  embeddedEntries: LiveRichtextEntry[];
   pageData: PageContentBySlugQuery;
   slug: string[];
 };
 
 export const LivePageContent = ({
-  children,
+  embeddedEntries,
   pageData,
   slug,
 }: LivePageContentProps) => {
@@ -42,12 +46,16 @@ export const LivePageContent = ({
   return (
     <>
       <PageHeader page={page} slug={slug} inspectorProps={inspectorProps} />
-      {children && (
+      {page.content && (
         <div
           className={styles.contentField}
           {...inspectorProps({ fieldId: "content" })}
         >
-          {children}
+          <LiveRichtext
+            json={page.content.json}
+            links={page.content.links as RichtextLinksType}
+            entries={embeddedEntries}
+          />
         </div>
       )}
     </>

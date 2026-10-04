@@ -5,8 +5,9 @@ import {
   PageContentBySlugDocument,
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
+import type { Typename } from "@/app/_types";
 import { toSentenceCase } from "@/app/_utils";
-import { Footer, Richtext, type RichtextLinksType } from "@/app/_components";
+import { Components, Footer } from "@/app/_components";
 import { LivePageContent } from "./LivePageContent";
 import styles from "./page.module.css";
 
@@ -86,16 +87,31 @@ const Root = async ({ params: pageParams }: PageParams) => {
 
   if (!page) notFound();
 
+  const embeddedEntries = [
+    ...(page.content?.links.entries.block ?? []),
+    ...(page.content?.links.entries.inline ?? []),
+  ].flatMap((entry) => {
+    if (!entry?.sys.id || !entry.__typename) return [];
+    return [
+      {
+        id: entry.sys.id,
+        node: (
+          <Components
+            id={entry.sys.id}
+            __typename={entry.__typename as Typename}
+          />
+        ),
+      },
+    ];
+  });
+
   return (
     <main className={styles.page}>
-      <LivePageContent pageData={pageData} slug={params.slug}>
-        {page.content && (
-          <Richtext
-            json={page.content.json}
-            links={page.content.links as RichtextLinksType}
-          />
-        )}
-      </LivePageContent>
+      <LivePageContent
+        embeddedEntries={embeddedEntries}
+        pageData={pageData}
+        slug={params.slug}
+      />
       <Footer withPadding />
     </main>
   );
