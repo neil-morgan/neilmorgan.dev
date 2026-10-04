@@ -26,6 +26,7 @@ export * from "./IconButton";
 export * from "./Interaction";
 export * from "./Link";
 export * from "./MasonryGrid";
+export * from "./PageContent";
 export * from "./PageHeader";
 export * from "./Richtext";
 export * from "./Section";

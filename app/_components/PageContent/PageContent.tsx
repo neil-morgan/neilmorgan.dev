@@ -15,7 +15,7 @@ import {
   type RichtextLinksType,
 } from "@/app/_components";
 import type { LiveRichtextEntry } from "@/app/_components/Richtext/LiveRichtext";
-import styles from "./LivePageContent.module.css";
+import styles from "./PageContent.module.css";
 
 const pageContentQuery = parse(PageContentBySlugDocument.toString());
 
@@ -25,7 +25,7 @@ type LivePageContentProps = {
   slug: string[];
 };
 
-export const LivePageContent = ({
+export const PageContent = ({
   embeddedEntries,
   pageData,
   slug,

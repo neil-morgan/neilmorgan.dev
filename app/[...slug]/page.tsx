@@ -5,10 +5,9 @@ import {
   PageContentBySlugDocument,
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
-import type { Typename } from "@/app/_types";
+import { getEmbeddedEntries } from "@/app/_helpers/get-embedded-entries";
 import { toSentenceCase } from "@/app/_utils";
-import { Components, Footer } from "@/app/_components";
-import { LivePageContent } from "./LivePageContent";
+import { Footer, PageContent } from "@/app/_components";
 import styles from "./page.module.css";
 
 import type { PageParams } from "./page.types";
@@ -87,28 +86,10 @@ const Root = async ({ params: pageParams }: PageParams) => {
 
   if (!page) notFound();
 
-  const embeddedEntries = [
-    ...(page.content?.links.entries.block ?? []),
-    ...(page.content?.links.entries.inline ?? []),
-  ].flatMap((entry) => {
-    if (!entry?.sys.id || !entry.__typename) return [];
-    return [
-      {
-        id: entry.sys.id,
-        node: (
-          <Components
-            id={entry.sys.id}
-            __typename={entry.__typename as Typename}
-          />
-        ),
-      },
-    ];
-  });
-
   return (
     <main className={styles.page}>
-      <LivePageContent
-        embeddedEntries={embeddedEntries}
+      <PageContent
+        embeddedEntries={getEmbeddedEntries(page)}
         pageData={pageData}
         slug={params.slug}
       />
