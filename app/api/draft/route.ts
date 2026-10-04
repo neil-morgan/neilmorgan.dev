@@ -1,4 +1,4 @@
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
@@ -16,6 +16,16 @@ export const GET = async (request: Request) => {
   }
   const draft = await draftMode();
   draft.enable();
+  const cookieStore = await cookies();
+  const draftCookie = cookieStore.get("__prerender_bypass");
+  if (draftCookie) {
+    cookieStore.set("__prerender_bypass", draftCookie.value, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
+  }
   await updateDebugConfig({
     previewMode: true,
   });

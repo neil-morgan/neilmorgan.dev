@@ -12,6 +12,11 @@ export const updateDebugConfig = async (config: Partial<DebugConfig>) => {
     cookieStore.get("nm_debug")?.value ?? "{}",
   );
   const newConfig = { ...currentConfig, ...config } as DebugConfig;
-  cookieStore.set("nm_debug", JSON.stringify(newConfig));
+  cookieStore.set("nm_debug", JSON.stringify(newConfig), {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    path: "/",
+  });
   return newConfig;
 };
