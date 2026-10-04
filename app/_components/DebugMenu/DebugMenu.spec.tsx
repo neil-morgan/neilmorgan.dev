@@ -55,15 +55,32 @@ describe("DebugMenuServer visibility", () => {
     ).toBeChecked();
   });
 
-  it("stays hidden in development when draft mode is disabled", async () => {
+  it("renders in development when draft mode is disabled", async () => {
     vi.stubEnv("NODE_ENV", "development");
     vi.mocked(isDraftModeEnabled).mockResolvedValue(null);
 
-    expect(await DebugMenuServer()).toBeNull();
+    render(await DebugMenuServer());
+
+    expect(
+      screen.getByRole("checkbox", { name: "Preview mode" }),
+    ).not.toBeChecked();
   });
 });
 
 describe("DebugMenu preview toggle", () => {
+  it("enables preview on the first click without a draft config", async () => {
+    vi.mocked(updateDebugConfig).mockResolvedValue({ previewMode: true });
+
+    render(<DebugMenu debugConfig={null} environmentId="master" />);
+
+    const checkbox = screen.getByRole("checkbox", { name: "Preview mode" });
+    fireEvent.click(checkbox);
+
+    expect(updateDebugConfig).toHaveBeenCalledWith({ previewMode: true });
+    await waitFor(() => expect(checkbox).toBeChecked());
+    expect(checkbox).toBeEnabled();
+  });
+
   it.each([true, false])(
     "shows and toggles the preview icon when preview is %s",
     async (previewMode) => {

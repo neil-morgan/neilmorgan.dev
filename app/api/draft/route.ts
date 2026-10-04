@@ -36,13 +36,17 @@ export const GET = async (request: Request) => {
 
   const data = await fetchContent({
     document: PageContentBySlugDocument,
-    variables: { slug: slugParam },
+    variables: { slug: slugParam, pageType_exists: null },
   });
 
-  const { slug } = data.pageCollection?.items[0] || {};
+  const { slug, pageType } = data.pageCollection?.items[0] || {};
 
   if (slug) {
-    redirect(`/${slug}`, RedirectType.push);
+    const path = [
+      ...(pageType ? [pageType.toLowerCase()] : []),
+      ...slug.split("/").filter(Boolean),
+    ].join("/");
+    redirect(`/${path}`, RedirectType.push);
   }
 
   return redirect("/");

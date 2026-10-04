@@ -47,7 +47,7 @@ const Checkbox = ({ value, onChange }: ToggleProps) => {
 export const DebugMenu = ({
   debugConfig,
 }: {
-  debugConfig: DebugConfig;
+  debugConfig: DebugConfig | null;
   environmentId: string;
 }) => {
   const [currentConfig, setCurrentConfig] = useState(debugConfig);
@@ -61,7 +61,7 @@ export const DebugMenu = ({
   return (
     <div className={styles.container}>
       <Checkbox
-        value={currentConfig.previewMode ?? false}
+        value={currentConfig?.previewMode ?? false}
         onChange={handleUpdateConfig("previewMode")}
       />
     </div>

@@ -2,7 +2,7 @@ query AllPageSlugs($preview: Boolean = false) {
   pageCollection(limit: 100, preview: $preview) {
     items {
       slug
-      category
+      pageType
     }
   }
 }
@@ -55,8 +55,16 @@ fragment PageContentLinks on PageContentLinks {
   }
 }
 
-query PageContentBySlug($slug: String, $preview: Boolean = false) {
-  pageCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+query PageContentBySlug(
+  $slug: String
+  $pageType_exists: Boolean
+  $preview: Boolean = false
+) {
+  pageCollection(
+    preview: $preview
+    where: { slug: $slug, pageType_exists: $pageType_exists }
+    limit: 1
+  ) {
     items {
       __typename
       sys {
@@ -64,6 +72,7 @@ query PageContentBySlug($slug: String, $preview: Boolean = false) {
       }
       ...PageHeader
       slug
+      pageType
       metaTitle
       content {
         json
@@ -71,19 +80,6 @@ query PageContentBySlug($slug: String, $preview: Boolean = false) {
           ...PageContentLinks
         }
       }
-    }
-  }
-}
-
-query Category($category: String, $preview: Boolean = false) {
-  pageCollection(
-    preview: $preview
-    where: { category: $category }
-    limit: 100
-  ) {
-    items {
-      slug
-      category
     }
   }
 }

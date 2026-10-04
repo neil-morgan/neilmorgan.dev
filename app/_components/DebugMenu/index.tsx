@@ -5,7 +5,6 @@ export const DebugMenuServer = async () => {
   if (process.env.NODE_ENV === "production") return null;
 
   const debugConfig = await isDraftModeEnabled();
-  if (!debugConfig) return null;
 
   return (
     <DebugMenu

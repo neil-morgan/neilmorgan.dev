@@ -4,10 +4,6 @@ fragment ExternalLink on ExternalLink {
   icon
 }
 
-fragment Category on Page {
-  category
-}
-
 fragment PageMeta on Page {
   metaTitle
   slug
