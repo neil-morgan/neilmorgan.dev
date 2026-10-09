@@ -1,12 +1,14 @@
-import type { DebugConfig } from "./types";
+import type { PreviewConfig } from "./types";
 
-export const parseDebugConfig = (configString: string): DebugConfig | null => {
+export const parsePreviewConfig = (
+  configString: string,
+): PreviewConfig | null => {
   try {
     const parsedConfig = JSON.parse(configString);
     if (typeof parsedConfig !== "object" || parsedConfig === null) {
       return null;
     }
-    return parsedConfig as DebugConfig;
+    return parsedConfig as PreviewConfig;
   } catch {
     return null;
   }

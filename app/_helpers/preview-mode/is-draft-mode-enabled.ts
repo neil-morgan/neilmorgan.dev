@@ -1,10 +1,10 @@
 "use server";
 import { cookies } from "next/headers";
-import { parseDebugConfig } from "./parse-debug-config";
+import { parsePreviewConfig } from "./parse-preview-config";
 import { safeDraftModeCheck } from "./safe-draft-mode-check";
 
 const disabledPreviewMode = {
-  previewMode: process.env.CONTENTFUL_PREVIEW_ENABLED === "true",
+  previewMode: false,
 };
 
 export const isDraftModeEnabled = async () => {
@@ -12,10 +12,10 @@ export const isDraftModeEnabled = async () => {
     const isEnabled = await safeDraftModeCheck();
     if (!isEnabled) return null;
     const cookieStore = await cookies();
-    const debugCookie = cookieStore.get("nm_debug");
-    if (!debugCookie) return null;
+    const previewCookie = cookieStore.get("nm_preview");
+    if (!previewCookie) return null;
 
-    return parseDebugConfig(debugCookie.value) ?? disabledPreviewMode;
+    return parsePreviewConfig(previewCookie.value) ?? disabledPreviewMode;
   } catch {
     return disabledPreviewMode;
   }

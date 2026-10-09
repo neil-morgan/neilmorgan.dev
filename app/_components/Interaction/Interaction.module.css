@@ -4,15 +4,15 @@
   background-color: var(--layer2a5);
   transition: ease 200ms;
 
-  @media (min-width: env(breakpoint-md)) {
-    &:hover:not(:disabled) {
+  @media (max-width: env(breakpoint-md)) {
+    background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%);
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
       box-shadow: 0px 0px 0 1px var(--border2);
       background-color: var(--interaction);
     }
-  }
-
-  @media (max-width: env(breakpoint-md)) {
-    background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%);
   }
 }
 

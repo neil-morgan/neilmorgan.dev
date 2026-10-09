@@ -16,11 +16,11 @@ import styles from "./Button.module.css";
 import type { ButtonProps } from "./Button.types";
 
 const breakpointSizes: CssSizeConfigType = {
-  xs: "0.75rem",
-  sm: "1rem",
-  md: "1.25rem",
-  lg: "1.5rem",
-  xl: "2rem",
+  xs: "0.70rem",
+  sm: "0.85rem",
+  md: "1rem",
+  lg: "1.15rem",
+  xl: "1.30rem",
 };
 
 const renderIcon = (
@@ -82,11 +82,18 @@ export const Button = ({
   const innerStyle = {
     opacity: loading && !loadingText ? 0 : 1,
   };
-  const shouldRenderNextLink = Boolean(href) && !isExternalLink;
+  const isDisabled = disabled || loading;
+  const shouldRenderNextLink = Boolean(href) && !isExternalLink && !isDisabled;
 
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => {
+    if (isDisabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
     if (href?.includes("#")) {
       const hashIndex = href.indexOf("#");
       const hash = href.substring(hashIndex + 1);
@@ -161,17 +168,24 @@ export const Button = ({
     >
       {content}
     </NextLink>
-  ) : isExternalLink && href ? (
+  ) : href ? (
     <a
       ref={ref as React.Ref<HTMLAnchorElement>}
       style={{ ...sizeVariable }}
       className={sharedClassName}
       onClick={handleClick}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={isDisabled ? undefined : href}
+      role={isDisabled ? "link" : undefined}
+      target={isExternalLink ? "_blank" : undefined}
+      rel={isExternalLink ? "noopener noreferrer" : undefined}
       tabIndex={disabled || loading ? -1 : 0}
-      aria-label={`${label} (opens in new tab)`}
+      aria-label={
+        loading && loadingText
+          ? loadingText
+          : isExternalLink && !isDisabled
+            ? `${label} (opens in new tab)`
+            : label
+      }
       aria-disabled={loading || disabled}
       aria-busy={loading}
     >

@@ -2,7 +2,7 @@ import "./_styles/globals.css";
 import "./_styles/colors.css";
 import { Inter, Fira_Mono } from "next/font/google";
 import { ContentfulPreviewProvider } from "@/app/_providers";
-import { DebugMenuServer } from "@/app/_components";
+import { PreviewModeServer } from "@/app/_components";
 
 import {
   IconDefs,
@@ -40,7 +40,7 @@ export default function RootLayout({
         className={`${inter.variable} ${firaMono.variable}`}
         suppressHydrationWarning
       >
-        <DebugMenuServer />
+        <PreviewModeServer />
         <ContentfulPreviewProvider>
           <InteractionProvider>
             <IconDefs />

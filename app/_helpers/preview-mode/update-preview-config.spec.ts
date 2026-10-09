@@ -2,7 +2,7 @@ import { cookies, draftMode } from "next/headers";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { safeDraftModeCheck } from "./safe-draft-mode-check";
-import { updateDebugConfig } from "./update-debug-config";
+import { updatePreviewConfig } from "./update-preview-config";
 
 vi.mock("next/headers", () => ({
   cookies: vi.fn(),
@@ -33,15 +33,15 @@ beforeEach(() => {
 
 afterEach(() => vi.unstubAllEnvs());
 
-describe("updateDebugConfig", () => {
+describe("updatePreviewConfig", () => {
   it("enables draft mode and persists preview on the first development click", async () => {
-    await expect(updateDebugConfig({ previewMode: true })).resolves.toEqual({
+    await expect(updatePreviewConfig({ previewMode: true })).resolves.toEqual({
       previewMode: true,
     });
 
     expect(enable).toHaveBeenCalledOnce();
     expect(set).toHaveBeenCalledWith(
-      "nm_debug",
+      "nm_preview",
       JSON.stringify({ previewMode: true }),
       { httpOnly: true, sameSite: "none", secure: true, path: "/" },
     );
@@ -51,7 +51,7 @@ describe("updateDebugConfig", () => {
     vi.mocked(safeDraftModeCheck).mockResolvedValue(true);
     get.mockReturnValue({ value: JSON.stringify({ previewMode: true }) });
 
-    await expect(updateDebugConfig({ previewMode: false })).resolves.toEqual({
+    await expect(updatePreviewConfig({ previewMode: false })).resolves.toEqual({
       previewMode: false,
     });
 
@@ -62,7 +62,7 @@ describe("updateDebugConfig", () => {
   it("rejects unauthenticated draft activation in production", async () => {
     vi.stubEnv("NODE_ENV", "production");
 
-    await expect(updateDebugConfig({ previewMode: true })).rejects.toThrow(
+    await expect(updatePreviewConfig({ previewMode: true })).rejects.toThrow(
       "Draft mode is not enabled",
     );
 
@@ -74,7 +74,7 @@ describe("updateDebugConfig", () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.mocked(safeDraftModeCheck).mockResolvedValue(true);
 
-    await expect(updateDebugConfig({ previewMode: true })).resolves.toEqual({
+    await expect(updatePreviewConfig({ previewMode: true })).resolves.toEqual({
       previewMode: true,
     });
 

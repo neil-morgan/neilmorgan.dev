@@ -17,7 +17,7 @@ export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./Card";
 export * from "./CodeString";
-export * from "./DebugMenu";
+export * from "./PreviewMode";
 export * from "./Experience";
 export * from "./Feedback";
 export * from "./Footer";

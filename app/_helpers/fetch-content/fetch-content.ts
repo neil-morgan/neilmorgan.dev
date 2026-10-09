@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { GraphQLError } from "graphql";
 import type { TypedDocumentString } from "@/app/_graphql";
-import { isDraftModeEnabled } from "@/app/_helpers/debugMenu/is-draft-mode-enabled";
+import { isDraftModeEnabled } from "@/app/_helpers/preview-mode/is-draft-mode-enabled";
 
 const {
   CONTENTFUL_SPACE_ID,

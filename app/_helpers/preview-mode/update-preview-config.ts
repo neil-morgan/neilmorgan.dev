@@ -1,10 +1,10 @@
 "use server";
 import { cookies, draftMode } from "next/headers";
-import { parseDebugConfig } from "./parse-debug-config";
+import { parsePreviewConfig } from "./parse-preview-config";
 import { safeDraftModeCheck } from "./safe-draft-mode-check";
-import { type DebugConfig } from "./types";
+import { type PreviewConfig } from "./types";
 
-export const updateDebugConfig = async (config: Partial<DebugConfig>) => {
+export const updatePreviewConfig = async (config: Partial<PreviewConfig>) => {
   const isDraftModeEnabled = await safeDraftModeCheck();
   if (!isDraftModeEnabled) {
     if (process.env.NODE_ENV === "production") {
@@ -14,11 +14,11 @@ export const updateDebugConfig = async (config: Partial<DebugConfig>) => {
     draft.enable();
   }
   const cookieStore = await cookies();
-  const currentConfig = parseDebugConfig(
-    cookieStore.get("nm_debug")?.value ?? "{}",
+  const currentConfig = parsePreviewConfig(
+    cookieStore.get("nm_preview")?.value ?? "{}",
   );
-  const newConfig = { ...currentConfig, ...config } as DebugConfig;
-  cookieStore.set("nm_debug", JSON.stringify(newConfig), {
+  const newConfig = { ...currentConfig, ...config } as PreviewConfig;
+  cookieStore.set("nm_preview", JSON.stringify(newConfig), {
     httpOnly: true,
     sameSite: "none",
     secure: true,

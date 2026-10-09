@@ -15,49 +15,41 @@ const Home = async () => {
         <h1>Neil Morgan</h1>
         <h2>Frontend Engineer</h2>
         <p>
-          I architect accessible, and innovative experiences that delight users
-          and drive business success.
+          I turn ideas, systems, and interfaces into polished digital
+          experiences, bridging design and engineering to create scalable UI
+          that is accessible, responsive, and maintainable. I value clean
+          implementation, and intentional design.
         </p>
-        <nav>
-          <Button
-            href="mailto:neilmorgan.dev@gmail.com"
-            label="Contact"
-            size="sm"
-            primary
-            iconRight="envelope"
-          />
-          <IconButton href="/feedback" size="sm" icon="quote" />
-        </nav>
-        <div>
-          <IconButton
-            icon="github"
-            iconSize={0.5}
-            href="https://github.com/neil-morgan"
-            size="xs"
-          />
-          <IconButton
-            icon="linkedIn"
-            iconSize={0.5}
-            href="https://www.linkedin.com/in/neil-morgan-/"
-            size="xs"
-          />
-        </div>
-      </header>
 
+        <Button
+          href="mailto:neilmorgan.dev@gmail.com"
+          label="Let's talk"
+          size="lg"
+          primary
+          iconRight="envelope"
+        />
+        <nav>
+          <div>
+            <Button href="/blog" label="Blog" size="sm" disabled />
+            <Button href="/feedback" label="Feedback" size="sm" />
+          </div>
+          <div>
+            <IconButton
+              icon="github"
+              iconSize={0.5}
+              href="https://github.com/neil-morgan"
+              size="xs"
+            />
+            <IconButton
+              icon="linkedIn"
+              iconSize={0.5}
+              href="https://www.linkedin.com/in/neil-morgan-/"
+              size="xs"
+            />
+          </div>
+        </nav>
+      </header>
       <main>
-        <p>
-          I enjoy turning ideas, systems, and interfaces into polished digital
-          experiences that are accessible, responsive, and maintainable. My
-          reputation as a passionate advocate for quality, excellence, and value
-          is visible in feedback received from across the industry.
-          <br />
-          <br />
-          My work sits at the intersection of design and engineering — I am
-          comfortable translating visual direction into scalable UI. I care
-          about clean implementation, strong visual hierarchy, and creating
-          experiences that feel intentional.
-        </p>
-        <p></p>
         <div className={styles.content}>
           <Experience />
           <Skills />

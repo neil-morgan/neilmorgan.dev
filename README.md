@@ -20,6 +20,30 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Content previews
+
+In development, the preview toggle is always visible, even before draft mode is
+enabled. Turn on **Preview mode** to load draft and unpublished Contentful
+content. The first click enables Next.js draft mode for your browser; turn the
+toggle off to return to published content.
+
+CMS preview requests use `CONTENTFUL_PREVIEW_TOKEN` and bypass the fetch cache.
+Configure this token alongside `CONTENTFUL_SPACE_ID` and
+`CONTENTFUL_DELIVERY_TOKEN`. `CONTENTFUL_PREVIEW_ENABLED` is not used; preview
+selection comes from the browser's preview setting or an explicit per-fetch
+`preview` option.
+
+Contentful can also open a preview through
+`/api/draft?secret=<CONTENTFUL_PREVIEW_SECRET>&slug=<page-slug>`. The endpoint
+validates the secret, enables draft mode and preview, and redirects to the page.
+Use `/api/disable-draft` to exit Next.js draft mode and clear the `nm_preview`
+cookie. The preview toggle is hidden in
+production.
+
+Static route generation discovers published pages only (`preview: false`).
+Unpublished pages do not need static generation: `dynamicParams = true` allows
+their URLs to render on demand when preview is enabled.
+
 ## Git Hooks
 
 Run `pnpm install` to install dependencies and configure Husky automatically.

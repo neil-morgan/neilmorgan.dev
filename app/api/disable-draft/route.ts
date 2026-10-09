@@ -6,7 +6,7 @@ export const GET = async (request: Request) => {
   const draftModeInstance = await draftMode();
   draftModeInstance.disable();
   const cookieStore = await cookies();
-  cookieStore.delete("hiveDebug");
+  cookieStore.delete("nm_preview");
 
   redirect(searchParams.get("redirect") || "/");
 };

@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
-import { updateDebugConfig, type DebugConfig } from "@/app/_helpers/debugMenu";
+import {
+  updatePreviewConfig,
+  type PreviewConfig,
+} from "@/app/_helpers/preview-mode";
 import { combineClassNames } from "@/app/_utils";
 import { Spinner, Icon } from "@/app/_components";
-import styles from "./DebugMenu.module.css";
+import styles from "./PreviewMode.module.css";
 
 interface ToggleProps {
   value: boolean;
@@ -44,17 +47,17 @@ const Checkbox = ({ value, onChange }: ToggleProps) => {
   );
 };
 
-export const DebugMenu = ({
-  debugConfig,
+export const PreviewMode = ({
+  previewConfig,
 }: {
-  debugConfig: DebugConfig | null;
+  previewConfig: PreviewConfig | null;
   environmentId: string;
 }) => {
-  const [currentConfig, setCurrentConfig] = useState(debugConfig);
+  const [currentConfig, setCurrentConfig] = useState(previewConfig);
 
   const handleUpdateConfig =
-    (configKey: keyof DebugConfig) => async (newValue: boolean) => {
-      const newConfig = await updateDebugConfig({ [configKey]: newValue });
+    (configKey: keyof PreviewConfig) => async (newValue: boolean) => {
+      const newConfig = await updatePreviewConfig({ [configKey]: newValue });
       setCurrentConfig(newConfig);
     };
 

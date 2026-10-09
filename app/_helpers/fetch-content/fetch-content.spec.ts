@@ -3,11 +3,11 @@ import { GraphQLError } from "graphql";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { TypedDocumentString } from "@/app/_graphql";
-import { isDraftModeEnabled } from "@/app/_helpers/debugMenu/is-draft-mode-enabled";
+import { isDraftModeEnabled } from "@/app/_helpers/preview-mode/is-draft-mode-enabled";
 
 import { fetchContent } from "./fetch-content";
 
-vi.mock("@/app/_helpers/debugMenu/is-draft-mode-enabled", () => ({
+vi.mock("@/app/_helpers/preview-mode/is-draft-mode-enabled", () => ({
   isDraftModeEnabled: vi.fn(),
 }));
 
@@ -88,7 +88,7 @@ describe("fetchContent", () => {
     );
   });
 
-  it("should use the debug preview setting when preview is omitted", async () => {
+  it("should use the preview setting when preview is omitted", async () => {
     vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
@@ -128,7 +128,7 @@ describe("fetchContent", () => {
     );
   });
 
-  it("should use published content when debug preview is disabled", async () => {
+  it("should use published content when preview is disabled", async () => {
     vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: false });
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),

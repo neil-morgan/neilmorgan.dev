@@ -9,15 +9,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   isDraftModeEnabled,
-  updateDebugConfig,
-} from "@/app/_helpers/debugMenu";
+  updatePreviewConfig,
+} from "@/app/_helpers/preview-mode";
 
-import { DebugMenu } from "./DebugMenu";
-import { DebugMenuServer } from "./index";
+import { PreviewMode } from "./PreviewMode";
+import { PreviewModeServer } from "./index";
 
-vi.mock("@/app/_helpers/debugMenu", () => ({
+vi.mock("@/app/_helpers/preview-mode", () => ({
   isDraftModeEnabled: vi.fn(),
-  updateDebugConfig: vi.fn(),
+  updatePreviewConfig: vi.fn(),
 }));
 
 vi.mock("@/app/_components", () => ({
@@ -30,15 +30,15 @@ afterEach(() => vi.unstubAllEnvs());
 
 beforeEach(() => {
   vi.mocked(isDraftModeEnabled).mockReset();
-  vi.mocked(updateDebugConfig).mockReset();
+  vi.mocked(updatePreviewConfig).mockReset();
 });
 
-describe("DebugMenuServer visibility", () => {
+describe("PreviewModeServer visibility", () => {
   it("never renders in production even with preview enabled", async () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
 
-    expect(await DebugMenuServer()).toBeNull();
+    expect(await PreviewModeServer()).toBeNull();
     expect(isDraftModeEnabled).not.toHaveBeenCalled();
   });
 
@@ -46,7 +46,7 @@ describe("DebugMenuServer visibility", () => {
     vi.stubEnv("NODE_ENV", "development");
     vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
 
-    const menu = await DebugMenuServer();
+    const menu = await PreviewModeServer();
     expect(menu).not.toBeNull();
     render(menu);
 
@@ -59,7 +59,7 @@ describe("DebugMenuServer visibility", () => {
     vi.stubEnv("NODE_ENV", "development");
     vi.mocked(isDraftModeEnabled).mockResolvedValue(null);
 
-    render(await DebugMenuServer());
+    render(await PreviewModeServer());
 
     expect(
       screen.getByRole("checkbox", { name: "Preview mode" }),
@@ -67,16 +67,16 @@ describe("DebugMenuServer visibility", () => {
   });
 });
 
-describe("DebugMenu preview toggle", () => {
+describe("PreviewMode toggle", () => {
   it("enables preview on the first click without a draft config", async () => {
-    vi.mocked(updateDebugConfig).mockResolvedValue({ previewMode: true });
+    vi.mocked(updatePreviewConfig).mockResolvedValue({ previewMode: true });
 
-    render(<DebugMenu debugConfig={null} environmentId="master" />);
+    render(<PreviewMode previewConfig={null} environmentId="master" />);
 
     const checkbox = screen.getByRole("checkbox", { name: "Preview mode" });
     fireEvent.click(checkbox);
 
-    expect(updateDebugConfig).toHaveBeenCalledWith({ previewMode: true });
+    expect(updatePreviewConfig).toHaveBeenCalledWith({ previewMode: true });
     await waitFor(() => expect(checkbox).toBeChecked());
     expect(checkbox).toBeEnabled();
   });
@@ -84,12 +84,12 @@ describe("DebugMenu preview toggle", () => {
   it.each([true, false])(
     "shows and toggles the preview icon when preview is %s",
     async (previewMode) => {
-      vi.mocked(updateDebugConfig).mockResolvedValue({
+      vi.mocked(updatePreviewConfig).mockResolvedValue({
         previewMode: !previewMode,
       });
 
       render(
-        <DebugMenu debugConfig={{ previewMode }} environmentId="master" />,
+        <PreviewMode previewConfig={{ previewMode }} environmentId="master" />,
       );
 
       const checkbox = screen.getByRole("checkbox", { name: "Preview mode" });
@@ -100,7 +100,7 @@ describe("DebugMenu preview toggle", () => {
 
       fireEvent.click(checkbox);
 
-      expect(updateDebugConfig).toHaveBeenCalledWith({
+      expect(updatePreviewConfig).toHaveBeenCalledWith({
         previewMode: !previewMode,
       });
       expect(checkbox).toBeDisabled();
