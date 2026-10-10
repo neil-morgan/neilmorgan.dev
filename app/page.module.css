@@ -23,7 +23,7 @@ div.container {
 
     @media (max-width: env(breakpoint-md)) {
       width: 100%;
-      margin: 4rem 0 0;
+      margin: 4.5rem 0 0;
     }
 
     > .content {
@@ -79,6 +79,7 @@ div.container {
 
       @media (max-width: env(breakpoint-md)) {
         margin-top: 1.5rem;
+        align-items: flex-end;
       }
 
       div {
