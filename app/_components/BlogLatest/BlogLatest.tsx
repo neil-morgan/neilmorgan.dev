@@ -26,7 +26,7 @@ export const BlogLatest = async () => {
           sizes="(max-width: 600px) 100vw, 50vw"
           ratio={4 / 1}
           url={content?.image?.url}
-          description="Misty city skyline at dawn"
+          description={content?.image?.description ?? ""}
         />
       )}
       <div className={styles.body}>

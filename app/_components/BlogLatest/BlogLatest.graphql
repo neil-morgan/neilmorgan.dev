@@ -15,7 +15,7 @@ query BlogLatestContent($preview: Boolean) {
   blogLatest: pageCollection(
     order: sys_publishedAt_ASC
     preview: $preview
-    where: { pageType: "Blog" }
+    where: { type: "Blog" }
     limit: 1
   ) {
     items {

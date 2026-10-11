@@ -39,13 +39,13 @@ const Home = async () => {
               icon="github"
               iconSize={0.5}
               href="https://github.com/neil-morgan"
-              size="xs"
+              size="sm"
             />
             <IconButton
               icon="linkedIn"
               iconSize={0.5}
               href="https://www.linkedin.com/in/neil-morgan-/"
-              size="xs"
+              size="sm"
             />
           </div>
         </nav>

@@ -2,7 +2,7 @@ query AllPageSlugs($preview: Boolean = false) {
   pageCollection(limit: 100, preview: $preview) {
     items {
       slug
-      pageType
+      type
     }
   }
 }
@@ -57,12 +57,12 @@ fragment PageContentLinks on PageContentLinks {
 
 query PageContentBySlug(
   $slug: String
-  $pageType_exists: Boolean
+  $type_exists: Boolean
   $preview: Boolean = false
 ) {
   pageCollection(
     preview: $preview
-    where: { slug: $slug, pageType_exists: $pageType_exists }
+    where: { slug: $slug, type_exists: $type_exists }
     limit: 1
   ) {
     items {
@@ -72,7 +72,7 @@ query PageContentBySlug(
       }
       ...PageHeader
       slug
-      pageType
+      type
       metaTitle
       content {
         json

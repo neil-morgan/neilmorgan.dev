@@ -19,18 +19,18 @@ const getPageDataForRoute = async (routeSegments: string[]) => {
       document: PageContentBySlugDocument,
       variables: {
         slug: segments.slice(1).join("/"),
-        pageType_exists: true,
+        type_exists: true,
       },
     });
     const typedPage = typedPageData?.pageCollection?.items[0];
-    if (typedPage?.pageType?.toLowerCase() === segments[0].toLowerCase())
+    if (typedPage?.type?.toLowerCase() === segments[0].toLowerCase())
       return { pageData: typedPageData, page: typedPage };
   }
 
   const slug = segments.join("/") || "/";
   const pageData = await fetchContent({
     document: PageContentBySlugDocument,
-    variables: { slug, pageType_exists: false },
+    variables: { slug, type_exists: false },
   });
 
   return { pageData, page: pageData?.pageCollection?.items[0] };
@@ -46,10 +46,10 @@ export const generateStaticParams = async () => {
   const routes: { slug: string[] }[] = [];
   pages.forEach((page) => {
     if (!page?.slug) return;
-    if (page.pageType) {
+    if (page.type) {
       routes.push({
         slug: [
-          page.pageType.toLowerCase(),
+          page.type.toLowerCase(),
           ...(page.slug === "/" ? [] : page.slug.split("/")),
         ],
       });

@@ -36,14 +36,14 @@ export const GET = async (request: Request) => {
 
   const data = await fetchContent({
     document: PageContentBySlugDocument,
-    variables: { slug: slugParam, pageType_exists: null },
+    variables: { slug: slugParam, type_exists: null },
   });
 
-  const { slug, pageType } = data.pageCollection?.items[0] || {};
+  const { slug, type } = data.pageCollection?.items[0] || {};
 
   if (slug) {
     const path = [
-      ...(pageType ? [pageType.toLowerCase()] : []),
+      ...(type ? [type.toLowerCase()] : []),
       ...slug.split("/").filter(Boolean),
     ].join("/");
     redirect(`/${path}`, RedirectType.push);
