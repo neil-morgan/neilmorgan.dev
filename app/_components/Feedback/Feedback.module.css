@@ -13,21 +13,21 @@
   header {
     gap: 1rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 
     div {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 0.25rem;
 
       h3 {
-        font-size: 1.4rem;
+        font-size: 1rem;
         color: #ffffff;
         font-weight: 700;
       }
+
       p {
-        font-size: 1rem;
+        font-size: 0.85rem;
         color: var(--secondary);
         font-weight: 500;
       }
