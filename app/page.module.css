@@ -53,6 +53,12 @@ div.container {
       max-height: unset;
     }
 
+    @media (max-width: env(breakpoint-sm)) {
+      > a {
+        width: 100%;
+      }
+    }
+
     h1 {
       position: relative;
       letter-spacing: 0.5rem;

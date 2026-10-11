@@ -1,0 +1,1 @@
+export { BlogLatest } from "./BlogLatest";

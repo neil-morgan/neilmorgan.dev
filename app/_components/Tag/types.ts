@@ -4,6 +4,8 @@ export type TagProps = {
   slug?: string;
   size?: CssSizeType;
   color?: "primary" | "secondary";
+  variant?: "ghost" | "solid";
+  className?: string;
 };
 
 export type TagListProps = {

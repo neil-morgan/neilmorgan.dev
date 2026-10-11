@@ -13,11 +13,11 @@ export const Components = ({ id, __typename, ...rest }: ComponentsProps) => {
 
 export * from "./AspectImage";
 export * from "./BackgroundSlice";
+export * from "./BlogLatest";
 export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./Card";
 export * from "./CodeString";
-export * from "./PreviewMode";
 export * from "./Experience";
 export * from "./Feedback";
 export * from "./Footer";
@@ -28,6 +28,7 @@ export * from "./Link";
 export * from "./MasonryGrid";
 export * from "./PageContent";
 export * from "./PageHeader";
+export * from "./PreviewMode";
 export * from "./Richtext";
 export * from "./Section";
 export * from "./Skills";

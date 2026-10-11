@@ -5,13 +5,25 @@
   width: fit-content;
   font-size: calc(var(--size) * 1);
   padding: calc(var(--size) * 0.3) calc(var(--size) * 0.5);
+
   &.primary {
     color: var(--primary);
     background: var(--primary-a7);
+
+    &.solid {
+      background: var(--primary);
+      color: black;
+    }
   }
+
   &.secondary {
     color: var(--secondary);
     background: var(--secondary-a7);
+
+    &.solid {
+      background: var(--secondary);
+      color: black;
+    }
   }
 }
 

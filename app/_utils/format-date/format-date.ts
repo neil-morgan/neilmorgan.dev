@@ -5,7 +5,7 @@ export const formatDate = (inputDate: string, options?: FormatDateOptions) => {
     throw new Error("Invalid date format");
   }
 
-  const { separator, format } = options || {};
+  const { separator, format = "dayMonthYear" } = options || {};
   const dateParts = inputDate.split("T")[0].split("-");
   const selectedSeparator =
     separator === "hyphen" ? "-" : separator === "slash" ? "/" : " ";

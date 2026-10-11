@@ -22,7 +22,7 @@ fragment Experience on Experience {
   date
 }
 
-query ExperienceContent($preview: Boolean, $limit: Int = 20) {
+query ExperienceContent($preview: Boolean = false, $limit: Int = 20) {
   experiences: experienceCollection(
     preview: $preview
     order: date_DESC

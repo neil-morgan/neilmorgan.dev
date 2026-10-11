@@ -20,6 +20,12 @@ describe("formatDate", () => {
     expect(formatDate(inputDate, options)).toEqual("15/04/2023");
   });
 
+  it("should format date in dayMonthYear format", () => {
+    const inputDate = "2023-04-15T00:00:00Z";
+    const options = { format: "dayMonthYear" as const };
+    expect(formatDate(inputDate, options)).toEqual("15 04 2023");
+  });
+
   it("should format date in monthYear format", () => {
     const inputDate = "2023-04-15T00:00:00Z";
     const options = { format: "monthYear" as const };

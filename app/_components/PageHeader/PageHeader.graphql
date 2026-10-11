@@ -2,7 +2,6 @@ fragment PageHeader on Page {
   title
   kicker
   description
-  date
   image {
     url
     description

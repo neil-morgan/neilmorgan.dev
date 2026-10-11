@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: calc(var(--size) * 0.05);
   aspect-ratio: var(--aspect-ratio);
   max-width: var(--size, 100%);
   background: linear-gradient(

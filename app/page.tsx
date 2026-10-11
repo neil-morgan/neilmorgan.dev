@@ -4,6 +4,7 @@ import {
   Footer,
   Experience,
   Skills,
+  BlogLatest,
 } from "@/app/_components";
 
 import styles from "./page.module.css";
@@ -51,6 +52,7 @@ const Home = async () => {
       </header>
       <main>
         <div className={styles.content}>
+          <BlogLatest />
           <Experience />
           <Skills />
         </div>

@@ -1,6 +1,7 @@
 .interaction {
   box-shadow: 0px 0px 0 1px var(--border4);
   border-radius: 0.25rem;
+  overflow: hidden;
   background-color: var(--layer2a5);
   transition: ease 200ms;
 

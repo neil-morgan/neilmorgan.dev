@@ -17,12 +17,19 @@ const sizes: CssSizeConfigType = {
 export const Tag = ({
   children,
   color = "primary",
+  variant = "ghost",
   size = "md",
+  className,
 }: React.PropsWithChildren<TagProps>) => {
   const sizeVariable = createCssSizeVariables(size, sizes);
   return (
     <div
-      className={combineClassNames(styles.tag, styles[color])}
+      className={combineClassNames(
+        styles.tag,
+        styles[color],
+        styles[variant],
+        className,
+      )}
       style={sizeVariable}
     >
       {children}

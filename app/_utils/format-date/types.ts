@@ -1,4 +1,4 @@
 export type FormatDateOptions = {
   separator?: "hyphen" | "slash" | "space";
-  format?: "monthYear" | "year" | "monthNameYear";
+  format?: "dayMonthYear" | "monthYear" | "year" | "monthNameYear";
 };

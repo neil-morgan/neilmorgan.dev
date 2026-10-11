@@ -1,0 +1,25 @@
+fragment BlogLatest on Page {
+  sys {
+    publishedAt
+  }
+  description
+  image {
+    url
+    description
+  }
+  slug
+  title
+}
+
+query BlogLatestContent($preview: Boolean) {
+  blogLatest: pageCollection(
+    order: sys_publishedAt_ASC
+    preview: $preview
+    where: { pageType: "Blog" }
+    limit: 1
+  ) {
+    items {
+      ...BlogLatest
+    }
+  }
+}

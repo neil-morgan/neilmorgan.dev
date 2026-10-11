@@ -88,8 +88,7 @@ describe("fetchContent", () => {
     );
   });
 
-  it("should use the preview setting when preview is omitted", async () => {
-    vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
+  it("should default to published mode when preview is omitted", async () => {
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
     });
@@ -99,27 +98,24 @@ describe("fetchContent", () => {
     expect(fetch).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({
-        cache: "no-store",
         body: JSON.stringify({
           query: "query { test }",
-          variables: { preview: true },
+          variables: { preview: false },
         }),
         headers: expect.objectContaining({
-          Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_TOKEN}`,
+          Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
         }),
       }),
     );
   });
 
-  it("should honor explicit published mode without checking draft mode", async () => {
-    vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
+  it("should use published mode when preview is false", async () => {
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
     });
 
     await fetchContent({ document: mockDocument, preview: false });
 
-    expect(isDraftModeEnabled).not.toHaveBeenCalled();
     const requestOptions = mockFetch.mock.calls[0][1];
     expect(requestOptions.cache).toBeUndefined();
     expect(JSON.parse(requestOptions.body).variables.preview).toBe(false);
@@ -128,8 +124,23 @@ describe("fetchContent", () => {
     );
   });
 
+  it("should prioritize draft mode over preview being false", async () => {
+    vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
+    });
+
+    await fetchContent({ document: mockDocument, preview: false });
+
+    const requestOptions = mockFetch.mock.calls[0][1];
+    expect(requestOptions.cache).toBe("no-store");
+    expect(JSON.parse(requestOptions.body).variables.preview).toBe(true);
+    expect(requestOptions.headers.Authorization).toBe(
+      `Bearer ${process.env.CONTENTFUL_PREVIEW_TOKEN}`,
+    );
+  });
+
   it("should use published content when preview is disabled", async () => {
-    vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: false });
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
     });

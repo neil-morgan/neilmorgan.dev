@@ -1,7 +1,7 @@
 "use client";
 import { useLayoutEffect, useState } from "react";
 import { ExperienceFragment } from "@/app/_graphql";
-import { formatDate } from "@/app/_utils/format-date/format-date";
+import { formatDate } from "@/app/_utils";
 import { Card, AspectImage, Icon, TagList, Button } from "@/app/_components";
 import { useInteraction } from "@/app/_components/Interaction/Interaction.provider";
 import styles from "./Experience.module.css";
@@ -98,7 +98,7 @@ export const ExperienceClient = ({
       })}
       <Button
         label={buttonMessage}
-        size="xs"
+        size="sm"
         iconRight={buttonIcon}
         onClick={handleShow}
       />

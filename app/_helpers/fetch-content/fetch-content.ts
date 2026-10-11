@@ -12,7 +12,7 @@ const {
 export const fetchContent = async <Result, Variables>({
   document,
   variables,
-  preview,
+  preview = false,
   tags,
   notFoundOnEmpty,
 }: {
@@ -23,7 +23,7 @@ export const fetchContent = async <Result, Variables>({
   notFoundOnEmpty?: boolean;
 }): Promise<Result> => {
   const isPreview =
-    preview ?? (await isDraftModeEnabled())?.previewMode === true;
+    preview || (await isDraftModeEnabled())?.previewMode === true;
 
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,

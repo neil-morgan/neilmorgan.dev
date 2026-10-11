@@ -8,7 +8,7 @@ import { ExperienceClient } from "./Experience";
 export const Experience = async () => {
   const { experiences } = await fetchContent({
     document: ExperienceContentDocument,
-    variables: { preview: false, limit: 20 },
+    variables: { limit: 20 },
   });
   if (!experiences?.items || experiences.items.length === 0) return null;
   const items = experiences?.items as ExperienceFragment[];
