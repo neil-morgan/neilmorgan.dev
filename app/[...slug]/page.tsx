@@ -5,11 +5,32 @@ import {
 } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
 import { getEmbeddedEntries } from "@/app/_helpers/get-embedded-entries";
-import { Footer, PageContent } from "@/app/_components";
+import {
+  BlogListing,
+  Footer,
+  PageContent,
+  PageHeader,
+} from "@/app/_components";
 import styles from "./page.module.css";
 import type { PageParams } from "./page.types";
 
 export const dynamicParams = true;
+
+type TypeIndexTemplate = {
+  title: string;
+  render: () => React.ReactNode;
+};
+
+// Index pages generated from a page `type` (e.g. /blog lists all "Blog" pages)
+const typeIndexTemplates: Record<string, TypeIndexTemplate> = {
+  blog: { title: "Blog", render: () => <BlogListing /> },
+};
+
+const getTypeIndexTemplate = (routeSegments: string[]) => {
+  const segments = routeSegments.filter(Boolean);
+  if (segments.length !== 1) return null;
+  return typeIndexTemplates[segments[0].toLowerCase()] ?? null;
+};
 
 const getPageDataForRoute = async (routeSegments: string[]) => {
   const segments = routeSegments.filter(Boolean);
@@ -44,14 +65,14 @@ export const generateStaticParams = async () => {
   const pages = pageData.pageCollection?.items;
   if (!pages) return [];
   const routes: { slug: string[] }[] = [];
+  const typeIndexes = new Set<string>();
   pages.forEach((page) => {
     if (!page?.slug) return;
     if (page.type) {
+      const type = page.type.toLowerCase();
+      if (typeIndexTemplates[type]) typeIndexes.add(type);
       routes.push({
-        slug: [
-          page.type.toLowerCase(),
-          ...(page.slug === "/" ? [] : page.slug.split("/")),
-        ],
+        slug: [type, ...(page.slug === "/" ? [] : page.slug.split("/"))],
       });
     } else {
       routes.push({
@@ -59,11 +80,18 @@ export const generateStaticParams = async () => {
       });
     }
   });
+  typeIndexes.forEach((type) => {
+    if (!routes.some(({ slug }) => slug.join("/") === type))
+      routes.push({ slug: [type] });
+  });
   return routes;
 };
 
 export const generateMetadata = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
+  const typeIndex = getTypeIndexTemplate(params.slug || []);
+  if (typeIndex) return { title: `Neil Morgan | ${typeIndex.title}` };
+
   const { page } = await getPageDataForRoute(params.slug || []);
   return {
     title: `Neil Morgan | ${page?.metaTitle || "Not found"}`,
@@ -75,6 +103,26 @@ export const generateMetadata = async ({ params: pageParams }: PageParams) => {
 
 const Root = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
+  const typeIndex = getTypeIndexTemplate(params.slug);
+
+  if (typeIndex) {
+    return (
+      <main className={styles.page}>
+        <PageHeader
+          slug={params.slug}
+          page={{
+            title: typeIndex.title,
+            kicker: null,
+            description: null,
+            image: null,
+          }}
+        />
+        {typeIndex.render()}
+        <Footer withPadding />
+      </main>
+    );
+  }
+
   const { pageData, page } = await getPageDataForRoute(params.slug);
 
   if (!page) notFound();

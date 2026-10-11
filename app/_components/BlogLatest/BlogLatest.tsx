@@ -16,7 +16,7 @@ export const BlogLatest = async () => {
   return (
     <Card href={`/blog/${content?.slug}`} className={styles.container}>
       <Tag color="secondary" size="md" variant="solid" className={styles.label}>
-        Blog Latest
+        {content?.category?.title}
       </Tag>
       {content?.image?.url && (
         <AspectImage

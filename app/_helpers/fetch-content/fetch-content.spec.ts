@@ -140,6 +140,22 @@ describe("fetchContent", () => {
     );
   });
 
+  it("should use published content when publishedOnly is true in draft mode", async () => {
+    vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
+    });
+
+    await fetchContent({ document: mockDocument, publishedOnly: true });
+
+    const requestOptions = mockFetch.mock.calls[0][1];
+    expect(requestOptions.cache).toBeUndefined();
+    expect(JSON.parse(requestOptions.body).variables.preview).toBe(false);
+    expect(requestOptions.headers.Authorization).toBe(
+      `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
+    );
+  });
+
   it("should use published content when preview is disabled", async () => {
     mockFetch.mockResolvedValueOnce({
       json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),

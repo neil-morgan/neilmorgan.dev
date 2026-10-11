@@ -1,4 +1,9 @@
 import {
+  BlogListingContentDocument,
+  PageContentBySlugDocument,
+} from "@/app/_graphql";
+import { fetchContent } from "@/app/_helpers";
+import {
   Button,
   IconButton,
   Footer,
@@ -6,15 +11,26 @@ import {
   Skills,
   BlogLatest,
 } from "@/app/_components";
-
 import styles from "./page.module.css";
 
 const Home = async () => {
+  const [{ blogPosts }, feedbackPageData] = await Promise.all([
+    fetchContent({ document: BlogListingContentDocument }),
+    fetchContent({
+      document: PageContentBySlugDocument,
+      variables: { slug: "feedback", type_exists: false },
+      publishedOnly: true,
+    }),
+  ]);
+  const feedbackPagePublished = Boolean(
+    feedbackPageData.pageCollection?.items[0],
+  );
+
   return (
     <div className={styles.container}>
       <header>
         <h1>Neil Morgan</h1>
-        <h2>Frontend Engineer</h2>
+        <h2>Front End Engineer</h2>
         <p>
           I turn ideas, systems, and interfaces into polished digital
           experiences, bridging design and engineering to create scalable UI
@@ -31,8 +47,18 @@ const Home = async () => {
         />
         <nav>
           <div>
-            <Button href="/blog" label="Blog" size="sm" disabled />
-            <Button href="/feedback" label="Feedback" size="sm" />
+            <Button
+              href="/blog"
+              label="Blog"
+              size="sm"
+              disabled={blogPosts?.items.length === 0}
+            />
+            <Button
+              href="/feedback"
+              label="Feedback"
+              size="sm"
+              disabled={!feedbackPagePublished}
+            />
           </div>
           <div>
             <IconButton

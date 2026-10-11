@@ -13,17 +13,20 @@ export const fetchContent = async <Result, Variables>({
   document,
   variables,
   preview = false,
+  publishedOnly = false,
   tags,
   notFoundOnEmpty,
 }: {
   document: TypedDocumentString<Result, Variables>;
   variables?: Variables;
   preview?: boolean;
+  publishedOnly?: boolean;
   tags?: string[];
   notFoundOnEmpty?: boolean;
 }): Promise<Result> => {
   const isPreview =
-    preview || (await isDraftModeEnabled())?.previewMode === true;
+    !publishedOnly &&
+    (preview || (await isDraftModeEnabled())?.previewMode === true);
 
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}`,

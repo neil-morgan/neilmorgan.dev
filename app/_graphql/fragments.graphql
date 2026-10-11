@@ -8,3 +8,21 @@ fragment PageMeta on Page {
   metaTitle
   slug
 }
+
+fragment BlogPost on Page {
+  sys {
+    id
+    publishedAt
+  }
+  description
+  image {
+    url
+    description
+  }
+  slug
+  title
+  category {
+    title
+    slug
+  }
+}

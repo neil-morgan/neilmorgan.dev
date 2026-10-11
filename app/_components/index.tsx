@@ -14,6 +14,7 @@ export const Components = ({ id, __typename, ...rest }: ComponentsProps) => {
 export * from "./AspectImage";
 export * from "./BackgroundSlice";
 export * from "./BlogLatest";
+export * from "./BlogListing";
 export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./Card";
