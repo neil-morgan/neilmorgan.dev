@@ -2,6 +2,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { type CssSizeConfigType } from "@/app/_styles";
 import { combineClassNames, createCssSizeVariables } from "@/app/_utils";
+import skeletonStyles from "@/app/_components/Skeleton/Skeleton.module.css";
 import styles from "./AspectImage.module.css";
 import type { AspectImageProps } from "./types";
 
@@ -43,6 +44,7 @@ export const AspectImage = ({
     <div
       className={combineClassNames(
         styles.container,
+        skeletonStyles.shimmer,
         scale === "up" ? styles.scaleUp : styles.scaleDown,
         shadow && styles.shadow,
         className,

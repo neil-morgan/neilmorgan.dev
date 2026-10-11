@@ -1,24 +1,21 @@
 "use client";
 
-import type { PropsWithChildren } from "react";
+import {
+  Children,
+  isValidElement,
+  useCallback,
+  useState,
+  type PropsWithChildren,
+} from "react";
 import dynamic from "next/dynamic";
 import { BREAKPOINTS } from "@/app/_styles";
 import styles from "./MasonryGrid.module.css";
+import { MasonryGridSkeleton } from "./MasonryGridSkeleton";
 import type { MasonryGridProps } from "./types";
 
-const Masonry = dynamic(
-  () => import("react-responsive-masonry").then((mod) => mod.default),
-  {
-    ssr: false,
-  },
-);
-
-const ResponsiveMasonry = dynamic(
-  () => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),
-  {
-    ssr: false,
-  },
-);
+const MasonryGridLayout = dynamic(() => import("./MasonryGridLayout"), {
+  ssr: false,
+});
 
 const defaultResponsive: { [bp: number]: number } = {
   [BREAKPOINTS.base]: 1,
@@ -31,13 +28,34 @@ export const MasonryGrid = ({
   gutter,
   responsive = defaultResponsive,
 }: PropsWithChildren<MasonryGridProps>) => {
+  const [ready, setReady] = useState(false);
+  const onReady = useCallback(() => setReady(true), []);
+  const count = Children.toArray(children).filter(isValidElement).length;
+
+  if (count === 0) return null;
+
   return (
-    <ResponsiveMasonry
-      className={styles.container}
-      style={{ gap: gutter }}
-      columnsCountBreakPoints={responsive}
-    >
-      <Masonry gutter={gutter}>{children}</Masonry>
-    </ResponsiveMasonry>
+    <div className={styles.wrapper} aria-busy={!ready}>
+      {!ready && (
+        <MasonryGridSkeleton
+          count={count}
+          gutter={gutter}
+          responsive={responsive}
+        />
+      )}
+      <div
+        className={!ready ? styles.pending : undefined}
+        aria-hidden={!ready ? true : undefined}
+        inert={!ready ? true : undefined}
+      >
+        <MasonryGridLayout
+          gutter={gutter}
+          responsive={responsive}
+          onReady={onReady}
+        >
+          {children}
+        </MasonryGridLayout>
+      </div>
+    </div>
   );
 };

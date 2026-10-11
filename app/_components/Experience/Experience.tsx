@@ -45,7 +45,7 @@ export const ExperienceClient = ({
                     experience.image.description || "Experience Image"
                   }
                   size="2.66rem"
-                  borderRadius="0.5rem"
+                  borderRadius="0.25rem"
                   sizes="2.66rem"
                   fit="cover"
                   url={experience.image.url}
@@ -56,6 +56,7 @@ export const ExperienceClient = ({
                 <AspectImage
                   size="1.66rem"
                   scale="down"
+                  borderRadius="0.1rem"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   url={experience.agency.logo.url}
                   description={

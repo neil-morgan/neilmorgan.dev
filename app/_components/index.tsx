@@ -33,6 +33,7 @@ export * from "./PreviewMode";
 export * from "./Richtext";
 export * from "./Section";
 export * from "./Skills";
+export * from "./Skeleton";
 export * from "./Spinner";
 export * from "./Spread";
 export * from "./Tag";

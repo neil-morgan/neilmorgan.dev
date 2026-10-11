@@ -1,3 +1,23 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.pending {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+}
+
+.skeleton {
+  width: 100%;
+}
+
+.placeholder {
+  break-inside: avoid;
+}
+
 .container {
   > div,
   > div > div {

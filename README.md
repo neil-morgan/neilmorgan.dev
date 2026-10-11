@@ -44,6 +44,27 @@ Static route generation discovers published pages only (`preview: false`).
 Unpublished pages do not need static generation: `dynamicParams = true` allows
 their URLs to render on demand when preview is enabled.
 
+## Loading skeletons
+
+`Skeleton` is a reusable decorative placeholder with the same one-second linear
+gradient shimmer as `AspectImage`. Set its dimensions through `style` or
+`className`; its default size is full width and 1rem tall. Both respect
+`prefers-reduced-motion`.
+
+```tsx
+import { Skeleton } from "@/app/_components";
+
+<Skeleton style={{ height: "18rem", borderRadius: "0.5rem" }} />;
+```
+
+`MasonryGrid` renders staggered skeleton blocks in its initial HTML while its
+client-side layout loads and measures the responsive columns. Placeholders match
+the number of children, configured breakpoints and gutter. The real layout stays
+hidden and non-interactive until mounted; the skeleton is then removed without a
+fixed loading delay. The existing masonry placement algorithm is unchanged.
+Placeholder heights are estimates, so this reduces the empty loading flash but
+does not guarantee zero layout shift for arbitrary content.
+
 ## Git Hooks
 
 Run `pnpm install` to install dependencies and configure Husky automatically.
