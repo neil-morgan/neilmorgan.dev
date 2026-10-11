@@ -27,10 +27,11 @@ export const BlogListing = async () => {
                   <Card href={`/blog/${post.slug}`} className={styles.post}>
                     {post.image?.url && (
                       <AspectImage
-                        size="4rem"
+                        className={styles.image}
+                        size="6rem"
                         fit="cover"
-                        borderRadius="0.5rem"
-                        sizes="4rem"
+                        borderRadius="0px"
+                        sizes="6rem"
                         url={post.image.url}
                         description={post.image.description ?? ""}
                       />

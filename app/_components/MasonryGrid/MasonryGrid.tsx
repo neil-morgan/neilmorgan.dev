@@ -1,13 +1,9 @@
 "use client";
 
 import type { PropsWithChildren } from "react";
-
 import dynamic from "next/dynamic";
-
 import { BREAKPOINTS } from "@/app/_styles";
-
 import styles from "./MasonryGrid.module.css";
-
 import type { MasonryGridProps } from "./types";
 
 const Masonry = dynamic(

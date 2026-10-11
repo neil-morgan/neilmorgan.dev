@@ -18,12 +18,18 @@ export const dynamicParams = true;
 
 type TypeIndexTemplate = {
   title: string;
+  description: string;
   render: () => React.ReactNode;
 };
 
 // Index pages generated from a page `type` (e.g. /blog lists all "Blog" pages)
 const typeIndexTemplates: Record<string, TypeIndexTemplate> = {
-  blog: { title: "Blog", render: () => <BlogListing /> },
+  blog: {
+    title: "Welcome to my Blog",
+    description:
+      "Below are my notes on creativity, curiosity, and the small discoveries that make life richer.",
+    render: () => <BlogListing />,
+  },
 };
 
 const getTypeIndexTemplate = (routeSegments: string[]) => {
@@ -113,7 +119,7 @@ const Root = async ({ params: pageParams }: PageParams) => {
           page={{
             title: typeIndex.title,
             kicker: null,
-            description: null,
+            description: typeIndex.description,
             image: null,
           }}
         />
