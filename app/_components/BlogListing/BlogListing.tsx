@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import { BlogListingContentDocument } from "@/app/_graphql";
-import { fetchContent } from "@/app/_helpers";
+import { groupPostsByCategory, fetchContent } from "@/app/_helpers";
 import { formatDate } from "@/app/_utils";
 import { Card, AspectImage, MasonryGrid } from "@/app/_components";
 import styles from "./BlogListing.module.css";
-import { groupPostsByCategory } from "./group-posts-by-category";
 
 export const BlogListing = async () => {
   const { blogPosts } = await fetchContent({

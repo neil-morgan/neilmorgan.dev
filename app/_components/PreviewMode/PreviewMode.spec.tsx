@@ -6,16 +6,11 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-
-import {
-  isDraftModeEnabled,
-  updatePreviewConfig,
-} from "@/app/_helpers/preview-mode";
-
+import { isDraftModeEnabled, updatePreviewConfig } from "@/app/_helpers";
 import { PreviewMode } from "./PreviewMode";
 import { PreviewModeServer } from "./index";
 
-vi.mock("@/app/_helpers/preview-mode", () => ({
+vi.mock("@/app/_helpers", () => ({
   isDraftModeEnabled: vi.fn(),
   updatePreviewConfig: vi.fn(),
 }));

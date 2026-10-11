@@ -1,4 +1,4 @@
-import { isDraftModeEnabled } from "@/app/_helpers/preview-mode";
+import { isDraftModeEnabled } from "@/app/_helpers";
 import { PreviewMode } from "./PreviewMode";
 
 export const PreviewModeServer = async () => {

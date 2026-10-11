@@ -1,10 +1,8 @@
 // fetch-content.test.ts
 import { GraphQLError } from "graphql";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-
 import type { TypedDocumentString } from "@/app/_graphql";
-import { isDraftModeEnabled } from "@/app/_helpers/preview-mode/is-draft-mode-enabled";
-
+import { isDraftModeEnabled } from "@/app/_helpers";
 import { fetchContent } from "./fetch-content";
 
 vi.mock("@/app/_helpers/preview-mode/is-draft-mode-enabled", () => ({

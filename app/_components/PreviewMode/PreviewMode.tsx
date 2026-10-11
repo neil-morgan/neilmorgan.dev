@@ -1,9 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-  updatePreviewConfig,
-  type PreviewConfig,
-} from "@/app/_helpers/preview-mode";
+import { updatePreviewConfig, type PreviewConfig } from "@/app/_helpers";
 import { combineClassNames } from "@/app/_utils";
 import { Spinner, Icon } from "@/app/_components";
 import styles from "./PreviewMode.module.css";

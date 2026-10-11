@@ -3,7 +3,7 @@ import { redirect, RedirectType } from "next/navigation";
 
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
-import { updatePreviewConfig } from "@/app/_helpers/preview-mode";
+import { updatePreviewConfig } from "@/app/_helpers";
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);

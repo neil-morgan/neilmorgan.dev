@@ -3,8 +3,7 @@ import {
   AllPageSlugsDocument,
   PageContentBySlugDocument,
 } from "@/app/_graphql/generated";
-import { fetchContent } from "@/app/_helpers";
-import { getEmbeddedEntries } from "@/app/_helpers/get-embedded-entries";
+import { getEmbeddedEntries, fetchContent } from "@/app/_helpers";
 import {
   BlogListing,
   Footer,
