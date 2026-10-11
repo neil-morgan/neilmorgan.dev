@@ -21,7 +21,6 @@ type TypeIndexTemplate = {
   render: () => React.ReactNode;
 };
 
-// Index pages generated from a page `type` (e.g. /blog lists all "Blog" pages)
 const typeIndexTemplates: Record<string, TypeIndexTemplate> = {
   blog: {
     title: "Welcome to my Blog",
@@ -39,7 +38,6 @@ const getTypeIndexTemplate = (routeSegments: string[]) => {
 
 const getPageDataForRoute = async (routeSegments: string[]) => {
   const segments = routeSegments.filter(Boolean);
-
   if (segments.length > 1) {
     const typedPageData = await fetchContent({
       document: PageContentBySlugDocument,
@@ -52,13 +50,11 @@ const getPageDataForRoute = async (routeSegments: string[]) => {
     if (typedPage?.type?.toLowerCase() === segments[0].toLowerCase())
       return { pageData: typedPageData, page: typedPage };
   }
-
   const slug = segments.join("/") || "/";
   const pageData = await fetchContent({
     document: PageContentBySlugDocument,
     variables: { slug, type_exists: false },
   });
-
   return { pageData, page: pageData?.pageCollection?.items[0] };
 };
 
@@ -96,7 +92,6 @@ export const generateMetadata = async ({ params: pageParams }: PageParams) => {
   const params = await pageParams;
   const typeIndex = getTypeIndexTemplate(params.slug || []);
   if (typeIndex) return { title: `Neil Morgan | ${typeIndex.title}` };
-
   const { page } = await getPageDataForRoute(params.slug || []);
   return {
     title: `Neil Morgan | ${page?.metaTitle || "Not found"}`,

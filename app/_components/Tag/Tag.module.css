@@ -21,8 +21,8 @@
     background: var(--secondary-a7);
 
     &.solid {
-      background: var(--secondary);
-      color: black;
+      background: var(--iris-4);
+      color: var(--iris-12);
     }
   }
 }

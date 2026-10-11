@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import type { Block, Inline, Document } from "@contentful/rich-text-types";
 
 export type RichtextNodeType = Block | Inline;
@@ -29,4 +30,9 @@ export type RichtextProps = {
   json: Document;
   links?: RichtextLinksType;
   noPadding?: boolean;
+};
+
+export type LiveRichtextEntry = {
+  id: string;
+  node: ReactNode;
 };

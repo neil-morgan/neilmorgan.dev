@@ -12,21 +12,26 @@ export const BlogLatest = async () => {
   if (blogLatest?.items.length === 0) return null;
 
   const content = blogLatest?.items[0];
+  const image = content?.image?.image;
 
   return (
     <Card href={`/blog/${content?.slug}`} className={styles.container}>
       <Tag color="secondary" size="md" variant="solid" className={styles.label}>
-        {content?.category?.title}
+        Blog latest
       </Tag>
-      {content?.image?.url && (
+      {image?.url && (
         <AspectImage
           className={styles.image}
+          borderRadius="0rem"
           size="100%"
           fit="cover"
+          loading="eager"
           sizes="(max-width: 600px) 100vw, 50vw"
-          ratio={4 / 1}
-          url={content?.image?.url}
-          description={content?.image?.description ?? ""}
+          ratio={3 / 1}
+          url={image?.url}
+          sourceSize={image}
+          focalPoint={content?.image?.focalPoint}
+          description={image?.description ?? ""}
         />
       )}
       <div className={styles.body}>

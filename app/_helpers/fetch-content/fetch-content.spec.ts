@@ -132,6 +132,7 @@ describe("fetchContent", () => {
 
     const requestOptions = mockFetch.mock.calls[0][1];
     expect(requestOptions.cache).toBe("no-store");
+    expect(requestOptions.next).toBeUndefined();
     expect(JSON.parse(requestOptions.body).variables.preview).toBe(true);
     expect(requestOptions.headers.Authorization).toBe(
       `Bearer ${process.env.CONTENTFUL_PREVIEW_TOKEN}`,
@@ -193,8 +194,37 @@ describe("fetchContent", () => {
             variables: { ...variables, preview: false },
           }),
         ),
-        next: { tags },
+        next: { tags, revalidate: 60 },
       }),
     );
+  });
+
+  it.each([300, 0, false] as const)(
+    "should forward a published revalidation setting of %s",
+    async (revalidate) => {
+      mockFetch.mockResolvedValueOnce({
+        json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
+      });
+
+      await fetchContent({ document: mockDocument, revalidate });
+
+      expect(mockFetch.mock.calls[0][1].next.revalidate).toBe(revalidate);
+    },
+  );
+
+  it("should ignore revalidation settings for explicit previews", async () => {
+    mockFetch.mockResolvedValueOnce({
+      json: vi.fn().mockResolvedValueOnce({ data: { test: "value" } }),
+    });
+
+    await fetchContent({
+      document: mockDocument,
+      preview: true,
+      revalidate: 300,
+    });
+
+    const requestOptions = mockFetch.mock.calls[0][1];
+    expect(requestOptions.cache).toBe("no-store");
+    expect(requestOptions.next).toBeUndefined();
   });
 });

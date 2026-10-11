@@ -15,6 +15,7 @@ export const fetchContent = async <Result, Variables>({
   preview = false,
   publishedOnly = false,
   tags,
+  revalidate = 60,
   notFoundOnEmpty,
 }: {
   document: TypedDocumentString<Result, Variables>;
@@ -22,6 +23,7 @@ export const fetchContent = async <Result, Variables>({
   preview?: boolean;
   publishedOnly?: boolean;
   tags?: string[];
+  revalidate?: number | false;
   notFoundOnEmpty?: boolean;
 }): Promise<Result> => {
   const isPreview =
@@ -36,8 +38,9 @@ export const fetchContent = async <Result, Variables>({
         query: document.toString(),
         variables: { ...variables, preview: isPreview },
       }),
-      ...(isPreview ? { cache: "no-store" as const } : {}),
-      next: { tags },
+      ...(isPreview
+        ? { cache: "no-store" as const }
+        : { next: { tags, revalidate } }),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${

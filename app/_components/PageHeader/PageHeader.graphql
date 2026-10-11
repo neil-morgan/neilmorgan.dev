@@ -3,8 +3,13 @@ fragment PageHeader on Page {
   kicker
   description
   image {
-    url
-    description
+    focalPoint
+    image {
+      url
+      description
+      width
+      height
+    }
   }
 }
 

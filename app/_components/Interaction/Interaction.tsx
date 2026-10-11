@@ -1,13 +1,10 @@
 "use client";
 
 import { cloneElement, isValidElement, useCallback } from "react";
-
 import { useMousePosition } from "@/app/_hooks";
 import { combineClassNames } from "@/app/_utils";
-
 import styles from "./Interaction.module.css";
 import { useInteraction } from "./Interaction.provider";
-
 import type { InteractionProps } from "./Interaction.types";
 
 export const Interaction = ({ children, disabled }: InteractionProps) => {

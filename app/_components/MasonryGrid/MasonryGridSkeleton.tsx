@@ -1,16 +1,11 @@
 import { Skeleton } from "../Skeleton";
 import styles from "./MasonryGrid.module.css";
-import type { MasonryGridProps } from "./types";
-
-type MasonryGridSkeletonProps = MasonryGridProps & {
-  count: number;
-};
-
-const heights = ["18rem", "24rem", "20rem", "16rem"];
+import type { MasonryGridSkeletonProps } from "./MasonryGrid.types";
 
 export const MasonryGridSkeleton = ({
   count,
   gutter,
+  heights,
   responsive = {},
 }: MasonryGridSkeletonProps) => {
   const breakpoints = Object.entries(responsive)
@@ -59,7 +54,7 @@ export const MasonryGridSkeleton = ({
             key={index}
             className={styles.placeholder}
             style={{
-              height: heights[index % heights.length],
+              height: heights?.[index % heights?.length],
               marginBottom: gutter,
             }}
           />

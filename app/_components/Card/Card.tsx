@@ -1,18 +1,12 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-
 import NextLink from "next/link";
-
 import { mergeRefs } from "react-merge-refs";
-
 import { useElementRefs } from "@/app/_providers";
 import { combineClassNames, isInternalUrl } from "@/app/_utils";
-
 import { Interaction } from "@/app/_components";
-
 import styles from "./Card.module.css";
-
 import type { CardProps } from "./Card.types";
 
 export const Card = ({

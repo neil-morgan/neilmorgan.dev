@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, type PropsWithChildren } from "react";
+import { useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import styles from "./MasonryGrid.module.css";
-import type { MasonryGridProps } from "./types";
-
-type MasonryGridLayoutProps = PropsWithChildren<MasonryGridProps> & {
-  onReady: () => void;
-};
+import type { MasonryGridLayoutProps } from "./MasonryGrid.types";
 
 const MasonryGridLayout = ({
   children,

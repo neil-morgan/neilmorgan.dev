@@ -5,6 +5,7 @@ import styles from "./PageHeader.module.css";
 import type { PageHeaderProps } from "./PageHeader.types";
 
 export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
+  const image = page.image?.image;
   return (
     <header className={styles.pageHeader}>
       <div className={styles.headerContent}>
@@ -24,13 +25,15 @@ export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
           </p>
         )}
       </div>
-      {page.image?.url && page.image.description && (
+      {image?.url && image?.description && (
         <AspectImage
           size="25rem"
           fit="cover"
           className={styles.headerImage}
-          url={page.image.url}
-          description={page.image.description}
+          url={image.url}
+          sourceSize={image}
+          focalPoint={page.image?.focalPoint}
+          description={image.description}
         />
       )}
     </header>

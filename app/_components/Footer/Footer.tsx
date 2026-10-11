@@ -1,9 +1,6 @@
 import { combineClassNames } from "@/app/_utils";
-
 import { IconButton } from "@/app/_components";
-
 import styles from "./Footer.module.css";
-
 import type { FooterProps } from "./Footer.types";
 
 export const Footer = ({ withPadding = false }: FooterProps) => (

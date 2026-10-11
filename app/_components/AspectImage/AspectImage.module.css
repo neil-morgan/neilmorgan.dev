@@ -6,6 +6,11 @@
   max-width: var(--size, 100%);
   border-radius: var(--border-radius);
 
+  &:has(img[data-loaded="true"]) {
+    background: none;
+    animation: none;
+  }
+
   &.scaleUp {
     min-width: var(--size, 100%);
   }

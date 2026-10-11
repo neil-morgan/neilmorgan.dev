@@ -16,36 +16,41 @@ export const BlogListing = async () => {
 
   return (
     <div className={styles.container}>
-      <MasonryGrid gutter="2rem">
+      <MasonryGrid gutter="2rem" heights={["8rem", "12rem", "16rem", "20rem"]}>
         {groups.map((group) => (
           <section key={group.slug} id={group.slug} className={styles.group}>
             <h2>{group.title}</h2>
             <ul>
-              {group.posts.map((post) => (
-                <li key={post.sys.id}>
-                  <Card href={`/blog/${post.slug}`} className={styles.post}>
-                    {post.image?.url && (
-                      <AspectImage
-                        className={styles.image}
-                        size="6rem"
-                        fit="cover"
-                        borderRadius="0px"
-                        sizes="6rem"
-                        url={post.image.url}
-                        description={post.image.description ?? ""}
-                      />
-                    )}
-                    <div className={styles.body}>
-                      <h3>{post.title}</h3>
-                      {post.sys.publishedAt && (
-                        <time dateTime={post.sys.publishedAt}>
-                          {formatDate(post.sys.publishedAt)}
-                        </time>
+              {group.posts.map((post) => {
+                const image = post.image?.image;
+                return (
+                  <li key={post.sys.id}>
+                    <Card href={`/blog/${post.slug}`} className={styles.post}>
+                      {image?.url && (
+                        <AspectImage
+                          className={styles.image}
+                          size="6rem"
+                          fit="cover"
+                          borderRadius="0px"
+                          sizes="6rem"
+                          url={image.url}
+                          sourceSize={image}
+                          focalPoint={post.image?.focalPoint}
+                          description={image.description ?? ""}
+                        />
                       )}
-                    </div>
-                  </Card>
-                </li>
-              ))}
+                      <div className={styles.body}>
+                        <h3>{post.title}</h3>
+                        {post.sys.publishedAt && (
+                          <time dateTime={post.sys.publishedAt}>
+                            {formatDate(post.sys.publishedAt)}
+                          </time>
+                        )}
+                      </div>
+                    </Card>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         ))}

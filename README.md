@@ -44,6 +44,48 @@ Static route generation discovers published pages only (`preview: false`).
 Unpublished pages do not need static generation: `dynamicParams = true` allows
 their URLs to render on demand when preview is enabled.
 
+## Incremental static regeneration
+
+`fetchContent` caches published Contentful responses with a default
+`revalidate` interval of 60 seconds. Static pages using these requests inherit
+the interval; if a page has multiple intervals, the shortest applies.
+Override it per request when needed:
+
+```tsx
+await fetchContent({ document: BlogListingContentDocument, revalidate: 300 });
+```
+
+Intervals are in seconds. `revalidate: 0` disables caching for that request;
+`revalidate: false` caches indefinitely unless explicitly invalidated. Cache
+tags remain supported. Preview requests always use `cache: "no-store"` and
+omit revalidation options, regardless of the supplied interval.
+
+Verify ISR in production mode with `pnpm build` and `pnpm start`, not
+`pnpm dev`. The build's route table should show `Revalidate 1m` for the home
+page and generated CMS pages. After publishing a Contentful change and letting
+the interval expire, request the page to trigger background regeneration.
+That request may receive stale content; a subsequent request after regeneration
+completes should receive the update. Regeneration is request-driven, not a
+scheduled refresh. Draft-mode responses bypass ISR.
+
+## Image focal points
+
+`AspectImage` accepts the raw CMS `focalPoint` JSON, for example
+`{ focalPoint: { x: 2721, y: 992 } }`, together with `sourceSize` containing the
+original asset's width and height. It validates and normalizes pixel coordinates
+internally; callers do not need to convert them. Using these dimensions and the crop's
+`ratio`, it centers the focal point on each cropped axis, clamping at the image
+edges to avoid empty space. An axis with no overflow cannot be shifted without
+exposing empty space, so it stays centered. For `fit="contain"`, focal points
+retain percentage alignment. Without a focal point, the browser's centered
+position is unchanged.
+
+Blog listings, the latest-post card, and page headers pass the CMS focal point
+directly and use the original asset's `width` and `height` selected in GraphQL
+for `sourceSize`, not the rendered or optimized dimensions.
+Missing focal points are optional; malformed points, invalid dimensions, or
+coordinates outside the asset bounds raise an explicit error.
+
 ## Loading skeletons
 
 `Skeleton` is a reusable decorative placeholder with the same one-second linear

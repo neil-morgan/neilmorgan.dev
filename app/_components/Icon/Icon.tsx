@@ -1,8 +1,6 @@
 import { combineClassNames, createCssSizeVariables } from "@/app/_utils";
-
 import styles from "./Icon.module.css";
 import { icons } from "./icons";
-
 import type { IconProps } from "./Icon.types";
 
 const defaultSizes = {

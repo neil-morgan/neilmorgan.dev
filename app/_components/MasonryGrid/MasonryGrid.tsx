@@ -11,7 +11,7 @@ import dynamic from "next/dynamic";
 import { BREAKPOINTS } from "@/app/_styles";
 import styles from "./MasonryGrid.module.css";
 import { MasonryGridSkeleton } from "./MasonryGridSkeleton";
-import type { MasonryGridProps } from "./types";
+import type { MasonryGridProps } from "./MasonryGrid.types";
 
 const MasonryGridLayout = dynamic(() => import("./MasonryGridLayout"), {
   ssr: false,
@@ -26,6 +26,7 @@ const defaultResponsive: { [bp: number]: number } = {
 export const MasonryGrid = ({
   children,
   gutter,
+  heights = ["18rem", "24rem", "20rem", "16rem"],
   responsive = defaultResponsive,
 }: PropsWithChildren<MasonryGridProps>) => {
   const [ready, setReady] = useState(false);
@@ -40,6 +41,7 @@ export const MasonryGrid = ({
         <MasonryGridSkeleton
           count={count}
           gutter={gutter}
+          heights={heights}
           responsive={responsive}
         />
       )}

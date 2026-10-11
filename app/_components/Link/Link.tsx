@@ -1,9 +1,6 @@
 import NextLink from "next/link";
-
 import { isInternalUrl, combineClassNames } from "@/app/_utils";
-
 import styles from "./Link.module.css";
-
 import type { LinkProps } from "./types";
 
 export const Link = ({ target, href, children, className }: LinkProps) => {

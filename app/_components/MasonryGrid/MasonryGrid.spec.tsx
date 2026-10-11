@@ -23,7 +23,7 @@ vi.mock("next/dynamic", () => ({
 
 import { MasonryGrid } from "./MasonryGrid";
 import { MasonryGridSkeleton } from "./MasonryGridSkeleton";
-import type { MasonryGridProps } from "./types";
+import type { MasonryGridProps } from "./MasonryGrid.types";
 
 afterEach(cleanup);
 
@@ -110,6 +110,7 @@ describe("MasonryGridSkeleton", () => {
         <MasonryGridSkeleton
           count={3}
           gutter="3rem"
+          heights={["18rem", "24rem"]}
           responsive={{ 1000: 4, 300: 2, 700.5: 3 }}
         />
         <MasonryGridSkeleton count={1} gutter="1rem" responsive={{}} />
@@ -127,7 +128,11 @@ describe("MasonryGridSkeleton", () => {
     const blocks = root.querySelectorAll<HTMLElement>(
       '[data-masonry-skeleton="300:2;700.5:3;1000:4"] > div',
     );
-    expect(blocks[0].style.height).not.toBe(blocks[1].style.height);
+    expect([...blocks].map((block) => block.style.height)).toEqual([
+      "18rem",
+      "24rem",
+      "18rem",
+    ]);
     expect(blocks[0].style.marginBottom).toBe("3rem");
   });
 

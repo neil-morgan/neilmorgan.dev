@@ -1,16 +1,13 @@
 import { SectionContentDocument } from "@/app/_graphql";
 import { fetchContent } from "@/app/_helpers";
 import { combineClassNames, formatDate } from "@/app/_utils";
-
 import {
   MasonryGrid,
   BackgroundSlice,
   Feedback,
   Spread,
 } from "@/app/_components";
-
 import styles from "./Section.module.css";
-
 import type { SectionProps } from "./Section.types";
 
 const layoutMap = {

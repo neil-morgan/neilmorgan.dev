@@ -1,7 +1,5 @@
 import { Button, AspectImage } from "@/app/_components";
-
 import styles from "./Spread.module.css";
-
 import type { ContentPresentationProps } from "./Spread.types";
 
 export const Spread = ({

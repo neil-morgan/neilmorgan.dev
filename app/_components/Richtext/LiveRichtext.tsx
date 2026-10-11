@@ -1,13 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { renderRichtextDocument } from "./render-richtext-document";
-import type { RichtextProps } from "./Richtext.types";
-
-export type LiveRichtextEntry = {
-  id: string;
-  node: ReactNode;
-};
+import type { LiveRichtextEntry, RichtextProps } from "./Richtext.types";
 
 type LiveRichtextProps = RichtextProps & {
   entries: LiveRichtextEntry[];

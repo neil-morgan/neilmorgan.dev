@@ -5,25 +5,16 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 import { parse } from "graphql";
-import {
-  PageContentBySlugDocument,
-  type PageContentBySlugQuery,
-} from "@/app/_graphql/generated";
+import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import {
   LiveRichtext,
   PageHeader,
   type RichtextLinksType,
 } from "@/app/_components";
-import type { LiveRichtextEntry } from "@/app/_components/Richtext/LiveRichtext";
 import styles from "./PageContent.module.css";
+import type { LivePageContentProps } from "./PageContent.types";
 
 const pageContentQuery = parse(PageContentBySlugDocument.toString());
-
-type LivePageContentProps = {
-  embeddedEntries: LiveRichtextEntry[];
-  pageData: PageContentBySlugQuery;
-  slug: string[];
-};
 
 export const PageContent = ({
   embeddedEntries,

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 import { MARKS } from "@contentful/rich-text-types";
 
 export const renderMark = {

@@ -5,4 +5,5 @@ export type {
   RichtextLinksType,
   RichtextNodeType,
   RichtextBlockEntry,
+  LiveRichtextEntry,
 } from "./Richtext.types";

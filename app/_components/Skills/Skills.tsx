@@ -1,8 +1,6 @@
 import { SkillsContentDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
-
 import { AspectImage } from "@/app/_components";
-
 import styles from "./Skills.module.css";
 
 export const Skills = async () => {

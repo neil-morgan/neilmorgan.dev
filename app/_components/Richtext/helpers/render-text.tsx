@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-
 import { CodeString } from "@/app/_components";
 
 export const renderText = (text: string): React.ReactNode[] => {

@@ -16,8 +16,13 @@ fragment BlogPost on Page {
   }
   description
   image {
-    url
-    description
+    focalPoint
+    image {
+      url
+      description
+      width
+      height
+    }
   }
   slug
   title
