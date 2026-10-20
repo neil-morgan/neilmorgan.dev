@@ -28,7 +28,9 @@ export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
       {image?.url && image?.description && (
         <AspectImage
           size="25rem"
+          sizes="(max-width: 800px) 100vw, 800px"
           fit="cover"
+          loading="eager"
           className={styles.headerImage}
           url={image.url}
           sourceSize={image}

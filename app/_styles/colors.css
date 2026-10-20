@@ -428,8 +428,8 @@
   --secondary-a9: color-mix(in srgb, var(--secondary) 6.27%, transparent);
   --secondary-a10: color-mix(in srgb, var(--secondary) 1.96%, transparent);
 
-  --heading: var(--olive-12);
-  --text: var(--olive-11);
+  --heading: white;
+  --text: var(--olive-12);
   --border1: var(--olive-11);
   --border2: var(--olive-9);
   --border3: var(--olive-7);

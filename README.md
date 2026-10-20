@@ -86,6 +86,17 @@ for `sourceSize`, not the rendered or optimized dimensions.
 Missing focal points are optional; malformed points, invalid dimensions, or
 coordinates outside the asset bounds raise an explicit error.
 
+## Rich-text images
+
+Contentful rich-text fields support embedded `Image` entries (with their nested
+image asset and optional focal point) as well as directly embedded image assets.
+Both render through `AspectImage`, including in live preview. They shrink to fit
+the text container with a maximum width of 50rem (`scale="down"`) and use a
+landscape golden-ratio frame (approximately 1.618:1) with centered `cover`
+cropping. Alt text uses the asset description, falling back to its title.
+Non-image assets are unchanged; other embedded entries use the existing component
+registry.
+
 ## Loading skeletons
 
 `Skeleton` is a reusable decorative placeholder with the same one-second linear

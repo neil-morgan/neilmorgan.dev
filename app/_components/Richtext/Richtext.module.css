@@ -1,5 +1,6 @@
 .padding {
   padding: 0 2rem;
+
   @media (max-width: env(breakpoint-md)) {
     padding: 0 1rem;
   }
@@ -12,6 +13,7 @@
 .h5,
 .h6,
 .p,
+.image,
 .blockquote {
   max-width: var(--site-width);
   margin-left: auto;
@@ -21,9 +23,14 @@
   width: 100%;
 }
 
+.image {
+  margin-bottom: 2em;
+}
+
 .blockquote {
   margin-top: 2rem;
   margin-bottom: 2rem;
+
   div {
     padding: 1rem;
     background-color: var(--layer3);

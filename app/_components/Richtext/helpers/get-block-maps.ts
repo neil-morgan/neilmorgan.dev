@@ -2,11 +2,14 @@ import type { RichtextLinksType, RichtextNodeType } from "../Richtext.types";
 
 export const getBlockMaps = (links: RichtextLinksType) => {
   const entryBlockMap = new Map();
-  const assetBlockMap = new Map();
+  const assetBlockMap = new Map<
+    string,
+    NonNullable<RichtextLinksType["assets"]["block"][number]>
+  >();
   const inlineBlockMap = new Map();
 
   for (const asset of links.assets.block) {
-    assetBlockMap.set(asset?.sys.id, asset);
+    if (asset?.sys.id) assetBlockMap.set(asset.sys.id, asset);
   }
 
   for (const entry of links.entries.block) {

@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
+import type { RichtextImageFragment } from "@/app/_graphql/generated";
 import { isInternalUrl, combineClassNames } from "@/app/_utils";
+import { AspectImage } from "@/app/_components/AspectImage/AspectImage";
 import { Link } from "@/app/_components/Link/Link";
 
 import {
@@ -37,8 +39,40 @@ export const renderRichtextDocument = ({
   renderEntry,
 }: RenderRichtextDocumentProps) => {
   const padding = !noPadding && styles.padding;
+  const assetBlockMap = links ? getBlockMaps(links).assetBlockMap : undefined;
+  const renderImage = (
+    image:
+      Partial<NonNullable<RichtextImageFragment["image"]>> | null | undefined,
+    focalPoint?: unknown,
+  ) => {
+    if (!image?.url) return null;
+
+    return (
+      <div className={combineClassNames(styles.image, padding)}>
+        <AspectImage
+          url={image.url}
+          description={image.description || image.title || ""}
+          sourceSize={{
+            width: image.width ?? null,
+            height: image.height ?? null,
+          }}
+          focalPoint={focalPoint}
+          ratio={(1 + Math.sqrt(5)) / 2}
+          fit="cover"
+          size="50rem"
+          scale="down"
+          borderRadius="0.5rem"
+          sizes="(max-width: 800px) 100vw, 800px"
+        />
+      </div>
+    );
+  };
+
   const renderLinkedEntry = (entry: RichtextBlockEntry | undefined) => {
     if (!entry?.sys.id || !entry.__typename) return null;
+    if (entry.__typename === "Image") {
+      return renderImage(entry.image, entry.focalPoint);
+    }
     return renderEntry(entry);
   };
 
@@ -46,6 +80,17 @@ export const renderRichtextDocument = ({
     renderMark,
     renderText,
     renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (
+        node: RichtextNodeType,
+        children: ReactNode,
+      ) => {
+        const asset = assetBlockMap?.get(node.data.target.sys.id);
+        if (!asset?.url || !asset.contentType?.startsWith("image/")) {
+          return <>{children}</>;
+        }
+
+        return renderImage(asset);
+      },
       [BLOCKS.EMBEDDED_ENTRY]: (node: RichtextNodeType) => {
         if (!links) return null;
         return renderLinkedEntry(getRichtextEntry(links, node));

@@ -7,9 +7,28 @@ query AllPageSlugs($preview: Boolean = false) {
   }
 }
 
+fragment RichtextImage on Image {
+  __typename
+  sys {
+    id
+  }
+  focalPoint
+  image {
+    url
+    description
+    title
+    contentType
+    width
+    height
+  }
+}
+
 fragment PageContentLinks on PageContentLinks {
   entries {
     block {
+      ... on Image {
+        ...RichtextImage
+      }
       sys {
         id
       }
@@ -27,6 +46,9 @@ fragment PageContentLinks on PageContentLinks {
       }
     }
     inline {
+      ... on Image {
+        ...RichtextImage
+      }
       sys {
         id
       }
@@ -51,6 +73,8 @@ fragment PageContentLinks on PageContentLinks {
       }
       url
       description
+      title
+      contentType
     }
   }
 }
