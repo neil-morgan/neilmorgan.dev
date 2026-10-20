@@ -30,6 +30,7 @@ export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
           size="25rem"
           sizes="(max-width: 800px) 100vw, 800px"
           fit="cover"
+          scale="down"
           loading="eager"
           className={styles.headerImage}
           url={image.url}

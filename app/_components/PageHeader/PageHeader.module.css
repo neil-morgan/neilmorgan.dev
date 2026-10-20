@@ -24,14 +24,21 @@
     margin: 1rem 0;
     line-height: 1.25;
   }
+
   > h4 {
     margin-bottom: 1rem;
   }
+
   > p {
     font-size: 1.25rem;
     color: var(--text);
+
     @media (max-width: env(breakpoint-md)) {
       max-width: 100%;
+    }
+
+    @media (max-width: env(breakpoint-sm)) {
+      font-size: 1rem;
     }
   }
 
@@ -41,6 +48,7 @@
 
   .tagList {
     margin-top: 2rem;
+
     @media (max-width: env(breakpoint-md)) {
       justify-content: center;
     }
