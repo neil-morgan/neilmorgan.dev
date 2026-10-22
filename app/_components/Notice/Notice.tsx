@@ -16,7 +16,8 @@ export const Notice = ({
       <Button
         href={action.href}
         label={action.label}
-        size="sm"
+        alignSelf="center"
+        size="xs"
         iconLeft={action.iconLeft}
         iconRight={action.iconRight}
         className={styles.action}

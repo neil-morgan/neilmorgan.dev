@@ -1,0 +1,99 @@
+query AllPageSlugs($preview: Boolean = false, $skip: Int = 0) {
+  pageCollection(limit: 100, preview: $preview, skip: $skip) {
+    total
+    items {
+      slug
+    }
+  }
+}
+
+fragment RichtextImage on Image {
+  __typename
+  sys {
+    id
+  }
+  focalPoint
+  image {
+    url
+    description
+    title
+    contentType
+    width
+    height
+  }
+}
+
+fragment PageContentLinks on PageContentLinks {
+  entries {
+    block {
+      ... on Image {
+        ...RichtextImage
+      }
+      sys {
+        id
+      }
+      ... on Section {
+        __typename
+        sys {
+          id
+        }
+      }
+      ... on Page {
+        __typename
+        sys {
+          id
+        }
+      }
+    }
+    inline {
+      ... on Image {
+        ...RichtextImage
+      }
+      sys {
+        id
+      }
+      ... on Section {
+        __typename
+        sys {
+          id
+        }
+      }
+      ... on Page {
+        __typename
+        sys {
+          id
+        }
+      }
+    }
+  }
+  assets {
+    block {
+      sys {
+        id
+      }
+      url
+      description
+      title
+      contentType
+    }
+  }
+}
+
+query PageContentBySlug($slug: String, $preview: Boolean = false) {
+  pageCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+    items {
+      __typename
+      sys {
+        id
+      }
+      ...PageHeader
+      slug
+      content {
+        json
+        links {
+          ...PageContentLinks
+        }
+      }
+    }
+  }
+}

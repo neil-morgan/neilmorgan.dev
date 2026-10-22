@@ -1,8 +1,0 @@
-query FooterContent {
-  social: externalLinkCollection(where: { label_in: ["LinkedIn", "Github"] }) {
-    items {
-      label
-      url
-    }
-  }
-}

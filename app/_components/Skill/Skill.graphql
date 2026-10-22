@@ -1,0 +1,12 @@
+fragment Skill on Skill {
+  sys {
+    id
+    publishedAt
+  }
+  title
+  proficiency
+  icon {
+    url
+    description
+  }
+}

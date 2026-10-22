@@ -19,6 +19,7 @@ const breakpointSizes: CssSizeConfigType = {
 };
 
 export const IconButton = ({
+  border = false,
   className,
   disabled = false,
   href = "",
@@ -34,7 +35,11 @@ export const IconButton = ({
   const sizeVariable = createCssSizeVariables(size, breakpointSizes);
   const isExternalLink = !isInternalUrl(href ?? "");
   const shouldRenderNextLink = Boolean(href) && !isExternalLink;
-  const sharedClassName = combineClassNames(styles.button, className);
+  const sharedClassName = combineClassNames(
+    styles.button,
+    !border && styles.borderless,
+    className,
+  );
 
   const sharedStyle = {
     ...sizeVariable,

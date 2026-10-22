@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--site-padding-desktop);
+
+  @media (max-width: env(breakpoint-lg)) {
+    padding: 0 var(--site-padding-tablet);
+  }
+
+  @media (max-width: env(breakpoint-md)) {
+    padding: 0 var(--site-padding-mobile);
+  }
+}

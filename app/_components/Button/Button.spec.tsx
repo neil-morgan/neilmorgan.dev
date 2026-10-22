@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import interactionStyles from "../Interaction/Interaction.module.css";
 import { Button } from "./Button";
+import styles from "./Button.module.css";
 
 vi.mock("@/app/_components", async () => ({
   Interaction: (await import("../Interaction/Interaction")).Interaction,
@@ -14,6 +15,121 @@ afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
 });
+
+describe.each([undefined, "/about", "https://example.com"])(
+  "Button layout with href %s",
+  (href) => {
+    const role = href ? "link" : "button";
+
+    it("defaults to centered, content-sized layout", () => {
+      render(<Button href={href} label="Continue" />);
+
+      expect(screen.getByRole(role)).toHaveClass(
+        styles["width-content"],
+        styles["align-center"],
+      );
+      expect(screen.getByRole(role)).toHaveStyle({ alignSelf: "flex-start" });
+      expect(screen.getByRole(role)).not.toHaveClass(
+        styles["align-left"],
+        styles["align-right"],
+      );
+    });
+
+    it.each(["flex-start", "flex-end", "center", "stretch"] as const)(
+      "supports alignSelf %s",
+      (alignSelf) => {
+        render(<Button href={href} label="Continue" alignSelf={alignSelf} />);
+
+        expect(screen.getByRole(role)).toHaveStyle({ alignSelf });
+      },
+    );
+
+    it.each(["left", "center", "right"] as const)(
+      "supports %s alignment at full width",
+      (align) => {
+        render(
+          <Button href={href} label="Continue" align={align} width="full" />,
+        );
+
+        expect(screen.getByRole(role)).toHaveClass(styles["width-full"]);
+        expect(screen.getByRole(role)).toHaveClass(styles[`align-${align}`]);
+      },
+    );
+
+    it("keeps borders by default and allows toggling them off and on", () => {
+      const { rerender } = render(<Button href={href} label="Continue" />);
+      expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
+
+      rerender(<Button href={href} label="Continue" border={false} />);
+      expect(screen.getByRole(role)).toHaveClass(
+        styles.borderless,
+        interactionStyles.interaction,
+      );
+
+      rerender(<Button href={href} label="Continue" border />);
+      expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
+    });
+
+    it.each(["disabled", "loading", "primary"] as const)(
+      "supports borderless buttons while %s",
+      (state) => {
+        render(
+          <Button
+            href={href}
+            label="Continue"
+            border={false}
+            disabled={state === "disabled"}
+            loading={state === "loading"}
+            primary={state === "primary"}
+          />,
+        );
+        expect(screen.getByRole(role)).toHaveClass(styles.borderless);
+        if (state !== "primary") {
+          expect(screen.getByRole(role)).toHaveAttribute(
+            "aria-disabled",
+            "true",
+          );
+        }
+      },
+    );
+
+    it("keeps alignment and width while disabled or loading", () => {
+      const { rerender } = render(
+        <Button
+          href={href}
+          label="Continue"
+          align="left"
+          width="full"
+          disabled
+        />,
+      );
+
+      expect(screen.getByRole(role)).toHaveClass(
+        styles["align-left"],
+        styles["width-full"],
+      );
+
+      rerender(
+        <Button
+          href={href}
+          label="Continue"
+          align="right"
+          width="full"
+          loading
+          loadingText="Loading"
+          loadingPlacement="left"
+        />,
+      );
+
+      expect(screen.getByRole(role)).toHaveClass(
+        styles["align-right"],
+        styles["width-full"],
+      );
+      expect(screen.getByRole(role)).toHaveAttribute("aria-busy", "true");
+      expect(screen.getByTestId("loading")).toBeInTheDocument();
+    });
+  },
+);
 
 describe.each(["/about", "https://example.com", "#section"])(
   "Button link to %s",

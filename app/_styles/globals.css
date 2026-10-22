@@ -1,5 +1,8 @@
 :root {
-  --site-width: 1200px;
+  --site-padding-desktop: 4rem;
+  --site-padding-tablet: 2rem;
+  --site-padding-mobile: 1rem;
+  --site-width: 80rem;
 }
 
 * {
@@ -13,6 +16,10 @@ body {
   max-width: 100vw;
   overscroll-behavior: none;
 }
+
+/* html {
+  scrollbar-gutter: stable;
+} */
 
 body {
   display: flex;
@@ -54,7 +61,7 @@ h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 h2 {
@@ -84,7 +91,7 @@ p {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @media (max-width: env(breakpoint-md)) {

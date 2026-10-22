@@ -16,7 +16,23 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+CMS content pages are rendered through the optional catch-all route in
+`app/[[...slug]]/page.tsx`, including the homepage. Create a Contentful page with
+slug `/` to provide the homepage content. It uses the same page
+header, rich-text content, metadata, and preview behavior as other CMS pages.
+A missing homepage returns a 404, just like any other missing CMS page; there
+is no hard-coded homepage fallback.
+
+The route renders the page container, header, and rich text on the server.
+Only preview mode uses client-side header and rich-text boundaries for
+Contentful live updates and inspector mode. Embedded CMS entries are still
+created on the server and passed into the live rich-text renderer.
+
+Pages are generated from all published Contentful slugs and use each exact slug
+as their URL; there is no page-type URL prefix. Create a Contentful page with
+slug `blog` for the blog index. Blog listing cards link directly to each page's
+Contentful slug. Draft pages can still be rendered on demand in preview mode.
+API endpoints remain separate from the CMS catch-all.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
@@ -40,16 +56,12 @@ Use `/api/disable-draft` to exit Next.js draft mode and clear the `nm_preview`
 cookie. The preview toggle is hidden in
 production.
 
-Static route generation discovers published pages only (`preview: false`).
-Unpublished pages do not need static generation: `dynamicParams = true` allows
-their URLs to render on demand when preview is enabled.
-
 ## Incremental static regeneration
 
 `fetchContent` caches published Contentful responses with a default
-`revalidate` interval of 60 seconds. Static pages using these requests inherit
-the interval; if a page has multiple intervals, the shortest applies.
-Override it per request when needed:
+`revalidate` interval of 60 seconds. Generated CMS pages and their cached
+Contentful requests use this interval; if a route has multiple intervals, the
+shortest applies. Override it per request when needed:
 
 ```tsx
 await fetchContent({ document: BlogListingContentDocument, revalidate: 300 });
@@ -60,13 +72,12 @@ Intervals are in seconds. `revalidate: 0` disables caching for that request;
 tags remain supported. Preview requests always use `cache: "no-store"` and
 omit revalidation options, regardless of the supplied interval.
 
-Verify ISR in production mode with `pnpm build` and `pnpm start`, not
-`pnpm dev`. The build's route table should show `Revalidate 1m` for the home
-page and generated CMS pages. After publishing a Contentful change and letting
-the interval expire, request the page to trigger background regeneration.
-That request may receive stale content; a subsequent request after regeneration
-completes should receive the update. Regeneration is request-driven, not a
-scheduled refresh. Draft-mode responses bypass ISR.
+Verify caching in production mode with `pnpm build` and `pnpm start`, not
+`pnpm dev`. After publishing a Contentful change and letting the interval
+expire, request the page to trigger background regeneration. That request may
+receive stale content; a subsequent request after regeneration completes should
+receive the update. Regeneration is request-driven, not a scheduled refresh.
+Draft-mode responses bypass ISR.
 
 ## Image focal points
 
@@ -117,6 +128,37 @@ hidden and non-interactive until mounted; the skeleton is then removed without a
 fixed loading delay. The existing masonry placement algorithm is unchanged.
 Placeholder heights are estimates, so this reduces the empty loading flash but
 does not guarantee zero layout shift for arbitrary content.
+
+## Buttons
+
+`Button` defaults to centered content and content-sized width. Use
+`align="left" | "center" | "right"` to align its content and `width="full"`
+to fill the available container width. Left/right alignment preserves edge
+padding and the icon-to-label gap. The default `iconSpace="near"` keeps icons
+beside the label; `iconSpace="far"` spreads icons toward the edges.
+
+Borders are enabled by default. Set `border={false}` to hide both the resting
+and hover border. Enabled buttons highlight their background on hover, including
+borderless buttons; disabled and loading buttons do not. Primary buttons retain
+their white hover background.
+
+`IconButton` also supports `border={false}` with the same hover highlight and
+disabled/loading behavior. Its borders remain enabled by default.
+
+```tsx
+<IconButton icon="chat" ariaLabel="Chat" border={false} />
+```
+
+```tsx
+<Button
+  href="/feedback"
+  label="Feedback"
+  iconLeft="chat"
+  align="left"
+  width="full"
+  border={false}
+/>
+```
 
 ## Git Hooks
 

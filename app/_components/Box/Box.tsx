@@ -1,0 +1,103 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import NextLink from "next/link";
+import { mergeRefs } from "react-merge-refs";
+import { useElementRefs } from "@/app/_providers";
+import { combineClassNames, isInternalUrl } from "@/app/_utils";
+import { Interaction } from "@/app/_components";
+import styles from "./Box.module.css";
+import type { BoxProps } from "./Box.types";
+
+export const Box = ({
+  children,
+  className,
+  href,
+  flexDirection = "row",
+  paddingTop,
+  paddingBottom,
+  paddingLeft,
+  paddingRight,
+  borderTopLeftRadius,
+  borderTopRightRadius,
+  borderBottomLeftRadius,
+  borderBottomRightRadius,
+  padding,
+  borderRadius,
+  noHighlight,
+  ref,
+}: BoxProps) => {
+  const { addElementRef } = useElementRefs();
+  const elementRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
+  const shouldHighlight = Boolean(href && !noHighlight);
+
+  const classNames = combineClassNames(
+    styles.box,
+    className,
+    shouldHighlight && "highlight",
+    href && "highlightable",
+  );
+
+  const style = {
+    flexDirection,
+    paddingTop: paddingTop ?? padding,
+    paddingBottom: paddingBottom ?? padding,
+    paddingLeft: paddingLeft ?? padding,
+    paddingRight: paddingRight ?? padding,
+    borderTopLeftRadius: borderTopLeftRadius ?? borderRadius,
+    borderTopRightRadius: borderTopRightRadius ?? borderRadius,
+    borderBottomLeftRadius: borderBottomLeftRadius ?? borderRadius,
+    borderBottomRightRadius: borderBottomRightRadius ?? borderRadius,
+  };
+
+  useEffect(() => {
+    if (!shouldHighlight) return;
+    addElementRef(elementRef.current);
+  }, [addElementRef, shouldHighlight]);
+
+  const isInternalLink = href && isInternalUrl(href);
+  const isExternalLink = href && !isInternalUrl(href);
+
+  return (
+    <Interaction disabled={!href}>
+      {isInternalLink ? (
+        <NextLink
+          href={href}
+          className={classNames}
+          style={style}
+          ref={mergeRefs([
+            elementRef as React.RefObject<HTMLAnchorElement>,
+            ref as React.Ref<HTMLAnchorElement>,
+          ])}
+        >
+          {children}
+        </NextLink>
+      ) : isExternalLink ? (
+        <a
+          href={href}
+          className={classNames}
+          style={style}
+          ref={mergeRefs([
+            elementRef as React.RefObject<HTMLAnchorElement>,
+            ref as React.Ref<HTMLAnchorElement>,
+          ])}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <div
+          className={classNames}
+          style={style}
+          ref={mergeRefs([
+            elementRef as React.RefObject<HTMLDivElement>,
+            ref as React.Ref<HTMLDivElement>,
+          ])}
+        >
+          {children}
+        </div>
+      )}
+    </Interaction>
+  );
+};

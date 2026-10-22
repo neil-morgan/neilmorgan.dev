@@ -1,17 +1,18 @@
 import type { CssSizeType } from "@/app/_styles";
-
 import type { IconNameType } from "@/app/_components";
 
 export type IconButtonVariant = "solid" | "bordered" | "ghost";
 export type IconButtonType = "button" | "submit" | "reset";
+export type IconSize = 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1;
 
 export interface IconButtonProps {
   ariaLabel?: string;
+  border?: boolean;
   className?: string;
   disabled?: boolean;
   href?: string;
   icon: IconNameType;
-  iconSize?: 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1;
+  iconSize?: IconSize;
   loading?: boolean;
   onClick?: () => void;
   size?: CssSizeType;

@@ -1,9 +1,11 @@
 .container {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 1.5rem;
+  margin-top: 0.125rem;
+  font-family: var(--font-fira-mono);
 
   @media (max-width: env(breakpoint-md)) {
-    justify-content: center;
     margin-bottom: 1rem;
   }
 }

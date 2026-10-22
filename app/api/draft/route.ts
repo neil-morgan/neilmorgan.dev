@@ -1,5 +1,5 @@
 import { cookies, draftMode } from "next/headers";
-import { redirect, RedirectType } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { PageContentBySlugDocument } from "@/app/_graphql/generated";
 import { fetchContent } from "@/app/_helpers";
@@ -36,17 +36,13 @@ export const GET = async (request: Request) => {
 
   const data = await fetchContent({
     document: PageContentBySlugDocument,
-    variables: { slug: slugParam, type_exists: null },
+    variables: { slug: slugParam },
   });
 
-  const { slug, type } = data.pageCollection?.items[0] || {};
+  const { slug } = data.pageCollection?.items[0] || {};
 
   if (slug) {
-    const path = [
-      ...(type ? [type.toLowerCase()] : []),
-      ...slug.split("/").filter(Boolean),
-    ].join("/");
-    redirect(`/${path}`, RedirectType.push);
+    redirect(`/${slug.split("/").filter(Boolean).join("/")}`);
   }
 
   return redirect("/");

@@ -7,6 +7,7 @@
   user-select: none;
   font-weight: 500;
   border-radius: 0.25rem;
+  background-color: transparent;
   font-family: inherit;
   border: 0;
   transition: ease 200ms;
@@ -19,9 +20,19 @@
   &.primary {
     background: var(--primary);
     color: #000000;
+  }
 
-    &:hover {
-      background: #ffffff;
+  &.borderless {
+    --interaction-border-width: 0px;
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: var(--layer3);
+
+      &.primary {
+        background: #ffffff;
+      }
     }
   }
 
@@ -102,5 +113,50 @@
   .spinner {
     height: calc(var(--size) * (4 / 2.65));
     width: calc(var(--size) * (4 / 2.65));
+  }
+
+  &.align-left,
+  &.align-right {
+    padding: 0 var(--size);
+
+    &.width-content {
+      padding: 0 var(--size);
+    }
+
+    .button-inner {
+      display: flex;
+      width: 100%;
+      justify-content: inherit;
+    }
+
+    .label {
+      justify-content: inherit;
+    }
+
+    .button-inner .icon {
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .spinner {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:not(.icon-near) .label {
+      flex: 1;
+    }
+  }
+
+  &.align-center {
+    justify-content: center;
+  }
+
+  &.align-left {
+    justify-content: flex-start;
+  }
+
+  &.align-right {
+    justify-content: flex-end;
   }
 }

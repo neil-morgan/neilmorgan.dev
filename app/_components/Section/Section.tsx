@@ -1,18 +1,21 @@
 import { SectionContentDocument } from "@/app/_graphql";
 import { fetchContent } from "@/app/_helpers";
-import { combineClassNames, formatDate } from "@/app/_utils";
+import { combineClassNames } from "@/app/_utils";
 import {
-  MasonryGrid,
-  BackgroundSlice,
+  Button,
+  Card,
+  Experience,
   Feedback,
-  Spread,
+  MasonryGrid,
+  Skill,
 } from "@/app/_components";
+
 import styles from "./Section.module.css";
 import type { SectionProps } from "./Section.types";
 
 const layoutMap = {
-  masonry: (content: React.ReactNode) => (
-    <MasonryGrid gutter="2rem">{content}</MasonryGrid>
+  masonry: (content: React.ReactNode, gap: string) => (
+    <MasonryGrid gutter={gap}>{content}</MasonryGrid>
   ),
   default: (content: React.ReactNode) => <>{content}</>,
 };
@@ -20,9 +23,9 @@ const layoutMap = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const componentMap: Record<string, React.ComponentType<any>> = {
   Feedback,
-  Page: (props) => (
-    <Spread {...props} date={formatDate(props.sys.publishedAt)} />
-  ),
+  Page: (props) => <Card {...props} />,
+  Experience: (props) => <Experience {...props} />,
+  Skill: (props) => <Skill {...props} />,
 };
 
 type InferredProps = React.ComponentProps<
@@ -30,9 +33,12 @@ type InferredProps = React.ComponentProps<
 >;
 
 const renderContent = (props: InferredProps): React.ReactElement | null => {
-  const { __typename: typename, sys } = props;
-  const Component = componentMap[typename];
-  if (!Component) return null;
+  const { __typename, sys } = props;
+  const Component = componentMap[__typename];
+  if (!Component) {
+    console.warn(`No component found for typename: ${__typename}`);
+    return null; // add a warning here
+  }
   return <Component key={sys.id} {...props} />;
 };
 
@@ -44,13 +50,14 @@ export const Section = async ({ id }: SectionProps) => {
 
   const {
     contentCollection,
-    featured,
     fullWidth,
     gap,
     layout,
+    link,
+    linkLabel,
     margin,
-    title,
     minimumColumns,
+    title,
   } = section?.items[0] || {};
 
   const sectionStyles = {
@@ -84,24 +91,29 @@ export const Section = async ({ id }: SectionProps) => {
       id={id}
       className={combineClassNames(
         styles.section,
-        featured && styles.featured,
-        (fullWidth || featured) && styles["full-width"],
+        fullWidth && styles["full-width"],
       )}
       style={sectionStyles}
     >
-      {featured && <BackgroundSlice />}
-      <div
-        className={combineClassNames(
-          styles.container,
-          featured && styles.featured,
+      <div className={combineClassNames(styles.container)}>
+        {title && (
+          <header>
+            <h3>{title}</h3>
+            {linkLabel && link?.slug && (
+              <Button
+                label={linkLabel}
+                href={link?.slug}
+                size="xs"
+                border
+                alignSelf="flex-end"
+              />
+            )}
+          </header>
         )}
-      >
-        {title && <h3>{title}</h3>}
         <div className={combineClassNames(styles.body, styles[layoutKey])}>
-          {layoutFn(content)}
+          {layoutFn(content, `${gap ?? 0}rem`)}
         </div>
       </div>
-      {featured && <BackgroundSlice reverse />}
     </section>
   );
 };

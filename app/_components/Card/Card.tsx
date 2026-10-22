@@ -1,77 +1,29 @@
-"use client";
-
-import { useRef, useEffect } from "react";
-import NextLink from "next/link";
-import { mergeRefs } from "react-merge-refs";
-import { useElementRefs } from "@/app/_providers";
-import { combineClassNames, isInternalUrl } from "@/app/_utils";
-import { Interaction } from "@/app/_components";
+import { Box, AspectImage } from "@/app/_components";
 import styles from "./Card.module.css";
 import type { CardProps } from "./Card.types";
 
-export const Card = ({
-  children,
-  className,
-  href,
-  noHighlight,
-  ref,
-}: CardProps) => {
-  const { addElementRef } = useElementRefs();
-  const elementRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
-  const shouldHighlight = Boolean(href && !noHighlight);
-
-  const classNames = combineClassNames(
-    styles.card,
-    className,
-    shouldHighlight && "highlight",
-    href && "highlightable",
-  );
-
-  useEffect(() => {
-    if (!shouldHighlight) return;
-    addElementRef(elementRef.current);
-  }, [addElementRef, shouldHighlight]);
-
-  const isInternalLink = href && isInternalUrl(href);
-  const isExternalLink = href && !isInternalUrl(href);
+export const Card = (props: CardProps) => {
+  const image = props.image?.image;
 
   return (
-    <Interaction disabled={!href}>
-      {isInternalLink ? (
-        <NextLink
-          href={href}
-          className={classNames}
-          ref={mergeRefs([
-            elementRef as React.RefObject<HTMLAnchorElement>,
-            ref as React.Ref<HTMLAnchorElement>,
-          ])}
-        >
-          {children}
-        </NextLink>
-      ) : isExternalLink ? (
-        <a
-          href={href}
-          className={classNames}
-          ref={mergeRefs([
-            elementRef as React.RefObject<HTMLAnchorElement>,
-            ref as React.Ref<HTMLAnchorElement>,
-          ])}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ) : (
-        <div
-          className={classNames}
-          ref={mergeRefs([
-            elementRef as React.RefObject<HTMLDivElement>,
-            ref as React.Ref<HTMLDivElement>,
-          ])}
-        >
-          {children}
-        </div>
+    <Box
+      borderRadius="0.25rem"
+      href={props.slug ?? undefined}
+      className={styles.card}
+      flexDirection="row"
+    >
+      {image?.url && (
+        <AspectImage
+          borderRadius="0rem"
+          size="5rem"
+          fit="cover"
+          loading="eager"
+          url={image.url}
+          sourceSize={image}
+          description={image.description ?? ""}
+        />
       )}
-    </Interaction>
+      <div className={styles.body}>{props.title}</div>
+    </Box>
   );
 };

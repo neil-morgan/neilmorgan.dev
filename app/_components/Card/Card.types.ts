@@ -1,8 +1,3 @@
-import type { PropsWithChildren } from "react";
+import type { PageFragment } from "@/app/_graphql/generated";
 
-export type CardProps = PropsWithChildren<{
-  href?: string;
-  className?: string;
-  noHighlight?: boolean;
-  ref?: React.Ref<HTMLButtonElement | HTMLDivElement>;
-}>;
+export type CardProps = PageFragment;

@@ -10,16 +10,25 @@ export const Breadcrumbs = ({
   rootLabel = "Home",
 }: BreadcrumbsProps) => {
   const breadcrumbs = [root, ...crumbs];
-  return !crumbs || crumbs.length === 0 ? null : (
+  return !crumbs ? null : (
     <div className={styles.container}>
       {breadcrumbs.map((crumb, i) => {
         const label = crumb === root ? rootLabel : toSentenceCase(crumb);
         const isLast = i === breadcrumbs.length - 1;
-        const href = i === 0 ? root : `/${crumbs.slice(0, i).join("/")}`;
+        const isHome = i === 0;
+        const href = isHome ? root : `/${crumbs.slice(0, i).join("/")}`;
+
         return (
           <Fragment key={i}>
-            {i === 0 ? null : <>&nbsp;&gt;&nbsp;</>}
-            {isLast ? <span>{label}</span> : <Link href={href}>{label}</Link>}
+            {isHome ? null : <>&nbsp;&gt;&nbsp;</>}
+            {isLast ? (
+              <span>
+                {label}
+                {isHome && " >"}
+              </span>
+            ) : (
+              <Link href={href}>{label}</Link>
+            )}
           </Fragment>
         );
       })}

@@ -8,16 +8,28 @@ fragment Page on Page {
   kicker
   description
   slug
+  image {
+    focalPoint
+    image {
+      url
+      description
+      width
+      height
+    }
+  }
 }
 
 fragment Section on Section {
-  featured
   fullWidth
   gap
   layout
   margin
   minimumColumns
   title
+  link {
+    slug
+  }
+  linkLabel
   contentCollection(limit: 100) {
     items {
       ... on Feedback {
@@ -25,6 +37,45 @@ fragment Section on Section {
       }
       ... on Page {
         ...Page
+      }
+      ... on Skill {
+        __typename
+        sys {
+          id
+        }
+        title
+        proficiency
+        icon {
+          url
+          description
+        }
+      }
+      ... on Experience {
+        __typename
+        sys {
+          id
+        }
+        title
+        kicker
+        description
+        image {
+          url
+          description
+        }
+        agency {
+          logo {
+            title
+            url
+          }
+          name
+          url
+        }
+        skills: skillsCollection(limit: 20) {
+          items {
+            title
+          }
+        }
+        date
       }
     }
   }

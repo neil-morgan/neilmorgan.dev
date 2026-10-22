@@ -12,6 +12,16 @@
   width: calc(var(--size) * 3);
   font-size: var(--size);
 
+  &.borderless {
+    --interaction-border-width: 0px;
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: var(--layer3);
+    }
+  }
+
   &:disabled {
     cursor: not-allowed;
     background-color: var(--color-base);

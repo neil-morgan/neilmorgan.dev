@@ -5,7 +5,7 @@ fragment ExternalLink on ExternalLink {
 }
 
 fragment PageMeta on Page {
-  metaTitle
+  title
   slug
 }
 

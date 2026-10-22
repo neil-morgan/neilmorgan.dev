@@ -7,8 +7,12 @@ export type ButtonColorScheme = "electric-blue" | "orange" | "liquorice";
 export type ButtonType = "button" | "submit" | "reset";
 export type ButtonWidth = "content" | "normal" | "full";
 export type ButtonIconSpace = "near" | "far";
+export type ButtonAlign = "left" | "center" | "right";
 
 export interface ButtonProps {
+  align?: ButtonAlign;
+  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
+  border?: boolean;
   className?: string;
   disabled?: boolean;
   formAction?: string | ((formData: FormData) => void | Promise<void>);

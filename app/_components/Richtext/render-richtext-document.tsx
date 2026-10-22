@@ -4,7 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 import type { RichtextImageFragment } from "@/app/_graphql/generated";
-import { isInternalUrl, combineClassNames } from "@/app/_utils";
+import { isInternalUrl } from "@/app/_utils";
 import { AspectImage } from "@/app/_components/AspectImage/AspectImage";
 import { Link } from "@/app/_components/Link/Link";
 
@@ -35,10 +35,8 @@ type RenderRichtextDocumentProps = {
 export const renderRichtextDocument = ({
   json,
   links,
-  noPadding,
   renderEntry,
 }: RenderRichtextDocumentProps) => {
-  const padding = !noPadding && styles.padding;
   const assetBlockMap = links ? getBlockMaps(links).assetBlockMap : undefined;
   const renderImage = (
     image:
@@ -48,7 +46,7 @@ export const renderRichtextDocument = ({
     if (!image?.url) return null;
 
     return (
-      <div className={combineClassNames(styles.image, padding)}>
+      <div className={styles.image}>
         <AspectImage
           url={image.url}
           description={image.description || image.title || ""}
@@ -107,7 +105,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h1 id={value} className={combineClassNames(styles.h1, padding)}>
+          <h1 id={value} className={styles.h1}>
             {children}
           </h1>
         );
@@ -116,7 +114,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h2 id={value} className={combineClassNames(styles.h2, padding)}>
+          <h2 id={value} className={styles.h2}>
             {children}
           </h2>
         );
@@ -125,7 +123,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h3 id={value} className={combineClassNames(styles.h3, padding)}>
+          <h3 id={value} className={styles.h3}>
             {children}
           </h3>
         );
@@ -134,7 +132,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h4 id={value} className={combineClassNames(styles.h4, padding)}>
+          <h4 id={value} className={styles.h4}>
             {children}
           </h4>
         );
@@ -143,7 +141,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h5 id={value} className={combineClassNames(styles.h5, padding)}>
+          <h5 id={value} className={styles.h5}>
             {children}
           </h5>
         );
@@ -152,7 +150,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (!value) return null;
         return (
-          <h6 id={value} className={combineClassNames(styles.h6, padding)}>
+          <h6 id={value} className={styles.h6}>
             {children}
           </h6>
         );
@@ -161,7 +159,7 @@ export const renderRichtextDocument = ({
         const value = getNodeValue(node);
         if (node.content.length === 1 && !value) return null;
         return (
-          <div className={combineClassNames(styles.p, padding)}>
+          <div className={styles.p}>
             <p>{children}</p>
           </div>
         );

@@ -10,7 +10,7 @@ export default function NotFound() {
       message="I couldn't find the page you were looking for."
       action={{
         href: "/",
-        label: "Go back",
+        label: "Home",
         iconLeft: "arrowLeft",
       }}
     />

@@ -1,108 +1,64 @@
-"use client";
-import { useLayoutEffect, useState } from "react";
-import { ExperienceFragment } from "@/app/_graphql";
+import type { ExperienceFragment } from "@/app/_graphql";
 import { formatDate } from "@/app/_utils";
-import { Card, AspectImage, Icon, TagList, Button } from "@/app/_components";
-import { useInteraction } from "@/app/_components/Interaction/Interaction.provider";
+import { Box, AspectImage, Icon, TagList } from "@/app/_components";
 import styles from "./Experience.module.css";
 
-export const ExperienceClient = ({
-  items,
-}: {
-  items: ExperienceFragment[];
-}) => {
-  const [limit, setLimit] = useState(3);
-  const { updateElementProperties } = useInteraction();
+export const Experience = ({
+  agency,
+  date,
+  description,
+  image,
+  kicker,
+  skills,
+  title,
+}: ExperienceFragment) => (
+  <Box className={styles.experience}>
+    <div className={styles.images}>
+      {image?.url && (
+        <AspectImage
+          description={image.description || "Experience Image"}
+          size="2.66rem"
+          borderRadius="0.25rem"
+          sizes="2.66rem"
+          fit="cover"
+          url={image.url}
+        />
+      )}
+      {agency && <Icon name="arrowUp" size="1.5rem" />}
+      {agency?.logo?.url && (
+        <AspectImage
+          size="1.66rem"
+          scale="down"
+          borderRadius="0.1rem"
+          sizes="(max-width: 768px) 100vw, 33vw"
+          url={agency.logo.url}
+          description={agency.logo?.title || agency.name || "Agency Logo"}
+        />
+      )}
+    </div>
+    <div className={styles.content}>
+      <header>
+        <h3>{title}</h3>
+        <p>{kicker}</p>
+      </header>
 
-  useLayoutEffect(() => {
-    updateElementProperties();
-  }, [limit, updateElementProperties]);
-
-  const handleShow = () => setLimit(limit === items.length ? 3 : items.length);
-  const isShowingAll = limit === items.length;
-  const buttonMessage = isShowingAll ? "See less" : "See all";
-  const buttonIcon = isShowingAll ? "arrowUp" : "arrowDown";
-
-  return (
-    <section className={styles.experiences}>
-      {items.slice(0, limit).map((experience, index) => {
-        const previousExperience = items[index - 1];
-        const fromDate = experience?.date
-          ? formatDate(experience.date, { format: "monthYear" })
-          : "";
-        const toDate = previousExperience?.date
-          ? formatDate(previousExperience.date, {
-              format: "monthYear",
-            })
-          : "Present";
-
-        return experience?.title ? (
-          <Card key={index} className={styles.experience}>
-            <div className={styles.images}>
-              {experience.image?.url && (
-                <AspectImage
-                  description={
-                    experience.image.description || "Experience Image"
-                  }
-                  size="2.66rem"
-                  borderRadius="0.25rem"
-                  sizes="2.66rem"
-                  fit="cover"
-                  url={experience.image.url}
-                />
-              )}
-              {experience.agency && <Icon name="arrowUp" size="1.5rem" />}
-              {experience.agency?.logo?.url && (
-                <AspectImage
-                  size="1.66rem"
-                  scale="down"
-                  borderRadius="0.1rem"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  url={experience.agency.logo.url}
-                  description={
-                    experience.agency.logo?.title ||
-                    experience.agency.name ||
-                    "Agency Logo"
-                  }
-                />
-              )}
-            </div>
-            <div className={styles.content}>
-              <header>
-                <div className={styles.role}>
-                  <h3>{experience.title}</h3>
-                  <h4>{experience.kicker}</h4>
-                </div>
-                <div className={styles.specifics}>
-                  <span>{experience.agency ? "Contract" : "In-house"}</span>
-                  <p>
-                    <span>{fromDate}</span> to <span>{toDate}</span>
-                  </p>
-                </div>
-              </header>
-
-              <p>{experience.description}</p>
-              <TagList
-                className={styles.tags}
-                color="secondary"
-                size="sm"
-                list={
-                  experience.skills?.items
-                    .map((skill) => skill?.title)
-                    .filter((title): title is string => title !== null)
-                    .map((title) => ({ title })) || []
-                }
-              />
-            </div>
-          </Card>
-        ) : null;
-      })}
-      <Button
-        label={buttonMessage}
+      <p>{description}</p>
+      {date && (
+        <p className={styles.date}>
+          &gt;<span>{formatDate(date)}</span>
+        </p>
+      )}
+      <TagList
+        className={styles.tags}
+        color="secondary"
         size="sm"
-        iconRight={buttonIcon}
-        onClick={handleShow}
+        list={
+          skills?.items
+            .map((skill) => skill?.title)
+            .filter((title): title is string => title !== null)
+            .map((title) => ({ title })) || []
+        }
       />
-    </section>
-  );
-};
+    </div>
+  </Box>
+);

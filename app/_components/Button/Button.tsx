@@ -54,6 +54,9 @@ const renderIcon = (
 };
 
 export const Button = ({
+  align = "center",
+  alignSelf = "flex-start",
+  border = false,
   className,
   disabled = false,
   formAction,
@@ -73,6 +76,7 @@ export const Button = ({
   width = "content",
 }: ButtonProps) => {
   const sizeVariable = createCssSizeVariables(size, breakpointSizes);
+  const buttonStyle = { ...sizeVariable, alignSelf };
   const hasOnlyLeftIcon = iconLeft && !loading && !iconRight;
   const hasOnlyRightIcon = !iconLeft && !loading && iconRight;
   const hasBothIcons = Boolean(iconLeft && iconRight);
@@ -128,6 +132,8 @@ export const Button = ({
 
   const sharedClassName = combineClassNames(
     styles.button,
+    styles[`align-${align}`],
+    !border && styles.borderless,
     primary && styles.primary,
     styles[`width-${width}`],
     hasIcon && styles["with-icon"],
@@ -157,7 +163,7 @@ export const Button = ({
   const buttonElement = shouldRenderNextLink ? (
     <NextLink
       ref={ref as React.Ref<HTMLAnchorElement>}
-      style={{ ...sizeVariable }}
+      style={buttonStyle}
       className={sharedClassName}
       onClick={handleClick}
       href={href as string}
@@ -171,7 +177,7 @@ export const Button = ({
   ) : href ? (
     <a
       ref={ref as React.Ref<HTMLAnchorElement>}
-      style={{ ...sizeVariable }}
+      style={buttonStyle}
       className={sharedClassName}
       onClick={handleClick}
       href={isDisabled ? undefined : href}
@@ -194,7 +200,7 @@ export const Button = ({
   ) : (
     <button
       ref={ref as React.Ref<HTMLButtonElement>}
-      style={{ ...sizeVariable }}
+      style={buttonStyle}
       className={sharedClassName}
       onClick={onClick}
       disabled={loading || disabled}

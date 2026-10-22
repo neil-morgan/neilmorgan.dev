@@ -467,8 +467,4 @@
 
   --glow-inner: color-mix(in srgb, var(--olive-12) 7.45%, transparent);
   --glow-outer: color-mix(in srgb, var(--olive-11) 2.75%, transparent);
-
-  --site-padding-desktop: 2rem;
-  --site-padding-mobile: 1rem;
-  --site-width: 1200px;
 }

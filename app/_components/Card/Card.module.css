@@ -1,13 +1,9 @@
 .card {
-  display: flex;
-  width: 100%;
-  color: var(--text);
+  color: var(--olive-12);
+  text-decoration: none;
+  align-items: center;
 
-  &a {
-    text-decoration: none;
-  }
-
-  &button {
-    cursor: pointer;
+  .body {
+    padding: 1rem;
   }
 }

@@ -1,17 +1,17 @@
 .interaction {
-  box-shadow: 0px 0px 0 1px var(--border4);
+  box-shadow: 0px 0px 0 var(--interaction-border-width, 1px) var(--border4);
   border-radius: 0.25rem;
   overflow: hidden;
-  background-color: var(--layer2a5);
   transition: ease 200ms;
 
   @media (max-width: env(breakpoint-md)) {
-    background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%);
+    /* background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%); */
+    background: transparent;
   }
 
   @media (hover: hover) {
     &:hover:not(:disabled):not([aria-disabled="true"]) {
-      box-shadow: 0px 0px 0 1px var(--border2);
+      box-shadow: 0px 0px 0 var(--interaction-border-width, 1px) var(--border2);
       background-color: var(--interaction);
     }
   }

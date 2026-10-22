@@ -4,12 +4,11 @@ import { renderRichtextDocument } from "./render-richtext-document";
 
 import type { RichtextProps } from "./Richtext.types";
 
-export const Richtext = ({ links, json, noPadding }: RichtextProps) => (
+export const Richtext = ({ links, json }: RichtextProps) => (
   <>
     {renderRichtextDocument({
       json,
       links,
-      noPadding,
       renderEntry: (entry) => (
         <Components
           id={entry.sys.id}

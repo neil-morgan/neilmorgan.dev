@@ -12,12 +12,12 @@ export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
         <Breadcrumbs crumbs={slug} />
         <h1 {...inspectorProps?.({ fieldId: "title" })}>{page.title}</h1>
         {page.kicker && (
-          <h4
+          <p
             className={styles.kicker}
             {...inspectorProps?.({ fieldId: "kicker" })}
           >
             {page.kicker}
-          </h4>
+          </p>
         )}
         {page.description && (
           <p {...inspectorProps?.({ fieldId: "description" })}>
@@ -27,8 +27,8 @@ export const PageHeader = ({ page, slug, inspectorProps }: PageHeaderProps) => {
       </div>
       {image?.url && image?.description && (
         <AspectImage
-          size="25rem"
-          sizes="(max-width: 800px) 100vw, 800px"
+          size="17rem"
+          sizes="(max-width: 800px) 100vw, 17rem"
           fit="cover"
           scale="down"
           loading="eager"
