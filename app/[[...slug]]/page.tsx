@@ -78,7 +78,7 @@ const Root = async ({ params: pageParams }: PageParams) => {
   if (!page) notFound();
 
   const isPreview = (await isDraftModeEnabled())?.previewMode === true;
-  const embeddedEntries = getEmbeddedEntries(page);
+  const embeddedEntries = isPreview ? getEmbeddedEntries(page) : [];
 
   return (
     <Page>

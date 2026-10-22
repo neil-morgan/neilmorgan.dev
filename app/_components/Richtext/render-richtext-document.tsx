@@ -4,7 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 import type { RichtextImageFragment } from "@/app/_graphql/generated";
-import { isInternalUrl } from "@/app/_utils";
+import { combineClassNames, isInternalUrl } from "@/app/_utils";
 import { AspectImage } from "@/app/_components/AspectImage/AspectImage";
 import { Link } from "@/app/_components/Link/Link";
 
@@ -46,7 +46,7 @@ export const renderRichtextDocument = ({
     if (!image?.url) return null;
 
     return (
-      <div className={styles.image}>
+      <div className={combineClassNames(styles.image)}>
         <AspectImage
           url={image.url}
           description={image.description || image.title || ""}

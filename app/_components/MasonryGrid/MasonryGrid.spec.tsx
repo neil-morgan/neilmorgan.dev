@@ -100,7 +100,7 @@ describe("MasonryGridSkeleton", () => {
     const css = root.querySelector("style")?.textContent;
     expect(css).toContain("column-count:1");
     expect(css).toContain("@media (width > 875px)");
-    expect(css).toContain("@media (width > 1024px)");
+    expect(css).toContain("@media (width > 1216px)");
   });
 
   it("sorts custom maps, starts with the first count and scopes each instance", () => {

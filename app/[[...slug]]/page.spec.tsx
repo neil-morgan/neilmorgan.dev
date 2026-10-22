@@ -33,9 +33,7 @@ vi.mock("@/app/_helpers", () => ({
 }));
 
 vi.mock("@/app/_components", () => ({
-  PageContainer: ({ children }: React.PropsWithChildren) => (
-    <div>{children}</div>
-  ),
+  Page: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
   PageHeader: vi.fn(() => <header>CMS page header</header>),
   Richtext: vi.fn(() => <div>CMS rich text</div>),
   LivePageHeader: vi.fn(() => <header>Live page header</header>),

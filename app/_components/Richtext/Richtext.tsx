@@ -9,6 +9,7 @@ export const Richtext = ({ links, json }: RichtextProps) => (
     {renderRichtextDocument({
       json,
       links,
+
       renderEntry: (entry) => (
         <Components
           id={entry.sys.id}

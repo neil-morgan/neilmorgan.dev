@@ -19,7 +19,7 @@ const MasonryGridLayout = dynamic(() => import("./MasonryGridLayout"), {
 
 const defaultResponsive: { [bp: number]: number } = {
   [BREAKPOINTS.base]: 1,
-  [BREAKPOINTS.sm]: 2,
+  [BREAKPOINTS.md]: 2,
   [BREAKPOINTS.xl]: 3,
 };
 

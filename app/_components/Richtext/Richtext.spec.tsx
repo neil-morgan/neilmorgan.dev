@@ -101,7 +101,6 @@ describe.each(["Richtext", "LiveRichtext"] as const)(
         component({
           json: entryDocument,
           links: linksWithEntry(),
-          noPadding: true,
         }),
       );
 
@@ -118,9 +117,6 @@ describe.each(["Richtext", "LiveRichtext"] as const)(
       expect(image.parentElement).toHaveClass(imageStyles.scaleDown);
       expect(image.parentElement).not.toHaveClass(imageStyles.scaleUp);
       expect(image.parentElement?.parentElement).toHaveClass(styles.image);
-      expect(image.parentElement?.parentElement).not.toHaveClass(
-        styles.padding,
-      );
       expect(screen.queryByTestId("entry-image-entry")).not.toBeInTheDocument();
     });
 
@@ -217,7 +213,6 @@ describe.each(["Richtext", "LiveRichtext"] as const)(
       });
       expect(frame).toHaveClass(imageStyles.scaleDown);
       expect(frame).not.toHaveClass(imageStyles.scaleUp);
-      expect(frame?.parentElement).toHaveClass(styles.image, styles.padding);
     });
 
     it("resolves multiple images by ID rather than array position", () => {
@@ -293,16 +288,6 @@ describe.each(["Richtext", "LiveRichtext"] as const)(
       const { container } = render(component({ json: imageDocument, links }));
 
       expect(container).toBeEmptyDOMElement();
-    });
-
-    it("honors noPadding without losing the image width wrapper", () => {
-      render(
-        component({ json: imageDocument, links: linksWith(), noPadding: true }),
-      );
-
-      const wrapper = screen.getByRole("img").parentElement?.parentElement;
-      expect(wrapper).toHaveClass(styles.image);
-      expect(wrapper).not.toHaveClass(styles.padding);
     });
 
     it("preserves text, block entries and inline entries alongside an image", () => {

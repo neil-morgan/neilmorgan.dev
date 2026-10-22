@@ -18,10 +18,13 @@ describe.each([undefined, "/about", "https://example.com"])(
   (href) => {
     const role = href ? "link" : "button";
 
-    it("keeps borders by default and supports toggling them off and on", () => {
+    it("is borderless by default and supports toggling borders on and off", () => {
       const { rerender } = render(
         <IconButton href={href} icon="chat" ariaLabel="Chat" />,
       );
+      expect(screen.getByRole(role)).toHaveClass(styles.borderless);
+
+      rerender(<IconButton href={href} icon="chat" ariaLabel="Chat" border />);
       expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
 
       rerender(
@@ -32,9 +35,6 @@ describe.each([undefined, "/about", "https://example.com"])(
         interactionStyles.interaction,
       );
       expect(screen.getByTestId("icon")).toBeInTheDocument();
-
-      rerender(<IconButton href={href} icon="chat" ariaLabel="Chat" border />);
-      expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
     });
 
     it.each(["disabled", "loading"] as const)(

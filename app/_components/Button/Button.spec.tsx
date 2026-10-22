@@ -56,8 +56,11 @@ describe.each([undefined, "/about", "https://example.com"])(
       },
     );
 
-    it("keeps borders by default and allows toggling them off and on", () => {
+    it("is borderless by default and allows toggling borders on and off", () => {
       const { rerender } = render(<Button href={href} label="Continue" />);
+      expect(screen.getByRole(role)).toHaveClass(styles.borderless);
+
+      rerender(<Button href={href} label="Continue" border />);
       expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
 
       rerender(<Button href={href} label="Continue" border={false} />);
@@ -65,9 +68,6 @@ describe.each([undefined, "/about", "https://example.com"])(
         styles.borderless,
         interactionStyles.interaction,
       );
-
-      rerender(<Button href={href} label="Continue" border />);
-      expect(screen.getByRole(role)).not.toHaveClass(styles.borderless);
     });
 
     it.each(["disabled", "loading", "primary"] as const)(
