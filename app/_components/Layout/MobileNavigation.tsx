@@ -25,6 +25,7 @@ const MobileNavigationContent = ({ items }: MobileNavigationProps) => {
               <Button
                 key={index}
                 href={item.href}
+                onClick={() => setIsOpen(false)}
                 disabled={item.disabled}
                 label={item.label}
                 size="md"
