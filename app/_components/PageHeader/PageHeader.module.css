@@ -1,11 +1,22 @@
 .pageHeader {
   max-width: var(--site-width);
   display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 4rem;
+  margin-top: 0.125rem;
+  gap: 2rem;
+
+  @media (max-width: env(breakpoint-lg)) {
+    margin: 0;
+  }
+}
+
+.headerWrapper {
+  display: flex;
+  gap: 3rem;
 
   @media (max-width: env(breakpoint-md)) {
-    gap: 3rem;
+    gap: 2rem;
     margin: 0;
   }
 
@@ -13,59 +24,58 @@
     flex-direction: column;
     gap: 2rem;
   }
-}
 
-.headerContent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  .headerContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-  > h1 {
-    margin-top: -2px;
-    margin-bottom: 1rem;
-    line-height: 1;
-    font-size: 3rem;
+    > h1 {
+      margin-top: -2px;
+      margin-bottom: 1rem;
+      line-height: 1;
+      font-size: 3rem;
 
-    @media (max-width: env(breakpoint-md)) {
-      font-size: 2.5rem;
+      @media (max-width: env(breakpoint-md)) {
+        font-size: 2.5rem;
+      }
+    }
+
+    > p {
+      color: var(--text);
+
+      @media (max-width: env(breakpoint-md)) {
+        max-width: 100%;
+      }
+
+      @media (max-width: env(breakpoint-sm)) {
+        font-size: 1rem;
+      }
+    }
+
+    .kicker {
+      font-size: 1.5rem;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .tagList {
+      margin-top: 1.25rem;
     }
   }
 
-  > p {
-    color: var(--text);
-
-    @media (max-width: env(breakpoint-md)) {
-      max-width: 100%;
-    }
+  .headerImage {
+    align-self: flex-start;
+    flex: 0 1 auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
 
     @media (max-width: env(breakpoint-sm)) {
-      font-size: 1rem;
+      margin: 0 auto;
+      max-height: 20rem;
+      max-width: 100%;
     }
-  }
-
-  .kicker {
-    font-size: 1.5rem;
-
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .tagList {
-    margin-top: 2rem;
-    @media (max-width: env(breakpoint-md)) {
-      justify-content: center;
-    }
-  }
-}
-
-.headerImage {
-  align-self: center;
-  flex: 0 1 auto;
-  border-radius: 0.5rem;
-  overflow: hidden;
-
-  @media (max-width: env(breakpoint-md)) {
-    margin: 0 auto;
   }
 }

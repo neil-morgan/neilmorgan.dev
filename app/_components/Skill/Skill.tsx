@@ -2,7 +2,7 @@ import { SkillFragment } from "@/app/_graphql";
 import { AspectImage } from "@/app/_components";
 import styles from "./Skill.module.css";
 
-export const Skill = ({ icon, title }: SkillFragment) => {
+export const Skill = ({ icon, name }: SkillFragment) => {
   if (!icon?.url) return null;
   return (
     <div className={styles.skill}>
@@ -14,7 +14,7 @@ export const Skill = ({ icon, title }: SkillFragment) => {
         description={icon?.description || "Skill icon"}
         shadow
       />
-      <span>{title}</span>
+      <span>{name}</span>
     </div>
   );
 };

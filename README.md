@@ -34,6 +34,12 @@ slug `blog` for the blog index. Blog listing cards link directly to each page's
 Contentful slug. Draft pages can still be rendered on demand in preview mode.
 API endpoints remain separate from the CMS catch-all.
 
+Section page cards use the lightweight `PageCard` GraphQL fragment, not the full
+`Page` fragment. Keep rich-text bodies and their links out of card selections:
+Contentful multiplies their query cost by the section's collection limit, even
+when fewer cards are returned. Full-page rendering and live preview still use
+the complete `Page` fragment.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Content previews

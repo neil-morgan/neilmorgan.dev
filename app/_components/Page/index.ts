@@ -1,2 +1,2 @@
-export { Page } from "./Page";
-export { LivePageHeader, LivePageRichtext } from "./PagePreview";
+export { Page, PageContent } from "./Page";
+export { LivePageHeader, LivePageContent } from "./LivePage";

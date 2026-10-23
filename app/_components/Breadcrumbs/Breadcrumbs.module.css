@@ -1,11 +1,22 @@
 .container {
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
-  margin-top: 0.125rem;
-  font-family: var(--font-fira-mono);
+  flex-direction: column;
+  gap: 0.3125rem;
+  min-width: 0;
 
-  @media (max-width: env(breakpoint-md)) {
-    margin-bottom: 1rem;
+  .breadcrumbs {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-fira-mono);
+    margin-bottom: 0.25rem;
+  }
+
+  .date {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    font-family: var(--font-fira-mono);
   }
 }

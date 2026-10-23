@@ -7,7 +7,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { PageContentBySlugQuery } from "@/app/_graphql/generated";
 import { PageHeader } from "../PageHeader/PageHeader";
 import { LiveRichtext } from "../Richtext/LiveRichtext";
-import { LivePageHeader, LivePageRichtext } from "./PagePreview";
+import { LivePageHeader, LivePageContent } from "./LivePage";
+import styles from "./Page.module.css";
 
 vi.mock("@contentful/live-preview/react", () => ({
   useContentfulLiveUpdates: vi.fn(),
@@ -24,11 +25,16 @@ vi.mock("../Richtext/LiveRichtext", () => ({
 
 const page = {
   __typename: "Page" as const,
-  sys: { id: "home" },
+  sys: {
+    id: "home",
+    publishedAt: "2024-06-01T00:00:00Z",
+    firstPublishedAt: "2024-06-01T00:00:00Z",
+  },
   slug: "/",
   title: "Original title",
   kicker: null,
   description: null,
+  contentfulMetadata: { tags: [] },
   image: null,
   content: null,
 };
@@ -82,11 +88,7 @@ describe("live page leaves", () => {
     const embeddedEntries = [{ id: "entry", node: <div>Server entry</div> }];
 
     render(
-      <LivePageRichtext
-        pageData={pageData}
-        embeddedEntries={embeddedEntries}
-        className="content"
-      />,
+      <LivePageContent pageData={pageData} embeddedEntries={embeddedEntries} />,
     );
 
     expect(LiveRichtext).toHaveBeenCalledWith(
@@ -94,7 +96,7 @@ describe("live page leaves", () => {
       undefined,
     );
     expect(screen.getByText("Updated rich text").parentElement).toHaveClass(
-      "content",
+      styles.contentField,
     );
     expect(screen.getByText("Updated rich text").parentElement).toHaveAttribute(
       "data-contentful-field-id",
@@ -105,7 +107,7 @@ describe("live page leaves", () => {
 
   it("omits missing rich text", () => {
     const { container } = render(
-      <LivePageRichtext pageData={pageData} embeddedEntries={[]} />,
+      <LivePageContent pageData={pageData} embeddedEntries={[]} />,
     );
 
     expect(container).toBeEmptyDOMElement();
@@ -120,12 +122,12 @@ describe("live page leaves", () => {
       pageCollection: { items: [{ ...page, content }] },
     });
     const { container, rerender } = render(
-      <LivePageRichtext pageData={pageData} embeddedEntries={[]} />,
+      <LivePageContent pageData={pageData} embeddedEntries={[]} />,
     );
     expect(screen.getByText("Updated rich text")).toBeInTheDocument();
 
     vi.mocked(useContentfulLiveUpdates).mockReturnValue(pageData);
-    rerender(<LivePageRichtext pageData={pageData} embeddedEntries={[]} />);
+    rerender(<LivePageContent pageData={pageData} embeddedEntries={[]} />);
 
     expect(container).toBeEmptyDOMElement();
   });
@@ -137,7 +139,7 @@ describe("live page leaves", () => {
     const { container } = render(
       <>
         <LivePageHeader pageData={pageData} slug={[]} />
-        <LivePageRichtext pageData={pageData} embeddedEntries={[]} />
+        <LivePageContent pageData={pageData} embeddedEntries={[]} />
       </>,
     );
 

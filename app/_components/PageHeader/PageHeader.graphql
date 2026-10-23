@@ -1,6 +1,17 @@
 fragment PageHeader on Page {
   title
   kicker
+  slug
+  sys {
+    publishedAt
+    firstPublishedAt
+  }
+  contentfulMetadata {
+    tags {
+      id
+      name
+    }
+  }
   description
   image {
     focalPoint

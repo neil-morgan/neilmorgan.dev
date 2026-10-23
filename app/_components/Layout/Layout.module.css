@@ -14,7 +14,7 @@ div.container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 2.5rem;
 
     @media (max-width: env(breakpoint-lg)) {
       flex: 1;

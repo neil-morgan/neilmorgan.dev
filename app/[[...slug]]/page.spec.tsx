@@ -6,6 +6,7 @@ import {
   PageContentBySlugDocument,
   type AllPageSlugsQuery,
   type PageContentBySlugQuery,
+  type PageFragment,
 } from "@/app/_graphql/generated";
 import {
   fetchContent,
@@ -16,7 +17,7 @@ import {
   PageHeader,
   Richtext,
   LivePageHeader,
-  LivePageRichtext,
+  LivePageContent,
 } from "@/app/_components";
 import Root, { generateMetadata, generateStaticParams } from "./page";
 
@@ -34,10 +35,13 @@ vi.mock("@/app/_helpers", () => ({
 
 vi.mock("@/app/_components", () => ({
   Page: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+  PageContent: vi.fn(({ content }: PageFragment) =>
+    content ? <Richtext json={content.json} links={content.links} /> : null,
+  ),
   PageHeader: vi.fn(() => <header>CMS page header</header>),
   Richtext: vi.fn(() => <div>CMS rich text</div>),
   LivePageHeader: vi.fn(() => <header>Live page header</header>),
-  LivePageRichtext: vi.fn(() => <div>Live rich text</div>),
+  LivePageContent: vi.fn(() => <div>Live rich text</div>),
 }));
 
 const pageData: PageContentBySlugQuery = {
@@ -45,13 +49,21 @@ const pageData: PageContentBySlugQuery = {
     items: [
       {
         __typename: "Page",
-        sys: { id: "home" },
+        sys: {
+          id: "home",
+          publishedAt: "2024-06-01T00:00:00Z",
+          firstPublishedAt: "2024-06-01T00:00:00Z",
+        },
         slug: "/",
         title: "Welcome",
         kicker: null,
         description: "CMS homepage description",
         image: null,
         content: null,
+        contentfulMetadata: {
+          __typename: undefined,
+          tags: [],
+        },
       },
     ],
   },
@@ -91,7 +103,7 @@ describe("optional CMS catch-all", () => {
       );
       expect(screen.getByText("CMS page header")).toBeInTheDocument();
       expect(LivePageHeader).not.toHaveBeenCalled();
-      expect(LivePageRichtext).not.toHaveBeenCalled();
+      expect(LivePageContent).not.toHaveBeenCalled();
     },
   );
 
@@ -268,8 +280,11 @@ describe("optional CMS catch-all", () => {
 
     render(await Root(paramsFor()));
 
-    expect(Richtext).toHaveBeenCalledWith(content, undefined);
-    expect(LivePageRichtext).not.toHaveBeenCalled();
+    expect(Richtext).toHaveBeenCalledWith(
+      { json: content.json, links: content.links },
+      undefined,
+    );
+    expect(LivePageContent).not.toHaveBeenCalled();
     expect(getEmbeddedEntries).not.toHaveBeenCalled();
   });
 
@@ -288,7 +303,7 @@ describe("optional CMS catch-all", () => {
     expect(getEmbeddedEntries).toHaveBeenCalledExactlyOnceWith(
       pageData.pageCollection?.items[0],
     );
-    expect(LivePageRichtext).toHaveBeenCalledWith(
+    expect(LivePageContent).toHaveBeenCalledWith(
       expect.objectContaining({ pageData, embeddedEntries: [] }),
       undefined,
     );

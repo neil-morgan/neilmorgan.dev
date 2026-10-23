@@ -1,0 +1,32 @@
+fragment Page on Page {
+  ...PageHeader
+  __typename
+  sys {
+    id
+    publishedAt
+  }
+  contentfulMetadata {
+    tags {
+      name
+    }
+  }
+  content {
+    json
+    links {
+      ...PageContentLinks
+    }
+  }
+  image {
+    focalPoint
+    image {
+      url
+      description
+      width
+      height
+    }
+  }
+  title
+  kicker
+  description
+  slug
+}

@@ -1,3 +1,3 @@
-import type { PageFragment } from "@/app/_graphql/generated";
+import type { PageCardFragment } from "@/app/_graphql/generated";
 
-export type CardProps = PageFragment;
+export type CardProps = PageCardFragment;

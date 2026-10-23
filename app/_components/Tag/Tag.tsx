@@ -49,11 +49,13 @@ export const TagList = ({
       style={sizeVariable}
       className={combineClassNames(styles["tag-list"], className)}
     >
-      {list.map(({ title, slug }, i) => (
-        <Tag key={i} slug={slug} size={size} color={color}>
-          {title}
-        </Tag>
-      ))}
+      {list.map((tag, i) =>
+        tag?.name != null ? (
+          <Tag key={i} slug={tag.slug} size={size} color={color}>
+            {tag.name}
+          </Tag>
+        ) : null,
+      )}
     </div>
   );
 };

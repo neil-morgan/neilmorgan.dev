@@ -1,24 +1,3 @@
-fragment Page on Page {
-  __typename
-  sys {
-    id
-    publishedAt
-  }
-  title
-  kicker
-  description
-  slug
-  image {
-    focalPoint
-    image {
-      url
-      description
-      width
-      height
-    }
-  }
-}
-
 fragment Section on Section {
   fullWidth
   gap
@@ -36,15 +15,14 @@ fragment Section on Section {
         ...Feedback
       }
       ... on Page {
-        ...Page
+        ...PageCard
       }
       ... on Skill {
         __typename
         sys {
           id
         }
-        title
-        proficiency
+        name
         icon {
           url
           description
@@ -72,7 +50,7 @@ fragment Section on Section {
         }
         skills: skillsCollection(limit: 20) {
           items {
-            title
+            name
           }
         }
         date

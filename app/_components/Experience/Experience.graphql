@@ -16,7 +16,7 @@ fragment Experience on Experience {
   }
   skills: skillsCollection {
     items {
-      title
+      name
     }
   }
   date

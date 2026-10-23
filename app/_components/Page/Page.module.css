@@ -11,3 +11,10 @@
     padding: 0 var(--site-padding-mobile);
   }
 }
+
+.contentField {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin: 4rem 0;
+}

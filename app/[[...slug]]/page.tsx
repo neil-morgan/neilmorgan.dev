@@ -9,13 +9,12 @@ import {
   isDraftModeEnabled,
 } from "@/app/_helpers";
 import {
+  LivePageContent,
   LivePageHeader,
-  LivePageRichtext,
   Page,
+  PageContent,
   PageHeader,
-  Richtext,
 } from "@/app/_components";
-import styles from "./page.module.css";
 import type { PageParams } from "./page.types";
 
 const getPageDataForRoute = async (routeSegments: string[]) => {
@@ -85,20 +84,15 @@ const Root = async ({ params: pageParams }: PageParams) => {
       {isPreview ? (
         <>
           <LivePageHeader pageData={pageData} slug={slug} />
-          <LivePageRichtext
+          <LivePageContent
             pageData={pageData}
             embeddedEntries={embeddedEntries}
-            className={styles.contentField}
           />
         </>
       ) : (
         <>
           <PageHeader page={page} slug={slug} />
-          {page.content && (
-            <div className={styles.contentField}>
-              <Richtext json={page.content.json} links={page.content.links} />
-            </div>
-          )}
+          {page.content && <PageContent {...page} />}
         </>
       )}
     </Page>

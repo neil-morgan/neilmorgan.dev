@@ -3,8 +3,7 @@ fragment Skill on Skill {
     id
     publishedAt
   }
-  title
-  proficiency
+  name
   icon {
     url
     description

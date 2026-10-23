@@ -14,7 +14,6 @@ export const LiveRichtext = ({
   noPadding,
 }: LiveRichtextProps) => {
   const entryMap = new Map(entries.map(({ id, node }) => [id, node]));
-
   return renderRichtextDocument({
     json,
     links,

@@ -32,6 +32,14 @@ const page = (
   title: "Blog",
   kicker: null,
   description: null,
+  slug: "blog",
+  contentfulMetadata: {
+    tags: [],
+  },
+  sys: {
+    publishedAt: "2024-06-06",
+    firstPublishedAt: "2024-06-06",
+  },
   image: {
     focalPoint,
     image: {
@@ -82,6 +90,14 @@ describe("CMS image focal-point wiring", () => {
       <PageHeader
         slug={["blog"]}
         page={{
+          sys: {
+            publishedAt: "2024-06-06",
+            firstPublishedAt: "2024-06-06",
+          },
+          contentfulMetadata: {
+            tags: [],
+          },
+          slug: "blog",
           title: "Blog",
           kicker: null,
           description: null,

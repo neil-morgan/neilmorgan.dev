@@ -1,0 +1,20 @@
+fragment PageCard on Page {
+  __typename
+  sys {
+    id
+    publishedAt
+  }
+  title
+  kicker
+  description
+  slug
+  image {
+    focalPoint
+    image {
+      url
+      description
+      width
+      height
+    }
+  }
+}

@@ -1,5 +1,10 @@
 import type { CssSizeType } from "@/app/_styles";
 
+export type TagListItem = {
+  name: string | null;
+  slug?: string;
+};
+
 export type TagProps = {
   slug?: string;
   size?: CssSizeType;
@@ -9,10 +14,7 @@ export type TagProps = {
 };
 
 export type TagListProps = {
-  list: {
-    title: string;
-    slug?: string;
-  }[];
+  list: (TagListItem | null)[];
   color?: "primary" | "secondary";
   size?: CssSizeType;
   className?: string;

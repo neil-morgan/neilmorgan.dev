@@ -45,7 +45,12 @@ export const Experience = ({
       <p>{description}</p>
       {date && (
         <p className={styles.date}>
-          &gt;<span>{formatDate(date)}</span>
+          &gt;
+          <span>
+            {formatDate(date, {
+              separator: "hyphen",
+            })}
+          </span>
         </p>
       )}
       <TagList
@@ -54,9 +59,9 @@ export const Experience = ({
         size="sm"
         list={
           skills?.items
-            .map((skill) => skill?.title)
-            .filter((title): title is string => title !== null)
-            .map((title) => ({ title })) || []
+            .map((skill) => skill?.name)
+            .filter((name): name is string => name !== null)
+            .map((name) => ({ name })) || []
         }
       />
     </div>
