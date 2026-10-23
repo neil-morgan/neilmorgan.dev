@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: 0.3125rem;
   min-width: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--olive-5);
 
   .breadcrumbs {
     overflow: hidden;

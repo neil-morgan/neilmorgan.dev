@@ -4,7 +4,8 @@
   flex-direction: column;
   width: 100%;
   margin-top: 0.125rem;
-  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--olive-5);
 
   @media (max-width: env(breakpoint-lg)) {
     margin: 0;
