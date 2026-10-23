@@ -26,16 +26,6 @@
     --interaction-border-width: 0px;
   }
 
-  @media (hover: hover) {
-    &:hover:not(:disabled):not([aria-disabled="true"]) {
-      background: var(--layer3);
-
-      &.primary {
-        background: #ffffff;
-      }
-    }
-  }
-
   &:disabled,
   &[aria-disabled="true"] {
     cursor: not-allowed;

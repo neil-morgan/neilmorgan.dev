@@ -59,7 +59,7 @@ export const Box = ({
   const isExternalLink = href && !isInternalUrl(href);
 
   return (
-    <Interaction disabled={!href}>
+    <Interaction disabled={!href} href={href}>
       {isInternalLink ? (
         <NextLink
           href={href}

@@ -56,9 +56,9 @@ const renderIcon = (
 export const Button = ({
   align = "center",
   alignSelf = "flex-start",
-  border = false,
+  border,
   className,
-  disabled = false,
+  disabled,
   formAction,
   href,
   iconLeft,
@@ -69,7 +69,7 @@ export const Button = ({
   loadingPlacement = "center",
   loadingText,
   onClick,
-  primary = false,
+  primary,
   ref,
   size = "1rem",
   type = "button",
@@ -131,17 +131,17 @@ export const Button = ({
     );
 
   const sharedClassName = combineClassNames(
-    styles.button,
-    styles[`align-${align}`],
     !border && styles.borderless,
-    primary && styles.primary,
-    styles[`width-${width}`],
-    hasIcon && styles["with-icon"],
+    className,
     hasBothIcons && styles["both-icons"],
+    hasIcon && styles["with-icon"],
     hasOnlyLeftIcon && styles["single-icon-left"],
     hasOnlyRightIcon && styles["single-icon-right"],
     isIconSpaceNear && styles["icon-near"],
-    className,
+    primary && styles.primary,
+    styles.button,
+    styles[`align-${align}`],
+    styles[`width-${width}`],
   );
 
   const content = (
@@ -214,5 +214,9 @@ export const Button = ({
     </button>
   );
 
-  return primary ? buttonElement : <Interaction>{buttonElement}</Interaction>;
+  return primary ? (
+    buttonElement
+  ) : (
+    <Interaction href={href}>{buttonElement}</Interaction>
+  );
 };

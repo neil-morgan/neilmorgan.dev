@@ -1,13 +1,15 @@
 "use client";
 
 import { cloneElement, isValidElement, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { useMousePosition } from "@/app/_hooks";
 import { combineClassNames } from "@/app/_utils";
 import styles from "./Interaction.module.css";
 import { useInteraction } from "./Interaction.provider";
 import type { InteractionProps } from "./Interaction.types";
 
-export const Interaction = ({ children, disabled }: InteractionProps) => {
+export const Interaction = ({ children, href, disabled }: InteractionProps) => {
+  const pathname = usePathname();
   const { addElementRef } = useInteraction();
   const refCallback = useCallback(
     (node: HTMLElement | null) => {
@@ -27,6 +29,7 @@ export const Interaction = ({ children, disabled }: InteractionProps) => {
     ...childProps,
     className: combineClassNames(
       childProps.className,
+      href === pathname && styles.active,
       !disabled && styles.interaction,
     ),
     ref: refCallback,

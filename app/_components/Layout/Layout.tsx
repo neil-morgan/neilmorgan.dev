@@ -129,7 +129,7 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
       <main>
         {children}
         <footer className={combineClassNames(styles.footer)}>
-          <IconButton icon="siteLogo" iconSize={0.6} size="sm" href="/" />
+          <Icon name="siteLogo" size="lg" />
           <p>© 2024 All rights reserved</p>
         </footer>
       </main>

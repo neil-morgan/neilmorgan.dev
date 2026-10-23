@@ -16,5 +16,6 @@ export type ElementRefsContextType = {
 
 export type InteractionProps = {
   children: React.ReactElement;
+  href?: string;
   disabled?: boolean;
 };

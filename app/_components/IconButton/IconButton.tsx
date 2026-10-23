@@ -56,7 +56,7 @@ export const IconButton = ({
   );
 
   return (
-    <Interaction>
+    <Interaction href={href}>
       {shouldRenderNextLink ? (
         <NextLink
           aria-busy={loading}

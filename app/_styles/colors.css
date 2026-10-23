@@ -463,8 +463,6 @@
 
   --layer4: var(--olive-4);
 
-  --interaction: color-mix(in srgb, var(--olive-12) 2.75%, transparent);
-
   --glow-inner: color-mix(in srgb, var(--olive-12) 7.45%, transparent);
   --glow-outer: color-mix(in srgb, var(--olive-11) 2.75%, transparent);
 }

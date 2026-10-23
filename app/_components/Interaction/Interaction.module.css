@@ -3,16 +3,18 @@
   border-radius: 0.25rem;
   overflow: hidden;
   transition: ease 200ms;
+  &.active {
+    background-color: var(--olive-3);
+  }
 
   @media (max-width: env(breakpoint-md)) {
-    /* background: linear-gradient(150deg, var(--layer3a2) 0%, transparent 100%); */
     background: transparent;
   }
 
   @media (hover: hover) {
     &:hover:not(:disabled):not([aria-disabled="true"]) {
       box-shadow: 0px 0px 0 var(--interaction-border-width, 1px) var(--border2);
-      background-color: var(--interaction);
+      background-color: var(--olive-3);
     }
   }
 }
