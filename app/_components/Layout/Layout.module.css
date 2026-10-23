@@ -59,7 +59,7 @@ div.container {
       }
 
       @media (max-width: env(breakpoint-md)) {
-        padding: 1rem var(--site-padding-mobile);
+        padding: 1rem var(--site-padding-mobile) 3rem;
       }
     }
   }

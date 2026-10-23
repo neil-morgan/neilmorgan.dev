@@ -94,7 +94,7 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
         </section>
         <section className={styles.intro}>
           <p>
-            I&apos;m <Link href="/about">Neil</Link> — welcome to my online
+            I&apos;m <Link href="/">Neil</Link> — welcome to my online
             playground 🛝
           </p>
         </section>
