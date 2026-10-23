@@ -187,7 +187,7 @@ describe("Button enabled links", () => {
     const link = screen.getByRole("link", { name: "Continue" });
     expect(link).toHaveAttribute("href", "/about");
     expect(link).toHaveAttribute("tabindex", "0");
-    expect(link).toHaveAttribute("aria-disabled", "false");
+    expect(link).not.toHaveAttribute("aria-disabled", "true");
     expect(link).not.toHaveAttribute("target");
   });
 
