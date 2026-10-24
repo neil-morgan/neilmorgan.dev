@@ -130,7 +130,10 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
         {children}
         <footer className={combineClassNames(styles.footer)}>
           <Icon name="siteLogo" size="lg" />
-          <p>© 2024 All rights reserved</p>
+          <p>
+            © 2024 All rights reserved — Designed and built by Neil Morgan for
+            Neil Morgan
+          </p>
         </footer>
       </main>
     </div>
