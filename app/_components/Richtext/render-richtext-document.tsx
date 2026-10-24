@@ -175,14 +175,9 @@ export const renderRichtextDocument = ({
         return <li>{children}</li>;
       },
       [BLOCKS.HR]: () => <hr />,
-      [BLOCKS.QUOTE]: (node: RichtextNodeType) => {
-        const children = removeParagraphTags(node, "quote");
-        return (
-          <blockquote className={styles.blockquote}>
-            <div>{children}</div>
-          </blockquote>
-        );
-      },
+      [BLOCKS.QUOTE]: (_: RichtextNodeType, children: ReactNode) => (
+        <blockquote className={styles.blockquote}>{children}</blockquote>
+      ),
       [BLOCKS.TABLE]: (_: RichtextNodeType, children: ReactNode) => (
         <table>{children}</table>
       ),

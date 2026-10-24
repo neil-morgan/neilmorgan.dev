@@ -333,6 +333,35 @@ describe.each(["Richtext", "LiveRichtext"] as const)(
       expect(screen.getByRole("img")).toBeInTheDocument();
     });
 
+    it("preserves paragraph elements inside blockquotes", () => {
+      const { container } = render(
+        component({
+          json: documentWith({
+            nodeType: BLOCKS.QUOTE,
+            data: {},
+            content: [
+              {
+                nodeType: BLOCKS.PARAGRAPH,
+                data: {},
+                content: [
+                  {
+                    nodeType: "text",
+                    value: "Quoted text",
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          }),
+        }),
+      );
+
+      const blockquote = container.querySelector("blockquote");
+      expect(blockquote?.querySelector("p")).toHaveTextContent("Quoted text");
+      expect(blockquote?.querySelector(`.${styles.p}`)).toBeInTheDocument();
+    });
+
     it("updates the image when linked asset data changes", () => {
       const { rerender } = render(
         component({ json: imageDocument, links: linksWith() }),
