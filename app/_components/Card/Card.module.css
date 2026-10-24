@@ -4,6 +4,15 @@
   align-items: center;
 
   .body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     padding: 1rem;
+  }
+
+  .tagList {
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 25%;
   }
 }

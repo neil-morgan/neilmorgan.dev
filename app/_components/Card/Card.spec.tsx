@@ -30,6 +30,7 @@ afterEach(cleanup);
 
 const page: CardProps = {
   __typename: "Page",
+  contentfulMetadata: { tags: [] },
   sys: { id: "page", publishedAt: null },
   title: "About",
   slug: "/about",
