@@ -56,11 +56,11 @@ describe("GraphQL query shapes", () => {
       "image.image.description",
       "image.image.width",
       "image.image.height",
+      "contentfulMetadata.tags.name",
     ]) {
       expect(fields.has(`${card}.${field}`), field).toBe(true);
     }
     expect(fields.has(`${card}.content`)).toBe(false);
-    expect(fields.has(`${card}.contentfulMetadata`)).toBe(false);
 
     for (const [path, limit] of [
       ["sectionCollection", "1"],

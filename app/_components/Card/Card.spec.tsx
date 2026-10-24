@@ -24,6 +24,7 @@ vi.mock("@/app/_components", () => ({
       data-height={sourceSize.height}
     />
   ),
+  TagList: () => null,
 }));
 
 afterEach(cleanup);
