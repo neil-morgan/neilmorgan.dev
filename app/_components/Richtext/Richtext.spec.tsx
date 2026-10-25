@@ -104,10 +104,10 @@ describe("Richtext embedded images", () => {
     expect(image.getAttribute("src")).toContain("entry-image.jpg");
     expect(image).toHaveStyle({
       objectFit: "cover",
-      objectPosition: "100% 50%",
+      objectPosition: "50% 50%",
     });
     expect(image.parentElement).toHaveStyle({
-      "--aspect-ratio": String((1 + Math.sqrt(5)) / 2),
+      "--aspect-ratio": "2",
       "--size": "50rem",
     });
     expect(image.parentElement).toHaveClass(imageStyles.scaleDown);
@@ -190,7 +190,7 @@ describe("Richtext embedded images", () => {
     expect(screen.getAllByRole("img")).toHaveLength(1);
   });
 
-  it("renders a shrinkable image capped at 50rem with a golden-ratio cover frame", () => {
+  it("renders a shrinkable image capped at 50rem with a 2:1 cover frame", () => {
     render(component({ json: imageDocument, links: linksWith() }));
 
     const image = screen.getByRole("img", {
@@ -204,7 +204,7 @@ describe("Richtext embedded images", () => {
 
     const frame = image.parentElement;
     expect(frame).toHaveStyle({
-      "--aspect-ratio": String((1 + Math.sqrt(5)) / 2),
+      "--aspect-ratio": "2",
       "--size": "50rem",
     });
     expect(frame).toHaveClass(imageStyles.scaleDown);
