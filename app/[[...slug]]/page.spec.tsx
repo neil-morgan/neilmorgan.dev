@@ -19,6 +19,7 @@ import {
   LivePageHeader,
   LivePageContent,
 } from "@/app/_components";
+import type { RichtextEntry } from "@/app/_components/Richtext/Richtext.types";
 import Root, { generateMetadata, generateStaticParams } from "./page";
 
 vi.mock("next/navigation", () => ({
@@ -35,8 +36,18 @@ vi.mock("@/app/_helpers", () => ({
 
 vi.mock("@/app/_components", () => ({
   Page: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
-  PageContent: vi.fn(({ content }: PageFragment) =>
-    content ? <Richtext json={content.json} links={content.links} /> : null,
+  PageContent: vi.fn(
+    ({
+      content,
+      embeddedEntries,
+    }: PageFragment & { embeddedEntries: RichtextEntry[] }) =>
+      content ? (
+        <Richtext
+          json={content.json}
+          links={content.links}
+          entries={embeddedEntries}
+        />
+      ) : null,
   ),
   PageHeader: vi.fn(() => <header>CMS page header</header>),
   Richtext: vi.fn(() => <div>CMS rich text</div>),
@@ -281,15 +292,26 @@ describe("optional CMS catch-all", () => {
     render(await Root(paramsFor()));
 
     expect(Richtext).toHaveBeenCalledWith(
-      { json: content.json, links: content.links },
+      { json: content.json, links: content.links, entries: [] },
       undefined,
     );
+    expect(getEmbeddedEntries).toHaveBeenCalledExactlyOnceWith(
+      content.links.entries,
+    );
     expect(LivePageContent).not.toHaveBeenCalled();
-    expect(getEmbeddedEntries).not.toHaveBeenCalled();
   });
 
   it("uses client leaves only in preview and prepares embedded entries on the server", async () => {
-    vi.mocked(fetchContent).mockResolvedValue(pageData);
+    const content = {
+      json: { nodeType: "document", data: {}, content: [] },
+      links: { entries: { block: [], inline: [] }, assets: { block: [] } },
+    };
+    const previewPageData: PageContentBySlugQuery = {
+      pageCollection: {
+        items: [{ ...pageData.pageCollection!.items[0]!, content }],
+      },
+    };
+    vi.mocked(fetchContent).mockResolvedValue(previewPageData);
     vi.mocked(isDraftModeEnabled).mockResolvedValue({ previewMode: true });
 
     render(await Root(paramsFor()));
@@ -297,14 +319,17 @@ describe("optional CMS catch-all", () => {
     expect(PageHeader).not.toHaveBeenCalled();
     expect(Richtext).not.toHaveBeenCalled();
     expect(LivePageHeader).toHaveBeenCalledWith(
-      { pageData, slug: [] },
+      { pageData: previewPageData, slug: [] },
       undefined,
     );
     expect(getEmbeddedEntries).toHaveBeenCalledExactlyOnceWith(
-      pageData.pageCollection?.items[0],
+      content.links.entries,
     );
     expect(LivePageContent).toHaveBeenCalledWith(
-      expect.objectContaining({ pageData, embeddedEntries: [] }),
+      expect.objectContaining({
+        pageData: previewPageData,
+        embeddedEntries: [],
+      }),
       undefined,
     );
   });

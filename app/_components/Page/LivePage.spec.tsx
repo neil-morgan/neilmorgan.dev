@@ -6,7 +6,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { PageContentBySlugQuery } from "@/app/_graphql/generated";
 import { PageHeader } from "../PageHeader/PageHeader";
-import { LiveRichtext } from "../Richtext/LiveRichtext";
+import { Richtext } from "../Richtext/Richtext";
 import { LivePageHeader, LivePageContent } from "./LivePage";
 import styles from "./Page.module.css";
 
@@ -19,8 +19,8 @@ vi.mock("../PageHeader/PageHeader", () => ({
   PageHeader: vi.fn(() => <header>Updated header</header>),
 }));
 
-vi.mock("../Richtext/LiveRichtext", () => ({
-  LiveRichtext: vi.fn(() => <p>Updated rich text</p>),
+vi.mock("../Richtext/Richtext", () => ({
+  Richtext: vi.fn(() => <p>Updated rich text</p>),
 }));
 
 const page = {
@@ -91,7 +91,7 @@ describe("live page leaves", () => {
       <LivePageContent pageData={pageData} embeddedEntries={embeddedEntries} />,
     );
 
-    expect(LiveRichtext).toHaveBeenCalledWith(
+    expect(Richtext).toHaveBeenCalledWith(
       { ...content, entries: embeddedEntries },
       undefined,
     );

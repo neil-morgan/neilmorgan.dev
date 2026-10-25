@@ -77,7 +77,9 @@ const Root = async ({ params: pageParams }: PageParams) => {
   if (!page) notFound();
 
   const isPreview = (await isDraftModeEnabled())?.previewMode === true;
-  const embeddedEntries = isPreview ? getEmbeddedEntries(page) : [];
+  const embeddedEntries = page.content
+    ? getEmbeddedEntries(page.content.links.entries)
+    : [];
 
   return (
     <Page>
@@ -92,7 +94,9 @@ const Root = async ({ params: pageParams }: PageParams) => {
       ) : (
         <>
           <PageHeader page={page} slug={slug} />
-          {page.content && <PageContent {...page} />}
+          {page.content && (
+            <PageContent {...page} embeddedEntries={embeddedEntries} />
+          )}
         </>
       )}
     </Page>

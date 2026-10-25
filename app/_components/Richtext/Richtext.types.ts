@@ -34,10 +34,11 @@ export type RichtextLinksType = {
 export type RichtextProps = {
   json: Document;
   links?: RichtextLinksType;
+  entries: RichtextEntry[];
   noPadding?: boolean;
 };
 
-export type LiveRichtextEntry = {
+export type RichtextEntry = {
   id: string;
   node: ReactNode;
 };

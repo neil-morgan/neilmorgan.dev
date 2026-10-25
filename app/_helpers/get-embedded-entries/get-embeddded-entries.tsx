@@ -1,16 +1,11 @@
-import type { PageContentBySlugQuery } from "@/app/_graphql/generated";
 import type { Typename } from "@/app/_types";
 import { Components } from "@/app/_components";
+import type { RichtextLinksType } from "@/app/_components/Richtext/Richtext.types";
 
-type PageData = NonNullable<
-  NonNullable<PageContentBySlugQuery["pageCollection"]>["items"][number]
->;
-
-export const getEmbeddedEntries = (page: PageData) =>
-  [
-    ...(page.content?.links.entries.block ?? []),
-    ...(page.content?.links.entries.inline ?? []),
-  ].flatMap((entry) => {
+export const getEmbeddedEntries = (
+  entries: RichtextLinksType["entries"] | undefined,
+) =>
+  [...(entries?.block ?? []), ...(entries?.inline ?? [])].flatMap((entry) => {
     if (!entry?.sys.id || !entry.__typename) return [];
     return [
       {

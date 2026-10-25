@@ -1,9 +1,8 @@
 export { Richtext } from "./Richtext";
-export { LiveRichtext } from "./LiveRichtext";
 export type {
   RichtextProps,
   RichtextLinksType,
   RichtextNodeType,
   RichtextBlockEntry,
-  LiveRichtextEntry,
+  RichtextEntry,
 } from "./Richtext.types";

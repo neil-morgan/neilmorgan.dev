@@ -1,20 +1,12 @@
-import type { Typename } from "@/app/_types";
-import { Components } from "@/app/_components";
 import { renderRichtextDocument } from "./render-richtext-document";
 
 import type { RichtextProps } from "./Richtext.types";
 
-export const Richtext = ({ links, json }: RichtextProps) => (
-  <>
-    {renderRichtextDocument({
-      json,
-      links,
-      renderEntry: (entry) => (
-        <Components
-          id={entry.sys.id}
-          __typename={entry.__typename as Typename}
-        />
-      ),
-    })}
-  </>
-);
+export const Richtext = ({ entries, links, json }: RichtextProps) => {
+  const entryMap = new Map(entries.map(({ id, node }) => [id, node]));
+  return renderRichtextDocument({
+    json,
+    links,
+    renderEntry: (entry) => entryMap.get(entry.sys.id) ?? null,
+  });
+};

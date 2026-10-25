@@ -9,9 +9,9 @@ import {
   PageContentBySlugDocument,
   type PageContentBySlugQuery,
 } from "@/app/_graphql/generated";
-import { LiveRichtext, PageHeader } from "@/app/_components";
-import styles from "./Page.module.css";
-import type { LiveRichtextEntry } from "../Richtext/Richtext.types";
+import { PageHeader, Richtext } from "@/app/_components";
+import { PageContentField } from "./Page";
+import type { RichtextEntry } from "../Richtext/Richtext.types";
 
 const pageContentQuery = parse(PageContentBySlugDocument.toString());
 
@@ -45,21 +45,17 @@ export const LivePageContent = ({
   embeddedEntries,
 }: {
   pageData: PageContentBySlugQuery;
-  embeddedEntries: LiveRichtextEntry[];
+  embeddedEntries: RichtextEntry[];
 }) => {
   const { page, inspectorProps } = useLivePage(pageData);
   if (!page?.content) return null;
-
   return (
-    <div
-      className={styles.contentField}
-      {...inspectorProps({ fieldId: "content" })}
-    >
-      <LiveRichtext
+    <PageContentField inspectorProps={inspectorProps({ fieldId: "content" })}>
+      <Richtext
         json={page.content.json}
         links={page.content.links}
         entries={embeddedEntries}
       />
-    </div>
+    </PageContentField>
   );
 };
