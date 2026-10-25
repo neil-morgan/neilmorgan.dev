@@ -55,7 +55,7 @@ export const renderRichtextDocument = ({
             height: image.height ?? null,
           }}
           focalPoint={focalPoint}
-          ratio={(1 + Math.sqrt(5)) / 2}
+          ratio={2 / 1}
           fit="cover"
           size="50rem"
           scale="down"
