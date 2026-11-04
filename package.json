@@ -44,7 +44,7 @@
     "react-dom": "19.2.0",
     "react-merge-refs": "^3.0.2",
     "react-responsive-masonry": "^2.7.1",
-    "sanitize-html": "^2.17.0"
+    "sanitize-html": "^2.18.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
